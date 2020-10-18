@@ -1,11 +1,11 @@
-<?php include("include/header.php"); ?>
+<?php include("include/header.php");?>
 
 <div class="container">
   <div class="row">
   
   <div class="col-md-4"></div>
   <div class="col-md-4">
-    <form class="form-signin" action="index.php" method="post">
+    <form class="form-signin" action= "<?php echo site_url('/Panel/index'); ?>" >
       <div class="text-center mb-4">
 
         
@@ -31,7 +31,8 @@
       </div>
 
       <div class="form-label-group">
-        <select name="tipo_usuario" id="tipo_usuario" required="" class="form-control">
+        <select name="tipo_usuario" id="tipo_usuario"  class="form-control"> 
+        <!--required="" Forma temporal-->
         <option value="">Selecciona una opción</option>
         
         </select>

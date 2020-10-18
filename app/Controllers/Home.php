@@ -4,7 +4,9 @@ class Home extends BaseController{
 	
 	public function index()
 	{
-		return view('login');
+
+		$title['page_title'] = "INBI";	
+		return view('login',$title);
 	}
 	
 
