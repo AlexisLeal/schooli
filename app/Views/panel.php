@@ -57,7 +57,7 @@ height:270px;
           <div class="col-md-12">
           <table width="100%">
           <tr>
-          <td><div class="text-center"><a href="tipo-evaluaciones.php"><i class="fa fa-file-text-o fa-3x" aria-hidden="true"></i><br/>Evaluaciones.</a></div></td>
+          <td><div class="text-center"><a href="<?php echo site_url('/Evaluaciones/index'); ?>"><i class="fa fa-file-text-o fa-3x" aria-hidden="true"></i><br/>Evaluaciones.</a></div></td>
           <td><div class="text-center"><a href="<?php echo site_url('/Grupos/index'); ?>"><i class="fa fa-users fa-3x" aria-hidden="true"></i><br/>Grupos.</a></div></td>
           <td><div class="text-center"><a href="<?php echo site_url('/Alumnos/index'); ?>"><i class="fa fa-user fa-3x" aria-hidden="true"></i><br/>Alumnos.</a></div></td>
           </tr>
