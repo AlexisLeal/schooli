@@ -2,6 +2,7 @@
 
 class Ciclos extends BaseController{
 
+     
     public function index()
 	{
         $title['page_title'] = "Ciclos";	

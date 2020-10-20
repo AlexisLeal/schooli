@@ -5,15 +5,15 @@ use CodeIgniter\Model;
 class Paginas extends Model
 {
     #Nombre de la tabla
-    protected $table      = '';
+    protected $table      = 'paginas';
     #nombre de la clave primaria 
-    protected $primaryKey = '';
+    protected $primaryKey = 'id';
 
     protected $returnType     = 'array';
     protected $useSoftDeletes = true;
 
     #Aqui ponemos el nombre de las columnas que vamos a modifcar
-    protected $allowedFields = [];
+    protected $allowedFields = ['nombre','url','descripcion','estado'];
 
     protected $useTimestamps = false;
     protected $createdField  = 'fecha_creacion';

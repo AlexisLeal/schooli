@@ -5,15 +5,15 @@ use CodeIgniter\Model;
 class Preguntas extends Model
 {
     #Nombre de la tabla
-    protected $table      = '';
+    protected $table      = 'preguntas';
     #nombre de la clave primaria 
-    protected $primaryKey = '';
+    protected $primaryKey = 'id';
 
     protected $returnType     = 'array';
     protected $useSoftDeletes = true;
 
     #Aqui ponemos el nombre de las columnas que vamos a modifcar
-    protected $allowedFields = [];
+    protected $allowedFields = ['idEvaluacion','num_pregunta','pregunta','valor','idTipoPregunta','tiene_imagen'.'ruta_imagen','tiene_audio_pregunta','ruta_audio_pregunta'];
 
     protected $useTimestamps = false;
     protected $createdField  = 'fecha_creacion';

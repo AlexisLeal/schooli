@@ -5,15 +5,15 @@ use CodeIgniter\Model;
 class Usuarios extends Model
 {
     #Nombre de la tabla
-    protected $table      = '';
+    protected $table      = 'usuarios';
     #nombre de la clave primaria 
-    protected $primaryKey = '';
+    protected $primaryKey = 'id';
 
     protected $returnType     = 'array';
     protected $useSoftDeletes = true;
 
     #Aqui ponemos el nombre de las columnas que vamos a modifcar
-    protected $allowedFields = [];
+    protected $allowedFields = ['nombre','apellido_paterno','apellido_materno','usuario','password','email','estado','telefono','movil','roll'];
 
     protected $useTimestamps = false;
     protected $createdField  = 'fecha_creacion';

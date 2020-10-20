@@ -5,15 +5,15 @@ use CodeIgniter\Model;
 class Rolles extends Model
 {
     #Nombre de la tabla
-    protected $table      = '';
+    protected $table      = 'rolles';
     #nombre de la clave primaria 
-    protected $primaryKey = '';
+    protected $primaryKey = 'id';
 
     protected $returnType     = 'array';
     protected $useSoftDeletes = true;
 
     #Aqui ponemos el nombre de las columnas que vamos a modifcar
-    protected $allowedFields = [];
+    protected $allowedFields = ['nombre','descripcion'];
 
     protected $useTimestamps = false;
     protected $createdField  = 'fecha_creacion';

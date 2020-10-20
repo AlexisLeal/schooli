@@ -5,7 +5,7 @@
   
   <div class="col-md-4"></div>
   <div class="col-md-4">
-    <form class="form-signin" action= "<?php echo site_url('/Panel/index'); ?>" >
+    <form class="form-signin" action= "<?php echo site_url('/Panel/index'); ?>" method="POST">
       <div class="text-center mb-4">
 
         

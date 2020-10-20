@@ -5,9 +5,9 @@ use CodeIgniter\Model;
 class Alumnos extends Model
 {
     #Nombre de la tabla
-    protected $table      = '';
+    protected $table      = 'alummnos';
     #nombre de la clave primaria 
-    protected $primaryKey = '';
+    protected $primaryKey = 'id';
 
     protected $returnType     = 'array';
     protected $useSoftDeletes = true;

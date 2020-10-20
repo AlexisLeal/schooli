@@ -5,9 +5,9 @@ use CodeIgniter\Model;
 class Pregunta_opcion_audio extends Model
 {
     #Nombre de la tabla
-    protected $table      = '';
+    protected $table      = 'pregunta_opcion_audio';
     #nombre de la clave primaria 
-    protected $primaryKey = '';
+    protected $primaryKey = 'id';
 
     protected $returnType     = 'array';
     protected $useSoftDeletes = true;

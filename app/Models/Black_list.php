@@ -5,9 +5,9 @@ use CodeIgniter\Model;
 class Black_list extends Model
 {
     #Nombre de la tabla
-    protected $table      = '';
+    protected $table      = 'black_list';
     #nombre de la clave primaria 
-    protected $primaryKey = '';
+    protected $primaryKey = 'id';
 
     protected $returnType     = 'array';
     protected $useSoftDeletes = true;
