@@ -31,9 +31,16 @@
       </div>
 
       <div class="form-label-group">
-        <select name="tipo_usuario" id="tipo_usuario"  class="form-control"> 
+        <select name="tipo_usuario" id="tipo_usuario"  class="form-control" required=""> 
         <!--required="" Forma temporal-->
         <option value="">Selecciona una opción</option>
+        <?php
+            foreach($rowArray as $fila){
+        
+              ?>
+              <option value="<?php echo $fila->id;?>"> <?php echo $fila->nombre;?> </option>
+          
+        <?php } ?>
         
         </select>
         <label for="inputPassword"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Tipo de acceso</font></font></label>

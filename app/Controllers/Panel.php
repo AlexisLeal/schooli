@@ -16,17 +16,17 @@ class Panel extends BaseController{
                 'tipo_usuario' => $REQUEST ->getPost('tipo_usuario')
                     );
 
-                    if($datos['credencial'] == null|| $datos['inputPassword'] == null){
+                    if($datos['credencial'] == null|| $datos['inputPassword'] == null || $datos['tipo_usuario'] == null){
                         //  || $datos['tipo_usuario'] == null  -> esta linea se va agregar mas adelante 
-                        $title['page_title'] = "INBI";	
-                         return view('login',$title);
+                        $data['page_title'] = "INBI";	
+                         return view('login',$data);
                     }
 
 
         $usermodel = new Usuarios($db);
-        $title['page_title'] = "Plataforma de evaluaciones INBI";	
+        $data['page_title'] = "Plataforma de evaluaciones INBI";	
         //Pasamos de forma dinamica el titulo propio de Codelgniter
-		return view('panel',$title);
+		return view('panel',$data);
             
         }
     }

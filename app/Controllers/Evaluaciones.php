@@ -4,7 +4,7 @@ class Evaluaciones extends BaseController{
 
     public function index()
 	{
-        $title['page_title'] = "Evaluaciones";	
+        $data['page_title'] = "Evaluaciones";	
         //Pasamos de forma dinamica el titulo  y se crear un array
 		return view('evaluaciones/tipo_evaluaciones',$title);
     }
