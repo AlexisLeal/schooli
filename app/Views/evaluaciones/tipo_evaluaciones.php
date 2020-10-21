@@ -65,7 +65,7 @@
           <div class="col-md-12">
           <div class="table-responsive">
 
-          <a href="<?php echo site_url('/Panel/index'); ?>">Panel.</a><br/>
+          <a href="<?php echo site_url('/Panel/panel'); ?>">Panel.</a><br/>
             <a href="<?php echo site_url('/Evaluaciones/crear_evaluacion'); ?>">Crear evaluaciones.</a><br/>
           <br/>
                  Tipo de evaluaciones:<br/>

@@ -29,7 +29,15 @@ class Panel extends BaseController{
 		return view('panel',$title);
             
         }
-	}
+    }
+    
+    //Posiblemente funcion temporal 
+    public function panel()
+    {
+        $title['page_title'] = "Plataforma de evaluaciones INBI";	
+        //Pasamos de forma dinamica el titulo propio de Codelgniter
+		return view('panel',$title);
+    }
 	
 
 
