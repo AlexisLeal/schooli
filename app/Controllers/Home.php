@@ -12,13 +12,16 @@ class Home extends BaseController{
 
 		//Se guia por las etiquetas codelgniter
 		#$data['rowArray'] = $rowArray;	
-		$data['page_title'] = "INBI";	
-		
-			
+		$data['page_title'] = "INBI";			
 		return view('login',$data,);
 	}
 	
-
+	function salir()
+	{
+		$data['page_title'] = "INBI";
+		$this->session->destroy();		
+		return view('login',$data,);	
+	}
 	
 
 

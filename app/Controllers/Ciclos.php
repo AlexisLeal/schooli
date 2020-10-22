@@ -7,7 +7,9 @@ class Ciclos extends BaseController{
 	{
         $data['page_title'] = "Ciclos";	
         //Pasamos de forma dinamica el titulo  y se crear un array
-		return view('ciclos/ciclos_crud',$data);
+        if($this->session->get('login')){
+        return view('ciclos/ciclos_crud',$data);
+        }
 	}
 	
 

@@ -1,11 +1,14 @@
 <?php include("include/header.php");?>
-
+<?php if($this->session->get('login')){
+            
+  }
+  ?>
 <div class="container">
   <div class="row">
   
   <div class="col-md-4"></div>
   <div class="col-md-4">
-    <form class="form-signin" action= "<?php echo site_url('/Panel/index'); ?>" method="POST">
+    <form class="form-signin" action= "<?php echo site_url('/Comprobacion/check'); ?>" method="POST">
       <div class="text-center mb-4">
 
         

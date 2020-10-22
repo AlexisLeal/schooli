@@ -6,7 +6,9 @@ class Grupos extends BaseController{
 	{
         $data['page_title'] = "Grupos";	
         //Pasamos de forma dinamica el titulo  y se crear un array
-		return view('grupos/grupos_crud',$data);
+        if($this->session->get('login')){
+        return view('grupos/grupos_crud',$data);
+        }
 	}
 	
 

@@ -6,7 +6,10 @@ class Alumnos extends BaseController{
 	{
         $data['page_title'] = "Alumnos";	
         //Pasamos de forma dinamica el titulo  y se crear un array
-		return view('alumnos/alumnos_crud',$data);
+
+        if($this->session->get('login')){
+        return view('alumnos/alumnos_crud',$data);
+        }
 	}
 	
 

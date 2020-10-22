@@ -1,4 +1,8 @@
 <?php include('include/header.php');?>
+<?php  if($session->get('login') == 1){
+        redirect()->to(site_url('Home/index'));
+}
+?>
  <head>
 <style>
 #banner {
@@ -11,6 +15,7 @@ height:270px;
   </head>
   <body>
 <header>
+<h1><?php echo $session->get('login')?></h1>
 <div class="container">
   <div class="row">
     <div class="col-md-4"><img class="mb-4" src="img/logo-nueva-version.jpg" alt="" width="112" height="112"></div>
@@ -30,7 +35,7 @@ height:270px;
   </div>
 </nav>
     </div>
-    <div class="col-md-4 text-right"> Hola <?php echo $session->get('nombre')?> <?php echo $session->get('apellido')?>  <a href="inc/salir.php"> <i class="fa fa-sign-out" aria-hidden="true"></i> </a></div>
+    <div class="col-md-4 text-right"> Hola <?php echo $session->get('nombre')?> <?php echo $session->get('apellido')?>  <a href="<?php echo site_url('/Home/salir'); ?>"> <i class="fa fa-sign-out" aria-hidden="true"></i> </a></div>
   </div>
 </div>
   </header>

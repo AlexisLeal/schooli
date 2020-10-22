@@ -1,12 +1,9 @@
 <?php namespace App\Controllers;
 use  App\Models\Usuarios;
+class Comprobacion extends BaseController{
 
-class Panel extends BaseController{
+    public function check(){
 
-    public function index()
-	{
-    
-    /*    // $this->response->setHeader('Cache-Control', 'no-cache');
         $REQUEST = \Config\Services::request();  
 
         if(isset($_POST['login'])){
@@ -18,8 +15,7 @@ class Panel extends BaseController{
                     );
 
                     if($credenciales['credencial'] == null|| $credenciales['inputPassword'] == null || $credenciales['tipo_usuario'] == null){
-                        $data['page_title'] = "INBI";	
-                         return view('login',$data);
+                        return redirect()->to(site_url('Home/index'));
                     }
 
         $usermodel = new Usuarios($db);
@@ -28,8 +24,7 @@ class Panel extends BaseController{
         $row = $resultado->getRow(); //Nos regresa la primera fila (y en este caso solo debe ser una) 
         if(empty($row)){ //Si no encuntra nada  nos regresa a login 
             //Ponemos una variable que indique que los datos ingresados son incorrectos
-            $data['page_title'] = "INBI";	
-            return view('login',$data);
+            return redirect()->to(site_url('Home/index'));
         }
         
        //Array en codelgniter 
@@ -44,42 +39,29 @@ class Panel extends BaseController{
         $this->session ->set($namearray);
         if($this->session->get('login')){
             switch($this->session->get('tipo_usuario')){
-                case 1: $data['page_title'] = "Alumnos"; return view('alumnos/alumnos_crud',$data);break;
-                case 2: $data['page_title'] = "Tutores"; return view('tutores/tutores_crud',$data);break;
-                case 3: $data['page_title'] = "Maestros";return view('teacher/teacher_crud',$data);break;
-                case 4: $data['page_title'] = "Plataforma de evaluaciones INBI"; return view('panel',$data);break;
-                case 5: $data['page_title'] = "Plataforma de evaluaciones INBI"; return view('panel',$data);break;
+                case 1: return redirect()->to(site_url('Alumnos/index'));;break;
+                case 2: return redirect()->to(site_url('Tutores/index'));;break;
+                case 3: return redirect()->to(site_url('Teacher/index'));;break;
+                case 4: return redirect()->to(site_url('Panel/index'));;break;
+                case 5: return redirect()->to(site_url('Panel/index'));;break;
       }
-        
-
-
+      
+      // redirect()->to()  redirreciona a un punto especifico en este caso sera un contraldor con ayuda de site_url()
+     
+      
+     
+      
+      
 
         }	
-        */
-        //Pasamos de forma dinamica el titulo propio de Codelgniter
-        $data['page_title'] = "Plataforma de evaluaciones INBI";
-        //$data['credenciales'] = $datos;
 
-        if($this->session->get('login')){
-		return view('panel',$data);
-    
-            }else{
-                return redirect()->to(site_url('Home/salir'));
-               }
-            }
 
-            
 
-    //Posiblemente funcion temporal 
-    public function panel()
-    {
-        $title['page_title'] = "Plataforma de evaluaciones INBI";	
-        //Pasamos de forma dinamica el titulo propio de Codelgniter
-		return view('panel',$title);
     }
+}
 	
 
+
+
+
 }
-
-
-

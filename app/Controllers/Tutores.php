@@ -6,7 +6,9 @@ class Tutores extends BaseController{
 	{
         $data['page_title'] = "Tutores";	
         //Pasamos de forma dinamica el titulo  y se crear un array
-		return view('tutores/tutores_crud',$data);
+        if($this->session->get('login')){
+        return view('tutores/tutores_crud',$data);
+        }
 	}
 	
 
