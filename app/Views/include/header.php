@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="<?php echo base_url('css/font-awesome/css/font-awesome.css'); ?>"  type="text/css">
     <title>  <?php if (!empty($page_title)) echo $page_title;?> </title>
     <!--Forma dinamica de poner el titulo-->
+    <?php $session = session();?>
+    <!--Creamos llamamos ala la session-->
 </head>
 <body>
 

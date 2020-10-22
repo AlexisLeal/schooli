@@ -30,14 +30,8 @@ height:270px;
   </div>
 </nav>
     </div>
-    <div class="col-md-4 text-right"> Hola  Se pone el nombre del usuario  <a href="inc/salir.php"> <i class="fa fa-sign-out" aria-hidden="true"></i> </a></div>
+    <div class="col-md-4 text-right"> Hola <?php echo $session->get('nombre')?> <?php echo $session->get('apellido')?>  <a href="inc/salir.php"> <i class="fa fa-sign-out" aria-hidden="true"></i> </a></div>
   </div>
-  <!--
-  < ?= $_SESSION["xyz"][1];?>
-  <div class="row">
-    <div class="col-md-6">.col-md-6</div>
-    <div class="col-md-6">.col-md-6</div>
-  </div>-->
 </div>
   </header>
      

@@ -35,12 +35,14 @@
         <!--required="" Forma temporal-->
         <option value="">Selecciona una opción</option>
         <?php
-            foreach($rowArray as $fila){
+          $tipo = getTipoUsuario();
+            foreach($tipo as $fila){
         
               ?>
-              <option value="<?php echo $fila->id;?>"> <?php echo $fila->nombre;?> </option>
+              <option value="<?php echo $fila->id;?>"> <?php echo $fila->nombre;?> </option>         
           
-        <?php } ?>
+        <?php } 
+        ?>
         
         </select>
         <label for="inputPassword"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Tipo de acceso</font></font></label>

@@ -27,6 +27,8 @@ class BaseController extends Controller
 	 * @var array
 	 */
 	protected $helpers = [];
+	public $session = NULL;
+	//variable global para que pueda ser accedia de donde sea
 
 	/**
 	 * Constructor.
@@ -35,6 +37,8 @@ class BaseController extends Controller
 	{
 		// Do Not Edit This Line
 		parent::initController($request, $response, $logger);
+		helper('Operaciones');
+		$this->session= session();
 		//--------------------------------------------------------------------
 		// Preload any models, libraries, etc, here.
 		//--------------------------------------------------------------------
