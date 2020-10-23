@@ -27,7 +27,8 @@ class Comprobacion extends BaseController{
             return redirect()->to(site_url('Home/index'));
         }
         
-       //Array en codelgniter 
+       //Array en codelgniter  obtenemos los datos para manejarlo en la session 
+       //La session fue configurada en archivo baseContreoller 
         $namearray = [
             'id'  => $row ->id,
             'nombre' =>$row ->nombre,

@@ -1,6 +1,4 @@
 <?php include(APPPATH.'/Views/include/header.php');?>
-
-
 <div class="container">
   <div class="row">
     <div class="col-md-4"><img class="mb-4" src="img/logo-nueva-version.jpg" alt="" width="112" height="112"></div>
@@ -17,7 +15,7 @@
     </nav>
 
     </div>
-    <div class="col-md-4 text-right"> Hola <a href="inc/salir.php"> <i class="fa fa-sign-out" aria-hidden="true"></i> </a></div>
+    <div class="col-md-4 text-right"> Hola <?php echo $session->get('nombre')?> <?php echo $session->get('apellido')?>  <a href="<?php echo site_url('/Home/salir'); ?>"> <i class="fa fa-sign-out" aria-hidden="true"></i> </a></div>
   </div>
 </div>
   </header>
@@ -65,7 +63,7 @@
           <div class="col-md-12">
           <div class="table-responsive">
 
-          <a href="<?php echo site_url('/Panel/panel'); ?>">Panel.</a><br/>
+          <a href="<?php echo site_url('/Panel/index'); ?>">Panel.</a><br/>
             <a href="<?php echo site_url('/Evaluaciones/crear_evaluacion'); ?>">Crear evaluaciones.</a><br/>
           <br/>
                  Tipo de evaluaciones:<br/>

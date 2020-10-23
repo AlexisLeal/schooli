@@ -9,7 +9,9 @@ class Alumnos extends BaseController{
 
         if($this->session->get('login')){
         return view('alumnos/alumnos_crud',$data);
-        }
+        }else{
+            return redirect()->to(site_url('Home/salir'));
+           }
 	}
 	
 

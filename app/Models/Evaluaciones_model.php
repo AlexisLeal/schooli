@@ -2,7 +2,7 @@
 
 use CodeIgniter\Model;
 
-class Evaluaciones extends Model
+class Evaluaciones_model extends Model
 {
     #Nombre de la tabla
     protected $table      = 'evaluaciones';

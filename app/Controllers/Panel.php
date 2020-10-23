@@ -60,6 +60,7 @@ class Panel extends BaseController{
         $data['page_title'] = "Plataforma de evaluaciones INBI";
         //$data['credenciales'] = $datos;
 
+        //Para verificar si el usuario se encuentra logeado y si no nos mande a a salir y salir nos manda a login 
         if($this->session->get('login')){
 		return view('panel',$data);
     

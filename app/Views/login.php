@@ -1,8 +1,4 @@
 <?php include("include/header.php");?>
-<?php if($this->session->get('login')){
-            
-  }
-  ?>
 <div class="container">
   <div class="row">
   

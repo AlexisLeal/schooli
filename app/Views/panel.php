@@ -1,8 +1,4 @@
 <?php include('include/header.php');?>
-<?php  if($session->get('login') == 1){
-        redirect()->to(site_url('Home/index'));
-}
-?>
  <head>
 <style>
 #banner {

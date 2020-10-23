@@ -18,9 +18,8 @@ class Home extends BaseController{
 	
 	function salir()
 	{
-		$data['page_title'] = "INBI";
 		$this->session->destroy();		
-		return view('login',$data,);	
+		return redirect()->to(site_url('Home/index'));	
 	}
 	
 
