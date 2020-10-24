@@ -86,7 +86,6 @@
                 <div class="float-left">
                   <h1><a href="lecciones.php"><?php echo $fila->nombre?></a></h1>
                 <br>
-                
                        Número de evaluaciones: <span class="badge badge-info"><?php echo getTotalEvaluacion($id_evaluacion,$fila->id);?></span>
 
                   

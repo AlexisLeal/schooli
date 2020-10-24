@@ -45,6 +45,11 @@ class Evaluaciones extends BaseController{
         
     }
 
+    public function lecciones()
+    {   
+        return view();
+    }
+
     //-------------------------------------------------- Funciones para insertar o actualizar en la base de datos ----------------------------------
     public function insertar_evaluaciion()
     {
