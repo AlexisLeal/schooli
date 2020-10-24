@@ -79,15 +79,15 @@
            Niveles<br/>
            <?php
                 //id_evaluacion esta variable se le pasa desde el controlador
-               // $tipo = getNivel();
+                //Estas funciones se crearon en los helpers 
                 foreach(getNivel() as $fila){
-                    $totalEvaluaciones = getTotalEvaluacion($id_evaluacion,$fila->id);
+                    
                 ?>
                 <div class="float-left">
                   <h1><a href="lecciones.php"><?php echo $fila->nombre?></a></h1>
                 <br>
                 
-                       Número de evaluaciones: <span class="badge badge-info"><?php echo $totalEvaluaciones ?></span>
+                       Número de evaluaciones: <span class="badge badge-info"><?php echo getTotalEvaluacion($id_evaluacion,$fila->id);?></span>
 
                   
                   </div>
