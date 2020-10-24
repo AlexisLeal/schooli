@@ -24,6 +24,27 @@ class Evaluaciones extends BaseController{
         
     }
 
+    public function tipo_evaluacion($view)
+    {
+        if($view == 1){
+            $data["tipo_evaluacion"] = "Sistema";
+            $data["id_evaluacion"] = 1;
+            //El id de Sistema es uno por la tabla de tipo_evaluacion
+
+            return view('evaluaciones/mostrar/niveles',$data);
+            
+        }elseif($view == 2){
+           //Mas a futuro se agrega la vista apropiada 
+          //  $data["tipo_evaluacion"] = "Sistema";
+           // return view('evaluaciones/mostrar/niveles',$data);
+
+        }else{
+            //Mas adelante se agrega la vista apropiada 
+
+        }
+        
+    }
+
     //-------------------------------------------------- Funciones para insertar o actualizar en la base de datos ----------------------------------
     public function insertar_evaluaciion()
     {

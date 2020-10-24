@@ -179,8 +179,7 @@ if(isset($existeNombre)){
     <option value="">Seleccione una opción</option>
     <?php
             // Esta funcion se encuentra en la carpeta helpers en el archivo llamado operaciones
-          $tipo = getTipoEvaluacion();
-            foreach($tipo as $fila){
+            foreach(getTipoEvaluacion() as $fila){
            ?>
               <option value="<?php echo $fila->id;?>"> <?php echo $fila->nombre;?> </option>         
           
@@ -198,8 +197,7 @@ if(isset($existeNombre)){
     <select class="form-control" name="nivel" id="nivel" required="">
       <option value="">Seleccione una opción</option>
       <?php
-          $tipo = getNivel();
-            foreach($tipo as $fila){
+            foreach(getNivel() as $fila){
         
               ?>
               <option value="<?php echo $fila->id;?>"> <?php echo $fila->nombre;?> </option>         
@@ -213,8 +211,7 @@ if(isset($existeNombre)){
     <select class="form-control" name="leccion" id="leccion" required="">
       <option value="">Seleccione una opción</option>
       <?php
-          $tipo = getleccion();
-            foreach($tipo as $fila){
+            foreach(getleccion() as $fila){
         
               ?>
               <option value="<?php echo $fila->id;?>"> <?php echo $fila->nombre;?> </option>         

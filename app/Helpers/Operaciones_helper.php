@@ -4,6 +4,7 @@ use  App\Models\Tipo_usuarios;
 use  App\Models\Tipo_evaluacion;
 use  App\Models\Niveles_evaluacion;
 use  App\Models\Lecciones_evaluacion;
+use  App\Models\Evaluaciones_model;
 
 function getTipoUsuario()
 {
@@ -47,8 +48,20 @@ function getleccion(){
     return ($rowArray);
     
 }
-function getestado(){
-    //Mas adelante se hace tabla 
+function estado(){
+     //mas adelante se hace un tabla 
+}
+
+ function getTotalEvaluacion($id_evaluacion,$nivel)
+{
+    $usermodel = new Evaluaciones_model($db);
+    $query = "select * from evaluaciones where tipo_evaluacion = $id_evaluacion AND nivel = $nivel";
+    $resultado = $usermodel ->query($query);
+    // Lo comvertimos del tipo array 
+    $rowArray = $resultado -> getResult();
+    $total = count($rowArray);
+    return($total);
+    
 }
 
 

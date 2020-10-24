@@ -34,8 +34,7 @@
         <!--required="" Forma temporal-->
         <option value="">Selecciona una opción</option>
         <?php
-          $tipo = getTipoUsuario();
-            foreach($tipo as $fila){
+            foreach(getTipoUsuario() as $fila){
         
               ?>
               <option value="<?php echo $fila->id;?>"> <?php echo $fila->nombre;?> </option>         
