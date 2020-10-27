@@ -145,7 +145,7 @@ height:270px;
 <a href=""> Lecciones </a><br/>
 
 Crear una evaluación.
-  <form action="<?php echo site_url('Evaluaciones/insertar_evaluaciion');?>" method="post">
+  <form action="<?php echo site_url('Evaluaciones/insertar_evaluacion');?>" method="post">
 <script>
 function limpiarNombre(){
 

@@ -26,6 +26,7 @@ class Evaluaciones extends BaseController{
 
     public function tipo_evaluacion($view)
     {
+        //Nos indica si es sistema o exci o basic 
         if($view == 1){
             $data["tipo_evaluacion"] = "Sistema";
             $data["id_evaluacion"] = 1;
@@ -35,7 +36,7 @@ class Evaluaciones extends BaseController{
             
         }elseif($view == 2){
            //Mas a futuro se agrega la vista apropiada 
-          //  $data["tipo_evaluacion"] = "Sistema";
+          //  $data["tipo_evaluacion"] = "EXCI";
            // return view('evaluaciones/mostrar/niveles',$data);
 
         }else{
@@ -45,13 +46,34 @@ class Evaluaciones extends BaseController{
         
     }
 
-    public function lecciones()
-    {   
-        return view();
+    public function lecciones($id_evaluacion,$id_nivel)
+    {   //Estos parametros son enviados desde la vista niveles 
+        $data['id_evaluaciones'] = $id_evaluacion;
+        $data['id_nivel'] = $id_nivel;
+        //Hacemos esto para pasarlo ala pagina de manera dinamica 
+        //y mas adelante se hara un query 
+        if($this->session->get('login')){
+        return view('evaluaciones/mostrar/lecciones',$data);
+    }else{
+        return redirect()->to(site_url('Home/salir'));
+       }
+    }
+
+
+    public function panel_evaluaciones($id_evaluacion,$id_nivel,$id_leccion)
+    {
+        $data['id_evaluacion'] = $id_evaluacion;
+        $data['id_nivel'] = $id_nivel;
+        $data['id_leccion'] = $id_leccion;
+        if($this->session->get('login')){
+        return view('evaluaciones/panel_evaluaciones',$data);
+    }else{
+        return redirect()->to(site_url('Home/salir'));
+       }
     }
 
     //-------------------------------------------------- Funciones para insertar o actualizar en la base de datos ----------------------------------
-    public function insertar_evaluaciion()
+    public function insertar_evaluacion()
     {
         if(isset($_POST['crearEvaluacion'])){
             $usermodel = new Evaluaciones_model($db);
@@ -89,7 +111,7 @@ class Evaluaciones extends BaseController{
              $resultado = $usermodel->query($sqlInsert);
 
             return redirect()->to(site_url('Evaluaciones/crear_evaluacion'));
-
+//POSIBLEMENTE EXISTA UNA FORMA MAS SENCILLA DE EJECUTAR EL INSERT CHECAR DOCUMENTACION DE CODELGNITER 
 
         }
         

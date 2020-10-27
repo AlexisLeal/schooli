@@ -72,7 +72,8 @@
             // Esta funcion se encuentra en la carpeta helpers en el archivo llamado operaciones
             foreach(getTipoEvaluacion() as $fila){ ?>
                  <a href="<?php echo site_url("/Evaluaciones/tipo_evaluacion/$fila->id"); ?>"><?php echo $fila->nombre ?></a>
-                 <!--Recordar la diferencias entre comillas dobles y comillas simples-->
+                 <!--Recordar la diferencias entre comillas dobles y comillas simples 
+                      y pasamos un parametro por get hacia el controlador que lo captura -->
                  <br>
               <?php
             }
@@ -90,39 +91,5 @@
       </div>
     </div>  
   </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <?php include(APPPATH.'Views/include/footer.php');?>
