@@ -1,36 +1,31 @@
 <?php include("include/header.php");?>
+<div class="view-login">
 <div class="container">
-  <div class="row">
+<br/><br/>  
+<div class="row">
   
   <div class="col-md-4"></div>
   <div class="col-md-4">
+    <div class="background-form">
     <form class="form-signin" action= "<?php echo site_url('/Comprobacion/check'); ?>" method="POST">
       <div class="text-center mb-4">
-
-        
-        <img class="mb-4" src="img/logo-nueva-version.jpg" alt="" width="182" height="182">
-        <h1 class="h3 mb-3 font-weight-normal"><font style="vertical-align: inherit;">
-        
-        <font style="vertical-align: inherit;">Acceso Restringido</font></font></h1>
-        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Éste sistema es esclusivo del Instituto Neurolingüistico Bilingüe </font></font>
-        <code>:Derechos Reservados</code><font style="vertical-align: inherit;">
-        <font style="vertical-align: inherit;">  </font></font>
-        <a href="https://caniuse.com/#feat=css-placeholder-shown">
-        <font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Funciona en las últimas versiones de Chrome, Safari y Firefox.</font></font></a></p>
+        <img class="mb-4" src="<?php echo base_url('img-front/logo-app.PNG');?>" alt="" width="142" height="142">
+        <!-- <p>Ingrése sus credenciales para poder acceder a la plataforma Brain.</p>-->
       </div>
 
-      <div class="form-label-group">
-        <input type="text" id="credencial" name="credencial" class="form-control" placeholder="" required="" autofocus="">
-        <label for="inputEmail"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Matricula, Usuario ó Correo electrónico</font></font></label>
-      </div>
 
       <div class="form-label-group">
-        <input type="password" id="inputPassword" name="inputPassword" class="form-control" required="" placeholder="">
-        <label for="inputPassword"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Contraseña</font></font></label>
+        <input type="text" id="credencial" name="credencial" class="form-control inputLogin" placeholder="" required="" autofocus="">
+        <span class="labelLogin">Matricula, Usuario ó Correo electrónico.</span>
       </div>
-
+      <br/>
       <div class="form-label-group">
-        <select name="tipo_usuario" id="tipo_usuario"  class="form-control" required=""> 
+        <input type="password" id="inputPassword" name="inputPassword" class="form-control inputLogin" required="" placeholder="">
+        <span class="labelLogin">Contraseña</span>
+      </div>
+      <br/>
+      <div class="form-label-group">
+        <select name="tipo_usuario" id="tipo_usuario"  class="form-control inputLogin" required=""> 
         <!--required="" Forma temporal-->
         <option value="">Selecciona una opción</option>
         <?php
@@ -43,12 +38,14 @@
         ?>
         
         </select>
-        <label for="inputPassword"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Tipo de acceso</font></font></label>
+        <span class="labelLogin">Tipo de acceso</span>
+        <br/><br/>
       </div>
 
-      <button class="btn btn-lg btn-primary btn-block" name="login" type="submit"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Entrar</font></font></button>
-      <p class="mt-5 mb-3 text-muted text-center"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">© INBI</font></font></p>
+      <button class="btn btn-md btn-block btn-login" name="login" type="submit">Entrar</button>
+      <p class="mt-5 mb-3 text-muted text-center"> © Brain <?php echo date("Y");?></p>
     </form>
+    </div>
   </div>
   </div>
 
@@ -56,5 +53,5 @@
   </div>
   
   </div>
-
+  </div>
 <?php include("include/footer.php");?>
