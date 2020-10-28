@@ -91,11 +91,10 @@ class Evaluaciones extends BaseController{
 
 
             //Primero comprobamos si ya existe una evaluacion
-
             $query = "SELECT * FROM evaluaciones WHERE tipo_evaluacion = $tipo_evaluacion AND nivel = $nivel AND leccion = $leccion";
             $resultado = $usermodel->query($query);
-            $rowArray = $resultado -> getRow();
-            if(!empty($rowArray)){
+            $fila = $resultado -> getRow();
+            if(!empty($fila)){
                 //Si esta vacio segnifica que no hay una evaluacion para en el nivel y seccion especifico 
                 $this->session->set('creada', true);
                 if($this->session->get('login')){	
@@ -106,31 +105,40 @@ class Evaluaciones extends BaseController{
          }
 
           
+ $sqlInsert = "INSERT INTO evaluaciones(nombre,instrucciones,tipo_evaluacion,nivel,leccion,usuario_creo,usuario_modifico,estado,fecha_creacion,fecha_ultimo_cambio) values ('".$nombre_evaluacion."','".$instrucciones."',$tipo_evaluacion,$nivel,$leccion,$id_usuario,$id_usuario,$estado,'".$hoy."','".$hoy."')";
+               
+            //Ejecutamos el query 
+            $usermodel->query($sqlInsert);
+           
+              //Obtenemos el id de la evaluacion 
+                $query = "select * from evaluaciones where tipo_evaluacion = $tipo_evaluacion AND nivel = $nivel AND leccion = $leccion";
+                $resultado = $usermodel ->query($query);
+                $fila = $resultado -> getRow();
+    
+             
             //Forma de tener la clave 
             $hoyLimpio        = str_replace(' ','',$hoy);
             $hoyLimpio        = str_replace(':','',$hoyLimpio);
             $hoyLimpio        = str_replace('-','',$hoyLimpio);
-            $nombreDirectorio ="EV".$id_usuario.$hoyLimpio;
+            $clave ="EV".$fila->id.$hoyLimpio;
             //Variable para la ruta 
-            $nombreRuta = "Uploads/".$nombreDirectorio;
-  
- $sqlInsert = "INSERT INTO evaluaciones(nombre,instrucciones,tipo_evaluacion,nivel,leccion,usuario_creo,usuario_modifico,estado,fecha_creacion,fecha_ultimo_cambio,clave,directorio_uploads) values ('".$nombre_evaluacion."','".$instrucciones."',$tipo_evaluacion,$nivel,$leccion,$id_usuario,$id_usuario,$estado,'".$hoy."','".$hoy."','".$nombreDirectorio."','".$nombreRuta."')";
-               
-             //Ejecutamos el query 
-             $resultado = $usermodel->query($sqlInsert);
+            $nombreRuta = base_url("uploads/$clave");
 
+            $sqlUpdate           ="UPDATE evaluaciones set clave = '".$clave."',directorio_uploads='".$nombreRuta."' where id=$fila->id";
+            $usermodel->query($sqlUpdate);
 
-             
-          if (!file_exists(base_url("uploads/$nombreDirectorio"))) {
-            if (!mkdir(base_url("uploads/$nombreDirectorio"), 0777)){
-              echo "no se pudo crear el directorio " . $nombreDirectorio. base_url("uploads/$nombreDirectorio"); "<br/>";
-              die('mkdir failed...');
-
+            if (!is_dir('uploads/'.$clave)) {
+                mkdir('./uploads/' . $clave, 0777, TRUE);
+            }else{
+                echo "Se pone una view que marque que hubo un error inesperado ";
+            }
+           
+            return redirect()->to(site_url('Evaluaciones/crear_evaluacion'));
+    
               
             }
-        }
 
-            return redirect()->to(site_url('Evaluaciones/crear_evaluacion'));
+           
 
         }
         
@@ -146,4 +154,3 @@ class Evaluaciones extends BaseController{
 
 
 
-}
