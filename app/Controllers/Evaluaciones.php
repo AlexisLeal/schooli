@@ -121,12 +121,12 @@ class Evaluaciones extends BaseController{
 
 
              
-          if (!file_exists(dirname(__FILE__)."/uploads/".$nombreDirectorio)) {
-            if (!mkdir(dirname(__FILE__)."/uploads/".$nombreDirectorio, 0777)){
-              echo "no se pudo crear el directorio " . $nombreDirectorio. "<br/>";
+          if (!file_exists(base_url("uploads/$nombreDirectorio"))) {
+            if (!mkdir(base_url("uploads/$nombreDirectorio"), 0777)){
+              echo "no se pudo crear el directorio " . $nombreDirectorio. base_url("uploads/$nombreDirectorio"); "<br/>";
               die('mkdir failed...');
 
-              echo base_url('uploads');
+              
             }
         }
 
