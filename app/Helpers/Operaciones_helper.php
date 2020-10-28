@@ -6,6 +6,8 @@ use  App\Models\Niveles_evaluacion;
 use  App\Models\Lecciones_evaluacion;
 use  App\Models\Evaluaciones_model;
 use  App\Models\Preguntas;
+use  App\Models\Usuarios;
+use  App\Models\Tipo_Preguntas;
 
 function getTipoUsuario()
 {
@@ -49,9 +51,6 @@ function getleccion(){
     return ($rowArray);
     
 }
-function estado(){
-     //mas adelante se hace un tabla 
-}
 
  function getTotalEvaluacion($id_evaluacion,$nivel)
 {//Funcion para obtener un numero de total de evaluaciones por nivel 
@@ -79,6 +78,7 @@ function estado(){
 
 function getTipoEvaluacionEspecifico($id_evaluacion)
 {
+    //Nos devuele si es sistema o exci 
     $usermodel = new Tipo_evaluacion($db);
     $query = "SELECT id,nombre from tipo_evaluacion WHERE id = $id_evaluacion";
     $resultado = $usermodel ->query($query);
@@ -104,7 +104,7 @@ function getEvaluacion($id_evaluacion,$id_nivel,$id_leccion)
     $usermodel = new Evaluaciones_model($db);
     $query = "select * from evaluaciones where tipo_evaluacion = $id_evaluacion AND nivel = $id_nivel AND leccion = $id_leccion";
     $resultado = $usermodel ->query($query);
-    // Lo comvertimos del tipo array 
+    // Lo convertimos del tipo array 
     $rowArray = $resultado -> getResult();
     return($rowArray);
     
@@ -133,5 +133,28 @@ function getTotalPreguntas($id_evaluacion)
     $total = count($rowArray);
     return($total);
 
+}
+
+function getUsuarioCreo($id_usuario)   
+//Funcion para obtener el nombre de usuario que creo una evaluacion     
+{
+    $usermodel = new Usuarios($db);
+    $query = "SELECT nombre,apellido_paterno,apellido_materno from usuarios where id = $id_usuario";
+     $resultado = $usermodel ->query($query);
+     //Obtiene la primera columna  y por eso no utlizamos el getResult
+    $rowArray = $resultado -> getRow();
+    return($rowArray);
+    
+}
+
+//Funcion para obtener el tipo de pregunta(abierta, opcion multiple, etc )
+function getTipoPreguntas()     
+{
+    $usermodel = new Tipo_Preguntas($db);
+    $query = "SELECT id,nombre from tipo_preguntas";
+    $resultado = $usermodel->query($query);
+    $rowArray = $resultado->getResult();
+    return($rowArray);
+    
 }
 ?>

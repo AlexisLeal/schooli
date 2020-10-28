@@ -43,7 +43,16 @@ height:270px;
   </div>-->
 </div>
   </header>
-     
+<?php if($session->has('creada')){ ?>
+<h1>HOLA MUNNDO </h1>
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+
+  <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<?php $session->remove('creada'); }?>
 
 
     <div id="crear_evaluaciones">
@@ -243,4 +252,6 @@ if(isset($existeNombre)){
         </div>  
       </div>
     </div>
+
+
  <?php include(APPPATH.'Views/include/footer.php');?>

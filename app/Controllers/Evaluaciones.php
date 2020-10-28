@@ -78,7 +78,7 @@ class Evaluaciones extends BaseController{
         if(isset($_POST['crearEvaluacion'])){
             $usermodel = new Evaluaciones_model($db);
             $REQUEST = \Config\Services::request();
-    
+        
             //Capturamos los datos que son enviados 
             $nombre_evaluacion = $REQUEST->getPost('nombreEvaluacion');
             $instrucciones = $REQUEST->getPost('instrucciones');
@@ -88,6 +88,23 @@ class Evaluaciones extends BaseController{
             $id_usuario = $REQUEST->getPost('idUsuario');
             $estado = $REQUEST->getPost('estado');
             $hoy = date("Y-m-d H:i:s");
+
+
+            //Primero comprobamos si ya existe una evaluacion
+
+            $query = "SELECT * FROM evaluaciones WHERE tipo_evaluacion = $tipo_evaluacion AND nivel = $nivel AND leccion = $leccion";
+            $resultado = $usermodel->query($query);
+            $rowArray = $resultado -> getRow();
+            if(!empty($rowArray)){
+                //Si esta vacio segnifica que no hay una evaluacion para en el nivel y seccion especifico 
+                $this->session->set('creada', true);
+                if($this->session->get('login')){	
+                    return redirect()->to(site_url('Evaluaciones/crear_evaluacion'));
+                }else{
+                    return redirect()->to(site_url('Home/salir'));
+                   }
+         }
+
           
             //Forma de tener la clave 
             $hoyLimpio        = str_replace(' ','',$hoy);
@@ -111,7 +128,6 @@ class Evaluaciones extends BaseController{
              $resultado = $usermodel->query($sqlInsert);
 
             return redirect()->to(site_url('Evaluaciones/crear_evaluacion'));
-//POSIBLEMENTE EXISTA UNA FORMA MAS SENCILLA DE EJECUTAR EL INSERT CHECAR DOCUMENTACION DE CODELGNITER 
 
         }
         
