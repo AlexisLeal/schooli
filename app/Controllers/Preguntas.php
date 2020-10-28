@@ -1,5 +1,5 @@
 <?php namespace App\Controllers;
-
+use  App\Models\Tipo_Preguntas;
 class Preguntas extends BaseController{
 
     public function agregar_preguntas()
@@ -24,32 +24,12 @@ class Preguntas extends BaseController{
 	}
 }
 
-
-
+public function insertar()
+{
+    
 
 }
 
 
 
-/*else if($_GET['id']){
-    // ya se inserto una pregunta y se esta haciendo Back.
-  
-    $idEvaluacion     = $_GET['id'];
-    $sqlEvaluaciones  = "SELECT id,nombre,
-    (select nombre from tipo_evaluacion where id=tipo_evaluacion) as nombre_tipo_evaluacion,
-    (select nombre from usuarios where id=usuario_creo ) as usuario_creo,
-    estado,clave,directorio_uploads
-    FROM evaluaciones where id=$idEvaluacion";
-  
-    $qEval = $conn->query($sqlEvaluaciones);
-    
-    $data             = $qEval->fetch_assoc();
-    $nombre           = $data['nombre'];
-    $tipo_evaluacion  = $data['nombre_tipo_evaluacion'];
-    $usuario_creo     = $data['usuario_creo'];
-    $estado           = $data['estado'];
-    $clave            = $data['clave'];
-    $du               = $data['directorio_uploads'];
-  
-
-*/
+}
