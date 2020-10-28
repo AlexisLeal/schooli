@@ -113,19 +113,22 @@ class Evaluaciones extends BaseController{
             $nombreDirectorio ="EV".$id_usuario.$hoyLimpio;
             //Variable para la ruta 
             $nombreRuta = "Uploads/".$nombreDirectorio;
-
-         /*   $query = "select nombre from evaluaciones where nombre like '%"$nombre_evaluacion"%'";
-            $resultado = $usermodel->query($query);
-            $row = $resultado->getRow();//Obtemos el numero de columnas que nos regresa el query 
-            if($row > 0){
-                $nombre_evaluacion_existe = true;
-            }
-*/
   
  $sqlInsert = "INSERT INTO evaluaciones(nombre,instrucciones,tipo_evaluacion,nivel,leccion,usuario_creo,usuario_modifico,estado,fecha_creacion,fecha_ultimo_cambio,clave,directorio_uploads) values ('".$nombre_evaluacion."','".$instrucciones."',$tipo_evaluacion,$nivel,$leccion,$id_usuario,$id_usuario,$estado,'".$hoy."','".$hoy."','".$nombreDirectorio."','".$nombreRuta."')";
                
-            //Ejecutamos el query 
+             //Ejecutamos el query 
              $resultado = $usermodel->query($sqlInsert);
+
+
+             
+          if (!file_exists(dirname(__FILE__)."/uploads/".$nombreDirectorio)) {
+            if (!mkdir(dirname(__FILE__)."/uploads/".$nombreDirectorio, 0777)){
+              echo "no se pudo crear el directorio " . $nombreDirectorio. "<br/>";
+              die('mkdir failed...');
+
+              echo base_url('uploads');
+            }
+        }
 
             return redirect()->to(site_url('Evaluaciones/crear_evaluacion'));
 
