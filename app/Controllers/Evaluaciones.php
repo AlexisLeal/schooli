@@ -127,6 +127,7 @@ class Evaluaciones extends BaseController{
             $sqlUpdate           ="UPDATE evaluaciones set clave = '".$clave."',directorio_uploads='".$nombreRuta."' where id=$fila->id";
             $usermodel->query($sqlUpdate);
 
+            //Creamos una carpeta donde se guardaran todos los archivos de la evaluacion(Imagenes,videos etc )
             if (!is_dir('uploads/'.$clave)) {
                 mkdir('./uploads/' . $clave, 0777, TRUE);
             }else{
