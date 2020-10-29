@@ -1,40 +1,30 @@
 <?php include('include/header.php');?>
- <head>
-<style>
-#banner {
-  padding-top:5px;
-  background: rgb(15,98,172);
-background: linear-gradient(90deg, rgba(15,98,172,1) 0%, rgba(23,149,235,1) 50%, rgba(18,106,171,1) 100%);
-height:270px;
-}
-</style>
-  </head>
-  <body>
+
+<div class="espacioDos"></div>
 <header>
-<h1><?php echo $session->get('login')?></h1>
+
 <div class="container">
   <div class="row">
-    <div class="col-md-4"><img class="mb-4" src="img/logo-nueva-version.jpg" alt="" width="112" height="112"></div>
+    <div class="col-md-4"><img class="mb-4" src="<?php echo base_url('img-front/logo-app.PNG');?>" alt="" width="72" height="72"></div>
     <div class="col-md-4">
+    <form>
+    <input type="text" class="form-control buscador">
+    </form>
     
-    
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-    </ul>
-
-  </div>
-</nav>
     </div>
-    <div class="col-md-4 text-right"> Hola <?php echo $session->get('nombre')?> <?php echo $session->get('apellido')?>  <a href="<?php echo site_url('/Home/salir'); ?>"> <i class="fa fa-sign-out" aria-hidden="true"></i> </a></div>
+    <div class="col-md-4 text-right"> 
+    <i class="fa fa-cog" aria-hidden="true"></i> 
+    <i class="fa fa-shopping-cart" aria-hidden="true"></i>  
+    <i class="fa fa-bell-o fa-1x" aria-hidden="true"></i> 
+    <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+    <?php //echo $session->get('nombre')?> <?php //echo $session->get('apellido')?>  
+    <!-- <a href="<?php //echo site_url('/Home/salir'); ?>"> -->
+    <!-- <i class="fa fa-sign-out" aria-hidden="true"></i> </a>-->
+  </div>
   </div>
 </div>
-  </header>
+</header>
      
     <!--Ejemplo tabla con DataTables-->
     <div id="banner">
