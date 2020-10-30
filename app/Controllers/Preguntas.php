@@ -1,5 +1,7 @@
 <?php namespace App\Controllers;
 use  App\Models\Preguntas_model;
+use  App\Models\Pregunta_opcion_multiple;
+use  App\Models\Pregunta_opcion_audio;
 class Preguntas extends BaseController{
 
     public function agregar_preguntas()
@@ -31,7 +33,7 @@ public function insertarPregunta()
         $clave = $REQUEST->getPost('clave');
         $idEvaluacion = $REQUEST->getPost('idEvaluacion');
         $valorpreguntas = $REQUEST->getPost('valorpreguntas');//Es el valor total de todas las preguntas
-        $valor = $REQUEST->getPost('valor');
+        $valor = $REQUEST->getPost('valor');//Valor que le da al usuario a la pregunta
         $hoy = date("Y-m-d H:i:s");
         $tipoPregunta = $REQUEST->getPost('tipoPregunta');
         $usermodel = new Preguntas_model($db);
@@ -117,6 +119,78 @@ public function insertarPregunta()
           ) VALUES ($idEvaluacion,$numeropregunta,'".$pregunta."',$valor,$tipoPregunta,$imagen,'".$ruta_imagen."',$audio,'".$ruta_audio."','".$hoy."','".$hoy."')";
 
         $usermodel->query($query);
+
+
+            //Opcion Multiple 
+        if($tipoPregunta == 2){
+            $opcion1 = $REQUEST->getPost('opcion_1');
+            $opcion2 = $REQUEST->getPost('opcion_2');
+            $opcion3 = $REQUEST->getPost('opcion_3');
+            $opcion4 = $REQUEST->getPost('opcion_4');
+            $respuesta = $REQUEST->getPost('opcion_correcta');
+
+            $usermodel = new Pregunta_opcion_multiple($db);
+
+
+            $sqlOpcionMultiple="insert into pregunta_opcion_multiple(
+                idEvaluacion,
+                idPregunta,
+                valor1,
+                valor2,
+                valor3,
+                valor4,
+                opcion_correcta,
+                fecha_creacion,
+                fecha_ultimo_cambio) values(
+                $idEvaluacion,$numeropregunta,'".$opcion1."','".$opcion2."','".$opcion3."','".$opcion4."',$respuesta,'".$hoy."','".$hoy."')";
+
+                $usermodel->query($sqlOpcionMultiple);
+        }
+
+        //Cuando sea AUDIO 
+        if($tipoPregunta == 3){
+
+            $file_audio = $REQUEST->getFile('archivo_audio');
+              //Verifica si es valido
+        if ($file_audio->isValid() && ! $file_audio->hasMoved())
+        {
+            $audio_extension= $file_audio->getClientExtension();
+            $ruta_audio = "uploads/".$clave."/audio";
+                //Comprobar si existe la ruta donde se va a guardar el audio
+            if (!is_dir('uploads/'.$clave.'/audio')) {
+                mkdir('./uploads/' .$clave.'/audio', 0777, TRUE);
+            }
+
+            //Obtenemos el archivo 
+            $nombre = 'pregunta-ingles'.$numeropregunta.'.mp3';  
+            $file_audio->move($ruta_audio,$nombre);
+
+            //Insertamos en la base de datos 
+            $sqlAudio ="INSERT INTO pregunta_opcion_audio (
+                idEvaluacion,
+                idPregunta,
+                nombre_audio,
+                ruta_audio,
+                extension,
+                fecha_creacion,
+                fecha_ultimo_cambio
+                ) VALUES(
+                $idEvaluacion,
+                $numeropregunta,
+                '".$nombre."',
+                '".$ruta_audio."',
+                '".$audio_extension."',
+                '".$hoy."',
+                '".$hoy."')";
+
+                $usermodel = new Pregunta_opcion_audio($db);
+                $usermodel ->query($sqlAudio);
+        }else{
+            //Si algo sale mal nos marca un error 
+            throw new RuntimeException($file_audio->getErrorString().'('.$file_audio->getError().')');
+                 }
+
+        }
 
 
  
