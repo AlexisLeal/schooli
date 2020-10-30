@@ -6,6 +6,19 @@ body {
 
 }
 
+a {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 95%;
+  color:#5D6D7E;
+}
+
+a:hover {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 95%;
+  text-decoration: none;
+  color:#000;
+}
+
 #barra-superior {
   padding-top: 5px;
 }
@@ -105,21 +118,28 @@ ul.horizontal li a:hover{
    color:#000;
 }
 
-.fa-file-text-o {
-  color: #ABB2B9;
-} 
-.fa-users {color: #ABB2B9;}
-.fa-user {color: #ABB2B9;}
-.fa-circle-o-notch {color: #ABB2B9;}
-.fa-user-circle-o {color: #ABB2B9;}
-.fa-user-secret {color: #ABB2B9;}
-.fa-handshake-o {color: #ABB2B9;}
-.fa-caret-square-o-right {
-  color: #ABB2B9;
-}
-.fa-graduation-cap {
-  color: #ABB2B9;
-}
+.fa-file-text-o {color: #5D6D7E;} 
+.fa-users {color: #5D6D7E;}
+.fa-user {color: #5D6D7E;}
+.fa-circle-o-notch {color: #5D6D7E;}
+.fa-user-circle-o {color: #5D6D7E;}
+.fa-user-secret {color: #5D6D7E;}
+.fa-handshake-o {color: #5D6D7E;}
+.fa-caret-square-o-right {  color: #5D6D7E;}
+.fa-graduation-cap {color: #5D6D7E;}
+
+
+.fa-file-text-o:hover {color: #34495E;} 
+.fa-users:hover {color: #34495E;}
+.fa-user:hover {color: #34495E;}
+.fa-circle-o-notch:hover {color: #34495E;}
+.fa-user-circle-o:hover {color: #34495E;}
+.fa-user-secret:hover {color: #34495E;}
+.fa-handshake-o:hover {color: #34495E;}
+.fa-caret-square-o-right:hover {  color: #34495E;}
+.fa-graduation-cap:hover {color: #34495E;}
+
+
 
 
 .fa-cog {
