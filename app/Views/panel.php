@@ -124,27 +124,62 @@
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div> 
-              Accesos Rapido:<br/><br/>
-              <div class="espacioUno"></div>
-              <table width="100%" cellspacing="12" cellpadding="12" >
-              <tr>
-              <td><div class="text-center"><a href="<?php echo site_url('/Evaluaciones/index'); ?>"><i class="fa fa-file-text-o fa-2x" aria-hidden="true"></i><br/>Evaluaciones.</a></div></td>
-              <td><div class="text-center"><a href="<?php echo site_url('/Grupos/index'); ?>"><i class="fa fa-users fa-2x" aria-hidden="true"></i><br/>Grupos.</a></div></td>
-              <td><div class="text-center"><a href="<?php echo site_url('/Alumnos/index'); ?>"><i class="fa fa-graduation-cap fa-2x" aria-hidden="true"></i><br/>Estudiantes.</a></div></td>
-              </tr>
-              <tr>
-              <td><div class="text-center"><a href="<?php echo site_url('/Ciclos/index'); ?>"><i class="fa fa-circle-o-notch fa-2x" aria-hidden="true"></i><br/>Ciclos.</a></div></td>
-              <td><div class="text-center"><a href="<?php echo site_url('/Teacher/index'); ?>"><i class="fa fa-user-circle-o fa-2x" aria-hidden="true"></i><br/>Teachers.</a></div></td>
-              <td><div class="text-center"><a href="<?php echo site_url('/Tutores/index'); ?>"><i class="fa fa-user-secret fa-2x" aria-hidden="true"></i><br/>Tutores.</a></div></td>
-              </tr>
-              <tr>
-              <td><div class="text-center"><a href="<?php echo site_url('/Ciclos/index'); ?>"><i class="fa fa-handshake-o fa-2x" aria-hidden="true"></i></i><br/>Prospectos.</a></div></td>
-              <td><div class="text-center"><a href="<?php echo site_url('/Teacher/index'); ?>"><i class="fa fa-caret-square-o-right fa-2x" aria-hidden="true"></i></i><br/>Clase Demo.</a></div></td>
-              <td></td>
-              </tr>
-              </table>
+              Accesos Rapidos:<br/><br/>
+              <div class="card">
+                <div class="card-body">
+                <table width="100%" cellspacing="12" cellpadding="12" >
+                <tr>
+                <td><div class="text-center"><a href="<?php echo site_url('/Evaluaciones/index'); ?>"><i class="fa fa-file-text-o fa-2x" aria-hidden="true"></i><br/>Evaluaciones.</a></div></td>
+                <td><div class="text-center"><a href="<?php echo site_url('/Grupos/index'); ?>"><br/>Tipos de evaluaciones:</a></div></td>
+                <td><div class="text-center"><a href="<?php echo site_url('/Alumnos/index'); ?>"><br/>Sistema.</a></div></td>
+                <td><div class="text-center"><a href="<?php echo site_url('/Alumnos/index'); ?>"><br/>EXCI.</a></div></td>
+                <td><div class="text-center"><a href="<?php echo site_url('/Alumnos/index'); ?>"><br/>Examen de ubicación.</a></div></td>
+                </tr>
+                </table>
+                </div>
+              </div>
 
+              <div class="espacioUno"></div>
+              <div class="card">
+                <div class="card-body">
+                  <table width="100%" cellspacing="12" cellpadding="12" >
+                  <tr>
+                  <td><div class="text-center"><a href="<?php echo site_url('/Ciclos/index'); ?>"><i class="fa fa-circle-o-notch fa-2x" aria-hidden="true"></i><br/>Ciclos.</a></div></td>
+                  <td><div class="text-center"><a href="<?php echo site_url('/Grupos/index'); ?>"><i class="fa fa-users fa-2x" aria-hidden="true"></i><br/>Grupos.</a></div></td>
+                  <td><div class="text-center"><a href="<?php echo site_url('/Alumnos/index'); ?>"><i class="fa fa-graduation-cap fa-2x" aria-hidden="true"></i><br/>Estudiantes.</a></div></td>
+                  </tr>
+                  </table>
+                </div>
+              </div>
+              
+              <div class="espacioUno"></div>
+              <div class="card">
+                <div class="card-body">
+                  <table width="100%" cellspacing="12" cellpadding="12" >
+                    <tr>
+                    <td><div class="text-center"><a href="<?php echo site_url('/Ciclos/index'); ?>"><i class="fa fa-handshake-o fa-2x" aria-hidden="true"></i></i><br/>Prospectos.</a></div></td>
+                    <td><div class="text-center"><a href="<?php echo site_url('/Teacher/index'); ?>"><i class="fa fa-user-circle-o fa-2x" aria-hidden="true"></i><br/>Teachers.</a></div></td>
+                    <td><div class="text-center"><a href="<?php echo site_url('/Tutores/index'); ?>"><i class="fa fa-user-secret fa-2x" aria-hidden="true"></i><br/>Tutores.</a></div></td>
+                    </tr>
+                    <tr>
+                  </table>
+                </div>
+              </div>
+
+              <div class="espacioUno"></div>
+              <div class="card">
+                <div class="card-body">
+                  <table width="100%" cellspacing="12" cellpadding="12" >
+                  <tr>
+                  <td><div class="text-left"><a href="<?php echo site_url('/Teacher/index'); ?>"><i class="fa fa-caret-square-o-right fa-2x" aria-hidden="true"></i></i><br/>Clase Demo.</a></div></td>
+                  <td>&nbsp;<br/></td>
+                  <td>&nbsp;<br/></td>
+                  </tr>
+                  </table>
+                </div>
+              </div>
           </div>
+
           <div class="col-md-3">
            Con tenido de lado derecho. Con tenido de lado derecho.Con tenido de lado derecho.Con tenido de lado derecho.Con tenido de lado derecho.Con tenido de lado derecho.Con tenido de lado derecho.Con tenido de lado derecho.Con tenido de lado derecho.
           </div>
