@@ -5,7 +5,7 @@ use  App\Models\Tipo_evaluacion;
 use  App\Models\Niveles_evaluacion;
 use  App\Models\Lecciones_evaluacion;
 use  App\Models\Evaluaciones_model;
-use  App\Models\Preguntas;
+use  App\Models\Preguntas_model;
 use  App\Models\Usuarios;
 use  App\Models\Tipo_Preguntas;
 
@@ -113,7 +113,7 @@ function getEvaluacion($id_evaluacion,$id_nivel,$id_leccion)
 //Obtiene el total de preguntas y su valor total 
 function getValorTotalPreguntas($id_evaluacion)
 {
-    $usermodel = new Preguntas($db);
+    $usermodel = new Preguntas_model($db);
     //Esta es mas directa pero un poco mas complicada prefiero el viejo metodo esto solo para cosas muy especificas como una suma o un conteo
     $usermodel->SELECT('(SELECT SUM(valor) FROM preguntas WHERE idEvaluacion= '.$id_evaluacion.') as v', FALSE);
     //Forma de ejecutar un query mediante codelgniter 
@@ -126,7 +126,7 @@ function getValorTotalPreguntas($id_evaluacion)
 
 function getTotalPreguntas($id_evaluacion)
 {
-    $usermodel = new Preguntas($db);
+    $usermodel = new Preguntas_model($db);
     $query = "SELECT idEvaluacion FROM preguntas WHERE idEvaluacion= $id_evaluacion";
     $resultado = $usermodel ->query($query);
     $rowArray = $resultado -> getResult();
