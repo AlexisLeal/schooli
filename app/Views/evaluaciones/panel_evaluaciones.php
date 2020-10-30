@@ -136,6 +136,9 @@ foreach(getEvaluacion($id_evaluacion,$id_nivel,$id_leccion) as $fila){
     <input type="hidden" name="clave" id="clave" value="<?php echo $fila ->clave;?>">
     <input type="hidden" name="valorpreguntas" id="du" value="<?php echo $valor->v;?>">
     <input type="hidden" name="totalpreguntas" id="du" value="<?php echo getTotalPreguntas($fila->id);?>">
+    <input type="hidden" name="idtipoevaluacion" value="<?php echo $id_evaluacion;?>">
+    <input type="hidden" name="nivel" value="<?php echo $id_nivel;?>">
+    <input type="hidden" name="leccion"  value="<?php echo $id_leccion;?>">
     <button type="submit" name="submitAP" id="submitAP"><i class="fa fa-plus-circle" aria-hidden="true"></a></i></span></button>
     </form>
     </td>

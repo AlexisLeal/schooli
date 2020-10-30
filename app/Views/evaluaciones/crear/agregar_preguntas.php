@@ -159,6 +159,9 @@
       </div>
 
       <div class="form-group">
+    <input type="hidden" name="idtipoevaluacion" value="<?php echo $idtipoevaluacion;?>">
+    <input type="hidden" name="nivel" value="<?php echo $nivel;?>">
+    <input type="hidden" name="leccion"  value="<?php echo $leccion;?>">
       <button type="submit" name="registrarPregunta" class="btn btn-primary">Guardar</button>
       </div>
 

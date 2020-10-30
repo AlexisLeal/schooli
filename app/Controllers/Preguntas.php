@@ -2,6 +2,7 @@
 use  App\Models\Preguntas_model;
 use  App\Models\Pregunta_opcion_multiple;
 use  App\Models\Pregunta_opcion_audio;
+use  App\Models\Pregunta_opcion_video;
 class Preguntas extends BaseController{
 
     public function agregar_preguntas()
@@ -16,7 +17,12 @@ class Preguntas extends BaseController{
             $data['estado'] = $REQUEST->getPost('estado');
             $data['clave'] = $REQUEST->getPost('clave');
             $data['valorpreguntas'] = $REQUEST->getPost('valorpreguntas');	
-            $data['totalpreguntas'] = $REQUEST->getPost('totalpreguntas');	
+            $data['totalpreguntas'] = $REQUEST->getPost('totalpreguntas');
+
+            $data['idtipoevaluacion'] = $REQUEST->getPost('idtipoevaluacion');	
+            $data['nivel'] = $REQUEST->getPost('nivel');	
+            $data['leccion'] = $REQUEST->getPost('leccion');	
+
             $data['page_title'] = "Preguntas";	
          return view('evaluaciones/crear/agregar_preguntas',$data);
         }else{
@@ -61,9 +67,9 @@ public function insertarPregunta()
                 mkdir('./uploads/' .$clave.'/audio-pregunta', 0777, TRUE);
             }
 
-            //Obtenemos el archivo 
-            $nombre = 'pre'.$clave.$numeropregunta.'.mp3';
-        //Verifica si es valido
+                 //Obtenemos el archivo 
+                $nombre = 'pre'.$clave.$numeropregunta.'.mp3';
+                //Verifica si es valido
         
             $file_audio->move($ruta_audio,$nombre);
         }else{
@@ -82,17 +88,15 @@ public function insertarPregunta()
             if ($file_imagen->isValid() && ! $file_imagen->hasMoved())
             {
             $imagen= 1;
-            $ruta_imagen = base_url("uploads/$clave/imagen-pregunta");
+            $ruta_imagen = "uploads/".$clave."/imagen-pregunta";
                 //Comprobar si existe la ruta donde se va a guardar el audio
             if (!is_dir('uploads/'.$clave.'/imagen-pregunta')) {
                 mkdir('./uploads/' .$clave.'/imagen-pregunta', 0777, TRUE);
             }
             //Obtenemos el archivo 
          
-            $nombre = 'pre'.$clave.$numeropregunta;
-        //Verifica si es valido
-       
-            $file_imagen->move($file_imagen,$nombre);
+            $nombre = 'pre'.$clave.$numeropregunta.'.jpg';
+            $file_imagen->move($ruta_imagen,$nombre);
         }else{
             //Si algo sale mal nos marca un error 
             throw new RuntimeException($file_imagen->getErrorString().'('.$file_imagen->getError().')');
@@ -192,14 +196,58 @@ public function insertarPregunta()
 
         }
 
+        if($tipoPregunta == 4){
+            $file_video = $REQUEST->getFile('archivo_video');
+            //Verifica si es valido
+      if ($file_video->isValid() && ! $file_video->hasMoved())
+      {
+          $video_extension= $video_audio->getClientExtension();
+          $ruta_video = "uploads/".$clave."/video";
+              //Comprobar si existe la ruta donde se va a guardar el audio
+          if (!is_dir('uploads/'.$clave.'/video')) {
+              mkdir('./uploads/' .$clave.'/video', 0777, TRUE);
+          }
 
- 
+          //Obtenemos el archivo 
+          $nombre = 'pregunta-ingles'.$numeropregunta.'.mp4';  
+          $file_audio->move($ruta_audio,$nombre);
 
-}
+          //Insertamos en la base de datos 
+          $sqlAudio ="INSERT INTO pregunta_opcion_audio (
+              idEvaluacion,
+              idPregunta,
+              nombre_audio,
+              ruta_audio,
+              extension,
+              fecha_creacion,
+              fecha_ultimo_cambio
+              ) VALUES(
+              $idEvaluacion,
+              $numeropregunta,
+              '".$nombre."',
+              '".$ruta_video."',
+              '".$video_extension."',
+              '".$hoy."',
+              '".$hoy."')";
+
+              $usermodel = new Pregunta_opcion_video($db);
+              $usermodel ->query($sqlAudio);
+      }else{
+          //Si algo sale mal nos marca un error 
+          throw new RuntimeException($file_audio->getErrorString().'('.$file_audio->getError().')');
+               }
+
+        }
+        //Creamos una variable que nos indica 
+        $idtipoevaluacion = $REQUEST->getPost('idtipoevaluacion');	
+        $nivel = $REQUEST->getPost('nivel');	
+        $leccion = $REQUEST->getPost('leccion');	
+
+        return redirect()->to(site_url("Evaluaciones/panel_evaluaciones/$idEvaluacion/$nivel/$leccion"));
     
 
 }
 }
 
-
+}
 
