@@ -41,7 +41,7 @@ color:#fff;
   height: 20px;
 }
 .buscador {
-  width: 300px;
+  width: 330px;
   height: 35px;
   -moz-border-radius: 10px;
 -webkit-border-radius: 10px;
@@ -103,7 +103,6 @@ ul.horizontal li a{
             
 ul.horizontal li a:hover{
    color:#000;
-
 }
 
 .fa-file-text-o {
@@ -175,6 +174,30 @@ ul.footer li a{
 ul.footer li a:hover{
    color:#000;
 
+}
+
+.list-group {
+  border:none;
+  background-color: transparent;
+}
+
+.list-group-item {
+  border:none;
+  background-color: transparent;
+  padding-top:5px;
+  padding-bottom:5px;
+}
+
+ul.list-group li a{
+  text-decoration:none;
+  display:inline-block;
+  padding:5px 10px;
+  height:27px;
+  color:#5D6D7E;
+  }
+            
+ul.list-group li a:hover{
+   color:#000;
 }
 
 /*

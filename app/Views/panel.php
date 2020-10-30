@@ -12,8 +12,14 @@
     </div>
     <div class="col-md-6">
       <div class="text-left">
+        <!--<nav class="navbar navbar-light bg-light">
+          <form class="form-inline">
+            <input class="form-control mr-sm-1" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-1 my-sm-0" type="submit">Search</button>
+          </form>
+        </nav>-->
         <form>
-        <input type="text" class="form-control buscador">
+        <input type="text" type="search" placeholder="Search" class="form-control buscador">
         </form>
       </div>
     </div>
@@ -48,63 +54,65 @@
       <div id="general">
         <div class="row">
         <div class="col-md-3">
-          <h2 class="titulos-menu">Sistema</h2>
+        <h2 class="titulos-menu">Sistema</h2>
+        <ul class="list-group">
+          <li class="list-group-item"><a href="#">Configuración Regional</a></li>
+          <li class="list-group-item"><a href="#">Información Técnica</a></li>
+        </ul>
+          
           <hr class="linea" />
-           <ul class="horizontal">
-             <li><a href="#">Configuración Regional</a></li>
-             <li><a href="#">Información Técnica</a></li>
-          </ul>
-          <br/><br/><br/>
+
+
           <h2 class="titulos-menu">Catalogos</h2>
-           <hr/>
-           <ul class="horizontal">
-             <li><a href="#">Sucursales</a></li>
-             <li><a href="#">Facultades</a></li>
-             <li><a href="#">Caarreras</a></li>
-             <li><a href="#">Usuarios</a></li>
-             <li><a href="#">Roles</a></li>
-             <li><a href="#">Integraciones</a></li>
-             <li><a href="#">Medios</a></li>
-             <li><a href="#">Canales</a></li>
-             <li><a href="#">Origenes</a></li>
-             <li><a href="#">Notificaciones</a></li>
-             <li><a href="#">Avisos Pop-Up</a></li>
-             <li><a href="#">Black List</a></li>
-             <li><a href="#">Calendario Anual</a></li>
-             <li><a href="#">Horarios</a></li>
-             <li><a href="#">Turnos</a></li>
-             <li><a href="#">Accesos</a></li>
-             <li><a href="#">Materiales</a></li>
-             <li><a href="#">Tipo Materiales</a></li>
-             <li><a href="#">Categoría Materiales</a></li>
-             <li><a href="#">Clases Demo</a></li>
+
+           <ul class="list-group">
+             <li class="list-group-item"><a href="#">Sucursales</a></li>
+             <li class="list-group-item"><a href="#">Facultades</a></li>
+             <li class="list-group-item"><a href="#">Caarreras</a></li>
+             <li class="list-group-item"><a href="#">Usuarios</a></li>
+             <li class="list-group-item"><a href="#">Roles</a></li>
+             <li class="list-group-item"><a href="#">Integraciones</a></li>
+             <li class="list-group-item"><a href="#">Medios</a></li>
+             <li class="list-group-item"><a href="#">Canales</a></li>
+             <li class="list-group-item"><a href="#">Origenes</a></li>
+             <li class="list-group-item"><a href="#">Notificaciones</a></li>
+             <li class="list-group-item"><a href="#">Avisos Pop-Up</a></li>
+             <li class="list-group-item"><a href="#">Black List</a></li>
+             <li class="list-group-item"><a href="#">Calendario Anual</a></li>
+             <li class="list-group-item"><a href="#">Horarios</a></li>
+             <li class="list-group-item"><a href="#">Turnos</a></li>
+             <li class="list-group-item"><a href="#">Accesos</a></li>
+             <li class="list-group-item"><a href="#">Materiales</a></li>
+             <li class="list-group-item"><a href="#">Tipo Materiales</a></li>
+             <li class="list-group-item"><a href="#">Categoría Materiales</a></li>
+             <li class="list-group-item"><a href="#">Clases Demo</a></li>
            </ul>
-           <br/><br/><br/><br/><br/><br/><br/><br/><br/>.....
+           <hr class="linea" />
            <h2 class="titulos-menu">Modulos</h2>
-           <hr/>
-           <ul class="horizontal">
-             <li><a href="#">Evaluaciones</a></li>
-             <li><a href="#">Estudiantes</a></li>
-             <li><a href="#">Grupos</a></li>
-             <li><a href="#">Ciclos</a></li>
-             <li><a href="#">Prospectos</a></li>
-             <li><a href="#">Teachers</a></li>
-             <li><a href="#">Tutores</a></li>
-             <li><a href="#">Clase Demo</a></li>
+           
+           <ul class="list-group">
+             <li class="list-group-item"><a href="#">Evaluaciones</a></li>
+             <li class="list-group-item"><a href="#">Estudiantes</a></li>
+             <li class="list-group-item"><a href="#">Grupos</a></li>
+             <li class="list-group-item"><a href="#">Ciclos</a></li>
+             <li class="list-group-item"><a href="#">Prospectos</a></li>
+             <li class="list-group-item"><a href="#">Teachers</a></li>
+             <li class="list-group-item"><a href="#">Tutores</a></li>
+             <li class="list-group-item"><a href="#">Clase Demo</a></li>
            </ul>
-           <br/><br/><br/>
+           <hr class="linea" />
            <h2 class="titulos-menu">Reportes</h2>
-          <hr/>
-          <ul class="horizontal">
-             <li><a href="#">Reporte 1</a></li>
-             <li><a href="#">Reporte 2</a></li>
+          
+          <ul class="list-group">
+             <li class="list-group-item"><a href="#">Reporte 1</a></li>
+             <li class="list-group-item"><a href="#">Reporte 2</a></li>
            </ul>
-           <br/><br/><br/>
+           <hr class="linea" />
+
            <h2 class="titulos-menu">Integraciones</h2>
-          <hr/>
-          <ul class="horizontal">
-             <li><a href="#">Estados de cuenta.</a></li>
-             <li><a href="#">Pagos en esta plataforma</a></li>
+          <ul class="list-group">
+             <li class="list-group-item"><a href="#">Estados de cuenta.</a></li>
+             <li class="list-group-item"><a href="#">Pagos en esta plataforma</a></li>
            </ul>
           </div>
           <div class="col-md-6">
