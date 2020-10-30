@@ -2,7 +2,12 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 95%;
   background-color: #edf2f9;
+  border-top: 2px solid #06a9ca;
 
+}
+
+#barra-superior {
+  padding-top: 5px;
 }
 
 .btn-login {
@@ -44,6 +49,134 @@ padding-left: 15px;
 padding-top: 5px;
 padding-bottom: 5px;
 }
+
+.space {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+
+#general {
+  background-color: #F2F3F4;
+  /*background-color: #EAEDED;*/
+  /*background-color: #000;*/
+  border-radius: 20px 20px 0 0;
+  padding-left: 10px;
+  
+}
+
+.titulos-menu {
+  position: relative;
+  font-size: 120%;
+  font-weight: bold;
+  display: block;
+  clear: both;
+  color:#5D6D7E;
+  margin-top:10px;
+  margin-bottom:10px;
+}
+
+ul.horizontal{
+  margin:0;
+  padding:0;
+  font-size: 95%;
+  /*color:#808B96;*/
+  color:#5D6D7E;
+  display: block;
+  }
+  
+  ul.horizontal li{
+  display:block;
+  float:left;
+  list-style-type:none;
+  position:relative;
+  width:180px;
+  }
+
+ul.horizontal li a{
+  text-decoration:none;
+  display:inline-block;
+  padding:5px 10px;
+  height:27px;
+  color:#5D6D7E;
+  }
+            
+ul.horizontal li a:hover{
+   color:#000;
+
+}
+
+.fa-file-text-o {
+  color: #ABB2B9;
+} 
+.fa-users {color: #ABB2B9;}
+.fa-user {color: #ABB2B9;}
+.fa-circle-o-notch {color: #ABB2B9;}
+.fa-user-circle-o {color: #ABB2B9;}
+.fa-user-secret {color: #ABB2B9;}
+.fa-handshake-o {color: #ABB2B9;}
+.fa-caret-square-o-right {
+  color: #ABB2B9;
+}
+.fa-graduation-cap {
+  color: #ABB2B9;
+}
+
+
+.fa-cog {
+  color: #06a9ca;
+}
+.fa-shopping-cart{
+  color: #06a9ca;
+}
+.fa-bell-o{
+  color: #06a9ca;
+}
+.fa-user {
+  color: #06a9ca;
+}
+
+.linea {
+  /*border-top: 1px dotted #E5E7E9;*/
+  border-top: 2px dotted #CCD1D1;
+}
+
+.brain-foot {
+  color:#566573;
+  font-weight: bold;
+  font-size:210%;
+}
+
+ul.footer{
+  margin:0;
+  padding:0;
+  font-size: 95%;
+  /*color:#808B96;*/
+  color:#5D6D7E;
+  display: block;
+  }
+  
+  ul.footer li{
+  display:block;
+  float:left;
+  list-style-type:none;
+  position:relative;
+  width:180px;
+  }
+
+ul.footer li a{
+  text-decoration:none;
+  display:inline-block;
+  padding:5px 10px;
+  height:27px;
+  color:#5D6D7E;
+  }
+            
+ul.footer li a:hover{
+   color:#000;
+
+}
+
 /*
 input[type=button] {
   color:#08233e;
