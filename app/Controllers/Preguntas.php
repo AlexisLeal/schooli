@@ -239,14 +239,16 @@ public function insertarPregunta()
 
         }
         //Creamos una variable que nos indica 
-        $idtipoevaluacion = $REQUEST->getPost('idtipoevaluacion');	
+        $idtipoevaluacion = $REQUEST->getPost('idtipoevaluacion');	//Si es sistema o exci 
         $nivel = $REQUEST->getPost('nivel');	
         $leccion = $REQUEST->getPost('leccion');	
 
-        return redirect()->to(site_url("Evaluaciones/panel_evaluaciones/$idEvaluacion/$nivel/$leccion"));
+        return redirect()->to(site_url("Evaluaciones/panel_evaluaciones/$idtipoevaluacion/$nivel/$leccion"));
     
 
-}
+}else{
+    return redirect()->to(site_url('Home/salir'));
+   }
 }
 
 }
