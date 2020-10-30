@@ -12,12 +12,6 @@
     </div>
     <div class="col-md-6">
       <div class="text-left">
-        <!--<nav class="navbar navbar-light bg-light">
-          <form class="form-inline">
-            <input class="form-control mr-sm-1" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-1 my-sm-0" type="submit">Search</button>
-          </form>
-        </nav>-->
         <form>
         <input type="text" type="search" placeholder="Search" class="form-control buscador">
         </form>
@@ -36,10 +30,6 @@
     <a class="dropdown-item" href="#">Perfil</a>
     <a class="dropdown-item" href="<?php echo site_url('/Home/salir');?>">Salir</a>
   </div>
-
-    <?php //echo $session->get('nombre')?> <?php //echo $session->get('apellido')?>  
-    <!-- <a href="<?php //echo site_url('/Home/salir'); ?>"> -->
-    <!-- <i class="fa fa-sign-out" aria-hidden="true"></i> </a>-->
   </div>
   </div>
 </div>
@@ -68,7 +58,7 @@
            <ul class="list-group">
              <li class="list-group-item"><a href="#">Sucursales</a></li>
              <li class="list-group-item"><a href="#">Facultades</a></li>
-             <li class="list-group-item"><a href="#">Caarreras</a></li>
+             <li class="list-group-item"><a href="#">Carreras</a></li>
              <li class="list-group-item"><a href="#">Usuarios</a></li>
              <li class="list-group-item"><a href="#">Roles</a></li>
              <li class="list-group-item"><a href="#">Integraciones</a></li>
