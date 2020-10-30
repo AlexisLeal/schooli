@@ -2,11 +2,13 @@
 use  App\Models\Evaluaciones_model;
 class Evaluaciones extends BaseController{
 
+
+
     public function index()
 	{
-        $data['page_title'] = "Evaluaciones";	
-        //Pasamos de forma dinamica el titulo  y se crear un array
         if($this->session->get('login')){
+        $data['page_title'] = "Evaluaciones";	
+        //Pasamos de forma dinamica el titulo  y se crear un array   
         return view('evaluaciones/tipo_evaluaciones',$data);
         }else{
             return redirect()->to(site_url('Home/salir'));
@@ -27,6 +29,8 @@ class Evaluaciones extends BaseController{
     public function tipo_evaluacion($view)
     {
         //Nos indica si es sistema o exci o basic 
+
+        if($this->session->get('login')){
         if($view == 1){
             $data["tipo_evaluacion"] = "Sistema";
             $data["id_evaluacion"] = 1;
@@ -43,6 +47,9 @@ class Evaluaciones extends BaseController{
             //Mas adelante se agrega la vista apropiada 
 
         }
+    }else{
+        return redirect()->to(site_url('Home/salir'));
+       }
         
     }
 
@@ -62,10 +69,11 @@ class Evaluaciones extends BaseController{
 
     public function panel_evaluaciones($id_evaluacion,$id_nivel,$id_leccion)
     {
+        if($this->session->get('login')){
         $data['id_evaluacion'] = $id_evaluacion;
         $data['id_nivel'] = $id_nivel;
         $data['id_leccion'] = $id_leccion;
-        if($this->session->get('login')){
+        
         return view('evaluaciones/panel_evaluaciones',$data);
     }else{
         return redirect()->to(site_url('Home/salir'));
@@ -75,6 +83,8 @@ class Evaluaciones extends BaseController{
     //-------------------------------------------------- Funciones para insertar o actualizar en la base de datos ----------------------------------
     public function insertar_evaluacion()
     {
+
+        if($this->session->get('login')){
         if(isset($_POST['crearEvaluacion'])){
             $usermodel = new Evaluaciones_model($db);
             $REQUEST = \Config\Services::request();
@@ -109,7 +119,7 @@ class Evaluaciones extends BaseController{
                
             //Ejecutamos el query 
             $usermodel->query($sqlInsert);
-           
+
               //Obtenemos el id de la evaluacion 
                 $query = "select * from evaluaciones where tipo_evaluacion = $tipo_evaluacion AND nivel = $nivel AND leccion = $leccion";
                 $resultado = $usermodel ->query($query);
@@ -120,22 +130,16 @@ class Evaluaciones extends BaseController{
             $hoyLimpio        = str_replace(' ','',$hoy);
             $hoyLimpio        = str_replace(':','',$hoyLimpio);
             $hoyLimpio        = str_replace('-','',$hoyLimpio);
-            $clave ="EV".$fila->id.$hoyLimpio;
-            //Variable para la ruta 
-            $nombreRuta = "uploads/".$nombreDirectorio;
-  
- $sqlInsert = "INSERT INTO evaluaciones(nombre,instrucciones,tipo_evaluacion,nivel,leccion,usuario_creo,usuario_modifico,estado,fecha_creacion,fecha_ultimo_cambio,clave,directorio_uploads) values ('".$nombre_evaluacion."','".$instrucciones."',$tipo_evaluacion,$nivel,$leccion,$id_usuario,$id_usuario,$estado,'".$hoy."','".$hoy."','".$nombreDirectorio."','".$nombreRuta."')";
-               
-             //Ejecutamos el query 
-            $resultado = $usermodel->query($sqlInsert);
+            $clave ="EV".$fila->id.$hoyLimpio;           
             $nombreRuta = base_url("uploads/$clave");
 
-            $sqlUpdate           ="UPDATE evaluaciones set clave = '".$clave."',directorio_uploads='".$nombreRuta."' where id=$fila->id";
+            //Actualizamos para inserta la clave y su ruta 
+            $sqlUpdate ="UPDATE evaluaciones set clave = '".$clave."',directorio_uploads='".$nombreRuta."' where id=$fila->id";
             $usermodel->query($sqlUpdate);
 
             //Creamos una carpeta donde se guardaran todos los archivos de la evaluacion(Imagenes,videos etc )
             if (!is_dir('uploads/'.$clave)) {
-                mkdir('./uploads/' . $clave, 0777, TRUE);
+                mkdir('./uploads/' .$clave, 0777, TRUE);
             }else{
                 echo "Se pone una view que marque que hubo un error inesperado ";
             }
@@ -144,14 +148,11 @@ class Evaluaciones extends BaseController{
     
               
             }
-
-           
+        }
 
         }
         
        
-
-
     }
 
    

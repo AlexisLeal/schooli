@@ -103,7 +103,7 @@ height:270px;
 //Estos paremetros nos lo pasen el contralador
 foreach(getEvaluacion($id_evaluacion,$id_nivel,$id_leccion) as $fila){
   $valor =getValorTotalPreguntas($fila->id);
-  $usuarioCreo =getUsuarioCreo($fila->id);
+  $usuarioCreo =getUsuarioCreo($fila->usuario_creo);
   //MUY IMPORTANTE ESTE FUNCION 
  
     ?>
@@ -136,7 +136,6 @@ foreach(getEvaluacion($id_evaluacion,$id_nivel,$id_leccion) as $fila){
     <input type="hidden" name="clave" id="clave" value="<?php echo $fila ->clave;?>">
     <input type="hidden" name="valorpreguntas" id="du" value="<?php echo $valor->v;?>">
     <input type="hidden" name="totalpreguntas" id="du" value="<?php echo getTotalPreguntas($fila->id);?>">
-    <input type="hidden" name="du" id="du" value="<?php echo $fila->directorio_uploads;?>">
     <button type="submit" name="submitAP" id="submitAP"><i class="fa fa-plus-circle" aria-hidden="true"></a></i></span></button>
     </form>
     </td>

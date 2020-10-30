@@ -2,7 +2,7 @@
 
 use CodeIgniter\Model;
 
-class Preguntas extends Model
+class Preguntas_model extends Model
 {
     #Nombre de la tabla
     protected $table      = 'preguntas';

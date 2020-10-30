@@ -11,8 +11,8 @@ $(document).on('change','input[type="file"]',function(){
 	var fileName = this.files[0].name;
 	var fileSize = this.files[0].size;
 
-	if(fileSize > 3000000){
-		alert('El archivo no debe superar los 3MB');
+	if(fileSize > 5000000){
+		alert('El archivo no debe superar los 5MB');
 		this.value = '';
 		this.files[0].name = '';
 	}else{
@@ -28,7 +28,7 @@ $(document).on('change','input[type="file"]',function(){
 			case 'jpg':
 			case 'jpeg':
 			case 'png':
-			case 'pdf': break;
+       break;
 			default:
 				alert('El archivo no tiene la extensión adecuada');
 				this.value = ''; // reset del valor
@@ -39,8 +39,8 @@ $(document).on('change','input[type="file"]',function(){
 	var fileName = this.files[0].name;
 	var fileSize = this.files[0].size;
 
-	if(fileSize > 3000000){
-		alert('El archivo no debe superar los 3MB');
+	if(fileSize > 7000000){
+		alert('El archivo no debe superar los 7MB');
 		this.value = '';
 		this.files[0].name = '';
 	}else{
