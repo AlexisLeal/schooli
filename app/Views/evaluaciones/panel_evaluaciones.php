@@ -121,8 +121,8 @@
           <a href="<?php echo site_url('/Panel/index'); ?>">Panel</a><br/>
           <a href="<?php echo site_url('/Evaluaciones/crear_evaluacion'); ?>">Crear evaluaciones.</a><br/>
           <a href="<?php echo site_url('/Evaluaciones/index'); ?>">Tipo Evaluaciones </a> <br>
-          <a href="niveles.php>">Niveles.</a><br/>
-          <a href="lecciones.php>">Lecciones.</a><br/>
+          <a href="<?php echo site_url('/Evaluaciones/tipo_evaluacion/1'); ?>">Niveles.</a><br/>
+          <a href="<?php echo site_url("/Evaluaciones/lecciones/$id_evaluacion/$id_nivel"); ?>">Lecciones.</a><br/>
           <br/>
             Evaluación:<br/>
               
