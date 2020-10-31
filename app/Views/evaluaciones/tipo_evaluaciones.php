@@ -7,7 +7,9 @@
   <div class="row">
     <div class="col-md-2">
       <div class="text-center">
-        <img class="mb-4" src="<?php echo base_url('img-front/logo-brain.PNG');?>" alt="" width="52" height="52">
+        <a href="<?php echo site_url('/Panel/index'); ?>">
+          <img class="mb-4" src="<?php echo base_url('img-front/logo-brain.PNG');?>" alt="" width="52" height="52">
+        </a>
       </div>
     </div>
     <div class="col-md-6">
@@ -105,22 +107,34 @@
              <li class="list-group-item"><a href="#">Pagos en esta plataforma</a></li>
            </ul>
           </div>
+
+
+
           <div class="col-md-6">
-           
+              <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>Notificaciones del sistema:</strong> Este texto es un ejemplo de notificaciones que el sistema le debe de mostrar al Administrador.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div> 
+
           <a href="<?php echo site_url('/Panel/index'); ?>">Panel.</a><br/>
             <a href="<?php echo site_url('/Evaluaciones/crear_evaluacion'); ?>">Crear evaluaciones.</a><br/>
           <br/>
 
           Tipo de evaluaciones:<br/>
-          <?php
-            
-            foreach(getTipoEvaluacion() as $fila){ ?>
-                 <a href="<?php echo site_url("/Evaluaciones/tipo_evaluacion/$fila->id"); ?>"><?php echo $fila->nombre ?></a>
-                 <br>
-              <?php
-            }
-            ?>
-
+          <div class="espacioUno"></div>
+              <div class="card">
+                <div class="card-body">
+                <?php
+                foreach(getTipoEvaluacion() as $fila){ ?>
+                  <a href="<?php echo site_url("/Evaluaciones/tipo_evaluacion/$fila->id"); ?>"><?php echo $fila->nombre ?></a>
+                  <br>
+                <?php
+                }
+                ?>
+              </div>
+            </div>
  
           </div>
 

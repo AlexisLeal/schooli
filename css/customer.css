@@ -140,7 +140,10 @@ ul.horizontal li a:hover{
 .fa-graduation-cap:hover {color: #34495E;}
 
 
-
+#submitAP {
+  border:0px;
+  background-color: transparent;
+}
 
 .fa-cog {
   color: #06a9ca;
@@ -219,6 +222,8 @@ ul.list-group li a{
 ul.list-group li a:hover{
    color:#000;
 }
+
+
 
 /*
 input[type=button] {

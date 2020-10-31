@@ -7,7 +7,9 @@
   <div class="row">
     <div class="col-md-2">
       <div class="text-center">
-        <img class="mb-4" src="<?php echo base_url('img-front/logo-brain.PNG');?>" alt="" width="52" height="52">
+        <a href="<?php echo site_url('/Panel/index'); ?>">
+          <img class="mb-4" src="<?php echo base_url('img-front/logo-brain.PNG');?>" alt="" width="52" height="52">
+        </a>
       </div>
     </div>
     <div class="col-md-6">
@@ -115,15 +117,22 @@
                 </button>
               </div> 
               Accesos Rapidos:<br/><br/>
+
               <div class="card">
                 <div class="card-body">
                 <table width="100%" cellspacing="12" cellpadding="12" >
                 <tr>
                 <td><div class="text-center"><a href="<?php echo site_url('/Evaluaciones/index'); ?>"><i class="fa fa-file-text-o fa-2x" aria-hidden="true"></i><br/>Evaluaciones.</a></div></td>
-                <td><div class="text-center"><a href="<?php echo site_url('/Grupos/index'); ?>"><br/>Tipos de evaluaciones:</a></div></td>
-                <td><div class="text-center"><a href="<?php echo site_url('/Alumnos/index'); ?>"><br/>Sistema.</a></div></td>
-                <td><div class="text-center"><a href="<?php echo site_url('/Alumnos/index'); ?>"><br/>EXCI.</a></div></td>
-                <td><div class="text-center"><a href="<?php echo site_url('/Alumnos/index'); ?>"><br/>Examen de ubicación.</a></div></td>
+                <td><div class="text-center"><a href="<?php echo site_url('/Evaluaciones/index'); ?>"><br/>Tipos de <br/> evaluaciones:</a></div></td>
+                <td><div class="text-center">
+                <?php
+                foreach(getTipoEvaluacion() as $fila){ ?>
+                  <a href="<?php echo site_url("/Evaluaciones/tipo_evaluacion/$fila->id"); ?>"><?php echo $fila->nombre ?></a> / 
+                  <?php
+                  }
+                  ?>
+                  </div>
+                </td>
                 </tr>
                 </table>
                 </div>
@@ -147,7 +156,7 @@
                 <div class="card-body">
                   <table width="100%" cellspacing="12" cellpadding="12" >
                     <tr>
-                    <td><div class="text-center"><a href="<?php echo site_url('/Ciclos/index'); ?>"><i class="fa fa-handshake-o fa-2x" aria-hidden="true"></i></i><br/>Prospectos.</a></div></td>
+                    <td><div class="text-center"><a href="#"><i class="fa fa-handshake-o fa-2x" aria-hidden="true"></i></i><br/>Prospectos.</a></div></td>
                     <td><div class="text-center"><a href="<?php echo site_url('/Teacher/index'); ?>"><i class="fa fa-user-circle-o fa-2x" aria-hidden="true"></i><br/>Teachers.</a></div></td>
                     <td><div class="text-center"><a href="<?php echo site_url('/Tutores/index'); ?>"><i class="fa fa-user-secret fa-2x" aria-hidden="true"></i><br/>Tutores.</a></div></td>
                     </tr>
@@ -161,7 +170,7 @@
                 <div class="card-body">
                   <table width="100%" cellspacing="12" cellpadding="12" >
                   <tr>
-                  <td><div class="text-left"><a href="<?php echo site_url('/Teacher/index'); ?>"><i class="fa fa-caret-square-o-right fa-2x" aria-hidden="true"></i></i><br/>Clase Demo.</a></div></td>
+                  <td><div class="text-left"><a href="#"><i class="fa fa-caret-square-o-right fa-2x" aria-hidden="true"></i></i><br/>Clase Demo.</a></div></td>
                   <td>&nbsp;<br/></td>
                   <td>&nbsp;<br/></td>
                   </tr>
