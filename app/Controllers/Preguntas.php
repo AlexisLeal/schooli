@@ -31,6 +31,29 @@ class Preguntas extends BaseController{
 	}
 }
 
+//Nos muestra las preguntas de la evaluacion
+public function verEvaluacion( $idtipoevaluacion,$nivel,$leccion)
+{   
+    $data['idtipoevaluacion'] = $idtipoevaluacion;
+    $data['nivel'] = $nivel;
+    $data['leccion'] = $leccion;
+    return view('evaluaciones/mostrar/evaluacion',$data);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 public function insertarPregunta()
 {
     if($this->session->get('login')){

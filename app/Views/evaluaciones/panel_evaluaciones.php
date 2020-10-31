@@ -146,6 +146,7 @@
               <tbody>
             <?php
               $nombreEvaluaciones = getTipoEvaluacionEspecifico($id_evaluacion);//obtiene si es sistema o exci 
+              //la variable id_evaluacion hace referencia al id del tipo de evaluacion 
             //Estos paremetros nos lo pasen el contralador
             foreach(getEvaluacion($id_evaluacion,$id_nivel,$id_leccion) as $fila){
               $valor =getValorTotalPreguntas($fila->id);
@@ -166,7 +167,7 @@
                   $estado = "Inactivo";
                 } ?></td>
 
-                <td class="text-center"><a href="examen.php"><i class="fa fa-file-text-o" aria-hidden="true"></a></i></td>
+                <td class="text-center"><a href=" <?php echo site_url("Preguntas/verEvaluacion/"); ?>"><i class="fa fa-file-text-o" aria-hidden="true"></a></i></td>
                 <td class="text-center"><a href="examen.php"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></td>
                 <td class="text-center">
                 <form action="<?php echo site_url('Preguntas/agregar_preguntas')?>" name="" id="" method="post">
