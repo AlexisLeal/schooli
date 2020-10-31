@@ -1,113 +1,3 @@
-$(document).on('change','input[type="file"]',function(){
-	
-    
-    let audiocheck = document.getElementById("activarCargarAudioPregunta");
-    let imagen = document.getElementById("activarCargarImagen");
-    indice = document.getElementById("tipoPregunta").selectedIndex;
-
-	if( imagen.checked ) {
-     // this.files[0].size recupera el tamaño del archivo
-    // alert(this.files[0].size);
-	var fileName = this.files[0].name;
-	var fileSize = this.files[0].size;
-
-	if(fileSize > 5000000){
-		alert('El archivo no debe superar los 5MB');
-		this.value = '';
-		this.files[0].name = '';
-	}else{
-		// recuperamos la extensión del archivo
-		var ext = fileName.split('.').pop();
-		
-		// Convertimos en minúscula porque 
-		// la extensión del archivo puede estar en mayúscula
-		ext = ext.toLowerCase();
-    
-		// console.log(ext);
-		switch (ext) {
-			case 'jpg':
-			case 'jpeg':
-			case 'png':
-       break;
-			default:
-				alert('El archivo no tiene la extensión adecuada');
-				this.value = ''; // reset del valor
-				this.files[0].name = '';
-		}
-	}
-}if( audiocheck.checked || indice == 3) {
-	var fileName = this.files[0].name;
-	var fileSize = this.files[0].size;
-
-	if(fileSize > 7000000){
-		alert('El archivo no debe superar los 7MB');
-		this.value = '';
-		this.files[0].name = '';
-	}else{
-		// recuperamos la extensión del archivo
-		var ext = fileName.split('.').pop();
-		
-		// Convertimos en minúscula porque 
-		// la extensión del archivo puede estar en mayúscula
-		ext = ext.toLowerCase();
-    
-		// console.log(ext);
-		switch (ext) {
-			case 'mp3':
-		 break;
-			default:
-				alert('El archivo no tiene la extensión adecuada');
-				this.value = ''; // reset del valor
-				this.files[0].name = '';
-		}
-	}
-//Video 
-}if(indice == 4){
-    var fileName = this.files[0].name;
-	var fileSize = this.files[0].size;
-
-	if(fileSize > 3000000){
-		alert('El archivo no debe superar los 3MB');
-		this.value = '';
-		this.files[0].name = '';
-	}else{
-		// recuperamos la extensión del archivo
-		var ext = fileName.split('.').pop();
-		
-		// Convertimos en minúscula porque 
-		// la extensión del archivo puede estar en mayúscula
-		ext = ext.toLowerCase();
-    
-		// console.log(ext);
-		switch (ext) {
-			case 'mp4':
-		 break;
-			default:
-				alert('El archivo no tiene la extensión adecuada');
-				this.value = ''; // reset del valor
-				this.files[0].name = '';
-		}
-	}
-
-}
-});
-
-// Validacion para habialitar un upload y cargar una imagen.
-$("#activarCargarAudioPregunta" ).click(function() {
-    // detectar si esta seleccionado o deseleccionado
-    let elemento = document.getElementById("activarCargarAudioPregunta");
-    // si esta cheked
-    if( elemento.checked ) {
-      $('#agregarAudioPregunta').append('<div class="form-group">\
-            Cargar imagen <input class="form-control" type="file" id="archivo_audio_pregunta" name="archivo_audio_pregunta" required="">\
-            </div>');    
-    }else{
-      document.getElementById("agregarAudioPregunta").innerHTML = "";
-    }
-  });
-  
-  
-  
   
   // Validacion para habialitar un upload y cargar una imagen.
   $("#activarCargarImagen" ).click(function() {
@@ -123,6 +13,23 @@ $("#activarCargarAudioPregunta" ).click(function() {
     }
   });
   
+
+  
+
+// Validacion para habialitar un upload y cargar un audio.
+$("#activarCargarAudioPregunta" ).click(function() {
+  // detectar si esta seleccionado o deseleccionado
+  let elemento = document.getElementById("activarCargarAudioPregunta");
+  // si esta cheked
+  if( elemento.checked ) {
+    $('#agregarAudioPregunta').append('<div class="form-group">\
+          Cargar Audio <input class="form-control" type="file" id="archivo_audio_pregunta" name="archivo_audio_pregunta" required="">\
+          </div>');    
+  }else{
+    document.getElementById("agregarAudioPregunta").innerHTML = "";
+  }
+});
+
   
   
   
@@ -186,3 +93,147 @@ $("#activarCargarAudioPregunta" ).click(function() {
   }
   
   });
+
+
+
+
+
+
+
+
+
+
+
+
+
+  //Imagen
+$("#agregarImagen").on('change','input[type="file"]',function(){
+   // this.files[0].size recupera el tamaño del archivo
+  // alert(this.files[0].size);
+var fileName = this.files[0].name;
+var fileSize = this.files[0].size;
+
+if(fileSize > 5000000){
+  alert('El archivo no debe superar los 5MB');
+  this.value = '';
+  this.files[0].name = '';
+}else{
+  // recuperamos la extensión del archivo
+  var ext = fileName.split('.').pop();
+  
+  // Convertimos en minúscula porque 
+  // la extensión del archivo puede estar en mayúscula
+  ext = ext.toLowerCase();
+  
+  // console.log(ext);
+  switch (ext) {
+    case 'jpg':
+    case 'jpeg':
+    case 'png':
+     break;
+    default:
+      alert('El la imagen no tiene la extension correcta ');
+      this.value = ''; // reset del valor
+      this.files[0].name = '';
+  }
+}
+
+});
+
+//Audio
+
+$("#agregarAudioPregunta").on('change','input[type="file"]',function(){
+  var fileName = this.files[0].name;
+  var fileSize = this.files[0].size;
+  
+  if(fileSize > 7000000){
+    alert('El archivo no debe superar los 7MB');
+    this.value = '';
+    this.files[0].name = '';
+  }else{
+    // recuperamos la extensión del archivo
+    var ext = fileName.split('.').pop();
+    
+    // Convertimos en minúscula porque 
+    // la extensión del archivo puede estar en mayúscula
+    ext = ext.toLowerCase();
+    
+    // console.log(ext);
+    switch (ext) {
+      case 'mp3':
+     break;
+      default:
+        alert('El audio no tiene la extension correcta');
+        this.value = ''; // reset del valor
+        this.files[0].name = '';
+    }
+  }
+
+});
+
+//Para tipo de preguntas audio o vidoe 
+$("#agregarCampos").on('change','input[type="file"]',function(){
+indice = document.getElementById("tipoPregunta").selectedIndex;
+if(indice ==3){
+ 
+    var fileName = this.files[0].name;
+    var fileSize = this.files[0].size;
+    
+    if(fileSize > 7000000){
+      alert('El archivo no debe superar los 7MB');
+      this.value = '';
+      this.files[0].name = '';
+    }else{
+      // recuperamos la extensión del archivo
+      var ext = fileName.split('.').pop();
+      
+      // Convertimos en minúscula porque 
+      // la extensión del archivo puede estar en mayúscula
+      ext = ext.toLowerCase();
+      
+      // console.log(ext);
+      switch (ext) {
+        case 'mp3':
+       break;
+        default:
+          alert('El audio no tiene la extension correcta');
+          this.value = ''; // reset del valor
+          this.files[0].name = '';
+      }
+    }
+    
+    }
+
+//Video 
+if(indice == 4){
+  var fileName = this.files[0].name;
+var fileSize = this.files[0].size;
+
+if(fileSize > 3000000){
+  alert('El archivo no debe superar los 3MB');
+  this.value = '';
+  this.files[0].name = '';
+}else{
+  // recuperamos la extensión del archivo
+  var ext = fileName.split('.').pop();
+  
+  // Convertimos en minúscula porque 
+  // la extensión del archivo puede estar en mayúscula
+  ext = ext.toLowerCase();
+  
+  // console.log(ext);
+  switch (ext) {
+    case 'mp4':
+   break;
+    default:
+      alert('El video no tiene la extension correcta');
+      this.value = ''; // reset del valor
+      this.files[0].name = '';
+  }
+}
+
+}
+});
+
+
+
