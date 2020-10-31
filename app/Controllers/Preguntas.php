@@ -38,8 +38,12 @@ public function verEvaluacion()
     return view('evaluaciones/mostrar/evaluacion');
 }
 
+//Editar las preguntas de la evaluacion
+public function editarEvaluacion()
+{   
 
-
+    return view('evaluaciones/editar/evaluacion');
+}
 
 
 
