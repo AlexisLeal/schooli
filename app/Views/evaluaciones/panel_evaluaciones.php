@@ -127,6 +127,9 @@
             Evaluación:<br/>
               
           <div class="espacioUno"></div>
+          Nivel : <?php echo $id_nivel;?><br/>
+          Lección: <?php echo $id_leccion;?><br/>
+
               <div class="card">
                 <div class="card-body">
               <table id="t01" class="display" cellspacing="10" cellpadding="10">
