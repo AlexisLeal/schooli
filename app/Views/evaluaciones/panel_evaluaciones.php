@@ -1,230 +1,261 @@
 <?php include(APPPATH.'/Views/include/header.php');?>
-<style>
-#banner {
-  padding-top:5px;
-  background: rgb(15,98,172);
-background: linear-gradient(90deg, rgba(15,98,172,1) 0%, rgba(23,149,235,1) 50%, rgba(18,106,171,1) 100%);
-height:270px;
-}
-</style>
-  </head>
-  <body>
 
+<div class="espacioDos"></div>
+<header id="barra-superior">
 
-
-<header>
 <div class="container">
   <div class="row">
-    <div class="col-md-4"><img class="mb-4" src="img/logo-nueva-version.jpg" alt="" width="112" height="112"></div>
-    <div class="col-md-4">
-    
-    
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-    
-    </ul>
-
-  </div>
-</nav>
-    </div>
-    <div class="col-md-4 text-right"> Hola <?php echo $session->get('nombre')?> <?php echo $session->get('apellido')?>  <a href="<?php echo site_url('/Home/salir'); ?>"> Salir <i class="fa fa-sign-out" aria-hidden="true"></i> </a></div>
-  </div>
-  <!--<div class="row">
-    <div class="col-md-6">.col-md-6</div>
-    <div class="col-md-6">.col-md-6</div>
-  </div>-->
-</div>
-  </header>
-     
-    <!--Ejemplo tabla con DataTables-->
-    <div id="banner">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            
-          </div>
-        </div>  
+    <div class="col-md-2">
+      <div class="text-center">
+        <a href="<?php echo site_url('/Panel/index'); ?>">
+          <img class="mb-4" src="<?php echo base_url('img-front/logo-brain.PNG');?>" alt="" width="52" height="52">
+        </a>
       </div>
     </div>
+    <div class="col-md-6">
+      <div class="text-left">
+        <form>
+        <input type="text" type="search" placeholder="Search" class="form-control buscador">
+        </form>
+      </div>
+    </div>
+    <div class="col-md-4 text-right"> 
+    <span class="space"><i class="fa fa-cog fa-2x" aria-hidden="true"></i> </span>
+    <span class="space"><i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i>  </span>
+    <span class="space"><i class="fa fa-bell-o fa-2x" aria-hidden="true"></i></span>
+
+  <span type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
+  <span class="space">
+  <i class="fa fa-user fa-2x" aria-hidden="true"></i></span>
+  </span>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="#">Perfil</a>
+    <a class="dropdown-item" href="<?php echo site_url('/Home/salir');?>">Salir</a>
+  </div>
+  </div>
+  </div>
+</div>
+</header>
 
 
-<?php
-// aqui se esta obteniendo el valor del id de la tabla de usuarios
 
-// Este contenido se mostrar si el tipo de usuario registrado es un editor
-?>
-      <div class="container">
+
+
+    <!--Ejemplo tabla con DataTables-->
+    <div class="container">
+      <div id="general">
         <div class="row">
-          <div class="col-md-12">
-          <div class="table-responsive">
+        <div class="col-md-3">
+        <h2 class="titulos-menu">Sistema</h2>
+        <ul class="list-group">
+          <li class="list-group-item"><a href="#">Configuración Regional</a></li>
+          <li class="list-group-item"><a href="#">Información Técnica</a></li>
+        </ul>
+          
+          <hr class="linea" />
+
+
+          <h2 class="titulos-menu">Catalogos</h2>
+
+           <ul class="list-group">
+             <li class="list-group-item"><a href="#">Sucursales</a></li>
+             <li class="list-group-item"><a href="#">Facultades</a></li>
+             <li class="list-group-item"><a href="#">Carreras</a></li>
+             <li class="list-group-item"><a href="#">Usuarios</a></li>
+             <li class="list-group-item"><a href="#">Roles</a></li>
+             <li class="list-group-item"><a href="#">Integraciones</a></li>
+             <li class="list-group-item"><a href="#">Medios</a></li>
+             <li class="list-group-item"><a href="#">Canales</a></li>
+             <li class="list-group-item"><a href="#">Origenes</a></li>
+             <li class="list-group-item"><a href="#">Notificaciones</a></li>
+             <li class="list-group-item"><a href="#">Avisos Pop-Up</a></li>
+             <li class="list-group-item"><a href="#">Black List</a></li>
+             <li class="list-group-item"><a href="#">Calendario Anual</a></li>
+             <li class="list-group-item"><a href="#">Horarios</a></li>
+             <li class="list-group-item"><a href="#">Turnos</a></li>
+             <li class="list-group-item"><a href="#">Accesos</a></li>
+             <li class="list-group-item"><a href="#">Materiales</a></li>
+             <li class="list-group-item"><a href="#">Tipo Materiales</a></li>
+             <li class="list-group-item"><a href="#">Categoría Materiales</a></li>
+             <li class="list-group-item"><a href="#">Clases Demo</a></li>
+           </ul>
+           <hr class="linea" />
+           <h2 class="titulos-menu">Modulos</h2>
+           
+           <ul class="list-group">
+             <li class="list-group-item"><a href="#">Evaluaciones</a></li>
+             <li class="list-group-item"><a href="#">Estudiantes</a></li>
+             <li class="list-group-item"><a href="#">Grupos</a></li>
+             <li class="list-group-item"><a href="#">Ciclos</a></li>
+             <li class="list-group-item"><a href="#">Prospectos</a></li>
+             <li class="list-group-item"><a href="#">Teachers</a></li>
+             <li class="list-group-item"><a href="#">Tutores</a></li>
+             <li class="list-group-item"><a href="#">Clase Demo</a></li>
+           </ul>
+           <hr class="linea" />
+           <h2 class="titulos-menu">Reportes</h2>
+          
+          <ul class="list-group">
+             <li class="list-group-item"><a href="#">Reporte 1</a></li>
+             <li class="list-group-item"><a href="#">Reporte 2</a></li>
+           </ul>
+           <hr class="linea" />
+
+           <h2 class="titulos-menu">Integraciones</h2>
+          <ul class="list-group">
+             <li class="list-group-item"><a href="#">Estados de cuenta.</a></li>
+             <li class="list-group-item"><a href="#">Pagos en esta plataforma</a></li>
+           </ul>
+          </div>
+
+
+
+          <div class="col-md-9">
+              <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>Notificaciones del sistema:</strong> Este texto es un ejemplo de notificaciones que el sistema le debe de mostrar al Administrador.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div> 
+
           <a href="<?php echo site_url('/Panel/index'); ?>">Panel</a><br/>
           <a href="<?php echo site_url('/Evaluaciones/crear_evaluacion'); ?>">Crear evaluaciones.</a><br/>
-          <!--Hay que modificar este de crear evaluacion -->
           <a href="<?php echo site_url('/Evaluaciones/index'); ?>">Tipo Evaluaciones </a> <br>
-          <a href="niveles.php>">Niveles.</a><br/>
-          <a href="lecciones.php>">Lecciones.</a><br/>
+          <a href="<?php echo site_url('/Evaluaciones/tipo_evaluacion/1'); ?>">Niveles.</a><br/>
+          <a href="<?php echo site_url("/Evaluaciones/lecciones/$id_evaluacion/$id_nivel"); ?>">Lecciones.</a><br/>
           <br/>
-            Evaluaciones:<br/>
-  <!--
-  ##################
-  ################## Inicia la tabla
-  ##################
+            Evaluación:<br/>
+              
+          <div class="espacioUno"></div>
+              <div class="card">
+                <div class="card-body">
+              <table id="t01" class="display" cellspacing="10" cellpadding="10">
+                <thead>
+              <tr>
+              <th class="text-left">ID</th>
+              <th class="text-left">Nombre</th>
+              <th class="text-left">Tipo Evaluacion</th>
+              <th class="text-left">Numero de preguntas</th>
+              <th class="text-left">Valor total</th>
+              <th class="text-left">Estado</th>
+              <th class="text-left">Ver</th>
+              <th class="text-left">Editar</th>
+              <th class="text-left">Agregar preguntas</th>
+              </tr>
+              </thead>
+              <tbody>
+            <?php
+              $nombreEvaluaciones = getTipoEvaluacionEspecifico($id_evaluacion);//obtiene si es sistema o exci 
+            //Estos paremetros nos lo pasen el contralador
+            foreach(getEvaluacion($id_evaluacion,$id_nivel,$id_leccion) as $fila){
+              $valor =getValorTotalPreguntas($fila->id);
+              $usuarioCreo =getUsuarioCreo($fila->usuario_creo);
+              //MUY IMPORTANTE ESTE FUNCION 
+                ?>
+                <tr>
+                <td><?php echo $fila->id;?></td>
+                <td><?php echo $fila ->nombre;?></td>
+                <td><?php echo $nombreEvaluaciones->nombre;?></td>
+                <td><?php echo getTotalPreguntas($fila->id);?></td>
+                <td><?php echo $valor->v;?></td>
+                <td><?php if($fila->estado == 1){
+                  echo "Activo";
+                  $estado = "Activo";
+                }else{
+                  echo "Inactivo";
+                  $estado = "Inactivo";
+                } ?></td>
 
-  -->
-
-
-
-  <table id="t01" class="display">
-    <thead>
-  <tr>
-  <th>ID</th>
-
-  <th>Nombre</th>
-  <th>Tipo Evaluacion</th>
-
-  <th>Numero de preguntas</th>
-  <th>Valor total</th>
-  <th>Estado</th>
-
-  <th>Ver</th>
-  <th>Editar</th>
-  <th>Agregar preguntas</th>
-  </tr>
-  </thead>
-  <tbody>
-<?php
-   $nombreEvaluaciones = getTipoEvaluacionEspecifico($id_evaluacion);//obtiene si es sistema o exci 
-//Estos paremetros nos lo pasen el contralador
-foreach(getEvaluacion($id_evaluacion,$id_nivel,$id_leccion) as $fila){
-  $valor =getValorTotalPreguntas($fila->id);
-  $usuarioCreo =getUsuarioCreo($fila->usuario_creo);
-  //MUY IMPORTANTE ESTE FUNCION 
- 
-    ?>
-    <tr>
-    <td><?php echo $fila->id;?></td>
-
-    <td><?php echo $fila ->nombre;?></td>
-    <td><?php echo $nombreEvaluaciones->nombre;?></td>
-    
-    <td><?php echo getTotalPreguntas($fila->id);?></td>
-    <td><?php echo $valor->v;?></td>
-    <td><?php if($fila->estado == 1){
-      echo "Activo";
-      $estado = "Activo";
-    }else{
-      echo "Inactivo";
-      $estado = "Inactivo";
-    } ?></td>
-
-    <td class="text-center"><a href="examen.php"><i class="fa fa-file-text-o" aria-hidden="true"></a></i></td>
-    <td class="text-center"><a href="examen.php"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></td>
-
-    <td class="text-center">
-    <form action="<?php echo site_url('Preguntas/agregar_preguntas')?>" name="" id="" method="post">
-    <input type="hidden" name="id_e" id="id_e" value="<?php echo $fila->id;?>">
-    <input type="hidden" name="nombre" id="nombre" value="<?php echo $fila ->nombre;?>">
-    <input type="hidden" name="nombre_tipo_evaluacion" id="nombre_tipo_evaluacion" value="<?php echo $nombreEvaluaciones->nombre;?>">
-    <input type="hidden" name="usuario_creo" id="usuario_creo" value="<?php echo $usuarioCreo->nombre .' '.$usuarioCreo->apellido_paterno;?>">
-    <input type="hidden" name="estado" id="estado" value="<?php echo $estado;?>">
-    <input type="hidden" name="clave" id="clave" value="<?php echo $fila ->clave;?>">
-    <input type="hidden" name="valorpreguntas" id="du" value="<?php echo $valor->v;?>">
-    <input type="hidden" name="totalpreguntas" id="du" value="<?php echo getTotalPreguntas($fila->id);?>">
-    <input type="hidden" name="idtipoevaluacion" value="<?php echo $id_evaluacion;?>">
-    <input type="hidden" name="nivel" value="<?php echo $id_nivel;?>">
-    <input type="hidden" name="leccion"  value="<?php echo $id_leccion;?>">
-    <button type="submit" name="submitAP" id="submitAP"><i class="fa fa-plus-circle" aria-hidden="true"></a></i></span></button>
-    </form>
-    </td>
-    
-    </tr>
- 
-  <?php
-  }
-  ?>
-  </tbody>
-  </table>
-  <br/>
-  <br/>
-  <br/>
+                <td class="text-center"><a href="examen.php"><i class="fa fa-file-text-o" aria-hidden="true"></a></i></td>
+                <td class="text-center"><a href="examen.php"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></td>
+                <td class="text-center">
+                <form action="<?php echo site_url('Preguntas/agregar_preguntas')?>" name="" id="" method="post">
+                <input type="hidden" name="id_e" id="id_e" value="<?php echo $fila->id;?>">
+                <input type="hidden" name="nombre" id="nombre" value="<?php echo $fila ->nombre;?>">
+                <input type="hidden" name="nombre_tipo_evaluacion" id="nombre_tipo_evaluacion" value="<?php echo $nombreEvaluaciones->nombre;?>">
+                <input type="hidden" name="usuario_creo" id="usuario_creo" value="<?php echo $usuarioCreo->nombre .' '.$usuarioCreo->apellido_paterno;?>">
+                <input type="hidden" name="estado" id="estado" value="<?php echo $estado;?>">
+                <input type="hidden" name="clave" id="clave" value="<?php echo $fila ->clave;?>">
+                <input type="hidden" name="valorpreguntas" id="du" value="<?php echo $valor->v;?>">
+                <input type="hidden" name="totalpreguntas" id="du" value="<?php echo getTotalPreguntas($fila->id);?>">
+                <input type="hidden" name="idtipoevaluacion" value="<?php echo $id_evaluacion;?>">
+                <input type="hidden" name="nivel" value="<?php echo $id_nivel;?>">
+                <input type="hidden" name="leccion"  value="<?php echo $id_leccion;?>">
+                <button type="submit" name="submitAP" id="submitAP"><i class="fa fa-plus-circle" aria-hidden="true"></a></i></span></button>
+                </form>
+                </td>
+                
+                </tr>
             
+              <?php
+              }
+              ?>
+              </tbody>
+              </table>
 
-  </div>
+
+              </div>
+            </div>
           </div>
+
+
+
+
         </div>  
       </div>
+    </div>
 
 
+      <div class="espacioDos"></div>
+      <div class="espacioDos"></div>
+      <div class="espacioDos"></div>
+      
+      <div class="espacioDos"></div>
+      <div class="espacioDos"></div>
+      <div class="espacioDos"></div>
 
-<script src="js/jquery/jquery-3.3.1.min.js"></script>
-<script type="text/script" src="js/popper/popper.min"></script>
-<script type="text/script" src="js/bootstrap.min.js"></script>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <p class="mt-5 mb-3 text-muted text-center"> © <span class="brain-foot">Brain</span> <?php echo date("Y");?></p>
+          </div>
+          <div class="col-md-3">
+          <ul class="footer">
+            <li><a href="">Aviso de privacidad</a>
+            </li>
+            <li><a href="">Certificado AMIPCI</a>
+            </li>
+            <li><a href="">Certificado Pagos en Linea.</a>
+            </li>
+            <li><a href="">Certificado SSL.</a>
+            </li>
+          </ul>            
+          </div>
+                   
+ 
+          <div class="col-md-3">
+          <ul class="footer">
+            <li><a href="">Company</a>
+            </li>
+            <li><a href="">About</a>
+            </li>
+            <li><a href="">Blog</a>
+            </li>
+            <li><a href="">Careers</a>
+            </li>
+            <li><a href="">Press</a>
+            </li>
+          </ul>         
+          </div>
+        </div>
+      </div>
+      
+      <div class="espacioDos"></div>
+      <div class="espacioDos"></div>
+      <div class="espacioDos"></div>
+      
+      <div class="espacioDos"></div>
+      <div class="espacioDos"></div>
+      <div class="espacioDos"></div>
 
-<script type="text/javascript" src="DataTables/datatables.min.js"></script>
-
-
-<script type="text/javascript" src="DataTables/Buttons-1.6.4/js/dataTables.buttons.min.js"></script>
-<script type="text/javascript" src="DataTables/JSZip-2.5.0/jszip.min.js"></script>
-<script type="text/javascript" src="DataTables/pdfmake-0.1.36/pdfmake.min.js"></script>
-<script type="text/javascript" src="DataTables/pdfmake-0.1.36/vfs_fonts.js"></script>
-<script type="text/javascript" src="DataTables/Buttons-1.6.4/js/buttons.html5.min"></script>
-
-    
-<script>
-$(document).ready(function() {    
-    $('#t01').DataTable({
-    //para cambiar el lenguaje a español
-        "language": {
-                "lengthMenu": "Mostrar _MENU_ registros",
-                "zeroRecords": "No se encontraron resultados",
-                "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-                "infoFiltered": "(filtrado de un total de _MAX_ registros)",
-                "sSearch": "Buscar:",
-                "oPaginate": {
-                    "sFirst": "Primero",
-                    "sLast":"Último",
-                    "sNext":"Siguiente",
-                    "sPrevious": "Anterior"
-			     },
-			     "sProcessing":"Procesando...",
-            },
-            responsive: "true",
-        dom: 'Bfrtilp',       
-        buttons:[ 
-          {
-            extend:    'excelHtml5',
-            text:      '<i class="fa fa-file-excel-o"></i> ',
-            titleAttr: 'Exportar a Excel',
-            className: 'btn btn-success'
-          },
-          {
-            extend:    'pdfHtml5',
-            text:      '<i class="fa fa-file-pdf-o"></i> ',
-            titleAttr: 'Exportar a PDF',
-            className: 'btn btn-danger'
-          },
-          {
-            extend:    'print',
-            text:      '<i class="fa fa-print"></i> ',
-            titleAttr: 'Imprimir',
-            className: 'btn btn-info'
-          },
-		]	
-
-
-
-
-
-    });     
-});
-
-
-</script>
 <?php include(APPPATH.'Views/include/footer.php');?>
