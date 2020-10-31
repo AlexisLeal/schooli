@@ -6,7 +6,7 @@
     // si esta cheked
     if( elemento.checked ) {
       $('#agregarImagen').append('<div class="form-group">\
-            Cargar imagen <input class="form-control" type="file" id="archivo_imagen" name="archivo_imagen" required="">\
+            Cargar imagen <input class="form-control form-control-sm" type="file" id="archivo_imagen" name="archivo_imagen" required="">\
             </div>');    
     }else{
       document.getElementById("agregarImagen").innerHTML = "";
@@ -23,7 +23,7 @@ $("#activarCargarAudioPregunta" ).click(function() {
   // si esta cheked
   if( elemento.checked ) {
     $('#agregarAudioPregunta').append('<div class="form-group">\
-          Cargar Audio <input class="form-control" type="file" id="archivo_audio_pregunta" name="archivo_audio_pregunta" required="">\
+          Cargar Audio <input class="form-control form-control-sm" type="file" id="archivo_audio_pregunta" name="archivo_audio_pregunta" required="">\
           </div>');    
   }else{
     document.getElementById("agregarAudioPregunta").innerHTML = "";
@@ -53,10 +53,10 @@ $("#activarCargarAudioPregunta" ).click(function() {
     while (i < numCampos) {
       var nombreCampo = idEvaluacion + '-' + valor + '-' + i;  
       $('#agregarCampos').append('<div class="form-group mb-2">\
-            Opcion '+ i +' <input class="form-control" type="text" id="opcion_'+i+'" name="opcion_'+i+'" required="">\
+            Opcion '+ i +' <input class="form-control form-control-sm" type="text" id="opcion_'+i+'" name="opcion_'+i+'" required="">\
             </div>\
             <div class="form-group mb-2">\
-            <input class="form-check-input" type="radio" name="opcion_correcta" id="'+i+'" value="'+i+'">\
+            <input class="form-check-input form-control-sm" type="radio" name="opcion_correcta" id="'+i+'" value="'+i+'">\
             <label class="form-check-label" for="exampleRadios1">\
             Opción correcta <br/><br/><br/>\
             </label>\
@@ -72,7 +72,7 @@ $("#activarCargarAudioPregunta" ).click(function() {
   if(document.querySelector('#agregarCampos').childElementCount < 1){ 
   var nombreCampo = idEvaluacion + '-' + valor;
   $('#agregarCampos').append('<div class="form-group">\
-            Cargar audio <input class="form-control" type="file" id="archivo_audio" name="archivo_audio" required="">\
+            Cargar audio <input class="form-control form-control-sm" type="file" id="archivo_audio" name="archivo_audio" required="">\
             </div>');
   }    
   break;
@@ -82,7 +82,7 @@ $("#activarCargarAudioPregunta" ).click(function() {
   if(document.querySelector('#agregarCampos').childElementCount < 1){ 
   var nombreCampo = idEvaluacion + '-' + valor;
   $('#agregarCampos').append('<div class="form-group">\
-            Cargar video <input  class="form-control" type="file" id="archivo_video" name="archivo_video" required="">\
+            Cargar video <input  class="form-control form-control-sm" type="file" id="archivo_video" name="archivo_video" required="">\
             </div>');
   }
   break;

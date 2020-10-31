@@ -1,20 +1,4 @@
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <?php include(APPPATH.'/Views/include/header.php');?>
 
 <div class="espacioDos"></div>
@@ -160,12 +144,12 @@
                 <input type="hidden" class="form-control" name="valorpreguntas" id="valorpreguntas" value="<?php echo $valorpreguntas;?>">
                 <div class="form-group">
                   <label for="lblPregunta">Pregunta</label>
-                  <input type="text" class="form-control" name="pregunta" id="pregunta" placeholder="" required="">
+                  <input type="text" class="form-control form-control-sm" name="pregunta" id="pregunta" placeholder="" required="">
                 </div>
 
                 <div class="form-group">
                   <div class="form-check">
-                  <input type="checkbox" class="form-check-input" name="activarCargarImagen" id="activarCargarImagen">
+                  <input type="checkbox" class="form-check-input form-control-sm" name="activarCargarImagen" id="activarCargarImagen">
                   <label class="form-check-label" for="exampleCheck1">Subir una imagen.</label>
                   </div>
                 </div>
@@ -177,7 +161,7 @@
 
                 <div class="form-group">
                   <div class="form-check">
-                  <input type="checkbox" class="form-check-input" name="activarCargarAudioPregunta" id="activarCargarAudioPregunta" onclick="cargarAudioPreguntaJS()">
+                  <input type="checkbox" class="form-check-input form-control-sm" name="activarCargarAudioPregunta" id="activarCargarAudioPregunta" onclick="cargarAudioPreguntaJS()">
                   <label class="form-check-label" for="exampleCheck1">Subir un audio.</label>
                   </div>
                 </div>
@@ -188,12 +172,12 @@
 
                 <div class="form-group">
                   <label for="lblValorPregunta">Valor</label>
-                  <input type="text" class="form-control" name="valor" id="valor" placeholder="" required="">
+                  <input type="text" class="form-control form-control-sm" name="valor" id="valor" placeholder="" required="">
                 </div>
 
                 <div class="form-group">
                   <label for="exampleFormControlSelect1">Tipo de pregunta</label>
-                  <select class="form-control" name="tipoPregunta" id="tipoPregunta" onchange="tPregunta()" required="">
+                  <select class="form-control form-control-sm" name="tipoPregunta" id="tipoPregunta" onchange="tPregunta()" required="">
                   <option value="">Selecciona una opcion</option>
                   <?php
                 foreach(getTipoPreguntas() as $fila){

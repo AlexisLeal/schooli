@@ -199,6 +199,7 @@
                 <input type="hidden" name="nivel" value="<?php echo $id_nivel;?>">
                 <input type="hidden" name="leccion"  value="<?php echo $id_leccion;?>">
                 <button type="submit" name="submitAP" id="submitAP"><i class="fa fa-pencil-square-o" aria-hidden="true"></a></i></span></button> 
+                </form>
                 </td>
 
 
