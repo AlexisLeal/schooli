@@ -32,12 +32,10 @@ class Preguntas extends BaseController{
 }
 
 //Nos muestra las preguntas de la evaluacion
-public function verEvaluacion( $idtipoevaluacion,$nivel,$leccion)
+public function verEvaluacion()
 {   
-    $data['idtipoevaluacion'] = $idtipoevaluacion;
-    $data['nivel'] = $nivel;
-    $data['leccion'] = $leccion;
-    return view('evaluaciones/mostrar/evaluacion',$data);
+
+    return view('evaluaciones/mostrar/evaluacion');
 }
 
 
