@@ -127,6 +127,9 @@
             Evaluación:<br/>
               
           <div class="espacioUno"></div>
+          Nivel : <?php echo $id_nivel;?><br/>
+          Lección: <?php echo $id_leccion;?><br/>
+
               <div class="card">
                 <div class="card-body">
               <table id="t01" class="display" cellspacing="10" cellpadding="10">
@@ -166,7 +169,26 @@
                   $estado = "Inactivo";
                 } ?></td>
 
-                <td class="text-center"><a href="examen.php"><i class="fa fa-file-text-o" aria-hidden="true"></a></i></td>
+                <td class="text-center">
+                <form action="<?php echo site_url('Preguntas/verEvaluacion')?>" name="" id="" method="post">
+                <input type="hidden" name="id_e" id="id_e" value="<?php echo $fila->id;?>">
+                <input type="hidden" name="nombre" id="nombre" value="<?php echo $fila ->nombre;?>">
+                <input type="hidden" name="nombre_tipo_evaluacion" id="nombre_tipo_evaluacion" value="<?php echo $nombreEvaluaciones->nombre;?>">
+
+                <input type="hidden" name="clave" id="clave" value="<?php echo $fila ->clave;?>">
+                <input type="hidden" name="valorpreguntas" id="du" value="<?php echo $valor->v;?>">
+                <input type="hidden" name="totalpreguntas" id="du" value="<?php echo getTotalPreguntas($fila->id);?>">
+
+                <input type="hidden" name="idtipoevaluacion" value="<?php echo $id_evaluacion;?>">
+                <input type="hidden" name="nivel" value="<?php echo $id_nivel;?>">
+                <input type="hidden" name="leccion"  value="<?php echo $id_leccion;?>">
+                <button type="submit" name="submitAP" id="submitAP"><i class="fa fa-file-text-o" aria-hidden="true"></a></i></span></button>
+                </form>                
+                </td>
+
+
+
+
                 <td class="text-center"><a href="examen.php"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></td>
                 <td class="text-center">
                 <form action="<?php echo site_url('Preguntas/agregar_preguntas')?>" name="" id="" method="post">

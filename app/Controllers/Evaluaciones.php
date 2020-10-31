@@ -107,6 +107,7 @@ class Evaluaciones extends BaseController{
             if(!empty($fila)){
                 //Si esta vacio segnifica que no hay una evaluacion para en el nivel y seccion especifico 
                 $this->session->set('creada', true);
+                
                 if($this->session->get('login')){	
                     return redirect()->to(site_url('Evaluaciones/crear_evaluacion'));
                 }else{
