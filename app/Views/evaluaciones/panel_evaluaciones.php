@@ -118,27 +118,6 @@
                 </button>
               </div> 
 
-
-              <?php
-              if($session->has('pregunta-exito')){ 
-                ?>
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                  <?php
-                  echo $session->get('pregunta-exito');
-                  ?>
-                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <?php
-                
-                $session->remove('pregunta-exito'); 
-              }
-              ?>
-
-
-
-
           <a href="<?php echo site_url('/Panel/index'); ?>">Panel</a><br/>
           <a href="<?php echo site_url('/Evaluaciones/crear_evaluacion'); ?>">Crear evaluaciones.</a><br/>
           <a href="<?php echo site_url('/Evaluaciones/index'); ?>">Tipo Evaluaciones </a> <br>

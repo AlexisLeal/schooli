@@ -119,11 +119,8 @@
                 </button>
               </div> 
 
-
-              
-
-              <a href="#">Panel.</a><br/>
-              <a href="#">Evaluaciones.</a><br/>
+              <a href="panel.php">Panel.</a><br/>
+              <a href="evaluaciones.php">Evaluaciones.</a><br/>
 
               <h4>Crear preguntas de la evaluacion.</h4>
                           
@@ -201,7 +198,7 @@
                 <input type="hidden" name="idtipoevaluacion" value="<?php echo $idtipoevaluacion;?>">
                 <input type="hidden" name="nivel" value="<?php echo $nivel;?>">
                 <input type="hidden" name="leccion"  value="<?php echo $leccion;?>">
-                <button type="submit" name="registrarPregunta" class="btn btn-primary btn-sm">Guardar</button>
+                <button type="submit" name="registrarPregunta" class="btn btn-primary">Guardar</button>
                 </div>
                 </form>
 

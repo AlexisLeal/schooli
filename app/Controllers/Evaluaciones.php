@@ -104,23 +104,16 @@ class Evaluaciones extends BaseController{
             $query = "SELECT * FROM evaluaciones WHERE tipo_evaluacion = $tipo_evaluacion AND nivel = $nivel AND leccion = $leccion";
             $resultado = $usermodel->query($query);
             $fila = $resultado -> getRow();
-            
-
-
-            // Crear variable se sesion
-            
-
             if(!empty($fila)){
                 //Si esta vacio segnifica que no hay una evaluacion para en el nivel y seccion especifico 
-              
-                $data = ['existe'  => 'La evaluaciòn ya existe'];
-                $this->session->set($data,true);
+                $this->session->set('creada', true);
+                
                 if($this->session->get('login')){	
                     return redirect()->to(site_url('Evaluaciones/crear_evaluacion'));
                 }else{
                     return redirect()->to(site_url('Home/salir'));
-                }
-            }
+                   }
+         }
 
           
  $sqlInsert = "INSERT INTO evaluaciones(nombre,instrucciones,tipo_evaluacion,nivel,leccion,usuario_creo,usuario_modifico,estado,fecha_creacion,fecha_ultimo_cambio) values ('".$nombre_evaluacion."','".$instrucciones."',$tipo_evaluacion,$nivel,$leccion,$id_usuario,$id_usuario,$estado,'".$hoy."','".$hoy."')";
@@ -151,9 +144,7 @@ class Evaluaciones extends BaseController{
             }else{
                 echo "Se pone una view que marque que hubo un error inesperado ";
             }
-            $data = ['exito'  => 'Se ha creado la evaluación correctamente'];
-            $this->session->set($data,true);
-
+           
             return redirect()->to(site_url('Evaluaciones/crear_evaluacion'));
     
               
