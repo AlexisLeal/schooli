@@ -9,7 +9,7 @@
     <div class="col-md-2">
       <div class="text-center">
         <a href="<?php echo site_url('/Panel/index'); ?>">
-          <img class="mb-4" src="<?php echo base_url('img-front/logo-brain.PNG');?>" alt="" width="52" height="52">
+          <img class="mb-4" src="<?php echo base_url('img-front/logo-brain.png');?>" alt="" width="52" height="52">
         </a>
       </div>
     </div>
@@ -144,7 +144,7 @@
               <form action="<?php echo site_url('Preguntas/insertarPregunta'); ?>" method="post" enctype="multipart/form-data">
                 <input type="hidden" class="form-control" name="idEvaluacion" id="idEvaluacion" value="<?php echo $idEvaluacion;?>">
                 <input type="hidden" class="form-control" name="clave" id="clave" value="<?php echo $clave;?>">
-                <input type="hidden" class="form-control" name="valorpreguntas" id="valorpreguntas" value="<?php echo $valorpreguntas;?>">
+                <input type="hidden" class="form-control" name="valorpreguntas" id="valorpreguntas" value="<?php echo empty($valorpreguntas) ? 0 : $valorpreguntas;?>">
                 <div class="form-group">
                   <label for="lblPregunta">Pregunta</label>
                   <input type="text" class="form-control form-control-sm" name="pregunta" id="pregunta" placeholder="" required="">
@@ -183,7 +183,7 @@
                   <select class="form-control form-control-sm" name="tipoPregunta" id="tipoPregunta" onchange="tPregunta()" required="">
                   <option value="">Selecciona una opcion</option>
                   <?php
-                foreach(getTipoPreguntas() as $fila){
+                  foreach(getTipoPreguntas() as $fila){
                   ?>
                   <option value="<?php echo $fila->id; ?>"><?php echo $fila->nombre;?></option>
                   <?php

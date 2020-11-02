@@ -9,7 +9,7 @@
     <div class="background-form">
     <form class="form-signin" action= "<?php echo site_url('/Comprobacion/check'); ?>" method="POST">
       <div class="text-center mb-4">
-        <img class="mb-4" src="<?php echo base_url('img-front/logo-app.PNG');?>" alt="" width="142" height="142">
+        <img class="mb-4" src="<?php echo base_url('img-front/logo-app.png');?>" alt="" width="142" height="142">
         <!-- <p>Ingrése sus credenciales para poder acceder a la plataforma Brain.</p>-->
       </div>
 
