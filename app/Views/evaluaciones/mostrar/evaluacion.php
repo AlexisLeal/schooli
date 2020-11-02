@@ -99,7 +99,7 @@ foreach(getPreguntas($idEvaluacion) as $fila){
 ?>
 <div class="row">
     <div class="col-md-2 text-center">
-    <?=$regPreg['num_pregunta'];?>
+    <?php echo $fila->num_pregunta;?>
     </div>
     <div class="col-md-8">
 
@@ -110,13 +110,13 @@ foreach(getPreguntas($idEvaluacion) as $fila){
     if($fila->tiene_imagen==1 || $fila->tiene_audio_pregunta==1){
         if($fila->tiene_imagen==1){
           ?>
-          <img src="<?=$fila->ruta_imagen;?>" class = "img-fluid" alt="INBI" ><br/>
+          <img src="<?php echo $fila->ruta_imagen;?>" class = "img-fluid" alt="INBI" ><br/>
           <?php
         }
 
-        if($fila->tiene_audio_pregunt==1){
+        if($fila->tiene_audio_pregunta==1){
           ?>
-          <audio class="asado" name="" id ="" src="<?=$fila->ruta_audio_pregunta;?>" controls></audio><br/>
+          <audio class="asado" name="" id ="" src="<?php echo $fila->ruta_audio_pregunta;?>" controls></audio><br/>
           <?php
         }
 
@@ -128,7 +128,7 @@ foreach(getPreguntas($idEvaluacion) as $fila){
 
     </div>
     <div class="col-md-2 text-center">
-    <?=$fila->valor;?>
+    <?php echo $fila->valor;?>
     </div>
 </div>
 <?php
@@ -141,8 +141,8 @@ case 1: // Pregunta abierta
     
     </div>
     <div class="col-md-8">
-    <input type="text" class="form-control" name="<?php echo "ID".$regPreg['id']."_EVAL".$regPreg['idEvaluacion']."_NP".$regPreg['num_pregunta'].""?>"
-    id="<?php echo "ID".$regPreg['id']."EVAL".$regPreg['idEvaluacion']."NP".$regPreg['num_pregunta'].""?>">
+    <input type="text" class="form-control" name="<?php echo "ID".$fila->id."_EVAL".$fila->idEvaluacion."_NP".$fila->num_pregunta.""?>"
+    id="<?php echo "ID".$fila->id."EVAL".$fila->idEvaluacion."NP".$fila->num_pregunta.""?>">
     </div>
     <div class="col-md-2 text-center">
     
@@ -161,20 +161,14 @@ case 2:
     </div>
     <div class="col-md-8">
     <?PHP
-    $sqlOM = "select idEvaluacion,idPregunta,valor1,valor2,valor3,valor4 from pregunta_opcion_multiple where idEvaluacion=$k and idPregunta=$idPregunta";
-    
-    if (!$resOM = $conn->query($sqlOM)) {
-      echo "Lo sentimos, este sitio web está experimentando problemas.";
-      exit;
-    }
-    $rOM  = $resOM->fetch_assoc();
+    $pregunta_multiple = getPreguntaOpcion_multiple($idEvaluacion,$idPregunta);
     ?>
     <table>
       <tr>
-      <td><?=$rOM['valor1'];?> <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2"></td>
-      <td><?=$rOM['valor2'];?> <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2"></td>
-      <td><?=$rOM['valor3'];?> <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2"></td>
-      <td><?=$rOM['valor4'];?> <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2"></td>
+      <td><?php echo $pregunta_multiple->valor1;?> <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2"></td>
+      <td><?php echo $pregunta_multiple->valor2;?> <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2"></td>
+      <td><?php echo $pregunta_multiple->valor3;?> <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2"></td>
+      <td><?php echo $pregunta_multiple->valor4;?> <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2"></td>
     </tr>
   </table>
     
@@ -201,18 +195,11 @@ case 3://audio
     </div>
     <div class="col-md-8">
     <?PHP
-    $sqlAudio = "select idEvaluacion,idPregunta,nombre_audio,ruta_audio from pregunta_opcion_audio where idEvaluacion=$k and idPregunta=$idPregunta";
-    
-    if (!$resAudio = $conn->query($sqlAudio)) {
-      echo "Lo sentimos, este sitio web está experimentando problemas.";
-      exit;
-    }
-
-   $rAudio  = $resAudio->fetch_assoc();
+   $pregunta_audio = getPreguntaOpcion_audio($idEvaluacion,$idPregunta);
     ?>
-<audio class="asado" name="" id ="" src="<?=$rAudio['ruta_audio'];?>" controls></audio>
+<audio class="asado" name="" id ="" src="<?php echo empty($pregunta_audio->ruta_audio) ? : NULL;?>" controls></audio>
 
-<textarea class="form-control" name="<?php echo "ID".$regPreg['id']."EVAL".$regPreg['idEvaluacion']."NP".$regPreg['num_pregunta'].";"?>" id="<?php echo "ID".$regPreg['id']."EVAL".$regPreg['idEvaluacion']."NP".$regPreg['num_pregunta'].";"?>" rows="3"></textarea>
+<textarea class="form-control" name="<?php echo "ID".$fila->id."EVAL".$fila->idEvaluacion."NP".$fila->num_pregunta.";"?>" id="<?php echo "ID".$fila->id."EVAL".$fila->idEvaluacion."NP".$fila->num_pregunta.";"?>" rows="3"></textarea>
         
    
     
@@ -233,18 +220,12 @@ case 4:// video
     </div>
     <div class="col-md-8">
     <?PHP
-    $sqlVideo = "select idEvaluacion,idPregunta,nombre_video,ruta_video from pregunta_opcion_video where idEvaluacion=$k and idPregunta=$idPregunta";
-    
-    if (!$resVideo = $conn->query($sqlVideo)) {
-      echo "Lo sentimos, este sitio web está experimentando problemas.";
-      exit;
-    }
-    $rVideo  = $resVideo->fetch_assoc();
+    $pregunta_video = getPreguntaOpcion_video($idEvaluacion,$idPregunta);
     ?>
-      <video name="" id="" src="<?=$rVideo['ruta_video'];?>" controls>
+      <video name="" id="" src="<?php echo $pregunta_video->ruta_video;?>" controls>
         Tu navegador no implementa el elemento <code>video</code>.
       </video>
-<textarea class="form-control" name="<?php echo "ID".$regPreg['id']."EVAL".$regPreg['idEvaluacion']."NP".$regPreg['num_pregunta'].";"?>" id="<?php echo "ID".$regPreg['id']."EVAL".$regPreg['idEvaluacion']."NP".$regPreg['num_pregunta'].";"?>" rows="3"></textarea>
+<textarea class="form-control" name="<?php echo "ID".$fila->id."EVAL".$fila->idEvaluacion."NP".$fila->num_pregunta.";"?>" id="<?php echo "ID".$fila->id."EVAL".$fila->idEvaluacion."NP".$fila->num_pregunta.";"?>" rows="3"></textarea>
 
 </div>
     <div class="col-md-2 text-center">
@@ -262,13 +243,13 @@ case 5:// falso o verdadero
     </div>
     <div class="col-md-8">
     <div class="form-check">
-        <input class="form-check-input" type="radio" name="<?php echo "ID".$regPreg['id']."EVAL".$regPreg['idEvaluacion']."NP".$regPreg['num_pregunta'].";"?>" id="radio1" value="verdadero">
+        <input class="form-check-input" type="radio" name="<?php echo "ID".$fila->id."EVAL".$fila->idEvaluacion."NP".$fila->num_pregunta.";"?>" id="radio1" value="verdadero">
         <label class="form-check-label" for="exampleRadios1">
         Verdadero
         </label>
         </div>
         <div class="form-check">
-        <input class="form-check-input" type="radio" name="<?php echo "ID".$regPreg['id']."EVAL".$regPreg['idEvaluacion']."NP".$regPreg['num_pregunta'].";"?>" id="radio2" value="falso">
+        <input class="form-check-input" type="radio" name="<?php echo "ID".$fila->id."EVAL".$fila->idEvaluacion."NP".$fila->num_pregunta.";"?>" id="radio2" value="falso">
         <label class="form-check-label" for="exampleRadios2">
         Falso
         </label>
@@ -285,7 +266,7 @@ case 5:// falso o verdadero
 }
 ?>
 <?php
-$inc++;
+
 }
 ?>
   

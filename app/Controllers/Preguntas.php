@@ -133,18 +133,17 @@ public function insertarPregunta()
         $file_audio = $REQUEST->getFile('archivo_audio_pregunta');
         if ($file_audio->isValid() && ! $file_audio->hasMoved())
         {
-            $audio= 1;
-            $ruta_audio = "uploads/".$clave."/audio-pregunta";
+          
                 //Comprobar si existe la ruta donde se va a guardar el audio
             if (!is_dir('uploads/'.$clave.'/audio-pregunta')) {
                 mkdir('./uploads/' .$clave.'/audio-pregunta', 0777, TRUE);
             }
 
                  //Obtenemos el archivo 
-                $nombre = 'pre'.$clave.$numeropregunta.'.mp3';
-                //Verifica si es valido
-        
-            $file_audio->move($ruta_audio,$nombre);
+                 $audio= 1;
+                 $nombre = 'pre'.$clave.$numeropregunta.'.mp3';
+                 $ruta_audio = "uploads/".$clave."/audio-pregunta/".$nombre."";
+                 $file_audio->move($ruta_audio,$nombre);
         }else{
             //Si algo sale mal nos marca un error 
             throw new RuntimeException($file_audio->getErrorString().'('.$file_audio->getError().')');
@@ -160,15 +159,15 @@ public function insertarPregunta()
             $file_imagen = $REQUEST->getFile('archivo_imagen');
             if ($file_imagen->isValid() && ! $file_imagen->hasMoved())
             {
-            $imagen= 1;
-            $ruta_imagen = "uploads/".$clave."/imagen-pregunta";
+            
                 //Comprobar si existe la ruta donde se va a guardar el audio
             if (!is_dir('uploads/'.$clave.'/imagen-pregunta')) {
                 mkdir('./uploads/' .$clave.'/imagen-pregunta', 0777, TRUE);
             }
             //Obtenemos el archivo 
-         
+            $imagen= 1;
             $nombre = 'pre'.$clave.$numeropregunta.'.jpg';
+            $ruta_imagen = "uploads/".$clave."/imagen-pregunta/".$nombre."";  
             $file_imagen->move($ruta_imagen,$nombre);
         }else{
             //Si algo sale mal nos marca un error 
@@ -240,6 +239,9 @@ public function insertarPregunta()
 
             //Obtenemos el archivo 
             $nombre = 'pregunta-ingles'.$numeropregunta.'.mp3';  
+            $ruta_audio = "uploads/".$clave."/audio/".$nombre."";
+
+            $audio_extension= $file_audio->getClientExtension();
             $file_audio->move($ruta_audio,$nombre);
 
             //Insertamos en la base de datos 
@@ -274,8 +276,7 @@ public function insertarPregunta()
             //Verifica si es valido
       if ($file_video->isValid() && ! $file_video->hasMoved())
       {
-          $video_extension= $video_audio->getClientExtension();
-          $ruta_video = "uploads/".$clave."/video";
+         
               //Comprobar si existe la ruta donde se va a guardar el audio
           if (!is_dir('uploads/'.$clave.'/video')) {
               mkdir('./uploads/' .$clave.'/video', 0777, TRUE);
@@ -283,6 +284,8 @@ public function insertarPregunta()
 
           //Obtenemos el archivo 
           $nombre = 'pregunta-ingles'.$numeropregunta.'.mp4';  
+          $ruta_video = "uploads/".$clave."/video/".$nombre."";
+          $video_extension= $video_audio->getClientExtension();
           $file_audio->move($ruta_audio,$nombre);
 
           //Insertamos en la base de datos 
