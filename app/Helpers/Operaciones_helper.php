@@ -172,17 +172,30 @@ function getPreguntas($id_evaluacion)
     
 }
 
- function getPreguntaOpcion_multiple()
+ function getPreguntaOpcion_multiple($id_evaluacion,$id_pregunta)
 {
+    $usermodel = new Pregunta_opcion_multiple($db);
+    $query = "SELECT idEvaluacion,idPregunta,valor1,valor2,valor3,valor4 from pregunta_opcion_multiple where idEvaluacion=$id_evaluacion and idPregunta=$id_pregunta";
+    $resultado = $usermodel->query($query);
+    $rowArray = $resultado -> getRow();
+    return($rowArray);
+}
+ function getPreguntaOpcion_audio($id_evaluacion,$id_pregunta)
+{
+    $usermodel = new Pregunta_opcion_audio($db);
+    $query = "SELECT idEvaluacion,idPregunta,nombre_audio,ruta_audio from pregunta_opcion_audio WHERE idEvaluacion=$id_evaluacion AND idPregunta=$id_pregunta";
+    $resultado = $usermodel->query($query);
+    $rowArray = $resultado -> getRow();
+    return($rowArray);
 
 }
- function getPreguntaOpcion_audio()
+ function getPreguntaOpcion_video($id_evaluacion,$id_pregunta)
 {
-
-}
- function getPreguntaOpcion_video()
-{
-
+    $usermodel = new Pregunta_opcion_multiple($db);
+    $query = "SELECT idEvaluacion,idPregunta,nombre_video,ruta_video FROM pregunta_opcion_video WHERE idEvaluacion=$id_evaluacion AND idPregunta=$id_pregunta";   
+    $resultado = $usermodel->query($query);
+    $rowArray = $resultado -> getRow();
+    return($rowArray);
 }
 
 
