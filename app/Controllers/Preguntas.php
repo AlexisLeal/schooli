@@ -142,7 +142,10 @@ public function insertarPregunta()
                  //Obtenemos el archivo 
                  $audio= 1;
                  $nombre = 'pre'.$clave.$numeropregunta.'.mp3';
-                 $ruta_audio = "uploads/".$clave."/audio-pregunta/".$nombre."";
+                 //Ruta para la base de datos 
+                 $ruta_audio_basedatos = "uploads/".$clave."/audio-pregunta/".$nombre."";
+                 //Ruta para mover el archivo
+                 $ruta_audio = "uploads/".$clave."/audio-pregunta";
                  $file_audio->move($ruta_audio,$nombre);
         }else{
             //Si algo sale mal nos marca un error 
@@ -151,7 +154,7 @@ public function insertarPregunta()
 
         }else{
             $audio= 0;
-            $ruta_audio = NULL;
+            $ruta_audio_basedatos = NULL;
         }
 
        
@@ -167,7 +170,8 @@ public function insertarPregunta()
             //Obtenemos el archivo 
             $imagen= 1;
             $nombre = 'pre'.$clave.$numeropregunta.'.jpg';
-            $ruta_imagen = "uploads/".$clave."/imagen-pregunta/".$nombre."";  
+            $ruta_imagen_basedatos = "uploads/".$clave."/imagen-pregunta/".$nombre."";  
+            $ruta_imagen = "uploads/".$clave."/imagen-pregunta";  
             $file_imagen->move($ruta_imagen,$nombre);
         }else{
             //Si algo sale mal nos marca un error 
@@ -176,7 +180,7 @@ public function insertarPregunta()
 
         }else{
             $imagen= 0;
-            $ruta_imagen = NULL;
+            $ruta_imagen_basedatos = NULL;
         }  
 
 
@@ -192,7 +196,7 @@ public function insertarPregunta()
             ruta_audio_pregunta,
             fecha_creacion,
             fecha_ultimo_cambio
-          ) VALUES ($idEvaluacion,$numeropregunta,'".$pregunta."',$valor,$tipoPregunta,$imagen,'".$ruta_imagen."',$audio,'".$ruta_audio."','".$hoy."','".$hoy."')";
+          ) VALUES ($idEvaluacion,$numeropregunta,'".$pregunta."',$valor,$tipoPregunta,$imagen,'".$ruta_imagen_basedatos."',$audio,'".$ruta_audio_basedatos."','".$hoy."','".$hoy."')";
 
         $usermodel->query($query);
 
@@ -239,7 +243,8 @@ public function insertarPregunta()
 
             //Obtenemos el archivo 
             $nombre = 'pregunta-ingles'.$numeropregunta.'.mp3';  
-            $ruta_audio = "uploads/".$clave."/audio/".$nombre."";
+            $ruta_audio_basedatos = "uploads/".$clave."/audio/".$nombre."";
+            $ruta_audio = "uploads/".$clave."/audio";
 
             $audio_extension= $file_audio->getClientExtension();
             $file_audio->move($ruta_audio,$nombre);
@@ -257,7 +262,7 @@ public function insertarPregunta()
                 $idEvaluacion,
                 $numeropregunta,
                 '".$nombre."',
-                '".$ruta_audio."',
+                '".$ruta_audio_basedatos."',
                 '".$audio_extension."',
                 '".$hoy."',
                 '".$hoy."')";
@@ -284,7 +289,8 @@ public function insertarPregunta()
 
           //Obtenemos el archivo 
           $nombre = 'pregunta-ingles'.$numeropregunta.'.mp4';  
-          $ruta_video = "uploads/".$clave."/video/".$nombre."";
+          $ruta_video_basedatos = "uploads/".$clave."/video/".$nombre."";
+          $ruta_video = "uploads/".$clave."/video";
           $video_extension= $video_audio->getClientExtension();
           $file_audio->move($ruta_audio,$nombre);
 
@@ -301,7 +307,7 @@ public function insertarPregunta()
               $idEvaluacion,
               $numeropregunta,
               '".$nombre."',
-              '".$ruta_video."',
+              '".$ruta_video_basedatos."',
               '".$video_extension."',
               '".$hoy."',
               '".$hoy."')";

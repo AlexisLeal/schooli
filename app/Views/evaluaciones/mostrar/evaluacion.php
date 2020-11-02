@@ -138,36 +138,15 @@
               </div>
             </div>
           <?php
-              break;
+        }
 
-            case 2:
-              // si es opcion multiple
-              ?>
-              <div class="row">
-                <div class="col-md-2 text-center">
-                
-                </div>
-                <div class="col-md-8">
-                <?PHP
-                $pregunta_multiple = getPreguntaOpcion_multiple($idEvaluacion,$idPregunta);
-                ?>
-                <table>
-                  <tr>
-                  <td><?php echo $pregunta_multiple->valor1;?> <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2"></td>
-                  <td><?php echo $pregunta_multiple->valor2;?> <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2"></td>
-                  <td><?php echo $pregunta_multiple->valor3;?> <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2"></td>
-                  <td><?php echo $pregunta_multiple->valor4;?> <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2"></td>
-                </tr>
-              </table>
-                
-          </div>
-          <div class="col-md-2 text-center">
-          
-          </div>
-          </div>
+        if($fila->tiene_audio_pregunta==1){
+          ?>
+          <audio class="asado" name="" id ="" src="<?php echo base_url($fila->ruta_audio_pregunta);?>" controls></audio><br/>
           <?php
           break;
-          case 3://audio
+
+          case 3:
             ?>
             <div class="row">
               <div class="col-md-2 text-center">
