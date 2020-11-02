@@ -268,6 +268,12 @@ public function insertarPregunta()
         $nivel = $REQUEST->getPost('nivel');	
         $leccion = $REQUEST->getPost('leccion');	
 
+        // Aqui se valida que no hubo ningun error y que se agrego la pregunta
+        $data = ['pregunta-exito'  => 'La pregunta se agrego de forma correcta'];
+        $this->session->set($data,true);
+
+        // Aqui se valida si la pregunta no a rebasado el puntaje total permitido de la evaluación.
+
         return redirect()->to(site_url("Evaluaciones/panel_evaluaciones/$idtipoevaluacion/$nivel/$leccion"));
     
 

@@ -119,14 +119,42 @@
               </div> 
 
               <div style="padding-top:10px;padding-right:50px;padding-bottom:10px;padding-left:50px;">
-              <?php if($session->has('creada')){ ?>
+
+              
+
+              
+              
+              <?php
+             
+              if($session->has('existe')){ 
+                ?>
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                  <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+                  <?php echo $session->get('existe');?>
                   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
-              <?php $session->remove('creada'); }?>
+                <?php
+                $session->remove('existe'); 
+              }
+
+              
+              if($session->has('exito')){ 
+                ?>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                  <?php
+                  echo $session->get('exito');
+                  ?>
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <?php
+                
+                $session->remove('exito'); 
+              }
+              ?>
+
 
               <a href="<?php echo site_url('/Panel/index'); ?>">Panel</a><br/>
               <a href="<?php echo site_url('/Evaluaciones/index'); ?>">Tipos de Evaluaciones </a><br/>
