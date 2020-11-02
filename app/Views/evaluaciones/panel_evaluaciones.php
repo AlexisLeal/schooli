@@ -8,7 +8,7 @@
     <div class="col-md-2">
       <div class="text-center">
         <a href="<?php echo site_url('/Panel/index'); ?>">
-          <img class="mb-4" src="<?php echo base_url('img-front/logo-brain.PNG');?>" alt="" width="52" height="52">
+          <img class="mb-4" src="<?php echo base_url('img-front/logo-brain.png');?>" alt="" width="52" height="52">
         </a>
       </div>
     </div>
@@ -193,7 +193,7 @@
 
                 <td class="text-center">
                 
-                <form action="<?php echo site_url('Preguntas/verEvaluacion')?>" name="" id="" method="post">
+                <form action="<?php echo site_url('Preguntas/verEvaluacion')?>" name="ver_evaluacion" id="" method="post">
                 <input type="hidden" name="id_e" id="id_e" value="<?php echo $fila->id;?>">
                 <input type="hidden" name="nombre" id="nombre" value="<?php echo $fila ->nombre;?>">
                 <input type="hidden" name="nombre_tipo_evaluacion" id="nombre_tipo_evaluacion" value="<?php echo $nombreEvaluaciones->nombre;?>">                                
@@ -209,7 +209,7 @@
                 
                 
                 <td class="text-center">
-                <form action="<?php echo site_url('Preguntas/editarEvaluacion')?>" name="" id="" method="post">
+                <form action="<?php echo site_url('Preguntas/editarEvaluacion')?>" name="editar_evaluacion" id="" method="post">
                 <input type="hidden" name="id_e" id="id_e" value="<?php echo $fila->id;?>">
                 <input type="hidden" name="nombre" id="nombre" value="<?php echo $fila ->nombre;?>">
                 <input type="hidden" name="nombre_tipo_evaluacion" id="nombre_tipo_evaluacion" value="<?php echo $nombreEvaluaciones->nombre;?>">                                
@@ -225,7 +225,7 @@
 
 
                 <td class="text-center">
-                <form action="<?php echo site_url('Preguntas/agregar_preguntas')?>" name="" id="" method="post">
+                <form action="<?php echo site_url('Preguntas/agregar_preguntas')?>" name="agregar_pregunta" id="" method="post">
                 <input type="hidden" name="id_e" id="id_e" value="<?php echo $fila->id;?>">
                 <input type="hidden" name="nombre" id="nombre" value="<?php echo $fila ->nombre;?>">
                 <input type="hidden" name="nombre_tipo_evaluacion" id="nombre_tipo_evaluacion" value="<?php echo $nombreEvaluaciones->nombre;?>">

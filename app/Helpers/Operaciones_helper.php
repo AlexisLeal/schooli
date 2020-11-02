@@ -7,10 +7,8 @@ use  App\Models\Lecciones_evaluacion;
 use  App\Models\Evaluaciones_model;
 use  App\Models\Preguntas_model;
 use  App\Models\Usuarios;
-use  App\Models\Pregunta_opcion_video;
-use  App\Models\Pregunta_opcion_multiple;
-use  App\Models\Pregunta_opcion_audio;
 use  App\Models\Tipo_preguntas;
+
 
 function getTipoUsuario()
 {
@@ -153,7 +151,7 @@ function getUsuarioCreo($id_usuario)
 //Funcion para obtener el tipo de pregunta(abierta, opcion multiple, etc )
 function getTipoPreguntas()     
 {
-    $usermodel = new Tipo_Preguntas($db);
+    $usermodel = new Tipo_preguntas($db);
     $query = "SELECT id,nombre from tipo_preguntas";
     $resultado = $usermodel->query($query);
     $rowArray = $resultado->getResult();
