@@ -116,7 +116,7 @@ foreach(getPreguntas($idEvaluacion) as $fila){
 
         if($fila->tiene_audio_pregunta==1){
           ?>
-          <audio class="asado" name="" id ="" src="<?php echo $fila->ruta_audio_pregunta;?>" controls></audio><br/>
+          <audio class="asado" name="" id ="" src="<?php echo base_url($fila->ruta_audio_pregunta);?>" controls></audio><br/>
           <?php
         }
 
