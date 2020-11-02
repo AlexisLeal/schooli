@@ -53,10 +53,10 @@ function getleccion(){
     
 }
 
- function getTotalEvaluacion($id_evaluacion,$nivel)
+ function getTotalEvaluacion($id_tipo_evaluacion,$nivel)
 {//Funcion para obtener un numero de total de evaluaciones por nivel 
     $usermodel = new Evaluaciones_model($db);
-    $query = "select * from evaluaciones where tipo_evaluacion = $id_evaluacion AND nivel = $nivel";
+    $query = "select * from evaluaciones where tipo_evaluacion = $id_tipo_evaluacion AND nivel = $nivel";
     $resultado = $usermodel ->query($query);
     // Lo comvertimos del tipo array 
     $rowArray = $resultado -> getResult();
@@ -77,21 +77,21 @@ function getleccion(){
     
 }
 
-function getTipoEvaluacionEspecifico($id_evaluacion)
+function getTipoEvaluacionEspecifico($id_tipo_evaluacion)
 {
     //Nos devuele si es sistema o exci 
     $usermodel = new Tipo_evaluacion($db);
-    $query = "SELECT id,nombre from tipo_evaluacion WHERE id = $id_evaluacion";
+    $query = "SELECT id,nombre from tipo_evaluacion WHERE id = $id_tipo_evaluacion";
     $resultado = $usermodel ->query($query);
     // el getrow nos regresa una sola fila por eso no utlizamos el getResult que nos regresa un array luego no especificamos el lugar
     $rowArray = $resultado -> getRow();
     return ($rowArray);
     
 }
-function getTotalEvaluacionLeccion($id_evaluacion,$id_nivel,$id_leccion)
+function getTotalEvaluacionLeccion($id_tipo_evaluacion,$id_nivel,$id_leccion)
 {//Funcion para obtener un numero de total de evaluaciones por seccion 
     $usermodel = new Evaluaciones_model($db);
-    $query = "select * from evaluaciones where tipo_evaluacion = $id_evaluacion AND nivel = $id_nivel AND leccion = $id_leccion";
+    $query = "select * from evaluaciones where tipo_evaluacion = $id_tipo_evaluacion AND nivel = $id_nivel AND leccion = $id_leccion";
     $resultado = $usermodel ->query($query);
     // Lo comvertimos del tipo array 
     $rowArray = $resultado -> getResult();
@@ -100,10 +100,10 @@ function getTotalEvaluacionLeccion($id_evaluacion,$id_nivel,$id_leccion)
     
 }
 
-function getEvaluacion($id_evaluacion,$id_nivel,$id_leccion)
+function getEvaluacion($id_tipo_evaluacion,$id_nivel,$id_leccion)
 {//Funcion para obtener las evaluaciones por el tipo, nivel y leccion  
     $usermodel = new Evaluaciones_model($db);
-    $query = "select * from evaluaciones where tipo_evaluacion = $id_evaluacion AND nivel = $id_nivel AND leccion = $id_leccion";
+    $query = "select * from evaluaciones where tipo_evaluacion = $id_tipo_evaluacion AND nivel = $id_nivel AND leccion = $id_leccion";
     $resultado = $usermodel ->query($query);
     // Lo convertimos del tipo array 
     $rowArray = $resultado -> getResult();

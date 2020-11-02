@@ -28,23 +28,71 @@ class Preguntas extends BaseController{
         }else{
             return redirect()->to(site_url('Home/salir'));
            }
-	}
+	}else{
+        return redirect()->to(site_url('Home/salir'));
+       }
 }
 
 //Nos muestra las preguntas de la evaluacion
 public function verEvaluacion()
-{   
+{  
+     if($this->session->get('login')){
+     if(isset($_POST['submitAP'])){
+        $REQUEST = \Config\Services::request();  
+        $data['idEvaluacion'] = $REQUEST->getPost('id_e');
+        $data['nombre'] = $REQUEST->getPost('nombre');
+        $data['tipo_evaluacion'] = $REQUEST->getPost('nombre_tipo_evaluacion');
 
-    return view('evaluaciones/mostrar/evaluacion');
+        $data['clave'] = $REQUEST->getPost('clave');
+        $data['valorpreguntas'] = $REQUEST->getPost('valorpreguntas');	
+        $data['totalpreguntas'] = $REQUEST->getPost('totalpreguntas');
+
+        $data['idtipoevaluacion'] = $REQUEST->getPost('idtipoevaluacion');	
+        $data['nivel'] = $REQUEST->getPost('nivel');	
+        $data['leccion'] = $REQUEST->getPost('leccion');	
+
+        $data['page_title'] = "Preguntas";	
+
+         return view('evaluaciones/mostrar/evaluacion',$data);
+}else{
+    return redirect()->to(site_url('Home/salir'));
+   }
+
+}else{
+    return redirect()->to(site_url('Home/salir'));
+   }
 }
 
 //Editar las preguntas de la evaluacion
 public function editarEvaluacion()
 {   
+    if($this->session->get('login')){
+        if(isset($_POST['submitAP'])){
+           $REQUEST = \Config\Services::request();  
+           $data['idEvaluacion'] = $REQUEST->getPost('id_e');
+           $data['nombre'] = $REQUEST->getPost('nombre');
+           $data['tipo_evaluacion'] = $REQUEST->getPost('nombre_tipo_evaluacion');
+   
+           $data['clave'] = $REQUEST->getPost('clave');
+           $data['valorpreguntas'] = $REQUEST->getPost('valorpreguntas');	
+           $data['totalpreguntas'] = $REQUEST->getPost('totalpreguntas');
+   
+           $data['idtipoevaluacion'] = $REQUEST->getPost('idtipoevaluacion');	
+           $data['nivel'] = $REQUEST->getPost('nivel');	
+           $data['leccion'] = $REQUEST->getPost('leccion');	
+   
+           $data['page_title'] = "Preguntas";	
 
-    return view('evaluaciones/editar/evaluacion');
+
+
+    return view('evaluaciones/editar/evaluacion',$data);
+}else{
+    return redirect()->to(site_url('Home/salir'));
+   }
+}else{
+    return redirect()->to(site_url('Home/salir'));
+   }
 }
-
 
 
 
