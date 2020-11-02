@@ -182,7 +182,7 @@
                 <td><?php echo $fila ->nombre;?></td>
                 <td><?php echo $nombreEvaluaciones->nombre;?></td>
                 <td><?php echo getTotalPreguntas($fila->id);?></td>
-                <td><?php echo $valor->v;?></td>
+                <td><?php echo empty($valor->v) ? 0 : $valor->v;?></td>
                 <td><?php if($fila->estado == 1){
                   echo "Activo";
                   $estado = "Activo";
@@ -198,7 +198,7 @@
                 <input type="hidden" name="nombre" id="nombre" value="<?php echo $fila ->nombre;?>">
                 <input type="hidden" name="nombre_tipo_evaluacion" id="nombre_tipo_evaluacion" value="<?php echo $nombreEvaluaciones->nombre;?>">                                
                 <input type="hidden" name="clave" id="clave" value="<?php echo $fila ->clave;?>">
-                <input type="hidden" name="valorpreguntas" id="du" value="<?php echo $valor->v;?>">
+                <input type="hidden" name="valorpreguntas" id="du" value="<?php echo empty($valor->v) ? 0 : $valor->v;?>">
                 <input type="hidden" name="totalpreguntas" id="du" value="<?php echo getTotalPreguntas($fila->id);?>">
                 <input type="hidden" name="idtipoevaluacion" value="<?php echo $id_evaluacion;?>">
                 <input type="hidden" name="nivel" value="<?php echo $id_nivel;?>">
@@ -214,7 +214,7 @@
                 <input type="hidden" name="nombre" id="nombre" value="<?php echo $fila ->nombre;?>">
                 <input type="hidden" name="nombre_tipo_evaluacion" id="nombre_tipo_evaluacion" value="<?php echo $nombreEvaluaciones->nombre;?>">                                
                 <input type="hidden" name="clave" id="clave" value="<?php echo $fila ->clave;?>">
-                <input type="hidden" name="valorpreguntas" id="du" value="<?php echo $valor->v;?>">
+                <input type="hidden" name="valorpreguntas" id="du" value="<?php echo empty($valor->v) ? 0 : $valor->v;?>">
                 <input type="hidden" name="totalpreguntas" id="du" value="<?php echo getTotalPreguntas($fila->id);?>">
                 <input type="hidden" name="idtipoevaluacion" value="<?php echo $id_evaluacion;?>">
                 <input type="hidden" name="nivel" value="<?php echo $id_nivel;?>">
@@ -232,7 +232,7 @@
                 <input type="hidden" name="usuario_creo" id="usuario_creo" value="<?php echo $usuarioCreo->nombre .' '.$usuarioCreo->apellido_paterno;?>">
                 <input type="hidden" name="estado" id="estado" value="<?php echo $estado;?>">
                 <input type="hidden" name="clave" id="clave" value="<?php echo $fila ->clave;?>">
-                <input type="hidden" name="valorpreguntas" id="du" value="<?php echo $valor->v;?>">
+                <input type="hidden" name="valorpreguntas" id="du" value="<?php echo empty($valor->v) ? 0 : $valor->v;?>">
                 <input type="hidden" name="totalpreguntas" id="du" value="<?php echo getTotalPreguntas($fila->id);?>">
                 <input type="hidden" name="idtipoevaluacion" value="<?php echo $id_evaluacion;?>">
                 <input type="hidden" name="nivel" value="<?php echo $id_nivel;?>">
