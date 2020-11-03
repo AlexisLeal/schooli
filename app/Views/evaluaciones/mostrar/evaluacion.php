@@ -48,7 +48,7 @@
           </div>
 
 
-          <div class="col-md-6">
+          <div class="col-md-9">
               <div class="alert alert-warning alert-dismissible fade show" role="alert">
                 <strong>Notificaciones del sistema:</strong> Este texto es un ejemplo de notificaciones que el sistema le debe de mostrar al Administrador.
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -90,10 +90,12 @@
                   </div>
                   <div class="col-md-8">
                   <?php
+                  echo $fila->pregunta;
+
                   if($fila->tiene_imagen==1 || $fila->tiene_audio_pregunta==1){
                       if($fila->tiene_imagen==1){
                         ?>
-                        <img src="<?php echo $fila->ruta_imagen;?>" class = "img-fluid" alt="INBI" ><br/>
+                        <img src="<?php echo base_url($fila->ruta_imagen);?>" class = "img-fluid" alt="INBI" ><br/>
                         <?php
                       }
                       if($fila->tiene_audio_pregunta==1){
@@ -104,7 +106,7 @@
                         <?php
                       }
                   }else{
-                      echo $fila->pregunta;
+                      
                   }
                   ?>
                   </div>
@@ -264,10 +266,10 @@
           </div> <!-- Termina el Div del contenido de enmedio-->
 
 
-
+          <!--
           <div class="col-md-3">
            Con tenido de lado derecho. Con tenido de lado derecho.Con tenido de lado derecho.Con tenido de lado derecho.Con tenido de lado derecho.Con tenido de lado derecho.Con tenido de lado derecho.Con tenido de lado derecho.Con tenido de lado derecho.
-          </div>
+          </div>-->
         </div>  
       </div>
     </div>
