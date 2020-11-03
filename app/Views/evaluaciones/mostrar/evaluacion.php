@@ -62,7 +62,6 @@
               <div class="espacioUno"></div>
 
               <table width="80%">
-              <tr><th cols="2"><h1 class="font-weight-bold">Evaluación.<h1></th></tr>
               <tr><td><p class="font-weight-bold">Nombre de evaluacion:</p></td><td><?php echo $nombre;?></td></tr>
               <tr><td><p class="font-weight-bold">Tipo Evaluacion:</p></td><td><?php echo $tipo_evaluacion;?></td></tr>
               <tr><td><p class="font-weight-bold">Clave de evaluación:</p></td><td><?php echo $clave;?></td></tr>
@@ -113,15 +112,13 @@
                   <?php echo $fila->valor;?>
                   </div>
               </div>
-                  <?php
-                  }
-                  ?>
+
 
 
 
 
               <?php
-          $idPregunta = $fila->id;
+          $idPregunta = $fila->num_pregunta;
           switch ($fila->idTipoPregunta){
           case 1: // Pregunta abierta
             ?>
@@ -138,15 +135,36 @@
               </div>
             </div>
           <?php
-        }
+              break;
 
-        if($fila->tiene_audio_pregunta==1){
-          ?>
-          <audio class="asado" name="" id ="" src="<?php echo base_url($fila->ruta_audio_pregunta);?>" controls></audio><br/>
+            case 2:
+              // si es opcion multiple
+              ?>
+              <div class="row">
+                <div class="col-md-2 text-center">
+                
+                </div>
+                <div class="col-md-8">
+                <?PHP
+                $pregunta_multiple = getPreguntaOpcion_multiple($idEvaluacion,$idPregunta);
+                ?>
+                <table>
+                  <tr>
+                  <td><?php echo empty($pregunta_multiple->valor1) ? 0 : $pregunta_multiple->valor1;?> <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2"></td>
+                  <td><?php echo empty($pregunta_multiple->valor2) ? 0 : $pregunta_multiple->valor2;?> <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2"></td>
+                  <td><?php echo empty($pregunta_multiple->valor3) ? 0 : $pregunta_multiple->valor3;?> <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2"></td>
+                  <td><?php echo empty($pregunta_multiple->valor4) ? 0 : $pregunta_multiple->valor4;?> <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2"></td>
+                </tr>
+              </table>
+                
+          </div>
+          <div class="col-md-2 text-center">
+          
+          </div>
+          </div>
           <?php
           break;
-
-          case 3:
+          case 3://audio
             ?>
             <div class="row">
               <div class="col-md-2 text-center">
@@ -155,7 +173,7 @@
               <?PHP
               $pregunta_audio = getPreguntaOpcion_audio($idEvaluacion,$idPregunta);
             ?>
-          <audio class="asado" name="" id ="" src="<?php echo empty($pregunta_audio->ruta_audio) ? : NULL;?>" controls></audio>
+          <audio class="asado" name="" id ="" src="<?php echo base_url($pregunta_audio->ruta_audio);?>" controls></audio>
           <textarea class="form-control" name="<?php echo "ID".$fila->id."EVAL".$fila->idEvaluacion."NP".$fila->num_pregunta.";"?>" id="<?php echo "ID".$fila->id."EVAL".$fila->idEvaluacion."NP".$fila->num_pregunta.";"?>" rows="3"></textarea>
             </div>
             <div class="col-md-2 text-center">
@@ -174,9 +192,9 @@
               <?PHP
               $pregunta_video = getPreguntaOpcion_video($idEvaluacion,$idPregunta);
               ?>
-                <video name="" id="" src="<?php echo $pregunta_video->ruta_video;?>" controls>
-                  Tu navegador no implementa el elemento <code>video</code>.
-                </video>
+              <video name="" id="" src="<?php echo $pregunta_video == null ? "desconocido" :base_url($pregunta_video->ruta_video);?>" controls>
+                Tu navegador no implementa el elemento <code>video</code>.
+              </video>
           <textarea class="form-control" name="<?php echo "ID".$fila->id."EVAL".$fila->idEvaluacion."NP".$fila->num_pregunta.";"?>" id="<?php echo "ID".$fila->id."EVAL".$fila->idEvaluacion."NP".$fila->num_pregunta.";"?>" rows="3"></textarea>
 
           </div>
@@ -215,10 +233,15 @@
             </div>
           <?php
               break;
-          }
-        
-          ?>
-
+            }
+            ?>
+            <div class="espacioUno"></div>
+            <hr class="lineaSolida">
+            <div class="espacioUno"></div>
+            
+            <?php
+            }
+            ?>
 
 
         <div class="container">

@@ -234,8 +234,7 @@ public function insertarPregunta()
               //Verifica si es valido
         if ($file_audio->isValid() && ! $file_audio->hasMoved())
         {
-            $audio_extension= $file_audio->getClientExtension();
-            $ruta_audio = "uploads/".$clave."/audio";
+
                 //Comprobar si existe la ruta donde se va a guardar el audio
             if (!is_dir('uploads/'.$clave.'/audio')) {
                 mkdir('./uploads/' .$clave.'/audio', 0777, TRUE);
@@ -276,6 +275,7 @@ public function insertarPregunta()
 
         }
 
+        
         if($tipoPregunta == 4){
             $file_video = $REQUEST->getFile('archivo_video');
             //Verifica si es valido
@@ -291,15 +291,15 @@ public function insertarPregunta()
           $nombre = 'pregunta-ingles'.$numeropregunta.'.mp4';  
           $ruta_video_basedatos = "uploads/".$clave."/video/".$nombre."";
           $ruta_video = "uploads/".$clave."/video";
-          $video_extension= $video_audio->getClientExtension();
-          $file_audio->move($ruta_audio,$nombre);
+          $video_extension= $file_video->getClientExtension();
+          $file_video->move($ruta_video,$nombre);
 
           //Insertamos en la base de datos 
-          $sqlAudio ="INSERT INTO pregunta_opcion_audio (
+          $sqlvideo ="INSERT INTO pregunta_opcion_video(
               idEvaluacion,
               idPregunta,
-              nombre_audio,
-              ruta_audio,
+              nombre_video,
+              ruta_video,
               extension,
               fecha_creacion,
               fecha_ultimo_cambio
@@ -313,10 +313,10 @@ public function insertarPregunta()
               '".$hoy."')";
 
               $usermodel = new Pregunta_opcion_video($db);
-              $usermodel ->query($sqlAudio);
+              $usermodel ->query($sqlvideo);
       }else{
           //Si algo sale mal nos marca un error 
-          throw new RuntimeException($file_audio->getErrorString().'('.$file_audio->getError().')');
+          throw new RuntimeException($file_video->getErrorString().'('.$file_video->getError().')');
                }
 
         }
@@ -340,4 +340,3 @@ public function insertarPregunta()
 }
 
 }
-

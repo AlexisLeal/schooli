@@ -190,13 +190,20 @@ function getPreguntas($id_evaluacion)
     return($rowArray);
 
 }
- function getPreguntaOpcion_video($id_evaluacion,$id_pregunta)
+
+function getPreguntaOpcion_video($id_evaluacion,$id_pregunta)
 {
     $usermodel = new Pregunta_opcion_video($db);
     $query = "SELECT idEvaluacion,idPregunta,nombre_video,ruta_video FROM pregunta_opcion_video WHERE idEvaluacion=$id_evaluacion AND idPregunta=$id_pregunta";   
     $resultado = $usermodel->query($query);
-    $rowArray = $resultado -> getRow();
-    return($rowArray);
+    $row = $resultado -> getRow();
+    if(empty($row)){
+        $ruta = null;
+        return ($ruta);
+    }
+    return($row);
+  
+   
 }
 
 

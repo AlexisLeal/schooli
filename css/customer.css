@@ -223,6 +223,9 @@ ul.list-group li a:hover{
    color:#000;
 }
 
+.lineaSolida{
+  border-top: 2px dotted #CCD1D1;
+}
 
 
 /*

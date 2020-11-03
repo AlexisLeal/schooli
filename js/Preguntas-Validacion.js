@@ -209,7 +209,7 @@ if(indice == 4){
   var fileName = this.files[0].name;
 var fileSize = this.files[0].size;
 
-if(fileSize > 3000000){
+if(fileSize > 50000000){
   alert('El archivo no debe superar los 3MB');
   this.value = '';
   this.files[0].name = '';
