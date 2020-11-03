@@ -101,6 +101,7 @@
               <th class="text-left">ID</th>
               <th class="text-left">Nombre</th>
               <th class="text-left">Tipo Evaluacion</th>
+              <th class="text-left">Categoría Evaluacion</th>
               <th class="text-left">Numero de preguntas</th>
               <th class="text-left">Valor total</th>
               <th class="text-left">Estado</th>
@@ -123,6 +124,9 @@
                 <td><?php echo $fila->id;?></td>
                 <td><?php echo $fila ->nombre;?></td>
                 <td><?php echo $nombreEvaluaciones->nombre;?></td>
+                <td><?php
+                echo getCategoriaEvaluacionEspecifica($fila->idCategoriaEvaluacion);
+                ?></td>
                 <td><?php echo getTotalPreguntas($fila->id);?></td>
                 <td><?php echo empty($valor->v) ? 0 : $valor->v;?></td>
                 <td><?php if($fila->estado == 1){

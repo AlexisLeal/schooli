@@ -133,6 +133,10 @@
                 <textarea class="form-control form-control-sm" name="instrucciones" id="instrucciones" rows="3" required=""></textarea>
               </div>
 
+
+
+
+
               <div class="form-group">
                 <label for="lblTipoEvaluacion">Tipo de evaluación</label>
                 <select class="form-control form-control-sm" name="tipoEvaluacion" id="tipoEvaluacion" required="">
@@ -147,6 +151,27 @@
                     ?>
                 </select>
               </div>
+
+
+
+              <div class="form-group">
+                <label for="lblCategoriaEvaluacion">Categoría de evaluación</label>
+                <select class="form-control form-control-sm" name="categoriaEvaluacion" id="categoriaEvaluacion" required="">
+                <option value="">Seleccione una opción</option>
+                <?php
+                        // Esta funcion se encuentra en la carpeta helpers en el archivo llamado operaciones
+                        foreach(getCategoriaEvaluacion() as $fila){
+                      ?>
+                          <option value="<?php echo $fila->id;?>"> <?php echo $fila->nombre;?> </option>         
+                      
+                    <?php } 
+                    ?>
+                </select>
+              </div>
+
+
+
+
 
               <div class="form-group">
               <label for="lblNivel">Nivel</label>

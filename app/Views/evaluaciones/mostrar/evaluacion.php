@@ -100,7 +100,7 @@
                       }
                       if($fila->tiene_audio_pregunta==1){
                         ?>
-                        <audio class="asado" name="" id ="" src="<?php echo base_url($fila->ruta_audio_pregunta);?>" controls></audio><br/>
+                        <audio class="asado img-fliud" name="" id ="" src="<?php echo base_url($fila->ruta_audio_pregunta);?>" controls></audio><br/>
                         
 
                         <?php
@@ -175,7 +175,7 @@
               <?PHP
               $pregunta_audio = getPreguntaOpcion_audio($idEvaluacion,$idPregunta);
             ?>
-          <audio class="asado" name="" id ="" src="<?php echo base_url($pregunta_audio->ruta_audio);?>" controls></audio>
+          <audio class="asado img-fluid" name="" id ="" src="<?php echo base_url($pregunta_audio->ruta_audio);?>" controls></audio>
           <textarea class="form-control" name="<?php echo "ID".$fila->id."EVAL".$fila->idEvaluacion."NP".$fila->num_pregunta.";"?>" id="<?php echo "ID".$fila->id."EVAL".$fila->idEvaluacion."NP".$fila->num_pregunta.";"?>" rows="3"></textarea>
             </div>
             <div class="col-md-2 text-center">
@@ -194,7 +194,7 @@
               <?PHP
               $pregunta_video = getPreguntaOpcion_video($idEvaluacion,$idPregunta);
               ?>
-              <video name="" id="" src="<?php echo $pregunta_video == null ? "desconocido" :base_url($pregunta_video->ruta_video);?>" controls>
+              <video name="" id="" class = "img-fluid" src="<?php echo $pregunta_video == null ? "desconocido" :base_url($pregunta_video->ruta_video);?>" controls>
                 Tu navegador no implementa el elemento <code>video</code>.
               </video>
           <textarea class="form-control" name="<?php echo "ID".$fila->id."EVAL".$fila->idEvaluacion."NP".$fila->num_pregunta.";"?>" id="<?php echo "ID".$fila->id."EVAL".$fila->idEvaluacion."NP".$fila->num_pregunta.";"?>" rows="3"></textarea>

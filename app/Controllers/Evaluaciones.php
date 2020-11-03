@@ -93,6 +93,7 @@ class Evaluaciones extends BaseController{
             $nombre_evaluacion = $REQUEST->getPost('nombreEvaluacion');
             $instrucciones = $REQUEST->getPost('instrucciones');
             $tipo_evaluacion = $REQUEST->getPost('tipoEvaluacion');
+            $categoriaEvaluacion = $REQUEST->getPost('categoriaEvaluacion');
             $nivel = $REQUEST->getPost('nivel');
             $leccion = $REQUEST->getPost('leccion');
             $id_usuario = $REQUEST->getPost('idUsuario');
@@ -123,7 +124,7 @@ class Evaluaciones extends BaseController{
             }
 
           
- $sqlInsert = "INSERT INTO evaluaciones(nombre,instrucciones,tipo_evaluacion,nivel,leccion,usuario_creo,usuario_modifico,estado,fecha_creacion,fecha_ultimo_cambio) values ('".$nombre_evaluacion."','".$instrucciones."',$tipo_evaluacion,$nivel,$leccion,$id_usuario,$id_usuario,$estado,'".$hoy."','".$hoy."')";
+ $sqlInsert = "INSERT INTO evaluaciones(nombre,instrucciones,tipo_evaluacion,idCategoriaEvaluacion,nivel,leccion,usuario_creo,usuario_modifico,estado,fecha_creacion,fecha_ultimo_cambio) values ('".$nombre_evaluacion."','".$instrucciones."',$tipo_evaluacion,$categoriaEvaluacion,$nivel,$leccion,$id_usuario,$id_usuario,$estado,'".$hoy."','".$hoy."')";
                
             //Ejecutamos el query 
             $usermodel->query($sqlInsert);

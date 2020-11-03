@@ -11,7 +11,7 @@ use  App\Models\Tipo_preguntas;
 use  App\Models\Pregunta_opcion_multiple;
 use  App\Models\Pregunta_opcion_audio;
 use  App\Models\Pregunta_opcion_video;
-
+use  App\Models\Categorias_Evaluaciones;
 
 function getTipoUsuario()
 {
@@ -206,5 +206,23 @@ function getPreguntaOpcion_video($id_evaluacion,$id_pregunta)
    
 }
 
+function getCategoriaEvaluacion()
+{
+    $usermodel = new Categorias_Evaluaciones($db);
+    $query = "SELECT id,nombre from categorias_evaluaciones";
+    $resultado = $usermodel->query($query);
+    $rowArray = $resultado->getResult();
+    return($rowArray);
+}
+
+function getCategoriaEvaluacionEspecifica($id_categoria_evaluacion)
+{
+    $usermodel = new Categorias_Evaluaciones($db);
+    $query = "SELECT nombre from categorias_evaluaciones WHERE id = $id_categoria_evaluacion";
+    $resultado = $usermodel->query($query);
+    $row = $resultado->getRow();
+    $nombre = $row->nombre;
+    return($nombre);
+}
 
 ?>
