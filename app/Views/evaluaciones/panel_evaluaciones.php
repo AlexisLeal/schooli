@@ -125,7 +125,11 @@
                 <td><?php echo $fila ->nombre;?></td>
                 <td><?php echo $nombreEvaluaciones->nombre;?></td>
                 <td><?php
-                echo getCategoriaEvaluacionEspecifica($fila->idCategoriaEvaluacion);
+                if(empty($fila->idCategoriaEvaluacion)){
+                  echo "vacia";
+                }else{
+                  echo getCategoriaEvaluacionEspecifica($fila->idCategoriaEvaluacion);
+                }
                 ?></td>
                 <td><?php echo getTotalPreguntas($fila->id);?></td>
                 <td><?php echo empty($valor->v) ? 0 : $valor->v;?></td>

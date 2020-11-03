@@ -139,6 +139,12 @@ ul.horizontal li a:hover{
 .fa-caret-square-o-right:hover {  color: #34495E;}
 .fa-graduation-cap:hover {color: #34495E;}
 
+.fa-trash-o{
+  background-color:#F0360E;
+  color: #fff;
+  padding: 5px;
+  border-radius: 4px 4px 4px 4px;
+}
 
 #submitAP {
   border:0px;
