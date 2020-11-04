@@ -185,6 +185,9 @@ public function deletedPreguntas()
             $usermodel ->query($query);
 
         }
+
+        $data = ['Eliminacion'  => 'La pregunta se elimino correctamente'];
+        $this->session->set($data,true);
         return redirect()->to(site_url("Preguntas/editarEvaluacion/$idEvaluacion"));
 
     }
@@ -217,7 +220,7 @@ public function insertarPregunta()
               $numeropregunta = 1;
           }else{
           //Vamos a obtener el numero maximo de preguntas
-          $usermodel->Select('(SELECT max(num_pregunta) FROM preguntas WHERE idEvaluacion= '.$idEvaluacion.') as ultimo_numero_pregunta', FALSE);
+          $usermodel->Select('(SELECT max(num_pregunta) FROM preguntas WHERE idEvaluacion= '.$idEvaluacion.'AND delated = 0) as ultimo_numero_pregunta ', FALSE);
           $query = $usermodel->get();
           $fila = $query -> getRow();
         
