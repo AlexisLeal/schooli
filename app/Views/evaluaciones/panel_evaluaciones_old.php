@@ -112,15 +112,12 @@
               </thead>
               <tbody>
             <?php
-              //Dejarsala asi no moverle 
-              $nombreEvaluaciones = getTipoEvaluacionEspecifico($id_evaluacion);
-              //obtiene si es sistema o exci 
+              $nombreEvaluaciones = getTipoEvaluacionEspecifico($id_evaluacion);//obtiene si es sistema o exci 
               //la variable id_evaluacion hace referencia al id del tipo de evaluacion 
             //Estos paremetros nos lo pasen el contralador
-            //Esto puede cambiar 
             foreach(getEvaluacion($id_evaluacion,$id_nivel,$id_leccion) as $fila){
-              $valor = getValorTotalPreguntas($fila->id);
-              $usuarioCreo = getUsuarioCreo($fila->usuario_creo);
+              $valor =getValorTotalPreguntas($fila->id);
+              $usuarioCreo =getUsuarioCreo($fila->usuario_creo);
               //MUY IMPORTANTE ESTE FUNCION 
                 ?>
                 <tr>
@@ -133,10 +130,9 @@
                 }else{
                   echo getCategoriaEvaluacionEspecifica($fila->idCategoriaEvaluacion);
                 }
-               
                 ?></td>
                 <td><?php echo getTotalPreguntas($fila->id);?></td>
-                <td><?php echo getValorTotalPreguntas($fila->id);;?></td>
+                <td><?php echo empty($valor->v) ? 0 : $valor->v;?></td>
                 <td><?php if($fila->estado == 1){
                   echo "Activo";
                   $estado = "Activo";
@@ -146,62 +142,53 @@
                 } ?></td>
 
                 <td class="text-center">
-                <!--CAMBIAR A LINK-->
-                <a href="<?php echo site_url("Preguntas/verEvaluacion/$fila->id") ?>">VER</a>
-                <!--
-                <form action="< ?php echo site_url('Preguntas/verEvaluacion')?>" name="ver_evaluacion" id="" method="post">
-                <input type="hidden" name="id_e" id="id_e" value="< ?php echo $fila->id;?>">
-                <input type="hidden" name="nombre" id="nombre" value="< ?php echo $fila ->nombre;?>">
-                <input type="hidden" name="nombre_tipo_evaluacion" id="nombre_tipo_evaluacion" value="< ?php echo $nombreEvaluaciones;?>">                                
-                <input type="hidden" name="clave" id="clave" value="< ?php echo $fila ->clave;?>">
-                <input type="hidden" name="valorpreguntas" id="du" value="< ?php echo $valor;?>">
-                <input type="hidden" name="totalpreguntas" id="du" value="< ?php echo getTotalPreguntas($fila->id);?>">
-                <input type="hidden" name="idtipoevaluacion" value="< ?php echo $id_evaluacion;?>">
-                <input type="hidden" name="nivel" value="< ?php echo $id_nivel;?>">
-                <input type="hidden" name="leccion"  value="< ?php echo $id_leccion;?>">
+                
+                <form action="<?php echo site_url('Preguntas/verEvaluacion')?>" name="ver_evaluacion" id="" method="post">
+                <input type="hidden" name="id_e" id="id_e" value="<?php echo $fila->id;?>">
+                <input type="hidden" name="nombre" id="nombre" value="<?php echo $fila ->nombre;?>">
+                <input type="hidden" name="nombre_tipo_evaluacion" id="nombre_tipo_evaluacion" value="<?php echo $nombreEvaluaciones->nombre;?>">                                
+                <input type="hidden" name="clave" id="clave" value="<?php echo $fila ->clave;?>">
+                <input type="hidden" name="valorpreguntas" id="du" value="<?php echo empty($valor->v) ? 0 : $valor->v;?>">
+                <input type="hidden" name="totalpreguntas" id="du" value="<?php echo getTotalPreguntas($fila->id);?>">
+                <input type="hidden" name="idtipoevaluacion" value="<?php echo $id_evaluacion;?>">
+                <input type="hidden" name="nivel" value="<?php echo $id_nivel;?>">
+                <input type="hidden" name="leccion"  value="<?php echo $id_leccion;?>">
                 <button type="submit" name="submitAP" id="submitAP"><i class="fa fa-file-text-o" aria-hidden="true"></a></i></span></button>
                 </form>
-                -->
                 </td>
                 
-                <!--CAMBIAR A LINK -->
+                
                 <td class="text-center">
-                <a href="<?php echo site_url("Preguntas/editarEvaluacion/$fila->id") ?>"> EDITAR</a>
-              <!--  <form action="< ?php echo site_url('Preguntas/editarEvaluacion')?>" name="editar_evaluacion" id="" method="post">
-                <input type="hidden" name="id_e" id="id_e" value="< ?php echo $fila->id;?>">
-                <input type="hidden" name="nombre" id="nombre" value="< ?php echo $fila ->nombre;?>">
-                <input type="hidden" name="nombre_tipo_evaluacion" id="nombre_tipo_evaluacion" value="< ?php echo $nombreEvaluaciones;?>">                                
-                <input type="hidden" name="clave" id="clave" value="< ?php echo $fila ->clave;?>">
-                <input type="hidden" name="valorpreguntas" id="du" value="< ?php echo $valor;?>">
-                <input type="hidden" name="totalpreguntas" id="du" value="< ?php echo getTotalPreguntas($fila->id);?>">
-                <input type="hidden" name="idtipoevaluacion" value="< ?php echo $id_evaluacion;?>">
-                <input type="hidden" name="nivel" value="< ?php echo $id_nivel;?>">
-                <input type="hidden" name="leccion"  value="< ?php echo $id_leccion;?>">
+                <form action="<?php echo site_url('Preguntas/editarEvaluacion')?>" name="editar_evaluacion" id="" method="post">
+                <input type="hidden" name="id_e" id="id_e" value="<?php echo $fila->id;?>">
+                <input type="hidden" name="nombre" id="nombre" value="<?php echo $fila ->nombre;?>">
+                <input type="hidden" name="nombre_tipo_evaluacion" id="nombre_tipo_evaluacion" value="<?php echo $nombreEvaluaciones->nombre;?>">                                
+                <input type="hidden" name="clave" id="clave" value="<?php echo $fila ->clave;?>">
+                <input type="hidden" name="valorpreguntas" id="du" value="<?php echo empty($valor->v) ? 0 : $valor->v;?>">
+                <input type="hidden" name="totalpreguntas" id="du" value="<?php echo getTotalPreguntas($fila->id);?>">
+                <input type="hidden" name="idtipoevaluacion" value="<?php echo $id_evaluacion;?>">
+                <input type="hidden" name="nivel" value="<?php echo $id_nivel;?>">
+                <input type="hidden" name="leccion"  value="<?php echo $id_leccion;?>">
                 <button type="submit" name="submitAP" id="submitAP"><i class="fa fa-pencil-square-o" aria-hidden="true"></a></i></span></button> 
                 </form>
-
-                -->
                 </td>
 
 
                 <td class="text-center">
-                <a href="<?php echo site_url("Preguntas/agregar_preguntas/$fila->id")?>">AGREGAR UNA PREGUNTA</a>
-               <!--
-                <form action="< ?php echo site_url('Preguntas/agregar_preguntas')?>" name="agregar_pregunta" id="" method="post">
-                <input type="hidden" name="id_e" id="id_e" value="< ?php echo $fila->id;?>">
-                <input type="hidden" name="nombre" id="nombre" value="< ?php echo $fila ->nombre;?>">
-                <input type="hidden" name="nombre_tipo_evaluacion" id="nombre_tipo_evaluacion" value="< ?php echo $nombreEvaluaciones->nombre;?>">
-                <input type="hidden" name="usuario_creo" id="usuario_creo" value="< ?php echo $usuarioCreo->nombre .' '.$usuarioCreo->apellido_paterno;?>">
-                <input type="hidden" name="estado" id="estado" value="< ?php echo $estado;?>">
-                <input type="hidden" name="clave" id="clave" value="< ?php echo $fila ->clave;?>">
-                <input type="hidden" name="valorpreguntas" id="du" value="< ?php echo $valor;?>">
-                <input type="hidden" name="totalpreguntas" id="du" value="< ?php echo getTotalPreguntas($fila->id);?>">
-                <input type="hidden" name="idtipoevaluacion" value="< ?php echo $id_evaluacion;?>">
-                <input type="hidden" name="nivel" value="< ?php echo $id_nivel;?>">
-                <input type="hidden" name="leccion"  value="< ?php echo $id_leccion;?>">
+                <form action="<?php echo site_url('Preguntas/agregar_preguntas')?>" name="agregar_pregunta" id="" method="post">
+                <input type="hidden" name="id_e" id="id_e" value="<?php echo $fila->id;?>">
+                <input type="hidden" name="nombre" id="nombre" value="<?php echo $fila ->nombre;?>">
+                <input type="hidden" name="nombre_tipo_evaluacion" id="nombre_tipo_evaluacion" value="<?php echo $nombreEvaluaciones->nombre;?>">
+                <input type="hidden" name="usuario_creo" id="usuario_creo" value="<?php echo $usuarioCreo->nombre .' '.$usuarioCreo->apellido_paterno;?>">
+                <input type="hidden" name="estado" id="estado" value="<?php echo $estado;?>">
+                <input type="hidden" name="clave" id="clave" value="<?php echo $fila ->clave;?>">
+                <input type="hidden" name="valorpreguntas" id="du" value="<?php echo empty($valor->v) ? 0 : $valor->v;?>">
+                <input type="hidden" name="totalpreguntas" id="du" value="<?php echo getTotalPreguntas($fila->id);?>">
+                <input type="hidden" name="idtipoevaluacion" value="<?php echo $id_evaluacion;?>">
+                <input type="hidden" name="nivel" value="<?php echo $id_nivel;?>">
+                <input type="hidden" name="leccion"  value="<?php echo $id_leccion;?>">
                 <button type="submit" name="submitAP" id="submitAP"><i class="fa fa-plus-circle" aria-hidden="true"></a></i></span></button>
                 </form>
-                -->
                 </td>
                 
                 </tr>

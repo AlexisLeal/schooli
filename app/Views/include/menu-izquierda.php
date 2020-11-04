@@ -48,6 +48,7 @@
            </a>
            <div class="collapse" id="collapseModulos">
            <ul class="list-group">
+             <li class="list-group-item"><a href="<?php echo site_url('recursos/recursos')?>">Recursos</a></li>
              <li class="list-group-item"><a href="#">Evaluaciones</a></li>
              <li class="list-group-item"><a href="#">Estudiantes</a></li>
              <li class="list-group-item"><a href="#">Grupos</a></li>

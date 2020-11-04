@@ -72,12 +72,11 @@ function getleccion(){
  function getnivelEspecifico($id_nivel)
 {
     $usermodel = new Niveles_evaluacion($db);
-    $query = "SELECT nombre from niveles_evaluacion WHERE id = $id_nivel";
+    $query = "SELECT id,nombre from niveles_evaluacion WHERE id = $id_nivel";
     $resultado = $usermodel ->query($query);
     // el getrow nos regresa una sola fila por eso no utlizamos el getResult que nos regresa un array luego no especificamos el lugar
-    $row = $resultado->getRow();
-    $nombre = $row->nombre;
-    return ($nombre);
+    $rowArray = $resultado -> getRow();
+    return ($rowArray);
     
 }
 
@@ -88,8 +87,8 @@ function getTipoEvaluacionEspecifico($id_tipo_evaluacion)
     $query = "SELECT id,nombre from tipo_evaluacion WHERE id = $id_tipo_evaluacion";
     $resultado = $usermodel ->query($query);
     // el getrow nos regresa una sola fila por eso no utlizamos el getResult que nos regresa un array luego no especificamos el lugar
-    $row = $resultado->getRow();
-    return ($row);
+    $rowArray = $resultado -> getRow();
+    return ($rowArray);
     
 }
 function getTotalEvaluacionLeccion($id_tipo_evaluacion,$id_nivel,$id_leccion)
@@ -123,19 +122,16 @@ function getValorTotalPreguntas($id_evaluacion)
     $usermodel->SELECT('(SELECT SUM(valor) FROM preguntas WHERE idEvaluacion= '.$id_evaluacion.') as v', FALSE);
     //Forma de ejecutar un query mediante codelgniter 
      $query = $usermodel->get();
-     $row = $query -> getRow();
+     $rowArray = $query -> getRow();
      //Obtiene la primera columna 
-    if(empty($row->v)){
-        $valor = 0;
-        return($valor);
-    }
-    return($row->v);
+    return($rowArray);
+
 }
 
 function getTotalPreguntas($id_evaluacion)
 {
     $usermodel = new Preguntas_model($db);
-    $query = "SELECT idEvaluacion FROM preguntas WHERE idEvaluacion= $id_evaluacion and delated =0";
+    $query = "SELECT idEvaluacion FROM preguntas WHERE idEvaluacion= $id_evaluacion";
     $resultado = $usermodel ->query($query);
     $rowArray = $resultado -> getResult();
     $total = count($rowArray);
@@ -170,7 +166,7 @@ function getTipoPreguntas()
 function getPreguntas($id_evaluacion)
 {
     $usermodel = new Preguntas_model($db);
-    $query = "SELECT * from preguntas where idEvaluacion = $id_evaluacion and delated=0";
+    $query = "SELECT * from preguntas where idEvaluacion = $id_evaluacion";
     $resultado = $usermodel->query($query);
     $rowArray = $resultado->getResult();
     return($rowArray);

@@ -62,10 +62,10 @@
               <?php
 
             $nombreEvaluaciones = getTipoEvaluacionEspecifico($id_evaluaciones);
-            //$nombreNivel = getnivelEspecifico($id_nivel);
+            $nombreNivel = getnivelEspecifico($id_nivel);
             ?>
           <H1>Tipo de evaluacion: <?php echo $nombreEvaluaciones->nombre ?></H1>
-          <H2>Nivel: <?php echo getnivelEspecifico($id_nivel); ?></H2>
+          <H2>Nivel: <?php echo $nombreNivel->nombre ?></H2>
 
           <a href="<?php echo site_url('/Panel/index'); ?>">Panel</a><br/>
           <a href="<?php echo site_url('/Evaluaciones/crear_evaluacion'); ?>">Crear evaluaciones.</a><br/>

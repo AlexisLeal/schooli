@@ -117,20 +117,11 @@
                   <?php echo $fila->valor;?>
                   </div>
                   <div class="col-md-1 text-center">
-                  <form action="<?php echo site_url('Preguntas/verEvaluacion')?>" name="<?php $fila->id;?>" id="" method="post">
-                  <input type="hidden" name="idEvaluacion" id="idEvaluacion" value="<?php $nombre;?>">
-                  <input type="hidden" name="tipo_evaluacion" id="tipo_evaluacion" value="<?php $tipo_evaluacion;?>">
-
-                  <input type="hidden" name="clave" id="clave" value="<?php $clave;?>">
-                  <input type="hidden" name="valorpreguntas" id="valorpreguntas" value="<?php $valorpreguntas;?>">
-                  <input type="hidden" name="nivel" id="nivel" value="<?php $nivel;?>">
-                  <input type="hidden" name="leccion" id="leccion" value="<?php $leccion;?>">
-                
-
-                  <input type="hidden" name="nombre" id="idEvaluacion" value="<?php $idEvaluacion;?>">
-                  <input type="hidden" name="tipoPregunta" id="tipoPregunta" value="<?php $fila->idTipoPregunta;?>">
-                  <input type="hidden" name="idPregunta" id="idPregunta" value="<?php $fila->id;?>">
-                  <input type="hidden" name="num_pregunta" id="num_pregunta" value="<?php $fila->num_pregunta;?>">
+                  <form action="<?php echo site_url('Preguntas/deletedPreguntas')?>" name="<?php echo $fila->id;?>" id="" method="post">
+                  <input type="hidden" name="idEvaluacion" id="idEvaluacion" value="<?php echo $idEvaluacion;?>">
+                  <input type="hidden" name="tipoPregunta" id="tipoPregunta" value="<?php echo $fila->idTipoPregunta;?>">
+                  <input type="hidden" name="idPregunta" id="idPregunta" value="<?php echo $fila->id;?>">
+                  <input type="hidden" name="num_pregunta" id="num_pregunta" value="<?php echo $fila->num_pregunta;?>">
                   <button type="submit" name="submitAP" id="submitAP"><i class="fa fa-trash-o" aria-hidden="true"></i></i></span></button>
                   </form>
 

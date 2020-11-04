@@ -3,39 +3,13 @@ use  App\Models\Preguntas_model;
 use  App\Models\Pregunta_opcion_multiple;
 use  App\Models\Pregunta_opcion_audio;
 use  App\Models\Pregunta_opcion_video;
-use  App\Models\Evaluaciones_model;
 class Preguntas extends BaseController{
 
-    public function agregar_preguntas($id_evaluacion)
+    public function agregar_preguntas()
 	{
      if($this->session->get('login')){
-            //$REQUEST = \Config\Services::request(); 
-           
-            $usermodel = new Evaluaciones_model($db);
-            $query = "select * from evaluaciones where id = $id_evaluacion";
-            $resultado = $usermodel ->query($query);
-            $row = $resultado -> getRow();
-
-
-            $data['idEvaluacion'] = $id_evaluacion;
-            $data['nombre'] = $row->nombre;
-            $data['clave'] = $row->clave;
-            $data['idtipoevaluacion'] = $row->tipo_evaluacion;
-            $data['nivel'] = $row->nivel;	
-            $data['leccion'] = $row->leccion;
-            $data['totalpreguntas'] = getTotalPreguntas($id_evaluacion);
-            $data['valorpreguntas'] =  getValorTotalPreguntas($id_evaluacion);
-            $nombre =getTipoEvaluacionEspecifico( $row->tipo_evaluacion);
-            $data['tipo_evaluacion'] = $nombre->nombre;
-            $data['page_title'] = "Preguntas";	
-            
-            $row->estado == 1 ? $estado="Activo" :$estado =="Inactivo";
-            $data['estado'] = $estado;
-
-            $usuarioCreo = getUsuarioCreo($row->usuario_creo);
-            $data['usuario_creo'] = $usuarioCreo->nombre .' '.$usuarioCreo->apellido_paterno;
-
-            /*
+        if(isset($_POST['submitAP'])){
+            $REQUEST = \Config\Services::request();  
             $data['idEvaluacion'] = $REQUEST->getPost('id_e');
             $data['nombre'] = $REQUEST->getPost('nombre');
             $data['tipo_evaluacion'] = $REQUEST->getPost('nombre_tipo_evaluacion');
@@ -48,38 +22,23 @@ class Preguntas extends BaseController{
             $data['idtipoevaluacion'] = $REQUEST->getPost('idtipoevaluacion');	
             $data['nivel'] = $REQUEST->getPost('nivel');	
             $data['leccion'] = $REQUEST->getPost('leccion');	
+
             $data['page_title'] = "Preguntas";	
-*/
          return view('evaluaciones/crear/agregar_preguntas',$data);
         }else{
             return redirect()->to(site_url('Home/salir'));
            }
+	}else{
+        return redirect()->to(site_url('Home/salir'));
+       }
 }
 
-
-
 //Nos muestra las preguntas de la evaluacion
-public function verEvaluacion($id_evaluacion)
+public function verEvaluacion()
 {  
-     if($this->session->get('login')){  
-        $usermodel = new Evaluaciones_model($db);
-        $query = "select * from evaluaciones where id = $id_evaluacion";
-        $resultado = $usermodel ->query($query);
-        $row = $resultado -> getRow();
-
-
-        $data['idEvaluacion'] = $id_evaluacion;
-        $data['nombre'] = $row->nombre;
-        $data['clave'] = $row->clave;
-        $data['idtipoevaluacion'] = $row->tipo_evaluacion;
-        $data['nivel'] = $row->nivel;	
-        $data['leccion'] = $row->leccion;
-        $data['totalpreguntas'] = getTotalPreguntas($id_evaluacion);
-        $data['valorpreguntas'] =  getValorTotalPreguntas($id_evaluacion);
-        $nombre =getTipoEvaluacionEspecifico( $row->tipo_evaluacion);
-        $data['tipo_evaluacion'] = $nombre->nombre;
-        $data['page_title'] = "Preguntas";	
-        /*
+     if($this->session->get('login')){
+     if(isset($_POST['submitAP'])){
+        $REQUEST = \Config\Services::request();  
         $data['idEvaluacion'] = $REQUEST->getPost('id_e');
         $data['nombre'] = $REQUEST->getPost('nombre');
         $data['tipo_evaluacion'] = $REQUEST->getPost('nombre_tipo_evaluacion');
@@ -93,37 +52,23 @@ public function verEvaluacion($id_evaluacion)
         $data['leccion'] = $REQUEST->getPost('leccion');	
 
         $data['page_title'] = "Preguntas";	
-*/
+
          return view('evaluaciones/mostrar/evaluacion',$data);
 }else{
     return redirect()->to(site_url('Home/salir'));
    }
 
+}else{
+    return redirect()->to(site_url('Home/salir'));
+   }
 }
 
 //Editar las preguntas de la evaluacion
-public function editarEvaluacion($id_evaluacion)
+public function editarEvaluacion()
 {   
     if($this->session->get('login')){
-        $usermodel = new Evaluaciones_model($db);
-        $query = "select * from evaluaciones where id = $id_evaluacion";
-        $resultado = $usermodel ->query($query);
-        $row = $resultado -> getRow();
-
-
-        $data['idEvaluacion'] = $id_evaluacion;
-        $data['nombre'] = $row->nombre;
-        $data['clave'] = $row->clave;
-        $data['idtipoevaluacion'] = $row->tipo_evaluacion;
-        $data['nivel'] = $row->nivel;	
-        $data['leccion'] = $row->leccion;
-        $data['totalpreguntas'] = getTotalPreguntas($id_evaluacion);
-        $data['valorpreguntas'] =  getValorTotalPreguntas($id_evaluacion);
-        $nombre = getTipoEvaluacionEspecifico( $row->tipo_evaluacion);
-        $data['tipo_evaluacion'] = $nombre->nombre;
-        $data['page_title'] = "Preguntas";	
-        
-          /* $REQUEST = \Config\Services::request();  
+        if(isset($_POST['submitAP'])){
+           $REQUEST = \Config\Services::request();  
            $data['idEvaluacion'] = $REQUEST->getPost('id_e');
            $data['nombre'] = $REQUEST->getPost('nombre');
            $data['tipo_evaluacion'] = $REQUEST->getPost('nombre_tipo_evaluacion');
@@ -137,62 +82,20 @@ public function editarEvaluacion($id_evaluacion)
            $data['leccion'] = $REQUEST->getPost('leccion');	
    
            $data['page_title'] = "Preguntas";	
-*/
+
 
 
     return view('evaluaciones/editar/evaluacion',$data);
 }else{
     return redirect()->to(site_url('Home/salir'));
    }
-}
-
-
-public function deletedPreguntas()
-{
-    if($this->session->get('login')){
-    if(isset($_POST['submitAP'])){
-        $REQUEST = \Config\Services::request();
-        $idEvaluacion = $REQUEST->getPost('idEvaluacion');
-        $idPregunta = $REQUEST->getPost('idPregunta');
-        $numPregunta = $REQUEST ->getPost('num_pregunta');
-        $idtipoPregunta = $REQUEST ->getPost('tipopregunta');
-
-        $usermodel = new Preguntas_model($db);
-        $query = "UPDATE preguntas SET delated = 1 WHERE id = $idPregunta AND idEvaluacion = $idEvaluacion AND num_pregunta = $numPregunta";
-        $usermodel->query($query);
-
-        //Opcion multiple
-        if($idtipoPregunta == 2){
-            $usermodel = new Pregunta_opcion_multiple($db);
-            $query = "UPDATE pregunta_opcion_multiple SET delated = 1 WHERE idEvaluacion = $idEvaluacion AND idPregunta = $idPregunta";
-           
-            $usermodel ->query($query);
-
-        }
-        //Opcion Audio 
-        if($idtipoPregunta == 3){
-            $usermodel = new Pregunta_opcion_audio($db);
-            $query = "UPDATE pregunta_opcion_audio SET delated = 1 WHERE idEvaluacion = $idEvaluacion AND idPregunta = $idPregunta";
-
-            $usermodel ->query($query);
-            
-        }
-        //Opcion Video
-        if($idtipoPregunta == 4){
-            $usermodel = new Pregunta_opcion_video($db);
-            $query = "UPDATE pregunta_opcion_video SET delated = 1 WHERE idEvaluacion = $idEvaluacion AND idPregunta = $idPregunta";
-
-            $usermodel ->query($query);
-
-        }
-        return redirect()->to(site_url("Preguntas/editarEvaluacion/$idEvaluacion"));
-
-    }
-        }else{
-                return redirect()->to(site_url('Home/salir'));
+}else{
+    return redirect()->to(site_url('Home/salir'));
    }
-
 }
+
+
+
 
 
 
