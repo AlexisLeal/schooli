@@ -14,6 +14,9 @@ use  App\Models\Pregunta_opcion_video;
 use  App\Models\Categorias_Evaluaciones;
 use  App\Models\Recursos_model;
 
+//Helpers ayuda atraer todo que contiene una evaluacion 
+// Nivel,Leccion,EVALUACION,Preguntas, el tipo de evualuacion y su categoria 
+//Tambien que trer todo de una pregunta su tipo y total 
 function getTipoUsuario()
 {
     $usermodel = new Tipo_usuarios($db);
