@@ -9,13 +9,12 @@ $collSistema       = strpos($curURL, "Sistema") ?  "collapse show" : "collapse";
 $collCatalogos     = strpos($curURL, 'Catalogos') ? "collapse show" : "collapse";
 
 // Menu para modulos
-$Modulos = ["Recursos"=>1,"Evaluaciones"=>2,"Estudiantes"=>3,"Grupos"=>4,"Ciclos"=>5,"Prospectos"=>6,"Teachers"=>7,"Tutores"=>8,"ClasesDemo"=>9,"Preguntas"=>10];
+$Modulos = ["Recursos"=>1,"Evaluaciones"=>2,"Alumnos"=>3,"Grupos"=>4,"Ciclos"=>5,"Prospectos"=>6,"Teachers"=>7,"Tutores"=>8,"ClasesDemo"=>9,"Preguntas"=>10];
 foreach($Modulos as $a=>$b){
   
   if(strpos($curURL, trim($a))){
     $collModulos  = "collapse show";
     $enlaceActivo = trim($a); 
-    echo $enlaceActivo; 
   break;
   }else{
     $collModulos = "collapse";
@@ -95,7 +94,7 @@ $collIntegraciones = strpos($curURL, 'Integraciones') ? "collapse show" : "colla
            <ul class="list-group">
              <li class="list-group-item"><a class="<?php if($enlaceActivo=='Recursos'){echo 'mi-active';}?>" href="<?php echo site_url('Recursos/recursos')?>">Recursos</a></li>
              <li class="list-group-item"><a class="<?php if($enlaceActivo=='Evaluaciones' || $enlaceActivo=='Preguntas'){echo 'mi-active';}?>" href="<?php echo site_url('Evaluaciones/index')?>">Evaluaciones</a></li>
-             <li class="list-group-item"><a href="#">Estudiantes</a></li>
+             <li class="list-group-item"><a class="<?php if($enlaceActivo=='Alumnos'){echo 'mi-active';}?>" href="<?php echo site_url('Alumnos/index')?>">Alumnos</a></li>
              <li class="list-group-item"><a href="#">Grupos</a></li>
              <li class="list-group-item"><a href="#">Ciclos</a></li>
              <li class="list-group-item"><a href="#">Prospectos</a></li>

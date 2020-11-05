@@ -5,7 +5,7 @@ use CodeIgniter\Model;
 class Direccion extends Model
 {
     #Nombre de la tabla
-    protected $table      = 'direccion';
+    protected $table      = 'direcciones';
     #nombre de la clave primaria 
     protected $primaryKey = 'id';
 

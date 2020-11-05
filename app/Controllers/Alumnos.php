@@ -31,7 +31,7 @@ class Alumnos extends BaseController{
         $resultado_U = $usermodel_U->query($query_U);
         $row_U = $resultado_U->getRow();
         //--------------------------------------------
-        $query_D = "SELECT * from direccion WHERE id = $row_U->id_direccion AND deleted = 0";
+        $query_D = "SELECT * from direcciones WHERE id = $row_U->id_direccion AND deleted = 0";
         $resultado_D = $usermodel_U->query($query_U);
         $row_D = $resultado_D->getRow();
 
@@ -157,7 +157,7 @@ class Alumnos extends BaseController{
         $resultado_U = $usermodel_U->query($query_U);
         $row_U = $resultado_U->getRow();
         //--------------------------------------------
-        $query_D = "SELECT id from direccion WHERE id = $row_U->id_direccion AND deleted = 0";
+        $query_D = "SELECT id from direcciones WHERE id = $row_U->id_direccion AND deleted = 0";
         $resultado_D = $usermodel_U->query($query_U);
         $row_D = $resultado_D->getRow();
 
