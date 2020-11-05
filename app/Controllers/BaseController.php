@@ -38,6 +38,8 @@ class BaseController extends Controller
 		// Do Not Edit This Line
 		parent::initController($request, $response, $logger);
 		helper('Operaciones');
+		helper('Alumnos');
+
 		$this->session= session();//para que herede a todos los controladores
 		//--------------------------------------------------------------------
 		// Preload any models, libraries, etc, here.

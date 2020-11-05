@@ -2,10 +2,10 @@
 
 use CodeIgniter\Model;
 
-class Usuarios extends Model
+class Alumnos_model extends Model
 {
     #Nombre de la tabla
-    protected $table      = 'usuarios';
+    protected $table      = 'alummnos';
     #nombre de la clave primaria 
     protected $primaryKey = 'id';
 
@@ -13,7 +13,7 @@ class Usuarios extends Model
     protected $useSoftDeletes = true;
 
     #Aqui ponemos el nombre de las columnas que vamos a modifcar
-    protected $allowedFields = ['nombre','apellido_paterno','apellido_materno','usuario','password','email','estado','telefono','movil','id_direccion','roll','fecha_creacion','fecha_ultimo_cambio','id_tipo_usuario'];
+    protected $allowedFields = ['id_usuario','matricula','id_plantel','id_unidad_negocio','fecha_creacion','fecha_ultimo_cambio'];
 
     protected $useTimestamps = false;
     protected $createdField  = 'fecha_creacion';
