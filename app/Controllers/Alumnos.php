@@ -1,6 +1,6 @@
 <?php namespace App\Controllers;
 use  App\Models\Usuarios; 
-use  App\Models\Direccion;
+use  App\Models\Direcciones;
 use  App\Models\Alumnos_model;
 
 class Alumnos extends BaseController{
@@ -19,7 +19,7 @@ class Alumnos extends BaseController{
     public function verAlumno($id_alumno)
     {
         if($this->session->get('login')){
-        $usermodel_D = new Direccion($db);
+        $usermodel_D = new Direcciones($db);
         $usermodel_U = new Usuarios($db);
         $usermodel_A = new alumnos($db);
 
@@ -31,7 +31,7 @@ class Alumnos extends BaseController{
         $resultado_U = $usermodel_U->query($query_U);
         $row_U = $resultado_U->getRow();
         //--------------------------------------------
-        $query_D = "SELECT * from direccion WHERE id = $row_U->id_direccion AND deleted = 0";
+        $query_D = "SELECT * from direcciones WHERE id = $row_U->id_direccion AND deleted = 0";
         $resultado_D = $usermodel_U->query($query_U);
         $row_D = $resultado_D->getRow();
 
@@ -78,13 +78,13 @@ class Alumnos extends BaseController{
                     'colonia' => $REQUEST->getPost(),
                     'codigo_postal' => $REQUEST->getPost(),
                     'municipio_delegacion' => $REQUEST->getPost(),
-                    'estado' => $REQUEST->getPost(),
+                    'id_entidad_federativa' => $REQUEST->getPost(),
                     'pais' => $REQUEST->getPost(),
                     'fecha_creacion' => $hoy,
                     'fecha_ultimo_cambio' => $hoy,
                 ];
                 //Insertamos los datos de la dirrecion 
-                $usermodel_D = new Direccion($db);
+                $usermodel_D = new Direcciones($db);
                 $usermodel_D->insert($data_direccion); 
                 $ultimo_id_direccion = $usermodel_D->insertID();
 
@@ -145,7 +145,7 @@ class Alumnos extends BaseController{
     public function eliminarAlumno($id_alumno)
     {
         if($this->session->get('login')){
-            $usermodel_D = new Direccion($db);
+            $usermodel_D = new Direcciones($db);
             $usermodel_U = new Usuarios($db);
             $usermodel_A = new alumnos($db);
                 
@@ -157,7 +157,7 @@ class Alumnos extends BaseController{
         $resultado_U = $usermodel_U->query($query_U);
         $row_U = $resultado_U->getRow();
         //--------------------------------------------
-        $query_D = "SELECT id from direccion WHERE id = $row_U->id_direccion AND deleted = 0";
+        $query_D = "SELECT id from direcciones WHERE id = $row_U->id_direccion AND deleted = 0";
         $resultado_D = $usermodel_U->query($query_U);
         $row_D = $resultado_D->getRow();
 
