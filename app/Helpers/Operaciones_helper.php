@@ -12,6 +12,7 @@ use  App\Models\Pregunta_opcion_multiple;
 use  App\Models\Pregunta_opcion_audio;
 use  App\Models\Pregunta_opcion_video;
 use  App\Models\Categorias_Evaluaciones;
+use  App\Models\Recursos_model;
 
 function getTipoUsuario()
 {
@@ -227,6 +228,15 @@ function getCategoriaEvaluacionEspecifica($id_categoria_evaluacion)
     $row = $resultado->getRow();
     $nombre = $row->nombre;
     return($nombre);
+}
+
+function getRecursos()
+{
+    $usermodel = new Recursos_model($db);
+    $query = "SELECT id,nombre,extencion,tipo_archivo,descripcion from recursos";
+    $resultado = $usermodel->query($query);
+    $rowArray = $resultado->getResult();
+    return($rowArray);
 }
 
 ?>

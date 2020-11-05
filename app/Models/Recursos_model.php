@@ -2,7 +2,7 @@
 
 use CodeIgniter\Model;
 
-class Recursos extends Model
+class Recursos_model extends Model
 {
     #Nombre de la tabla
     protected $table      = 'recursos';

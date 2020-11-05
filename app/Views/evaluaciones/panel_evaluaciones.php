@@ -95,7 +95,10 @@
         
               <div class="card">
                 <div class="card-body">
-              <table id="t01" class="display" cellspacing="10" cellpadding="10">
+                <?php
+                if(!empty(getEvaluacion($id_evaluacion,$id_nivel,$id_leccion))){
+                ?>
+              <table class="tabla-registros" class="display" cellspacing="6" cellpadding="8">
                 <thead>
               <tr>
               <th class="text-left">ID</th>
@@ -111,6 +114,11 @@
               </tr>
               </thead>
               <tbody>
+                <?php
+                }else{
+                  echo "No existen evaluaciones.";
+                }
+                ?>
             <?php
               //Dejarsala asi no moverle 
               $nombreEvaluaciones = getTipoEvaluacionEspecifico($id_evaluacion);
@@ -147,7 +155,9 @@
 
                 <td class="text-center">
                 <!--CAMBIAR A LINK-->
-                <a href="<?php echo site_url("Preguntas/verEvaluacion/$fila->id") ?>">VER</a>
+                <a href="<?php echo site_url("Preguntas/verEvaluacion/$fila->id") ?>">
+                <i class="fa fa-file-text-o fa-1x" aria-hidden="true"></i>
+                </a>
                 <!--
                 <form action="< ?php echo site_url('Preguntas/verEvaluacion')?>" name="ver_evaluacion" id="" method="post">
                 <input type="hidden" name="id_e" id="id_e" value="< ?php echo $fila->id;?>">
@@ -166,7 +176,9 @@
                 
                 <!--CAMBIAR A LINK -->
                 <td class="text-center">
-                <a href="<?php echo site_url("Preguntas/editarEvaluacion/$fila->id") ?>"> EDITAR</a>
+                <a href="<?php echo site_url("Preguntas/editarEvaluacion/$fila->id") ?>">
+                <i class="fa fa-pencil-square-o fa-1x" aria-hidden="true"></i>
+                </a>
               <!--  <form action="< ?php echo site_url('Preguntas/editarEvaluacion')?>" name="editar_evaluacion" id="" method="post">
                 <input type="hidden" name="id_e" id="id_e" value="< ?php echo $fila->id;?>">
                 <input type="hidden" name="nombre" id="nombre" value="< ?php echo $fila ->nombre;?>">
@@ -185,7 +197,8 @@
 
 
                 <td class="text-center">
-                <a href="<?php echo site_url("Preguntas/agregar_preguntas/$fila->id")?>">AGREGAR UNA PREGUNTA</a>
+                <a href="<?php echo site_url("Preguntas/agregar_preguntas/$fila->id")?>">
+                <i class="fa fa-plus-circle fa-1x" aria-hidden="true"></i></a>
                <!--
                 <form action="< ?php echo site_url('Preguntas/agregar_preguntas')?>" name="agregar_pregunta" id="" method="post">
                 <input type="hidden" name="id_e" id="id_e" value="< ?php echo $fila->id;?>">

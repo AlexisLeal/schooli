@@ -6,6 +6,25 @@ body {
 
 }
 
+.tabla-registros th {
+  background-color:#06a9ca;
+  color:#fff;
+  font-style:arial;
+  font-size:90%;
+}
+.tabla-registros tr:nth-child(even) {
+background-color: #eee;
+}
+.tabla-registros tr:nth-child(odd) {
+background-color: #fff;
+}
+/*
+input[type="button"] {
+border: none;
+outline:none;
+}
+*/
+
 a {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 95%;
