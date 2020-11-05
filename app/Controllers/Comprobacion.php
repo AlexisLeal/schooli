@@ -19,7 +19,7 @@ class Comprobacion extends BaseController{
                     }
 
         $usermodel = new Usuarios($db);
-        $query = "SELECT * FROM usuarios WHERE usuario='".$credenciales['credencial']."' and password='".$credenciales['inputPassword']."' and estado=1 and id_tipo_usuario = '".$credenciales['tipo_usuario']."'";
+        $query = "SELECT * FROM usuarios WHERE usuario='".$credenciales['credencial']."' and password='".$credenciales['inputPassword']."' and estado=1 and id_tipo_usuario = '".$credenciales['tipo_usuario']."'AND deleted = 0";
         $resultado = $usermodel ->query($query);	
         $row = $resultado->getRow(); //Nos regresa la primera fila (y en este caso solo debe ser una) 
         if(empty($row)){ //Si no encuntra nada  nos regresa a login 

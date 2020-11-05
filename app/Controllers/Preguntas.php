@@ -158,13 +158,13 @@ public function deletedPreguntas()
         $idtipoPregunta = $REQUEST ->getPost('tipopregunta');
 
         $usermodel = new Preguntas_model($db);
-        $query = "UPDATE preguntas SET delated = 1 WHERE id = $idPregunta AND idEvaluacion = $idEvaluacion AND num_pregunta = $numPregunta";
+        $query = "UPDATE preguntas SET deleted = 1 WHERE id = $idPregunta AND idEvaluacion = $idEvaluacion AND num_pregunta = $numPregunta";
         $usermodel->query($query);
 
         //Opcion multiple
         if($idtipoPregunta == 2){
             $usermodel = new Pregunta_opcion_multiple($db);
-            $query = "UPDATE pregunta_opcion_multiple SET delated = 1 WHERE idEvaluacion = $idEvaluacion AND idPregunta = $idPregunta";
+            $query = "UPDATE pregunta_opcion_multiple SET deleted = 1 WHERE idEvaluacion = $idEvaluacion AND idPregunta = $idPregunta";
            
             $usermodel ->query($query);
 
@@ -172,7 +172,7 @@ public function deletedPreguntas()
         //Opcion Audio 
         if($idtipoPregunta == 3){
             $usermodel = new Pregunta_opcion_audio($db);
-            $query = "UPDATE pregunta_opcion_audio SET delated = 1 WHERE idEvaluacion = $idEvaluacion AND idPregunta = $idPregunta";
+            $query = "UPDATE pregunta_opcion_audio SET deleted = 1 WHERE idEvaluacion = $idEvaluacion AND idPregunta = $idPregunta";
 
             $usermodel ->query($query);
             
@@ -180,11 +180,14 @@ public function deletedPreguntas()
         //Opcion Video
         if($idtipoPregunta == 4){
             $usermodel = new Pregunta_opcion_video($db);
-            $query = "UPDATE pregunta_opcion_video SET delated = 1 WHERE idEvaluacion = $idEvaluacion AND idPregunta = $idPregunta";
+            $query = "UPDATE pregunta_opcion_video SET deleted = 1 WHERE idEvaluacion = $idEvaluacion AND idPregunta = $idPregunta";
 
             $usermodel ->query($query);
 
         }
+
+        $data = ['Eliminacion'  => 'La pregunta se elimino correctamente'];
+        $this->session->set($data,true);
         return redirect()->to(site_url("Preguntas/editarEvaluacion/$idEvaluacion"));
 
     }
@@ -217,7 +220,7 @@ public function insertarPregunta()
               $numeropregunta = 1;
           }else{
           //Vamos a obtener el numero maximo de preguntas
-          $usermodel->Select('(SELECT max(num_pregunta) FROM preguntas WHERE idEvaluacion= '.$idEvaluacion.') as ultimo_numero_pregunta', FALSE);
+          $usermodel->Select('(SELECT max(num_pregunta) FROM preguntas WHERE idEvaluacion= '.$idEvaluacion.'AND deleted = 0) as ultimo_numero_pregunta ', FALSE);
           $query = $usermodel->get();
           $fila = $query -> getRow();
         

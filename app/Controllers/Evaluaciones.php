@@ -102,7 +102,7 @@ class Evaluaciones extends BaseController{
 
 
             //Primero comprobamos si ya existe una evaluacion
-            $query = "SELECT * FROM evaluaciones WHERE tipo_evaluacion = $tipo_evaluacion AND nivel = $nivel AND leccion = $leccion";
+            $query = "SELECT * FROM evaluaciones WHERE tipo_evaluacion = $tipo_evaluacion AND nivel = $nivel AND leccion = $leccion AND deleted = 0;";
             $resultado = $usermodel->query($query);
             $fila = $resultado -> getRow();
             

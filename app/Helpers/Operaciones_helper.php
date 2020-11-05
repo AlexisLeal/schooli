@@ -17,7 +17,7 @@ use  App\Models\Recursos_model;
 function getTipoUsuario()
 {
     $usermodel = new Tipo_usuarios($db);
-    $query = "Select id,nombre FROM  tipo_usuarios";
+    $query = "SELECT id,nombre FROM  tipo_usuarios WHERE deleted = 0";
     $resultado = $usermodel ->query($query);
     // Lo comvertimos del tipo array 
     $rowArray = $resultado -> getResult();
@@ -29,7 +29,7 @@ function getTipoUsuario()
 //Funcion para obtener TODAS la evaluaciones  
 function getTipoEvaluacion(){
     $usermodel = new Tipo_evaluacion($db);
-    $query = "SELECT id,nombre from tipo_evaluacion";
+    $query = "SELECT id,nombre from tipo_evaluacion WHERE deleted = 0";
     $resultado = $usermodel ->query($query);
     // Lo comvertimos del tipo array 
     $rowArray = $resultado -> getResult();
@@ -39,7 +39,7 @@ function getTipoEvaluacion(){
 //Funcion para obtener TODOS los nivels
 function getNivel(){
     $usermodel = new Niveles_evaluacion($db);
-    $query = "SELECT id,nombre from niveles_evaluacion";
+    $query = "SELECT id,nombre from niveles_evaluacion WHERE deleted = 0";
     $resultado = $usermodel ->query($query);
     // Lo comvertimos del tipo array 
     $rowArray = $resultado -> getResult();
@@ -49,7 +49,7 @@ function getNivel(){
 //Funcion para tener obtener TODAS las leccion  
 function getleccion(){
     $usermodel = new Lecciones_evaluacion($db);
-    $query = "SELECT id,nombre from lecciones_evaluacion";
+    $query = "SELECT id,nombre from lecciones_evaluacion WHERE deleted = 0";
     $resultado = $usermodel ->query($query);
     // Lo comvertimos del tipo array 
     $rowArray = $resultado -> getResult();
@@ -60,7 +60,7 @@ function getleccion(){
  function getTotalEvaluacion($id_tipo_evaluacion,$nivel)
 {//Funcion para obtener un numero de total de evaluaciones por nivel 
     $usermodel = new Evaluaciones_model($db);
-    $query = "select * from evaluaciones where tipo_evaluacion = $id_tipo_evaluacion AND nivel = $nivel";
+    $query = "SELECT * from evaluaciones where tipo_evaluacion = $id_tipo_evaluacion AND nivel = $nivel AND deleted = 0";
     $resultado = $usermodel ->query($query);
     // Lo comvertimos del tipo array 
     $rowArray = $resultado -> getResult();
@@ -73,7 +73,7 @@ function getleccion(){
  function getnivelEspecifico($id_nivel)
 {
     $usermodel = new Niveles_evaluacion($db);
-    $query = "SELECT nombre from niveles_evaluacion WHERE id = $id_nivel";
+    $query = "SELECT nombre from niveles_evaluacion WHERE id = $id_nivel AND deleted = 0";
     $resultado = $usermodel ->query($query);
     // el getrow nos regresa una sola fila por eso no utlizamos el getResult que nos regresa un array luego no especificamos el lugar
     $row = $resultado->getRow();
@@ -86,7 +86,7 @@ function getTipoEvaluacionEspecifico($id_tipo_evaluacion)
 {
     //Nos devuele si es sistema o exci 
     $usermodel = new Tipo_evaluacion($db);
-    $query = "SELECT id,nombre from tipo_evaluacion WHERE id = $id_tipo_evaluacion";
+    $query = "SELECT id,nombre from tipo_evaluacion WHERE id = $id_tipo_evaluacion AND deleted = 0";
     $resultado = $usermodel ->query($query);
     // el getrow nos regresa una sola fila por eso no utlizamos el getResult que nos regresa un array luego no especificamos el lugar
     $row = $resultado->getRow();
@@ -96,9 +96,9 @@ function getTipoEvaluacionEspecifico($id_tipo_evaluacion)
 function getTotalEvaluacionLeccion($id_tipo_evaluacion,$id_nivel,$id_leccion)
 {//Funcion para obtener un numero de total de evaluaciones por seccion 
     $usermodel = new Evaluaciones_model($db);
-    $query = "select * from evaluaciones where tipo_evaluacion = $id_tipo_evaluacion AND nivel = $id_nivel AND leccion = $id_leccion";
+    $query = "SELECT * from evaluaciones where tipo_evaluacion = $id_tipo_evaluacion AND nivel = $id_nivel AND leccion = $id_leccion AND deleted = 0";
     $resultado = $usermodel ->query($query);
-    // Lo comvertimos del tipo array 
+    // Lo convertimos del tipo array 
     $rowArray = $resultado -> getResult();
     $total = count($rowArray);
     return($total);
@@ -108,7 +108,7 @@ function getTotalEvaluacionLeccion($id_tipo_evaluacion,$id_nivel,$id_leccion)
 function getEvaluacion($id_tipo_evaluacion,$id_nivel,$id_leccion)
 {//Funcion para obtener las evaluaciones por el tipo, nivel y leccion  
     $usermodel = new Evaluaciones_model($db);
-    $query = "select * from evaluaciones where tipo_evaluacion = $id_tipo_evaluacion AND nivel = $id_nivel AND leccion = $id_leccion";
+    $query = "SELECT * from evaluaciones where tipo_evaluacion = $id_tipo_evaluacion AND nivel = $id_nivel AND leccion = $id_leccion AND deleted = 0";
     $resultado = $usermodel ->query($query);
     // Lo convertimos del tipo array 
     $rowArray = $resultado -> getResult();
@@ -121,7 +121,7 @@ function getValorTotalPreguntas($id_evaluacion)
 {
     $usermodel = new Preguntas_model($db);
     //Esta es mas directa pero un poco mas complicada prefiero el viejo metodo esto solo para cosas muy especificas como una suma o un conteo
-    $usermodel->SELECT('(SELECT SUM(valor) FROM preguntas WHERE idEvaluacion= '.$id_evaluacion.') as v', FALSE);
+    $usermodel->SELECT('(SELECT SUM(valor) FROM preguntas WHERE idEvaluacion= '.$id_evaluacion.' AND deleted = 0) as v', FALSE);
     //Forma de ejecutar un query mediante codelgniter 
      $query = $usermodel->get();
      $row = $query -> getRow();
@@ -136,7 +136,7 @@ function getValorTotalPreguntas($id_evaluacion)
 function getTotalPreguntas($id_evaluacion)
 {
     $usermodel = new Preguntas_model($db);
-    $query = "SELECT idEvaluacion FROM preguntas WHERE idEvaluacion= $id_evaluacion and delated =0";
+    $query = "SELECT idEvaluacion FROM preguntas WHERE idEvaluacion= $id_evaluacion and deleted =0";
     $resultado = $usermodel ->query($query);
     $rowArray = $resultado -> getResult();
     $total = count($rowArray);
@@ -148,7 +148,7 @@ function getUsuarioCreo($id_usuario)
 //Funcion para obtener el nombre de usuario que creo una evaluacion     
 {
     $usermodel = new Usuarios($db);
-    $query = "SELECT nombre,apellido_paterno,apellido_materno from usuarios where id = $id_usuario";
+    $query = "SELECT nombre,apellido_paterno,apellido_materno from usuarios where id = $id_usuario AND deleted = 0";
      $resultado = $usermodel ->query($query);
      //Obtiene la primera columna  y por eso no utlizamos el getResult
     $rowArray = $resultado -> getRow();
@@ -160,7 +160,7 @@ function getUsuarioCreo($id_usuario)
 function getTipoPreguntas()     
 {
     $usermodel = new Tipo_preguntas($db);
-    $query = "SELECT id,nombre from tipo_preguntas";
+    $query = "SELECT id,nombre from tipo_preguntas WHERE deleted = 0";
     $resultado = $usermodel->query($query);
     $rowArray = $resultado->getResult();
     return($rowArray);
@@ -171,7 +171,7 @@ function getTipoPreguntas()
 function getPreguntas($id_evaluacion)
 {
     $usermodel = new Preguntas_model($db);
-    $query = "SELECT * from preguntas where idEvaluacion = $id_evaluacion and delated=0";
+    $query = "SELECT * from preguntas where idEvaluacion = $id_evaluacion and deleted=0";
     $resultado = $usermodel->query($query);
     $rowArray = $resultado->getResult();
     return($rowArray);
@@ -181,7 +181,7 @@ function getPreguntas($id_evaluacion)
  function getPreguntaOpcion_multiple($id_evaluacion,$id_pregunta)
 {
     $usermodel = new Pregunta_opcion_multiple($db);
-    $query = "SELECT idEvaluacion,idPregunta,valor1,valor2,valor3,valor4 from pregunta_opcion_multiple where idEvaluacion=$id_evaluacion and idPregunta=$id_pregunta";
+    $query = "SELECT idEvaluacion,idPregunta,valor1,valor2,valor3,valor4 from pregunta_opcion_multiple where idEvaluacion=$id_evaluacion and idPregunta=$id_pregunta AND deleted = 0";
     $resultado = $usermodel->query($query);
     $rowArray = $resultado -> getRow();
     return($rowArray);
@@ -189,7 +189,7 @@ function getPreguntas($id_evaluacion)
  function getPreguntaOpcion_audio($id_evaluacion,$id_pregunta)
 {
     $usermodel = new Pregunta_opcion_audio($db);
-    $query = "SELECT idEvaluacion,idPregunta,nombre_audio,ruta_audio from pregunta_opcion_audio WHERE idEvaluacion=$id_evaluacion AND idPregunta=$id_pregunta";
+    $query = "SELECT idEvaluacion,idPregunta,nombre_audio,ruta_audio from pregunta_opcion_audio WHERE idEvaluacion=$id_evaluacion AND idPregunta=$id_pregunta AND deleted = 0";
     $resultado = $usermodel->query($query);
     $rowArray = $resultado -> getRow();
     return($rowArray);
@@ -199,7 +199,7 @@ function getPreguntas($id_evaluacion)
 function getPreguntaOpcion_video($id_evaluacion,$id_pregunta)
 {
     $usermodel = new Pregunta_opcion_video($db);
-    $query = "SELECT idEvaluacion,idPregunta,nombre_video,ruta_video FROM pregunta_opcion_video WHERE idEvaluacion=$id_evaluacion AND idPregunta=$id_pregunta";   
+    $query = "SELECT idEvaluacion,idPregunta,nombre_video,ruta_video FROM pregunta_opcion_video WHERE idEvaluacion=$id_evaluacion AND idPregunta=$id_pregunta AND deleted = 0";   
     $resultado = $usermodel->query($query);
     $row = $resultado -> getRow();
     if(empty($row)){
@@ -214,7 +214,7 @@ function getPreguntaOpcion_video($id_evaluacion,$id_pregunta)
 function getCategoriaEvaluacion()
 {
     $usermodel = new Categorias_Evaluaciones($db);
-    $query = "SELECT id,nombre from categorias_evaluaciones";
+    $query = "SELECT id,nombre from categorias_evaluaciones AND deleted = 0";
     $resultado = $usermodel->query($query);
     $rowArray = $resultado->getResult();
     return($rowArray);
@@ -223,7 +223,7 @@ function getCategoriaEvaluacion()
 function getCategoriaEvaluacionEspecifica($id_categoria_evaluacion)
 {
     $usermodel = new Categorias_Evaluaciones($db);
-    $query = "SELECT nombre from categorias_evaluaciones WHERE id = $id_categoria_evaluacion";
+    $query = "SELECT nombre from categorias_evaluaciones WHERE id = $id_categoria_evaluacion AND deleted = 0";
     $resultado = $usermodel->query($query);
     $row = $resultado->getRow();
     $nombre = $row->nombre;
