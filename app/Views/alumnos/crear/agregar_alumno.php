@@ -61,28 +61,165 @@
 
 
 
-              
-
+          <h4>Registro de alumno.</h4>
           <div class="espacioUno"></div>
         
               <div class="card">
                 <div class="card-body">
-                <table class="tabla-registros" class="display" cellspacing="6" cellpadding="8">
-                <thead>
-                <tr>
-                <th class="text-left">ID</th>
-                <th class="text-left">Nombre</th>
-                <th class="text-left">Grupo</th>
-                <th class="text-left">Unidd de negocio</th>
-                <th class="text-left">Plantel</th>
-                <th class="text-left">Matricula</th>
-                <th class="text-left">Ver</th>
-                <th class="text-left">Editar</th>
-                </tr>
-                </thead>
-                </table>
+
+                <form action="<?php echo site_url('');?>" method="post">
+                <div class="espacioDos"></div>
+                Datos Generales
+                <div class="espacioDos"></div>
+                <div class="row">
+                  <div class="col">
+                    <input type="text" name="nombre" id="nombre" class="form-control form-control-sm" placeholder="Nombre">
+                  </div>
+                  <div class="col">
+                    <input type="text" name="apellido_paterno" id="apellido_paterno" class="form-control form-control-sm" placeholder="Apellido Paterno">
+                  </div>
+                </div>
+
+                <div class="espacioUno"></div>
+
+                <div class="row">
+                  <div class="col">
+                    <input type="text" name="apellido_materno" id="apellido_materno" class="form-control form-control-sm" placeholder="Apellido Materno">
+                  </div>
+                  <div class="col">
+                    <input type="text" name="usuario" id="usuario" class="form-control form-control-sm" placeholder="Usuario">
+                  </div>
+                </div>
+                
+                <div class="espacioUno"></div>
+
+                <div class="row">
+                  <div class="col">
+                    <input type="email" name="email" id="email" class="form-control form-control-sm" placeholder="Correo">
+                  </div>
+                  <div class="col">
+                    <input type="password" name="password" id="password" class="form-control form-control-sm" placeholder="Contraseña">
+                  </div>
+                </div>
+            
+                <div class="espacioUno"></div>
+
+                <div class="row">
+                  <div class="col">
+                    <input type="text" name="telefono" id="telefono" class="form-control form-control-sm" placeholder="Teléfono">
+                  </div>
+                  <div class="col">
+                    <input type="text" name="movil" id="movil" class="form-control form-control-sm" placeholder="Móvil o WhatssApp">
+                  </div>
+                </div>
+
+
+                <div class="espacioUno"></div>
+                
+
+                <div class="row">
+                  <div class="col">
+                  Roll
+                  <select class="form-control form-control-sm" name="roll" id="roll" required="">
+                    <option value="">Seleccione una opción</option>
+                  </select>
+                  </div>
+                  <div class="col">
+ 
+                  </div>
+                </div>
+
+
+                <div class="espacioDos"></div>
+                <hr class="linea"/>
+                Datos Escolares
+                <div class="espacioDos"></div>
+                <div class="row">
+                  <div class="col">
+                    Matricula
+                    <input type="text" name="matricula" id="matricula" class="form-control form-control-sm" placeholder="Matricula">
+                  </div>
+                  <div class="col">
+                    Unidad de negocio
+                  <select class="form-control form-control-sm" name="unidad_negocio" id="unidad_negocio" required="">
+                    <option value="">Seleccione una opción</option>
+                  </select>
+                  </div>
+                </div>
+
+
+                <div class="espacioUno"></div>
+                
+
+                <div class="row">
+                  <div class="col">
+                  Plantel
+                  <select class="form-control form-control-sm" name="plantel" id="plantel" required="">
+                    <option value="">Seleccione una opción</option>
+                  </select>
+
+                  </div>
+                  <div class="col">
+                  </div>
+                </div>
+
+              <div class="form-group">
+                <label for="lblInstrucciones">Comentarios</label>
+                <textarea class="form-control form-control-sm" name="comentarios" id="comentarios" rows="3" required=""></textarea>
               </div>
-            </div>
+                <div class="espacioDos"></div>
+                <hr class="linea"/>
+                Direccion
+                <div class="espacioDos"></div>
+                <div class="row">
+                  <div class="col">
+                  <input type="text" name="calle" id="calle" class="form-control form-control-sm" placeholder="Calle">
+                  </div>
+                  <div class="col">
+                  <input type="text" name="num_interior" id="num_interior" class="form-control form-control-sm" placeholder="Número interior">
+                  </div>
+                </div>
+
+                <div class="espacioUno"></div>
+
+                <div class="row">
+                  <div class="col">
+                  <input type="text" name="num_exterior" id="num_exterior" class="form-control form-control-sm" placeholder="Número exterior">
+                  </div>
+                  <div class="col">
+                  <input type="text" name="colonia" id="colonia" class="form-control form-control-sm" placeholder="Colonia">
+                  </div>
+                </div>
+
+                <div class="espacioUno"></div>
+
+                <div class="row">
+                  <div class="col">
+                  <input type="text" name="cp" id="cp" class="form-control form-control-sm" placeholder="Código Postal">
+                  </div>
+                  <div class="col">
+                  <input type="text" name="municipio_delegacion" id="municipio_delegacion" class="form-control form-control-sm" placeholder="Municipio / Delegación">
+                  </div>
+                </div>
+
+                <div class="espacioUno"></div>
+
+                <div class="row">
+                  <div class="col">
+                  <input type="text" name="entidad_federativa" id="entidad_federativa" class="form-control form-control-sm" placeholder="Entidad Federativa">
+                  </div>
+                  <div class="col">
+                  <input type="text" name="pais" id="pais" class="form-control form-control-sm" placeholder="Pais">
+                  </div>
+                </div>
+
+              <div class="espacioUno"></div>
+
+              <button type="submit" name="crearEvaluacion" class="btn btn-primary btn-sm">Registrar</button>
+              </form>
+
+              </div>
+              </div>
           </div>
 
 
