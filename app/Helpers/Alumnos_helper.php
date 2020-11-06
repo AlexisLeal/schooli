@@ -6,15 +6,7 @@ use  App\Models\Rolles;
 use  App\Models\Alumnos_model;
 use  App\Models\Entidades_federativas;
 use  App\Models\Usuarios; 
-
-function getTipoUsuarioAlumno()
-{
-    $usermodel = new Tipo_usuarios($db);
-    $query = "SELECT id,nombre FROM  tipo_usuarios WHERE deleted = 0 AND id  = 1";
-    $resultado = $usermodel ->query($query);   
-    $row = $resultado -> getRow();
-     return ($row);
-}
+use  App\Models\Paises; 
 
 function getPlanteles()
 {
@@ -60,6 +52,15 @@ function getEstados()
     return($rowArray);
     
 }
+function getPaises()
+{
+    $usermodel = new Entidades_federativas($db);
+    $query = "SELECT id,nombre FROM  paises";
+    $resultado = $usermodel ->query($query);   
+    $rowArray = $usermodel->getResult();
+    return($rowArray);
+    
+}
 
 
 function getPlanteEspecifico($id_plantel)
@@ -92,4 +93,6 @@ function getAlumnoEspecifico($id_usuario)
     $row = $resultado->getRow();
     return($row);   
 }
+
+
 ?>

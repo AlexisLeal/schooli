@@ -2,10 +2,10 @@
 
 use CodeIgniter\Model;
 
-class Direcciones extends Model
+class Paises extends Model
 {
     #Nombre de la tabla
-    protected $table      = 'direcciones';
+    protected $table      = 'paises';
     #nombre de la clave primaria 
     protected $primaryKey = 'id';
 
@@ -13,7 +13,7 @@ class Direcciones extends Model
     protected $useSoftDeletes = true;
 
     #Aqui ponemos el nombre de las columnas que vamos a modifcar
-    protected $allowedFields = ['calle','numero_interior','numero_exterior','colonia','codigo_postal','municipio_delegacion','id_entidad_federativa','id_pais','fecha_creacion','fecha_ultimo_cambio'];
+    protected $allowedFields = [];
 
     protected $useTimestamps = false;
     protected $createdField  = 'fecha_creacion';
