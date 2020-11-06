@@ -2,6 +2,7 @@
 use  App\Models\Usuarios; 
 use  App\Models\Direcciones;
 use  App\Models\Alumnos_model;
+use  App\Models\Planteles;
 
 class Alumnos extends BaseController{
 
@@ -141,6 +142,16 @@ class Alumnos extends BaseController{
         
     }
 
+    function plantelesUnidadNegocio()
+    {
+        $usermodel = new Planteles($db);
+        $query = "SELECT id,nombre FROM  planteles WHERE deleted = 0";
+        $resultado = $usermodel ->query($query);   
+        $rowArray = $resultado->getResult();
+        //return($rowArray);
+        echo "exito";
+    }
+    
 
     public function eliminarAlumno($id_alumno)
     {
