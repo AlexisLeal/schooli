@@ -98,7 +98,6 @@
               <th class="text-left">Plantel</th>
               <th class="text-left">Ver</th>
               <th class="text-left">Editar</th>
-              <th class="text-left">Agregar preguntas</th>
               </tr>
               </thead>
               </table>
