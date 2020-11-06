@@ -5,7 +5,7 @@ use CodeIgniter\Model;
 class Alumnos_model extends Model
 {
     #Nombre de la tabla
-    protected $table      = 'alummnos';
+    protected $table      = 'alumnos';
     #nombre de la clave primaria 
     protected $primaryKey = 'id';
 
@@ -13,7 +13,7 @@ class Alumnos_model extends Model
     protected $useSoftDeletes = true;
 
     #Aqui ponemos el nombre de las columnas que vamos a modifcar
-    protected $allowedFields = ['id_usuario','matricula','id_plantel','id_unidad_negocio','fecha_creacion','fecha_ultimo_cambio'];
+    protected $allowedFields = ['id_usuario','matricula','id_plantel','id_unidad_negocio','comentarios','fecha_creacion','fecha_ultimo_cambio'];
 
     protected $useTimestamps = false;
     protected $createdField  = 'fecha_creacion';

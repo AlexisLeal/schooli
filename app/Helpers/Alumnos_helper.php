@@ -25,7 +25,7 @@ function getUnidadNegocio()
     $rowArray = $resultado->getResult();
     return($rowArray);
 }
-function getRollAlumno()
+function getRoll()
 {
     $usermodel = new Rolles($db);
     $query = "SELECT id,nombre FROM  rolles WHERE deleted = 0";

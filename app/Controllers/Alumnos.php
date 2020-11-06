@@ -115,8 +115,9 @@ class Alumnos extends BaseController{
                 $data_alummno=[
                     'id_usuario' => $ultimo_id_usuario,
                     'matricula' => $REQUEST->getPost('matricula'),
-                    'id_plantel' => $REQUEST->getPost(),
-                    'id_unidad_negocio' => $REQUEST->getPost(),
+                    'id_plantel' => $REQUEST->getPost('plantel'),
+                    'id_unidad_negocio' => $REQUEST->getPost('unidad_negocio'),
+                    'comentarios' => $REQUEST->getPost('comentarios'),
                     'fecha_creacion' => $hoy,
                     'fecha_ultimo_cambio' => $hoy,
                 ];
@@ -140,8 +141,7 @@ class Alumnos extends BaseController{
     {
         
     }
-
-
+   
     public function eliminarAlumno($id_alumno)
     {
         if($this->session->get('login')){

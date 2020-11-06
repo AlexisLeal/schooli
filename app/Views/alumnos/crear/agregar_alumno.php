@@ -67,7 +67,7 @@
               <div class="card">
                 <div class="card-body">
 
-                <form action="<?php echo site_url('');?>" method="post">
+                <form action="<?php echo site_url('Alumnos/insertarAlumno');?>" method="post">
                 <div class="espacioDos"></div>
                 Datos Generales
                 <div class="espacioDos"></div>
@@ -122,7 +122,7 @@
                   Roll
                   <select class="form-control form-control-sm" name="roll" id="roll" required="">
                     <option value="">Seleccione una opción</option>
-                    <?php foreach(getRollAlumno() as $fila){?>
+                    <?php foreach(getRoll() as $fila){?>
                     <option value="<?php echo $fila->id?>"><?php echo $fila->nombre?></option>
                     <?php } ?> 
                   </select>
@@ -214,17 +214,17 @@
                 <div class="row">
                   <div class="col">
                   Estado
-                  <select class="form-control form-control-sm" name="roll" id="roll" required="">
+                  <select class="form-control form-control-sm" name="entidad_federativa" id="entidad_federativa" required="">
                     <?php foreach(getEstados() as $fila){?>
-                    <option value="<?php echo $fila->id?>"><?php echo $fila->nombre?></option>
+                    <option value="<?php echo $fila->id;?>"><?php echo $fila->nombre;?></option>
                     <?php } ?> 
                   </select>
                   </div>
                   <div class="col">
                   Pais
-                  <select class="form-control form-control-sm" name="roll" id="roll" required="">
+                  <select class="form-control form-control-sm" name="pais" id="pais" required="">
                     <?php foreach(getPaises() as $fila){?>
-                    <option value="<?php echo $fila->id?>"><?php echo $fila->pais?></option>
+                    <option value="<?php echo $fila->id;?>"><?php echo $fila->pais;?></option>
                     <?php } ?> 
                     </select>
                   </div>
@@ -232,7 +232,7 @@
 
               <div class="espacioUno"></div>
 
-              <button type="submit" name="crearEvaluacion" class="btn btn-primary btn-sm">Registrar</button>
+              <button type="submit" name="submitAL" class="btn btn-primary btn-sm">Registrar</button>
               </form>
 
               </div>
