@@ -60,7 +60,7 @@
               </div> 
 
 
-              <a href="<?php echo site_url('/Evaluaciones/crear_evaluacion'); ?>">Registrar Alumno.</a><br/>
+              <a href="<?php echo site_url('/Alumnos/agregaralumnos'); ?>">Registrar Alumno.</a><br/>
 
           <div class="espacioUno"></div>
         
@@ -71,7 +71,6 @@
                 <tr>
                 <th class="text-left">ID</th>
                 <th class="text-left">Nombre</th>
-                <th class="text-left">Grupo</th>
                 <th class="text-left">Unidd de negocio</th>
                 <th class="text-left">Plantel</th>
                 <th class="text-left">Matricula</th>
@@ -79,6 +78,25 @@
                 <th class="text-left">Editar</th>
                 </tr>
                 </thead>
+                <?php foreach(getAllAlumnos() as $fila){
+                  $Alumno = getAlumnoEspecifico($fila->id_usuario);
+                  
+                  ?>
+
+                <td><?php echo $fila->id;?></td>
+                <td><?php echo $Alumno->nombre.' '.$Alumno->apellido_paterno.' '.$Alumno->apellido_materno;?></td>
+                <td><?php echo getUnidadNegocioEspecifico($fila->id_unidad_negocio);?></td>
+                <td><?php echo getPlanteEspecifico($fila->id_plantel);?></td>
+                <td><?php echo $fila->matricula;?></td>
+
+
+
+                <?php
+              }
+              ?>
+
+
+
                 </table>
               </div>
             </div>

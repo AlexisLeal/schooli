@@ -217,7 +217,7 @@ function getPreguntaOpcion_video($id_evaluacion,$id_pregunta)
 function getCategoriaEvaluacion()
 {
     $usermodel = new Categorias_Evaluaciones($db);
-    $query = "SELECT id,nombre from categorias_evaluaciones AND deleted = 0";
+    $query = "SELECT id,nombre from categorias_evaluaciones WHERE deleted = 0";
     $resultado = $usermodel->query($query);
     $rowArray = $resultado->getResult();
     return($rowArray);
