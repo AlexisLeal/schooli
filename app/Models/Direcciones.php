@@ -2,7 +2,7 @@
 
 use CodeIgniter\Model;
 
-class Direccion extends Model
+class Direcciones extends Model
 {
     #Nombre de la tabla
     protected $table      = 'direcciones';

@@ -4,6 +4,7 @@ use  App\Models\Planteles;
 use  App\Models\Unidad_negocio;
 use  App\Models\Rolles;
 use  App\Models\Alumnos_model;
+use  App\Models\Entidades_federativas;
 
 function getTipoUsuarioAlumno()
 {
@@ -49,5 +50,14 @@ function getAllAlumnos()
     return($rowArray);   
 }
 
+function getEstados()
+{
+    $usermodel = new Entidades_federativas($db);
+    $query = "SELECT id,nombre FROM  entidades_federativas WHERE deleted = 0";
+    $resultado = $usermodel ->query($query);   
+    $rowArray = $usermodel->getResult();
+    return($rowArray);
+    
+}
 
 ?>
