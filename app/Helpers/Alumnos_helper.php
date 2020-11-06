@@ -10,12 +10,16 @@ use  App\Models\Paises;
 
 function getPlanteles()
 {
+
     $usermodel = new Planteles($db);
     $query = "SELECT id,nombre FROM  planteles WHERE deleted = 0";
     $resultado = $usermodel ->query($query);   
     $rowArray = $resultado->getResult();
     return($rowArray);
 }
+
+
+
 
 function getUnidadNegocio()
 {

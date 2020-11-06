@@ -145,6 +145,7 @@
                   <div class="col">
                     Unidad de negocio
                   <select class="form-control form-control-sm" name="unidad_negocio" id="unidad_negocio" required="">
+                  <option value="">Selecciona una opción</option>
                   <?php foreach(getUnidadNegocio() as $fila){?>
                     <option value="<?php echo $fila->id?>"><?php echo $fila->nombre?></option>
                     <?php } ?> 
@@ -153,22 +154,33 @@
                 </div>
 
 
+
+
+
+
+
+
                 <div class="espacioUno"></div>
-                
 
                 <div class="row">
                   <div class="col">
                   Plantel
                   <select class="form-control form-control-sm" name="plantel" id="plantel" required="">
-                  <?php foreach(getPlanteles() as $fila){?>
-                    <option value="<?php echo $fila->id?>"><?php echo $fila->nombre?></option>
-                    <?php } ?> 
+                  <option value="">Selecciona una opción</option>
+                  <?php //foreach(getPlanteles() as $fila){?>
+                   <!-- <option value="<?php //echo $fila->id?>"><?php //echo $fila->nombre?></option>-->
+                    <?php //} ?> 
                   </select>
 
                   </div>
                   <div class="col">
                   </div>
                 </div>
+
+                <div id="contenido">Contenido</div>
+                <div id="nocontenido">No contenido</div>
+
+
 
               <div class="form-group">
                 <label for="lblInstrucciones">Comentarios</label>
@@ -298,5 +310,31 @@
       <div class="espacioDos"></div>
       <div class="espacioDos"></div>
       <div class="espacioDos"></div>
+      <?php echo base_url('app/Views/include/ajax/consulta-plantel.php');?>
+      <?php include(APPPATH.'Views/include/footer.php');?>
+      <?php include(APPPATH.'Views/include/header-js.php');?>
+      <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
-<?php include(APPPATH.'Views/include/footer.php');?>
+    <script>
+      $('#unidad_negocio').change(function () {
+        alert("entro");
+        
+        $.ajax({
+          type: "POST",
+          url: "<?php echo site_url('Alumnos/plantelesUnidadNegocio');?>",
+          data:"",
+          success : function(text){
+          limpio = text.trim();
+          if(limpio == "exito"){
+            document.getElementById("contenido").innerHTML="okkkkkkkkkkkkk";
+          }else{
+            document.getElementById("nocontenido").innerHTML="nnnnnnnnnnnnnok";
+          }                      
+        }
+        });
+
+
+
+      });
+    </script>
+    
