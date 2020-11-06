@@ -61,26 +61,35 @@
 
 
 
-              
 
           <div class="espacioUno"></div>
         
               <div class="card">
                 <div class="card-body">
-                <table class="tabla-registros" class="display" cellspacing="6" cellpadding="8">
-                <thead>
-                <tr>
-                <th class="text-left">ID</th>
-                <th class="text-left">Nombre</th>
-                <th class="text-left">Grupo</th>
-                <th class="text-left">Unidd de negocio</th>
-                <th class="text-left">Plantel</th>
-                <th class="text-left">Matricula</th>
-                <th class="text-left">Ver</th>
-                <th class="text-left">Editar</th>
-                </tr>
-                </thead>
-                </table>
+
+                <form action="<?php echo site_url('');?>" method="post">
+                <div class="form-group">
+                <label for="lblNombreEvaluacion">Nombre de la evaluación.</label>
+                <input type="text" class="form-control form-control-sm" name="nombreEvaluacion" id="nombreEvaluación" required="" onkeyup="limpiarNombre()">
+              </div>
+            
+              <div class="form-group">
+                <label for="lblTipoEvaluacion">Tipo de evaluación</label>
+                <select class="form-control form-control-sm" name="tipoEvaluacion" id="tipoEvaluacion" required="">
+                <option value="">Seleccione una opción</option>
+
+                </select>
+              </div>
+
+
+              <div class="form-group">
+                <label for="lblInstrucciones">Instrucciones</label>
+                <textarea class="form-control form-control-sm" name="instrucciones" id="instrucciones" rows="3" required=""></textarea>
+              </div>
+
+              <button type="submit" name="crearEvaluacion" class="btn btn-primary btn-sm">Guardar</button>
+              </form>
+
               </div>
             </div>
           </div>
