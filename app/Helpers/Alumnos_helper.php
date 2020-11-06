@@ -13,7 +13,7 @@ function getPlanteles()
     $usermodel = new Planteles($db);
     $query = "SELECT id,nombre FROM  planteles WHERE deleted = 0";
     $resultado = $usermodel ->query($query);   
-    $rowArray = $usermodel->getResult();
+    $rowArray = $resultado->getResult();
     return($rowArray);
 }
 
@@ -22,16 +22,16 @@ function getUnidadNegocio()
     $usermodel = new Unidad_negocio($db);
     $query = "SELECT id,nombre FROM  unidad_negocio WHERE deleted = 0";
     $resultado = $usermodel ->query($query);   
-    $rowArray = $usermodel->getResult();
+    $rowArray = $resultado->getResult();
     return($rowArray);
 }
 function getRollAlumno()
 {
     $usermodel = new Rolles($db);
-    $query = "SELECT id,nombre FROM  rolles WHERE deleted = 0 AND id = 1";
+    $query = "SELECT id,nombre FROM  rolles WHERE deleted = 0";
     $resultado = $usermodel ->query($query);   
-    $row = $usermodel->getRow();
-    return($row);
+    $rowArray = $resultado->getResult();
+    return($rowArray);
 }
 
 function getAllAlumnos()
@@ -48,16 +48,16 @@ function getEstados()
     $usermodel = new Entidades_federativas($db);
     $query = "SELECT id,nombre FROM  entidades_federativas WHERE deleted = 0";
     $resultado = $usermodel ->query($query);   
-    $rowArray = $usermodel->getResult();
+    $rowArray = $resultado->getResult();
     return($rowArray);
     
 }
 function getPaises()
 {
     $usermodel = new Entidades_federativas($db);
-    $query = "SELECT id,nombre FROM  paises";
+    $query = "SELECT id,pais FROM  paises";
     $resultado = $usermodel ->query($query);   
-    $rowArray = $usermodel->getResult();
+    $rowArray = $resultado->getResult();
     return($rowArray);
     
 }

@@ -72,14 +72,14 @@ class Alumnos extends BaseController{
                 $hoy = date("Y-m-d H:i:s");
                 //Caputaramos los datos de la dirrecion 
                 $data_direccion =[
-                    'calle' => $REQUEST->getPost(),
-                    'numero_interior' => $REQUEST->getPost(),
-                    'numero_exterior' => $REQUEST->getPost(),
-                    'colonia' => $REQUEST->getPost(),
-                    'codigo_postal' => $REQUEST->getPost(),
-                    'municipio_delegacion' => $REQUEST->getPost(),
-                    'id_entidad_federativa' => $REQUEST->getPost(),
-                    'pais' => $REQUEST->getPost(),
+                    'calle' => $REQUEST->getPost('calle'),
+                    'numero_interior' => $REQUEST->getPost('num_interior'),
+                    'numero_exterior' => $REQUEST->getPost('num_exterior'),
+                    'colonia' => $REQUEST->getPost('colonia'),
+                    'codigo_postal' => $REQUEST->getPost('cp'),
+                    'municipio_delegacion' => $REQUEST->getPost('municipio_delegacion'),
+                    'id_entidad_federativa' => $REQUEST->getPost('entidad_federativa'),
+                    'id_pais' => $REQUEST->getPost('pais'),
                     'fecha_creacion' => $hoy,
                     'fecha_ultimo_cambio' => $hoy,
                 ];
@@ -90,20 +90,20 @@ class Alumnos extends BaseController{
 
                  //Capturamos los datos del alummno/Usuario
                 $data_usuario =[
-                    'nombre' => $REQUEST->getPost(),
-                    'apellido_paterno' => $REQUEST->getPost(),
-                    'apellido_materno' => $REQUEST->getPost(),
-                    'usuario' => $REQUEST->getPost(),
-                    'password' => $REQUEST->getPost(),
-                    'email' => $REQUEST->getPost(),
-                    'estado' => $REQUEST->getPost(),
-                    'telefono' => $REQUEST->getPost(),
-                    'movil' => $REQUEST->getPost(),
+                    'nombre' => $REQUEST->getPost('nombre'),
+                    'apellido_paterno' => $REQUEST->getPost('apellido_paterno'),
+                    'apellido_materno' => $REQUEST->getPost('apellido_materno'),
+                    'usuario' => $REQUEST->getPost('usuario'),
+                    'password' => $REQUEST->getPost('password'),
+                    'email' => $REQUEST->getPost('email'),
+                    'estado' => 1,
+                    'telefono' => $REQUEST->getPost('telefono'),
+                    'movil' => $REQUEST->getPost('movil'),
                     'id_direccion' => $ultimo_id_direccion,
-                    'roll' => $REQUEST->getPost(),
+                    'roll' => $REQUEST->getPost('roll'),
                     'fecha_creacion' => $hoy,
                     'fecha_ultimo_cambio' => $hoy,
-                    'id_tipo_usuario' => $REQUEST->getPost(),
+                    'id_tipo_usuario' => 1,
 
                 ];
                 //Insertamos los datos 
@@ -114,14 +114,14 @@ class Alumnos extends BaseController{
 
                 $data_alummno=[
                     'id_usuario' => $ultimo_id_usuario,
-                    'matricula' => $REQUEST->getPost(),
+                    'matricula' => $REQUEST->getPost('matricula'),
                     'id_plantel' => $REQUEST->getPost(),
                     'id_unidad_negocio' => $REQUEST->getPost(),
                     'fecha_creacion' => $hoy,
                     'fecha_ultimo_cambio' => $hoy,
                 ];
 
-                $usermodel_A = new alumnos($db);
+                $usermodel_A = new Alumnos_model($db);
                 $usermodel_A->insert($data_alummno); 
 
                 //Poner una variable que nos cheque que los tres querys para crear una variable de session 
@@ -147,7 +147,7 @@ class Alumnos extends BaseController{
         if($this->session->get('login')){
             $usermodel_D = new Direcciones($db);
             $usermodel_U = new Usuarios($db);
-            $usermodel_A = new alumnos($db);
+            $usermodel_A = new Alumnos_model($db);
                 
         $query_A = "SELECT id from alumnos WHERE id = $id_alumno AND deleted = 0";
         $resultado_A = $usermodel_A->query($query_A);

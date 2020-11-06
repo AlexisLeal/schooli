@@ -122,6 +122,9 @@
                   Roll
                   <select class="form-control form-control-sm" name="roll" id="roll" required="">
                     <option value="">Seleccione una opción</option>
+                    <?php foreach(getRollAlumno() as $fila){?>
+                    <option value="<?php echo $fila->id?>"><?php echo $fila->nombre?></option>
+                    <?php } ?> 
                   </select>
                   </div>
                   <div class="col">
@@ -142,7 +145,9 @@
                   <div class="col">
                     Unidad de negocio
                   <select class="form-control form-control-sm" name="unidad_negocio" id="unidad_negocio" required="">
-                    <option value="">Seleccione una opción</option>
+                  <?php foreach(getUnidadNegocio() as $fila){?>
+                    <option value="<?php echo $fila->id?>"><?php echo $fila->nombre?></option>
+                    <?php } ?> 
                   </select>
                   </div>
                 </div>
@@ -155,7 +160,9 @@
                   <div class="col">
                   Plantel
                   <select class="form-control form-control-sm" name="plantel" id="plantel" required="">
-                    <option value="">Seleccione una opción</option>
+                  <?php foreach(getPlanteles() as $fila){?>
+                    <option value="<?php echo $fila->id?>"><?php echo $fila->nombre?></option>
+                    <?php } ?> 
                   </select>
 
                   </div>
@@ -206,10 +213,20 @@
 
                 <div class="row">
                   <div class="col">
-                  <input type="text" name="entidad_federativa" id="entidad_federativa" class="form-control form-control-sm" placeholder="Entidad Federativa">
+                  Estado
+                  <select class="form-control form-control-sm" name="roll" id="roll" required="">
+                    <?php foreach(getEstados() as $fila){?>
+                    <option value="<?php echo $fila->id?>"><?php echo $fila->nombre?></option>
+                    <?php } ?> 
+                  </select>
                   </div>
                   <div class="col">
-                  <input type="text" name="pais" id="pais" class="form-control form-control-sm" placeholder="Pais">
+                  Pais
+                  <select class="form-control form-control-sm" name="roll" id="roll" required="">
+                    <?php foreach(getPaises() as $fila){?>
+                    <option value="<?php echo $fila->id?>"><?php echo $fila->pais?></option>
+                    <?php } ?> 
+                    </select>
                   </div>
                 </div>
 
