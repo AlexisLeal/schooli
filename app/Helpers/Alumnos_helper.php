@@ -119,5 +119,15 @@ function getPaisEspecifico($id_pais)
     
 }
 
+function getRollEspecifico($id_roll)
+{
+    $usermodel = new Rolles($db);
+    $query = "SELECT nombre FROM  rolles WHERE deleted = 0 AND id= $id_roll";
+    $resultado = $usermodel ->query($query);   
+    $row = $resultado->getRow();
+    $nombre = $row->nombre;
+    return($nombre);
+}
+
 
 ?>

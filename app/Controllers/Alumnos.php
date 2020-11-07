@@ -48,11 +48,13 @@ class Alumnos extends BaseController{
         $data['estado'] = ($row_U->estado == 1) ? "Activo" : "Inactivo";
         $data['telefono'] = $row_U->telefono;
         $data['movil'] = $row_U->movil;
+        $data['roll'] = getRollEspecifico($row_U->roll);
 
         //Alummno
         $data['matricula'] =$row_A->matricula ;
         $data['plantel'] =getPlanteEspecifico($row_A->id_plantel);
         $data['unidad_negocio'] = getUnidadNegocioEspecifico($row_A->id_unidad_negocio);
+        $data['comentarios'] = $row_A->comentarios;
        
         //Dirrecion 
         $data['calle'] = $row_D->calle;
@@ -118,6 +120,7 @@ class Alumnos extends BaseController{
                 $data['matricula'] =$row_A->matricula ;
                 $data['plantel'] =getPlanteEspecifico($row_A->id_plantel);
                 $data['unidad_negocio'] = getUnidadNegocioEspecifico($row_A->id_unidad_negocio);
+                $data['comentarios'] = $row_A->comentarios;
                
                 //Dirrecion 
                 $data['calle'] = $row_D->calle;
@@ -126,6 +129,8 @@ class Alumnos extends BaseController{
                 $data['colonia'] = $row_D->colonia;
                 $data['codigo_postal'] = $row_D->codigo_postal;
                 $data['municipio_delegacion'] = $row_D->municipio_delegacion;
+                $data['codigo_postal'] = $row_D->codigo_postal; 
+
                 //Estado
                 $data['estado'] = getEstadoEspecifico($row_D->id_entidad_federativa);
                 //Pais 
