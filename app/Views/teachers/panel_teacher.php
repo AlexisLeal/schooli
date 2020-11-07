@@ -87,7 +87,8 @@
         
               <div class="card">
                 <div class="card-body">
-                Registrar un Teacher
+
+                <a href="<?php echo site_url('/Teachers/agregarteacher'); ?>">Registrar un Teacher.</a><br/>
                 <!-- Asignar a un grupo-->
               <table class="tabla-registros" class="display" cellspacing="6" cellpadding="8">
                 <thead>
@@ -101,8 +102,17 @@
               </tr>
               </thead>
               </table>
-
-
+            <!--
+              <td class="text-center">
+                  <a href="<?php //echo site_url("Alumnos/verAlumno/$fila->id") ?>">
+                  <i class="fa fa-file-text-o fa-1x" aria-hidden="true"></i>
+                </td>
+                <td class="text-center">
+                <a href="<?php //echo site_url("Alumnos/editarAlumno/$fila->id") ?>">
+                <i class="fa fa-pencil-square-o fa-1x" aria-hidden="true"></i>
+                </a>
+                </td>
+            -->
               </div>
             </div>
           </div>

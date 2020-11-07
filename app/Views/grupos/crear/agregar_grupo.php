@@ -63,7 +63,7 @@
 
 
 
-          <h4>Registro de alumno.</h4>
+          <h4>Registro de un Grupo.</h4>
           <div class="espacioUno"></div>
         
               <div class="card">
@@ -137,15 +137,11 @@
 
                 <div class="espacioDos"></div>
                 <hr class="linea"/>
-                Datos Escolares
+                Datos Laborales
                 <div class="espacioDos"></div>
                 <div class="row">
                   <div class="col">
-                    Matricula
-                    <input type="text" name="matricula" id="matricula" class="form-control form-control-sm" placeholder="Matricula">
-                  </div>
-                  <div class="col">
-                    Unidad de negocio
+                  Unidad de negocio
                   <select class="form-control form-control-sm" name="unidad_negocio" id="unidad_negocio" required="">
                   <option value="">Selecciona una opción</option>
                   <?php foreach(getUnidadNegocio() as $fila){?>
@@ -153,36 +149,22 @@
                     <?php } ?> 
                   </select>
                   </div>
-                </div>
-
-
-
-
-
-
-
-
-                <div class="espacioUno"></div>
-
-                <div class="row">
                   <div class="col">
                   Plantel
                   <select class="form-control form-control-sm" name="plantel" id="plantel" required="">
-                  <option value="">Selecciona una opción</option>
+                  <option value="">Selecciona una opción</option> 
                   </select>
-
-                  </div>
-                  <div class="col">
                   </div>
                 </div>
 
-
+                <div class="espacioUno"></div>
 
 
               <div class="form-group">
                 <label for="lblInstrucciones">Comentarios</label>
                 <textarea class="form-control form-control-sm" name="comentarios" id="comentarios" rows="3" required=""></textarea>
               </div>
+
                 <div class="espacioDos"></div>
                 <hr class="linea"/>
                 Direccion
@@ -323,7 +305,7 @@
       <?php include(APPPATH.'Views/include/footer.php');?>
       <?php include(APPPATH.'Views/include/header-js.php');?>
      
-
+ 
     <script>
       $('#unidad_negocio').change(function () {
         var id_unidad = $(this).val();
@@ -339,6 +321,4 @@
         });
       });
     </script>
-    
-
  
