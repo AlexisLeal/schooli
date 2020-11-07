@@ -62,23 +62,22 @@
               <?php } $session->remove('Alumno');?>
 
 
-
-          <h4>Registro de alumno.</h4>
+          <h4>Datos del Alumno.</h4>
           <div class="espacioUno"></div>
         
               <div class="card">
                 <div class="card-body">
-
-                <form action="<?php echo site_url('Alumnos/insertarAlumno');?>" method="post">
                 <div class="espacioDos"></div>
                 Datos Generales
                 <div class="espacioDos"></div>
                 <div class="row">
                   <div class="col">
-                    <input type="text" name="nombre" id="nombre" class="form-control form-control-sm" placeholder="Nombre">
+                    Nombre
+                    <input type="text" id="nombre" class="form-control form-control-sm"disabled="disabled" value="<?php echo $nombre?>">
                   </div>
                   <div class="col">
-                    <input type="text" name="apellido_paterno" id="apellido_paterno" class="form-control form-control-sm" placeholder="Apellido Paterno">
+                    Apellido Paterno
+                    <input type="text" id="apellido_paterno" class="form-control form-control-sm" disabled="disabled" value="<?php echo $apeliido_paterno ?>">
                   </div>
                 </div>
 
@@ -86,10 +85,12 @@
 
                 <div class="row">
                   <div class="col">
-                    <input type="text" name="apellido_materno" id="apellido_materno" class="form-control form-control-sm" placeholder="Apellido Materno">
+                    Apellido Materno
+                    <input type="text"  id="apellido_materno" class="form-control form-control-sm" disabled="disabled" value="<?php echo $apeliido_materno?>">
                   </div>
                   <div class="col">
-                    <input type="text" name="usuario" id="usuario" class="form-control form-control-sm" placeholder="Usuario">
+                    Nombre de Usuario
+                    <input type="text" id="usuario" class="form-control form-control-sm" disabled="disabled" value="<?php echo $usuario?>">
                   </div>
                 </div>
                 
@@ -97,10 +98,8 @@
 
                 <div class="row">
                   <div class="col">
-                    <input type="email" name="email" id="email" class="form-control form-control-sm" placeholder="Correo">
-                  </div>
-                  <div class="col">
-                    <input type="password" name="password" id="password" class="form-control form-control-sm" placeholder="Contraseña">
+                    Correo Electronico 
+                    <input type="email" id="email" class="form-control form-control-sm" disabled="disabled" value="<?php echo $email ?>">
                   </div>
                 </div>
             
@@ -108,10 +107,12 @@
 
                 <div class="row">
                   <div class="col">
-                    <input type="text" name="telefono" id="telefono" class="form-control form-control-sm" placeholder="Teléfono">
+                    Telefono Fijo
+                    <input type="text" id="telefono" class="form-control form-control-sm" disabled="disabled" value="<?php echo $telefono?>">
                   </div>
                   <div class="col">
-                    <input type="text" name="movil" id="movil" class="form-control form-control-sm" placeholder="Móvil o WhatssApp">
+                    Telefono Movil
+                    <input type="text" id="movil" class="form-control form-control-sm" disabled="disabled" value="<?php echo $movil?>">
                   </div>
                 </div>
 
@@ -122,15 +123,9 @@
                 <div class="row">
                   <div class="col">
                   Roll
-                  <select class="form-control form-control-sm" name="roll" id="roll" required="">
-                    <option value="">Seleccione una opción</option>
-                    <?php foreach(getRoll() as $fila){?>
-                    <option value="<?php echo $fila->id?>"><?php echo $fila->nombre?></option>
-                    <?php } ?> 
-                  </select>
+                  <input type="text" id="movil" class="form-control form-control-sm" disabled="disabled" value="<?php echo $roll?>">
                   </div>
                   <div class="col">
- 
                   </div>
                 </div>
 
@@ -142,46 +137,28 @@
                 <div class="row">
                   <div class="col">
                     Matricula
-                    <input type="text" name="matricula" id="matricula" class="form-control form-control-sm" placeholder="Matricula">
+                    <input type="text" id="matricula" class="form-control form-control-sm" disabled="disabled" value="<?php echo $matricula?>">
                   </div>
                   <div class="col">
                     Unidad de negocio
-                  <select class="form-control form-control-sm" name="unidad_negocio" id="unidad_negocio" required="">
-                  <option value="">Selecciona una opción</option>
-                  <?php foreach(getUnidadNegocio() as $fila){?>
-                    <option value="<?php echo $fila->id?>"><?php echo $fila->nombre?></option>
-                    <?php } ?> 
-                  </select>
+                    <input type="text" id="matricula" class="form-control form-control-sm" disabled="disabled" value="<?php echo $unidad_negocio?>">
                   </div>
                 </div>
-
-
-
-
-
-
-
 
                 <div class="espacioUno"></div>
 
                 <div class="row">
                   <div class="col">
                   Plantel
-                  <select class="form-control form-control-sm" name="plantel" id="plantel" required="">
-                  <option value="">Selecciona una opción</option>
-                  </select>
-
+                  <input type="text" id="matricula" class="form-control form-control-sm" disabled="disabled" value="<?php echo $plantel?>">
                   </div>
                   <div class="col">
                   </div>
                 </div>
 
-
-
-
               <div class="form-group">
                 <label for="lblInstrucciones">Comentarios</label>
-                <textarea class="form-control form-control-sm" name="comentarios" id="comentarios" rows="3" required=""></textarea>
+                <textarea class="form-control form-control-sm" id="comentarios" rows="3" disabled= "disabled"><?php echo $comentarios?></textarea>
               </div>
                 <div class="espacioDos"></div>
                 <hr class="linea"/>
@@ -189,21 +166,12 @@
                 <div class="espacioDos"></div>
                 <div class="row">
                   <div class="col">
-                  <input type="text" name="calle" id="calle" class="form-control form-control-sm" placeholder="Calle">
+                  Calle
+                  <input type="text" id="calle" class="form-control form-control-sm" disabled="disabled" value="<?php echo $calle?>">
                   </div>
                   <div class="col">
-                  <input type="text" name="num_interior" id="num_interior" class="form-control form-control-sm" placeholder="Número interior">
-                  </div>
-                </div>
-
-                <div class="espacioUno"></div>
-
-                <div class="row">
-                  <div class="col">
-                  <input type="text" name="num_exterior" id="num_exterior" class="form-control form-control-sm" placeholder="Número exterior">
-                  </div>
-                  <div class="col">
-                  <input type="text" name="colonia" id="colonia" class="form-control form-control-sm" placeholder="Colonia">
+                  Numero Interior
+                  <input type="text" id="num_interior" class="form-control form-control-sm" disabled="disabled" value="<?php echo $numero_interior?>">
                   </div>
                 </div>
 
@@ -211,10 +179,25 @@
 
                 <div class="row">
                   <div class="col">
-                  <input type="text" name="cp" id="cp" class="form-control form-control-sm" placeholder="Código Postal">
+                  Numero Exterior
+                  <input type="text" id="num_exterior" class="form-control form-control-sm" disabled="disabled" value="<?php echo $numero_exterior?>">
                   </div>
                   <div class="col">
-                  <input type="text" name="municipio_delegacion" id="municipio_delegacion" class="form-control form-control-sm" placeholder="Municipio / Delegación">
+                  Colonia
+                  <input type="text" id="colonia" class="form-control form-control-sm" disabled="disabled" value="<?php echo $colonia?>">
+                  </div>
+                </div>
+
+                <div class="espacioUno"></div>
+
+                <div class="row">
+                  <div class="col">
+                  Codigo Postal
+                  <input type="text" id="cp" class="form-control form-control-sm" disabled="disabled" value="<?php echo $codigo_postal?>" >
+                  </div>
+                  <div class="col">
+                  Municipio o Delegacion
+                  <input type="text" id="municipio_delegacion" class="form-control form-control-sm" disabled="disabled" value="<?php echo $municipio_delegacion?>">
                   </div>
                 </div>
 
@@ -223,39 +206,19 @@
                 <div class="row">
                   <div class="col">
                   Estado
-                  <select class="form-control form-control-sm" name="entidad_federativa" id="entidad_federativa" required="">
-                    <?php foreach(getEstados() as $fila){?>
-                      <?php
-                      if($fila->id==19){
-                        ?>
-                        <option selected="selected" value="<?php echo $fila->id;?>"><?php echo $fila->nombre;?></option>
-                        <?php
-                      }else{
-                        ?>
-                        <option value="<?php echo $fila->id;?>"><?php echo $fila->nombre;?></option>
-                        <?php
-                      }
-                      ?>
-                    
-                    <?php } ?> 
-                  </select>
+                  <input type="text" id="municipio_delegacion" class="form-control form-control-sm" disabled="disabled" value="<?php echo $estado?>">
                   </div>
                   <div class="col">
                   Pais
-                  <select class="form-control form-control-sm" name="pais" id="pais" required="">
+                  <input type="text" id="municipio_delegacion" class="form-control form-control-sm" disabled="disabled" value="<?php echo $pais?>">
 
-                    <?php foreach(getPaises() as $fila){?>
-                      
-                    <option value="<?php echo $fila->id;?>"><?php echo $fila->pais;?></option>
-                    <?php } ?> 
-                    </select>
                   </div>
                 </div>
+               
 
               <div class="espacioUno"></div>
-
-              <button type="submit" name="submitAL" class="btn btn-primary btn-sm">Registrar</button>
-              </form>
+              <input type="button" value="Página anterior" onClick="history.go(-1);">
+            
 
               </div>
               </div>
@@ -263,10 +226,11 @@
 
 
 
-
         </div>  
       </div>
     </div>
+    
+
 
 
       <div class="espacioDos"></div>
@@ -321,24 +285,6 @@
       <div class="espacioDos"></div>
       <div class="espacioDos"></div>
       <?php include(APPPATH.'Views/include/footer.php');?>
-      <?php include(APPPATH.'Views/include/header-js.php');?>
-     
-
-    <script>
-      $('#unidad_negocio').change(function () {
-        var id_unidad = $(this).val();
-        $.ajax({
-          type: "POST",
-          url: "<?php echo site_url('Alumnos/plantelesUnidadNegocio');?>",
-          data: "id_unidad_negocio=" + id_unidad,
-          success : function(text){
-            document.getElementById("plantel").innerHTML = "";
-            $('#plantel').append(text);
-        }
-
-        });
-      });
-    </script>
     
 
  
