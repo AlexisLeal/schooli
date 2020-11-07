@@ -177,8 +177,6 @@
                   </div>
                 </div>
 
-                <div id="contenido">Contenido</div>
-                <div id="nocontenido">No contenido</div>
 
 
 
@@ -228,14 +226,27 @@
                   Estado
                   <select class="form-control form-control-sm" name="entidad_federativa" id="entidad_federativa" required="">
                     <?php foreach(getEstados() as $fila){?>
-                    <option value="<?php echo $fila->id;?>"><?php echo $fila->nombre;?></option>
+                      <?php
+                      if($fila->id==19){
+                        ?>
+                        <option selected="selected" value="<?php echo $fila->id;?>"><?php echo $fila->nombre;?></option>
+                        <?php
+                      }else{
+                        ?>
+                        <option value="<?php echo $fila->id;?>"><?php echo $fila->nombre;?></option>
+                        <?php
+                      }
+                      ?>
+                    
                     <?php } ?> 
                   </select>
                   </div>
                   <div class="col">
                   Pais
                   <select class="form-control form-control-sm" name="pais" id="pais" required="">
+
                     <?php foreach(getPaises() as $fila){?>
+                      
                     <option value="<?php echo $fila->id;?>"><?php echo $fila->pais;?></option>
                     <?php } ?> 
                     </select>
@@ -317,24 +328,19 @@
 
     <script>
       $('#unidad_negocio').change(function () {
-        alert("entro");
-        
+        var id_unidad = $(this).val();
         $.ajax({
           type: "POST",
           url: "<?php echo site_url('Alumnos/plantelesUnidadNegocio');?>",
-          data:"",
+          data: "id_unidad_negocio=" + id_unidad,
           success : function(text){
-          limpio = text.trim();
-          if(limpio == "exito"){
-            document.getElementById("contenido").innerHTML="okkkkkkkkkkkkk";
-          }else{
-            document.getElementById("nocontenido").innerHTML="nnnnnnnnnnnnnok";
-          }                      
+            document.getElementById("plantel").innerHTML = "";
+            $('#plantel').append(text);
         }
+
         });
-
-
-
       });
     </script>
     
+
+ 

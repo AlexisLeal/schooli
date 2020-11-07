@@ -88,6 +88,15 @@
                 <td><?php echo getUnidadNegocioEspecifico($fila->id_unidad_negocio);?></td>
                 <td><?php echo getPlanteEspecifico($fila->id_plantel);?></td>
                 <td><?php echo $fila->matricula;?></td>
+                <td class="text-center">
+                  <a href="<?php echo site_url("Alumnos/verAlumno/$fila->id") ?>">
+                  <i class="fa fa-file-text-o fa-1x" aria-hidden="true"></i>
+                </td>
+                <td class="text-center">
+                <a href="<?php echo site_url("Alumnos/editarAlumno/$fila->id") ?>">
+                <i class="fa fa-pencil-square-o fa-1x" aria-hidden="true"></i>
+                </a>
+                </td>
 
 
 
