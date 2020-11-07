@@ -20,20 +20,20 @@ class Alumnos extends BaseController{
     public function verAlumno($id_alumno)
     {
         if($this->session->get('login')){
-        $usermodel_D = new Direcciones($db);
-        $usermodel_U = new Usuarios($db);
-        $usermodel_A = new Alumnos_model($db);
 
+        $usermodel_A = new Alumnos_model($db);
         $query_A = "SELECT * from alumnos WHERE id = $id_alumno AND deleted = 0";
         $resultado_A = $usermodel_A->query($query_A);
         $row_A = $resultado_A->getRow();
         //--------------------------------------------------------------------
+        $usermodel_U = new Usuarios($db);
         $query_U = "SELECT * from usuarios WHERE id = $row_A->id_usuario AND deleted = 0";
         $resultado_U = $usermodel_U->query($query_U);
         $row_U = $resultado_U->getRow();
         //--------------------------------------------
+        $usermodel_D = new Direcciones($db);
         $query_D = "SELECT * from direcciones WHERE id = $row_U->id_direccion AND deleted = 0";
-        $resultado_D = $usermodel_U->query($query_U);
+        $resultado_D = $usermodel_D->query($query_D);
         $row_D = $resultado_D->getRow();
         //-------------------------
        
@@ -82,16 +82,66 @@ class Alumnos extends BaseController{
             return redirect()->to(site_url('Home/salir'));
            }
     }
-    public function editaralumnos()
+    public function editaralumno($id_alumno)
     {   
-        if($this->session->get('login')){
-        return view('alumnos/editar/editar_alumno');
+            if($this->session->get('login')){
 
-        }else{
-            return redirect()->to(site_url('Home/salir'));
-           }
-    }
+                $usermodel_A = new Alumnos_model($db);
+                $query_A = "SELECT * from alumnos WHERE id = $id_alumno AND deleted = 0";
+                $resultado_A = $usermodel_A->query($query_A);
+                $row_A = $resultado_A->getRow();
+                //--------------------------------------------------------------------
+                $usermodel_U = new Usuarios($db);
+                $query_U = "SELECT * from usuarios WHERE id = $row_A->id_usuario AND deleted = 0";
+                $resultado_U = $usermodel_U->query($query_U);
+                $row_U = $resultado_U->getRow();
+                //--------------------------------------------
+                $usermodel_D = new Direcciones($db);
+                $query_D = "SELECT * from direcciones WHERE id = $row_U->id_direccion AND deleted = 0";
+                $resultado_D = $usermodel_D->query($query_D);
+                $row_D = $resultado_D->getRow();
+                //-------------------------
+               
+                        //Aqui vamos a poner todos los datos de un alumno especifico
+                
+                //Usuario 
+                $data['nombre'] = $row_U->nombre;
+                $data['apeliido_paterno'] = $row_U->apellido_paterno;
+                $data['apeliido_materno'] = $row_U->apellido_materno;
+                $data['usuario'] = $row_U->usuario;
+                $data['email'] = $row_U->email;
+                $data['estado'] = ($row_U->estado == 1) ? "Activo" : "Inactivo";
+                $data['telefono'] = $row_U->telefono;
+                $data['movil'] = $row_U->movil;
+        
+                //Alummno
+                $data['matricula'] =$row_A->matricula ;
+                $data['plantel'] =getPlanteEspecifico($row_A->id_plantel);
+                $data['unidad_negocio'] = getUnidadNegocioEspecifico($row_A->id_unidad_negocio);
+               
+                //Dirrecion 
+                $data['calle'] = $row_D->calle;
+                $data['numero_interior'] = $row_D->numero_interior;
+                $data['numero_exterior'] = $row_D->numero_exterior;
+                $data['colonia'] = $row_D->colonia;
+                $data['codigo_postal'] = $row_D->codigo_postal;
+                $data['municipio_delegacion'] = $row_D->municipio_delegacion;
+                //Estado
+                $data['estado'] = getEstadoEspecifico($row_D->id_entidad_federativa);
+                //Pais 
+                $data['pais'] = getPaisEspecifico($row_D->id_pais);
+        
+                return view('alumnos/editar/editar_alumno',$data);
+                }else{
+                    return redirect()->to(site_url('Home/salir'));
+                   }
+      
 
+                }
+    
+
+
+    //FUNCIONES QUE MODIFICAN A LA BASE DE DATOS
     public function insertarAlumno()
     {
         if($this->session->get('login')){
@@ -168,11 +218,23 @@ class Alumnos extends BaseController{
     }
 
 
-    public function editar($id_alumno)
+    public function editar()
     {
-        
+        if($this->session->get('login')){
+            
+            if(isset($_POST['submitAL'])){
+                $REQUEST = \Config\Services::request();
+                $hoy = date("Y-m-d H:i:s");
+            }
+     
+                    
+    }else{
+        return redirect()->to(site_url('Home/salir'));
+       }
     }
 
+
+    //Funcion AJAX
     function plantelesUnidadNegocio()
     {
         
@@ -190,6 +252,9 @@ class Alumnos extends BaseController{
 
     }
     
+
+
+
 
     public function eliminarAlumno($id_alumno)
     {
