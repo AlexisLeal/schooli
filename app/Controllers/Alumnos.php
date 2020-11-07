@@ -127,6 +127,8 @@ class Alumnos extends BaseController{
                 $usermodel_A->insert($data_alummno); 
 
                 //Poner una variable que nos cheque que los tres querys para crear una variable de session 
+                $data = ['Alumno'  => 'El Alumno se agregro correctamente'];
+                $this->session->set($data,true);
                 return redirect()->to(site_url('Alumnos/agregaralumnos'));
         
     }else{
