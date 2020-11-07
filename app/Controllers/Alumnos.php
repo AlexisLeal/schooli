@@ -22,7 +22,7 @@ class Alumnos extends BaseController{
         if($this->session->get('login')){
         $usermodel_D = new Direcciones($db);
         $usermodel_U = new Usuarios($db);
-        $usermodel_A = new alumnos($db);
+        $usermodel_A = new Alumnos_model($db);
 
         $query_A = "SELECT * from alumnos WHERE id = $id_alumno AND deleted = 0";
         $resultado_A = $usermodel_A->query($query_A);
@@ -35,8 +35,36 @@ class Alumnos extends BaseController{
         $query_D = "SELECT * from direcciones WHERE id = $row_U->id_direccion AND deleted = 0";
         $resultado_D = $usermodel_U->query($query_U);
         $row_D = $resultado_D->getRow();
+        //-------------------------
+       
+                //Aqui vamos a poner todos los datos de un alumno especifico
+        
+        //Usuario 
+        $data['nombre'] = $row_U->nombre;
+        $data['apeliido_paterno'] = $row_U->apellido_paterno;
+        $data['apeliido_materno'] = $row_U->apellido_materno;
+        $data['usuario'] = $row_U->usuario;
+        $data['email'] = $row_U->email;
+        $data['estado'] = ($row_U->estado == 1) ? "Activo" : "Inactivo";
+        $data['telefono'] = $row_U->telefono;
+        $data['movil'] = $row_U->movil;
 
-        //Aqui vamos a poner todos los datos de un alumno especifico
+        //Alummno
+        $data['matricula'] =$row_A->matricula ;
+        $data['plantel'] =getPlanteEspecifico($row_A->id_plantel);
+        $data['unidad_negocio'] = getUnidadNegocioEspecifico($row_A->id_unidad_negocio);
+       
+        //Dirrecion 
+        $data['calle'] = $row_D->calle;
+        $data['numero_interior'] = $row_D->numero_interior;
+        $data['numero_exterior'] = $row_D->numero_exterior;
+        $data['colonia'] = $row_D->colonia;
+        $data['codigo_postal'] = $row_D->codigo_postal;
+        $data['municipio_delegacion'] = $row_D->municipio_delegacion;
+        //Estado
+        $data['estado'] = getEstadoEspecifico($row_D->id_entidad_federativa);
+        //Pais 
+        $data['pais'] = getPaisEspecifico($row_D->id_pais);
 
         return view('alumnos/mostrar/ver_alumno',$data);
         }else{

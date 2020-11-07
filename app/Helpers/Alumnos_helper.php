@@ -98,5 +98,26 @@ function getAlumnoEspecifico($id_usuario)
     return($row);   
 }
 
+function getEstadoEspecifico($id_estado)
+{
+    $usermodel = new Entidades_federativas($db);
+    $query = "SELECT nombre FROM  entidades_federativas WHERE deleted = 0 AND id = $id_estado";
+    $resultado = $usermodel ->query($query);   
+    $row = $resultado->getRow();
+    $nombre = $row->nombre; 
+    return($nombre);
+    
+}
+function getPaisEspecifico($id_pais)
+{
+    $usermodel = new Entidades_federativas($db);
+    $query = "SELECT pais FROM  paises WHERE id = $id_pais";
+    $resultado = $usermodel ->query($query);   
+    $row = $resultado->getRow();
+    $nombre = $row->pais;
+    return($nombre);
+    
+}
+
 
 ?>
