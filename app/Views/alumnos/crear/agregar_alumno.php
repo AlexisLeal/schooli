@@ -50,14 +50,16 @@
           </div>
 
 
-
+           
           <div class="col-md-9">
-              <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                <strong>Notificaciones del sistema:</strong> Este texto es un ejemplo de notificaciones que el sistema le debe de mostrar al Administrador.
+          <?php if($session->has('Alumno')){;?>
+         <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>Notificaciones del sistema:</strong> <?php echo $session->get('Alumno')?>
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div> 
+              <?php } $session->remove('Alumno');?>
 
 
 
@@ -310,10 +312,9 @@
       <div class="espacioDos"></div>
       <div class="espacioDos"></div>
       <div class="espacioDos"></div>
-      <?php echo base_url('app/Views/include/ajax/consulta-plantel.php');?>
       <?php include(APPPATH.'Views/include/footer.php');?>
       <?php include(APPPATH.'Views/include/header-js.php');?>
-      <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+     
 
     <script>
       $('#unidad_negocio').change(function () {

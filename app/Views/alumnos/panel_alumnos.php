@@ -82,14 +82,14 @@
                   $Alumno = getAlumnoEspecifico($fila->id_usuario);
                   
                   ?>
-
+                  <tr>
                 <td><?php echo $fila->id;?></td>
                 <td><?php echo $Alumno->nombre.' '.$Alumno->apellido_paterno.' '.$Alumno->apellido_materno;?></td>
                 <td><?php echo getUnidadNegocioEspecifico($fila->id_unidad_negocio);?></td>
                 <td><?php echo getPlanteEspecifico($fila->id_plantel);?></td>
                 <td><?php echo $fila->matricula;?></td>
 
-
+                </tr>
 
                 <?php
               }
