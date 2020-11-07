@@ -175,12 +175,19 @@ class Alumnos extends BaseController{
 
     function plantelesUnidadNegocio()
     {
+        
+        $REQUEST = \Config\Services::request();
+        $id_unidad_negocio = $REQUEST->getPost('id_unidad_negocio');
+        
         $usermodel = new Planteles($db);
-        $query = "SELECT id,nombre FROM  planteles WHERE deleted = 0";
-        $resultado = $usermodel ->query($query);   
+        $query = "SELECT id,nombre FROM  planteles WHERE deleted = 0 and id_unidad_negocio=$id_unidad_negocio";
+        $resultado = $usermodel ->query($query);
         $rowArray = $resultado->getResult();
-        //return($rowArray);
-        echo "exito";
+        echo "<option value=''>Seleccione una opción</option>";
+        foreach($rowArray as $fila){
+            echo "<option value=$fila->id>$fila->nombre</option>";
+        }
+
     }
     
 
