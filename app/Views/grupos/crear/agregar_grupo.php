@@ -66,79 +66,35 @@
           <h4>Registro de un Grupo.</h4>
           <div class="espacioUno"></div>
         
+        El codigo del grupo se genarara en automatico y se guardara en la DB.
+
+
+
+
+
               <div class="card">
                 <div class="card-body">
 
-                <form action="<?php echo site_url('Alumnos/insertarAlumno');?>" method="post">
-                <div class="espacioDos"></div>
-                Datos Generales
+                <form action="#<?php //echo site_url('Alumnos/insertarAlumno');?>" method="post" enctype="multipart/form-data">
+               
                 <div class="espacioDos"></div>
                 <div class="row">
                   <div class="col">
                     <input type="text" name="nombre" id="nombre" class="form-control form-control-sm" placeholder="Nombre">
                   </div>
                   <div class="col">
-                    <input type="text" name="apellido_paterno" id="apellido_paterno" class="form-control form-control-sm" placeholder="Apellido Paterno">
-                  </div>
-                </div>
-
-                <div class="espacioUno"></div>
-
-                <div class="row">
-                  <div class="col">
-                    <input type="text" name="apellido_materno" id="apellido_materno" class="form-control form-control-sm" placeholder="Apellido Materno">
-                  </div>
-                  <div class="col">
-                    <input type="text" name="usuario" id="usuario" class="form-control form-control-sm" placeholder="Usuario">
-                  </div>
-                </div>
-                
-                <div class="espacioUno"></div>
-
-                <div class="row">
-                  <div class="col">
-                    <input type="email" name="email" id="email" class="form-control form-control-sm" placeholder="Correo">
-                  </div>
-                  <div class="col">
-                    <input type="password" name="password" id="password" class="form-control form-control-sm" placeholder="Contraseña">
-                  </div>
-                </div>
-            
-                <div class="espacioUno"></div>
-
-                <div class="row">
-                  <div class="col">
-                    <input type="text" name="telefono" id="telefono" class="form-control form-control-sm" placeholder="Teléfono">
-                  </div>
-                  <div class="col">
-                    <input type="text" name="movil" id="movil" class="form-control form-control-sm" placeholder="Móvil o WhatssApp">
-                  </div>
-                </div>
-
-
-                <div class="espacioUno"></div>
-                
-
-                <div class="row">
-                  <div class="col">
-                  Roll
-                  <select class="form-control form-control-sm" name="roll" id="roll" required="">
+                    Estatus
+                    <select class="form-control form-control-sm" name="estatus" id="estatus" required="">
                     <option value="">Seleccione una opción</option>
-                    <?php foreach(getRoll() as $fila){?>
-                    <option value="<?php echo $fila->id?>"><?php echo $fila->nombre?></option>
-                    <?php } ?> 
-                  </select>
-                  </div>
-                  <div class="col">
- 
+                    <option value="1">Activo</option>
+                    <option value="0">Inactivo</option>
+                    </select>
                   </div>
                 </div>
 
+                <div class="espacioUno"></div>
 
-                <div class="espacioDos"></div>
-                <hr class="linea"/>
-                Datos Laborales
-                <div class="espacioDos"></div>
+
                 <div class="row">
                   <div class="col">
                   Unidad de negocio
@@ -157,84 +113,61 @@
                   </div>
                 </div>
 
-                <div class="espacioUno"></div>
 
+              <div class="espacioUno"></div>
 
-              <div class="form-group">
-                <label for="lblInstrucciones">Comentarios</label>
-                <textarea class="form-control form-control-sm" name="comentarios" id="comentarios" rows="3" required=""></textarea>
-              </div>
-
-                <div class="espacioDos"></div>
-                <hr class="linea"/>
-                Direccion
-                <div class="espacioDos"></div>
-                <div class="row">
+              <div class="row">
                   <div class="col">
-                  <input type="text" name="calle" id="calle" class="form-control form-control-sm" placeholder="Calle">
+                  Horario
+                    <select class="form-control form-control-sm" name="estatus" id="estatus" required="">
+                    <option value="">Seleccione una opción</option>
+                    <option value="1">Activo</option>
+                    <option value="0">Inactivo</option>
+                    </select>
                   </div>
                   <div class="col">
-                  <input type="text" name="num_interior" id="num_interior" class="form-control form-control-sm" placeholder="Número interior">
-                  </div>
-                </div>
-
-                <div class="espacioUno"></div>
-
-                <div class="row">
-                  <div class="col">
-                  <input type="text" name="num_exterior" id="num_exterior" class="form-control form-control-sm" placeholder="Número exterior">
-                  </div>
-                  <div class="col">
-                  <input type="text" name="colonia" id="colonia" class="form-control form-control-sm" placeholder="Colonia">
-                  </div>
-                </div>
-
-                <div class="espacioUno"></div>
-
-                <div class="row">
-                  <div class="col">
-                  <input type="text" name="cp" id="cp" class="form-control form-control-sm" placeholder="Código Postal">
-                  </div>
-                  <div class="col">
-                  <input type="text" name="municipio_delegacion" id="municipio_delegacion" class="form-control form-control-sm" placeholder="Municipio / Delegación">
-                  </div>
-                </div>
-
-                <div class="espacioUno"></div>
-
-                <div class="row">
-                  <div class="col">
-                  Estado
-                  <select class="form-control form-control-sm" name="entidad_federativa" id="entidad_federativa" required="">
-                    <?php foreach(getEstados() as $fila){?>
-                      <?php
-                      if($fila->id==19){
-                        ?>
-                        <option selected="selected" value="<?php echo $fila->id;?>"><?php echo $fila->nombre;?></option>
-                        <?php
-                      }else{
-                        ?>
-                        <option value="<?php echo $fila->id;?>"><?php echo $fila->nombre;?></option>
-                        <?php
-                      }
-                      ?>
-                    
-                    <?php } ?> 
-                  </select>
-                  </div>
-                  <div class="col">
-                  Pais
-                  <select class="form-control form-control-sm" name="pais" id="pais" required="">
-
-                    <?php foreach(getPaises() as $fila){?>
-                      
-                    <option value="<?php echo $fila->id;?>"><?php echo $fila->pais;?></option>
-                    <?php } ?> 
+                    Salon
+                    <select class="form-control form-control-sm" name="estatus" id="estatus" required="">
+                    <option value="">Seleccione una opción</option>
+                    <option value="1">Activo</option>
+                    <option value="0">Inactivo</option>
                     </select>
                   </div>
                 </div>
 
-              <div class="espacioUno"></div>
+                <div class="row">
+                  <div class="col">
+                    <input type="text" name="nombre" id="cupo" class="form-control form-control-sm" placeholder="Cupo">
+                  </div>
+                  <div class="col">
+                  <input type="text" name="nombre" id="precio" class="form-control form-control-sm" placeholder="Precio">
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col">
+                  Nivel
+                    <select class="form-control form-control-sm" name="nivel" id="nivel" required="">
+                    <option value="">Seleccione una opción</option>
+                    <option value="1">Activo</option>
+                    <option value="0">Inactivo</option>
+                    </select>
+                  </div>
+                  <div class="col">
+                    Cargar Imagen
+                    <select class="form-control form-control-sm" name="imagen" id="imagen" required="">
+                    <option value="">Seleccione una opción</option>
+                    <option value="1">Activo</option>
+                    <option value="0">Inactivo</option>
+                    </select>
+                  </div>
+                </div>
+        
+              <div class="form-group">
+                <label for="lblInstrucciones">Descripción</label>
+                <textarea class="form-control form-control-sm" name="descripcion" id="descripcion" rows="3" required=""></textarea>
+              </div>
+
 
               <button type="submit" name="submitAL" class="btn btn-primary btn-sm">Registrar</button>
               </form>
@@ -309,6 +242,7 @@
     <script>
       $('#unidad_negocio').change(function () {
         var id_unidad = $(this).val();
+        // cuando el valor sea 0, se debe resetear el listado de planteles
         $.ajax({
           type: "POST",
           url: "<?php echo site_url('Alumnos/plantelesUnidadNegocio');?>",

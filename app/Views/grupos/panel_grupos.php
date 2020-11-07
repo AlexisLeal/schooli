@@ -88,24 +88,20 @@
               <div class="card">
                 <div class="card-body">
 
-                <a href="<?php echo site_url('/Grupos/agregargrupo'); ?>">Crear un grupo.</a><br/>
-
-                Asignar Recursos<br/>
-                Asignar Alumnos<br/>
-                Codigo de acceso para el grupo.<br/>
-                ........................ <br/>
-                Materiales (recursos que estan asignados al grupo)<br/>
-                Miembros (Listado de alumnos asignados a este grupo)<br/>
-                Libreta de calificaciones (Listado de alumnos con sus calificaciones)<br/>
+                <a href="<?php echo site_url('/Grupos/agregargrupo'); ?>">Crear un grupo</a> 
+                <hr class="linea"/>
 
                 <?php
                 
-                for($prueba=0;$prueba<=10;$prueba++){
+                for($prueba=0;$prueba<=30;$prueba++){
                 ?>
                 <div class="niveles" style="float:left;margin-left:20px;margin-right:20px;padding-top:10px;padding-bottom:15px;">
-                  </h4><a href="<?php //echo site_url("Evaluaciones/lecciones/$id_evaluacion/$fila->id");?>"><?php //echo $fila->nombre?>Prueba</a></h4>
+                  </h4><a href="<?php echo site_url("/Grupos/vergrupo/$prueba");?>"><?php //echo $fila->nombre?>Prueba</a></h4>
                 <br>
-                       Número de evaluaciones: <span class="badge badge-info"><?php //echo getTotalEvaluacion($id_evaluacion,$fila->id);?></span>
+                       Nombre de grupo : <?php echo $prueba;?><br/>
+                       Ruta de imagen<br/>
+                       Titulo<br/>
+                       Descripción<br/>
                   </div>
                 <?php
                 }

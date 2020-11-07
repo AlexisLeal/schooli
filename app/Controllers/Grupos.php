@@ -26,4 +26,14 @@ class Grupos extends BaseController{
         }
 	}
 
+    public function vergrupo()
+	{
+        $data['page_title'] = "Teachers";	
+        
+        if($this->session->get('login')){
+            return view('grupos/mostrar/ver_grupo');
+            }else{
+            return redirect()->to(site_url('Home/salir'));
+        }
+	}
 }
