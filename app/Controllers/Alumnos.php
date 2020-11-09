@@ -68,6 +68,7 @@ class Alumnos extends BaseController{
         //Pais 
         $data['pais'] = getPaisEspecifico($row_D->id_pais);
 
+       
         return view('alumnos/mostrar/ver_alumno',$data);
         }else{
             return redirect()->to(site_url('Home/salir'));
@@ -84,6 +85,7 @@ class Alumnos extends BaseController{
             return redirect()->to(site_url('Home/salir'));
            }
     }
+
     public function editaralumno($id_alumno)
     {   
             if($this->session->get('login')){
@@ -106,7 +108,7 @@ class Alumnos extends BaseController{
                
                         //Aqui vamos a poner todos los datos de un alumno especifico
                 
-                //Usuario 
+                //Usuario  
                 $data['nombre'] = $row_U->nombre;
                 $data['apeliido_paterno'] = $row_U->apellido_paterno;
                 $data['apeliido_materno'] = $row_U->apellido_materno;
@@ -115,11 +117,12 @@ class Alumnos extends BaseController{
                 $data['estado'] = ($row_U->estado == 1) ? "Activo" : "Inactivo";
                 $data['telefono'] = $row_U->telefono;
                 $data['movil'] = $row_U->movil;
+                $data['roll'] = $row_U->roll;
         
                 //Alummno
                 $data['matricula'] =$row_A->matricula ;
-                $data['plantel'] =getPlanteEspecifico($row_A->id_plantel);
-                $data['unidad_negocio'] = getUnidadNegocioEspecifico($row_A->id_unidad_negocio);
+                $data['plantel'] =$row_A->id_plantel;
+                $data['unidad_negocio'] = $row_A->id_unidad_negocio;
                 $data['comentarios'] = $row_A->comentarios;
                
                 //Dirrecion 
@@ -129,12 +132,14 @@ class Alumnos extends BaseController{
                 $data['colonia'] = $row_D->colonia;
                 $data['codigo_postal'] = $row_D->codigo_postal;
                 $data['municipio_delegacion'] = $row_D->municipio_delegacion;
-                $data['codigo_postal'] = $row_D->codigo_postal; 
 
                 //Estado
-                $data['estado'] = getEstadoEspecifico($row_D->id_entidad_federativa);
+                $data['estado'] = $row_D->id_entidad_federativa;
                 //Pais 
-                $data['pais'] = getPaisEspecifico($row_D->id_pais);
+                $data['pais'] = $row_D->id_pais;
+                 //ID_Alumno
+                $data['idAlumno'] = $id_alumno;
+                
         
                 return view('alumnos/editar/editar_alumno',$data);
                 }else{
@@ -230,6 +235,68 @@ class Alumnos extends BaseController{
             if(isset($_POST['submitAL'])){
                 $REQUEST = \Config\Services::request();
                 $hoy = date("Y-m-d H:i:s");
+
+                //Capturamos los datos del Alumno
+                $data_alummno=[
+                    'matricula' => $REQUEST->getPost('matricula'),
+                    'id_plantel' => $REQUEST->getPost('plantel'),
+                    'id_unidad_negocio' => $REQUEST->getPost('unidad_negocio'),
+                    'comentarios' => $REQUEST->getPost('comentarios'),
+                    'fecha_ultimo_cambio' => $hoy,
+                ];
+
+                    //Capturamos los datos del alummno/Usuario
+                    $data_usuario =[
+                        'nombre' => $REQUEST->getPost('nombre'),
+                        'apellido_paterno' => $REQUEST->getPost('apellido_paterno'),
+                        'apellido_materno' => $REQUEST->getPost('apellido_materno'),
+                        'usuario' => $REQUEST->getPost('usuario'),
+                        'email' => $REQUEST->getPost('email'),
+                        'telefono' => $REQUEST->getPost('telefono'),
+                        'movil' => $REQUEST->getPost('movil'),
+                        'roll' => $REQUEST->getPost('roll'),
+                        'fecha_ultimo_cambio' => $hoy,
+                    ];
+                 //Caputaramos los datos de la dirrecion 
+                 $data_direccion =[
+                    'calle' => $REQUEST->getPost('calle'),
+                    'numero_interior' => $REQUEST->getPost('num_interior'),
+                    'numero_exterior' => $REQUEST->getPost('num_exterior'),
+                    'colonia' => $REQUEST->getPost('colonia'),
+                    'codigo_postal' => $REQUEST->getPost('cp'),
+                    'municipio_delegacion' => $REQUEST->getPost('municipio_delegacion'),
+                    'id_entidad_federativa' => $REQUEST->getPost('entidad_federativa'),
+                    'id_pais' => $REQUEST->getPost('pais'),
+                    'fecha_ultimo_cambio' => $hoy,
+                ];
+                $id_alumno = $REQUEST->getPost('idAlumno');
+
+                $usermodel_A = new Alumnos_model($db);
+                $query_A = "SELECT * from alumnos WHERE id = $id_alumno AND deleted = 0";
+                $resultado_A = $usermodel_A->query($query_A);
+                $row_A = $resultado_A->getRow();
+                //--------------------------------------------------------------------
+                $usermodel_U = new Usuarios($db);
+                $query_U = "SELECT * from usuarios WHERE id = $row_A->id_usuario AND deleted = 0";
+                $resultado_U = $usermodel_U->query($query_U);
+                $row_U = $resultado_U->getRow();
+                //--------------------------------------------
+                $usermodel_D = new Direcciones($db);
+
+                $usermodel_A->update($id_alumno,$data_alummno);
+
+                $usermodel_U->update($row_A->id_usuario,$data_usuario);
+
+                //SE ACTUALIZA POR ID EL PRIMER PARAMETRO EL EL ID 
+                $usermodel_D->update($row_U->id_direccion,$data_direccion);
+
+
+                 //Poner una variable que nos cheque que los tres querys para crear una variable de session 
+                 $data = ['Alumno'  => 'El Alumno se modifico correctamente'];
+                 $this->session->set($data,true);
+                 return redirect()->to(site_url("Alumnos/editaralumno/$id_alumno"));
+
+
             }
      
                     

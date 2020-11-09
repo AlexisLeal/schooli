@@ -97,7 +97,7 @@
                   <table width="100%" cellspacing="12" cellpadding="12" >
                     <tr>
                     <td><div class="text-center"><a href="#"><i class="fa fa-handshake-o fa-2x" aria-hidden="true"></i></i><br/>Prospectos.</a></div></td>
-                    <td><div class="text-center"><a href="<?php echo site_url('/Teacher/index'); ?>"><i class="fa fa-user-circle-o fa-2x" aria-hidden="true"></i><br/>Teachers.</a></div></td>
+                    <td><div class="text-center"><a href="<?php echo site_url('/Teachers/index'); ?>"><i class="fa fa-user-circle-o fa-2x" aria-hidden="true"></i><br/>Teachers.</a></div></td>
                     <td><div class="text-center"><a href="<?php echo site_url('/Tutores/index'); ?>"><i class="fa fa-user-secret fa-2x" aria-hidden="true"></i><br/>Tutores.</a></div></td>
                     </tr>
                     <tr>
