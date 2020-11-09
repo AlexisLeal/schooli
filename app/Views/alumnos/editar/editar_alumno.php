@@ -260,9 +260,26 @@
                   </div>
                 </div>
               <div class="espacioUno"></div>
+
+
               <input type="hidden" name="idAlumno" value="<?php echo $idAlumno;?>">    
               <button type="submit" name="submitAL" class="btn btn-primary btn-sm">Registrar</button>
               </form>
+              
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-6">
+                  </div>
+                  <div class="col-md-6 text-right">
+                  <form action="<?php echo site_url('Alumnos/deletedAlumnos')?>" name="<?php echo $fila->id;?>" id="" method="post">
+                    <input type="hidden" name="idAlumno" id="idAlumno" value="<?php echo $idAlumno;?>">
+                    <button type="submit" name="submitAP" id="submitAP"><i class="fa fa-trash-o" aria-hidden="true"></i></i></span></button>
+                  </form>
+                  </div>
+                </div>
+              </div>
+
+
 
               </div>
               </div>
