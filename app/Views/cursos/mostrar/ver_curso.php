@@ -1,4 +1,4 @@
-<?php include('include/header.php');?>
+<?php include(APPPATH.'/Views/include/header.php');?>
 
 <div class="espacioDos"></div>
 <header id="barra-superior">
@@ -46,82 +46,69 @@
       <div id="general">
         <div class="row">
           <div class="col-md-3">
-          <?php include('include/menu-izquierda.php');?>
+            <?php include(APPPATH.'/Views/include/menu-izquierda.php');?>
           </div>
-          <div class="col-md-6">
-           
+
+
+
+          <div class="col-md-9">
               <div class="alert alert-warning alert-dismissible fade show" role="alert">
                 <strong>Notificaciones del sistema:</strong> Este texto es un ejemplo de notificaciones que el sistema le debe de mostrar al Administrador.
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div> 
-              Accesos Rapidos:<br/><br/>
 
-              <div class="card">
-                <div class="card-body">
-                <table width="100%" cellspacing="12" cellpadding="12" >
-                <tr>
-                <td><div class="text-center"><a href="<?php echo site_url('/Evaluaciones/index'); ?>"><i class="fa fa-file-text-o fa-2x" aria-hidden="true"></i><br/>Evaluaciones.</a></div></td>
-                <td><div class="text-center"><a href="<?php echo site_url('/Evaluaciones/index'); ?>"><br/>Tipos de <br/> evaluaciones:</a></div></td>
-                <td><div class="text-center">
-                <?php
-                foreach(getTipoEvaluacion() as $fila){ ?>
-                  <a href="<?php echo site_url("/Evaluaciones/tipo_evaluacion/$fila->id"); ?>"><?php echo $fila->nombre ?></a> / 
+
+              <?php
+              if($session->has('pregunta-exito')){ 
+                ?>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
                   <?php
-                  }
+                  echo $session->get('pregunta-exito');
                   ?>
-                  </div>
-                </td>
-                </tr>
-                </table>
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
                 </div>
-              </div>
+                <?php
+                
+                $session->remove('pregunta-exito'); 
+              }
+              ?>
 
-              <div class="espacioUno"></div>
-              <div class="card">
-                <div class="card-body">
-                  <table width="100%" cellspacing="12" cellpadding="12" >
-                  <tr>
-                  <td><div class="text-center"><a href="<?php echo site_url('/Ciclos/index'); ?>"><i class="fa fa-circle-o-notch fa-2x" aria-hidden="true"></i><br/>Ciclos.</a></div></td>
-                  <td><div class="text-center"><a href="<?php echo site_url('/Grupos/index'); ?>"><i class="fa fa-users fa-2x" aria-hidden="true"></i><br/>Grupos.</a></div></td>
-                  <td><div class="text-center"><a href="<?php echo site_url('/Alumnos/index'); ?>"><i class="fa fa-graduation-cap fa-2x" aria-hidden="true"></i><br/>Estudiantes.</a></div></td>
-                  </tr>
-                  </table>
-                </div>
-              </div>
-              
-              <div class="espacioUno"></div>
-              <div class="card">
-                <div class="card-body">
-                  <table width="100%" cellspacing="12" cellpadding="12" >
-                    <tr>
-                    <td><div class="text-center"><a href="#"><i class="fa fa-handshake-o fa-2x" aria-hidden="true"></i></i><br/>Prospectos.</a></div></td>
-                    <td><div class="text-center"><a href="<?php echo site_url('/Teachers/index'); ?>"><i class="fa fa-user-circle-o fa-2x" aria-hidden="true"></i><br/>Teachers.</a></div></td>
-                    <td><div class="text-center"><a href="<?php echo site_url('/Tutores/index'); ?>"><i class="fa fa-user-secret fa-2x" aria-hidden="true"></i><br/>Tutores.</a></div></td>
-                    </tr>
-                    <tr>
-                  </table>
-                </div>
-              </div>
 
-              <div class="espacioUno"></div>
+
+
+ 
+
+
+          <div class="espacioUno"></div>
+            <h4>Grupos</h4>
               <div class="card">
                 <div class="card-body">
-                  <table width="100%" cellspacing="12" cellpadding="12" >
-                  <tr>
-                  <td><div class="text-left"><a href="#"><i class="fa fa-caret-square-o-right fa-2x" aria-hidden="true"></i></i><br/>Clase Demo.</a></div></td>
-                  <td>&nbsp;<br/></td>
-                  <td>&nbsp;<br/></td>
-                  </tr>
-                  </table>
-                </div>
+
+                <a href="<?php echo site_url('/Grupos/agregargrupo'); ?>">Crear un grupo</a> 
+                
+                <hr class="linea"/>
+                <a href="">Asignar Recursos</a> / 
+                <a href="">Asignar Un Teacher</a> /
+                <a href="">Asignar Alumnos</a> <br/>
+                Codigo de acceso para el grupo.<br/>
+                Materiales (recursos que estan asignados al grupo)<br/>
+                Miembros (Listado de alumnos asignados a este grupo)<br/>
+                Libreta de calificaciones (Listado de alumnos con sus calificaciones)<br/>
+
+
+
+
               </div>
+            </div>
           </div>
 
-          <div class="col-md-3">
-           Con tenido de lado derecho. Con tenido de lado derecho.Con tenido de lado derecho.Con tenido de lado derecho.Con tenido de lado derecho.Con tenido de lado derecho.Con tenido de lado derecho.Con tenido de lado derecho.Con tenido de lado derecho.
-          </div>
+
+
+
         </div>  
       </div>
     </div>
@@ -178,4 +165,5 @@
       <div class="espacioDos"></div>
       <div class="espacioDos"></div>
       <div class="espacioDos"></div>
-<?php include("include/footer.php");?>
+
+<?php include(APPPATH.'Views/include/footer.php');?>

@@ -6,7 +6,27 @@ $collSistema       = strpos($curURL, "Sistema") ?  "collapse show" : "collapse";
 
 
 // Menu para Catalogos
-$collCatalogos     = strpos($curURL, 'Catalogos') ? "collapse show" : "collapse";
+$Catalogos = ["Ciclos"=>1,"Horarios"=>2,"Niveles"=>3,"Salones"=>4,"Cursos"=>5,"Sucursales"=>6,
+"Facultades"=>7,"Carreras"=>8,"Usuarios"=>9,"Roles"=>10,"Integraciones"=>11,"Medios"=>12,"Canales"=>13,
+"Origenes"=>14,"Notificaciones"=>15,"Avisos Pop-Up"=>16,"Black List"=>17,"Calendario Anual"=>18,"Turnos"=>19,
+"Accesos"=>20,"Materiales"=>21,"Tipo Materiales"=>22,"Categoría Materiales"=>23,"Clases Demo"=>24];
+foreach($Catalogos as $a=>$b){
+  
+  if(strpos($curURL, trim($a))){
+    $collCatalogos  = "collapse show";
+    $enlaceActivo = trim($a); 
+  break;
+  }else{
+    $collCatalogos = "collapse";
+    $enlaceActivo="";
+  }
+}
+
+  
+  
+  
+  
+  
 
 // Menu para modulos
 $Modulos = ["Recursos"=>1,"Evaluaciones"=>2,"Alumnos"=>3,"Grupos"=>4,"Ciclos"=>5,"Prospectos"=>6,"Teachers"=>7,"Tutores"=>8,"ClasesDemo"=>9,"Preguntas"=>10];
@@ -20,14 +40,11 @@ foreach($Modulos as $a=>$b){
     $collModulos = "collapse";
     $enlaceActivo="";
   }
-  
 }
 
+$collReportes = "collapse";
+$collIntegraciones = "collapse";
 
-
-$collReportes      = strpos($curURL, 'Reportes') ? "collapse show" : "collapse";
-
-$collIntegraciones = strpos($curURL, 'Integraciones') ? "collapse show" : "collapse";
 ?>
 
 
@@ -61,6 +78,17 @@ $collIntegraciones = strpos($curURL, 'Integraciones') ? "collapse show" : "colla
           
           <div class="<?php echo $collCatalogos;?>" id="collapseCatalogos">
            <ul class="list-group">
+           <li class="list-group-item"><a class="<?php if($enlaceActivo=='Ciclos'){echo 'mi-active';}?>" href="<?php echo site_url('Ciclos/index')?>">Ciclos</a></li>
+
+           
+           <li class="list-group-item"><a href="#">Horarios</a></li>
+           <li class="list-group-item"><a href="#">Niveles</a></li>
+           <li class="list-group-item"><a href="#">Salones</a></li>
+           <li class="list-group-item"><a href="#">Cursos</a></li>
+           
+
+
+             
              <li class="list-group-item"><a href="#">Sucursales</a></li>
              <li class="list-group-item"><a href="#">Facultades</a></li>
              <li class="list-group-item"><a href="#">Carreras</a></li>
@@ -74,7 +102,6 @@ $collIntegraciones = strpos($curURL, 'Integraciones') ? "collapse show" : "colla
              <li class="list-group-item"><a href="#">Avisos Pop-Up</a></li>
              <li class="list-group-item"><a href="#">Black List</a></li>
              <li class="list-group-item"><a href="#">Calendario Anual</a></li>
-             <li class="list-group-item"><a href="#">Horarios</a></li>
              <li class="list-group-item"><a href="#">Turnos</a></li>
              <li class="list-group-item"><a href="#">Accesos</a></li>
              <li class="list-group-item"><a href="#">Materiales</a></li>
@@ -111,7 +138,6 @@ $collIntegraciones = strpos($curURL, 'Integraciones') ? "collapse show" : "colla
             <h2 class="titulos-menu">Reportes</h2>
            </a>
 
-           
            <div class="<?php echo $collReportes;?>" id="collapseReportes">
           <ul class="list-group">
              <li class="list-group-item"><a href="#">Reporte 1</a></li>
