@@ -63,22 +63,22 @@
 
 
 
-          <h4>Registro de alumno.</h4>
+          <h4>Editar Alumno.</h4>
           <div class="espacioUno"></div>
         
               <div class="card">
                 <div class="card-body">
 
-                <form action="<?php echo site_url('Alumnos/insertarAlumno');?>" method="post">
+                <form action="<?php echo site_url('Alumnos/editar');?>" method="post">
                 <div class="espacioDos"></div>
                 Datos Generales
                 <div class="espacioDos"></div>
                 <div class="row">
                   <div class="col">
-                    <input type="text" name="nombre" id="nombre" class="form-control form-control-sm" placeholder="Nombre">
+                    <input type="text" name="nombre" id="nombre" class="form-control form-control-sm" placeholder="Nombre"value=<?php echo $nombre ?>>
                   </div>
                   <div class="col">
-                    <input type="text" name="apellido_paterno" id="apellido_paterno" class="form-control form-control-sm" placeholder="Apellido Paterno">
+                    <input type="text" name="apellido_paterno" id="apellido_paterno" class="form-control form-control-sm" placeholder="Apellido Paterno" value=<?php echo $apeliido_paterno ?>>
                   </div>
                 </div>
 
@@ -86,10 +86,10 @@
 
                 <div class="row">
                   <div class="col">
-                    <input type="text" name="apellido_materno" id="apellido_materno" class="form-control form-control-sm" placeholder="Apellido Materno">
+                    <input type="text" name="apellido_materno" id="apellido_materno" class="form-control form-control-sm" placeholder="Apellido Materno" value = <?php echo $apeliido_materno?>>
                   </div>
                   <div class="col">
-                    <input type="text" name="usuario" id="usuario" class="form-control form-control-sm" placeholder="Usuario">
+                    <input type="text" name="usuario" id="usuario" class="form-control form-control-sm" placeholder="Usuario" value = <?php echo $usuario ?>>
                   </div>
                 </div>
                 
@@ -97,10 +97,7 @@
 
                 <div class="row">
                   <div class="col">
-                    <input type="email" name="email" id="email" class="form-control form-control-sm" placeholder="Correo">
-                  </div>
-                  <div class="col">
-                    <input type="password" name="password" id="password" class="form-control form-control-sm" placeholder="Contraseña">
+                    <input type="email" name="email" id="email" class="form-control form-control-sm" placeholder="Correo" value=<?php echo $email ?>>
                   </div>
                 </div>
             
@@ -108,10 +105,10 @@
 
                 <div class="row">
                   <div class="col">
-                    <input type="text" name="telefono" id="telefono" class="form-control form-control-sm" placeholder="Teléfono">
+                    <input type="text" name="telefono" id="telefono" class="form-control form-control-sm" placeholder="Teléfono" value = <?php echo $telefono ?>>
                   </div>
                   <div class="col">
-                    <input type="text" name="movil" id="movil" class="form-control form-control-sm" placeholder="Móvil o WhatssApp">
+                    <input type="text" name="movil" id="movil" class="form-control form-control-sm" placeholder="Móvil o WhatssApp" value = <?php echo $movil ?>>
                   </div>
                 </div>
 
@@ -125,7 +122,11 @@
                   <select class="form-control form-control-sm" name="roll" id="roll" required="">
                     <option value="">Seleccione una opción</option>
                     <?php foreach(getRoll() as $fila){?>
+                      <?php if($fila->id == $roll){ ?>
+                        <option selected="selected" value="<?php echo $fila->id;?>"><?php echo $fila->nombre;?></option>
+                      <?php }else{?>
                     <option value="<?php echo $fila->id?>"><?php echo $fila->nombre?></option>
+                      <?php }?>
                     <?php } ?> 
                   </select>
                   </div>
@@ -142,14 +143,18 @@
                 <div class="row">
                   <div class="col">
                     Matricula
-                    <input type="text" name="matricula" id="matricula" class="form-control form-control-sm" placeholder="Matricula">
+                    <input type="text" name="matricula" id="matricula" class="form-control form-control-sm" placeholder="Matricula" value=<?php echo $matricula?>>
                   </div>
                   <div class="col">
                     Unidad de negocio
                   <select class="form-control form-control-sm" name="unidad_negocio" id="unidad_negocio" required="">
                   <option value="">Selecciona una opción</option>
                   <?php foreach(getUnidadNegocio() as $fila){?>
+                    <?php if($fila->id  == $unidad_negocio){?>
+                      <option selected="selected" value="<?php echo $fila->id;?>"><?php echo $fila->nombre;?></option>
+                      <?php }else{ ?>
                     <option value="<?php echo $fila->id?>"><?php echo $fila->nombre?></option>
+                    <?php } ?> 
                     <?php } ?> 
                   </select>
                   </div>
@@ -169,8 +174,14 @@
                   Plantel
                   <select class="form-control form-control-sm" name="plantel" id="plantel" required="">
                   <option value="">Selecciona una opción</option>
+                  <?php foreach(getPlantelesPorUNidadNegocio($unidad_negocio) as $fila){?>
+                  <?php if($fila->id ==  $plantel){ ?>
+                    <option selected="selected" value="<?php echo $fila->id;?>"><?php echo $fila->nombre;?></option>
+                      <?php }else{ ?>
+                    <option value="<?php echo $fila->id?>"><?php echo $fila->nombre?></option>
+                    <?php } ?> 
+                    <?php } ?> 
                   </select>
-
                   </div>
                   <div class="col">
                   </div>
@@ -181,7 +192,7 @@
 
               <div class="form-group">
                 <label for="lblInstrucciones">Comentarios</label>
-                <textarea class="form-control form-control-sm" name="comentarios" id="comentarios" rows="3" required=""></textarea>
+                <textarea class="form-control form-control-sm" name="comentarios" id="comentarios" rows="3" required=""><?php echo $comentarios?></textarea>
               </div>
                 <div class="espacioDos"></div>
                 <hr class="linea"/>
@@ -189,21 +200,10 @@
                 <div class="espacioDos"></div>
                 <div class="row">
                   <div class="col">
-                  <input type="text" name="calle" id="calle" class="form-control form-control-sm" placeholder="Calle">
+                  <input type="text" name="calle" id="calle" class="form-control form-control-sm" placeholder="Calle" value=<?php echo $calle?>>
                   </div>
                   <div class="col">
-                  <input type="text" name="num_interior" id="num_interior" class="form-control form-control-sm" placeholder="Número interior">
-                  </div>
-                </div>
-
-                <div class="espacioUno"></div>
-
-                <div class="row">
-                  <div class="col">
-                  <input type="text" name="num_exterior" id="num_exterior" class="form-control form-control-sm" placeholder="Número exterior">
-                  </div>
-                  <div class="col">
-                  <input type="text" name="colonia" id="colonia" class="form-control form-control-sm" placeholder="Colonia">
+                  <input type="text" name="num_interior" id="num_interior" class="form-control form-control-sm" placeholder="Número interior" value = <?php echo $numero_interior?>>
                   </div>
                 </div>
 
@@ -211,10 +211,21 @@
 
                 <div class="row">
                   <div class="col">
-                  <input type="text" name="cp" id="cp" class="form-control form-control-sm" placeholder="Código Postal">
+                  <input type="text" name="num_exterior" id="num_exterior" class="form-control form-control-sm" placeholder="Número exterior" value = <?php echo $numero_exterior?>>
                   </div>
                   <div class="col">
-                  <input type="text" name="municipio_delegacion" id="municipio_delegacion" class="form-control form-control-sm" placeholder="Municipio / Delegación">
+                  <input type="text" name="colonia" id="colonia" class="form-control form-control-sm" placeholder="Colonia" value = <?php echo $colonia?>>
+                  </div>
+                </div>
+
+                <div class="espacioUno"></div>
+
+                <div class="row">
+                  <div class="col">
+                  <input type="text" name="cp" id="cp" class="form-control form-control-sm" placeholder="Código Postal" value = <?php echo $codigo_postal?>>
+                  </div>
+                  <div class="col">
+                  <input type="text" name="municipio_delegacion" id="municipio_delegacion" class="form-control form-control-sm" placeholder="Municipio / Delegación" value = <?php echo $municipio_delegacion?>>
                   </div>
                 </div>
 
@@ -225,18 +236,12 @@
                   Estado
                   <select class="form-control form-control-sm" name="entidad_federativa" id="entidad_federativa" required="">
                     <?php foreach(getEstados() as $fila){?>
-                      <?php
-                      if($fila->id==19){
-                        ?>
+                      <?php if($fila->id== $estado){ ?>
                         <option selected="selected" value="<?php echo $fila->id;?>"><?php echo $fila->nombre;?></option>
                         <?php
-                      }else{
-                        ?>
+                      }else{ ?>
                         <option value="<?php echo $fila->id;?>"><?php echo $fila->nombre;?></option>
-                        <?php
-                      }
-                      ?>
-                    
+                        <?php } ?> 
                     <?php } ?> 
                   </select>
                   </div>
@@ -245,15 +250,17 @@
                   <select class="form-control form-control-sm" name="pais" id="pais" required="">
 
                     <?php foreach(getPaises() as $fila){?>
-                      
+                    <?php if($fila->id == $pais){?>
+                      <option selected="selected" value="<?php echo $fila->id;?>"><?php echo $fila->pais;?></option>
+                    <?php }else{ ?>
                     <option value="<?php echo $fila->id;?>"><?php echo $fila->pais;?></option>
+                    <?php } ?> 
                     <?php } ?> 
                     </select>
                   </div>
                 </div>
-
               <div class="espacioUno"></div>
-
+              <input type="hidden" name="idAlumno" value=<?php echo $idAlumno ?>>    
               <button type="submit" name="submitAL" class="btn btn-primary btn-sm">Registrar</button>
               </form>
 

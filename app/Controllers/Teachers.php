@@ -10,6 +10,7 @@ class Teachers extends BaseController{
         $data['page_title'] = "Teachers";	
         
         if($this->session->get('login')){
+            
             return view('teachers/panel_teacher',$data);
         }else{
             return redirect()->to(site_url('Home/salir'));

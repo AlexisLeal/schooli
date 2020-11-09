@@ -231,7 +231,7 @@
                         <option selected="selected" value="<?php echo $fila->id;?>"><?php echo $fila->nombre;?></option>
                         <?php
                       }else{
-                        ?>
+                        ?> 
                         <option value="<?php echo $fila->id;?>"><?php echo $fila->nombre;?></option>
                         <?php
                       }
@@ -245,8 +245,11 @@
                   <select class="form-control form-control-sm" name="pais" id="pais" required="">
 
                     <?php foreach(getPaises() as $fila){?>
-                      
+                      <?php if($fila->id == 35){?>
+                      <option selected="selected" value="<?php echo $fila->id;?>"><?php echo $fila->pais;?></option>
+                    <?php }else{ ?>
                     <option value="<?php echo $fila->id;?>"><?php echo $fila->pais;?></option>
+                    <?php } ?> 
                     <?php } ?> 
                     </select>
                   </div>

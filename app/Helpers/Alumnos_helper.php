@@ -5,7 +5,7 @@ use  App\Models\Unidad_negocio;
 use  App\Models\Rolles;
 use  App\Models\Alumnos_model;
 use  App\Models\Entidades_federativas;
-use  App\Models\Usuarios; 
+use  App\Models\Usuarios;  
 use  App\Models\Paises; 
 
 function getPlanteles()
@@ -128,6 +128,14 @@ function getRollEspecifico($id_roll)
     $nombre = $row->nombre;
     return($nombre);
 }
+function getPlantelesPorUNidadNegocio($id_unidad_negocio)
+{
 
+    $usermodel = new Planteles($db);
+    $query = "SELECT id,nombre FROM  planteles WHERE deleted = 0 AND id_unidad_negocio = $id_unidad_negocio";
+    $resultado = $usermodel ->query($query);   
+    $rowArray = $resultado->getResult();
+    return($rowArray);
+}
 
 ?>
