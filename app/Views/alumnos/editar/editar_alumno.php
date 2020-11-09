@@ -75,10 +75,10 @@
                 <div class="espacioDos"></div>
                 <div class="row">
                   <div class="col">
-                    <input type="text" name="nombre" id="nombre" class="form-control form-control-sm" placeholder="Nombre"value=<?php echo $nombre ?>>
+                    <input type="text" name="nombre" id="nombre" class="form-control form-control-sm" placeholder="Nombre" value="<?php echo $nombre; ?>">
                   </div>
                   <div class="col">
-                    <input type="text" name="apellido_paterno" id="apellido_paterno" class="form-control form-control-sm" placeholder="Apellido Paterno" value=<?php echo $apeliido_paterno ?>>
+                    <input type="text" name="apellido_paterno" id="apellido_paterno" class="form-control form-control-sm" placeholder="Apellido Paterno" value="<?php echo $apeliido_paterno;?>">
                   </div>
                 </div>
 
@@ -86,10 +86,10 @@
 
                 <div class="row">
                   <div class="col">
-                    <input type="text" name="apellido_materno" id="apellido_materno" class="form-control form-control-sm" placeholder="Apellido Materno" value = <?php echo $apeliido_materno?>>
+                    <input type="text" name="apellido_materno" id="apellido_materno" class="form-control form-control-sm" placeholder="Apellido Materno" value ="<?php echo $apeliido_materno;?>">
                   </div>
                   <div class="col">
-                    <input type="text" name="usuario" id="usuario" class="form-control form-control-sm" placeholder="Usuario" value = <?php echo $usuario ?>>
+                    <input type="text" name="usuario" id="usuario" class="form-control form-control-sm" placeholder="Usuario" value ="<?php echo $usuario;?>">
                   </div>
                 </div>
                 
@@ -97,7 +97,7 @@
 
                 <div class="row">
                   <div class="col">
-                    <input type="email" name="email" id="email" class="form-control form-control-sm" placeholder="Correo" value=<?php echo $email ?>>
+                    <input type="email" name="email" id="email" class="form-control form-control-sm" placeholder="Correo" value="<?php echo $email;?>">
                   </div>
                 </div>
             
@@ -105,10 +105,10 @@
 
                 <div class="row">
                   <div class="col">
-                    <input type="text" name="telefono" id="telefono" class="form-control form-control-sm" placeholder="Teléfono" value = <?php echo $telefono ?>>
+                    <input type="text" name="telefono" id="telefono" class="form-control form-control-sm" placeholder="Teléfono" value ="<?php echo $telefono;?>">
                   </div>
                   <div class="col">
-                    <input type="text" name="movil" id="movil" class="form-control form-control-sm" placeholder="Móvil o WhatssApp" value = <?php echo $movil ?>>
+                    <input type="text" name="movil" id="movil" class="form-control form-control-sm" placeholder="Móvil o WhatssApp" value ="<?php echo $movil;?>">
                   </div>
                 </div>
 
@@ -143,7 +143,7 @@
                 <div class="row">
                   <div class="col">
                     Matricula
-                    <input type="text" name="matricula" id="matricula" class="form-control form-control-sm" placeholder="Matricula" value=<?php echo $matricula?>>
+                    <input type="text" name="matricula" id="matricula" class="form-control form-control-sm" placeholder="Matricula" value="<?php echo $matricula;?>">
                   </div>
                   <div class="col">
                     Unidad de negocio
@@ -200,21 +200,10 @@
                 <div class="espacioDos"></div>
                 <div class="row">
                   <div class="col">
-                  <input type="text" name="calle" id="calle" class="form-control form-control-sm" placeholder="Calle" value=<?php echo $calle?>>
+                  <input type="text" name="calle" id="calle" class="form-control form-control-sm" placeholder="Calle" value="<?php echo $calle;?>">
                   </div>
                   <div class="col">
-                  <input type="text" name="num_interior" id="num_interior" class="form-control form-control-sm" placeholder="Número interior" value = <?php echo $numero_interior?>>
-                  </div>
-                </div>
-
-                <div class="espacioUno"></div>
-
-                <div class="row">
-                  <div class="col">
-                  <input type="text" name="num_exterior" id="num_exterior" class="form-control form-control-sm" placeholder="Número exterior" value = <?php echo $numero_exterior?>>
-                  </div>
-                  <div class="col">
-                  <input type="text" name="colonia" id="colonia" class="form-control form-control-sm" placeholder="Colonia" value = <?php echo $colonia?>>
+                  <input type="text" name="num_interior" id="num_interior" class="form-control form-control-sm" placeholder="Número interior" value ="<?php echo $numero_interior;?>">
                   </div>
                 </div>
 
@@ -222,10 +211,21 @@
 
                 <div class="row">
                   <div class="col">
-                  <input type="text" name="cp" id="cp" class="form-control form-control-sm" placeholder="Código Postal" value = <?php echo $codigo_postal?>>
+                  <input type="text" name="num_exterior" id="num_exterior" class="form-control form-control-sm" placeholder="Número exterior" value ="<?php echo $numero_exterior;?>">
                   </div>
                   <div class="col">
-                  <input type="text" name="municipio_delegacion" id="municipio_delegacion" class="form-control form-control-sm" placeholder="Municipio / Delegación" value = <?php echo $municipio_delegacion?>>
+                  <input type="text" name="colonia" id="colonia" class="form-control form-control-sm" placeholder="Colonia" value ="<?php echo $colonia;?>">
+                  </div>
+                </div>
+
+                <div class="espacioUno"></div>
+
+                <div class="row">
+                  <div class="col">
+                  <input type="text" name="cp" id="cp" class="form-control form-control-sm" placeholder="Código Postal" value ="<?php echo $codigo_postal;?>">
+                  </div>
+                  <div class="col">
+                  <input type="text" name="municipio_delegacion" id="municipio_delegacion" class="form-control form-control-sm" placeholder="Municipio / Delegación" value ="<?php echo $municipio_delegacion;?>">
                   </div>
                 </div>
 
@@ -260,7 +260,7 @@
                   </div>
                 </div>
               <div class="espacioUno"></div>
-              <input type="hidden" name="idAlumno" value=<?php echo $idAlumno ?>>    
+              <input type="hidden" name="idAlumno" value="<?php echo $idAlumno;?>">    
               <button type="submit" name="submitAL" class="btn btn-primary btn-sm">Registrar</button>
               </form>
 
