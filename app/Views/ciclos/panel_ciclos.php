@@ -88,11 +88,11 @@
                 <td><?php echo $fila->fecha_fin;?></td>
                 <td><?php echo $fila->comentarios;?></td>
                 <td class="text-center">
-                  <a href="<?php echo site_url("Ciclos/verCiclo/prametro1") ?>">
+                  <a href="<?php echo site_url("Ciclos/verCiclo/$fila->id") ?>">
                   <i class="fa fa-file-text-o fa-1x" aria-hidden="true"></i>
                 </td>
                 <td class="text-center">
-                <a href="<?php echo site_url("Ciclos/editarCiclo/parametro2") ?>">
+                <a href="<?php echo site_url("Ciclos/editarCiclo/$fila->id") ?>">
                 <i class="fa fa-pencil-square-o fa-1x" aria-hidden="true"></i>
                 </a>
                 </td>

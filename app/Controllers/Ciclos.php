@@ -26,22 +26,34 @@ class Ciclos extends BaseController{
            }
     }
 
-    public function verciclo()
+    public function verciclo($id_ciclo)
 	{
-        $data['page_title'] = "Agregar un Ciclo";
+        
         if($this->session->get('login')){
-        $data['page_title'] = "Alumnos";	
+        $ciclo = getCicloEspecifico($id_ciclo);
+        $data['nombre'] = $ciclo->nombre;
+        $data['estatus'] = ($ciclo->estatus==1) ? "Activo" : "Inactivo";
+        $data['fechaInicio'] = $ciclo->fecha_inicio;
+        $data['fechaFin'] = $ciclo->fecha_fin;
+        $data['comentarios'] = $ciclo->comentarios;
+        $data['page_title'] = "Ver Ciclo";	        	
         return view('ciclos/mostrar/ver_ciclo',$data);
         }else{
             return redirect()->to(site_url('Home/salir'));
            }
     }
 
-    public function editarciclo()
+    public function editarciclo($id_ciclo)
 	{
-        $data['page_title'] = "Agregar un Ciclo";
         if($this->session->get('login')){
-        $data['page_title'] = "Alumnos";	
+        $data['page_title'] = "Editar";	
+        $ciclo = getCicloEspecifico($id_ciclo);
+        $data['nombre'] = $ciclo->nombre;
+        $data['estatus'] = $ciclo->estatus;
+        $data['fechaInicio'] = $ciclo->fecha_inicio;
+        $data['fechaFin'] = $ciclo->fecha_fin;
+        $data['comentarios'] = $ciclo->comentarios; 
+
         return view('ciclos/editar/editar_ciclo',$data);
         }else{
             return redirect()->to(site_url('Home/salir'));

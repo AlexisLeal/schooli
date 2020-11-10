@@ -72,7 +72,7 @@
               <div class="card">
                 <div class="card-body">
 
-                <form action="<?php echo site_url('Ciclos/insertarCiclo');?>" method="post" enctype="multipart/form-data">
+                <form action="<?php echo site_url('Ciclos/insertarCiclo');?>" method="post">
                
                 <div class="espacioDos"></div>
                 <div class="row">
@@ -96,12 +96,12 @@
                 <div class="row">
                   <div class="col">
                   Fecha de inicio
-                  <input type="date" name="fechaInicio" id="fechaInicio" class="form-control form-control-sm" require>
+                  <input type="date" name="fechaInicio" id="fechaInicio" class="form-control form-control-sm" require = "">
 
                   </div>
                   <div class="col">
                   Fecha Fin
-                  <input type="date" name="fechaFIn" id="fechaFIn" class="form-control form-control-sm" require>
+                  <input type="date" name="fechaFIn" id="fechaFIn" class="form-control form-control-sm" require = "">
 
                   </select>
                   </div>
