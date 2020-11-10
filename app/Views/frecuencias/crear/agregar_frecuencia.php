@@ -56,9 +56,6 @@
           
           <div class="espacioUno"></div>
         
-
-
-
               <div class="card">
                 <div class="card-body">
 
@@ -71,96 +68,65 @@
                     <input type="text" name="nombre" id="nombre" class="form-control form-control-sm">
                   </div>
                   <div class="col">
-                    Estatus
+                  Modalidad
                     <select class="form-control form-control-sm" name="estatus" id="estatus" required="">
                     <option value="">Seleccione una opción</option>
-                    <option value="1">Activo</option>
-                    <option value="0">Inactivo</option>
+                    <option value="">Intensico</option>
+                    <option value="">Semiintensivo</option>
                     </select>
                   </div>
                 </div>
 
-                <div class="espacioUno"></div>
-
-
-                <div class="row">
-                  <div class="col">
-                  Unidad de negocio
-                  <select class="form-control form-control-sm" name="unidad_negocio" id="unidad_negocio" required="">
-                  <option value="">Selecciona una opción</option>
-                  <?php foreach(getUnidadNegocio() as $fila){?>
-                    <option value="<?php echo $fila->id?>"><?php echo $fila->nombre?></option>
-                    <?php } ?> 
-                  </select>
-                  </div>
-                  <div class="col">
-                  Plantel
-                  <select class="form-control form-control-sm" name="plantel" id="plantel" required="">
-                  <option value="">Selecciona una opción</option> 
-                  </select>
-                  </div>
-                </div>
-
-
-              <div class="espacioUno"></div>
-
-              <div class="row">
-                  <div class="col">
-                  Horarios
-                    <select class="form-control form-control-sm" name="estatus" id="estatus" required="">
-                    <option value="">Seleccione una opción</option>
-                    <option value="1">Activo</option>
-                    <option value="0">Inactivo</option>
-                    </select>
-                  </div>
-                  <div class="col">
-                    Salon
-                    <select class="form-control form-control-sm" name="estatus" id="estatus" required="">
-                    <option value="">Seleccione una opción</option>
-                    <option value="1">Activo</option>
-                    <option value="0">Inactivo</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div class="espacioUno"></div>
-
-                <div class="row">
-                  <div class="col">
-                  Cupo
-                    <input type="text" name="nombre" id="cupo" class="form-control form-control-sm">
-                  </div>
-                  <div class="col">
-                  Precio
-                  <input type="text" name="nombre" id="precio" class="form-control form-control-sm">
-                  </div>
-                </div>
-                
-                <div class="espacioUno"></div>
-
-                <div class="row">
-                  <div class="col">
-                  Nivel
-                    <select class="form-control form-control-sm" name="nivel" id="nivel" required="">
-                    <option value="">Seleccione una opción</option>
-                    <option value="1">Activo</option>
-                    <option value="0">Inactivo</option>
-                    </select>
-                  </div>
-                  <div class="col">
-                    Cargar Imagen
-                    <div class="form-group">
-                    <input  class="form-control form-control-sm" type="file" id="imagen_grupo" name="imagen_grupo" required="">
-                  </div>
-                  </div>
-                </div>
-                
                 <div class="espacioUno"></div>
 
               <div class="form-group">
                 <label for="lblInstrucciones">Descripción</label>
                 <textarea class="form-control form-control-sm" name="descripcion" id="descripcion" rows="3" required=""></textarea>
               </div>
+
+                <div class="espacioUno"></div>
+
+                <div class="row">
+                  <div class="col" style="padding-left:200px;">
+                  <table cellpadding="10" cellspacing="10">
+                  <tr><td><input type="checkbox" class="form-check-input form-control-sm" name="lunes" id="lunes">Lunes</td></tr>
+                  <tr><td><input type="checkbox" class="form-check-input form-control-sm" name="martes" id="martes">Martes</td></tr>
+                  <tr><td><input type="checkbox" class="form-check-input form-control-sm" name="miercoles" id="miercoles">Miercoles</td></tr>
+                  <tr><td><input type="checkbox" class="form-check-input form-control-sm" name="jueves" id="jueves">Jueves</td></tr>
+                  </table>
+                  </div>
+                  <div class="col" style="padding-left:10px;">
+                  
+                  <table cellpadding="10" cellspacing="10">
+                  <tr><td><input type="checkbox" class="form-check-input form-control-sm" name="viernes" id="viernes">Viernes</td></tr>
+                  <tr><td><input type="checkbox" class="form-check-input form-control-sm" name="sabado" id="sabado">Sabado</td></tr>
+                  <tr><td><input type="checkbox" class="form-check-input form-control-sm" name="domingo" id="domingo">Domingo</td></tr>
+                  </table>
+
+                  </div>
+                </div>
+                
+                <div class="espacioUno"></div>
+                <div class="espacioUno"></div>
+
+                <div class="row">
+                  <div class="col">
+                  Grupo
+                    <input type="text" name="nombre" id="nombre" class="form-control form-control-sm">
+                  </div>
+                  <div class="col">
+                  Estatus
+                    <select class="form-control form-control-sm" name="estatus" id="estatus" required="">
+                    <option value="">Seleccione una opción</option>
+                    <option value="1">Activo</option>
+                    <option value="0">Inactivo</option>
+                    </select>
+                  </div>
+                </div>
+
+
+
+
 
               <div class="espacioUno"></div>
 
