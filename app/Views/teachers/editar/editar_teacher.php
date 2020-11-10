@@ -256,11 +256,14 @@
               </div>
               </div>
           </div>
-
-
-
-
         </div>  
+
+        <div class="col-md-6 text-right">
+                  <form action="<?php echo site_url('Teachers/eliminarTeachers')?>"id="" method="post">
+                    <input type="hidden" name="idMaestro" id="idMaestro" value="<?php echo $idMaestro;?>">
+                    <button type="submit" name="submitTH" id="submitTH"><i class="fa fa-trash-o" aria-hidden="true"></i></i></span></button>
+                  </form>
+                  </div>
       </div>
     </div>
 

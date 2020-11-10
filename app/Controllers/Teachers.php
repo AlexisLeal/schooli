@@ -312,7 +312,7 @@ class Teachers extends BaseController{
     }
 
 
-    public function eliminar(){
+    public function eliminarTeachers(){
         if($this->session->get('login')){
             if(isset($_POST['submitTH'])){
                 $REQUEST = \Config\Services::request();
