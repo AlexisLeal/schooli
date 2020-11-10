@@ -60,46 +60,48 @@
               </div> 
 
 
-              <a href="<?php echo site_url('/Ciclos/agregarciclo'); ?>">Registrar un ciclo.</a><br/>
+              <?php
+              if($session->has('pregunta-exito')){ 
+                ?>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                  <?php
+                  echo $session->get('pregunta-exito');
+                  ?>
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <?php
+                
+                $session->remove('pregunta-exito'); 
+              }
+              ?>
+
+
+
+
+ 
+
 
           <div class="espacioUno"></div>
-        
+            <h4>Grupos</h4>
               <div class="card">
                 <div class="card-body">
-                <table class="tabla-registros" class="display" cellspacing="6" cellpadding="8">
-                <thead>
-                <tr>
-                <th class="text-left">ID</th>
-                <th class="text-left">Nombre</th>
-                <th class="text-left">Estatus</th>
-                <th class="text-left">Fecha Inicio</th>
-                <th class="text-left">Fecha Termino</th>
-                <th class="text-left">Comentarios</th>
-                <th class="text-left">Ver</th>
-                <th class="text-left">Editar</th>
-                </tr>
-                </thead>
 
-                <tr>
-                <td>test</td>
-                <td>test</td>
-                <td>test</td>
-                <td>test</td>
-                <td>test</td>
-                <td>test</td>
-                <td class="text-center">
-                  <a href="<?php echo site_url("Ciclos/verCiclo/prametro1") ?>">
-                  <i class="fa fa-file-text-o fa-1x" aria-hidden="true"></i>
-                </td>
-                <td class="text-center">
-                <a href="<?php echo site_url("Ciclos/editarCiclo/parametro2") ?>">
-                <i class="fa fa-pencil-square-o fa-1x" aria-hidden="true"></i>
-                </a>
-                </td>
-                </tr>
+                <a href="<?php echo site_url('/Grupos/agregargrupo'); ?>">Crear un grupo</a> 
+                
+                <hr class="linea"/>
+                <a href="">Asignar Recursos</a> / 
+                <a href="">Asignar Un Teacher</a> /
+                <a href="">Asignar Alumnos</a> <br/>
+                Codigo de acceso para el grupo.<br/>
+                Materiales (recursos que estan asignados al grupo)<br/>
+                Miembros (Listado de alumnos asignados a este grupo)<br/>
+                Libreta de calificaciones (Listado de alumnos con sus calificaciones)<br/>
 
 
-                </table>
+
+
               </div>
             </div>
           </div>
