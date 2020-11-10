@@ -79,14 +79,14 @@
                 <th class="text-left">Editar</th>
                 </tr>
                 </thead>
-
-                <tr>
-                <td>test</td>
-                <td>test</td>
-                <td>test</td>
-                <td>test</td>
-                <td>test</td>
-                <td>test</td>
+                <?php foreach(getAllCiclo() as $fila){ ?>
+                  <tr>
+                <td><?php echo $fila->id;?></td>
+                <td><?php echo "$fila->nombre"?></td>
+                <td><?php echo $fila->estatus;?></td>
+                <td><?php echo $fila->fecha_inicio;?></td>
+                <td><?php echo $fila->fecha_fin;?></td>
+                
                 <td class="text-center">
                   <a href="<?php echo site_url("Ciclos/verCiclo/prametro1") ?>">
                   <i class="fa fa-file-text-o fa-1x" aria-hidden="true"></i>
@@ -97,7 +97,7 @@
                 </a>
                 </td>
                 </tr>
-
+                <?php }?>
 
                 </table>
               </div>

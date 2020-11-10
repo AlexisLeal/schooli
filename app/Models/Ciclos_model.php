@@ -2,7 +2,7 @@
 
 use CodeIgniter\Model;
 
-class Ciclos extends Model
+class Ciclos_model extends Model
 {
     #Nombre de la tabla
     protected $table      = 'ciclos';
@@ -13,7 +13,7 @@ class Ciclos extends Model
     protected $useSoftDeletes = true;
 
     #Aqui ponemos el nombre de las columnas que vamos a modifcar
-    protected $allowedFields = ['nombre','estatus','fecha_inicio','fecha_fin','plantel','comentarios'];
+    protected $allowedFields = ['nombre','estatus','fecha_inicio','fecha_fin','comentarios','fecha_creacion','fecha_ultimo_cambio','usuario_creo','usuario_modifico'];
 
     protected $useTimestamps = false;
     protected $createdField  = 'fecha_creacion';
