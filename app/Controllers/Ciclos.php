@@ -25,7 +25,27 @@ class Ciclos extends BaseController{
            }
     }
 
+    public function verciclo()
+	{
+        $data['page_title'] = "Agregar un Ciclo";
+        if($this->session->get('login')){
+        $data['page_title'] = "Alumnos";	
+        return view('ciclos/mostrar/ver_ciclo',$data);
+        }else{
+            return redirect()->to(site_url('Home/salir'));
+           }
+    }
 
+    public function editarciclo()
+	{
+        $data['page_title'] = "Agregar un Ciclo";
+        if($this->session->get('login')){
+        $data['page_title'] = "Alumnos";	
+        return view('ciclos/editar/editar_ciclo',$data);
+        }else{
+            return redirect()->to(site_url('Home/salir'));
+           }
+    }
 
 
 }
