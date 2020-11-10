@@ -5,7 +5,7 @@ class Ciclos extends BaseController{
      
     public function index()
 	{
-        $data['page_title'] = "Ciclos";	
+        $data['page_title'] = "Niveles";	
         //Pasamos de forma dinamica el titulo  y se crear un array
         if($this->session->get('login')){
         return view('niveles/panel_niveles',$data);

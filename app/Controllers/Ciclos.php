@@ -14,6 +14,16 @@ class Ciclos extends BaseController{
            }
 	}
 	
+    public function agregarciclo()
+	{
+        $data['page_title'] = "Agregar un Ciclo";
+        if($this->session->get('login')){
+        $data['page_title'] = "Alumnos";	
+        return view('ciclos/crear/agregar_ciclo',$data);
+        }else{
+            return redirect()->to(site_url('Home/salir'));
+           }
+    }
 
 
 
