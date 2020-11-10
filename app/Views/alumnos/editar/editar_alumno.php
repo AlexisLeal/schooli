@@ -271,9 +271,9 @@
                   <div class="col-md-6">
                   </div>
                   <div class="col-md-6 text-right">
-                  <form action="<?php echo site_url('Alumnos/deletedAlumnos')?>" name="<?php echo $fila->id;?>" id="" method="post">
+                  <form action="<?php echo site_url('Alumnos/eliminarAlumno')?>" name="<?php echo $fila->id;?>" id="" method="post">
                     <input type="hidden" name="idAlumno" id="idAlumno" value="<?php echo $idAlumno;?>">
-                    <button type="submit" name="submitAP" id="submitAP"><i class="fa fa-trash-o" aria-hidden="true"></i></i></span></button>
+                    <button type="submit" name="submitAL" id="submitAL"><i class="fa fa-trash-o" aria-hidden="true"></i></i></span></button>
                   </form>
                   </div>
                 </div>

@@ -328,32 +328,31 @@ class Alumnos extends BaseController{
 
 
 
-    public function eliminarAlumno($id_alumno)
+    public function eliminarAlumno()
     {
         if($this->session->get('login')){
             $usermodel_D = new Direcciones($db);
             $usermodel_U = new Usuarios($db);
             $usermodel_A = new Alumnos_model($db);
+            $REQUEST = \Config\Services::request();
+            $id_alumno = $REQUEST->getPost('idAlumno');
                 
-        $query_A = "SELECT id from alumnos WHERE id = $id_alumno AND deleted = 0";
+        $query_A = "SELECT * from alumnos WHERE id = $id_alumno AND deleted = 0";
         $resultado_A = $usermodel_A->query($query_A);
         $row_A = $resultado_A->getRow();
         //--------------------------------------------------------------------
-        $query_U = "SELECT id from usuarios WHERE id = $row_A->id_usuario AND deleted = 0";
+        $query_U = "SELECT * from usuarios WHERE id = $row_A->id_usuario AND deleted = 0";
         $resultado_U = $usermodel_U->query($query_U);
         $row_U = $resultado_U->getRow();
         //--------------------------------------------
-        $query_D = "SELECT id from direcciones WHERE id = $row_U->id_direccion AND deleted = 0";
-        $resultado_D = $usermodel_U->query($query_U);
-        $row_D = $resultado_D->getRow();
-
+        
         $usermodel_A->delete(['id'=> $id_alumno]);
         $usermodel_U->delete(['id' => $row_A->id_usuario]);
         $usermodel_D->delete(['id' => $row_U->id_direccion]);
         //Variables de session 
 
 
-        return redirect()->to(site_url('Alumnos/editaralumnos'));
+        return redirect()->to(site_url('Alumnos/index'));
     }else{
     return redirect()->to(site_url('Home/salir'));
    }

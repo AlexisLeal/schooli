@@ -305,38 +305,48 @@ class Teachers extends BaseController{
                  return redirect()->to(site_url("Teachers/editarTeachers/$id_maestro"));
 
 
-            }
-     
-                    
+            }                
     }else{
         return redirect()->to(site_url('Home/salir'));
        }
     }
 
 
+    public function eliminar(){
+        if($this->session->get('login')){
+            if(isset($_POST['submitTH'])){
+                $REQUEST = \Config\Services::request();
+                $id_maestro = $REQUEST->getPost('idMaestro');
 
 
+            $usermodel_D = new Direcciones($db);
+            $usermodel_U = new Usuarios($db);
+            $usermodel_M = new Maestros($db);
+                
+        $query_M = "SELECT * from maestros WHERE id = $id_maestro AND deleted = 0";
+        $resultado_M = $usermodel_M->query($query_M);
+        $row_M = $resultado_M->getRow();
+        //--------------------------------------------------------------------
+        $query_U = "SELECT * from usuarios WHERE id = $row_M->id_usuario AND deleted = 0";
+        $resultado_U = $usermodel_U->query($query_U);
+        $row_U = $resultado_U->getRow();
+        //--------------------------------------
 
+        $usermodel_M->delete(['id'=> $id_maestro]);
+        $usermodel_U->delete(['id' => $row_M->id_usuario]);
+        $usermodel_D->delete(['id' => $row_U->id_direccion]);
+        //Variables de session 
+        return redirect()->to(site_url('Teachers/index'));
 
+    
+     }else{
+            return redirect()->to(site_url('Home/salir'));
+        }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    }
-
+ }else{
+    return redirect()->to(site_url('Home/salir'));
+}
+}
+}
 
 
