@@ -1,5 +1,4 @@
 <?php
-use  App\Models\Tipo_usuarios;
 use  App\Models\Planteles;
 use  App\Models\Unidad_negocio;
 use  App\Models\Rolles;
@@ -58,7 +57,7 @@ function getEstados()
 }
 function getPaises()
 {
-    $usermodel = new Entidades_federativas($db);
+    $usermodel = new Paises($db);
     $query = "SELECT id,pais FROM  paises";
     $resultado = $usermodel ->query($query);   
     $rowArray = $resultado->getResult();
@@ -110,7 +109,7 @@ function getEstadoEspecifico($id_estado)
 }
 function getPaisEspecifico($id_pais)
 {
-    $usermodel = new Entidades_federativas($db);
+    $usermodel = new Paises($db);
     $query = "SELECT pais FROM  paises WHERE id = $id_pais";
     $resultado = $usermodel ->query($query);   
     $row = $resultado->getRow();

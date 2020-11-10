@@ -52,14 +52,14 @@
 
            
           <div class="col-md-9">
-          <?php if($session->has('Alumno')){;?>
+          <?php if($session->has('Maestro')){;?>
          <div class="alert alert-warning alert-dismissible fade show" role="alert">
                 <strong>Notificaciones del sistema:</strong> <?php echo $session->get('Alumno')?>
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div> 
-              <?php } $session->remove('Alumno');?>
+              <?php } $session->remove('Maestro');?>
 
 
 
@@ -69,7 +69,7 @@
               <div class="card">
                 <div class="card-body">
 
-                <form action="<?php echo site_url('Alumnos/insertarAlumno');?>" method="post">
+                <form action="<?php echo site_url('Teachers/insertarmaestro');?>" method="post">
                 <div class="espacioDos"></div>
                 Datos Generales
                 <div class="espacioDos"></div>
@@ -225,10 +225,12 @@
                   <div class="col">
                   Pais
                   <select class="form-control form-control-sm" name="pais" id="pais" required="">
-
-                    <?php foreach(getPaises() as $fila){?>
-                      
+                  <?php foreach(getPaises() as $fila){?>
+                    <?php if($fila->id == 35){?>
+                      <option selected="selected" value="<?php echo $fila->id;?>"><?php echo $fila->pais;?></option>
+                    <?php }else{ ?>
                     <option value="<?php echo $fila->id;?>"><?php echo $fila->pais;?></option>
+                    <?php } ?> 
                     <?php } ?> 
                     </select>
                   </div>
@@ -236,7 +238,7 @@
 
               <div class="espacioUno"></div>
 
-              <button type="submit" name="submitAL" class="btn btn-primary btn-sm">Registrar</button>
+              <button type="submit" name="submitTH" class="btn btn-primary btn-sm">Registrar</button>
               </form>
 
               </div>
