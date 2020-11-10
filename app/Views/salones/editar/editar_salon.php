@@ -56,7 +56,7 @@
 
 
 
-          <h4>Editar Nivel.</h4>
+          <h4>Editar Salon.</h4>
           <div class="espacioUno"></div>
         
               <div class="card">
