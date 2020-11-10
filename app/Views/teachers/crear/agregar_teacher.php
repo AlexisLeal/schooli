@@ -54,7 +54,7 @@
           <div class="col-md-9">
           <?php if($session->has('Maestro')){;?>
          <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                <strong>Notificaciones del sistema:</strong> <?php echo $session->get('Alumno')?>
+                <strong>Notificaciones del sistema:</strong> <?php echo $session->get('Maestro')?>
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
