@@ -252,18 +252,35 @@
               <input type="hidden" name="idMaestro" value=<?php echo $idMaestro ?>>    
               <button type="submit" name="submitTH" class="btn btn-primary btn-sm">Registrar</button>
               </form>
+              
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-6">
+                    
+                  </div>
+                  <div class="col-md-6 text-right">
+                    <form action="<?php echo site_url('Teachers/eliminarTeachers')?>"id="" method="post">
+                      <input type="hidden" name="idMaestro" id="idMaestro" value="<?php echo $idMaestro;?>">
+                      <button type="submit" name="submitTH" id="submitTH"><i class="fa fa-trash-o" aria-hidden="true"></i></i></span></button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+
+
 
               </div>
               </div>
           </div>
         </div>  
 
-        <div class="col-md-6 text-right">
-                  <form action="<?php echo site_url('Teachers/eliminarTeachers')?>"id="" method="post">
-                    <input type="hidden" name="idMaestro" id="idMaestro" value="<?php echo $idMaestro;?>">
-                    <button type="submit" name="submitTH" id="submitTH"><i class="fa fa-trash-o" aria-hidden="true"></i></i></span></button>
-                  </form>
-                  </div>
+
+
+
+
+
+
+
       </div>
     </div>
 
