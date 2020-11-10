@@ -71,6 +71,8 @@
 
               <div class="card">
                 <div class="card-body">
+                <form action="<?php echo site_url('Ciclos/editar');?>" method="post">
+
                 <div class="espacioDos"></div>
                 <div class="row">
                   <div class="col">
@@ -78,14 +80,23 @@
                     <input type="text" name="nombre" id="nombre" class="form-control form-control-sm" required="" value="<?php echo  $nombre?>">
                   </div>
                   <div class="col">
+
+<?php
+echo $estatus;
+?>
                     Estatus
                     <select class="form-control form-control-sm" name="estatus" id="estatus" required="" value="<?php echo $estatus?>">
                     <?php if($estatus == 1){ ?>
                     <option selected="selected" value="1">Activo</option>
-                    <?php }else{?>
+                    <?php }?>
                     <option value="0">Inactivo</option>
-                    <?php } ?>
+      
                     </select>
+
+
+
+
+
                   </div>
                 </div>
 
@@ -115,7 +126,7 @@
               </div>
 
               <div class="espacioUno"></div>
-
+              <input type="hidden" name="idCiclo" id="idCiclo" value="<?php echo $idCiclo;?>">
               <button type="submit" name="submitCL" class="btn btn-primary btn-sm">Registrar</button>
               </form>
 

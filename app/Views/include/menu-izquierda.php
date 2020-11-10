@@ -1,7 +1,7 @@
 <?php
 $curURL = current_url();
 
-$Catalogos = ["Ciclos"=>1,"Horarios"=>2,"Niveles"=>3,"Salones"=>4,"Cursos"=>5,"Frecuencias"=>6,
+$Catalogos = ["Ciclos"=>1,"Horarios"=>2,"Niveles"=>3,"Salones"=>4,"Cursos"=>5,"Frecuencia"=>6,
 "Sucursales"=>7,"Facultades"=>8,"Carreras"=>9,"Usuarios"=>10,"Roles"=>11,"Integraciones"=>12,"Medios"=>13,
 "Canales"=>14,"Origenes"=>15,"Notificaciones"=>16,"Avisos Pop-Up"=>17,"Black List"=>18,"Calendario Anual"=>19,
 "Turnos"=>20,"Accesos"=>21,"Materiales"=>22,"Tipo Materiales"=>23,"Categoría Materiales"=>24,"Clases Demo"=>25];
@@ -76,7 +76,7 @@ $collIntegraciones="collapse";
            <li class="list-group-item"><a class="<?php if($enlaceActivoCatalogo=='Niveles'){echo 'mi-active';}?>" href="<?php echo site_url('Niveles/index')?>">Niveles</a></li>
            <li class="list-group-item"><a class="<?php if($enlaceActivoCatalogo=='Salones'){echo 'mi-active';}?>" href="<?php echo site_url('Salones/index')?>">Salones</a></li>
            <li class="list-group-item"><a class="<?php if($enlaceActivoCatalogo=='Cursos'){echo 'mi-active';}?>" href="<?php echo site_url('Cursos/index')?>">Cursos</a></li>
-           <li class="list-group-item"><a class="<?php if($enlaceActivoCatalogo=='Frecuencias'){echo 'mi-active';}?>" href="<?php echo site_url('Frecuencias/index')?>">Frecuencias</a></li>
+           <li class="list-group-item"><a class="<?php if($enlaceActivoCatalogo=='Frecuencia'){echo 'mi-active';}?>" href="<?php echo site_url('Frecuencia/index')?>">Frecuencias</a></li>
            
 
 

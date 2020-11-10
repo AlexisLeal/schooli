@@ -71,32 +71,34 @@
                 <tr>
                 <th class="text-left">ID</th>
                 <th class="text-left">Nombre</th>
-                <th class="text-left">Unidd de negocio</th>
-                <th class="text-left">Plantel</th>
-                <th class="text-left">Matricula</th>
+                <th class="text-left">Estatus</th>
+                <th class="text-left">Hora Inicio</th>
+                <th class="text-left">Hora final</th>
+                <th class="text-left">COmentarios</th>
                 <th class="text-left">Ver</th>
                 <th class="text-left">Editar</th>
                 </tr>
                 </thead>
-
-
+                <?php foreach(getAllHorarios() as $fila){ ?>
                   <tr>
-                <td><?php ?></td>
-                <td><?php ?></td>
-                <td><?php ?></td>
-                <td><?php ?></td>
-                <td><?php ?></td>
+                <td><?php echo $fila->id;?></td>
+                <td><?php echo "$fila->nombre"?></td>
+                <td><?php echo $fila->estatus;?></td>
+                <td><?php echo $fila->hora_inicio;?></td>
+                <td><?php echo $fila->hora_fin;?></td>
+                <td><?php echo $fila->comentarios;?></td>
                 <td class="text-center">
-                  <a href="<?php echo site_url("/Horarios/verhorario") ?>">
+                  <a href="<?php echo site_url("/Horarios/verhorario/$fila->id")?>">
                   <i class="fa fa-file-text-o fa-1x" aria-hidden="true"></i>
                 </td>
                 <td class="text-center">
-                <a href="<?php echo site_url("/Horarios/editarhorario") ?>">
+                <a href="<?php echo site_url("/Horarios/editarhorario/$fila->id")?>">
                 <i class="fa fa-pencil-square-o fa-1x" aria-hidden="true"></i>
                 </a>
                 </td>
 
                 </tr>
+                <?php }?>
                 </table>
 
 
