@@ -86,7 +86,7 @@
                 <td><?php echo $fila->estatus;?></td>
                 <td><?php echo $fila->fecha_inicio;?></td>
                 <td><?php echo $fila->fecha_fin;?></td>
-                
+                <td><?php echo $fila->comentarios;?></td>
                 <td class="text-center">
                   <a href="<?php echo site_url("Ciclos/verCiclo/prametro1") ?>">
                   <i class="fa fa-file-text-o fa-1x" aria-hidden="true"></i>
