@@ -78,14 +78,24 @@
                     <input type="text" name="nombre" id="nombre" class="form-control form-control-sm" required="" value="<?php echo  $nombre?>">
                   </div>
                   <div class="col">
+
+<?php
+echo $estatus;
+?>
                     Estatus
-                    <select class="form-control form-control-sm" name="estatus" id="estatus" required="" value="<?php echo $estatus?>">
-                    <?php if($estatus == 1){ ?>
-                    <option selected="selected" value="1">Activo</option>
-                    <?php }else{?>
-                    <option value="0">Inactivo</option>
-                    <?php } ?>
+                    <select class="form-control form-control-sm" name="estatus" id="estatus" required="">
+                    
+                    <option <?php $estatus==1 ? "echo 'selected'='selected'" : "";?> value="1">Activo</option>
+                    <option <?php $estatus==0 ? "echo 'selected'='selected'" : "";?> value="0">Inactivo</option>
+                    
+
+
                     </select>
+
+
+
+
+
                   </div>
                 </div>
 

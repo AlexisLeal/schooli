@@ -52,7 +52,7 @@
 
            
           <div class="col-md-9">
-          <h4>Registrar un salon.</h4>
+          <h4>Registrar Frecuencia.</h4>
           
           <div class="espacioUno"></div>
         

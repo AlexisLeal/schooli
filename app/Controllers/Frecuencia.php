@@ -29,7 +29,7 @@ class Frecuencia extends BaseController{
         $data['page_title'] = "Frecuencias";	
         //Pasamos de forma dinamica el titulo  y se crear un array
         if($this->session->get('login')){
-        return view('frecuencias/editar/ver_frecuencia',$data);
+        return view('frecuencias/mostrar/ver_frecuencia',$data);
         }else{
             return redirect()->to(site_url('Home/salir'));
            }

@@ -62,10 +62,10 @@
 
 
           <div class="espacioUno"></div>
-            <h4>Panel de Salones</h4>
+            <h4>Panel de Frecuencias</h4>
               <div class="card">
                 <div class="card-body">
-                <a href="<?php echo site_url('/Salones/agregarsalon'); ?>">Crea un salon</a><br/>
+                <a href="<?php echo site_url('/Frecuencia/agregarfrecuencia'); ?>">Crea una Frecuencia</a><br/>
                 <table class="tabla-registros" class="display" cellspacing="6" cellpadding="8">
                 <thead>
                 <tr>
@@ -87,11 +87,11 @@
                 <td><?php ?></td>
                 <td><?php ?></td>
                 <td class="text-center">
-                  <a href="<?php echo site_url("/Salones/versalon") ?>">
+                  <a href="<?php echo site_url("/Frecuencia/verfrecuencia") ?>">
                   <i class="fa fa-file-text-o fa-1x" aria-hidden="true"></i>
                 </td>
                 <td class="text-center">
-                <a href="<?php echo site_url("/Salones/editarsalon") ?>">
+                <a href="<?php echo site_url("/Frecuencia/editarfrecuencia") ?>">
                 <i class="fa fa-pencil-square-o fa-1x" aria-hidden="true"></i>
                 </a>
                 </td>
