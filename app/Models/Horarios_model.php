@@ -2,7 +2,7 @@
 
 use CodeIgniter\Model;
 
-class Horarios extends Model
+class Horarios_model extends Model
 {
     #Nombre de la tabla
     protected $table      = 'horarios';
@@ -13,7 +13,7 @@ class Horarios extends Model
     protected $useSoftDeletes = true;
 
     #Aqui ponemos el nombre de las columnas que vamos a modifcar
-    protected $allowedFields = ['nombre','fecha_inicio','fecha_fin','comentarios','fecha_creacion','fecha_ultimo_cambio','estatus'];
+    protected $allowedFields = ['nombre','hora_inicio','hora_fin','comentarios','fecha_creacion','fecha_ultimo_cambio','estatus'];
 
     protected $useTimestamps = false;
     protected $createdField  = 'fecha_creacion';

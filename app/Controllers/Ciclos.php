@@ -53,6 +53,7 @@ class Ciclos extends BaseController{
         $data['fechaInicio'] = $ciclo->fecha_inicio;
         $data['fechaFin'] = $ciclo->fecha_fin;
         $data['comentarios'] = $ciclo->comentarios; 
+        $data['idCiclo'] = $id_ciclo; 
 
         return view('ciclos/editar/editar_ciclo',$data);
         }else{
@@ -93,7 +94,53 @@ public function insertarCiclo()
        }
 }
 
+public function editar()
+{
+    if($this->session->get('login')){
+        if(isset($_POST['submitCL'])){
+            $REQUEST = \Config\Services::request();
+            $hoy = date("Y-m-d H:i:s");
+            $data = ['nombre' =>$REQUEST->getPost('nombre'),
+            'estatus' =>$REQUEST->getPost('estatus'),
+            'fecha_inicio' =>$REQUEST->getPost('fechaInicio'),
+            'fecha_fin' =>$REQUEST->getPost('fechaFIn'),
+            'comentarios' =>$REQUEST->getPost('descripcion'),
+            'fecha_ultimo_cambio' =>$hoy,
+            'usuario_modifico' => $this->session->get('id'),
+        ];
+        
+        $id_ciclo = $REQUEST->getPost('idCiclo');
+        $usermodel_C = new Ciclos_model($db);
+        $usermodel_C->update($id_ciclo,$data);
+        $data = ['Ciclo'  => 'El Ciclo se actualizo correctamente'];
+        $this->session->set($data,true);
+        return redirect()->to(site_url("Ciclos/editarciclo/$id_ciclo"));
 
+        }else{
+            return redirect()->to(site_url('Home/salir'));
+           }
+    }else{
+        return redirect()->to(site_url('Home/salir'));
+       }
+
+}
+
+public function eliminar()
+{
+    if($this->session->get('login')){
+        if(isset($_POST['submitCL'])){
+            $REQUEST = \Config\Services::request();
+    
+    $id_ciclo = $REQUEST->getPost('idCiclo');
+    $usermodel_C = new Ciclos_model($db);
+    $usermodel_C->delete(['id'=> $id_ciclo]);
+}else{
+    return redirect()->to(site_url('Home/salir'));
+   }
+    }else{
+        return redirect()->to(site_url('Home/salir'));
+       }
+}
 
 
 

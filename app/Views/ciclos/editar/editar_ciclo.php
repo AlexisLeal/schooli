@@ -71,6 +71,8 @@
 
               <div class="card">
                 <div class="card-body">
+                <form action="<?php echo site_url('Ciclos/editar');?>" method="post">
+
                 <div class="espacioDos"></div>
                 <div class="row">
                   <div class="col">
@@ -125,7 +127,7 @@ echo $estatus;
               </div>
 
               <div class="espacioUno"></div>
-
+              <input type="hidden" name="idCiclo" id="idCiclo" value="<?php echo $idCiclo;?>">
               <button type="submit" name="submitCL" class="btn btn-primary btn-sm">Registrar</button>
               </form>
 
