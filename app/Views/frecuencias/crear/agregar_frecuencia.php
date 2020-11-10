@@ -52,23 +52,10 @@
 
            
           <div class="col-md-9">
-          <?php if($session->has('Alumno')){;?>
-         <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                <strong>Notificaciones del sistema:</strong> <?php echo $session->get('Alumno')?>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div> 
-              <?php } $session->remove('Alumno');?>
-
-
-
-          <h4>Registro de un Grupo.</h4>
+          <h4>Registrar un salon.</h4>
+          
           <div class="espacioUno"></div>
         
-        El codigo del grupo se genarara en automatico y se guardara en la DB.
-
-
 
 
 
