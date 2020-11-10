@@ -1,16 +1,16 @@
 <?php namespace App\Controllers;
 use  App\Models\Usuarios; 
 use  App\Models\Direcciones;
-use  App\Models\Planteles;
+use  App\Models\Maestros;
+
 
 class Teachers extends BaseController{
 
     public function index()
 	{
-        $data['page_title'] = "Teachers";	
-        
         if($this->session->get('login')){
-            
+            $data['page_title'] = "Teachers";
+
             return view('teachers/panel_teacher',$data);
         }else{
             return redirect()->to(site_url('Home/salir'));
@@ -20,15 +20,323 @@ class Teachers extends BaseController{
 
     public function agregarteacher()
 	{
-        $data['page_title'] = "Teachers";	
-        
+       	
         if($this->session->get('login')){
+            $data['page_title'] = "Teachers";
             return view('teachers/crear/agregar_teacher');
             }else{
             return redirect()->to(site_url('Home/salir'));
         }
-	}
+    }
+    
+    public function verTeachers($id_maestro)
+	{
+       	
+        if($this->session->get('login')){
+
+            $usermodel_M = new Maestros($db);
+            $query_M = "SELECT * from maestros WHERE id = $id_maestro AND deleted = 0";
+            $resultado_A = $usermodel_M->query($query_M);
+            $row_M = $resultado_A->getRow();
+            //--------------------------------------------------------------------
+            $usermodel_U = new Usuarios($db);
+            $query_U = "SELECT * from usuarios WHERE id = $row_M->id_usuario AND deleted = 0";
+            $resultado_U = $usermodel_U->query($query_U);
+            $row_U = $resultado_U->getRow();
+            //--------------------------------------------
+            $usermodel_D = new Direcciones($db);
+            $query_D = "SELECT * from direcciones WHERE id = $row_U->id_direccion AND deleted = 0";
+            $resultado_D = $usermodel_D->query($query_D);
+            $row_D = $resultado_D->getRow();
+            //-------------------------
+           
+                    //Aqui vamos a poner todos los datos de un alumno especifico
+            
+            //Usuario 
+            $data['nombre'] = $row_U->nombre;
+            $data['apeliido_paterno'] = $row_U->apellido_paterno;
+            $data['apeliido_materno'] = $row_U->apellido_materno;
+            $data['usuario'] = $row_U->usuario;
+            $data['email'] = $row_U->email;
+            $data['estado'] = ($row_U->estado == 1) ? "Activo" : "Inactivo";
+            $data['telefono'] = $row_U->telefono;
+            $data['movil'] = $row_U->movil;
+            $data['roll'] = getRollEspecifico($row_U->roll);
+    
+            //Alummno
+            $data['plantel'] =getPlanteEspecifico($row_M->idPlantel);
+            $data['unidad_negocio'] = getUnidadNegocioEspecifico($row_M->idUnidadNegocio);
+            $data['comentarios'] = $row_M->comentarios;
+           
+            //Dirrecion 
+            $data['calle'] = $row_D->calle;
+            $data['numero_interior'] = $row_D->numero_interior;
+            $data['numero_exterior'] = $row_D->numero_exterior;
+            $data['colonia'] = $row_D->colonia;
+            $data['codigo_postal'] = $row_D->codigo_postal;
+            $data['municipio_delegacion'] = $row_D->municipio_delegacion;
+            //Estado
+            $data['estado'] = getEstadoEspecifico($row_D->id_entidad_federativa);
+            //Pais 
+            $data['pais'] = getPaisEspecifico($row_D->id_pais);
+    
+           
+            return view('teachers/mostrar/ver_teacher',$data);
+            }else{
+                return redirect()->to(site_url('Home/salir'));
+               }
+    }
+    
+
+    public function editarTeachers($id_maestro)
+	{
+       	
+        if($this->session->get('login')){
+                $usermodel_M = new Maestros($db);
+                $query_M = "SELECT * from maestros WHERE id = $id_maestro AND deleted = 0";
+                $resultado_A = $usermodel_M->query($query_M);
+                $row_M = $resultado_A->getRow();
+                //--------------------------------------------------------------------
+                $usermodel_U = new Usuarios($db);
+                $query_U = "SELECT * from usuarios WHERE id = $row_M->id_usuario AND deleted = 0";
+                $resultado_U = $usermodel_U->query($query_U);
+                $row_U = $resultado_U->getRow();
+                //--------------------------------------------
+                $usermodel_D = new Direcciones($db);
+                $query_D = "SELECT * from direcciones WHERE id = $row_U->id_direccion AND deleted = 0";
+                $resultado_D = $usermodel_D->query($query_D);
+                $row_D = $resultado_D->getRow();
+                //-------------------------
+               
+                        //Aqui vamos a poner todos los datos de un alumno especifico
+                
+                //Usuario  
+                $data['nombre'] = $row_U->nombre;
+                $data['apeliido_paterno'] = $row_U->apellido_paterno;
+                $data['apeliido_materno'] = $row_U->apellido_materno;
+                $data['usuario'] = $row_U->usuario;
+                $data['email'] = $row_U->email;
+                $data['estado'] = ($row_U->estado == 1) ? "Activo" : "Inactivo";
+                $data['telefono'] = $row_U->telefono;
+                $data['movil'] = $row_U->movil;
+                $data['roll'] = $row_U->roll;
+        
+                //Maestro
+                $data['plantel'] =$row_M->idPlantel;
+                $data['unidad_negocio'] = $row_M->idUnidadNegocio;
+                $data['comentarios'] = $row_M->comentarios;
+               
+                //Dirrecion 
+                $data['calle'] = $row_D->calle;
+                $data['numero_interior'] = $row_D->numero_interior;
+                $data['numero_exterior'] = $row_D->numero_exterior;
+                $data['colonia'] = $row_D->colonia;
+                $data['codigo_postal'] = $row_D->codigo_postal;
+                $data['municipio_delegacion'] = $row_D->municipio_delegacion;
+
+                //Estado
+                $data['estado'] = $row_D->id_entidad_federativa;
+                //Pais 
+                $data['pais'] = $row_D->id_pais;
+                 //ID_Alumno
+                $data['idMaestro'] = $id_maestro;
+                
+        
+            return view('teachers/editar/editar_teacher',$data);
+            }else{
+            return redirect()->to(site_url('Home/salir'));
+        }
+    }
+    
 
 
 
-}
+
+
+
+
+
+    //Funciones para CRUD de teachers 
+
+
+    public function insertarmaestro()
+    {
+    
+        if($this->session->get('login')){ 
+            if(isset($_POST['submitTH'])){
+                $REQUEST = \Config\Services::request();
+                $hoy = date("Y-m-d H:i:s");
+                //Caputaramos los datos de la dirrecion 
+                $data_direccion =[
+                    'calle' => $REQUEST->getPost('calle'),
+                    'numero_interior' => $REQUEST->getPost('num_interior'),
+                    'numero_exterior' => $REQUEST->getPost('num_exterior'),
+                    'colonia' => $REQUEST->getPost('colonia'),
+                    'codigo_postal' => $REQUEST->getPost('cp'),
+                    'municipio_delegacion' => $REQUEST->getPost('municipio_delegacion'),
+                    'id_entidad_federativa' => $REQUEST->getPost('entidad_federativa'),
+                    'id_pais' => $REQUEST->getPost('pais'),
+                    'fecha_creacion' => $hoy,
+                    'fecha_ultimo_cambio' => $hoy,
+                ];
+                //Insertamos los datos de la dirrecion 
+                $usermodel_D = new Direcciones($db);
+                $usermodel_D->insert($data_direccion); 
+                $ultimo_id_direccion = $usermodel_D->insertID();
+
+                 //Capturamos los datos del alummno/Usuario
+                $data_usuario =[
+                    'nombre' => $REQUEST->getPost('nombre'),
+                    'apellido_paterno' => $REQUEST->getPost('apellido_paterno'),
+                    'apellido_materno' => $REQUEST->getPost('apellido_materno'),
+                    'usuario' => $REQUEST->getPost('usuario'),
+                    'password' => $REQUEST->getPost('password'),
+                    'email' => $REQUEST->getPost('email'),
+                    'estado' => 1,
+                    'telefono' => $REQUEST->getPost('telefono'),
+                    'movil' => $REQUEST->getPost('movil'),
+                    'id_direccion' => $ultimo_id_direccion,
+                    'roll' => $REQUEST->getPost('roll'),
+                    'fecha_creacion' => $hoy,
+                    'fecha_ultimo_cambio' => $hoy,
+                    'id_tipo_usuario' => 3,
+
+                ];
+                //Insertamos los datos 
+                $usermodel_U = new Usuarios($db);
+                $usermodel_U->insert($data_usuario); 
+                $ultimo_id_usuario = $usermodel_U->insertID();
+                //Capturamos los datos del Alumno 
+
+                $data_maestro =[
+                    'id_usuario' => $ultimo_id_usuario,
+                    'idPlantel' => $REQUEST->getPost('plantel'),
+                    'idUnidadNegocio' => $REQUEST->getPost('unidad_negocio'),
+                    'comentarios' => $REQUEST->getPost('comentarios'),
+                    'fecha_creacion' => $hoy,
+                    'fecha_ultimo_cambio' => $hoy,
+                ];
+
+                $usermodel_M = new Maestros($db);
+                $usermodel_M->insert($data_maestro); 
+
+                //Poner una variable que nos cheque que los tres querys para crear una variable de session 
+                $data = ['Maestro'  => 'El Maestro se agregro correctamente'];
+                $this->session->set($data,true);
+                return redirect()->to(site_url('Teachers/agregarteacher'));
+        
+    }else{
+        return redirect()->to(site_url('Home/salir'));
+    }
+
+        }else{
+        return redirect()->to(site_url('Home/salir'));
+	
+    }
+
+    }
+
+
+    public function editar()
+    {
+        if($this->session->get('login')){
+            
+            if(isset($_POST['submitTH'])){
+                $REQUEST = \Config\Services::request();
+                $hoy = date("Y-m-d H:i:s");
+
+                //Capturamos los datos del Alumno
+                $data_maestro=[
+                    'idPlantel' => $REQUEST->getPost('plantel'),
+                    'idUnidadNegocio' => $REQUEST->getPost('unidad_negocio'),
+                    'comentarios' => $REQUEST->getPost('comentarios'),
+                    'fecha_ultimo_cambio' => $hoy,
+                ];
+
+                    //Capturamos los datos del alummno/Usuario
+                    $data_usuario =[
+                        'nombre' => $REQUEST->getPost('nombre'),
+                        'apellido_paterno' => $REQUEST->getPost('apellido_paterno'),
+                        'apellido_materno' => $REQUEST->getPost('apellido_materno'),
+                        'usuario' => $REQUEST->getPost('usuario'),
+                        'email' => $REQUEST->getPost('email'),
+                        'telefono' => $REQUEST->getPost('telefono'),
+                        'movil' => $REQUEST->getPost('movil'),
+                        'roll' => $REQUEST->getPost('roll'),
+                        'fecha_ultimo_cambio' => $hoy,
+                    ];
+                 //Caputaramos los datos de la dirrecion 
+                 $data_direccion =[
+                    'calle' => $REQUEST->getPost('calle'),
+                    'numero_interior' => $REQUEST->getPost('num_interior'),
+                    'numero_exterior' => $REQUEST->getPost('num_exterior'),
+                    'colonia' => $REQUEST->getPost('colonia'),
+                    'codigo_postal' => $REQUEST->getPost('cp'),
+                    'municipio_delegacion' => $REQUEST->getPost('municipio_delegacion'),
+                    'id_entidad_federativa' => $REQUEST->getPost('entidad_federativa'),
+                    'id_pais' => $REQUEST->getPost('pais'),
+                    'fecha_ultimo_cambio' => $hoy,
+                ];
+                $id_maestro = $REQUEST->getPost('idMaestro');
+
+                $usermodel_M = new Maestros($db);
+                $query_M = "SELECT * from alumnos WHERE id = $id_maestro AND deleted = 0";
+                $resultado_M = $usermodel_M->query($query_M);
+                $row_M = $resultado_M->getRow();
+                //--------------------------------------------------------------------
+                $usermodel_U = new Usuarios($db);
+                $query_U = "SELECT * from usuarios WHERE id = $row_M->id_usuario AND deleted = 0";
+                $resultado_U = $usermodel_U->query($query_U);
+                $row_U = $resultado_U->getRow();
+                //--------------------------------------------
+                $usermodel_D = new Direcciones($db);
+
+                $usermodel_M->update($id_maestro,$data_maestro);
+
+                $usermodel_U->update($row_M->id_usuario,$data_usuario);
+
+                //SE ACTUALIZA POR ID EL PRIMER PARAMETRO EL EL ID 
+                $usermodel_D->update($row_U->id_direccion,$data_direccion);
+
+
+                 //Poner una variable que nos cheque que los tres querys para crear una variable de session 
+                 $data = ['Maestro'  => 'El Maestro se modifico correctamente'];
+                 $this->session->set($data,true);
+                 return redirect()->to(site_url("Teachers/editarTeachers/$id_maestro"));
+
+
+            }
+     
+                    
+    }else{
+        return redirect()->to(site_url('Home/salir'));
+       }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    }
+
+
+

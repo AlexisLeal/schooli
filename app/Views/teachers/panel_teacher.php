@@ -48,7 +48,7 @@
           <div class="col-md-3">
             <?php include(APPPATH.'/Views/include/menu-izquierda.php');?>
           </div>
-
+ 
 
 
           <div class="col-md-9">
@@ -76,13 +76,6 @@
                 $session->remove('pregunta-exito'); 
               }
               ?>
-
-
-
-
- 
-
-
           <div class="espacioUno"></div>
         
               <div class="card">
@@ -101,18 +94,27 @@
               <th class="text-left">Editar</th>
               </tr>
               </thead>
-              </table>
-            <!--
-              <td class="text-center">
-                  <a href="<?php //echo site_url("Alumnos/verAlumno/$fila->id") ?>">
+              <?php foreach(getAllMaestros() as $fila){
+                  $Maestro = getMaestroEspecifico($fila->id_usuario); ?>
+                  <tr>
+                <td><?php echo $fila->id;?></td>
+                <td><?php echo "$Maestro->nombre".' '.$Maestro->apellido_paterno.' '.$Maestro->apellido_materno;?></td>
+                <td><?php echo getUnidadNegocioEspecifico($fila->idUnidadNegocio);?></td>
+                <td><?php echo getPlanteEspecifico($fila->idPlantel);?></td>
+                <td class="text-center">
+                  <a href="<?php echo site_url("Teachers/verTeachers/$fila->id") ?>">
                   <i class="fa fa-file-text-o fa-1x" aria-hidden="true"></i>
                 </td>
                 <td class="text-center">
-                <a href="<?php //echo site_url("Alumnos/editarAlumno/$fila->id") ?>">
+                <a href="<?php echo site_url("Teachers/editarTeachers/$fila->id") ?>">
                 <i class="fa fa-pencil-square-o fa-1x" aria-hidden="true"></i>
                 </a>
                 </td>
-            -->
+
+                </tr>
+
+                <?php }?>
+              </table>
               </div>
             </div>
           </div>

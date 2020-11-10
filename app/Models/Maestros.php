@@ -13,7 +13,7 @@ class Maestros extends Model
     protected $useSoftDeletes = true;
 
     #Aqui ponemos el nombre de las columnas que vamos a modifcar
-    protected $allowedFields = ['idPlantel','idUnidadNegocio'];
+    protected $allowedFields = ['id_usuario','idPlantel','idUnidadNegocio','comentarios','fecha_creacion','fecha_ultimo_cambio'];
 
     protected $useTimestamps = false;
     protected $createdField  = 'fecha_creacion';
