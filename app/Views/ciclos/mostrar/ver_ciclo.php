@@ -50,37 +50,71 @@
           </div>
 
 
-
+           
           <div class="col-md-9">
-              <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                <strong>Notificaciones del sistema:</strong> Este texto es un ejemplo de notificaciones que el sistema le debe de mostrar al Administrador.
+          <?php if($session->has('Ciclo')){;?>
+         <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>Notificaciones del sistema:</strong> <?php echo $session->get('Ciclo')?>
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div> 
+              <?php } $session->remove('Ciclo');?>
 
 
 
-
-
-
- 
-
-
+          <h4>Registrar un ciclo.</h4>
           <div class="espacioUno"></div>
-            <h4>Ciclo</h4>
+        
+
+
+
               <div class="card">
                 <div class="card-body">
 
+                <form action="<?php echo site_url('Ciclos/insertarCiclo');?>" method="post" enctype="multipart/form-data">
+               
+                <div class="espacioDos"></div>
+                <div class="row">
+                  <div class="col">
+                  Nombre
+                    <input type="text" name="nombre" id="nombre" class="form-control form-control-sm" disabled = "disabled" value="<? echo $nombre ?>">
+                  </div>
+                  <div class="col">
+                    Estatus
+                    <input type="text" name="nombre" id="nombre" class="form-control form-control-sm" disabled = "disabled" value="<? echo $estatus ?>">
 
-                
-                <hr class="linea"/>
-                
+                  </div>
+                </div>
+
+                <div class="espacioUno"></div>
 
 
+                <div class="row">
+                  <div class="col">
+                  Fecha de inicio
+                  <input type="text" name="fechaInicio" id="fechaInicio" class="form-control form-control-sm" disabled = "disabled" value="<? echo $fechaInicio ?>"> 
+
+                  </div>
+                  <div class="col">
+                  Fecha Fin
+                  <input type="text" name="fechaFIn" id="fechaFIn" class="form-control form-control-sm" disabled = "disabled" value="<? echo $fechaFin ?>">
+                  </div>
+                </div>
+
+
+              <div class="espacioUno"></div>
+
+              <div class="form-group">
+                <label for="lblInstrucciones">Descripción</label>
+                <textarea class="form-control form-control-sm" name="descripcion" id="descripcion" rows="3" disabled = "disabled" ><? echo $comentarios ?></textarea>
+              </div>
+
+              <div class="espacioUno"></div>
+              </form>
 
               </div>
-            </div>
+              </div>
           </div>
 
 
@@ -142,5 +176,5 @@
       <div class="espacioDos"></div>
       <div class="espacioDos"></div>
       <div class="espacioDos"></div>
-
-<?php include(APPPATH.'Views/include/footer.php');?>
+      <?php include(APPPATH.'Views/include/footer.php');?>
+      <?php include(APPPATH.'Views/include/header-js.php');?>

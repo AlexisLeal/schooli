@@ -50,37 +50,77 @@
           </div>
 
 
-
+           
           <div class="col-md-9">
-              <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                <strong>Notificaciones del sistema:</strong> Este texto es un ejemplo de notificaciones que el sistema le debe de mostrar al Administrador.
+          <?php if($session->has('Ciclo')){;?>
+         <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>Notificaciones del sistema:</strong> <?php echo $session->get('Ciclo')?>
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div> 
+              <?php } $session->remove('Ciclo');?>
 
 
 
-
-
-
- 
-
-
+          <h4>Editar ciclo.</h4>
           <div class="espacioUno"></div>
-            <h4>Editar Ciclo</h4>
+        
+
+
+
               <div class="card">
                 <div class="card-body">
+                <div class="espacioDos"></div>
+                <div class="row">
+                  <div class="col">
+                  Nombre
+                    <input type="text" name="nombre" id="nombre" class="form-control form-control-sm" required="" value="<?php echo  $nombre?>">
+                  </div>
+                  <div class="col">
+                    Estatus
+                    <select class="form-control form-control-sm" name="estatus" id="estatus" required="" value="<?php echo $estatus?>">
+                    <?php if($estatus == 1){ ?>
+                    <option selected="selected" value="1">Activo</option>
+                    <?php }else{?>
+                    <option value="0">Inactivo</option>
+                    <?php } ?>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="espacioUno"></div>
 
 
-                
-                <hr class="linea"/>
-                
+                <div class="row">
+                  <div class="col">
+                  Fecha de inicio
+                  <input type="date" name="fechaInicio" id="fechaInicio" class="form-control form-control-sm" require = "" value="<?php echo $fechaInicio ?>">
+
+                  </div>
+                  <div class="col">
+                  Fecha Fin
+                  <input type="date" name="fechaFIn" id="fechaFIn" class="form-control form-control-sm" require = "" value="<?php echo $fechaFin ?>">
+
+                  </select>
+                  </div>
+                </div>
 
 
+              <div class="espacioUno"></div>
+
+              <div class="form-group">
+                <label for="lblInstrucciones">Descripción</label>
+                <textarea class="form-control form-control-sm" name="descripcion" id="descripcion" rows="3" required=""><?php echo $comentarios?></textarea>
+              </div>
+
+              <div class="espacioUno"></div>
+
+              <button type="submit" name="submitCL" class="btn btn-primary btn-sm">Registrar</button>
+              </form>
 
               </div>
-            </div>
+              </div>
           </div>
 
 
@@ -142,5 +182,5 @@
       <div class="espacioDos"></div>
       <div class="espacioDos"></div>
       <div class="espacioDos"></div>
-
-<?php include(APPPATH.'Views/include/footer.php');?>
+      <?php include(APPPATH.'Views/include/footer.php');?>
+      <?php include(APPPATH.'Views/include/header-js.php');?>
