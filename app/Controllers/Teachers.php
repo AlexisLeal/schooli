@@ -94,8 +94,8 @@ class Teachers extends BaseController{
         if($this->session->get('login')){
                 $usermodel_M = new Maestros($db);
                 $query_M = "SELECT * from maestros WHERE id = $id_maestro AND deleted = 0";
-                $resultado_A = $usermodel_M->query($query_M);
-                $row_M = $resultado_A->getRow();
+                $resultado_M = $usermodel_M->query($query_M);
+                $row_M = $resultado_M->getRow();
                 //--------------------------------------------------------------------
                 $usermodel_U = new Usuarios($db);
                 $query_U = "SELECT * from usuarios WHERE id = $row_M->id_usuario AND deleted = 0";
@@ -280,7 +280,7 @@ class Teachers extends BaseController{
                 $id_maestro = $REQUEST->getPost('idMaestro');
 
                 $usermodel_M = new Maestros($db);
-                $query_M = "SELECT * from alumnos WHERE id = $id_maestro AND deleted = 0";
+                $query_M = "SELECT * from maestros WHERE id = $id_maestro AND deleted = 0";
                 $resultado_M = $usermodel_M->query($query_M);
                 $row_M = $resultado_M->getRow();
                 //--------------------------------------------------------------------
