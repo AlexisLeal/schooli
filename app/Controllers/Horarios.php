@@ -115,7 +115,7 @@ public function editar()
                 'fecha_ultimo_cambio' =>$hoy,
                 'estatus' =>$REQUEST->getPost('estatus'),
             ];
-            $id_horario = $REQUEST->getPost('idHO')
+            $id_horario = $REQUEST->getPost('idHO');
             $usermodel = new Horarios_model($db);
             $usermodel->update($id_horario,$data_horario);
             $data = ['Horario'  => 'El Horario se modifico correctamente'];
@@ -132,7 +132,23 @@ public function editar()
 }
 
 
-
+public function eliminar()
+{
+    if($this->session->get('login')){
+        if(isset($_POST['submitHO'])){
+            $REQUEST = \Config\Services::request();
+    
+    $id_horario = $REQUEST->getPost('idHO');
+    $usermodel= new Horarios_model($db);
+    $usermodel->delete(['id'=> $id_horario]);
+    return redirect()->to(site_url('Horarios/index'));
+}else{
+    return redirect()->to(site_url('Home/salir'));
+   }
+    }else{
+        return redirect()->to(site_url('Home/salir'));
+       }
+}
 
 
 

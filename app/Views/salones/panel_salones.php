@@ -65,38 +65,34 @@
             <h4>Panel de Salones</h4>
               <div class="card">
                 <div class="card-body">
-                <a href="<?php echo site_url('/Salones/agregarsalon'); ?>">Crea un salon</a><br/>
+                <a href="<?php echo site_url('/Salones/agregarsalon'); ?>">Crea un Salon</a><br/>
                 <table class="tabla-registros" class="display" cellspacing="6" cellpadding="8">
                 <thead>
                 <tr>
                 <th class="text-left">ID</th>
                 <th class="text-left">Nombre</th>
-                <th class="text-left">Unidd de negocio</th>
-                <th class="text-left">Plantel</th>
-                <th class="text-left">Matricula</th>
+                <th class="text-left">Comentarios</th>
                 <th class="text-left">Ver</th>
                 <th class="text-left">Editar</th>
                 </tr>
                 </thead>
-
-
                   <tr>
-                <td><?php ?></td>
-                <td><?php ?></td>
-                <td><?php ?></td>
-                <td><?php ?></td>
-                <td><?php ?></td>
+                  <?php foreach(getAllSalones() as $fila){ ?>
+                  <tr>
+                <td><?php echo $fila->id;?></td>
+                <td><?php echo "$fila->nombre"?></td>
+                <td><?php echo $fila->comentarios;?></td>
                 <td class="text-center">
-                  <a href="<?php echo site_url("/Salones/versalon") ?>">
+                  <a href="<?php echo site_url("/Salones/versalon/$fila->id") ?>">
                   <i class="fa fa-file-text-o fa-1x" aria-hidden="true"></i>
                 </td>
                 <td class="text-center">
-                <a href="<?php echo site_url("/Salones/editarsalon") ?>">
+                <a href="<?php echo site_url("/Salones/editarsalon/$fila->id") ?>">
                 <i class="fa fa-pencil-square-o fa-1x" aria-hidden="true"></i>
                 </a>
                 </td>
-
                 </tr>
+                <?php }?>
                 </table>
 
 

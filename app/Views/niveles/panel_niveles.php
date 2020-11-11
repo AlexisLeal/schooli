@@ -71,32 +71,28 @@
                 <tr>
                 <th class="text-left">ID</th>
                 <th class="text-left">Nombre</th>
-                <th class="text-left">Unidd de negocio</th>
-                <th class="text-left">Plantel</th>
-                <th class="text-left">Matricula</th>
+                <th class="text-left">Comentarios</th>
                 <th class="text-left">Ver</th>
                 <th class="text-left">Editar</th>
                 </tr>
                 </thead>
-
-
                   <tr>
-                <td><?php ?></td>
-                <td><?php ?></td>
-                <td><?php ?></td>
-                <td><?php ?></td>
-                <td><?php ?></td>
+                  <?php foreach(getAllNiveles() as $fila){ ?>
+                  <tr>
+                <td><?php echo $fila->id;?></td>
+                <td><?php echo "$fila->nombre"?></td>
+                <td><?php echo $fila->comentarios;?></td>
                 <td class="text-center">
-                  <a href="<?php echo site_url("/Niveles/vernivel") ?>">
+                  <a href="<?php echo site_url("/Niveles/vernivel/$fila->id") ?>">
                   <i class="fa fa-file-text-o fa-1x" aria-hidden="true"></i>
                 </td>
                 <td class="text-center">
-                <a href="<?php echo site_url("/Niveles/editarnivel") ?>">
+                <a href="<?php echo site_url("/Niveles/editarnivel/$fila->id") ?>">
                 <i class="fa fa-pencil-square-o fa-1x" aria-hidden="true"></i>
                 </a>
                 </td>
-
                 </tr>
+                <?php }?>
                 </table>
 
 

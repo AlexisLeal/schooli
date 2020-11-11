@@ -52,6 +52,15 @@
 
            
           <div class="col-md-9">
+          <?php if($session->has('Curso')){;?>
+         <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>Notificaciones del sistema:</strong> <?php echo $session->get('Curso')?>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div> 
+              <?php } $session->remove('Curso');?>
+
 
 
 
@@ -64,7 +73,7 @@
               <div class="card">
                 <div class="card-body">
 
-                <form action="#<?php //echo site_url('Alumnos/insertarAlumno');?>" method="post" enctype="multipart/form-data">
+                <form action="<?php echo site_url('Cursos/insertarcurso');?>" method="post" enctype="multipart/form-data">
                
                 <div class="espacioDos"></div>
                 <div class="row">
@@ -87,18 +96,12 @@
 
                 <div class="row">
                   <div class="col">
-                  Unidad de negocio
-                  <select class="form-control form-control-sm" name="unidad_negocio" id="unidad_negocio" required="">
+                  Numero de niveles
+                  <select class="form-control form-control-sm" name="numero_niveles" id="numero_niveles" required="">
                   <option value="">Selecciona una opción</option>
-                  <?php foreach(getUnidadNegocio() as $fila){?>
-                    <option value="<?php echo $fila->id?>"><?php echo $fila->nombre?></option>
+                  <?php for($i=1;$i<=50;$i++){?>
+                    <option value="<?php echo $i?>"><?php echo $i?></option>
                     <?php } ?> 
-                  </select>
-                  </div>
-                  <div class="col">
-                  Plantel
-                  <select class="form-control form-control-sm" name="plantel" id="plantel" required="">
-                  <option value="">Selecciona una opción</option> 
                   </select>
                   </div>
                 </div>
@@ -106,56 +109,20 @@
 
               <div class="espacioUno"></div>
 
-              <div class="row">
-                  <div class="col">
-                  Horarios
-                    <select class="form-control form-control-sm" name="estatus" id="estatus" required="">
-                    <option value="">Seleccione una opción</option>
-                    <option value="1">Activo</option>
-                    <option value="0">Inactivo</option>
-                    </select>
-                  </div>
-                  <div class="col">
-                    Salon
-                    <select class="form-control form-control-sm" name="estatus" id="estatus" required="">
-                    <option value="">Seleccione una opción</option>
-                    <option value="1">Activo</option>
-                    <option value="0">Inactivo</option>
-                    </select>
-                  </div>
-                </div>
-
                 <div class="espacioUno"></div>
 
                 <div class="row">
                   <div class="col">
-                  Cupo
-                    <input type="text" name="nombre" id="cupo" class="form-control form-control-sm">
+                  precio por el curso
+                    <input type="text" name="p_curso" id="cupo" class="form-control form-control-sm">
                   </div>
                   <div class="col">
-                  Precio
-                  <input type="text" name="nombre" id="precio" class="form-control form-control-sm">
+                  Precio por nivel
+                  <input type="text" name="p_nivel" id="precio" class="form-control form-control-sm">
                   </div>
                 </div>
                 
                 <div class="espacioUno"></div>
-
-                <div class="row">
-                  <div class="col">
-                  Nivel
-                    <select class="form-control form-control-sm" name="nivel" id="nivel" required="">
-                    <option value="">Seleccione una opción</option>
-                    <option value="1">Activo</option>
-                    <option value="0">Inactivo</option>
-                    </select>
-                  </div>
-                  <div class="col">
-                    Cargar Imagen
-                    <div class="form-group">
-                    <input  class="form-control form-control-sm" type="file" id="imagen_grupo" name="imagen_grupo" required="">
-                  </div>
-                  </div>
-                </div>
                 
                 <div class="espacioUno"></div>
 
@@ -166,7 +133,7 @@
 
               <div class="espacioUno"></div>
 
-              <button type="submit" name="submitAL" class="btn btn-primary btn-sm">Registrar</button>
+              <button type="submit" name="submitCR" class="btn btn-primary btn-sm">Registrar</button>
               </form>
 
               </div>
@@ -234,22 +201,3 @@
       <div class="espacioDos"></div>
       <?php include(APPPATH.'Views/include/footer.php');?>
       <?php include(APPPATH.'Views/include/header-js.php');?>
-     
- 
-    <script>
-      $('#unidad_negocio').change(function () {
-        var id_unidad = $(this).val();
-        // cuando el valor sea 0, se debe resetear el listado de planteles
-        $.ajax({
-          type: "POST",
-          url: "<?php echo site_url('Alumnos/plantelesUnidadNegocio');?>",
-          data: "id_unidad_negocio=" + id_unidad,
-          success : function(text){
-            document.getElementById("plantel").innerHTML = "";
-            $('#plantel').append(text);
-        }
-
-        });
-      });
-    </script>
- 

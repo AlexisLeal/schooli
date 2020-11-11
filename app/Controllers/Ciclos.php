@@ -134,6 +134,7 @@ public function eliminar()
     $id_ciclo = $REQUEST->getPost('idCiclo');
     $usermodel_C = new Ciclos_model($db);
     $usermodel_C->delete(['id'=> $id_ciclo]);
+    return redirect()->to(site_url('Ciclos/index'));
 }else{
     return redirect()->to(site_url('Home/salir'));
    }

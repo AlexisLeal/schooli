@@ -49,167 +49,38 @@
             <?php include(APPPATH.'/Views/include/menu-izquierda.php');?>
           </div>
 
-
-           
           <div class="col-md-9">
-
-          <h4>Detalles del Salon.</h4>
+          <h4>ver Salon.</h4>
           <div class="espacioUno"></div>
         
+
+
+
               <div class="card">
                 <div class="card-body">
-                <div class="espacioDos"></div>
-                Datos Generales
-                <div class="espacioDos"></div>
-                <div class="row">
-                  <div class="col">
-                    Nombre
-                    <input type="text" id="nombre" class="form-control form-control-sm"disabled="disabled" value="<?php echo $nombre;?>">
-                  </div>
-                  <div class="col">
-                    Apellido Paterno
-                    <input type="text" id="apellido_paterno" class="form-control form-control-sm" disabled="disabled" value="<?php echo $apeliido_paterno;?>">
-                  </div>
-                </div>
 
-                <div class="espacioUno"></div>
-
-                <div class="row">
-                  <div class="col">
-                    Apellido Materno
-                    <input type="text"  id="apellido_materno" class="form-control form-control-sm" disabled="disabled" value="<?php echo $apeliido_materno;?>">
-                  </div>
-                  <div class="col">
-                    Nombre de Usuario
-                    <input type="text" id="usuario" class="form-control form-control-sm" disabled="disabled" value="<?php echo $usuario;?>">
-                  </div>
-                </div>
-                
-                <div class="espacioUno"></div>
-
-                <div class="row">
-                  <div class="col">
-                    Correo Electronico 
-                    <input type="email" id="email" class="form-control form-control-sm" disabled="disabled" value="<?php echo $email;?>">
-                  </div>
-                </div>
-            
-                <div class="espacioUno"></div>
-
-                <div class="row">
-                  <div class="col">
-                    Telefono Fijo
-                    <input type="text" id="telefono" class="form-control form-control-sm" disabled="disabled" value="<?php echo $telefono;?>">
-                  </div>
-                  <div class="col">
-                    Telefono Movil
-                    <input type="text" id="movil" class="form-control form-control-sm" disabled="disabled" value="<?php echo $movil;?>">
-                  </div>
-                </div>
-
-
-                <div class="espacioUno"></div>
-                
-
-                <div class="row">
-                  <div class="col">
-                  Roll
-                  <input type="text" id="movil" class="form-control form-control-sm" disabled="disabled" value="<?php echo $roll;?>">
-                  </div>
-                  <div class="col">
-                  </div>
-                </div>
-
-
-                <div class="espacioDos"></div>
-                <hr class="linea"/>
-                Datos Escolares
-                <div class="espacioDos"></div>
-                <div class="row">
-                  <div class="col">
-                    Matricula
-                    <input type="text" id="matricula" class="form-control form-control-sm" disabled="disabled" value="<?php echo $matricula;?>">
-                  </div>
-                  <div class="col">
-                    Unidad de negocio
-                    <input type="text" id="matricula" class="form-control form-control-sm" disabled="disabled" value="<?php echo $unidad_negocio;?>">
-                  </div>
-                </div>
-
-                <div class="espacioUno"></div>
-
-                <div class="row">
-                  <div class="col">
-                  Plantel
-                  <input type="text" id="matricula" class="form-control form-control-sm" disabled="disabled" value="<?php echo $plantel;?>">
-                  </div>
-                  <div class="col">
-                  </div>
-                </div>
-
-              <div class="form-group">
-                <label for="lblInstrucciones">Comentarios</label>
-                <textarea class="form-control form-control-sm" id="comentarios" rows="3" disabled= "disabled"><?php echo $comentarios;?></textarea>
-              </div>
-                <div class="espacioDos"></div>
-                <hr class="linea"/>
-                Direccion
-                <div class="espacioDos"></div>
-                <div class="row">
-                  <div class="col">
-                  Calle
-                  <input type="text" id="calle" class="form-control form-control-sm" disabled="disabled" value="<?php echo $calle;?>">
-                  </div>
-                  <div class="col">
-                  Numero Interior
-                  <input type="text" id="num_interior" class="form-control form-control-sm" disabled="disabled" value="<?php echo $numero_interior;?>">
-                  </div>
-                </div>
-
-                <div class="espacioUno"></div>
-
-                <div class="row">
-                  <div class="col">
-                  Numero Exterior
-                  <input type="text" id="num_exterior" class="form-control form-control-sm" disabled="disabled" value="<?php echo $numero_exterior;?>">
-                  </div>
-                  <div class="col">
-                  Colonia
-                  <input type="text" id="colonia" class="form-control form-control-sm" disabled="disabled" value="<?php echo $colonia;?>">
-                  </div>
-                </div>
-
-                <div class="espacioUno"></div>
-
-                <div class="row">
-                  <div class="col">
-                  Codigo Postal
-                  <input type="text" id="cp" class="form-control form-control-sm" disabled="disabled" value="<?php echo $codigo_postal;?>" >
-                  </div>
-                  <div class="col">
-                  Municipio o Delegacion
-                  <input type="text" id="municipio_delegacion" class="form-control form-control-sm" disabled="disabled" value="<?php echo $municipio_delegacion;?>">
-                  </div>
-                </div>
-
-                <div class="espacioUno"></div>
-
-                <div class="row">
-                  <div class="col">
-                  Estado
-                  <input type="text" id="municipio_delegacion" class="form-control form-control-sm" disabled="disabled" value="<?php echo $estado;?>">
-                  </div>
-                  <div class="col">
-                  Pais
-                  <input type="text" id="municipio_delegacion" class="form-control form-control-sm" disabled="disabled" value="<?php echo $pais;?>">
-
-                  </div>
-                </div>
                
+               
+                <div class="espacioDos"></div>
+                <div class="row">
+                  <div class="col">
+                  Nombre
+                    <input type="text" name="nombre" id="nombre" class="form-control form-control-sm" disabled = "disabled" value="<?php echo $nombre ?>">
+                  </div>
+      
+                </div>
+
+                <div class="espacioUno"></div>
 
               <div class="espacioUno"></div>
-              <input type="button" value="Página anterior" onClick="history.go(-1);">
-            
+
+              <div class="form-group">
+                <label for="lblInstrucciones">Descripción</label>
+                <textarea class="form-control form-control-sm" name="descripcion" id="descripcion" rows="3" disabled = "disabled" ><?php echo $comentarios ?></textarea>
+              </div>
+
+              <div class="espacioUno"></div>
+              </form>
 
               </div>
               </div>
@@ -217,11 +88,10 @@
 
 
 
+
         </div>  
       </div>
     </div>
-    
-
 
 
       <div class="espacioDos"></div>
@@ -276,6 +146,4 @@
       <div class="espacioDos"></div>
       <div class="espacioDos"></div>
       <?php include(APPPATH.'Views/include/footer.php');?>
-    
-
- 
+      <?php include(APPPATH.'Views/include/header-js.php');?>

@@ -62,41 +62,47 @@
 
 
           <div class="espacioUno"></div>
-            <h4>Panel de Niveles</h4>
+            <h4>Panel de Cursos</h4>
               <div class="card">
                 <div class="card-body">
-                <a href="<?php echo site_url('/Cursos/agregarcurso'); ?>">Crea un Nivel</a><br/>
+                <a href="<?php echo site_url('/Cursos/agregarcurso'); ?>">Crea curso</a><br/>
                 <table class="tabla-registros" class="display" cellspacing="6" cellpadding="8">
                 <thead>
                 <tr>
                 <th class="text-left">ID</th>
                 <th class="text-left">Nombre</th>
-                <th class="text-left">Unidd de negocio</th>
-                <th class="text-left">Plantel</th>
-                <th class="text-left">Matricula</th>
+                <th class="text-left">Numero de niveles</th>
+                <th class="text-left">precio total</th>
+                <th class="text-left">precio por nivel</th>
+                <th class="text-left">comentarios</th>
+                <th class="text-left">estatus</th>
                 <th class="text-left">Ver</th>
                 <th class="text-left">Editar</th>
                 </tr>
                 </thead>
-
-
+                <?php foreach(getAllCursos() as $fila){ ?>
                   <tr>
-                <td><?php ?></td>
-                <td><?php ?></td>
-                <td><?php ?></td>
-                <td><?php ?></td>
-                <td><?php ?></td>
+                <td><?php echo $fila->id ?></td>
+                <td><?php echo "$fila->nombre" ?></td>
+                <td><?php echo $fila->num_niveles;  ?></td>
+                <td><?php echo $fila->precio; ?></td>
+                <td><?php echo $fila->precio_por_nivel; ?></td>
+                <td><?php echo $fila->comentarios; ?></td>
+                <td><?php echo $fila->estatus; ?></td>
                 <td class="text-center">
-                  <a href="<?php echo site_url("/Cursos/vercurso") ?>">
+                  <a href="<?php echo site_url("/Cursos/vercurso/$fila->id") ?>">
                   <i class="fa fa-file-text-o fa-1x" aria-hidden="true"></i>
                 </td>
                 <td class="text-center">
-                <a href="<?php echo site_url("/Cursos/editarcurso") ?>">
+                <a href="<?php echo site_url("/Cursos/editarcurso/$fila->id") ?>">
                 <i class="fa fa-pencil-square-o fa-1x" aria-hidden="true"></i>
                 </a>
                 </td>
 
                 </tr>
+                <?php
+              }
+              ?>
                 </table>
 
 

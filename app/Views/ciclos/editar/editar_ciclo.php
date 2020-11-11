@@ -81,17 +81,14 @@
                   </div>
                   <div class="col">
 
-<?php
-echo $estatus;
-?>
+
                     Estatus
-                    <select class="form-control form-control-sm" name="estatus" id="estatus" required="">
-                    
-                    <option <?php $estatus==1 ? "echo 'selected'='selected'" : "";?> value="1">Activo</option>
-                    <option <?php $estatus==0 ? "echo 'selected'='selected'" : "";?> value="0">Inactivo</option>
-                    
-
-
+                    <select class="form-control form-control-sm" name="estatus" id="estatus" required="" value="<?php echo $estatus?>">
+                    <?php if($estatus == 1){ ?>
+                    <option selected="selected" value="1">Activo</option>
+                    <?php }?>
+                    <option value="0">Inactivo</option>
+    
                     </select>
 
 
