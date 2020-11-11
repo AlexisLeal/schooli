@@ -115,7 +115,7 @@ public function editar()
                 'fecha_ultimo_cambio' =>$hoy,
                 'estatus' =>$REQUEST->getPost('estatus'),
             ];
-            $id_horario = $REQUEST->getPost('idHO')
+            $id_horario = $REQUEST->getPost('idHO');
             $usermodel = new Horarios_model($db);
             $usermodel->update($id_horario,$data_horario);
             $data = ['Horario'  => 'El Horario se modifico correctamente'];
