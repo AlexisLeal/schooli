@@ -52,6 +52,20 @@
 
            
           <div class="col-md-9">
+
+          <?php if($session->has('Frecuencia')){;?>
+         <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>Notificaciones del sistema:</strong> <?php echo $session->get('Frecuencia')?>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div> 
+              <?php } $session->remove('Frecuencia');?>
+
+
+
+
+
           <h4>Registrar Frecuencia.</h4>
           
           <div class="espacioUno"></div>
@@ -59,7 +73,7 @@
               <div class="card">
                 <div class="card-body">
 
-                <form action="#<?php //echo site_url('Alumnos/insertarAlumno');?>" method="post" enctype="multipart/form-data">
+                <form action="<?php echo site_url('Frecuencia/insertarfrecuencia');?>" method="post" enctype="multipart/form-data">
                
                 <div class="espacioDos"></div>
                 <div class="row">
@@ -69,10 +83,11 @@
                   </div>
                   <div class="col">
                   Modalidad
-                    <select class="form-control form-control-sm" name="estatus" id="estatus" required="">
+                    <select class="form-control form-control-sm" name="modalidad" id="modalidad" required="">
                     <option value="">Seleccione una opción</option>
-                    <option value="">Intensico</option>
-                    <option value="">Semiintensivo</option>
+                    <?php foreach(getAllModalidad() as $fila){ ?>
+                    <option value="<?php echo $fila->id?>"> <?php echo $fila->nombre?></option>
+                    <?php }?>
                     </select>
                   </div>
                 </div>
@@ -89,18 +104,18 @@
                 <div class="row">
                   <div class="col" style="padding-left:200px;">
                   <table cellpadding="10" cellspacing="10">
-                  <tr><td><input type="checkbox" class="form-check-input form-control-sm" name="lunes" id="lunes">Lunes</td></tr>
-                  <tr><td><input type="checkbox" class="form-check-input form-control-sm" name="martes" id="martes">Martes</td></tr>
-                  <tr><td><input type="checkbox" class="form-check-input form-control-sm" name="miercoles" id="miercoles">Miercoles</td></tr>
-                  <tr><td><input type="checkbox" class="form-check-input form-control-sm" name="jueves" id="jueves">Jueves</td></tr>
+                  <tr><td><input type="checkbox" class="form-check-input form-control-sm" name="lunes" id="lunes" value ="1">Lunes</td></tr>
+                  <tr><td><input type="checkbox" class="form-check-input form-control-sm" name="martes" id="martes" value ="1">Martes</td></tr>
+                  <tr><td><input type="checkbox" class="form-check-input form-control-sm" name="miercoles" id="miercoles" value ="1">Miercoles</td></tr>
+                  <tr><td><input type="checkbox" class="form-check-input form-control-sm" name="jueves" id="jueves" value ="1">Jueves</td></tr>
                   </table>
                   </div>
                   <div class="col" style="padding-left:10px;">
                   
                   <table cellpadding="10" cellspacing="10">
-                  <tr><td><input type="checkbox" class="form-check-input form-control-sm" name="viernes" id="viernes">Viernes</td></tr>
-                  <tr><td><input type="checkbox" class="form-check-input form-control-sm" name="sabado" id="sabado">Sabado</td></tr>
-                  <tr><td><input type="checkbox" class="form-check-input form-control-sm" name="domingo" id="domingo">Domingo</td></tr>
+                  <tr><td><input type="checkbox" class="form-check-input form-control-sm" name="viernes" id="viernes" value ="1">Viernes</td></tr>
+                  <tr><td><input type="checkbox" class="form-check-input form-control-sm" name="sabado" id="sabado" value ="1">Sabado</td></tr>
+                  <tr><td><input type="checkbox" class="form-check-input form-control-sm" name="domingo" id="domingo" value ="1">Domingo</td></tr>
                   </table>
 
                   </div>
@@ -112,7 +127,7 @@
                 <div class="row">
                   <div class="col">
                   Grupo
-                    <input type="text" name="nombre" id="nombre" class="form-control form-control-sm">
+                    <input type="text" name="grupo" id="grupo" class="form-control form-control-sm">
                   </div>
                   <div class="col">
                   Estatus
@@ -130,7 +145,7 @@
 
               <div class="espacioUno"></div>
 
-              <button type="submit" name="submitAL" class="btn btn-primary btn-sm">Registrar</button>
+              <button type="submit" name="submitFR" class="btn btn-primary btn-sm">Registrar</button>
               </form>
 
               </div>
@@ -199,21 +214,3 @@
       <?php include(APPPATH.'Views/include/footer.php');?>
       <?php include(APPPATH.'Views/include/header-js.php');?>
      
- 
-    <script>
-      $('#unidad_negocio').change(function () {
-        var id_unidad = $(this).val();
-        // cuando el valor sea 0, se debe resetear el listado de planteles
-        $.ajax({
-          type: "POST",
-          url: "<?php echo site_url('Alumnos/plantelesUnidadNegocio');?>",
-          data: "id_unidad_negocio=" + id_unidad,
-          success : function(text){
-            document.getElementById("plantel").innerHTML = "";
-            $('#plantel').append(text);
-        }
-
-        });
-      });
-    </script>
- 

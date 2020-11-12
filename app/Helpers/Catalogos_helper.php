@@ -4,8 +4,8 @@ use  App\Models\Horarios_model;
 use  App\Models\Niveles_grupo;
 use  App\Models\Salones_model;
 use  App\Models\Cursos_model;
-
-
+use  App\Models\Frecuencia_model;
+use  App\Models\Modalidad_model;
 function getAllCiclo()
 {
     $usermode = new Ciclos_model($db);
@@ -92,6 +92,47 @@ function getCursoEspecifico($id_curso)
 {
     $usermode = new Cursos_model($db);
     $query = "SELECT * FROM cursos WHERE deleted = 0 AND id = $id_curso";
+    $resultado = $usermode->query($query);
+    $row = $resultado->getRow();
+    return($row);
+
+}
+
+
+function getAllFrecuencia()
+{
+    $usermode = new Frecuencia_model($db);
+    $query = "SELECT * FROM frecuencia WHERE deleted = 0";
+    $resultado = $usermode->query($query);
+    $rowArray = $resultado->getResult();
+    return($rowArray);
+
+}
+
+function getFrencueciaEspecifica($id_frencuencia)
+{
+    $usermode = new Frecuencia_model($db);
+    $query = "SELECT * FROM frecuencia WHERE deleted = 0 AND id = $id_frencuencia";
+    $resultado = $usermode->query($query);
+    $row = $resultado->getRow();
+    return($row);
+
+}
+
+function getAllModalidad()
+{
+    $usermode = new Modalidad_model($db);
+    $query = "SELECT * FROM modalidad WHERE deleted = 0";
+    $resultado = $usermode->query($query);
+    $rowArray = $resultado->getResult();
+    return($rowArray);
+
+}
+ 
+function getModalidadEspecifica($id_modalidad)
+{
+    $usermode = new Modalidad_model($db);
+    $query = "SELECT * FROM modalidad WHERE deleted = 0 AND id = $id_modalidad";
     $resultado = $usermode->query($query);
     $row = $resultado->getRow();
     return($row);

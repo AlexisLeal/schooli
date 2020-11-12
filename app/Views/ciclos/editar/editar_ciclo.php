@@ -83,14 +83,16 @@
 
 
                     Estatus
-                    <select class="form-control form-control-sm" name="estatus" id="estatus" required="" value="<?php echo $estatus?>">
+                    <select class="form-control form-control-sm" name="estatus" id="estatus" required="">
+                    <option value="">Seleccione una opción</option>
                     <?php if($estatus == 1){ ?>
-                    <option selected="selected" value="1">Activo</option>
-                    <?php }?>
-                    <option value="0">Inactivo</option>
-    
+                    <option selected = "selected" value="1">Activo</option>
+                    <option  value="0">Inactivo</option>
+                    <?php }elseif($estatus == 0){ ?>
+                     <option selected ="selected"  value="0">Inactivo</option>
+                    <option value="1">Activo</option>
+                    <?php } ?>
                     </select>
-
 
 
 

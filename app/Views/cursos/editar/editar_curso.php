@@ -84,10 +84,14 @@
                   <div class="col">
                     Estatus
                     <select class="form-control form-control-sm" name="estatus" id="estatus" required="">
-                   <?php if($estatus == 1){ ?>
+                    <option value="">Seleccione una opción</option>
+                    <?php if($estatus == 1){ ?>
                     <option selected = "selected" value="1">Activo</option>
-                   <?php }?>
-                    <option value="0">Inactivo</option>
+                    <option  value="0">Inactivo</option>
+                    <?php }elseif($estatus == 0){ ?>
+                     <option selected ="selected"  value="0">Inactivo</option>
+                    <option value="1">Activo</option>
+                    <?php } ?>
                     </select>
                   </div>
                 </div>
@@ -118,7 +122,7 @@
                 <div class="row">
                   <div class="col">
                   precio por el curso
-                    <input type="text" name="p_curso" id="cupo" class="form-control form-control-sm" value="<? echo $p_curso?>"> 
+                    <input type="text" name="p_curso" id="cupo" class="form-control form-control-sm" value="<?php echo $p_curso;?>"> 
                   </div>
                   <div class="col">
                   Precio por nivel

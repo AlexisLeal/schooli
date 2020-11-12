@@ -71,32 +71,47 @@
                 <tr>
                 <th class="text-left">ID</th>
                 <th class="text-left">Nombre</th>
-                <th class="text-left">Unidd de negocio</th>
-                <th class="text-left">Plantel</th>
-                <th class="text-left">Matricula</th>
+                <th class="text-left">Descripcion</th>
+                <th class="text-left">Modalidad</th>
+                <th class="text-left">Lunes</th>
+                <th class="text-left">Martes</th>
+                <th class="text-left">Miercoles</th>
+                <th class="text-left">Jueves</th>
+                <th class="text-left">Viernes</th>
+                <th class="text-left">Sabado</th>
+                <th class="text-left">Domingo</th>
+                <th class="text-left">estatus</th>
                 <th class="text-left">Ver</th>
                 <th class="text-left">Editar</th>
                 </tr>
                 </thead>
-
-
                   <tr>
-                <td><?php ?></td>
-                <td><?php ?></td>
-                <td><?php ?></td>
-                <td><?php ?></td>
-                <td><?php ?></td>
+                  <?php foreach(getAllFrecuencia() as $fila){ 
+                 $nombreModalidad = getModalidadEspecifica($fila->id_modalidad) ?>
+                <td><?php echo $fila->id ?></td>
+                <td><?php echo $fila->nombre ?></td>
+                <td><?php echo $fila->descripcion ?></td>
+                <td><?php echo $nombreModalidad->nombre?></td>
+                <td><?php echo $fila->lunes ?></td>
+                <td><?php echo $fila->martes ?></td>
+                <td><?php echo $fila->miercoles ?></td>
+                <td><?php echo $fila->jueves ?></td>
+                <td><?php echo $fila->viernes ?></td>
+                <td><?php echo $fila->sabado ?></td>
+                <td><?php echo $fila->domingo ?></td>
+                <td><?php echo ($fila->estatus == 1) ? "Activo" : "Inactivo"?></td>
                 <td class="text-center">
-                  <a href="<?php echo site_url("/Frecuencia/verfrecuencia") ?>">
+                  <a href="<?php echo site_url("/Frecuencia/verfrecuencia/$fila->id") ?>">
                   <i class="fa fa-file-text-o fa-1x" aria-hidden="true"></i>
                 </td>
                 <td class="text-center">
-                <a href="<?php echo site_url("/Frecuencia/editarfrecuencia") ?>">
+                <a href="<?php echo site_url("/Frecuencia/editarfrecuencia/$fila->id") ?>">
                 <i class="fa fa-pencil-square-o fa-1x" aria-hidden="true"></i>
                 </a>
                 </td>
 
                 </tr>
+                  <?php } ?>
                 </table>
 
 

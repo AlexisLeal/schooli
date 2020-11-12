@@ -252,8 +252,9 @@
                     <?php foreach(getPaises() as $fila){?>
                     <?php if($fila->id == $pais){?>
                       <option selected="selected" value="<?php echo $fila->id;?>"><?php echo $fila->pais;?></option>
-                    <?php }?>
+                    <?php }else{?>
                     <option value="<?php echo $fila->id;?>"><?php echo $fila->pais;?></option>
+                    <?php } ?> 
                     <?php } ?> 
                     
                     </select>
