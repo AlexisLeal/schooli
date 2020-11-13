@@ -100,8 +100,10 @@
                        Titulo<br/>
                        Descripción <?php echo $fila->descripcion;?><br/>
                   </div>
-
-                  <img src=<?php echo base_url($fila->url_imagen)?>>
+                  <br>
+                  <div class="text-center" >
+                  <img src="<?php echo base_url($fila->url_imagen)?>" class="img-fluid" alt="Responsive image">
+                  </div>   
                 <?php
                 }
                 ?>

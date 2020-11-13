@@ -69,6 +69,8 @@ class Grupos extends BaseController{
         }else{
             $ruta_imagen_basedatos = "Null";
         }
+        //Es una funcion recursiva esta esta en  helper      
+        $codigo = checkCodigo();
 
                 $data = ['nombre' => $nombregrupo,
                 'estatus' => $REQUEST->getPost('estatus'),
@@ -76,6 +78,7 @@ class Grupos extends BaseController{
                 'id_horario' => $REQUEST->getPost('horarios'),
                 'id_salon' => $REQUEST->getPost('salon'),
                 'id_nivel' => $REQUEST->getPost('nivel'),
+                'codigo_acceso' =>$codigo,
                 'cupo' => $REQUEST->getPost('cupo'),
                 'precio' => $REQUEST->getPost('precio'),
                 'descripcion' => $REQUEST->getPost('descripcion'),
