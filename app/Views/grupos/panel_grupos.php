@@ -91,17 +91,14 @@
                 <a href="<?php echo site_url('/Grupos/agregargrupo'); ?>">Crear un grupo</a> 
                 <hr class="linea"/>
 
-                <?php
-                
-                for($prueba=0;$prueba<=30;$prueba++){
-                ?>
+                <?php foreach(getAllGrupos() as $fila){ ?>
                 <div class="niveles" style="float:left;margin-left:20px;margin-right:20px;padding-top:10px;padding-bottom:15px;">
-                  </h4><a href="<?php echo site_url("/Grupos/vergrupo/$prueba");?>"><?php //echo $fila->nombre?>Prueba</a></h4>
+                  </h4><a href="<?php echo site_url("/Grupos/vergrupo/$fila->id");?>"><?php //echo $fila->nombre?>Prueba</a></h4>
                 <br>
-                       Nombre de grupo : <?php echo $prueba;?><br/>
-                       Ruta de imagen<br/>
+                       Nombre de grupo : <?php echo $fila->nombre;?><br/>
+                       Ruta de imagen <?php echo $fila->url_imagen;?><br/>
                        Titulo<br/>
-                       Descripción<br/>
+                       Descripción <?php echo $fila->descripcion;?><br/>
                   </div>
                 <?php
                 }

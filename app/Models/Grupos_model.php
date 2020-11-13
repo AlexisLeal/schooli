@@ -2,7 +2,7 @@
 
 use CodeIgniter\Model;
 
-class Grupos extends Model
+class Grupos_model extends Model
 {
     #Nombre de la tabla
     protected $table      = 'grupos';
@@ -13,7 +13,7 @@ class Grupos extends Model
     protected $useSoftDeletes = true;
 
     #Aqui ponemos el nombre de las columnas que vamos a modifcar
-    protected $allowedFields = ['nombre','estatus','id_unidad_negocio'];
+    protected $allowedFields = ['nombre','estatus','id_plantel','id_horario','id_salon','id_nivel','codigo_acceso','cupo','precio','inscritos','disponibles','descripcion','id_unidad_negocio','usuario_creo','usuario_modifico','url_imagen','fecha_creacion','fecha_ultimo_cambio'];
 
     protected $useTimestamps = false;
     protected $createdField  = 'fecha_creacion';
