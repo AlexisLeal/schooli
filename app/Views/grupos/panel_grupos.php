@@ -99,6 +99,7 @@
                        Ruta de imagen <?php echo $fila->url_imagen;?><br/>
                        Titulo<br/>
                        Descripción <?php echo $fila->descripcion;?><br/>
+                       Codigo de acceso <?php echo $fila->codigo_acceso;?><br/>
                   </div>
                   <br>
                   <div class="text-center" >
