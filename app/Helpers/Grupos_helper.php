@@ -34,8 +34,8 @@ function generarCodigo() {
     return($rowArray);
      
    }
-
-   function(){
+   
+   function checkCodigo(){
         $codigo = generarCodigo();
         foreach(DBCodigo() as $fila){
             if($fila->codigo_acceso  == $codigo){
