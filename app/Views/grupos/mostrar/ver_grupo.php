@@ -91,7 +91,7 @@
                 <a href="<?php echo site_url('/Grupos/agregargrupo'); ?>">Crear un grupo</a> 
                 
                 <hr class="linea"/>
-                <a href="">Asignar Recursos</a> / 
+                <a href="<?php echo site_url("Asignacion/recursos/$id_grupo");?>">Asignar Recursos</a> / 
                 <a href="">Asignar Un Teacher</a> /
                 <a href="">Asignar Alumnos</a> <br/>
                 Codigo de acceso para el grupo.<br/>
