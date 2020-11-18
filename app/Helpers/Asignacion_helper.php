@@ -1,5 +1,7 @@
 <?php 
 use  App\Models\Grupos_recursos_model;
+use  App\Models\Grupos_teachers_model;
+use  App\Models\Grupos_alumnos_model;
 
 //funcion que trae todos los recursos de un grupo especifico 
 function getGrupoRecursosEspecifico($id_grupo,$id_recurso)
@@ -12,20 +14,24 @@ function getGrupoRecursosEspecifico($id_grupo,$id_recurso)
 
 }
 
-function getRecursosAvailable($id_grupo)
+function getGrupoTeacherEspecifico($id_grupo,$id_teacher)
 {
-    $posicion = 0;
-    $all = getRecursos();
-    foreach(getRecursos() as $fila){
-        foreach(getGrupoRecursosEspecifico($id_grupo) as $filaR){
-                if($fila->id == $filaR->id_recurso){
-                    unset($all[$posicion]);
-                }
-        }
+    $usermodel = new Grupos_teachers_model($db);
+    $query = "SELECT * FROM  grupo_teachers WHERE deleted = 0 AND id_grupo = $id_grupo AND id_teacher = $id_teacher";
+    $resultado = $usermodel ->query($query);   
+    $row = $resultado->getRow();
+    return($row);
 
-        $posicion++;
-    }
-        return($all);
+
+
+}
+function getGrupoAlumnoEspecifico($id_grupo,$id_alumno)
+{
+    $usermodel = new Grupos_alumnos_model($db);
+    $query = "SELECT * FROM  grupo_alumnos WHERE deleted = 0 AND id_grupo = $id_grupo AND id_alumno = $id_alumno";
+    $resultado = $usermodel ->query($query);   
+    $row = $resultado->getRow();
+    return($row);
 
 
 

@@ -11,9 +11,7 @@
          <?php if(empty(getGrupoRecursosEspecifico($id_grupo,$fila->id))){?>
             <input type="checkbox" name="<?php echo $fila->id?>" value="<?php echo $fila->id?>"> <?php echo $fila->nombre?> <br>
         <?php }else{?>
-             <input type="checkbox"  disabled="disabled"  checked> <?php echo $fila->nombre?> <br>       
-
-              
+             <input type="checkbox"  disabled="disabled"  checked> <?php echo $fila->nombre?> <br> 
               <?php 
 
 
