@@ -5,7 +5,7 @@ use CodeIgniter\Model;
 class Grupos_teachers_model extends Model
 {
     #Nombre de la tabla
-    protected $table      = 'grupos_recursos';
+    protected $table      = 'grupo_teachers';
     #nombre de la clave primaria 
     protected $primaryKey = 'id';
 

@@ -92,8 +92,8 @@
                 
                 <hr class="linea"/>
                 <a href="<?php echo site_url("Asignacion/recursos/$id_grupo");?>">Asignar Recursos</a> / 
-                <a href="">Asignar Un Teacher</a> /
-                <a href="">Asignar Alumnos</a> <br/>
+                <a href="<?php echo site_url("Asignacion/teacher/$id_grupo");?>">Asignar Un Teacher</a> /
+                <a href="<?php echo site_url("Asignacion/alumnos/$id_grupo");?>">Asignar Alumnos</a> <br/>
                 Codigo de acceso para el grupo.<br/>
                 Materiales (recursos que estan asignados al grupo)<br/>
                 Miembros (Listado de alumnos asignados a este grupo)<br/>

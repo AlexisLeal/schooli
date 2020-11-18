@@ -71,14 +71,28 @@ class Asignacion extends BaseController{
         if($this->session->get('login')){
             $REQUEST = \Config\Services::request();
             $hoy = date("Y-m-d H:i:s");
-            $data = ['id_grupo ' =>$REQUEST->getPost(''),
-            'id_teacher' =>$REQUEST->getPost(''),
+            $usermodel = new Grupos_teachers_model($db);
+            if(isset($_POST['submitTH'])){
+                foreach(getAllMaestros() as $fila){
+                 if(!empty($REQUEST->getPost($fila->id_usuario))){
+
+            $data = ['id_grupo' =>$REQUEST->getPost('id_grupo'),
+            'id_teacher' =>$REQUEST->getPost($fila->id_usuario),
             'fecha_creacion' =>$hoy,
             'fecha_ultimo_cambio' =>$hoy,
             ];
-            $usermodel = new Grupos_teachers_model($db);
-            $usermodel->insert();
+            $usermodel->insert($data);
+            echo "Se agrego correctameto";
+            }
+
+        }
+        echo "salio del for";
+            }else{
+
+                return redirect()->to(site_url('Home/salir'));
+               }
         }else{
+
             return redirect()->to(site_url('Home/salir'));
            }
     }
@@ -99,26 +113,16 @@ class Asignacion extends BaseController{
                     'id_recurso' =>$REQUEST->getPost($fila->id),
                     'fecha_creacion' =>$hoy,
                     'fecha_ultimo_cambio' =>$hoy,
-                    ];
-                    
+                    ]; 
                     $usermodel->insert($data);
                     echo "Se agrego correctameto";
               
                 }
-
-              
-                   
-                
-
             }
             echo "salio del for";
         }else{
             return redirect()->to(site_url('Home/salir'));
-           }
-           
-           
-          
-           
+           }  
         }else{
             return redirect()->to(site_url('Home/salir'));
            }

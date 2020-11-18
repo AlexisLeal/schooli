@@ -2,13 +2,13 @@
 use  App\Models\Grupos_recursos_model;
 
 //funcion que trae todos los recursos de un grupo especifico 
-function getGrupoRecursosEspecifico($id_grupo)
+function getGrupoRecursosEspecifico($id_grupo,$id_recurso)
 {
     $usermodel = new Grupos_recursos_model($db);
-    $query = "SELECT id_recurso FROM  grupo_recursos WHERE deleted = 0 AND id_grupo = $id_grupo";
+    $query = "SELECT * FROM  grupo_recursos WHERE deleted = 0 AND id_grupo = $id_grupo AND id_recurso = $id_recurso";
     $resultado = $usermodel ->query($query);   
-    $rowArray = $resultado->getResult();
-    return($rowArray);
+    $row = $resultado->getRow();
+    return($row);
 
 }
 
