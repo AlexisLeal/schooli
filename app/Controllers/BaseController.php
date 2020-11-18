@@ -42,6 +42,7 @@ class BaseController extends Controller
 		helper('Maestros');
 		helper('Catalogos');
 		helper('Grupos');
+		helper('Asignacion');
 		$this->session= session();//para que herede a todos los controladores
 		//--------------------------------------------------------------------
 		// Preload any models, libraries, etc, here.

@@ -34,11 +34,7 @@ function generarCodigo() {
     return($rowArray);
      
    }
-<<<<<<< HEAD
    
-=======
-
->>>>>>> ec0c8319892aa2e78763de192c49bceb7723495e
    function checkCodigo(){
         $codigo = generarCodigo();
         foreach(DBCodigo() as $fila){
