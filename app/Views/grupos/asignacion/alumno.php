@@ -8,13 +8,12 @@
 <body>
 
 <form action="<?php echo site_url('Asignacion/asignaralumno');?>" method="post">
-<?php foreach(getAllAlumnos() as $fila){
-            $alumno = getAlumnoEspecifico($fila->id_usuario); 
-            if(empty(getGrupoAlumnoEspecifico($id_grupo,$fila->id_usuario))){?>
-            <input type="checkbox" name="<?php echo $fila->id_usuario?>"  value="<?php echo $fila->id_usuario?>"><?php echo $alumno->nombre;?> <br>
+<?php foreach(getGrupoAlumnos($id_grupo) as $fila){
+            if(empty($fila->id_grupo)){?>
+            <input type="checkbox" name="<?php echo $fila->id?>"  value="<?php echo $fila->id?>"><?php echo $fila->nombre;?> <br>
 
             <?php }else{?>
-             <input type="checkbox"  disabled="disabled"  checked> <?php echo $alumno->nombre?> <br> 
+             <input type="checkbox"  disabled="disabled"  checked> <?php echo $fila->nombre?> <br> 
             <?php }?>
             <?php }?>
 

@@ -8,13 +8,11 @@
 <body>
 
 <form action="<?php echo site_url('Asignacion/asignarteacher');?>" method="post">
-<?php foreach(getAllMaestros() as $fila){
-            $Maestro = getMaestroEspecifico($fila->id_usuario); 
-            if(empty(getGrupoTeacherEspecifico($id_grupo,$fila->id_usuario))){?>
-            <input type="checkbox" name="<?php echo $fila->id_usuario?>"  value="<?php echo $fila->id_usuario?>"><?php echo $Maestro->nombre;?> <br>
-
+<?php foreach(getGrupoMaestros($id_grupo) as $fila){
+            if(empty($fila->id_grupo)){?>
+            <input type="checkbox" name="<?php echo $fila->id?>"  value="<?php echo $fila->id?>"><?php echo $fila->nombre;?> <br>
             <?php }else{?>
-             <input type="checkbox"  disabled="disabled"  checked> <?php echo $Maestro->nombre?> <br> 
+             <input type="checkbox"  disabled="disabled"  checked> <?php echo $fila->nombre?> <br> 
             <?php }?>
             <?php }?>
 

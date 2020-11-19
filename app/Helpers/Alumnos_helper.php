@@ -137,4 +137,15 @@ function getPlantelesPorUNidadNegocio($id_unidad_negocio)
     return($rowArray);
 }
 
+//Funcion nueva de alumnos 
+
+function getAlumnos()
+{
+    $usermodel = new Alumnos_model($db);
+    $query = "SELECT usuarios.id,usuarios.nombre,usuarios.apellido_paterno,usuarios.apellido_materno,alumnos.matricula,alumnos.id_plantel,alumnos.id_unidad_negocio from usuarios inner join alumnos on usuarios.id = alumnos.id_usuario and usuarios.deleted = 0";
+    $resultado = $usermodel ->query($query);   
+    $rowArray = $resultado->getResult();
+    return($rowArray);  
+}
+
 ?>

@@ -7,8 +7,8 @@
 </head>
 <body>
         <form action="<?php echo site_url('Asignacion/asignarrecurso');?>" method="post">
-        <?php foreach(getRecursos() as $fila){?> 
-         <?php if(empty(getGrupoRecursosEspecifico($id_grupo,$fila->id))){?>
+        <?php foreach(getGrupoRecursos($id_grupo) as $fila){?> 
+         <?php if(empty($fila->id_grupo)){?>
             <input type="checkbox" name="<?php echo $fila->id?>" value="<?php echo $fila->id?>"> <?php echo $fila->nombre?> <br>
         <?php }else{?>
              <input type="checkbox"  disabled="disabled"  checked> <?php echo $fila->nombre?> <br> 
@@ -18,9 +18,6 @@
         }
     }
         ?>
-
-
-
 
         <input type="hidden" name="id_grupo" value="<?php echo $id_grupo?>">
         <input type="submit" value="enviar" name="submitRC">
