@@ -91,20 +91,16 @@
                 <a href="<?php echo site_url('/Grupos/agregargrupo'); ?>">Crear un grupo</a> 
                 <hr class="linea"/>
 
-                <?php foreach(getAllGrupos() as $fila){ ?>
-                <div class="niveles" style="float:left;margin-left:20px;margin-right:20px;padding-top:10px;padding-bottom:15px;">
-                  </h4><a href="<?php echo site_url("/Grupos/vergrupo/$fila->id");?>"><?php echo $fila->nombre?></a></h4>
-                <br>
+                <?php foreach(getAllGrupos() as $fila){ ?> 
+                <div class="niveles" style="width:230px;height:100px;background-image:url('<?php echo base_url($fila->url_imagen)?>');float:left;margin-left:10px;margin-right:10px;padding-top:10px;padding-bottom:10px;">
+                  <!--</h4><a href="<?php //echo site_url("/Grupos/vergrupo/$fila->id");?>"><?php //echo $fila->nombre?></a></h4>-->
                        Nombre de grupo : <?php echo $fila->nombre;?><br/>
-                       Ruta de imagen <?php echo $fila->url_imagen;?><br/>
+                       <?php //echo $fila->url_imagen;?><br/>
                        Titulo<br/>
                        Descripción <?php echo $fila->descripcion;?><br/>
                        Codigo de acceso <?php echo $fila->codigo_acceso;?><br/>
                   </div>
-                  <br>
-                  <div class="text-center" >
-                  <img src="<?php echo base_url($fila->url_imagen)?>" class="img-fluid" alt="Responsive image">
-                  </div>   
+                  
                 <?php
                 }
                 ?>
