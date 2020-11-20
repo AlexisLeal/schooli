@@ -88,7 +88,8 @@
               <div class="card">
                 <div class="card-body">
 
-                <a href="<?php echo site_url('/Grupos/agregargrupo'); ?>">Crear un grupo</a> 
+                <a href="<?php echo site_url('/Grupos/agregargrupo'); ?>">Crear un grupo</a> / <a href="<?php echo site_url('Grupos/index')?>"> Panel de Recursos </a> <br/>
+
                 
                 <hr class="linea"/>
                 <a href="<?php echo site_url("Asignacion/recursos/$id_grupo");?>">Asignar Recursos</a> / 

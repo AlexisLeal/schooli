@@ -79,10 +79,6 @@
 
 
 
-
- 
-
-
           <div class="espacioUno"></div>
             <h4>Grupos</h4>
               <div class="card">
@@ -92,13 +88,15 @@
                 <hr class="linea"/>
 
                 <?php foreach(getAllGrupos() as $fila){ ?> 
-                <div class="niveles" style="width:230px;height:100px;background-image:url('<?php echo base_url($fila->url_imagen)?>');float:left;margin-left:10px;margin-right:10px;padding-top:10px;padding-bottom:10px;">
-                  <!--</h4><a href="<?php //echo site_url("/Grupos/vergrupo/$fila->id");?>"><?php //echo $fila->nombre?></a></h4>-->
-                       Nombre de grupo : <?php echo $fila->nombre;?><br/>
-                       <?php //echo $fila->url_imagen;?><br/>
-                       Titulo<br/>
-                       Descripción <?php echo $fila->descripcion;?><br/>
-                       Codigo de acceso <?php echo $fila->codigo_acceso;?><br/>
+                <div class="niveles" style="width:230px;height:100px;background-image:url('<?php echo base_url($fila->url_imagen)?>');float:left;margin-left:10px;margin-right:10px;margin-bottom:10px;padding-top:5px;padding-bottom:5px;padding-left:10px;">
+                  
+                    </h4><a href="<?php echo site_url("/Grupos/vergrupo/$fila->id");?>"><?php echo $fila->nombre?></a></h4>
+                    <br/>
+                    HORARIO: SABATINO
+                    PRESCENCIAL <br/>
+                    INBI English School<br/>
+                    <?php //echo $fila->descripcion;?><br/>
+                    <?php //echo $fila->codigo_acceso;?><br/>
                   </div>
                   
                 <?php

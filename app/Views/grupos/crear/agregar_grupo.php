@@ -66,11 +66,6 @@
           <h4>Registro de un Grupo.</h4>
           <div class="espacioUno"></div>
         
-        El codigo del grupo se genarara en automatico y se guardara en la DB.
-
-
-
-
 
               <div class="card">
                 <div class="card-body">
