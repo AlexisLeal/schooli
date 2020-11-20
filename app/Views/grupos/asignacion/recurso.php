@@ -1,18 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-        <form action="<?php echo site_url('Asignacion/asignarrecurso');?>" method="post">
-        <?php foreach(getGrupoRecursos($id_grupo) as $fila){?> 
-         <?php if(empty($fila->id_grupo)){?>
-            <input type="checkbox" name="<?php echo $fila->id?>" value="<?php echo $fila->id?>"> <?php echo $fila->nombre?> <br>
-        <?php }else{?>
-             <input type="checkbox"  disabled="disabled"  checked> <?php echo $fila->nombre?> <br> 
-              <?php 
+
+<?php include(APPPATH.'/Views/include/header.php');?>
 
 <div class="espacioDos"></div>
 <header id="barra-superior">
@@ -74,10 +61,48 @@
               </div> 
 
 
-        <input type="hidden" name="id_grupo" value="<?php echo $id_grupo?>">
-        <button type="submit" name="submitRC" class="btn btn-primary btn-sm">Asignar</button>
-        </form>
+              <?php
+              if($session->has('pregunta-exito')){ 
+                ?>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                  <?php
+                  echo $session->get('pregunta-exito');
+                  ?>
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <?php
+                
+                $session->remove('pregunta-exito'); 
+              }
+              ?>
 
+
+
+          <div class="espacioUno"></div>
+            <h4>Grupos</h4>
+              <div class="card">
+                <div class="card-body">
+
+                <a href="<?php echo site_url('/Grupos/agregargrupo'); ?>">Crear un grupo</a> 
+                <hr class="linea"/>
+
+              <form action="<?php echo site_url('Asignacion/asignarrecurso');?>" method="post">
+                <?php foreach(getGrupoRecursos($id_grupo) as $fila){?> 
+               <?php if(empty($fila->id_grupo)){?>
+                <input type="checkbox" name="<?php echo $fila->id?>" value="<?php echo $fila->id?>"> <?php echo $fila->nombre?> <br>
+                <?php }else{?>
+                 <input type="checkbox"  disabled="disabled"  checked> <?php echo $fila->nombre?> <br> 
+                <?php
+               }
+              }
+              ?> 
+
+                <input type="hidden" name="id_grupo" value="<?php echo $id_grupo?>">
+                <input type="submit" value="Asignar" name="submitRC" class="btn btn-primary btn-sm">
+        </form>
+              </form>
 
               </div>
             </div>
