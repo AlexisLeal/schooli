@@ -236,7 +236,7 @@ function getCategoriaEvaluacionEspecifica($id_categoria_evaluacion)
 function getRecursos()
 {
     $usermodel = new Recursos_model($db);
-    $query = "SELECT id,nombre,extencion,tipo_archivo,descripcion from recursos";
+    $query = "SELECT id,nombre,extencion,tipo_archivo,descripcion from recursos WHERE deleted = 0";
     $resultado = $usermodel->query($query);
     $rowArray = $resultado->getResult();
     return($rowArray);
