@@ -5,7 +5,7 @@ use CodeIgniter\Model;
 class Planteles extends Model
 {
     #Nombre de la tabla
-    protected $table      = 'planeteles';
+    protected $table      = 'planteles';
     #nombre de la clave primaria 
     protected $primaryKey = 'id';
 

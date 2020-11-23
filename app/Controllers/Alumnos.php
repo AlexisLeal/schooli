@@ -20,7 +20,7 @@ class Alumnos extends BaseController{
     public function verAlumno($id_alumno)
     {
         if($this->session->get('login')){
-
+/*
         $usermodel_A = new Alumnos_model($db);
         $query_A = "SELECT * from alumnos WHERE id = $id_alumno AND deleted = 0";
         $resultado_A = $usermodel_A->query($query_A);
@@ -36,37 +36,49 @@ class Alumnos extends BaseController{
         $resultado_D = $usermodel_D->query($query_D);
         $row_D = $resultado_D->getRow();
         //-------------------------
-       
+  */     
                 //Aqui vamos a poner todos los datos de un alumno especifico
-        
+    
+                
+
+     $db = \Config\Database::connect();
+     $usermodel = $db->table('usuarios U');
+     $usermodel->select('U.nombre,U.apellido_paterno,U.apellido_materno,U.usuario,U.email,
+     U.estado,U.telefono,U.movil,U.roll,AL.id_plantel,AL.id_unidad_negocio,AL.matricula,
+     AL.comentarios,D.calle,D.numero_interior,D.numero_exterior,
+     D.colonia,D.codigo_postal,D.municipio_delegacion,D.id_entidad_federativa,D.id_pais');
+     $usermodel->join('alumnos AL', "AL.id_usuario = U.id and AL.id = $id_alumno and U.deleted = 0 and AL.deleted = 0");
+     $usermodel->join('direcciones D',' D.id = U.id_direccion and D.deleted = 0');
+     $resultado = $usermodel->get();   
+     $row = $resultado->getRow();
         //Usuario 
-        $data['nombre'] = $row_U->nombre;
-        $data['apeliido_paterno'] = $row_U->apellido_paterno;
-        $data['apeliido_materno'] = $row_U->apellido_materno;
-        $data['usuario'] = $row_U->usuario;
-        $data['email'] = $row_U->email;
-        $data['estado'] = ($row_U->estado == 1) ? "Activo" : "Inactivo";
-        $data['telefono'] = $row_U->telefono;
-        $data['movil'] = $row_U->movil;
-        $data['roll'] = getRollEspecifico($row_U->roll);
+        $data['nombre'] = $row->nombre;
+        $data['apeliido_paterno'] = $row->apellido_paterno;
+        $data['apeliido_materno'] = $row->apellido_materno;
+        $data['usuario'] = $row->usuario;
+        $data['email'] = $row->email;
+        $data['estado'] = ($row->estado == 1) ? "Activo" : "Inactivo";
+        $data['telefono'] = $row->telefono;
+        $data['movil'] = $row->movil;
+        $data['roll'] = getRollEspecifico($row->roll);
 
         //Alummno
-        $data['matricula'] =$row_A->matricula ;
-        $data['plantel'] =getPlanteEspecifico($row_A->id_plantel);
-        $data['unidad_negocio'] = getUnidadNegocioEspecifico($row_A->id_unidad_negocio);
-        $data['comentarios'] = $row_A->comentarios;
+        $data['matricula'] =$row->matricula ;
+        $data['plantel'] =getPlanteEspecifico($row->id_plantel);
+        $data['unidad_negocio'] = getUnidadNegocioEspecifico($row->id_unidad_negocio);
+        $data['comentarios'] = $row->comentarios;
        
         //Dirrecion 
-        $data['calle'] = $row_D->calle;
-        $data['numero_interior'] = $row_D->numero_interior;
-        $data['numero_exterior'] = $row_D->numero_exterior;
-        $data['colonia'] = $row_D->colonia;
-        $data['codigo_postal'] = $row_D->codigo_postal;
-        $data['municipio_delegacion'] = $row_D->municipio_delegacion;
+        $data['calle'] = $row->calle;
+        $data['numero_interior'] = $row->numero_interior;
+        $data['numero_exterior'] = $row->numero_exterior;
+        $data['colonia'] = $row->colonia;
+        $data['codigo_postal'] = $row->codigo_postal;
+        $data['municipio_delegacion'] = $row->municipio_delegacion;
         //Estado
-        $data['estado'] = getEstadoEspecifico($row_D->id_entidad_federativa);
+        $data['estado'] = getEstadoEspecifico($row->id_entidad_federativa);
         //Pais 
-        $data['pais'] = getPaisEspecifico($row_D->id_pais);
+        $data['pais'] = getPaisEspecifico($row->id_pais);
 
        
         return view('alumnos/mostrar/ver_alumno',$data);
@@ -89,7 +101,7 @@ class Alumnos extends BaseController{
     public function editaralumno($id_alumno)
     {   
             if($this->session->get('login')){
-
+        /*
                 $usermodel_A = new Alumnos_model($db);
                 $query_A = "SELECT * from alumnos WHERE id = $id_alumno AND deleted = 0";
                 $resultado_A = $usermodel_A->query($query_A);
@@ -105,38 +117,48 @@ class Alumnos extends BaseController{
                 $resultado_D = $usermodel_D->query($query_D);
                 $row_D = $resultado_D->getRow();
                 //-------------------------
-               
+          */     
                         //Aqui vamos a poner todos los datos de un alumno especifico
                 
+     $db = \Config\Database::connect();
+     $usermodel = $db->table('usuarios U');
+     $usermodel->select('U.nombre,U.apellido_paterno,U.apellido_materno,U.usuario,U.email,
+     U.estado,U.telefono,U.movil,U.roll,AL.id_plantel,AL.id_unidad_negocio,AL.matricula,
+     AL.comentarios,D.calle,D.numero_interior,D.numero_exterior,
+     D.colonia,D.codigo_postal,D.municipio_delegacion,D.id_entidad_federativa,D.id_pais');
+     $usermodel->join('alumnos AL', "AL.id_usuario = U.id and AL.id = $id_alumno and U.deleted = 0 and AL.deleted = 0");
+     $usermodel->join('direcciones D',' D.id = U.id_direccion and D.deleted = 0');
+     $resultado = $usermodel->get();   
+     $row = $resultado->getRow();
                 //Usuario  
-                $data['nombre'] = $row_U->nombre;
-                $data['apeliido_paterno'] = $row_U->apellido_paterno;
-                $data['apeliido_materno'] = $row_U->apellido_materno;
-                $data['usuario'] = $row_U->usuario;
-                $data['email'] = $row_U->email;
-                $data['estado'] = ($row_U->estado == 1) ? "Activo" : "Inactivo";
-                $data['telefono'] = $row_U->telefono;
-                $data['movil'] = $row_U->movil;
-                $data['roll'] = $row_U->roll;
+                $data['nombre'] = $row->nombre;
+                $data['apeliido_paterno'] = $row->apellido_paterno;
+                $data['apeliido_materno'] = $row->apellido_materno;
+                $data['usuario'] = $row->usuario;
+                $data['email'] = $row->email;
+                $data['estado'] = ($row->estado == 1) ? "Activo" : "Inactivo";
+                $data['telefono'] = $row->telefono;
+                $data['movil'] = $row->movil;
+                $data['roll'] = $row->roll;
         
                 //Alummno
-                $data['matricula'] =$row_A->matricula ;
-                $data['plantel'] =$row_A->id_plantel;
-                $data['unidad_negocio'] = $row_A->id_unidad_negocio;
-                $data['comentarios'] = $row_A->comentarios;
+                $data['matricula'] =$row->matricula ;
+                $data['plantel'] =$row->id_plantel;
+                $data['unidad_negocio'] = $row->id_unidad_negocio;
+                $data['comentarios'] = $row->comentarios;
                
                 //Dirrecion 
-                $data['calle'] = $row_D->calle;
-                $data['numero_interior'] = $row_D->numero_interior;
-                $data['numero_exterior'] = $row_D->numero_exterior;
-                $data['colonia'] = $row_D->colonia;
-                $data['codigo_postal'] = $row_D->codigo_postal;
-                $data['municipio_delegacion'] = $row_D->municipio_delegacion;
+                $data['calle'] = $row->calle;
+                $data['numero_interior'] = $row->numero_interior;
+                $data['numero_exterior'] = $row->numero_exterior;
+                $data['colonia'] = $row->colonia;
+                $data['codigo_postal'] = $row->codigo_postal;
+                $data['municipio_delegacion'] = $row->municipio_delegacion;
 
                 //Estado
-                $data['estado'] = $row_D->id_entidad_federativa;
+                $data['estado'] = $row->id_entidad_federativa;
                 //Pais 
-                $data['pais'] = $row_D->id_pais;
+                $data['pais'] = $row->id_pais;
                  //ID_Alumno
                 $data['idAlumno'] = $id_alumno;
                 
@@ -270,16 +292,28 @@ class Alumnos extends BaseController{
                     'fecha_ultimo_cambio' => $hoy,
                 ];
                 $id_alumno = $REQUEST->getPost('idAlumno');
-
+        //-------------------------------------------------------------------------
                 $usermodel_A = new Alumnos_model($db);
-                $query_A = "SELECT * from alumnos WHERE id = $id_alumno AND deleted = 0";
-                $resultado_A = $usermodel_A->query($query_A);
+                $usermodel_A->select('id_usuario');
+                $usermodel_A->where('id',$id_alumno);
+                $usermodel_A->where('deleted',0);
+                $resultado_A = $usermodel_A->get();
                 $row_A = $resultado_A->getRow();
+                // = "SELECT * from alumnos WHERE id = $id_alumno AND deleted = 0";
+                // $resultado_A = $usermodel_A->query($query_A);
+                //$row_A = $resultado_A->getRow();
+                
                 //--------------------------------------------------------------------
                 $usermodel_U = new Usuarios($db);
-                $query_U = "SELECT * from usuarios WHERE id = $row_A->id_usuario AND deleted = 0";
-                $resultado_U = $usermodel_U->query($query_U);
+                $usermodel_U->select('id_direccion');
+                $usermodel_U->where('id',$row_A->id_usuario);
+                $usermodel_U->where('deleted',0);
+                $resultado_U = $usermodel_U->get();
                 $row_U = $resultado_U->getRow();
+                
+               // $query_U = "SELECT * from usuarios WHERE id = $row_A->id_usuario AND deleted = 0";
+                //$resultado_U = $usermodel_U->query($query_U);
+                //$row_U = $resultado_U->getRow();
                 //--------------------------------------------
                 $usermodel_D = new Direcciones($db);
 
@@ -333,18 +367,32 @@ class Alumnos extends BaseController{
         if($this->session->get('login')){
             if(isset($_POST['submitAL'])){
             $usermodel_D = new Direcciones($db);
-            $usermodel_U = new Usuarios($db);
-            $usermodel_A = new Alumnos_model($db);
+          
+           
             $REQUEST = \Config\Services::request();
             $id_alumno = $REQUEST->getPost('idAlumno');
                 
-        $query_A = "SELECT * from alumnos WHERE id = $id_alumno AND deleted = 0";
-        $resultado_A = $usermodel_A->query($query_A);
-        $row_A = $resultado_A->getRow();
+            $usermodel_A = new Alumnos_model($db);   
+            $usermodel_A->select('id_usuario');
+            $usermodel_A->where('id',$id_alumno);
+            $usermodel_A->where('deleted',0);
+            $resultado_A = $usermodel_A->get();
+            $row_A = $resultado_A->getRow();
+       
+        // $query_A = "SELECT * from alumnos WHERE id = $id_alumno AND deleted = 0";
+        //$resultado_A = $usermodel_A->query($query_A);
+        //$row_A = $resultado_A->getRow();
         //--------------------------------------------------------------------
-        $query_U = "SELECT * from usuarios WHERE id = $row_A->id_usuario AND deleted = 0";
-        $resultado_U = $usermodel_U->query($query_U);
+        $usermodel_U = new Usuarios($db);
+        $usermodel_U->select('id_direccion');
+        $usermodel_U->where('id',$row_A->id_usuario);
+        $usermodel_U->wherer('deleted',0);
+        $resultado_U = $usermodel_U->get();
         $row_U = $resultado_U->getRow();
+
+        // $query_U = "SELECT * from usuarios WHERE id = $row_A->id_usuario AND deleted = 0";
+        //$resultado_U = $usermodel_U->query($query_U);
+        //$row_U = $resultado_U->getRow();
         //--------------------------------------------
         
         $usermodel_A->delete(['id'=> $id_alumno]);

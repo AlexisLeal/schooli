@@ -4,8 +4,11 @@ use  App\Models\Grupos_model;
 function getAllGrupos()
 {
     $usermode = new Grupos_model($db);
-    $query = "SELECT * FROM grupos WHERE deleted = 0";
-    $resultado = $usermode->query($query);
+    $usermode->select('*');
+    $usermode->where('deleted',0);
+    $resultado = $usermode->get();
+    //$query = "SELECT * FROM grupos WHERE deleted = 0";
+    //$resultado = $usermode->query($query);
     $rowArray = $resultado->getResult();
     return($rowArray);
 }
@@ -28,8 +31,10 @@ function generarCodigo() {
    function DBCodigo()
    {
     $usermode = new Grupos_model($db);
-    $query = "SELECT codigo_acceso FROM grupos WHERE deleted = 0";
-    $resultado = $usermode->query($query);
+    $usermode->select('codigo_acceso');
+    $usermode->where('deleted',0);
+   // $query = "SELECT codigo_acceso FROM grupos WHERE deleted = 0";
+    $resultado = $usermode->get();
     $rowArray = $resultado->getResult();
     return($rowArray);
      

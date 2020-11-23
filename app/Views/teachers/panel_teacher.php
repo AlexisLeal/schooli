@@ -96,16 +96,16 @@
               </thead>
               <?php foreach(getAllMaestros() as $fila){?>
                   <tr>
-                <td><?php echo $fila->id_usuario;?></td>
+                <td><?php echo $fila->id;?></td>
                 <td><?php echo "$fila->nombre".' '.$fila->apellido_paterno.' '.$fila->apellido_materno;?></td>
                 <td><?php echo getUnidadNegocioEspecifico($fila->idUnidadNegocio);?></td>
                 <td><?php echo getPlanteEspecifico($fila->idPlantel);?></td>
                 <td class="text-center">
-                  <a href="<?php echo site_url("Teachers/verTeachers/$fila->id_usuario") ?>">
+                  <a href="<?php echo site_url("Teachers/verTeachers/$fila->id") ?>">
                   <i class="fa fa-file-text-o fa-1x" aria-hidden="true"></i>
                 </td>
                 <td class="text-center">
-                <a href="<?php echo site_url("Teachers/editarTeachers/$fila->id_usuario") ?>">
+                <a href="<?php echo site_url("Teachers/editarTeachers/$fila->id") ?>">
                 <i class="fa fa-pencil-square-o fa-1x" aria-hidden="true"></i>
                 </a>
                 </td>

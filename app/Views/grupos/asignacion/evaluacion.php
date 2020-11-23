@@ -1,3 +1,4 @@
+
 <?php include(APPPATH.'/Views/include/header.php');?>
 
 <div class="espacioDos"></div>
@@ -79,44 +80,44 @@
 
 
 
-
- 
-
-
           <div class="espacioUno"></div>
             <h4>Grupos</h4>
               <div class="card">
                 <div class="card-body">
 
-                <a href="<?php echo site_url('/Grupos/agregargrupo'); ?>">Crear un grupo</a> / <a href="<?php echo site_url('Grupos/index')?>"> Panel de Recursos </a> <br/>
+            <a href="<?php echo site_url('/Grupos/agregargrupo'); ?>">Crear un grupo</a> 
+            <hr class="linea"/>
 
-                
-                <hr class="linea"/>
-                <a href="<?php echo site_url("Asignacion/recursos/$id_grupo");?>">Asignar Recursos</a> / 
-                <a href="<?php echo site_url("Asignacion/teacher/$id_grupo");?>">Asignar Un Teacher</a> /
-                <a href="<?php echo site_url("Asignacion/evaluacion/$id_grupo");?>">Asignar evaluacion</a> /
-                <a href="<?php echo site_url("Asignacion/alumnos/$id_grupo");?>">Asignar Alumnos</a> <br/>/
-                <a href="<?php echo site_url("Asignacion/deletedAlumno/$id_grupo");?>">Eliminar alumno</a>/
-                <a href="<?php echo site_url("Asignacion/deletedTeacher/$id_grupo");?>">Eliminar Maestro</a>/
-                <a href="<?php echo site_url("Asignacion/deletedRecursos/$id_grupo");?>">Eliminar Recurso</a> <br/>
-                Codigo de acceso para el grupo.<br/>
-                Materiales (recursos que estan asignados al grupo)<br/>
-                Miembros (Listado de alumnos asignados a este grupo)<br/>
-                Libreta de calificaciones (Listado de alumnos con sus calificaciones)<br/>
+            <form action="<?php echo site_url('Asignacion/asigniarevaluacion');?>" method="post">
+
+            <select class="form-control form-control-sm" name="nivel" id="nivel" required="" onchange="getevaluacionprueba()">
+            <option value="">Seleccione una opción</option>
+            <?php foreach(getNivel() as $fila){ ?>
+                <option value="<?php echo $fila->id; ?>"><?php echo $fila->nombre; ?></option> 
+            <?php }?>
+            </select>
+            <br>
+            <select class="form-control form-control-sm" name="leccion" id="leccion" required="" onchange="getevaluacionprueba()">
+            <option value="">Seleccione una opción</option>
+            <?php foreach(getleccion() as $fila){ ?>
+                <option value="<?php echo $fila->id; ?>"><?php echo $fila->nombre; ?></option> 
+            <?php }?>
+            </select> 
+            <br>
+             <select class="form-control form-control-sm" name="evaluacion" id="evaluacion" required="">
+              <option value="">Selecciona una opción</option>
+              </select>
+
+
+            <input type="hidden" name="id_grupo" value= "<?php echo $id_grupo?>">
+            <input type="submit" class="btn btn-primary btn-sm" name="submitEV" value="Asignar">
+           
+            </form>
+
+
               </div>
-
-              <?php foreach(getMateriales($id_grupo) as $fila){?>
-                  nombre: <?php echo $fila->nombre; ?> <br>
-                
-              <?php }?>
-              <br>
-              <?php foreach(getMiembros($id_grupo) as $fila){?>
-                nombre del alummno <?php echo $fila->nombre?> <br>
-                <?php }?>
             </div>
           </div>
-
-          
 
 
 
@@ -179,3 +180,25 @@
       <div class="espacioDos"></div>
 
 <?php include(APPPATH.'Views/include/footer.php');?>
+<?php include(APPPATH.'Views/include/header-js.php');?>
+
+<script>
+     function getevaluacionprueba(){
+
+       let nivel = document.getElementById('nivel').value;
+       let leccion =  document.getElementById('leccion').value;
+        alert("Hola");
+         //alert("Leccion: "+ leccion + "nivel " + nivel);   
+        $.ajax({
+          type: "POST",
+          url: "<?php echo site_url('Asignacion/EvaluacionEspecifica');?>",
+          data: "nivel=" + nivel + "leccion=" + leccion,
+          success : function(text){
+            document.getElementById("evaluacion").innerHTML = "";
+            $('#evaluacion').append(text);
+            }
+
+        });
+      }
+    </script>
+    

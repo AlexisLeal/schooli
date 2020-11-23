@@ -79,44 +79,29 @@
 
 
 
-
- 
-
-
           <div class="espacioUno"></div>
             <h4>Grupos</h4>
               <div class="card">
                 <div class="card-body">
 
-                <a href="<?php echo site_url('/Grupos/agregargrupo'); ?>">Crear un grupo</a> / <a href="<?php echo site_url('Grupos/index')?>"> Panel de Recursos </a> <br/>
-
-                
+                <a href="<?php echo site_url('/Grupos/agregargrupo'); ?>">Crear un grupo</a> 
                 <hr class="linea"/>
-                <a href="<?php echo site_url("Asignacion/recursos/$id_grupo");?>">Asignar Recursos</a> / 
-                <a href="<?php echo site_url("Asignacion/teacher/$id_grupo");?>">Asignar Un Teacher</a> /
-                <a href="<?php echo site_url("Asignacion/evaluacion/$id_grupo");?>">Asignar evaluacion</a> /
-                <a href="<?php echo site_url("Asignacion/alumnos/$id_grupo");?>">Asignar Alumnos</a> <br/>/
-                <a href="<?php echo site_url("Asignacion/deletedAlumno/$id_grupo");?>">Eliminar alumno</a>/
-                <a href="<?php echo site_url("Asignacion/deletedTeacher/$id_grupo");?>">Eliminar Maestro</a>/
-                <a href="<?php echo site_url("Asignacion/deletedRecursos/$id_grupo");?>">Eliminar Recurso</a> <br/>
-                Codigo de acceso para el grupo.<br/>
-                Materiales (recursos que estan asignados al grupo)<br/>
-                Miembros (Listado de alumnos asignados a este grupo)<br/>
-                Libreta de calificaciones (Listado de alumnos con sus calificaciones)<br/>
-              </div>
 
-              <?php foreach(getMateriales($id_grupo) as $fila){?>
-                  nombre: <?php echo $fila->nombre; ?> <br>
-                
-              <?php }?>
-              <br>
-              <?php foreach(getMiembros($id_grupo) as $fila){?>
-                nombre del alummno <?php echo $fila->nombre?> <br>
+                <form action="<?php echo site_url('Asignacion/eliminarMaestro');?>" method="post">
+                <?php foreach(getGrupoMaestrosEliminar($id_grupo) as $fila){
+                if(!empty($fila->id_grupo)){?>
+                <input type="checkbox" name="<?php echo $fila->id?>"  value="<?php echo $fila->id?>"><?php echo $fila->nombre;?> <br>
                 <?php }?>
+                <?php }?>
+
+                <input type="hidden" name="id_grupo" value= "<?php echo $id_grupo?>">
+                <button type="submit" name="submitTH" class="btn btn-primary btn-sm"> Eliminar </button>
+                </form>
+
+
+              </div>
             </div>
           </div>
-
-          
 
 
 
