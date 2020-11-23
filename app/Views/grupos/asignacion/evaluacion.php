@@ -184,21 +184,26 @@
 
 <script>
      function getevaluacionprueba(){
+       
+      let nivel = document.getElementById('nivel').value;
+      let leccion =  document.getElementById('leccion').value;
 
-       let nivel = document.getElementById('nivel').value;
-       let leccion =  document.getElementById('leccion').value;
-        alert("Hola");
-         //alert("Leccion: "+ leccion + "nivel " + nivel);   
+      if(nivel=="" && leccion== "" ){
+           alert("El nivel es " + nivel);
+           alert("La leccion es " + leccion);
+      }else{
+  
         $.ajax({
           type: "POST",
           url: "<?php echo site_url('Asignacion/EvaluacionEspecifica');?>",
-          data: "nivel=" + nivel + "leccion=" + leccion,
+          data: "nivel=" + nivel + "&leccion=" + leccion,
           success : function(text){
             document.getElementById("evaluacion").innerHTML = "";
             $('#evaluacion').append(text);
             }
 
         });
+      }
       }
     </script>
     
