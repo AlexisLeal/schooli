@@ -182,5 +182,28 @@
 <?php include(APPPATH.'Views/include/footer.php');?>
 <?php include(APPPATH.'Views/include/header-js.php');?>
 
+<script>
+     function getevaluacionprueba(){
+       
+      let nivel = document.getElementById('nivel').value;
+      let leccion =  document.getElementById('leccion').value;
 
+      if(nivel=="" && leccion== "" ){
+           alert("El nivel es " + nivel);
+           alert("La leccion es " + leccion);
+      }else{
+  
+        $.ajax({
+          type: "POST",
+          url: "<?php echo site_url('Asignacion/EvaluacionEspecifica');?>",
+          data: "nivel=" + nivel + "&leccion=" + leccion,
+          success : function(text){
+            document.getElementById("evaluacion").innerHTML = "";
+            $('#evaluacion').append(text);
+            }
+
+        });
+      }
+      }
+    </script>
     
