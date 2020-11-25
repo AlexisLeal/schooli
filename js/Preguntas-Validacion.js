@@ -99,13 +99,6 @@ $("#activarCargarAudioPregunta" ).click(function() {
 
 
 
-
-
-
-
-
-
-
   //Imagen
 $("#agregarImagen").on('change','input[type="file"]',function(){
    // this.files[0].size recupera el tamaño del archivo

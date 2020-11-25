@@ -188,19 +188,21 @@
       let nivel = document.getElementById('nivel').value;
       let leccion =  document.getElementById('leccion').value;
 
-      if(nivel=="" && leccion== "" ){
-           alert("El nivel es " + nivel);
-           alert("La leccion es " + leccion);
-      }else{
-  
+      if(nivel !="" && leccion != "" ){
+        //Funcion de jquery
         $.ajax({
+          //El tipo 
           type: "POST",
+          //La direccion 
           url: "<?php echo site_url('Asignacion/EvaluacionEspecifica');?>",
-          data: "nivel=" + nivel + "&leccion=" + leccion,
+          //Forma de pasar parametros 
+          data: {nivel,leccion},
+          //Si nos devuelve algo la funcion sin marcar error pasa el succes y ejecuta lo siguiente 
           success : function(text){
             document.getElementById("evaluacion").innerHTML = "";
             $('#evaluacion').append(text);
             }
+            // llevariar una coma en el } de arriba quedaria }, error: function(data) {
 
         });
       }

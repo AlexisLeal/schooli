@@ -66,6 +66,22 @@ function getGrupoAlumnos($id_grupo)
     return($rowArray);
 */
 }
+
+function getGruposEvaluacion($id_grupo)
+{
+    $db = \Config\Database::connect();
+    $usermodel = $db->table('evaluaciones EV');
+    $usermodel->select('EV.nombre');
+    $usermodel->join('grupo_evaluacion G_EV',"EV.id = G_EV.id_evaluacion and G_EV.id_grupo = $id_grupo and G_EV.deleted = 0",);
+    $usermodel->where('EV.deleted',0);
+    $query = $usermodel->get();
+    $resultado = $query->getResult();
+    return($resultado);
+}
+
+
+
+
 //Para eliminar a un alumno de un grupoAlumnos
 function getGrupoAlumnosEliminar($id_grupo)
 {

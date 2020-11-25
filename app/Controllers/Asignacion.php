@@ -2,6 +2,7 @@
 use  App\Models\Grupos_recursos_model;
 use  App\Models\Grupos_teachers_model;
 use  App\Models\Grupos_alumnos_model;
+use  App\Models\Grupos_evaluaciones_model;
 
 class Asignacion extends BaseController{
 	
@@ -186,6 +187,24 @@ class Asignacion extends BaseController{
 
     public function asigniarevaluacion()
     {
+        if($this->session->get('login')){
+            $REQUEST = \Config\Services::request(); 
+            if(isset($_POST['submitEV'])){  
+                $hoy = date("Y-m-d H:i:s"); 
+                    $data = ['id_grupo' =>$REQUEST->getPost('id_grupo'),
+                    'id_evaluacion' =>$REQUEST->getPost('evaluacion'),
+                    'fecha_creacion' =>$hoy,
+                    'fecha_ultimo_cambio' =>$hoy,
+                    ]; 
+                    $usermodel = new Grupos_evaluaciones_model($db);
+                    $usermodel->insert($data);
+                    echo "Se agrego correctameto";
+        }else{
+            return redirect()->to(site_url('Home/salir'));
+           }  
+        }else{
+            return redirect()->to(site_url('Home/salir'));
+           }
         
     }
 
