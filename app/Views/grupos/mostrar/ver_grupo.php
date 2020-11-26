@@ -168,6 +168,11 @@
                 <?php foreach(getMiembrosDisponibles() as $fila){ ?>
                 Nombre de alumnos disponibles <?php echo $fila->nombre ?> <br>
                 <?php } ?>
+                <br>
+                <?php foreach(getMiembrosOtrosGrupos($id_grupo) as $fila){ ?>
+                Nombre de alumnos de otro grupos <?php echo $fila->nombre ?> No.Grupo <?php echo $fila->id_grupo?> <br>
+                <?php } ?>
+
             </div>
           </div>
 

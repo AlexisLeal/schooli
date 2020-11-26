@@ -31,8 +31,19 @@ class Grupos extends BaseController{
 	{
         
         if($this->session->get('login')){
+            $usermodel = new Grupos_model();
+            $usermodel->select('nombre,codigo_acceso,id_unidad_negocio');
+            $usermodel->where('id',$id_grupo);
+            $usermodel->where('deleted',0);
+            $query = $usermodel->get();
+            $row = $query->getRow();
+
             $data['page_title'] = "grupo";	
             $data['id_grupo'] = $id_grupo;	
+            $data['nombre'] = $row->nombre;	
+            $data['codigo_acceso'] = $row->codigo_acceso;
+            //Funcion ubicada en helper alumnos 	
+            $data['unidad_negocio'] = getUnidadNegocioEspecifico($row->id_unidad_negocio);	
             return view('grupos/mostrar/ver_grupo',$data);
             }else{
             return redirect()->to(site_url('Home/salir'));
@@ -64,7 +75,7 @@ class Grupos extends BaseController{
             $file_imagen->move($ruta_imagen,$nombre);
         }else{
             //Si algo sale mal nos marca un error 
-            throw new RuntimeException($file_imagen->getErrorString().'('.$file_imagen->getError().')');
+           // throw new RuntimeException($file_imagen->getErrorString().'('.$file_imagen->getError().')');
              }
 
         }else{
