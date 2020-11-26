@@ -88,21 +88,68 @@
               <div class="card">
                 <div class="card-body">
 
-                <a href="<?php echo site_url('/Grupos/agregargrupo'); ?>">Crear un grupo</a> / <a href="<?php echo site_url('Grupos/index')?>"> Panel de Recursos </a> <br/>
+                <!--<a href="< ?php echo site_url('/Grupos/agregargrupo'); ?>">Crear un grupo</a> / --> 
+                <a href="<?php echo site_url('Grupos/index')?>"> Panel de Recursos </a> <br/>
+                <hr class="linea"/>
 
                 
-                <hr class="linea"/>
-                <a href="<?php echo site_url("Asignacion/recursos/$id_grupo");?>">Asignar Recursos</a> / 
-                <a href="<?php echo site_url("Asignacion/teacher/$id_grupo");?>">Asignar Un Teacher</a> /
-                <a href="<?php echo site_url("Asignacion/evaluacion/$id_grupo");?>">Asignar evaluacion</a> /
-                <a href="<?php echo site_url("Asignacion/alumnos/$id_grupo");?>">Asignar Alumnos</a> <br/>/
-                <a href="<?php echo site_url("Asignacion/deletedAlumno/$id_grupo");?>">Eliminar alumno</a>/
-                <a href="<?php echo site_url("Asignacion/deletedTeacher/$id_grupo");?>">Eliminar Maestro</a>/
-                <a href="<?php echo site_url("Asignacion/deletedRecursos/$id_grupo");?>">Eliminar Recurso</a> <br/>
-                Codigo de acceso para el grupo.<br/>
-                Materiales (recursos que estan asignados al grupo)<br/>
-                Miembros (Listado de alumnos asignados a este grupo)<br/>
-                Libreta de calificaciones (Listado de alumnos con sus calificaciones)<br/>
+                <table width="90%">
+                <tr>
+                <td>Nombre: Grupo INBI 0007</td><td>Código de acceso: YTRE-0O95-345TG</td>
+                </tr>
+                <tr>
+                <td>Unidad Negocio: INBI</td><td>Plantel: Universidad</td>
+                </tr>
+                </table>
+
+                <br/>                             
+                Materiales<br/>
+                Miembros<br/>
+                Libreta de calificaciones.<br/>
+                <br/>
+
+                <table width="70%">
+                <tr>
+                <td>
+                <a href="<?php echo site_url("Asignacion/recursos/$id_grupo");?>">Asignar Recursos</a>
+                </td>
+                <td>
+                <a href="<?php echo site_url("Asignacion/deletedRecursos/$id_grupo");?>">Eliminar Recurso</a>
+                </td>
+                </tr>
+
+                <tr>
+                <td>
+                <a href="<?php echo site_url("Asignacion/teacher/$id_grupo");?>">Asignar Un Teacher</a>
+                </td>
+                <td>
+                <a href="<?php echo site_url("Asignacion/deletedTeacher/$id_grupo");?>">Eliminar Teacher</a> 
+                </td>
+                </tr>
+
+                <tr>
+                <td>
+                <a href="<?php echo site_url("Asignacion/evaluacion/$id_grupo");?>">Asignar Evaluación</a>
+                </td>
+                <td></td>
+                </tr>
+
+                <tr>
+                <td>
+                <a href="<?php echo site_url("Asignacion/alumnos/$id_grupo");?>">Asignar Alumnos</a>
+                </td>
+                <td>
+                <a href="<?php echo site_url("Asignacion/deletedAlumno/$id_grupo");?>">Eliminar Alumno</a> 
+                </td>
+                </tr>
+                </table>
+
+
+                
+                
+                
+
+
               </div>
 
               <?php foreach(getMateriales($id_grupo) as $fila){?>
