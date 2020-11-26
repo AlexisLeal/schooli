@@ -38,11 +38,11 @@ class Grupos extends BaseController{
             $query = $usermodel->get();
             $row = $query->getRow();
 
-
             $data['page_title'] = "grupo";	
             $data['id_grupo'] = $id_grupo;	
             $data['nombre'] = $row->nombre;	
-            $data['codigo_acceso'] = $row->codigo_acceso;	
+            $data['codigo_acceso'] = $row->codigo_acceso;
+            //Funcion ubicada en helper alumnos 	
             $data['unidad_negocio'] = getUnidadNegocioEspecifico($row->id_unidad_negocio);	
             return view('grupos/mostrar/ver_grupo',$data);
             }else{

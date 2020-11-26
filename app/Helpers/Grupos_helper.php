@@ -4,7 +4,7 @@ use  App\Models\Grupos_model;
 function getAllGrupos()
 {
     $usermode = new Grupos_model($db);
-    $usermode->select('*');
+    $usermode->select('id,nombre,id_horario,url_imagen');
     $usermode->where('deleted',0);
     $resultado = $usermode->get();
     //$query = "SELECT * FROM grupos WHERE deleted = 0";
