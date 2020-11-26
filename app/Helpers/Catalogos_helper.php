@@ -9,7 +9,7 @@ use  App\Models\Modalidad_model;
 function getAllCiclo()
 {
     $usermode = new Ciclos_model($db);
-    $usermode->select('*');
+    $usermode->select('id,nombre,estatus,fecha_inicio,fecha_fin,comentarios');
     $usermode->where('deleted',0);
     //$query = "SELECT * FROM ciclos WHERE deleted = 0";
     $resultado = $usermode->get();
@@ -19,7 +19,7 @@ function getAllCiclo()
 function getCicloEspecifico($id_ciclo)
 {
     $usermode = new Ciclos_model($db);
-    $usermode->select('*');
+    $usermode->select('id,nombre,estatus,fecha_inicio,fecha_fin,comentarios');
     $usermode->where('deleted',0);
     $usermode->where('id',$id_ciclo);
     //$query = "SELECT * FROM ciclos WHERE deleted = 0 AND id = $id_ciclo";
@@ -31,7 +31,7 @@ function getCicloEspecifico($id_ciclo)
 function getAllHorarios()
 {       
     $usermode = new Horarios_model($db);
-    $usermode->select('*');
+    $usermode->select('id,nombre,hora_inicio,hora_fin,comentarios,estatus');
     $usermode->where('deleted',0);
     $resultado = $usermode->get();
     //$query = "SELECT * FROM horarios WHERE deleted = 0";
@@ -42,7 +42,7 @@ function getAllHorarios()
 function getHorarioEspecifico($id_horario)
 {       
     $usermode = new Horarios_model($db);
-    $usermode->select('*');
+    $usermode->select('id,nombre,hora_inicio,hora_fin,comentarios,estatus');
     $usermode->where('deleted',0);
     $usermode->where('id',$id_horario);
   //  $query = "SELECT * FROM horarios WHERE deleted = 0 AND id = $id_horario";
@@ -53,7 +53,7 @@ function getHorarioEspecifico($id_horario)
  function getAllNiveles()
 {
     $usermode = new Niveles_grupo($db);
-    $usermode->select('*');
+    $usermode->select('id,nombre,comentarios');
     $usermode->where('deleted',0);
     // $query = "SELECT * FROM niveles_grupo WHERE deleted = 0";
     $resultado = $usermode->get();
@@ -65,7 +65,7 @@ function getHorarioEspecifico($id_horario)
 function getNivelEspecificogrupo($id_nivel)
 {
     $usermode = new Niveles_grupo($db);
-    $usermode->select('*');
+    $usermode->select('id,nombre,comentarios');
     $usermode->where('deleted',0);
     $usermode->where('id',$id_nivel);
     //$query = "SELECT * FROM niveles_grupo WHERE deleted = 0 AND id = $id_nivel";
@@ -77,7 +77,7 @@ function getNivelEspecificogrupo($id_nivel)
 function getAllSalones()
 {
     $usermode = new Salones_model($db);
-    $usermode->select('*');
+    $usermode->select('id,nombre,comentarios');
     $usermode->where('deleted',0);
    //$query = "SELECT * FROM salones WHERE deleted = 0";
     $resultado = $usermode->get();
@@ -89,7 +89,7 @@ function getAllSalones()
 function getSalonEspecificogrupo($id_nivel)
 {
     $usermode = new Salones_model($db);
-    $usermode->select('*');
+    $usermode->select('id,nombre,comentarios');
     $usermode->where('deleted',0);
     $usermode->where('id',$id_nivel);
     //$query = "SELECT * FROM salones WHERE deleted = 0 AND id = $id_nivel";
@@ -102,7 +102,7 @@ function getSalonEspecificogrupo($id_nivel)
 function getAllCursos()
 {
     $usermode = new Cursos_model($db);
-    $usermode->select('*');
+    $usermode->select('id,nombre,num_niveles,precio,precio_por_nivel,comentarios,estatus');
     $usermode->where('deleted',0);
 
     //$query = "SELECT * FROM cursos WHERE deleted = 0";
@@ -115,7 +115,7 @@ function getAllCursos()
 function getCursoEspecifico($id_curso)
 {
     $usermode = new Cursos_model($db);
-    $usermode->select('*');
+    $usermode->select('id,nombre,num_niveles,precio,precio_por_nivel,comentarios,estatus');
     $usermode->where('deleted',0);
     $usermode->where('id',$id_curso);
     //$query = "SELECT * FROM cursos WHERE deleted = 0 AND id = $id_curso";
@@ -129,7 +129,7 @@ function getCursoEspecifico($id_curso)
 function getAllFrecuencia()
 {
     $usermode = new Frecuencia_model($db);
-    $usermode->select('*');
+    $usermode->select('id,nombre,descripcion,id_modalidad,lunes,martes,miercoles,jueves,viernes,sabado,domingo,estatus');
     $usermode->where('deleted',0);
     // $query = "SELECT * FROM frecuencia WHERE deleted = 0";
     $resultado = $usermode->get();
@@ -141,7 +141,7 @@ function getAllFrecuencia()
 function getFrencueciaEspecifica($id_frencuencia)
 {
     $usermode = new Frecuencia_model($db);
-    $usermode->select('*');
+    $usermode->select('id,nombre,descripcion,id_modalidad,lunes,martes,miercoles,jueves,viernes,sabado,domingo,estatus');
     $usermode->where('deleted',0);
     $usermode->where('id',$id_frencuencia);
     //$query = "SELECT * FROM frecuencia WHERE deleted = 0 AND id = $id_frencuencia";
@@ -154,7 +154,7 @@ function getFrencueciaEspecifica($id_frencuencia)
 function getAllModalidad()
 {
     $usermode = new Modalidad_model($db);
-    $usermode->select('*');
+    $usermode->select('id,nombre');
     $usermode->where('deleted',0);
     //$query = "SELECT * FROM modalidad WHERE deleted = 0";
     
@@ -167,7 +167,7 @@ function getAllModalidad()
 function getModalidadEspecifica($id_modalidad)
 {
     $usermode = new Modalidad_model($db);
-    $usermode->select('*');
+    $usermode->select('nombre');
     $usermode->where('deleted',0);
     $usermode->where('id',$id_modalidad);
    // $query = "SELECT * FROM modalidad WHERE deleted = 0 AND id = $id_modalidad";
