@@ -165,7 +165,7 @@
                 nombre dela evaluacion <?php echo $fila->nombre?> <br>
                 <?php }?>
                 <br>
-                <?php foreach(getMiembrosDisponibles() as $fila){ ?>
+                <?php foreach(getMiembrosDisponibles($id_unidad_negocio,$id_plantel) as $fila){ ?>
                 Nombre de alumnos disponibles <?php echo $fila->nombre ?> <br>
                 <?php } ?>
                 <br>
