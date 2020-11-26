@@ -114,11 +114,11 @@ $collIntegraciones="collapse";
              <li class="list-group-item"><a class="<?php if($enlaceActivoModulo=='Recursos'){echo 'mi-active';}?>" href="<?php echo site_url('Recursos/recursos')?>">Recursos</a></li>
              <li class="list-group-item"><a class="<?php if($enlaceActivoModulo=='Evaluaciones' || $enlaceActivo=='Preguntas'){echo 'mi-active';}?>" href="<?php echo site_url('Evaluaciones/index')?>">Evaluaciones</a></li>
              <li class="list-group-item"><a class="<?php if($enlaceActivoModulo=='Alumnos'){echo 'mi-active';}?>" href="<?php echo site_url('Alumnos/index')?>">Alumnos</a></li>
+             <li class="list-group-item"><a class="<?php if($enlaceActivoModulo=='Grupos'){echo 'mi-active';}?>" href="<?php echo site_url('Grupos/index')?>">Grupos</a></li>
+             <li class="list-group-item"><a class="<?php if($enlaceActivoModulo=='Teachers'){echo 'mi-active';}?>" href="<?php echo site_url('Teachers/index')?>">Teachers</a></li>
+             <li class="list-group-item"><a href="#">Prospectos</a></li>
              <li class="list-group-item"><a href="#">Empleados</a></li>
              <li class="list-group-item"><a href="#">Roles</a></li>
-             <li class="list-group-item"><a class="<?php if($enlaceActivoModulo=='Grupos'){echo 'mi-active';}?>" href="<?php echo site_url('Grupos/index')?>">Grupos</a></li>
-             <li class="list-group-item"><a href="#">Prospectos</a></li>
-             <li class="list-group-item"><a class="<?php if($enlaceActivoModulo=='Teachers'){echo 'mi-active';}?>" href="<?php echo site_url('Teachers/index')?>">Teachers</a></li>
              <li class="list-group-item"><a href="#">Tutores</a></li>
              <li class="list-group-item"><a href="#">Clase Demo</a></li>
            </ul>
