@@ -181,4 +181,44 @@ function getMiembros($id_grupo)
     return($rowArray);
 */
 }
+
+//Funcion que traer los miembros de otro grupos osea los no disponibles 
+function getMiembrosOtrosGrupos($id_grupo)
+{
+    $db = \Config\Database::connect();
+    $usermodel = $db->table('usuarios U');
+    $usermodel->select('U.nombre,U.apellido_paterno,U.apellido_materno, AL.matricula');
+    $usermodel->join('grupo_alumnos G_AL','U.id = G_AL.id_alumno and G_AL.deleted=0');
+    $usermodel->join('alumnos AL','AL.id_usuario = U.id');
+    $usermodel->where('G_AL.id_grupo !=',$id_grupo);
+    $usermodel->where('U.deleted',0);
+    $query = $usermodel->get();
+    $resultado = $query->getResult();
+    return($resultado);
+}
+function getMiembrosDisponibles()
+{
+    $db = \Config\Database::connect();
+    $usermodel = $db->table('usuarios U');
+    $usermodel->select('U.nombre,U.apellido_paterno,U.apellido_materno, AL.matricula');
+    $usermodel->join('grupo_alumnos G_AL','U.id = G_AL.id_alumno and G_AL.deleted=0','left');
+    $usermodel->join('alumnos AL','AL.id_usuario = U.id');
+    $usermodel->where('G_AL.id is null');
+    $usermodel->where('U.deleted',0);
+    $usermodel->where('U.id_tipo_usuario',1);
+    $query = $usermodel->get();
+    $resultado = $query->getResult();
+    return($resultado);
+   
+}
+
+
+
+
+
+
+
+
+
+
 ?>

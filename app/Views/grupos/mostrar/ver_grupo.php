@@ -117,6 +117,10 @@
               <?php foreach(getGruposEvaluacion($id_grupo) as $fila){?>
                 nombre dela evaluacion <?php echo $fila->nombre?> <br>
                 <?php }?>
+                <br>
+                <?php foreach(getMiembrosDisponibles() as $fila){ ?>
+                Nombre de alumnos disponibles <?php echo $fila->nombre ?> <br>
+                <?php } ?>
             </div>
           </div>
 

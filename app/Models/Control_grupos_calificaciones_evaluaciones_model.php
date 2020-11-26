@@ -2,10 +2,10 @@
 
 use CodeIgniter\Model;
 
-class Grupos_alumnos_model extends Model
+class Control_grupos_calificaciones_evaluaciones_model extends Model
 {
     #Nombre de la tabla
-    protected $table      = 'grupo_alumnos';
+    protected $table      = 'control_grupos_calificaciones_evaluaciones';
     #nombre de la clave primaria 
     protected $primaryKey = 'id';
 
@@ -13,7 +13,7 @@ class Grupos_alumnos_model extends Model
     protected $useSoftDeletes = true;
 
     #Aqui ponemos el nombre de las columnas que vamos a modifcar
-    protected $allowedFields = ['id_grupo','id_alumno','estatus','fecha_creacion','fecha_ultimo_cambio'];
+    protected $allowedFields = ['id_alumno','id_grupo','id_evaluacion','id_calificacion'];
 
     protected $useTimestamps = false;
     protected $createdField  = 'fecha_creacion';
