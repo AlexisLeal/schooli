@@ -1,5 +1,3 @@
-
-
 <?php include(APPPATH.'/Views/include/header.php');?>
 
 <div class="espacioDos"></div>
@@ -62,49 +60,29 @@
               </div> 
 
 
-              <?php
-              if($session->has('pregunta-exito')){ 
-                ?>
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                  <?php
-                  echo $session->get('pregunta-exito');
-                  ?>
-                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <?php
-                
-                $session->remove('pregunta-exito'); 
-              }
-              ?>
-
-
+              <a href="<?php echo site_url('/Alumnos/agregaralumnos'); ?>">Registrar Alumno.</a><br/>
 
           <div class="espacioUno"></div>
-            <h4>Grupos</h4>
+        
               <div class="card">
                 <div class="card-body">
-
-            <a href="<?php echo site_url('/Grupos/agregargrupo'); ?>">Crear un grupo</a> 
-            <hr class="linea"/>
-
-            <form action="<?php echo site_url('Asignacion/asignaralumno');?>" method="post">
-            <?php foreach(getGrupoAlumnos($id_grupo,$id_unidad_negocio,$id_plantel) as $fila){
-            if(empty($fila->id_grupo)){?>
-            <input type="checkbox" name="<?php echo $fila->id?>"  value="<?php echo $fila->id?>"><?php echo $fila->nombre;?> <br>
-
-            <?php }else{?>
-             <input type="checkbox"  disabled="disabled"  checked> <?php echo $fila->nombre?> <br> 
-            <?php }?>
-            <?php }?>
-
-            <input type="hidden" name="id_grupo" value= "<?php echo $id_grupo?>">
-            <input type="submit" class="btn btn-primary btn-sm" name="submitAL" value="Asignar">
-           
-            </form>
+                <table class="tabla-registros" class="display" cellspacing="6" cellpadding="8">
+                <thead>
+                <tr>
+                <th class="text-left">ID</th>
+                <th class="text-left">Nombre</th>
+                <th class="text-left">Unidd de negocio</th>
+                <th class="text-left">Plantel</th>
+                <th class="text-left">Matricula</th>
+                <th class="text-left">Ver</th>
+                <th class="text-left">Editar</th>
+                </tr>
+                </thead>
+                <h1>ENTRO ALA PAGINA</h1>
 
 
+
+                </table>
               </div>
             </div>
           </div>
