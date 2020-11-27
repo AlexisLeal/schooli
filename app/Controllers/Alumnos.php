@@ -16,6 +16,29 @@ class Alumnos extends BaseController{
             return redirect()->to(site_url('Home/salir'));
            }
     }
+
+    //Funcion para darle una vista a un alumno 
+    public function indexAlumno()
+    {  
+        if($this->session->get('login')){
+            $db = \Config\Database::connect();
+            $id_usuario= $this->session->get('id');
+            $usermodel = $db->table('usuarios U');
+            $usermodel->select('*');
+            $usermodel->join('alumnos AL',"U.id = AL.id_usuario and U.id = $id_usuario");
+            $usermodel->join(' grupo_alumnos G_AL','G_AL.id_alumno = U.id and G_AL.deleted = 0','left');
+            $resultado = $usermodel->get();   
+            $row = $resultado->getRow();
+            $data['matricula'] = $row->matricula;
+            $data['page_title'] = "Alumnos";	
+            return view('alumnos/index_alumno',$data);
+            }else{
+                return redirect()->to(site_url('Home/salir'));
+               }
+        
+    }
+
+
     //Tambien le podemos pasar el parametro de la matricula 
     public function verAlumno($id_alumno)
     {
