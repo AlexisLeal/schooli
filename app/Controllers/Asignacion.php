@@ -8,11 +8,13 @@ class Asignacion extends BaseController{
 	
 	
 //Vistas
-     public function alumnos($id_grupo)
+     public function alumnos($id_grupo,$id_unidad_negocio,$id_plantel)
     {
 
         if($this->session->get('login')){
             $data['id_grupo'] = $id_grupo;
+            $data['id_unidad_negocio'] = $id_unidad_negocio;
+            $data['id_plantel'] = $id_plantel;
         return view('grupos/asignacion/alumno',$data);
     }else{
         return redirect()->to(site_url('Home/salir'));
@@ -20,10 +22,13 @@ class Asignacion extends BaseController{
 
     }
 
-    public function teacher($id_grupo)
+    public function teacher($id_grupo,$id_unidad_negocio,$id_plantel)
     {
         if($this->session->get('login')){
             $data['id_grupo'] = $id_grupo;
+            $data['id_unidad_negocio'] = $id_unidad_negocio;
+            $data['id_plantel'] = $id_plantel;
+
         return view('grupos/asignacion/teacher',$data);
     }else{
         return redirect()->to(site_url('Home/salir'));
@@ -45,6 +50,7 @@ class Asignacion extends BaseController{
     public function evaluacion($id_grupo)
     {   
         if($this->session->get('login')){
+
             $data['id_grupo'] = $id_grupo;
             return view('grupos/asignacion/evaluacion',$data);
         }else{

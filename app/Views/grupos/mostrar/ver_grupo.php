@@ -120,7 +120,7 @@
 
                 <tr>
                 <td>
-                <a href="<?php echo site_url("Asignacion/teacher/$id_grupo");?>">Asignar Un Teacher</a>
+                <a href="<?php echo site_url("Asignacion/teacher/$id_grupo/$id_unidad_negocio/$id_plantel");?>">Asignar Un Teacher</a>
                 </td>
                 <td>
                 <a href="<?php echo site_url("Asignacion/deletedTeacher/$id_grupo");?>">Eliminar Teacher</a> 
@@ -136,7 +136,7 @@
 
                 <tr>
                 <td>
-                <a href="<?php echo site_url("Asignacion/alumnos/$id_grupo");?>">Asignar Alumnos</a>
+                <a href="<?php echo site_url("Asignacion/alumnos/$id_grupo/$id_unidad_negocio/$id_plantel");?>">Asignar Alumnos</a>
                 </td>
                 <td>
                 <a href="<?php echo site_url("Asignacion/deletedAlumno/$id_grupo");?>">Eliminar Alumno</a> 
@@ -169,7 +169,7 @@
                 Nombre de alumnos disponibles <?php echo $fila->nombre ?> <br>
                 <?php } ?>
                 <br>
-                <?php foreach(getMiembrosOtrosGrupos($id_grupo) as $fila){ ?>
+                <?php foreach(getMiembrosOtrosGrupos($id_grupo,$id_unidad_negocio,$id_plantel) as $fila){ ?>
                 Nombre de alumnos de otro grupos <?php echo $fila->nombre ?> No.Grupo <?php echo $fila->id_grupo?> <br>
                 <?php } ?>
 

@@ -90,7 +90,7 @@
             <hr class="linea"/>
 
             <form action="<?php echo site_url('Asignacion/asignaralumno');?>" method="post">
-            <?php foreach(getGrupoAlumnos($id_grupo) as $fila){
+            <?php foreach(getGrupoAlumnos($id_grupo,$id_unidad_negocio,$id_plantel) as $fila){
             if(empty($fila->id_grupo)){?>
             <input type="checkbox" name="<?php echo $fila->id?>"  value="<?php echo $fila->id?>"><?php echo $fila->nombre;?> <br>
 
