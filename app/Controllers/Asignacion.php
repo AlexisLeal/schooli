@@ -162,6 +162,7 @@ class Asignacion extends BaseController{
             $REQUEST = \Config\Services::request();
             $hoy = date("Y-m-d H:i:s");
             $usermodel = new Grupos_recursos_model($db);
+            $idgrupo = $REQUEST->getPost('id_grupo');
             if(isset($_POST['submitRC'])){   
             foreach(getRecursos() as $fila){
                 if(!empty($REQUEST->getPost($fila->id))){
@@ -172,11 +173,11 @@ class Asignacion extends BaseController{
                     'fecha_ultimo_cambio' =>$hoy,
                     ]; 
                     $usermodel->insert($data);
-                    echo "Se agrego correctameto";
+                   
               
                 }
             }
-            echo "salio del for";
+            return redirect()->to(site_url("Asignacion/recursos/$idgrupo"));
         }else{
             return redirect()->to(site_url('Home/salir'));
            }  
@@ -291,11 +292,9 @@ class Asignacion extends BaseController{
             foreach(getGrupoRecursosEliminar($id_grupo) as $fila){
                 if(!empty($REQUEST->getPost($fila->id))){
                     $usermodel->delete(['id'=> $fila->id]);
-                    echo "Se elimino correctameto";
-              
                 }
             }
-            echo "salio del for";
+            return redirect()->to(site_url("Asignacion/deletedRecursos/$id_grupo"));
         }else{
             return redirect()->to(site_url('Home/salir'));
            }  

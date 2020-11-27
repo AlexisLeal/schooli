@@ -81,11 +81,18 @@
 
 
           <div class="espacioUno"></div>
-            <h4>Grupos</h4>
+            <!--<h4>Grupos</h4>-->
+              <h4>Asignación de Recursos y Recursos Asignadas.</h4>
               <div class="card">
                 <div class="card-body">
 
-                <a href="<?php echo site_url('/Grupos/agregargrupo'); ?>">Crear un grupo</a> 
+                <!--<a href="< ?php echo site_url('/Grupos/agregargrupo'); ?>">Crear un grupo</a> -->
+                </h4>
+                <a href="<?php echo site_url("/Grupos/vergrupo/$id_grupo");?>">
+                <i class="fa fa-arrow-circle-o-left fa-2x" aria-hidden="true"></i>
+                </a>
+                </h4>
+
                 <hr class="linea"/>
 
               <form action="<?php echo site_url('Asignacion/asignarrecurso');?>" method="post">
@@ -101,8 +108,10 @@
 
                 <input type="hidden" name="id_grupo" value="<?php echo $id_grupo?>">
                 <input type="submit" value="Asignar" name="submitRC" class="btn btn-primary btn-sm">
-        </form>
               </form>
+              <br/>
+              <br/>
+            
 
               </div>
             </div>

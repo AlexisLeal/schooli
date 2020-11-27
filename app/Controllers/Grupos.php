@@ -40,7 +40,7 @@ class Grupos extends BaseController{
 
             $data['page_title'] = "grupo";	
             $data['id_grupo'] = $id_grupo;	
-            $data['nombre'] = $row->nombre;	
+            $data['nombre_grupo'] = $row->nombre;	
             $data['codigo_acceso'] = $row->codigo_acceso;
             //-------------------------------------
             $data['id_plantel'] = $row->id_plantel;
@@ -48,6 +48,7 @@ class Grupos extends BaseController{
             
             //Funcion ubicada en helper alumnos 	
             $data['unidad_negocio'] = getUnidadNegocioEspecifico($row->id_unidad_negocio);	
+            $data['nombre_plantel'] = getPlanteEspecifico($row->id_plantel);
             return view('grupos/mostrar/ver_grupo',$data);
             }else{
             return redirect()->to(site_url('Home/salir'));

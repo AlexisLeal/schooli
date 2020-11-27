@@ -89,7 +89,7 @@
                 <div class="card-body">
 
                 <!--<a href="< ?php echo site_url('/Grupos/agregargrupo'); ?>">Crear un grupo</a> / --> 
-                <a href="<?php echo site_url('Grupos/index')?>"> Panel de Recursos </a> <br/>
+                <a href="<?php echo site_url('Grupos/index')?>"> Panel de grupos </a> <br/>
                 <hr class="linea"/>
 
                 <div style="padding-left:30px">
@@ -97,80 +97,121 @@
                   <div class="card-body">
                   <table width="90%">
                     <tr>
-                      <td>Nombre: Grupo INBI 0007</td><td>Código de acceso: YTRE-0O95-345TG</td>
+                      <td>Nombre: <?php echo $nombre_grupo;?></td><td>Código de acceso: <?php echo $codigo_acceso;?></td>
                       </tr>
                       <tr>
-                      <td>Unidad Negocio: INBI</td><td>Plantel: Universidad</td>
+                      <td>Unidad Negocio: <?php echo  $unidad_negocio;?></td><td>Plantel: <?php echo $nombre_plantel;?></td>
                     </tr>
                   </table>
                   </div>
                 </div>
-                <br/>                             
-                Materiales<br/>
-                Miembros<br/>
-                Libreta de calificaciones.<br/>
+                
                 <br/>
+                
 
-                <table width="70%">
-                <tr>
-                <td>
-                <a href="<?php echo site_url("Asignacion/recursos/$id_grupo");?>">Asignar Recursos</a>
-                </td>
-                <td>
-                <a href="<?php echo site_url("Asignacion/deletedRecursos/$id_grupo");?>">Eliminar Recurso</a>
-                </td>
-                </tr>
+                <div class="card">
+                  <div class="card-body">
+                  <i class="fa fa-cubes" aria-hidden="true"></i> Materiales <br/>
+                  <table width="90%" cellspacing="8" cellpadding="4">
+                  <tr>
+                  <td width="40%"><a href="<?php echo site_url("Asignacion/evaluacion/$id_grupo");?>">Evaluaciónes</a></td>
+                  <td width="40%"></td>
+                  </tr>
 
-                <tr>
-                <td>
-                <a href="<?php echo site_url("Asignacion/teacher/$id_grupo");?>">Asignar Un Teacher</a>
-                </td>
-                <td>
-                <a href="<?php echo site_url("Asignacion/deletedTeacher/$id_grupo");?>">Eliminar Teacher</a> 
-                </td>
-                </tr>
 
-                <tr>
-                <td>
-                <a href="<?php echo site_url("Asignacion/evaluacion/$id_grupo");?>">Asignar Evaluación</a>
-                </td>
-                <td></td>
-                </tr>
+                  <tr>
+                  <td width="40%">
+                  <a href="<?php echo site_url("Asignacion/recursos/$id_grupo");?>">  Recursos y asignacion de recursos </a>
+                  </td>
+                  <td width="40%">
+                  <a href="<?php echo site_url("Asignacion/deletedRecursos/$id_grupo");?>"> Eliminar Recursos </a>
+                  </td>
+                  </tr>
+                  </table>
+                  
+                  
 
-                <tr>
-                <td>
-                <a href="<?php echo site_url("Asignacion/alumnos/$id_grupo");?>">Asignar Alumnos</a>
-                </td>
-                <td>
-                <a href="<?php echo site_url("Asignacion/deletedAlumno/$id_grupo");?>">Eliminar Alumno</a> 
-                </td>
-                </tr>
-                </table>
+                  </div>
+                </div>
+                
+                <br/>
+                
+
+                <div class="card">
+                  <div class="card-body">
+                  
+                  <i class="fa fa-users" aria-hidden="true"></i> Miembros
+                  <table width="90%" cellspacing="8" cellpadding="4">
+                  <tr>
+                  <td width="40%">
+                  <a href="<?php echo site_url("Asignacion/alumnos/$id_grupo");?>"> Lista de alumnos y asignacion de alumnos </a>
+                  </td>
+                  <td width="40%">
+                  <a href="<?php echo site_url("Asignacion/deletedAlumno/$id_grupo");?>"> Eliminar Alumnos </a> 
+                  </td>
+                  </tr>
+                  </table>
+
+
+                  </div>
+                </div>
+
+                <br/>
+                
+
+                <div class="card">
+                  <div class="card-body">
+                  <i class="fa fa-university" aria-hidden="true"> </i>Teachers
+                  <table width="90%" cellspacing="8" cellpadding="4">
+                  <tr>
+                  <td width="40%">
+                  <a href="<?php echo site_url("Asignacion/teacher/$id_grupo");?>">Lista de Teachers y Asignación de Teacher</a>
+                  </td>
+                  <td width="40%">
+                  <a href="<?php echo site_url("Asignacion/deletedTeacher/$id_grupo");?>">Eliminar Teacher</a> 
+                  </td>
+                  </tr>
+                  </table>
+
+                  </div>
+                </div>
+
+                <br/>
+                
+
+                <div class="card">
+                  <div class="card-body">
+                  <i class="fa fa-list-ul" aria-hidden="true"></i> <a href="#"> Libreta de calificaciones. </a>
+                  </div>
+                </div>
+
 
                 </div>
               </div>
 
               <div style="padding-left:30px">
-              <?php foreach(getMateriales($id_grupo) as $fila){?>
-                  nombre: <?php echo $fila->nombre; ?> <br>
-                
-              <?php }?>
+              <!--
+              < ?php foreach(getMateriales($id_grupo) as $fila){?>
+                  nombre: < ?php echo $fila->nombre; ?> <br>
+              < ?php 
+              }
+              ?>
               <br>
-              <?php foreach(getMiembros($id_grupo) as $fila){?>
-                nombre del alummno <?php echo $fila->nombre?> <br>
-                <?php }?>
-              <br>
-              <?php foreach(getGruposEvaluacion($id_grupo) as $fila){?>
-                nombre dela evaluacion <?php echo $fila->nombre?> <br>
-                <?php }?>
+              < ?php foreach(getMiembros($id_grupo) as $fila){?>
+                nombre del alummno < ?php echo $fila->nombre?> <br>
+                < ?php }?>
+              
+                < ?php foreach(getMiembrosDisponibles($id_unidad_negocio,$id_plantel) as $fila){ ?>
+                Nombre de alumnos disponibles < ?php echo $fila->nombre ?> <br>
+                < ?php } ?>
                 <br>
-                <?php foreach(getMiembrosDisponibles($id_unidad_negocio,$id_plantel) as $fila){ ?>
-                Nombre de alumnos disponibles <?php echo $fila->nombre ?> <br>
-                <?php } ?>
-                <br>
-                <?php foreach(getMiembrosOtrosGrupos($id_grupo) as $fila){ ?>
-                Nombre de alumnos de otro grupos <?php echo $fila->nombre ?> No.Grupo <?php echo $fila->id_grupo?> <br>
-                <?php } ?>
+                < ?php foreach(getMiembrosOtrosGrupos($id_grupo) as $fila){ ?>
+                Nombre de alumnos de otro grupos < ?php echo $fila->nombre ?> No.Grupo < ?php echo $fila->id_grupo?> <br>
+                < ?php 
+                } 
+                ?>
+                -->
+
               </div>
               
             </div>
