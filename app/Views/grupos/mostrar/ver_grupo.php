@@ -92,16 +92,19 @@
                 <a href="<?php echo site_url('Grupos/index')?>"> Panel de Recursos </a> <br/>
                 <hr class="linea"/>
 
-                
-                <table width="90%">
-                <tr>
-                <td>Nombre: Grupo INBI 0007</td><td>Código de acceso: YTRE-0O95-345TG</td>
-                </tr>
-                <tr>
-                <td>Unidad Negocio: INBI</td><td>Plantel: Universidad</td>
-                </tr>
-                </table>
-
+                <div style="padding-left:30px">
+                <div class="card">
+                  <div class="card-body">
+                  <table width="90%">
+                    <tr>
+                      <td>Nombre: Grupo INBI 0007</td><td>Código de acceso: YTRE-0O95-345TG</td>
+                      </tr>
+                      <tr>
+                      <td>Unidad Negocio: INBI</td><td>Plantel: Universidad</td>
+                    </tr>
+                  </table>
+                  </div>
+                </div>
                 <br/>                             
                 Materiales<br/>
                 Miembros<br/>
@@ -144,14 +147,10 @@
                 </tr>
                 </table>
 
-
-                
-                
-                
-
-
+                </div>
               </div>
 
+              <div style="padding-left:30px">
               <?php foreach(getMateriales($id_grupo) as $fila){?>
                   nombre: <?php echo $fila->nombre; ?> <br>
                 
@@ -172,7 +171,8 @@
                 <?php foreach(getMiembrosOtrosGrupos($id_grupo,$id_unidad_negocio,$id_plantel) as $fila){ ?>
                 Nombre de alumnos de otro grupos <?php echo $fila->nombre ?> No.Grupo <?php echo $fila->id_grupo?> <br>
                 <?php } ?>
-
+              </div>
+              
             </div>
           </div>
 
