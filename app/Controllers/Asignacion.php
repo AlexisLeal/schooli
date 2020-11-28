@@ -346,8 +346,44 @@ class Asignacion extends BaseController{
            }
     }
 
+    //Funcion para reasigar un alumno que esta en un gpo para pasarlo a otro gpo 
 
+    public function reasignaralumno($id_grupo)
+    {
+        if($this->session->get('login')){
+            $REQUEST = \Config\Services::request();
+            $hoy = date("Y-m-d H:i:s");
+            if(isset($_POST['submitRSG'])){ 
+                $id_alummnogrupo = $REQUEST->getPost('id_alumnogrupo');
+                $usermodel = new Grupos_alumnos_model($db);
+                //Elimanos el alumno del gpo dondse encuantra 
+                $usermodel->delete(['id'=>$id_alummnogrupo]);
+          
+           
+            //Insertamos el alumno a nuevo gpo
+            //$usermodel = new Grupos_alumnos_model($db);
+            $data = ['id_grupo' =>$REQUEST->getPost('id_grupo'),
+            'id_alumno' =>$REQUEST->getPost('id_usuario'),
+            'fecha_creacion' =>$hoy,
+            'fecha_ultimo_cambio' =>$hoy,
+            ];
+            $usermodel->insert($data);
+            echo 'se agrego correctamente';
 
-
+        }else{
+            return redirect()->to(site_url('Home/salir'));
+    
+        }
+    }else{
+            return redirect()->to(site_url('Home/salir'));
+           }
+        
+    
+    
+    }
 
 }
+
+
+
+
