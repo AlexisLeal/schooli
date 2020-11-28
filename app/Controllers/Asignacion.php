@@ -92,6 +92,17 @@ class Asignacion extends BaseController{
            }
     }
 
+    public function deletedEvaluacion($id_grupo)
+    {
+        if($this->session->get('login')){
+            $data['id_grupo'] = $id_grupo;
+            return view('grupos/asignacion/eliminar/evaluacion',$data);
+        }else{
+            return redirect()->to(site_url('Home/salir'));
+           }
+        
+    }
+
 
     //Modifica la base de datos 
     
@@ -239,10 +250,6 @@ class Asignacion extends BaseController{
 
     }
     
-
-
-
-
    
             //elimnar alumno 
     public function eliminarAlumno()
@@ -310,6 +317,27 @@ class Asignacion extends BaseController{
                 }
             }
             return redirect()->to(site_url("Asignacion/deletedRecursos/$id_grupo"));
+        }else{
+            return redirect()->to(site_url('Home/salir'));
+           }  
+        }else{
+            return redirect()->to(site_url('Home/salir'));
+           }
+    }
+
+    public function eliminarEvaluacion()
+    {
+        if($this->session->get('login')){
+            $REQUEST = \Config\Services::request();
+            if(isset($_POST['submitEV'])){  
+                $usermodel = new Grupos_evaluaciones_model($db);
+                $id_grupo = $REQUEST->getPost('id_grupo');
+            foreach(getGrupoEvaluacionEliminar($id_grupo) as $fila){
+                if(!empty($REQUEST->getPost($fila->id))){
+                    $usermodel->delete(['id'=> $fila->id]);
+                }
+            }
+            return redirect()->to(site_url("Asignacion/deletedEvaluacion/$id_grupo"));
         }else{
             return redirect()->to(site_url('Home/salir'));
            }  

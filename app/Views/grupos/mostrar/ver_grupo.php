@@ -126,6 +126,9 @@
                   <td width="40%">
                   <a href="<?php echo site_url("Asignacion/deletedRecursos/$id_grupo");?>"> Eliminar Recursos </a>
                   </td>
+                  <td width="40%">
+                  <a href="<?php echo site_url("Asignacion/deletedEvaluacion/$id_grupo");?>"> Eliminar Evaluacion </a>
+                  </td>
                   </tr>
                   </table>
                   

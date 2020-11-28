@@ -1,3 +1,4 @@
+
 <?php include(APPPATH.'/Views/include/header.php');?>
 
 <div class="espacioDos"></div>
@@ -59,27 +60,53 @@
                 </button>
               </div> 
 
+
+              <?php
+              if($session->has('pregunta-exito')){ 
+                ?>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                  <?php
+                  echo $session->get('pregunta-exito');
+                  ?>
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <?php
+                
+                $session->remove('pregunta-exito'); 
+              }
+              ?>
+
+
+
           <div class="espacioUno"></div>
-        
+          <h4>Eliminar Evaluacion.</h4>
               <div class="card">
                 <div class="card-body">
-                <table class="tabla-registros" class="display" cellspacing="6" cellpadding="8">
-                <thead>
-                <tr>
-                <th class="text-left">ID</th>
-                <th class="text-left">Nombre</th>
-                <th class="text-left">Unidd de negocio</th>
-                <th class="text-left">Plantel</th>
-                <th class="text-left">Matricula</th>
-                <th class="text-left">Ver</th>
-                <th class="text-left">Editar</th>
-                </tr>
-                </thead>
-                <h1>ENTRO ALA PAGINA</h1>
 
+                </h4>
+                <a href="<?php echo site_url("/Grupos/vergrupo/$id_grupo");?>">
+                <i class="fa fa-arrow-circle-o-left fa-2x" aria-hidden="true"></i>
+                </a>
+                </h4>
+                <hr class="linea"/>
 
+              <form action="<?php echo site_url('Asignacion/eliminarEvaluacion');?>" method="post">
+                <?php foreach(getGrupoEvaluacionEliminar($id_grupo) as $fila){?> 
+              <?php if(!empty($fila->id_grupo)){?> 
+                <input type="checkbox" name="<?php echo $fila->id?>" value="<?php echo $fila->id?>"> <?php echo $fila->nombre?> <br>
+                 <?php }?> 
+               <?php }?> 
+                
+                <br/><br/>
+                <input type="hidden" name="id_grupo" value="<?php echo $id_grupo?>">
+                <div class="text-center">
+                <input type="submit" value="Eliminar" name="submitEV" class="btn btn-primary btn-sm">
+                </div>
+              </form>
+              
 
-                </table>
               </div>
             </div>
           </div>

@@ -74,12 +74,26 @@ function getGruposEvaluacion($id_grupo)
     $db = \Config\Database::connect();
     $usermodel = $db->table('evaluaciones EV');
     $usermodel->select('EV.nombre');
-    $usermodel->join('grupo_evaluacion G_EV',"EV.id = G_EV.id_evaluacion and G_EV.id_grupo = $id_grupo and G_EV.deleted = 0",);
+    $usermodel->join('grupo_evaluacion G_EV',"EV.id = G_EV.id_evaluacion and G_EV.id_grupo = $id_grupo and G_EV.deleted = 0");
     $usermodel->where('EV.deleted',0);
     $query = $usermodel->get();
     $resultado = $query->getResult();
     return($resultado);
 }
+
+
+function getGrupoEvaluacionEliminar($id_grupo)
+{
+    $db = \Config\Database::connect();
+    $usermodel = $db->table('evaluaciones EV');
+    $usermodel->select('G_EV.id,EV.nombre,G_EV.id_grupo');
+    $usermodel->join('grupo_evaluacion G_EV',"EV.id = G_EV.id_evaluacion and G_EV.id_grupo = $id_grupo and G_EV.deleted = 0");
+    $usermodel->where('EV.deleted',0);
+    $query = $usermodel->get();
+    $resultado = $query->getResult();
+    return($resultado);
+}
+
 
 
 
@@ -130,12 +144,6 @@ function getGrupoRecursosEliminar($id_grupo)
     $resultado = $query->getResult();
     return($resultado);
 }
-
-
-
-
-
-
 
 
 //Funciciones de materiales (recursos asignados a un gpo) con JOIN
