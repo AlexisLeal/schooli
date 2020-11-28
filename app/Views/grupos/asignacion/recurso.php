@@ -107,7 +107,11 @@
               ?> 
 
                 <input type="hidden" name="id_grupo" value="<?php echo $id_grupo?>">
-                <input type="submit" value="Asignar" name="submitRC" class="btn btn-primary btn-sm">
+                <br/>
+                <br/>
+                <div class="text-center">
+                  <input type="submit" value="Asignar" name="submitRC" class="btn btn-primary btn-sm">
+                </div>
               </form>
               <br/>
               <br/>

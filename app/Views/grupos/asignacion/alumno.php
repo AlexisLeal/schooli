@@ -82,17 +82,23 @@
 
 
           <div class="espacioUno"></div>
-            <h4>Grupos</h4>
+          <h4>Asignación de Alumnos y Alumnos Asignados </h4>
               <div class="card">
                 <div class="card-body">
+                
+            
+            </h4>
+                <a href="<?php echo site_url("/Grupos/vergrupo/$id_grupo");?>">
+                <i class="fa fa-arrow-circle-o-left fa-2x" aria-hidden="true"></i>
+                </a>
+                </h4>
 
-            <a href="<?php echo site_url('/Grupos/agregargrupo'); ?>">Crear un grupo</a> 
             <hr class="linea"/>
 
             <form action="<?php echo site_url('Asignacion/asignaralumno');?>" method="post">
             <?php foreach(getGrupoAlumnos($id_grupo,$id_unidad_negocio,$id_plantel) as $fila){
             if(empty($fila->id_grupo)){?>
-            <input type="checkbox" name="<?php echo $fila->id?>"  value="<?php echo $fila->id?>"><?php echo $fila->nombre;?> <br>
+            <input type="checkbox" name="<?php echo $fila->id?>"  value="<?php echo $fila->id?>"> <?php echo $fila->nombre;?> <br>
 
             <?php }else{?>
              <input type="checkbox"  disabled="disabled"  checked> <?php echo $fila->nombre?> <br> 
@@ -100,8 +106,12 @@
             <?php }?>
 
             <input type="hidden" name="id_grupo" value= "<?php echo $id_grupo?>">
-            <input type="submit" class="btn btn-primary btn-sm" name="submitAL" value="Asignar">
-           
+            <input type="hidden" name="id_unidad_negocio" value= "<?php echo $id_unidad_negocio?>">
+            <input type="hidden" name="id_plantel" value= "<?php echo $id_plantel?>">
+            <br/><br/>
+            <div class="text-center">
+              <input type="submit" class="btn btn-primary btn-sm" name="submitAL" value="Asignar">
+            </div>
             </form>
 
 

@@ -81,22 +81,29 @@
 
 
           <div class="espacioUno"></div>
-            <h4>Grupos</h4>
+          <h4>Eliminar Alumnos</h4>
               <div class="card">
                 <div class="card-body">
 
-            <a href="<?php echo site_url('/Grupos/agregargrupo'); ?>">Crear un grupo</a> 
+                </h4>
+                <a href="<?php echo site_url("/Grupos/vergrupo/$id_grupo");?>">
+                <i class="fa fa-arrow-circle-o-left fa-2x" aria-hidden="true"></i>
+                </a>
+                </h4>
             <hr class="linea"/>
 
             <form action="<?php echo site_url('Asignacion/eliminarAlumno');?>" method="post">
             <?php foreach(getGrupoAlumnosEliminar($id_grupo) as $fila){
             if(!empty($fila->id_grupo)){?>
-            <input type="checkbox" name="<?php echo $fila->id?>"  value="<?php echo $fila->id?>"><?php echo $fila->nombre;?> <br>
+            <input type="checkbox" name="<?php echo $fila->id?>"  value="<?php echo $fila->id?>"> <?php echo $fila->nombre;?> <br>
             <?php } ?>
             <?php }?>
 
             <input type="hidden" name="id_grupo" value= "<?php echo $id_grupo?>">
-            <input type="submit" class="btn btn-primary btn-sm" name="submitAL" value="Elimminar">
+            <br/><br/>
+            <div class="text-center">
+              <input type="submit" class="btn btn-primary btn-sm" name="submitAL" value="Elimminar">
+            </div>
            
             </form>
 

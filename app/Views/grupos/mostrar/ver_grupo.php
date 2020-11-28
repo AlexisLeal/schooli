@@ -144,7 +144,7 @@
                   <table width="90%" cellspacing="8" cellpadding="4">
                   <tr>
                   <td width="40%">
-                  <a href="<?php echo site_url("Asignacion/alumnos/$id_grupo");?>"> Lista de alumnos y asignacion de alumnos </a>
+                  <a href="<?php echo site_url("Asignacion/alumnos/$id_grupo/$id_unidad_negocio/$id_plantel");?>"> Lista de alumnos y asignacion de alumnos </a>
                   </td>
                   <td width="40%">
                   <a href="<?php echo site_url("Asignacion/deletedAlumno/$id_grupo");?>"> Eliminar Alumnos </a> 
@@ -165,7 +165,7 @@
                   <table width="90%" cellspacing="8" cellpadding="4">
                   <tr>
                   <td width="40%">
-                  <a href="<?php echo site_url("Asignacion/teacher/$id_grupo");?>">Lista de Teachers y Asignación de Teacher</a>
+                  <a href="<?php echo site_url("Asignacion/teacher/$id_grupo/$id_unidad_negocio/$id_plantel");?>">Lista de Teachers y Asignación de Teacher</a>
                   </td>
                   <td width="40%">
                   <a href="<?php echo site_url("Asignacion/deletedTeacher/$id_grupo");?>">Eliminar Teacher</a> 
@@ -205,10 +205,11 @@
                 Nombre de alumnos disponibles < ?php echo $fila->nombre ?> <br>
                 < ?php } ?>
                 <br>
-                < ?php foreach(getMiembrosOtrosGrupos($id_grupo) as $fila){ ?>
+
+
+                < ?php foreach(getMiembrosOtrosGrupos($id_grupo,$id_unidad_negocio,$id_plantel) as $fila){ ?>
                 Nombre de alumnos de otro grupos < ?php echo $fila->nombre ?> No.Grupo < ?php echo $fila->id_grupo?> <br>
-                < ?php 
-                } 
+                < ?php } ?>
                 ?>
                 -->
 

@@ -103,6 +103,10 @@ class Asignacion extends BaseController{
         if($this->session->get('login')){
             $REQUEST = \Config\Services::request();
             $hoy = date("Y-m-d H:i:s");
+            $idgrupo = $REQUEST->getPost('id_grupo');
+            $id_unidad_negocio = $REQUEST->getPost('id_unidad_negocio');
+            $id_plantel = $REQUEST->getPost('id_plantel');
+
             $usermodel = new Grupos_alumnos_model($db);
             if(isset($_POST['submitAL'])){
                 foreach(getAllAlumnos() as $fila){
@@ -113,11 +117,11 @@ class Asignacion extends BaseController{
             'fecha_ultimo_cambio' =>$hoy,
             ];
             $usermodel->insert($data);
-            echo "Se agrego correctameto";
+            
         }
        
     }  
-    echo "salio del for";
+        return redirect()->to(site_url("Asignacion/alumnos/$idgrupo/$id_unidad_negocio/$id_plantel"));
         }else{
             return redirect()->to(site_url('Home/salir'));
            }
@@ -135,6 +139,10 @@ class Asignacion extends BaseController{
             $REQUEST = \Config\Services::request();
             $hoy = date("Y-m-d H:i:s");
             $usermodel = new Grupos_teachers_model($db);
+            $id_grupo = $REQUEST->getPost('id_grupo');
+            $id_unidad_negocio = $REQUEST->getPost('id_unidad_negocio');
+            $id_plantel = $REQUEST->getPost('id_plantel');
+
             if(isset($_POST['submitTH'])){
                 foreach(getAllMaestros() as $fila){
                  if(!empty($REQUEST->getPost($fila->id_usuario))){
@@ -145,11 +153,10 @@ class Asignacion extends BaseController{
             'fecha_ultimo_cambio' =>$hoy,
             ];
             $usermodel->insert($data);
-            echo "Se agrego correctameto";
             }
 
         }
-        echo "salio del for";
+        return redirect()->to(site_url("Asignacion/teacher/$id_grupo/$id_unidad_negocio/$id_plantel"));
             }else{
 
                 return redirect()->to(site_url('Home/salir'));
@@ -248,10 +255,12 @@ class Asignacion extends BaseController{
                 foreach(getGrupoAlumnosEliminar($id_grupo) as $fila){
                  if(!empty($REQUEST->getPost($fila->id))){
                 $usermodel->delete(['id'=> $fila->id]);
-                 echo "Se elimino correctameto";
+                 
         }    
     }  
-    echo "salio del for";
+
+            return redirect()->to(site_url("Asignacion/deletedAlumno/$id_grupo"));
+
         }else{
             return redirect()->to(site_url('Home/salir'));
            }
@@ -272,11 +281,11 @@ class Asignacion extends BaseController{
                  if(!empty($REQUEST->getPost($fila->id))){
 
                 $usermodel->delete(['id'=> $fila->id]);
-            echo "Se elimino correctameto";
+            
             }
 
         }
-        echo "salio del for";
+        return redirect()->to(site_url("Asignacion/deletedTeacher/$id_grupo"));
             }else{
 
                 return redirect()->to(site_url('Home/salir'));
