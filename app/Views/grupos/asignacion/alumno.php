@@ -94,26 +94,43 @@
                 </h4>
 
             <hr class="linea"/>
-
+            <div style="padding-left:50px;">
             <form action="<?php echo site_url('Asignacion/asignaralumno');?>" method="post">
+
+
+              
+              <table width="70%">
+              <tr>
+              <td width="30%">Miembros del grupo</td>
+              <td width="30%">Reasignar grupo</td>
+              </tr>
             <?php foreach(getGrupoAlumnos($id_grupo,$id_unidad_negocio,$id_plantel) as $fila){
             if(empty($fila->id_grupo)){?>
-            <input type="checkbox" name="<?php echo $fila->id?>"  value="<?php echo $fila->id?>"> <?php echo $fila->nombre;?> <br>
+              <tr>
+              <td><input type="checkbox" name="<?php echo $fila->id?>"  value="<?php echo $fila->id?>"> <?php echo $fila->nombre;?></td>
+              <td></i></td>
+              </tr>
 
             <?php }else{?>
-             <input type="checkbox"  disabled="disabled"  checked> <?php echo $fila->nombre?> <br> 
+              <tr>
+              <td><input type="checkbox"  disabled="disabled"  checked> <?php echo $fila->nombre?></td>
+              <td><i class="fa fa-exchange" aria-hidden="true"></i></td>
+              </tr>
+              
             <?php }?>
             <?php }?>
-
+            </table>
             <input type="hidden" name="id_grupo" value= "<?php echo $id_grupo?>">
             <input type="hidden" name="id_unidad_negocio" value= "<?php echo $id_unidad_negocio?>">
             <input type="hidden" name="id_plantel" value= "<?php echo $id_plantel?>">
             <br/><br/>
+            
             <div class="text-center">
               <input type="submit" class="btn btn-primary btn-sm" name="submitAL" value="Asignar">
             </div>
+            
             </form>
-
+            </div>
 
               </div>
             </div>

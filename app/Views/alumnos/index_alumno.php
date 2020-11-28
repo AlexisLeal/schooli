@@ -46,7 +46,7 @@
       <div id="general">
         <div class="row">
           <div class="col-md-3">
-            <?php include(APPPATH.'/Views/include/menu-izquierda.php');?>
+            <?php include(APPPATH.'/Views/include/menu-alumno.php');?>
           </div>
 
 
@@ -60,29 +60,37 @@
               </div> 
 
 
-              <a href="<?php echo site_url('/Alumnos/agregaralumnos'); ?>">Registrar Alumno.</a><br/>
+              
 
           <div class="espacioUno"></div>
-        
+          <div class="text-right">
+            <h4><?php echo $session->get('nombre')." ".$session->get('apellido')." ".$session->get('apellido_materno');?></h4>
+          </div>
+          <div class="espacioUno"></div>
+
+
               <div class="card">
                 <div class="card-body">
+
+                
                 <table class="tabla-registros" class="display" cellspacing="6" cellpadding="8">
-                <thead>
+                <tbody>
                 <tr>
-                <th class="text-left">ID</th>
-                <th class="text-left">Nombre</th>
-                <th class="text-left">Unidd de negocio</th>
-                <th class="text-left">Plantel</th>
-                <th class="text-left">Matricula</th>
-                <th class="text-left">Ver</th>
-                <th class="text-left">Editar</th>
+                <td class="text-left">Test</td>
+                <td class="text-left">Test</td>
+                <td class="text-left">test</td>
+                <tr>
+                
                 </tr>
-                </thead>
-                <h1>ENTRO ALA PAGINA</h1>
-
-
-
+                <td class="text-left">Test</td>
+                <td class="text-left">Test</td>
+                <td class="text-left">Test</td>
+                </tr>
+                </tbody>
                 </table>
+
+
+
               </div>
             </div>
           </div>
