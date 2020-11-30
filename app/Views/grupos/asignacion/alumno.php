@@ -113,7 +113,7 @@
             <?php }else{?>
               <tr>
               <td><input type="checkbox"  disabled="disabled"  checked> <?php echo $fila->nombre?></td>
-              <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#reasignar" data-whatever="@mdo">Resasignar alumno</button></td>
+              <td><button type="button" class="btn btn-primary btn-sm" value="<?php echo $fila->id?>" onclick="auxiliar(<?php echo $fila->id?>)" data-toggle="modal" data-target="#reasignar" data-whatever="@mdo">Resasignar alumno</button></td>
               </tr>
               
             <?php }?>
@@ -209,6 +209,7 @@
       <div class="modal-body">
         <form action="<?php echo site_url('Asignacion/reasignaralumno')?>">
           <div class="form-group">
+          <input type="text" name="asignar" id="asignar" value=""><br/>
             <?php foreach (getAllGruposReasignar() as $fila) { ?>
               <input type="radio" name="id_grupo" value="<?php echo  $fila->id?>"> <?php echo $fila->nombre?>
               <br>
@@ -224,7 +225,12 @@
     </div>
   </div>
 </div>
-
+<script>
+function auxiliar(parametro){
+  //alert(parametro);
+  document.getElementById("asignar").value=parametro;
+}
+</script>
 <?php include(APPPATH.'Views/include/footer.php');?>
 
 <script>
