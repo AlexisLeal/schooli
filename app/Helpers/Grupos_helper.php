@@ -51,6 +51,18 @@ function generarCodigo() {
 
    }
 
+   function getAllGruposReasignar()
+{
+    $usermode = new Grupos_model($db);
+    $usermode->select('id,nombre');
+    $usermode->where('deleted',0);
+    $resultado = $usermode->get();
+    //$query = "SELECT * FROM grupos WHERE deleted = 0";
+    //$resultado = $usermode->query($query);
+    $rowArray = $resultado->getResult();
+    return($rowArray);
+}
+
 
 
 

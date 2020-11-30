@@ -348,12 +348,12 @@ class Asignacion extends BaseController{
 
     //Funcion para reasigar un alumno que esta en un gpo para pasarlo a otro gpo 
 
-    public function reasignaralumno($id_grupo)
+    public function reasignaralumno()
     {
         if($this->session->get('login')){
-            $REQUEST = \Config\Services::request();
-            $hoy = date("Y-m-d H:i:s");
             if(isset($_POST['submitRSG'])){ 
+                $REQUEST = \Config\Services::request();
+                $hoy = date("Y-m-d H:i:s");
                 $id_alummnogrupo = $REQUEST->getPost('id_alumnogrupo');
                 $usermodel = new Grupos_alumnos_model($db);
                 //Elimanos el alumno del gpo dondse encuantra 
