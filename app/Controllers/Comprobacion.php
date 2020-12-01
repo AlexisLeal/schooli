@@ -56,7 +56,7 @@ class Comprobacion extends BaseController{
         $this->session ->set($namearray);
         if($this->session->get('login')){
             switch($this->session->get('tipo_usuario')){
-                case 1: return redirect()->to(site_url('Alumnos/indexAlumno'));;break;
+                case 1: return redirect()->to(site_url('Alumno/index'));;break;
                 case 2: return redirect()->to(site_url('Tutores/index'));;break;
                 case 3: return redirect()->to(site_url('Teacher/index'));;break;
                 case 4: return redirect()->to(site_url('Panel/index'));;break;

@@ -360,6 +360,7 @@ class Asignacion extends BaseController{
                 $id_usuario = $REQUEST->getPost('id_usuario');
                 $id_grupo_nuevo = $REQUEST->getPost('id_grupo_nuevo');
                 $id_grupo_actual = $REQUEST->getPost('id_grupo_actual');
+               
                 //Eliminamos al alumno del gpo
                 $usermodel->select('id');
                 $usermodel->where('id_grupo',$id_grupo_actual);
