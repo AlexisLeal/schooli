@@ -3,6 +3,8 @@ use  App\Models\Grupos_recursos_model;
 use  App\Models\Grupos_teachers_model;
 use  App\Models\Grupos_alumnos_model;
 use  App\Models\Grupos_evaluaciones_model;
+use  App\Models\Grupos_model;
+use  App\Models\Alumnos_model;
 
 class Asignacion extends BaseController{
 	
@@ -353,17 +355,43 @@ class Asignacion extends BaseController{
         if($this->session->get('login')){
             if(isset($_POST['submitRSG'])){ 
                 $REQUEST = \Config\Services::request();
-                $hoy = date("Y-m-d H:i:s");
-                $id_alummnogrupo = $REQUEST->getPost('id_alumnogrupo');
                 $usermodel = new Grupos_alumnos_model($db);
-                //Elimanos el alumno del gpo dondse encuantra 
-                $usermodel->delete(['id'=>$id_alummnogrupo]);
-          
+                $hoy = date("Y-m-d H:i:s");
+                $id_usuario = $REQUEST->getPost('id_usuario');
+                $id_grupo_nuevo = $REQUEST->getPost('id_grupo_nuevo');
+                $id_grupo_actual = $REQUEST->getPost('id_grupo_actual');
+                //Eliminamos al alumno del gpo
+                $usermodel->select('id');
+                $usermodel->where('id_grupo',$id_grupo_actual);
+                $usermodel->where('id_alumno',$id_usuario);
+                $usermodel->where('deleted',0);
+                $resultado = $usermodel->get();
+                $row = $resultado->getRow();
+                $usermodel->delete(['id'=> $row->id]);
+
+            
+
+        //Cambiamos al alumno de unidad de negocio y plantel al grupo correspodiente
+                $usermodel_grupo = new Grupos_model();
+                $usermodel_grupo->select('id_plantel,id_unidad_negocio');
+                $usermodel_grupo->where('id',$id_grupo_nuevo);
+                $usermodel_grupo->where('deleted',0);
+                $resultado_grupo = $usermodel_grupo->get();
+                $row_grupo = $resultado_grupo->getRow();
+                $data_negocio_plantel =['id_plantel' => $row_grupo->id_plantel,
+                'id_unidad_negocio' => $row_grupo->id_unidad_negocio,];
+
+                $usermodel_alumno = new Alumnos_model();
+                $usermodel_alumno->select('id');
+                $usermodel_alumno->where('id_usuario',$id_usuario);
+                $usermodel_alumno->where('deleted',0);
+                $resultado_alumno = $usermodel_alumno->get();
+                $row_alumno = $resultado_alumno->getRow();
+                $usermodel_alumno->update($row_alumno->id,$data_negocio_plantel);
            
             //Insertamos el alumno a nuevo gpo
-            //$usermodel = new Grupos_alumnos_model($db);
-            $data = ['id_grupo' =>$REQUEST->getPost('id_grupo'),
-            'id_alumno' =>$REQUEST->getPost('id_usuario'),
+            $data = ['id_grupo' =>$id_grupo_nuevo,
+            'id_alumno' =>$id_usuario,
             'fecha_creacion' =>$hoy,
             'fecha_ultimo_cambio' =>$hoy,
             ];
@@ -371,7 +399,8 @@ class Asignacion extends BaseController{
             echo 'se agrego correctamente';
 
         }else{
-            return redirect()->to(site_url('Home/salir'));
+            echo "Esta saliendo";
+           // return redirect()->to(site_url('Home/salir'));
     
         }
     }else{

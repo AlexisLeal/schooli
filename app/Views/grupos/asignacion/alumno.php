@@ -207,16 +207,19 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="<?php echo site_url('Asignacion/reasignaralumno')?>">
+        <form action="<?php echo site_url('Asignacion/reasignaralumno')?>" method="POST">
           <div class="form-group">
-          <input type="text" name="asignar" id="asignar" value=""><br/>
             <?php foreach (getAllGruposReasignar() as $fila) { ?>
-              <input type="radio" name="id_grupo" value="<?php echo  $fila->id?>"> <?php echo $fila->nombre?>
+              <?php if($fila->id != $id_grupo){ ?>
+              <input type="radio" name="id_grupo_nuevo" value="<?php echo  $fila->id?>"> <?php echo $fila->nombre?> ID_Plantel:<?php echo $fila->id_plantel ?> ID_NEGOCIO:<?php echo $fila->id_unidad_negocio?>
+              <?php  }?>
               <br>
 
             <?php } ?>
           <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+          <input type="hidden" name="id_usuario" id="asignar" value="">
+          <input type="hidden" name="id_grupo_actual" value= "<?php echo $id_grupo?>">
+         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
         <button type="submit" class="btn btn-primary" name="submitRSG">Enviar</button>
       </div>
         </form>
