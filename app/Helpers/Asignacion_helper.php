@@ -1,9 +1,4 @@
 <?php 
-use  App\Models\Grupos_recursos_model;
-use  App\Models\Grupos_teachers_model;
-use  App\Models\Grupos_alumnos_model;
-use  App\Models\Recursos_model;
-
 
 //FUNCIONES DE PRUEBA 
 
@@ -73,7 +68,7 @@ function getGruposEvaluacion($id_grupo)
 {
     $db = \Config\Database::connect();
     $usermodel = $db->table('evaluaciones EV');
-    $usermodel->select('EV.nombre');
+    $usermodel->select('EV.nombre, EV.id');
     $usermodel->join('grupo_evaluacion G_EV',"EV.id = G_EV.id_evaluacion and G_EV.id_grupo = $id_grupo and G_EV.deleted = 0");
     $usermodel->where('EV.deleted',0);
     $query = $usermodel->get();

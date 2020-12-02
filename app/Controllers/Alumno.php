@@ -34,7 +34,6 @@ class Alumno extends BaseController{
             $row = $resultado->getRow();
             if(empty($row)){
                 $data['id_grupo'] = null;
-
             }else{
                 $data['id_grupo'] = $row->id_grupo;
             }
@@ -43,6 +42,17 @@ class Alumno extends BaseController{
         }else{
             return redirect()->to(site_url('Home/salir'));
            }
+    }
+
+    public function presentarevaluacion($id_evaluacion)
+    {
+        if($this->session->get('login')){
+
+            $data['id_evaluacion'] = $id_evaluacion;
+            return view('alumnos/alumno/presentarevaluacion',$data);
+        }else{
+            return redirect()->to(site_url('Home/salir'));
+        }
     }
 
 
