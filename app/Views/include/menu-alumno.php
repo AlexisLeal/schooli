@@ -11,7 +11,7 @@
   </div>-->
 
 <ul class="list-group">        
-  <li class="list-group-item"><a class="" href="">Perfil</a></li>
+  <li class="list-group-item"><a class="" href="<?php echo site_url('Alumno/perfil')?>">Perfil</a></li>
   <li class="list-group-item"><a class="" href="<?php echo site_url('Alumno/evaluaciones')?>">Evaluaciones</a></li>
   <li class="list-group-item"><a class="" href="">Asistencia</a></li>
   <li class="list-group-item"><a class="" href="">Calificaciones</a></li>

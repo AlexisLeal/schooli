@@ -6,22 +6,18 @@ use  App\Models\Grupos_evaluaciones_model;
 use  App\Models\Grupos_model;
 use  App\Models\Alumnos_model;
 
-class Asignacion extends BaseController{
-	
-	
+class Asignacion extends BaseController{	
 //Vistas
-     public function alumnos($id_grupo,$id_unidad_negocio,$id_plantel)
+    public function alumnos($id_grupo,$id_unidad_negocio,$id_plantel)
     {
-
         if($this->session->get('login')){
             $data['id_grupo'] = $id_grupo;
             $data['id_unidad_negocio'] = $id_unidad_negocio;
             $data['id_plantel'] = $id_plantel;
-        return view('grupos/asignacion/alumno',$data);
-    }else{
-        return redirect()->to(site_url('Home/salir'));
+            return view('grupos/asignacion/alumno',$data);
+        }else{
+            return redirect()->to(site_url('Home/salir'));
        }
-
     }
 
     public function teacher($id_grupo,$id_unidad_negocio,$id_plantel)
@@ -30,10 +26,9 @@ class Asignacion extends BaseController{
             $data['id_grupo'] = $id_grupo;
             $data['id_unidad_negocio'] = $id_unidad_negocio;
             $data['id_plantel'] = $id_plantel;
-
-        return view('grupos/asignacion/teacher',$data);
-    }else{
-        return redirect()->to(site_url('Home/salir'));
+            return view('grupos/asignacion/teacher',$data);
+        }else{
+            return redirect()->to(site_url('Home/salir'));
        }
     }
 
@@ -52,7 +47,6 @@ class Asignacion extends BaseController{
     public function evaluacion($id_grupo)
     {   
         if($this->session->get('login')){
-
             $data['id_grupo'] = $id_grupo;
             return view('grupos/asignacion/evaluacion',$data);
         }else{
@@ -62,14 +56,13 @@ class Asignacion extends BaseController{
     }
     
     // vistas para eliminar
-
     public function deletedAlumno($id_grupo)
     {
         if($this->session->get('login')){
             $data['id_grupo'] = $id_grupo;
-        return view('grupos/asignacion/eliminar/alumno',$data);
-    }else{
-        return redirect()->to(site_url('Home/salir'));
+            return view('grupos/asignacion/eliminar/alumno',$data);
+        }else{
+            return redirect()->to(site_url('Home/salir'));
        }
 
     }
@@ -78,9 +71,9 @@ class Asignacion extends BaseController{
     {
         if($this->session->get('login')){
             $data['id_grupo'] = $id_grupo;
-        return view('grupos/asignacion/eliminar/teacher',$data);
-    }else{
-        return redirect()->to(site_url('Home/salir'));
+            return view('grupos/asignacion/eliminar/teacher',$data);
+        }else{
+            return redirect()->to(site_url('Home/salir'));
        }
 
     }
@@ -104,13 +97,8 @@ class Asignacion extends BaseController{
            }
         
     }
-
-
     //Modifica la base de datos 
-    
-
     //Asignar alumno
-
     public function asignaralumno()
     {
         if($this->session->get('login')){
@@ -119,30 +107,26 @@ class Asignacion extends BaseController{
             $idgrupo = $REQUEST->getPost('id_grupo');
             $id_unidad_negocio = $REQUEST->getPost('id_unidad_negocio');
             $id_plantel = $REQUEST->getPost('id_plantel');
-
             $usermodel = new Grupos_alumnos_model($db);
             if(isset($_POST['submitAL'])){
                 foreach(getAllAlumnos() as $fila){
-                 if(!empty($REQUEST->getPost($fila->id_usuario))){
-            $data = ['id_grupo' =>$REQUEST->getPost('id_grupo'),
-            'id_alumno' =>$REQUEST->getPost($fila->id_usuario),
-            'fecha_creacion' =>$hoy,
-            'fecha_ultimo_cambio' =>$hoy,
-            ];
-            $usermodel->insert($data);
-            
-        }
-       
-    }  
-        return redirect()->to(site_url("Asignacion/alumnos/$idgrupo/$id_unidad_negocio/$id_plantel"));
+                    if(!empty($REQUEST->getPost($fila->id_usuario))){
+                        $data = ['id_grupo' =>$REQUEST->getPost('id_grupo'),
+                        'id_alumno' =>$REQUEST->getPost($fila->id_usuario),
+                        'fecha_creacion' =>$hoy,
+                        'fecha_ultimo_cambio' =>$hoy,
+                        ];
+                        $usermodel->insert($data);
+                    }
+                 }  
+                return redirect()->to(site_url("Asignacion/alumnos/$idgrupo/$id_unidad_negocio/$id_plantel"));
+            }else{
+                return redirect()->to(site_url('Home/salir'));
+           }
         }else{
             return redirect()->to(site_url('Home/salir'));
-           }
-        
-    }else{
-        return redirect()->to(site_url('Home/salir'));
        }
-}
+    }
 
     //Asignar teacher
 
@@ -158,24 +142,21 @@ class Asignacion extends BaseController{
 
             if(isset($_POST['submitTH'])){
                 foreach(getAllMaestros() as $fila){
-                 if(!empty($REQUEST->getPost($fila->id_usuario))){
+                    if(!empty($REQUEST->getPost($fila->id_usuario))){
+                        $data = ['id_grupo' =>$REQUEST->getPost('id_grupo'),
+                        'id_teacher' =>$REQUEST->getPost($fila->id_usuario),
+                        'fecha_creacion' =>$hoy,
+                        'fecha_ultimo_cambio' =>$hoy,
+                        ];
+                        $usermodel->insert($data);
+                    }
 
-            $data = ['id_grupo' =>$REQUEST->getPost('id_grupo'),
-            'id_teacher' =>$REQUEST->getPost($fila->id_usuario),
-            'fecha_creacion' =>$hoy,
-            'fecha_ultimo_cambio' =>$hoy,
-            ];
-            $usermodel->insert($data);
-            }
-
-        }
-        return redirect()->to(site_url("Asignacion/teacher/$id_grupo/$id_unidad_negocio/$id_plantel"));
+                 }
+                return redirect()->to(site_url("Asignacion/teacher/$id_grupo/$id_unidad_negocio/$id_plantel"));
             }else{
-
                 return redirect()->to(site_url('Home/salir'));
                }
         }else{
-
             return redirect()->to(site_url('Home/salir'));
            }
     }
@@ -189,23 +170,20 @@ class Asignacion extends BaseController{
             $hoy = date("Y-m-d H:i:s");
             $usermodel = new Grupos_recursos_model($db);
             $idgrupo = $REQUEST->getPost('id_grupo');
-            if(isset($_POST['submitRC'])){   
+            if(isset($_POST['submitRC'])){
             foreach(getRecursos() as $fila){
                 if(!empty($REQUEST->getPost($fila->id))){
-
                     $data = ['id_grupo' =>$REQUEST->getPost('id_grupo'),
                     'id_recurso' =>$REQUEST->getPost($fila->id),
                     'fecha_creacion' =>$hoy,
                     'fecha_ultimo_cambio' =>$hoy,
                     ]; 
                     $usermodel->insert($data);
-                   
-              
                 }
             }
-            return redirect()->to(site_url("Asignacion/recursos/$idgrupo"));
-        }else{
-            return redirect()->to(site_url('Home/salir'));
+                return redirect()->to(site_url("Asignacion/recursos/$idgrupo"));
+            }else{
+                return redirect()->to(site_url('Home/salir'));
            }  
         }else{
             return redirect()->to(site_url('Home/salir'));
@@ -216,18 +194,18 @@ class Asignacion extends BaseController{
     {
         if($this->session->get('login')){
             $REQUEST = \Config\Services::request(); 
-            if(isset($_POST['submitEV'])){  
+            if(isset($_POST['submitEV'])){
                 $hoy = date("Y-m-d H:i:s"); 
-                    $data = ['id_grupo' =>$REQUEST->getPost('id_grupo'),
-                    'id_evaluacion' =>$REQUEST->getPost('evaluacion'),
-                    'fecha_creacion' =>$hoy,
-                    'fecha_ultimo_cambio' =>$hoy,
-                    ]; 
-                    $usermodel = new Grupos_evaluaciones_model($db);
-                    $usermodel->insert($data);
-                    echo "Se agrego correctameto";
-        }else{
-            return redirect()->to(site_url('Home/salir'));
+                $data = ['id_grupo' =>$REQUEST->getPost('id_grupo'),
+                'id_evaluacion' =>$REQUEST->getPost('evaluacion'),
+                'fecha_creacion' =>$hoy,
+                'fecha_ultimo_cambio' =>$hoy,
+                ]; 
+                $usermodel = new Grupos_evaluaciones_model($db);
+                $usermodel->insert($data);
+                echo "Se agrego correctameto";
+            }else{
+                return redirect()->to(site_url('Home/salir'));
            }  
         }else{
             return redirect()->to(site_url('Home/salir'));
@@ -239,8 +217,7 @@ class Asignacion extends BaseController{
     //FUNCION AJAX
 
     function EvaluacionEspecifica()
-    {
-        
+    {   
         $REQUEST = \Config\Services::request();
         $id_nivel = $REQUEST->getPost('nivel');
         $id_leccion = $REQUEST->getPost('leccion');
@@ -262,20 +239,16 @@ class Asignacion extends BaseController{
                 $id_grupo = $REQUEST->getPost('id_grupo');
                 $usermodel = new Grupos_alumnos_model($db);
                 foreach(getGrupoAlumnosEliminar($id_grupo) as $fila){
-                 if(!empty($REQUEST->getPost($fila->id))){
-                $usermodel->delete(['id'=> $fila->id]);
-                 
-        }    
-    }  
-
-            return redirect()->to(site_url("Asignacion/deletedAlumno/$id_grupo"));
-
+                    if(!empty($REQUEST->getPost($fila->id))){
+                        $usermodel->delete(['id'=> $fila->id]);
+                    }    
+            }  
+                return redirect()->to(site_url("Asignacion/deletedAlumno/$id_grupo"));
+            }else{
+                return redirect()->to(site_url('Home/salir'));
+           }
         }else{
             return redirect()->to(site_url('Home/salir'));
-           }
-        
-    }else{
-        return redirect()->to(site_url('Home/salir'));
        }
     }
 
@@ -287,20 +260,16 @@ class Asignacion extends BaseController{
                 $usermodel = new Grupos_teachers_model($db);
                 $id_grupo = $REQUEST->getPost('id_grupo');
                 foreach(getGrupoMaestrosEliminar($id_grupo) as $fila){
-                 if(!empty($REQUEST->getPost($fila->id))){
-
-                $usermodel->delete(['id'=> $fila->id]);
+                    if(!empty($REQUEST->getPost($fila->id))){
+                        $usermodel->delete(['id'=> $fila->id]);
             
-            }
-
-        }
-        return redirect()->to(site_url("Asignacion/deletedTeacher/$id_grupo"));
+                    }
+                }
+                return redirect()->to(site_url("Asignacion/deletedTeacher/$id_grupo"));
             }else{
-
                 return redirect()->to(site_url('Home/salir'));
                }
         }else{
-
             return redirect()->to(site_url('Home/salir'));
            }
 
@@ -313,15 +282,15 @@ class Asignacion extends BaseController{
             if(isset($_POST['submitRC'])){  
                 $usermodel = new Grupos_recursos_model($db);
                 $id_grupo = $REQUEST->getPost('id_grupo');
-            foreach(getGrupoRecursosEliminar($id_grupo) as $fila){
-                if(!empty($REQUEST->getPost($fila->id))){
-                    $usermodel->delete(['id'=> $fila->id]);
+                foreach(getGrupoRecursosEliminar($id_grupo) as $fila){
+                    if(!empty($REQUEST->getPost($fila->id))){
+                        $usermodel->delete(['id'=> $fila->id]);
+                    }
                 }
-            }
-            return redirect()->to(site_url("Asignacion/deletedRecursos/$id_grupo"));
-        }else{
-            return redirect()->to(site_url('Home/salir'));
-           }  
+                return redirect()->to(site_url("Asignacion/deletedRecursos/$id_grupo"));
+            }else{
+                return redirect()->to(site_url('Home/salir'));
+            }  
         }else{
             return redirect()->to(site_url('Home/salir'));
            }
@@ -334,15 +303,15 @@ class Asignacion extends BaseController{
             if(isset($_POST['submitEV'])){  
                 $usermodel = new Grupos_evaluaciones_model($db);
                 $id_grupo = $REQUEST->getPost('id_grupo');
-            foreach(getGrupoEvaluacionEliminar($id_grupo) as $fila){
-                if(!empty($REQUEST->getPost($fila->id))){
-                    $usermodel->delete(['id'=> $fila->id]);
-                }
-            }
-            return redirect()->to(site_url("Asignacion/deletedEvaluacion/$id_grupo"));
-        }else{
-            return redirect()->to(site_url('Home/salir'));
-           }  
+                foreach(getGrupoEvaluacionEliminar($id_grupo) as $fila){
+                    if(!empty($REQUEST->getPost($fila->id))){
+                        $usermodel->delete(['id'=> $fila->id]);
+                    }
+                 }
+                return redirect()->to(site_url("Asignacion/deletedEvaluacion/$id_grupo"));
+            }else{
+                return redirect()->to(site_url('Home/salir'));
+            }  
         }else{
             return redirect()->to(site_url('Home/salir'));
            }
@@ -360,7 +329,6 @@ class Asignacion extends BaseController{
                 $id_usuario = $REQUEST->getPost('id_usuario');
                 $id_grupo_nuevo = $REQUEST->getPost('id_grupo_nuevo');
                 $id_grupo_actual = $REQUEST->getPost('id_grupo_actual');
-               
                 //Eliminamos al alumno del gpo
                 $usermodel->select('id');
                 $usermodel->where('id_grupo',$id_grupo_actual);
@@ -369,10 +337,7 @@ class Asignacion extends BaseController{
                 $resultado = $usermodel->get();
                 $row = $resultado->getRow();
                 $usermodel->delete(['id'=> $row->id]);
-
-            
-
-        //Cambiamos al alumno de unidad de negocio y plantel al grupo correspodiente
+             //Cambiamos al alumno de unidad de negocio y plantel al grupo correspodiente
                 $usermodel_grupo = new Grupos_model();
                 $usermodel_grupo->select('id_plantel,id_unidad_negocio');
                 $usermodel_grupo->where('id',$id_grupo_nuevo);
@@ -391,25 +356,21 @@ class Asignacion extends BaseController{
                 $usermodel_alumno->update($row_alumno->id,$data_negocio_plantel);
            
             //Insertamos el alumno a nuevo gpo
-            $data = ['id_grupo' =>$id_grupo_nuevo,
-            'id_alumno' =>$id_usuario,
-            'fecha_creacion' =>$hoy,
-            'fecha_ultimo_cambio' =>$hoy,
-            ];
-            $usermodel->insert($data);
-            echo 'se agrego correctamente';
+                $data = ['id_grupo' =>$id_grupo_nuevo,
+                'id_alumno' =>$id_usuario,
+                'fecha_creacion' =>$hoy,
+                'fecha_ultimo_cambio' =>$hoy,
+                 ];
+                 $usermodel->insert($data);
+                 echo 'se agrego correctamente';
 
-        }else{
-            echo "Esta saliendo";
+             }else{
+                 echo "Esta saliendo";
            // return redirect()->to(site_url('Home/salir'));
-    
-        }
-    }else{
+             }
+        }else{
             return redirect()->to(site_url('Home/salir'));
            }
-        
-    
-    
     }
 
 }

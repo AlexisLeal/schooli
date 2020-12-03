@@ -5,10 +5,10 @@ class Grupos extends BaseController{
 
     public function index()
 	{
-        $data['page_title'] = "Grupos";	
         //Pasamos de forma dinamica el titulo  y se crear un array
         if($this->session->get('login')){
-        return view('grupos/panel_grupos',$data);
+            $data['page_title'] = "Grupos";	
+            return view('grupos/panel_grupos',$data);
         }else{
             return redirect()->to(site_url('Home/salir'));
            }
@@ -17,12 +17,10 @@ class Grupos extends BaseController{
 
 
     public function agregargrupo()
-	{
-        $data['page_title'] = "Teachers";	
-        
+	{   
         if($this->session->get('login')){
             return view('grupos/crear/agregar_grupo');
-            }else{
+        }else{
             return redirect()->to(site_url('Home/salir'));
         }
 	}
@@ -50,7 +48,7 @@ class Grupos extends BaseController{
             $data['unidad_negocio'] = getUnidadNegocioEspecifico($row->id_unidad_negocio);	
             $data['nombre_plantel'] = getPlanteEspecifico($row->id_plantel);
             return view('grupos/mostrar/ver_grupo',$data);
-            }else{
+        }else{
             return redirect()->to(site_url('Home/salir'));
         }
     }
@@ -64,30 +62,29 @@ class Grupos extends BaseController{
                 $nombregrupo = $REQUEST->getPost('nombre');
                 $hoy = date("Y-m-d H:i:s");
                     
-             if(!empty($REQUEST->getFile('imagen_grupo'))){
-              $file_imagen = $REQUEST->getFile('imagen_grupo');
-                if ($file_imagen->isValid() && ! $file_imagen->hasMoved())
-             {
+                if(!empty($REQUEST->getFile('imagen_grupo'))){
+                    $file_imagen = $REQUEST->getFile('imagen_grupo');
+                    if($file_imagen->isValid() && ! $file_imagen->hasMoved()){
             
                 //Comprobar si existe la ruta donde se va a guardar el audio
-            if (!is_dir('uploads/Grupos/Imagenes')) {
-                mkdir('uploads/Grupos/Imagenes', 0777, TRUE);
-            }
+                    if (!is_dir('uploads/Grupos/Imagenes')) {
+                        mkdir('uploads/Grupos/Imagenes', 0777, TRUE);
+                     }
             //Obtenemos el archivo 
-            $nombre = 'Imagen'.$nombregrupo.'.jpg';
-            $ruta_imagen_basedatos = "uploads/Grupos/Imagenes/".$nombre."";  
-            $ruta_imagen = 'uploads/Grupos/Imagenes';  
-            $file_imagen->move($ruta_imagen,$nombre);
-        }else{
+                    $nombre = 'Imagen'.$nombregrupo.'.jpg';
+                    $ruta_imagen_basedatos = "uploads/Grupos/Imagenes/".$nombre."";  
+                    $ruta_imagen = 'uploads/Grupos/Imagenes';  
+                    $file_imagen->move($ruta_imagen,$nombre);
+                    }else{
             //Si algo sale mal nos marca un error 
            // throw new RuntimeException($file_imagen->getErrorString().'('.$file_imagen->getError().')');
-             }
+                    }
 
-        }else{
-            $ruta_imagen_basedatos = "Null";
-        }
+                }else{
+                    $ruta_imagen_basedatos = "Null";
+                }
         //Es una funcion recursiva esta esta en  helper      
-        $codigo = checkCodigo();
+                $codigo = checkCodigo();
 
                 $data = ['nombre' => $nombregrupo,
                 'estatus' => $REQUEST->getPost('estatus'),
@@ -105,23 +102,21 @@ class Grupos extends BaseController{
                 'url_imagen' => $ruta_imagen_basedatos, 
                 'fecha_creacion' => $hoy, 
                 'fecha_ultimo_cambio' => $hoy,     
-            ];
-
-            $usermodel = new Grupos_model();
-            $usermodel->insert($data);
-               
+                ];
+                $usermodel = new Grupos_model();
+                $usermodel->insert($data);
                 $data = ['Grupo'  => 'El Grupo se agregro correctamente'];
                 $this->session->set($data,true);
                 return redirect()->to(site_url('Grupos/agregargrupo'));
 
+            }else{
+                return redirect()->to(site_url('Home/salir'));
+            }
+    
         }else{
             return redirect()->to(site_url('Home/salir'));
+        }
     }
-    
-    }else{
-        return redirect()->to(site_url('Home/salir'));
-    }
-}
 
 
 
@@ -131,13 +126,13 @@ class Grupos extends BaseController{
         if($this->session->get('login')){
             if(isset($_POST['submitGP'])){
 
+            }else{
+                return redirect()->to(site_url('Home/salir'));
+            }
+    
         }else{
             return redirect()->to(site_url('Home/salir'));
-    }
-    
-    }else{
-        return redirect()->to(site_url('Home/salir'));
-    }
+        }
     }
 
 
@@ -148,28 +143,11 @@ class Grupos extends BaseController{
 
         }else{
             return redirect()->to(site_url('Home/salir'));
-    }
+        }
     
-    }else{
-        return redirect()->to(site_url('Home/salir'));
+        }else{
+            return redirect()->to(site_url('Home/salir'));
+        }
     }
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }

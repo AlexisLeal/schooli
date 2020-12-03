@@ -6,8 +6,8 @@ class Recursos extends BaseController{
     public function recursos()
 	{
         if($this->session->get('login')){
-        $data['page_title'] = "Recursos";	
-         return view('recursos/recursos',$data);
+            $data['page_title'] = "Recursos";	
+            return view('recursos/recursos',$data);
         }else{
             return redirect()->to(site_url('Home/salir'));
         }
@@ -82,7 +82,7 @@ class Recursos extends BaseController{
                      $recurso_archivo->move($ruta_mover_recurso,$nombre_recurso);
             }else{
                 //Si algo sale mal nos marca un error 
-                throw new RuntimeException($recurso_audio->getErrorString().'('.$recurso_audio->getError().')');
+                //throw new RuntimeException($recurso_audio->getErrorString().'('.$recurso_audio->getError().')');
                      }
     
                       

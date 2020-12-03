@@ -8,7 +8,7 @@ class Frecuencia extends BaseController{
         $data['page_title'] = "Frecuencias";	
         //Pasamos de forma dinamica el titulo  y se crear un array
         if($this->session->get('login')){
-        return view('frecuencias/panel_frecuencias',$data);
+            return view('frecuencias/panel_frecuencias',$data);
         }else{
             return redirect()->to(site_url('Home/salir'));
            }
@@ -19,7 +19,7 @@ class Frecuencia extends BaseController{
         $data['page_title'] = "Frecuencias";	
         //Pasamos de forma dinamica el titulo  y se crear un array
         if($this->session->get('login')){
-        return view('frecuencias/crear/agregar_frecuencia',$data);
+            return view('frecuencias/crear/agregar_frecuencia',$data);
         }else{
             return redirect()->to(site_url('Home/salir'));
            }
@@ -41,8 +41,8 @@ class Frecuencia extends BaseController{
             $data['sabado'] = $frecuencia->sabado;
             $data['domingo'] = $frecuencia->domingo;
             $data['estatus'] = ($frecuencia->estatus == 1) ?  "Activo" : "Inactivo";
-        $data['page_title'] = "Frecuencias";
-        return view('frecuencias/mostrar/ver_frecuencia',$data);
+            $data['page_title'] = "Frecuencias";
+            return view('frecuencias/mostrar/ver_frecuencia',$data);
         }else{
             return redirect()->to(site_url('Home/salir'));
            }
@@ -50,8 +50,8 @@ class Frecuencia extends BaseController{
     
     public function editarfrecuencia($id_frecuencia)
 	{
-        $data['page_title'] = "Frecuencias";
         if($this->session->get('login')){
+            $data['page_title'] = "Frecuencias";
             $frecuencia = getFrencueciaEspecifica($id_frecuencia);
             $data['nombre'] = $frecuencia->nombre;
             $data['descripcion'] = $frecuencia->descripcion;
@@ -65,8 +65,7 @@ class Frecuencia extends BaseController{
             $data['domingo'] = $frecuencia->domingo;
             $data['estatus'] = $frecuencia->estatus;
             $data['idFr'] = $id_frecuencia;
-
-        return view('frecuencias/editar/editar_frecuencia',$data);
+            return view('frecuencias/editar/editar_frecuencia',$data);
         }else{
             return redirect()->to(site_url('Home/salir'));
            }
@@ -148,26 +147,17 @@ class Frecuencia extends BaseController{
         if($this->session->get('login')){
             if(isset($_POST['submitFR'])){
                 $REQUEST = \Config\Services::request();
-          
-            $id_frecuencia = $REQUEST->getPost('idFr');
-            $usermodel = new Frecuencia_model($db);
-          $usermodel->delete(['id'=> $id_frecuencia]);
-          
-            return redirect()->to(site_url('Frecuencia/index'));
-          
+                $id_frecuencia = $REQUEST->getPost('idFr');
+                $usermodel = new Frecuencia_model($db);
+                $usermodel->delete(['id'=> $id_frecuencia]);
+                return redirect()->to(site_url('Frecuencia/index'));
             }else{
                 return redirect()->to(site_url('Home/salir'));
-
-        }
-    }else{
+            }
+        }else{
             return redirect()->to(site_url('Home/salir'));
         
-    }
-
-
-
-
-
+        }
     }
 
 

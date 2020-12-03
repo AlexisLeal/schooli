@@ -8,12 +8,17 @@ class Preguntas extends BaseController{
 
     public function agregar_preguntas($id_evaluacion)
 	{
-     if($this->session->get('login')){
+
+        if($this->session->get('login')){
             //$REQUEST = \Config\Services::request(); 
            
             $usermodel = new Evaluaciones_model($db);
-            $query = "select * from evaluaciones where id = $id_evaluacion";
-            $resultado = $usermodel ->query($query);
+            $usermodel->select('nombre,clave,nivel,leccion,tipo_evaluacion,estado,usuario_creo');
+            $usermodel->where('id',$id_evaluacion);
+            $usermodel->where('deleted',0);
+            //$query = "select * from evaluaciones where id = $id_evaluacion";
+            //$resultado = $usermodel ->query($query);
+            $resultado = $usermodel->get();
             $row = $resultado -> getRow();
 
 
@@ -28,8 +33,7 @@ class Preguntas extends BaseController{
             $nombre =getTipoEvaluacionEspecifico( $row->tipo_evaluacion);
             $data['tipo_evaluacion'] = $nombre->nombre;
             $data['page_title'] = "Preguntas";	
-            
-            $row->estado == 1 ? $estado="Activo" :$estado =="Inactivo";
+            $row->estado == 1 ? $estado = "Activo" : $estado ="Inactivo";
             $data['estado'] = $estado;
 
             $usuarioCreo = getUsuarioCreo($row->usuario_creo);
@@ -50,7 +54,7 @@ class Preguntas extends BaseController{
             $data['leccion'] = $REQUEST->getPost('leccion');	
             $data['page_title'] = "Preguntas";	
 */
-         return view('evaluaciones/crear/agregar_preguntas',$data);
+            return view('evaluaciones/crear/agregar_preguntas',$data);
         }else{
             return redirect()->to(site_url('Home/salir'));
            }
@@ -59,26 +63,28 @@ class Preguntas extends BaseController{
 
 
 //Nos muestra las preguntas de la evaluacion
-public function verEvaluacion($id_evaluacion)
-{  
-     if($this->session->get('login')){  
-        $usermodel = new Evaluaciones_model($db);
-        $query = "select * from evaluaciones where id = $id_evaluacion";
-        $resultado = $usermodel ->query($query);
-        $row = $resultado -> getRow();
-
-
-        $data['idEvaluacion'] = $id_evaluacion;
-        $data['nombre'] = $row->nombre;
-        $data['clave'] = $row->clave;
-        $data['idtipoevaluacion'] = $row->tipo_evaluacion;
-        $data['nivel'] = $row->nivel;	
-        $data['leccion'] = $row->leccion;
-        $data['totalpreguntas'] = getTotalPreguntas($id_evaluacion);
-        $data['valorpreguntas'] =  getValorTotalPreguntas($id_evaluacion);
-        $nombre =getTipoEvaluacionEspecifico( $row->tipo_evaluacion);
-        $data['tipo_evaluacion'] = $nombre->nombre;
-        $data['page_title'] = "Preguntas";	
+    public function verEvaluacion($id_evaluacion)
+    {
+        if($this->session->get('login')){  
+            $usermodel = new Evaluaciones_model($db);
+            $usermodel->select('nombre,clave,tipo_evaluacion,nivel,leccion');
+            $usermodel->where('id',$id_evaluacion);
+            $usermodel->where('deleted',0);
+            //$query = "select * from evaluaciones where id = $id_evaluacion";
+            //$resultado = $usermodel ->query($query);
+            $resultado = $usermodel->get();
+            $row = $resultado -> getRow();
+            $data['idEvaluacion'] = $id_evaluacion;
+            $data['nombre'] = $row->nombre;
+            $data['clave'] = $row->clave;
+            $data['idtipoevaluacion'] = $row->tipo_evaluacion;
+            $data['nivel'] = $row->nivel;	
+            $data['leccion'] = $row->leccion;
+            $data['totalpreguntas'] = getTotalPreguntas($id_evaluacion);
+            $data['valorpreguntas'] =  getValorTotalPreguntas($id_evaluacion);
+            $nombre =getTipoEvaluacionEspecifico($row->tipo_evaluacion);
+            $data['tipo_evaluacion'] = $nombre->nombre;
+            $data['page_title'] = "Preguntas";	
         /*
         $data['idEvaluacion'] = $REQUEST->getPost('id_e');
         $data['nombre'] = $REQUEST->getPost('nombre');
@@ -94,34 +100,36 @@ public function verEvaluacion($id_evaluacion)
 
         $data['page_title'] = "Preguntas";	
 */
-         return view('evaluaciones/mostrar/evaluacion',$data);
-}else{
-    return redirect()->to(site_url('Home/salir'));
-   }
+            return view('evaluaciones/mostrar/evaluacion',$data);
+        }else{
+            return redirect()->to(site_url('Home/salir'));
+        }
 
-}
+    }
 
 //Editar las preguntas de la evaluacion
-public function editarEvaluacion($id_evaluacion)
-{   
-    if($this->session->get('login')){
-        $usermodel = new Evaluaciones_model($db);
-        $query = "select * from evaluaciones where id = $id_evaluacion";
-        $resultado = $usermodel ->query($query);
-        $row = $resultado -> getRow();
-
-
-        $data['idEvaluacion'] = $id_evaluacion;
-        $data['nombre'] = $row->nombre;
-        $data['clave'] = $row->clave;
-        $data['idtipoevaluacion'] = $row->tipo_evaluacion;
-        $data['nivel'] = $row->nivel;	
-        $data['leccion'] = $row->leccion;
-        $data['totalpreguntas'] = getTotalPreguntas($id_evaluacion);
-        $data['valorpreguntas'] =  getValorTotalPreguntas($id_evaluacion);
-        $nombre = getTipoEvaluacionEspecifico( $row->tipo_evaluacion);
-        $data['tipo_evaluacion'] = $nombre->nombre;
-        $data['page_title'] = "Preguntas";	
+    public function editarEvaluacion($id_evaluacion)
+    {   
+        if($this->session->get('login')){
+            $usermodel = new Evaluaciones_model($db);
+            $usermodel->select('nombre,clave,tipo_evaluacion,nivel,leccion');
+            $usermodel->where('id',$id_evaluacion);
+            $usermodel->where('deleted',0);
+           // $query = "select * from evaluaciones where id = $id_evaluacion";
+            //$resultado = $usermodel ->query($query);
+            $resultado = $usermodel ->get();
+            $row = $resultado -> getRow();
+            $data['idEvaluacion'] = $id_evaluacion;
+            $data['nombre'] = $row->nombre;
+            $data['clave'] = $row->clave;
+            $data['idtipoevaluacion'] = $row->tipo_evaluacion;
+            $data['nivel'] = $row->nivel;	
+            $data['leccion'] = $row->leccion;
+            $data['totalpreguntas'] = getTotalPreguntas($id_evaluacion);
+            $data['valorpreguntas'] =  getValorTotalPreguntas($id_evaluacion);
+            $nombre = getTipoEvaluacionEspecifico( $row->tipo_evaluacion);
+            $data['tipo_evaluacion'] = $nombre->nombre;
+            $data['page_title'] = "Preguntas";	
         
           /* $REQUEST = \Config\Services::request();  
            $data['idEvaluacion'] = $REQUEST->getPost('id_e');
@@ -140,151 +148,157 @@ public function editarEvaluacion($id_evaluacion)
 */
 
 
-    return view('evaluaciones/editar/evaluacion',$data);
-}else{
-    return redirect()->to(site_url('Home/salir'));
-   }
-}
-
-
-public function deletedPreguntas()
-{
-    if($this->session->get('login')){
-    if(isset($_POST['submitAP'])){
-        $REQUEST = \Config\Services::request();
-        $idEvaluacion = $REQUEST->getPost('idEvaluacion');
-        $idPregunta = $REQUEST->getPost('idPregunta');
-        $numPregunta = $REQUEST ->getPost('num_pregunta');
-        $idtipoPregunta = $REQUEST ->getPost('tipopregunta');
-
-        $usermodel = new Preguntas_model($db);
-        $query = "UPDATE preguntas SET deleted = 1 WHERE id = $idPregunta AND idEvaluacion = $idEvaluacion AND num_pregunta = $numPregunta";
-        $usermodel->query($query);
-
-        //Opcion multiple
-        if($idtipoPregunta == 2){
-            $usermodel = new Pregunta_opcion_multiple($db);
-            $query = "UPDATE pregunta_opcion_multiple SET deleted = 1 WHERE idEvaluacion = $idEvaluacion AND idPregunta = $idPregunta";
-           
-            $usermodel ->query($query);
-
-        }
-        //Opcion Audio 
-        if($idtipoPregunta == 3){
-            $usermodel = new Pregunta_opcion_audio($db);
-            $query = "UPDATE pregunta_opcion_audio SET deleted = 1 WHERE idEvaluacion = $idEvaluacion AND idPregunta = $idPregunta";
-
-            $usermodel ->query($query);
-            
-        }
-        //Opcion Video
-        if($idtipoPregunta == 4){
-            $usermodel = new Pregunta_opcion_video($db);
-            $query = "UPDATE pregunta_opcion_video SET deleted = 1 WHERE idEvaluacion = $idEvaluacion AND idPregunta = $idPregunta";
-
-            $usermodel ->query($query);
-
-        }
-
-        $data = ['Eliminacion'  => 'La pregunta se elimino correctamente'];
-        $this->session->set($data,true);
-        return redirect()->to(site_url("Preguntas/editarEvaluacion/$idEvaluacion"));
-
-    }
+        return view('evaluaciones/editar/evaluacion',$data);
         }else{
-                return redirect()->to(site_url('Home/salir'));
-   }
-
-}
-
+            return redirect()->to(site_url('Home/salir'));
+        }
+    }
 
 
+    public function deletedPreguntas()
+    {
+        if($this->session->get('login')){
+            if(isset($_POST['submitAP'])){
+                $REQUEST = \Config\Services::request();
+                $idEvaluacion = $REQUEST->getPost('idEvaluacion');
+                $idPregunta = $REQUEST->getPost('idPregunta');
+                //$numPregunta = $REQUEST ->getPost('num_pregunta');
+                $idtipoPregunta = $REQUEST ->getPost('tipopregunta');
 
+                $usermodel = new Preguntas_model($db);
+                $usermodel->delete(['id' => $idPregunta]);
+                //$query = "UPDATE preguntas SET deleted = 1 WHERE id = $idPregunta AND idEvaluacion = $idEvaluacion AND num_pregunta = $numPregunta";
+                //$usermodel->query($query);
 
+             //Opcion multiple
+            if($idtipoPregunta == 2){
+                $usermodel = new Pregunta_opcion_multiple($db);
+                $usermodel->where('idEvaluacion',$idEvaluacion);
+                $usermodel->where('idPregunta',$idPregunta);
+                $usermodel->delete();
+                //$query = "UPDATE pregunta_opcion_multiple SET deleted = 1 WHERE idEvaluacion = $idEvaluacion AND idPregunta = $idPregunta";
+                //$usermodel ->query($query);
 
+            }   
+            //Opcion Audio 
+            if($idtipoPregunta == 3){
+                $usermodel = new Pregunta_opcion_audio($db);
+                $usermodel->where('idEvaluacion',$idEvaluacion);
+                $usermodel->where('idPregunta',$idPregunta);
+                $usermodel->delete();
+                //$usermodel->delete(['id' => $idEvaluacion]);
+                //$query = "UPDATE pregunta_opcion_audio SET deleted = 1 WHERE idEvaluacion = $idEvaluacion AND idPregunta = $idPregunta";
+                //$usermodel ->query($query);
+            
+            }
+            //Opcion Video
+            if($idtipoPregunta == 4){
+                $usermodel = new Pregunta_opcion_video($db);
+                $usermodel->where('idEvaluacion',$idEvaluacion);
+                $usermodel->where('idPregunta',$idPregunta);
+                $usermodel->delete();
+            //$query = "UPDATE pregunta_opcion_video SET deleted = 1 WHERE idEvaluacion = $idEvaluacion AND idPregunta = $idPregunta";
+            //$usermodel ->query($query);
 
-
-public function insertarPregunta()
-{
-    if($this->session->get('login')){
-        $REQUEST = \Config\Services::request();  
-        $pregunta = $REQUEST->getPost('pregunta');
-        $clave = $REQUEST->getPost('clave');
-        $idEvaluacion = $REQUEST->getPost('idEvaluacion');
-        $valorpreguntas = $REQUEST->getPost('valorpreguntas');//Es el valor total de todas las preguntas
-        $valor = $REQUEST->getPost('valor');//Valor que le da al usuario a la pregunta
-        $hoy = date("Y-m-d H:i:s");
-        $tipoPregunta = $REQUEST->getPost('tipoPregunta');
-        $usermodel = new Preguntas_model($db);
-          if(empty($valorpreguntas)){
-              $numeropregunta = 1;
-          }else{
-          //Vamos a obtener el numero maximo de preguntas
-          $usermodel->Select('(SELECT max(num_pregunta) FROM preguntas WHERE idEvaluacion= '.$idEvaluacion.'AND deleted = 0) as ultimo_numero_pregunta ', FALSE);
-          $query = $usermodel->get();
-          $fila = $query -> getRow();
-        
-          $numeropregunta = $fila->ultimo_numero_pregunta + 1;
-
-          }
-
-        //si la pregunta contiene audio 
-        if(isset($_POST['activarCargarAudioPregunta'])){
-        $file_audio = $REQUEST->getFile('archivo_audio_pregunta');
-        if ($file_audio->isValid() && ! $file_audio->hasMoved())
-        {
-          
-                //Comprobar si existe la ruta donde se va a guardar el audio
-            if (!is_dir('uploads/'.$clave.'/audio-pregunta')) {
-                mkdir('./uploads/' .$clave.'/audio-pregunta', 0777, TRUE);
             }
 
-                 //Obtenemos el archivo 
-                 $audio= 1;
-                 $nombre = 'pre'.$clave.$numeropregunta.'.mp3';
-                 //Ruta para la base de datos 
-                 $ruta_audio_basedatos = "uploads/".$clave."/audio-pregunta/".$nombre."";
-                 //Ruta para mover el archivo
-                 $ruta_audio = "uploads/".$clave."/audio-pregunta";
-                 $file_audio->move($ruta_audio,$nombre);
-        }else{
-            //Si algo sale mal nos marca un error 
-            throw new RuntimeException($file_audio->getErrorString().'('.$file_audio->getError().')');
-                 }
+            $data = ['Eliminacion'  => 'La pregunta se elimino correctamente'];
+            $this->session->set($data,true);
+            return redirect()->to(site_url("Preguntas/editarEvaluacion/$idEvaluacion"));
 
         }else{
-            $audio= 0;
-            $ruta_audio_basedatos = NULL;
+            return redirect()->to(site_url('Home/salir'));
         }
+
+        }else{
+            return redirect()->to(site_url('Home/salir'));
+        }
+
+    }
+
+
+
+
+
+
+
+
+    public function insertarPregunta()
+    {
+        if($this->session->get('login')){
+            $REQUEST = \Config\Services::request();  
+            $pregunta = $REQUEST->getPost('pregunta');
+            $clave = $REQUEST->getPost('clave');
+            $idEvaluacion = $REQUEST->getPost('idEvaluacion');
+            $valorpreguntas = $REQUEST->getPost('valorpreguntas');//Es el valor total de todas las preguntas
+            $valor = $REQUEST->getPost('valor');//Valor que le da al usuario a la pregunta
+            $hoy = date("Y-m-d H:i:s");
+            $tipoPregunta = $REQUEST->getPost('tipoPregunta');
+            $usermodel = new Preguntas_model($db);
+        if(empty($valorpreguntas)){
+              $numeropregunta = 1;
+        }else{
+          //Vamos a obtener el numero maximo de preguntas
+            $usermodel->Select('(SELECT max(num_pregunta) FROM preguntas WHERE idEvaluacion= '.$idEvaluacion.'AND deleted = 0) as ultimo_numero_pregunta ', FALSE);
+            $query = $usermodel->get();
+            $fila = $query -> getRow();
+            $numeropregunta = $fila->ultimo_numero_pregunta + 1;
+
+        }
+
+        //si la pregunta contiene audio 
+            if(isset($_POST['activarCargarAudioPregunta'])){
+                $file_audio = $REQUEST->getFile('archivo_audio_pregunta');
+                if ($file_audio->isValid() && ! $file_audio->hasMoved()){
+          
+                //Comprobar si existe la ruta donde se va a guardar el audio
+                    if (!is_dir('uploads/'.$clave.'/audio-pregunta')) {
+                        mkdir('./uploads/' .$clave.'/audio-pregunta', 0777, TRUE);
+                    }
+                 //Obtenemos el archivo 
+                    $audio= 1;
+                    $nombre = 'pre'.$clave.$numeropregunta.'.mp3';
+                 //Ruta para la base de datos 
+                    $ruta_audio_basedatos = "uploads/".$clave."/audio-pregunta/".$nombre."";
+                 //Ruta para mover el archivo
+                    $ruta_audio = "uploads/".$clave."/audio-pregunta";
+                    $file_audio->move($ruta_audio,$nombre);
+                }else{
+            //Si algo sale mal nos marca un error 
+                //throw new RuntimeException($file_audio->getErrorString().'('.$file_audio->getError().')');
+                }
+
+            }else{
+                $audio= 0;
+                $ruta_audio_basedatos = NULL;
+            }
 
        
         if(isset($_POST['activarCargarImagen'])){
             $file_imagen = $REQUEST->getFile('archivo_imagen');
-            if ($file_imagen->isValid() && ! $file_imagen->hasMoved())
-            {
-            
+            if ($file_imagen->isValid() && ! $file_imagen->hasMoved()){
                 //Comprobar si existe la ruta donde se va a guardar el audio
-            if (!is_dir('uploads/'.$clave.'/imagen-pregunta')) {
-                mkdir('./uploads/' .$clave.'/imagen-pregunta', 0777, TRUE);
-            }
+                if (!is_dir('uploads/'.$clave.'/imagen-pregunta')) {
+                    mkdir('./uploads/' .$clave.'/imagen-pregunta', 0777, TRUE);
+                }
             //Obtenemos el archivo 
-            $imagen= 1;
-            $nombre = 'pre'.$clave.$numeropregunta.'.jpg';
-            $ruta_imagen_basedatos = "uploads/".$clave."/imagen-pregunta/".$nombre."";  
-            $ruta_imagen = "uploads/".$clave."/imagen-pregunta";  
-            $file_imagen->move($ruta_imagen,$nombre);
-        }else{
+                $imagen= 1;
+                $nombre = 'pre'.$clave.$numeropregunta.'.jpg';
+                $ruta_imagen_basedatos = "uploads/".$clave."/imagen-pregunta/".$nombre."";  
+                $ruta_imagen = "uploads/".$clave."/imagen-pregunta";  
+                $file_imagen->move($ruta_imagen,$nombre);
+            }else{
             //Si algo sale mal nos marca un error 
-            throw new RuntimeException($file_imagen->getErrorString().'('.$file_imagen->getError().')');
-             }
+            //throw new RuntimeException($file_imagen->getErrorString().'('.$file_imagen->getError().')');
+            }
 
-        }else{
-            $imagen= 0;
-            $ruta_imagen_basedatos = NULL;
-        }  
+            }else{
+                $imagen= 0;
+                $ruta_imagen_basedatos = NULL;
+            }  
 
 
-        $query ="INSERT INTO preguntas(
+            $query ="INSERT INTO preguntas(
             idEvaluacion,
             num_pregunta,
             pregunta,
@@ -298,18 +312,18 @@ public function insertarPregunta()
             fecha_ultimo_cambio
           ) VALUES ($idEvaluacion,$numeropregunta,'".$pregunta."',$valor,$tipoPregunta,$imagen,'".$ruta_imagen_basedatos."',$audio,'".$ruta_audio_basedatos."','".$hoy."','".$hoy."')";
 
-        $usermodel->query($query);
+            $usermodel->query($query);
 
 
             //Opcion Multiple 
-        if($tipoPregunta == 2){
-            $opcion1 = $REQUEST->getPost('opcion_1');
-            $opcion2 = $REQUEST->getPost('opcion_2');
-            $opcion3 = $REQUEST->getPost('opcion_3');
-            $opcion4 = $REQUEST->getPost('opcion_4');
-            $respuesta = $REQUEST->getPost('opcion_correcta');
+            if($tipoPregunta == 2){
+                $opcion1 = $REQUEST->getPost('opcion_1');
+                $opcion2 = $REQUEST->getPost('opcion_2');
+                $opcion3 = $REQUEST->getPost('opcion_3');
+                $opcion4 = $REQUEST->getPost('opcion_4');
+                $respuesta = $REQUEST->getPost('opcion_correcta');
 
-            $usermodel = new Pregunta_opcion_multiple($db);
+                $usermodel = new Pregunta_opcion_multiple($db);
 
 
             $sqlOpcionMultiple="insert into pregunta_opcion_multiple(
@@ -370,7 +384,7 @@ public function insertarPregunta()
                 $usermodel ->query($sqlAudio);
         }else{
             //Si algo sale mal nos marca un error 
-            throw new RuntimeException($file_audio->getErrorString().'('.$file_audio->getError().')');
+           // throw new RuntimeException($file_audio->getErrorString().'('.$file_audio->getError().')');
                  }
 
         }
@@ -379,23 +393,22 @@ public function insertarPregunta()
         if($tipoPregunta == 4){
             $file_video = $REQUEST->getFile('archivo_video');
             //Verifica si es valido
-      if ($file_video->isValid() && ! $file_video->hasMoved())
-      {
+            if ($file_video->isValid() && ! $file_video->hasMoved()){
          
               //Comprobar si existe la ruta donde se va a guardar el audio
-          if (!is_dir('uploads/'.$clave.'/video')) {
-              mkdir('./uploads/' .$clave.'/video', 0777, TRUE);
-          }
+                if (!is_dir('uploads/'.$clave.'/video')) {
+                 mkdir('./uploads/' .$clave.'/video', 0777, TRUE);
+                }
 
           //Obtenemos el archivo 
-          $nombre = 'pregunta-ingles'.$numeropregunta.'.mp4';  
-          $ruta_video_basedatos = "uploads/".$clave."/video/".$nombre."";
-          $ruta_video = "uploads/".$clave."/video";
-          $video_extension= $file_video->getClientExtension();
-          $file_video->move($ruta_video,$nombre);
+                $nombre = 'pregunta-ingles'.$numeropregunta.'.mp4';  
+                $ruta_video_basedatos = "uploads/".$clave."/video/".$nombre."";
+                $ruta_video = "uploads/".$clave."/video";
+                $video_extension= $file_video->getClientExtension();
+                $file_video->move($ruta_video,$nombre);
 
           //Insertamos en la base de datos 
-          $sqlvideo ="INSERT INTO pregunta_opcion_video(
+                $sqlvideo ="INSERT INTO pregunta_opcion_video(
               idEvaluacion,
               idPregunta,
               nombre_video,
@@ -414,10 +427,10 @@ public function insertarPregunta()
 
               $usermodel = new Pregunta_opcion_video($db);
               $usermodel ->query($sqlvideo);
-      }else{
+            }else{
           //Si algo sale mal nos marca un error 
-          throw new RuntimeException($file_video->getErrorString().'('.$file_video->getError().')');
-               }
+          //throw new RuntimeException($file_video->getErrorString().'('.$file_video->getError().')');
+            }
 
         }
         //Creamos una variable que nos indica 
@@ -434,9 +447,10 @@ public function insertarPregunta()
         return redirect()->to(site_url("Evaluaciones/panel_evaluaciones/$idtipoevaluacion/$nivel/$leccion"));
     
 
-}else{
-    return redirect()->to(site_url('Home/salir'));
-   }
-}
+        }else{
+            return redirect()->to(site_url('Home/salir'));
+        }
+    
+    }
 
 }

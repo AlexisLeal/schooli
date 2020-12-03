@@ -200,7 +200,6 @@
 
 <script>
      function getevaluacionprueba(){
-       
       let nivel = document.getElementById('nivel').value;
       let leccion =  document.getElementById('leccion').value;
 

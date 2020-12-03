@@ -5,11 +5,11 @@ class Salones extends BaseController{
 
      
     public function index()
-	{
-        $data['page_title'] = "Salones";	
+	{	
         //Pasamos de forma dinamica el titulo  y se crear un array
         if($this->session->get('login')){
-        return view('salones/panel_salones',$data);
+            $data['page_title'] = "Salones";
+            return view('salones/panel_salones',$data);
         }else{
             return redirect()->to(site_url('Home/salir'));
            }
@@ -17,11 +17,11 @@ class Salones extends BaseController{
 	
 
     public function agregarsalon()
-	{
-        $data['page_title'] = "Agregar Nivel";	
+	{	
         //Pasamos de forma dinamica el titulo  y se crear un array
         if($this->session->get('login')){
-        return view('salones/crear/agregar_salon',$data);
+            $data['page_title'] = "Agregar Nivel";
+            return view('salones/crear/agregar_salon',$data);
         }else{
             return redirect()->to(site_url('Home/salir'));
            }
@@ -30,15 +30,13 @@ class Salones extends BaseController{
 
     public function versalon($id_salon)
 	{
-       	
         //Pasamos de forma dinamica el titulo  y se crear un array
         if($this->session->get('login')){
-
             $data['page_title'] = "Vista detalle Salon";
             $salon = getSalonEspecificogrupo($id_salon);
             $data['nombre'] = $salon->nombre;
             $data['comentarios'] = $salon->comentarios;
-        return view('salones/mostrar/ver_salon',$data);
+            return view('salones/mostrar/ver_salon',$data);
         }else{
             return redirect()->to(site_url('Home/salir'));
            }
@@ -56,7 +54,7 @@ class Salones extends BaseController{
             $data['nombre'] = $salon->nombre;
             $data['comentarios'] = $salon->comentarios;
             $data['idSl'] = $id_salon;
-        return view('salones/editar/editar_salon',$data);
+            return view('salones/editar/editar_salon',$data);
         }else{
             return redirect()->to(site_url('Home/salir'));
            }
@@ -74,20 +72,19 @@ class Salones extends BaseController{
             if(isset($_POST['submitSL'])){
                 $REQUEST = \Config\Services::request();
                 $hoy = date("Y-m-d H:i:s");
-
                 $data = ['nombre'=>$REQUEST->getPost('nombre'),
                 'comentarios'=>$REQUEST->getPost('comentarios'),
                 'fecha_creacion'=>$hoy,
                 'fecha_ultimo_cambio'=>$hoy,
-            ];
-            $usermodel = new Salones_model($db);
-            $usermodel->insert($data);
-            $data = ['Salon'  => 'El Salon se agregro correctamente'];
-            $this->session->set($data,true);
-            return redirect()->to(site_url('Salones/agregarsalon'));
+                ];
+                $usermodel = new Salones_model($db);
+                $usermodel->insert($data);
+                $data = ['Salon'  => 'El Salon se agregro correctamente'];
+                $this->session->set($data,true);
+                return redirect()->to(site_url('Salones/agregarsalon'));
 
-        }else{
-            return redirect()->to(site_url('Home/salir'));
+            }else{
+                return redirect()->to(site_url('Home/salir'));
            }
         }else{
             return redirect()->to(site_url('Home/salir'));
@@ -101,22 +98,18 @@ class Salones extends BaseController{
             if(isset($_POST['submitSL'])){
                 $REQUEST = \Config\Services::request();
                 $hoy = date("Y-m-d H:i:s");
-
                 $data = ['nombre'=>$REQUEST->getPost('nombre'),
                 'comentarios'=>$REQUEST->getPost('descripcion'),
                 'fecha_ultimo_cambio'=>$hoy,
-            ];
-            $id_salon = $REQUEST->getPost('idSl');
-            $usermodel = new Salones_model($db);
-            $usermodel->update($id_salon,$data);
-            $data = ['Salon'  => 'El salon se modifico correctamente'];
-            $this->session->set($data,true);
-
-            return redirect()->to(site_url("Salones/editarsalon/$id_salon"));
-
-
-        }else{
-            return redirect()->to(site_url('Home/salir'));
+                ];
+                $id_salon = $REQUEST->getPost('idSl');
+                $usermodel = new Salones_model($db);
+                $usermodel->update($id_salon,$data);
+                $data = ['Salon'  => 'El salon se modifico correctamente'];
+                $this->session->set($data,true);
+                return redirect()->to(site_url("Salones/editarsalon/$id_salon"));
+            }else{
+                return redirect()->to(site_url('Home/salir'));
            }
         }else{
             return redirect()->to(site_url('Home/salir'));
@@ -130,14 +123,13 @@ class Salones extends BaseController{
         if($this->session->get('login')){
             if(isset($_POST['submitSL'])){
                 $REQUEST = \Config\Services::request();
-    
                 $id_salon = $REQUEST->getPost('idSl');
                 $usermodel= new Salones_model($db);
                 $usermodel->delete(['id'=> $id_salon]);
                 return redirect()->to(site_url('Salones/index'));
 
-        }else{
-            return redirect()->to(site_url('Home/salir'));
+            }else{
+                return redirect()->to(site_url('Home/salir'));
            }
         }else{
             return redirect()->to(site_url('Home/salir'));
