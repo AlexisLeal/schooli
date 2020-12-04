@@ -98,7 +98,7 @@
                   <tr>
                   <td width="40%">
                 <?php if(isset($nombre_maestro)){?>
-                  Nombre del Teacher <?php echo $nombre_maestro ?></a>
+                  Nombre del Teacher <?php echo $nombre_maestro ?>
                 <?php }?>
                   </td>
                   </tr>

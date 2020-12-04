@@ -33,7 +33,8 @@ class Alumno extends BaseController{
                 $data['unidad_negocio'] = getUnidadNegocioEspecifico($row_grupo->id_unidad_negocio);	
                 $data['nombre_plantel'] = getPlanteEspecifico($row_grupo->id_plantel);
                 if($row->id_teacher != null){
-                    $data['nombre_maestro'] = getMaestroEspecifico($row->id_teacher);
+                    $maestro = getMaestroEspecifico($row->id_teacher);
+                    $data['nombre_maestro'] = $maestro->nombre;
                 }
                 return view('alumnos/alumno/index_alumno',$data);
             }else{
