@@ -8,11 +8,11 @@
       <li class="list-group-item"><a class="< ?php if($enlaceActivoCatalogo=='Cursos'){echo 'mi-active';}?>" href="< ?php echo site_url('Cursos/index')?>">Cursos</a></li>
       <li class="list-group-item"><a class="< ?php if($enlaceActivoCatalogo=='Frecuencia'){echo 'mi-active';}?>" href="< ?php echo site_url('Frecuencia/index')?>">Frecuencias</a></li>
     </ul>
-  </div>-->
+  </div> -->
 
 <ul class="list-group">        
   <li class="list-group-item"><a class="" href="<?php echo site_url('Alumno/perfil')?>">Perfil</a></li>
-  <li class="list-group-item"><a class="" href="<?php echo site_url('Alumno/evaluaciones')?>">Evaluaciones</a></li>
+  <li class="list-group-item"><a class="" href="">Recursos</a></li>
   <li class="list-group-item"><a class="" href="">Asistencia</a></li>
   <li class="list-group-item"><a class="" href="">Calificaciones</a></li>
   <li class="list-group-item"><a class="" href="">Tutor</a></li>
