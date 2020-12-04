@@ -98,7 +98,6 @@
                     <?php //echo $fila->descripcion;?><br/>
                     <?php //echo $fila->codigo_acceso;?><br/>
                   </div>
-                  
                 <?php
                 }
                 ?>

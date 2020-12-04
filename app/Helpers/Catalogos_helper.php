@@ -176,23 +176,4 @@ function getModalidadEspecifica($id_modalidad)
     return($row);
 
 }
- 
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ?>

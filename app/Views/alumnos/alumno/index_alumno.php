@@ -68,26 +68,19 @@
 
               <div class="card">
                 <div class="card-body">
-                <table class="tabla-registros" class="display" cellspacing="6" cellpadding="8">
-                <tbody>
-                <tr>
-                <td class="text-left">Test</td>
-                <td class="text-left">Test</td>
-                <td class="text-left">test</td>
-                <tr>
-                
-                </tr>
-                <td class="text-left">Test</td>
-                <td class="text-left">Test</td>
-                <td class="text-left">Test</td>
-                </tr>
-                </tbody>
+                <h4>Cursos</h4>
                 <!-- esta funcion esta en el helper catalago-->
                 <?php foreach(getAllCursos() as $fila){?>
-                         <?php echo $fila->nombre?>
+                
+                <div class="niveles" style="width:230px;height:100px;float:left;margin-left:10px;margin-right:10px;margin-bottom:40px;padding-top:10px;padding-bottom:10px;padding-left:10px;"> 
+                    </h4><?php echo $fila->nombre;?></h4>
+                    <br/>
+                    Nivel: <?php echo $fila->num_niveles;?><br/>
+                    Precio <?php echo $fila->precio;?><br/>
+                    Comentarios <?php echo $fila->comentarios;?><br/>
+                </div>
                 <?php } ?>
-
-                </table>
+                <!-- id,nombre,num_niveles,precio,precio_por_nivel,comentarios,estatus'-->
 
 
 
