@@ -1,5 +1,6 @@
 <?php namespace App\Controllers;
 use  App\Models\Grupos_alumnos_model;
+use  App\Models\Grupos_model;
 
 class Alumno extends BaseController{
 
@@ -9,18 +10,38 @@ class Alumno extends BaseController{
             $db = \Config\Database::connect();
             $id_usuario= $this->session->get('id');
             $usermodel = $db->table('usuarios U');
-            $usermodel->select('*');
+            $usermodel->select('AL.matricula,G_AL.id_grupo');
             $usermodel->join('alumnos AL',"U.id = AL.id_usuario and U.id = $id_usuario");
             $usermodel->join(' grupo_alumnos G_AL','G_AL.id_alumno = U.id and G_AL.deleted = 0','left');
             $resultado = $usermodel->get();   
             $row = $resultado->getRow();
             $data['matricula'] = $row->matricula;
-            $data['id_grupo'] = $row->id_grupo;
-            $data['page_title'] = "Alumnos";	
-            return view('alumnos/alumno/index_alumno',$data);
+            if($row->id_grupo != null){
+                $usermodel_grupo = new Grupos_model();
+                $usermodel_grupo->select('nombre,codigo_acceso,id_unidad_negocio,id_plantel');
+                $usermodel_grupo->where('id',$row->id_grupo);
+                $usermodel_grupo->where('deleted',0);
+                $query = $usermodel_grupo->get();
+                $row_grupo = $query->getRow();
+                $data['id_grupo'] = $row->id_grupo;
+                $data['nombre_grupo'] = $row_grupo->nombre;	
+                $data['codigo_acceso'] = $row_grupo->codigo_acceso;
+                //Funcion ubicada en helper alumnos 
+                $data['id_unidad_negocio']= $row_grupo->id_unidad_negocio;	
+                $data['id_plantel']= $row_grupo->id_plantel;	
+                $data['unidad_negocio'] = getUnidadNegocioEspecifico($row_grupo->id_unidad_negocio);	
+                $data['nombre_plantel'] = getPlanteEspecifico($row_grupo->id_plantel);
+                return view('alumnos/alumno/index_alumno',$data);
+
             }else{
-                return redirect()->to(site_url('Home/salir'));
-               }
+                $data['id_grupo'] = $row->id_grupo;
+                $data['page_title'] = "Alumnos";	
+                return view('alumnos/alumno/index_alumno',$data);
+            }
+           
+        }else{
+            return redirect()->to(site_url('Home/salir'));
+        }
 	}
     
     public function evaluaciones()
