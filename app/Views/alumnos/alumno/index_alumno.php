@@ -65,30 +65,73 @@
           </div>
           <div class="espacioUno"></div>
 
-
+          
               <div class="card">
                 <div class="card-body">
-                <h4>Cursos</h4>
-                <!-- esta funcion esta en el helper catalago-->
-                <?php foreach(getAllCursos() as $fila){?>
+                Grupo asignado.<br/>
+                <hr class="linea"/>
+                <div style="padding-left:30px">
+                <div class="card">
+                <div class="card-body">
+
+
                 
-                <div class="niveles" style="width:230px;height:100px;float:left;margin-left:10px;margin-right:10px;margin-bottom:40px;padding-top:10px;padding-bottom:10px;padding-left:10px;"> 
-                    </h4><?php echo $fila->nombre;?></h4>
-                    <br/>
-                    Nivel: <?php echo $fila->num_niveles;?><br/>
-                    Precio <?php echo $fila->precio;?><br/>
-                    Comentarios <?php echo $fila->comentarios;?><br/>
-                </div>
-                <?php } ?>
-                <!-- id,nombre,num_niveles,precio,precio_por_nivel,comentarios,estatus'-->
-
-
+                <?php
+                if($id_grupo == null){
+                  echo "No has sido asignado a un grupo";
+                }else{
+                ?>
+                
+                  
+                  Nombre del grupo:<?php echo $nombre_grupo;?> <br/>
+                  Codigo de acceso: <?php echo $codigo_acceso;?> <br/>
+                  <?php echo $unidad_negocio;?> <br/>
+                  Plantel: <?php echo $nombre_plantel;?> <br/>
+                
+                <?php
+                }
+                ?>
 
               </div>
             </div>
+            <br/>
+
+            <div class="card">
+                  <div class="card-body">
+                  <i class="fa fa-university" aria-hidden="true"> </i> Teachers
+                  <table width="90%" cellspacing="8" cellpadding="4">
+                  <tr>
+                  <td width="40%">
+                  Nombre del Teacher</a>
+                  </td>
+                  </tr>
+                  </table>
+                  </div>
+                </div>
+
+            <br/>
+            <div class="card">
+                  <div class="card-body">
+                  <i class="fa fa-cubes" aria-hidden="true"></i> Materiales <br/>
+                  <table width="90%" cellspacing="8" cellpadding="4">
+                  <tr>
+                  <td>Evaluaciónes</td>
+                  <td width="40%"></td>
+                  </tr>
+                  <tr>
+                  <td width="40%">
+                  Materiales
+                  </td>
+                  </tr>
+                  </table>
+                  </div>
+                </div>
+
+            </div>
           </div>
 
-
+          </div>
+          </div>
 
 
         </div>  
