@@ -79,18 +79,13 @@
                 <?php
                 if($id_grupo == null){
                   echo "No has sido asignado a un grupo";
-                }else{
-                ?>
-                
-                  
+                }else{ ?>
                   Nombre del grupo:<?php echo $nombre_grupo;?> <br/>
                   Codigo de acceso: <?php echo $codigo_acceso;?> <br/>
                   <?php echo $unidad_negocio;?> <br/>
                   Plantel: <?php echo $nombre_plantel;?> <br/>
                 
-                <?php
-                }
-                ?>
+                <?php }?>
 
               </div>
             </div>
@@ -102,7 +97,9 @@
                   <table width="90%" cellspacing="8" cellpadding="4">
                   <tr>
                   <td width="40%">
-                  Nombre del Teacher</a>
+                <?php if(isset($nombre_maestro)){?>
+                  Nombre del Teacher <?php echo $nombre_maestro ?></a>
+                <?php }?>
                   </td>
                   </tr>
                   </table>
@@ -110,22 +107,30 @@
                 </div>
 
             <br/>
+            <?php if($id_grupo != null){ ?>
             <div class="card">
                   <div class="card-body">
                   <i class="fa fa-cubes" aria-hidden="true"></i> Materiales <br/>
                   <table width="90%" cellspacing="8" cellpadding="4">
                   <tr>
                   <td>Evaluaciónes</td>
+            <?php foreach(getGruposEvaluacion($id_grupo) as $fila){?>
+               <tr> Nombre <?php echo $fila->nombre?> </tr>  
+                <?php }?>
                   <td width="40%"></td>
                   </tr>
                   <tr>
                   <td width="40%">
                   Materiales
-                  </td>
+            <?php foreach(getGrupoRecursos($id_grupo) as $fila){?>
+                  <tr> Nombre: <?php echo $fila->nombre;?></tr>
+            <?php }?>
+                  </td> 
                   </tr>
                   </table>
                   </div>
                 </div>
+            <?php }?>
 
             </div>
           </div>

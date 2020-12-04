@@ -10,9 +10,10 @@ class Alumno extends BaseController{
             $db = \Config\Database::connect();
             $id_usuario= $this->session->get('id');
             $usermodel = $db->table('usuarios U');
-            $usermodel->select('AL.matricula,G_AL.id_grupo');
+            $usermodel->select('AL.matricula,G_AL.id_grupo,G_TH.id_teacher');
             $usermodel->join('alumnos AL',"U.id = AL.id_usuario and U.id = $id_usuario");
-            $usermodel->join(' grupo_alumnos G_AL','G_AL.id_alumno = U.id and G_AL.deleted = 0','left');
+            $usermodel->join('grupo_alumnos G_AL','G_AL.id_alumno = U.id and G_AL.deleted = 0','left');
+            $usermodel->join('grupo_teachers G_TH','G_TH.id_grupo = G_AL.id_grupo and G_TH.deleted = 0','left');
             $resultado = $usermodel->get();   
             $row = $resultado->getRow();
             $data['matricula'] = $row->matricula;
@@ -31,8 +32,10 @@ class Alumno extends BaseController{
                 $data['id_plantel']= $row_grupo->id_plantel;	
                 $data['unidad_negocio'] = getUnidadNegocioEspecifico($row_grupo->id_unidad_negocio);	
                 $data['nombre_plantel'] = getPlanteEspecifico($row_grupo->id_plantel);
+                if($row->id_teacher != null){
+                    $data['nombre_maestro'] = getMaestroEspecifico($row->id_teacher);
+                }
                 return view('alumnos/alumno/index_alumno',$data);
-
             }else{
                 $data['id_grupo'] = $row->id_grupo;
                 $data['page_title'] = "Alumnos";	
