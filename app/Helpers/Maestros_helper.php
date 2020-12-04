@@ -15,7 +15,7 @@ function getAllMaestros2()
 function getMaestroEspecifico($id_usuario)
 {
     $usermodel = new Usuarios($db);
-    $usermodel->select('*');
+    $usermodel->select('nombre');
     $usermodel->where('deleted',0);
     $usermodel->where('id',$id_usuario);
     //$usermodel->where('id_tipo_usuario',3);
@@ -38,30 +38,6 @@ function getAllMaestros()
     $rowArray = $resultado->getResult();
     return($rowArray); 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
