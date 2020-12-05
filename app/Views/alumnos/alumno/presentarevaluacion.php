@@ -7,9 +7,12 @@
   <div class="row">
     <div class="col-md-2">
       <div class="text-center">
-        <a href="<?php echo site_url('/Panel/index'); ?>">
+
+        <a href="<?php echo site_url('/Alumno/index'); ?>">
           <img class="mb-4" src="<?php echo base_url('img-front/logo-brain.png');?>" alt="" width="52" height="52">
         </a>
+
+
       </div>
     </div>
     <div class="col-md-6">
@@ -78,14 +81,7 @@
 
             <div class="card">
                   <div class="card-body">
-                  <i class="fa fa-university" aria-hidden="true"> </i> Teachers
-                  <table width="90%" cellspacing="8" cellpadding="4">
-                  <tr>
-                  <td width="40%">
-                    Test
-                  </td>
-                  </tr>
-                  </table>
+
                   </div>
                 </div>
 

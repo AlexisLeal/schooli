@@ -7,7 +7,7 @@
   <div class="row">
     <div class="col-md-2">
       <div class="text-center">
-        <a href="<?php echo site_url('/Panel/index'); ?>">
+        <a href="<?php echo site_url('/Alumno/index'); ?>">
           <img class="mb-4" src="<?php echo base_url('img-front/logo-brain.png');?>" alt="" width="52" height="52">
         </a>
       </div>
@@ -131,7 +131,6 @@
                     echo "No tiene evaluaciones asignadas";
                    }else{
                   foreach($evaluacionGrupo as $fila){
-                    echo $fila->nombre;
                     ?>
                     <a href="<?php echo site_url("Alumno/presentarevaluacion/$fila->id");?>"><?php echo $fila->nombre;?></a>  <br/>
                     <?php
