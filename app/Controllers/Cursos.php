@@ -8,7 +8,7 @@ class Cursos extends BaseController{
 	{
         $data['page_title'] = "Cursos";	
         //Pasamos de forma dinamica el titulo  y se crear un array
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             return view('cursos/panel_cursos',$data);
         }else{
             return redirect()->to(site_url('Home/salir'));
@@ -19,7 +19,7 @@ class Cursos extends BaseController{
 	{
        
         //Pasamos de forma dinamica el titulo  y se crear un array
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             $data['page_title'] = "Agregar Curso";	
             return view('cursos/crear/agregar_curso',$data);
         }else{
@@ -30,7 +30,7 @@ class Cursos extends BaseController{
 
     public function vercurso($id_curso)
 	{
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             $curso = getCursoEspecifico($id_curso);
             $data['page_title'] = "Vista detalle del Curso";
             $data['nombre'] = $curso->nombre;
@@ -49,7 +49,7 @@ class Cursos extends BaseController{
     
     public function editarcurso($id_curso)
 	{
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             $data['page_title'] = "Editar Curso";
             $curso = getCursoEspecifico($id_curso);
             $data['page_title'] = "Vista detalle del Curso";
@@ -70,7 +70,7 @@ class Cursos extends BaseController{
 
     public function insertarcurso()
     {
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             if(isset($_POST['submitCR'])){
                 $REQUEST = \Config\Services::request();
                 $hoy = date("Y-m-d H:i:s");
@@ -100,7 +100,7 @@ class Cursos extends BaseController{
 
     public function editar()
     {
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             if(isset($_POST['submitCR'])){
                 $REQUEST = \Config\Services::request();
                 $hoy = date("Y-m-d H:i:s");
@@ -133,7 +133,7 @@ class Cursos extends BaseController{
 
     public function eliminar()
     {
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             if(isset($_POST['submitCR'])){
                 $REQUEST = \Config\Services::request();
                 $id_curso = $REQUEST->getPost('idCr');

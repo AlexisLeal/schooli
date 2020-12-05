@@ -25,7 +25,7 @@ class Comprobacion extends BaseController{
                     }
                         */
             $usermodel = new Usuarios($db);
-            $usermodel->select('id,nombre,apellido_paterno,apellido_materno,usuario,id_tipo_usuario');
+            $usermodel->select('id,nombre,apellido_paterno,apellido_materno,usuario,id_tipo_usuario,roll');
             $usermodel->where('usuario',$username);
             $usermodel->where('password',$password);
             $usermodel->where('id_tipo_usuario',$tipo_usuario);
@@ -48,6 +48,7 @@ class Comprobacion extends BaseController{
             'apellido_materno'=> $row->apellido_materno,
             'usuario' => $row->usuario,
             'tipo_usuario' => $row ->id_tipo_usuario,
+            'roll'=> $row->roll,
             'login' => true
             ];
         //introducimos los datos en la session y con get los obtemos checa la vista

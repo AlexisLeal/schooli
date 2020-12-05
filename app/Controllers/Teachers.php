@@ -8,7 +8,7 @@ class Teachers extends BaseController{
 
     public function index()
 	{
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             $data['page_title'] = "Teachers";
 
             return view('teachers/panel_teacher',$data);
@@ -21,7 +21,7 @@ class Teachers extends BaseController{
     public function agregarteacher()
 	{
        	
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             $data['page_title'] = "Teachers";
             return view('teachers/crear/agregar_teacher');
             }else{
@@ -32,7 +32,7 @@ class Teachers extends BaseController{
     public function verTeachers($id_maestro)
 	{
        	
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
 /*
             $usermodel_M = new Maestros($db);
             $usermodel_M->selec('idPlantel,idUnidadNegocio,comentarios,id_usuario');
@@ -104,7 +104,7 @@ class Teachers extends BaseController{
     public function editarTeachers($id_maestro)
 	{
        	
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
               /*
                 $usermodel_M = new Maestros($db);
                 $query_M = "SELECT * from maestros WHERE id = $id_maestro AND deleted = 0";
@@ -178,7 +178,7 @@ class Teachers extends BaseController{
     public function insertarmaestro()
     {
     
-        if($this->session->get('login')){ 
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             if(isset($_POST['submitTH'])){
                 $REQUEST = \Config\Services::request();
                 $hoy = date("Y-m-d H:i:s");
@@ -255,7 +255,7 @@ class Teachers extends BaseController{
 
     public function editar()
     {
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             
             if(isset($_POST['submitTH'])){
                 $REQUEST = \Config\Services::request();
@@ -345,7 +345,7 @@ class Teachers extends BaseController{
 
 
     public function eliminarTeachers(){
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             if(isset($_POST['submitTH'])){
                 $REQUEST = \Config\Services::request();
                 $id_maestro = $REQUEST->getPost('idMaestro');

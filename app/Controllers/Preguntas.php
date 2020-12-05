@@ -9,7 +9,7 @@ class Preguntas extends BaseController{
     public function agregar_preguntas($id_evaluacion)
 	{
 
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             //$REQUEST = \Config\Services::request(); 
            
             $usermodel = new Evaluaciones_model($db);
@@ -65,7 +65,7 @@ class Preguntas extends BaseController{
 //Nos muestra las preguntas de la evaluacion
     public function verEvaluacion($id_evaluacion)
     {
-        if($this->session->get('login')){  
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             $usermodel = new Evaluaciones_model($db);
             $usermodel->select('nombre,clave,tipo_evaluacion,nivel,leccion');
             $usermodel->where('id',$id_evaluacion);
@@ -110,7 +110,7 @@ class Preguntas extends BaseController{
 //Editar las preguntas de la evaluacion
     public function editarEvaluacion($id_evaluacion)
     {   
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             $usermodel = new Evaluaciones_model($db);
             $usermodel->select('nombre,clave,tipo_evaluacion,nivel,leccion');
             $usermodel->where('id',$id_evaluacion);
@@ -157,7 +157,7 @@ class Preguntas extends BaseController{
 
     public function deletedPreguntas()
     {
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             if(isset($_POST['submitAP'])){
                 $REQUEST = \Config\Services::request();
                 $idEvaluacion = $REQUEST->getPost('idEvaluacion');
@@ -225,7 +225,7 @@ class Preguntas extends BaseController{
 
     public function insertarPregunta()
     {
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             $REQUEST = \Config\Services::request();  
             $pregunta = $REQUEST->getPost('pregunta');
             $clave = $REQUEST->getPost('clave');

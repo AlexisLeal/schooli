@@ -10,7 +10,7 @@ class Asignacion extends BaseController{
 //Vistas
     public function alumnos($id_grupo,$id_unidad_negocio,$id_plantel)
     {
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             $data['id_grupo'] = $id_grupo;
             $data['id_unidad_negocio'] = $id_unidad_negocio;
             $data['id_plantel'] = $id_plantel;
@@ -22,7 +22,7 @@ class Asignacion extends BaseController{
 
     public function teacher($id_grupo,$id_unidad_negocio,$id_plantel)
     {
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             $data['id_grupo'] = $id_grupo;
             $data['id_unidad_negocio'] = $id_unidad_negocio;
             $data['id_plantel'] = $id_plantel;
@@ -34,7 +34,7 @@ class Asignacion extends BaseController{
 
     public function recursos($id_grupo)
     {
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             $data['id_grupo'] = $id_grupo;
             return view('grupos/asignacion/recurso',$data);
         }else{
@@ -46,7 +46,7 @@ class Asignacion extends BaseController{
 
     public function evaluacion($id_grupo)
     {   
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             $data['id_grupo'] = $id_grupo;
             return view('grupos/asignacion/evaluacion',$data);
         }else{
@@ -58,7 +58,7 @@ class Asignacion extends BaseController{
     // vistas para eliminar
     public function deletedAlumno($id_grupo)
     {
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             $data['id_grupo'] = $id_grupo;
             return view('grupos/asignacion/eliminar/alumno',$data);
         }else{
@@ -69,7 +69,7 @@ class Asignacion extends BaseController{
 
     public function deletedTeacher($id_grupo)
     {
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             $data['id_grupo'] = $id_grupo;
             return view('grupos/asignacion/eliminar/teacher',$data);
         }else{
@@ -79,7 +79,7 @@ class Asignacion extends BaseController{
     }
     public function deletedRecursos($id_grupo)
     {
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             $data['id_grupo'] = $id_grupo;
             return view('grupos/asignacion/eliminar/recurso',$data);
         }else{
@@ -89,7 +89,7 @@ class Asignacion extends BaseController{
 
     public function deletedEvaluacion($id_grupo)
     {
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             $data['id_grupo'] = $id_grupo;
             return view('grupos/asignacion/eliminar/evaluacion',$data);
         }else{
@@ -101,7 +101,7 @@ class Asignacion extends BaseController{
     //Asignar alumno
     public function asignaralumno()
     {
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             $REQUEST = \Config\Services::request();
             $hoy = date("Y-m-d H:i:s");
             $idgrupo = $REQUEST->getPost('id_grupo');
@@ -132,7 +132,7 @@ class Asignacion extends BaseController{
 
     public function asignarteacher()
     {
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             $REQUEST = \Config\Services::request();
             $hoy = date("Y-m-d H:i:s");
             $usermodel = new Grupos_teachers_model($db);
@@ -165,7 +165,7 @@ class Asignacion extends BaseController{
 
     public function asignarrecurso()
     {
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             $REQUEST = \Config\Services::request();
             $hoy = date("Y-m-d H:i:s");
             $usermodel = new Grupos_recursos_model($db);
@@ -192,7 +192,7 @@ class Asignacion extends BaseController{
 
     public function asigniarevaluacion()
     {
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             $REQUEST = \Config\Services::request(); 
             if(isset($_POST['submitEV'])){
                 $hoy = date("Y-m-d H:i:s"); 
@@ -201,9 +201,10 @@ class Asignacion extends BaseController{
                 'fecha_creacion' =>$hoy,
                 'fecha_ultimo_cambio' =>$hoy,
                 ]; 
+                $id_grupo = $REQUEST->getPost('id_grupo');
                 $usermodel = new Grupos_evaluaciones_model($db);
                 $usermodel->insert($data);
-                echo "Se agrego correctameto";
+                return redirect()->to(site_url("Asignacion/evaluacion/$id_grupo"));
             }else{
                 return redirect()->to(site_url('Home/salir'));
            }  
@@ -233,7 +234,7 @@ class Asignacion extends BaseController{
             //elimnar alumno 
     public function eliminarAlumno()
     {
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             $REQUEST = \Config\Services::request();
             if(isset($_POST['submitAL'])){
                 $id_grupo = $REQUEST->getPost('id_grupo');
@@ -254,7 +255,7 @@ class Asignacion extends BaseController{
 
     public function eliminarMaestro()
     {
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             $REQUEST = \Config\Services::request();
             if(isset($_POST['submitTH'])){
                 $usermodel = new Grupos_teachers_model($db);
@@ -277,7 +278,7 @@ class Asignacion extends BaseController{
 
     public function eliminarRecurso()
     {
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             $REQUEST = \Config\Services::request();
             if(isset($_POST['submitRC'])){  
                 $usermodel = new Grupos_recursos_model($db);
@@ -298,7 +299,7 @@ class Asignacion extends BaseController{
 
     public function eliminarEvaluacion()
     {
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             $REQUEST = \Config\Services::request();
             if(isset($_POST['submitEV'])){  
                 $usermodel = new Grupos_evaluaciones_model($db);
@@ -321,7 +322,7 @@ class Asignacion extends BaseController{
 
     public function reasignaralumno()
     {
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             if(isset($_POST['submitRSG'])){ 
                 $REQUEST = \Config\Services::request();
                 $usermodel = new Grupos_alumnos_model($db);

@@ -6,7 +6,7 @@ class Evaluaciones extends BaseController{
 
     public function index()
 	{
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             $data['page_title'] = "Evaluaciones";	
             //Pasamos de forma dinamica el titulo  y se crear un array   
             return view('evaluaciones/tipo_evaluaciones',$data);
@@ -17,7 +17,7 @@ class Evaluaciones extends BaseController{
   
     public function crear_evaluacion()
     {
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             $data['page_title'] = "Evaluaciones";	
             return view('evaluaciones/crear/crear_evaluaciones',$data);
         }else{
@@ -30,7 +30,7 @@ class Evaluaciones extends BaseController{
     {
         //Nos indica si es sistema o exci o basic 
 
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             if($view == 1){
             $data["tipo_evaluacion"] = "Sistema";
             $data["id_evaluacion"] = 1;
@@ -58,7 +58,7 @@ class Evaluaciones extends BaseController{
         $data['id_nivel'] = $id_nivel;
         //Hacemos esto para pasarlo ala pagina de manera dinamica 
         //y mas adelante se hara un query 
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             return view('evaluaciones/mostrar/lecciones',$data);
     }else{
         return redirect()->to(site_url('Home/salir'));
@@ -68,7 +68,7 @@ class Evaluaciones extends BaseController{
 
     public function panel_evaluaciones($id_evaluacion,$id_nivel,$id_leccion)
     {
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             $data['id_evaluacion'] = $id_evaluacion;
             $data['id_nivel'] = $id_nivel;
             $data['id_leccion'] = $id_leccion;
@@ -82,7 +82,7 @@ class Evaluaciones extends BaseController{
     //-------------------------------------------------- Funciones para insertar o actualizar en la base de datos ----------------------------------
     public function insertar_evaluacion()
     {
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             if(isset($_POST['crearEvaluacion'])){
                 $usermodel = new Evaluaciones_model($db);
                 $REQUEST = \Config\Services::request();

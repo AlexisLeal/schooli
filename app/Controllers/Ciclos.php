@@ -8,7 +8,7 @@ class Ciclos extends BaseController{
 	{
         $data['page_title'] = "Ciclos";	
         //Pasamos de forma dinamica el titulo  y se crear un array
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
              return view('ciclos/panel_ciclos',$data);
         }else{
             return redirect()->to(site_url('Home/salir'));
@@ -18,7 +18,7 @@ class Ciclos extends BaseController{
     public function agregarciclo()
 	{
         $data['page_title'] = "Agregar un Ciclo";
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             $data['page_title'] = "Ciclo";	
             return view('ciclos/crear/agregar_ciclo',$data);
         }else{
@@ -28,7 +28,7 @@ class Ciclos extends BaseController{
 
     public function verciclo($id_ciclo)
 	{   
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             $ciclo = getCicloEspecifico($id_ciclo);
             $data['nombre'] = $ciclo->nombre;
             $data['estatus'] = ($ciclo->estatus==1) ? "Activo" : "Inactivo";
@@ -44,7 +44,7 @@ class Ciclos extends BaseController{
 
     public function editarciclo($id_ciclo)
 	{
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             $data['page_title'] = "Editar";	
             $ciclo = getCicloEspecifico($id_ciclo);
             $data['nombre'] = $ciclo->nombre;
@@ -63,7 +63,7 @@ class Ciclos extends BaseController{
 
     public function insertarCiclo()
     {
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             if(isset($_POST['submitCL'])){
                 $REQUEST = \Config\Services::request();
                 $hoy = date("Y-m-d H:i:s");
@@ -92,7 +92,7 @@ class Ciclos extends BaseController{
 
     public function editar()
     {
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             if(isset($_POST['submitCL'])){
                 $REQUEST = \Config\Services::request();
                 $hoy = date("Y-m-d H:i:s");
@@ -121,7 +121,7 @@ class Ciclos extends BaseController{
 
     public function eliminar()
     {
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             if(isset($_POST['submitCL'])){
                 $REQUEST = \Config\Services::request();
                 $id_ciclo = $REQUEST->getPost('idCiclo');

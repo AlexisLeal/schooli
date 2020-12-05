@@ -7,7 +7,7 @@ class Frecuencia extends BaseController{
 	{
         $data['page_title'] = "Frecuencias";	
         //Pasamos de forma dinamica el titulo  y se crear un array
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             return view('frecuencias/panel_frecuencias',$data);
         }else{
             return redirect()->to(site_url('Home/salir'));
@@ -18,7 +18,7 @@ class Frecuencia extends BaseController{
 	{
         $data['page_title'] = "Frecuencias";	
         //Pasamos de forma dinamica el titulo  y se crear un array
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             return view('frecuencias/crear/agregar_frecuencia',$data);
         }else{
             return redirect()->to(site_url('Home/salir'));
@@ -27,7 +27,7 @@ class Frecuencia extends BaseController{
     
     public function verfrecuencia($id_frecuencia)
 	{
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             $frecuencia = getFrencueciaEspecifica($id_frecuencia);
             $nombremodalidad = getModalidadEspecifica($frecuencia->id_modalidad);
             $data['nombre'] = $frecuencia->nombre;
@@ -50,7 +50,7 @@ class Frecuencia extends BaseController{
     
     public function editarfrecuencia($id_frecuencia)
 	{
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             $data['page_title'] = "Frecuencias";
             $frecuencia = getFrencueciaEspecifica($id_frecuencia);
             $data['nombre'] = $frecuencia->nombre;
@@ -74,7 +74,7 @@ class Frecuencia extends BaseController{
 
     public function insertarfrecuencia()
     {
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             if(isset($_POST['submitFR'])){
                 $REQUEST = \Config\Services::request();
                 $hoy = date("Y-m-d H:i:s");
@@ -108,7 +108,7 @@ class Frecuencia extends BaseController{
 
     public function editar()
     {
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             if(isset($_POST['submitFR'])){
                 $REQUEST = \Config\Services::request();
                 $hoy = date("Y-m-d H:i:s");
@@ -144,7 +144,7 @@ class Frecuencia extends BaseController{
 
     public function eliminar()
     {
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             if(isset($_POST['submitFR'])){
                 $REQUEST = \Config\Services::request();
                 $id_frecuencia = $REQUEST->getPost('idFr');

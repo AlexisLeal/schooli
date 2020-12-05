@@ -6,7 +6,7 @@ class Panel extends BaseController{
     public function index()
 	{
      // $this->response->setHeader('Cache-Control', 'no-cache');
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4 ){
             $data['page_title'] = "Plataforma de evaluaciones INBI";
 		    return view('panel',$data);
         }else{
