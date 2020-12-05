@@ -197,12 +197,13 @@
                       $icono="fa-file fa-2x";
                       //<i class="fa fa-file" aria-hidden="true"></i>
                     }
-                  }
+                  
                   ?>
 
                   <a href="<?php echo base_url($fila->ruta);?>"><i class="fa <?php echo $icono;?>" aria-hidden="true"></i> <?php echo $fila->nombre;?></a>  <br/>
-                  
+                
                   <?php
+                  }
                    }
                   }
                    ?>
