@@ -41,11 +41,14 @@
 
 
 
-    <!--Ejemplo tabla con DataTables-->
     <div class="container">
       <div id="general">
         <div class="row">
-          <div class="col-md-3">
+
+
+
+
+        <div class="col-md-3">
             <?php include(APPPATH.'/Views/include/menu-alumno.php');?>
           </div>
 
@@ -65,35 +68,64 @@
           </div>
           <div class="espacioUno"></div>
 
-
               <div class="card">
                 <div class="card-body">
-                <h4>Cursos</h4>
-                <!-- esta funcion esta en el helper catalago-->
-                <?php foreach(getAllCursos() as $fila){?>
-                
-                <div class="niveles" style="width:230px;height:100px;float:left;margin-left:10px;margin-right:10px;margin-bottom:40px;padding-top:10px;padding-bottom:10px;padding-left:10px;"> 
-                    </h4><?php echo $fila->nombre;?></h4>
-                    <br/>
-                    Nivel: <?php echo $fila->num_niveles;?><br/>
-                    Precio <?php echo $fila->precio;?><br/>
-                    Comentarios <?php echo $fila->comentarios;?><br/>
+
+
+                <table>
+                <tr>
+                <td>Email</td><td><?php echo $email;?></td>
+                </tr>
+                <tr>
+                <td>Estado</td><td><?php echo $estado;?></td>
+                </tr>
+                <tr>
+                <td>Telefono</td><td><?php echo $telefono;?></td>
+                </tr>
+                <tr>
+                <td>Movil</td><td><?php echo $movil;?></td>
+                </tr>
+                <tr>
+                <td>Matricula</td><td><?php echo $matricula;?></td>
+                </tr>
+                <tr>
+                <td>Plantel</td><td><?php echo $plantel;?></td>
+                </tr>
+                <tr>
+                <td>Unidad de negocio</td><td><?php echo $unidad_negocio;?></td>
+                </tr>
+                <tr>
+                <td>Calle</td><td><?php echo $calle;?></td>
+                </tr>
+                <tr>
+                <td>Numero Interior</td><td><?php echo $numero_interior;?></td>
+                </tr>
+                <tr>
+                <td>Número Exterior</td><td><?php echo $numero_exterior;?></td>
+                </tr>
+                <tr>
+                <td>Número Exterior</td><td><?php echo $colonia;?></td>
+                </tr>
+                <tr>
+                <td>Número Exterior</td><td><?php echo $codigo_postal;?></td>
+                </tr>
+                <tr>
+                <td>Número Exterior</td><td><?php echo $municipio_delegacion;?></td>
+                </tr>
+                <tr>
+                <td>Número Exterior</td><td><?php echo $pais;?></td>
+                </tr>
+                </table>
+              
                 </div>
-                <?php } ?>
-                <!-- id,nombre,num_niveles,precio,precio_por_nivel,comentarios,estatus'-->
-
-
-
               </div>
-            </div>
-          </div>
+          </div> <!-- Termin contenido div col-md-9-->
 
 
+        </div>  <!-- Termin contenido row-->
+      </div><!-- Termin contenido div id general-->
+    </div><!-- Termin contenido div container-->
 
-
-        </div>  
-      </div>
-    </div>
 
 
       <div class="espacioDos"></div>

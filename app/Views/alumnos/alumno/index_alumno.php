@@ -110,7 +110,7 @@
             <?php if($id_grupo != null){ ?>
             <div class="card">
                   <div class="card-body">
-                  <i class="fa fa-cubes" aria-hidden="true"></i> Materiales <br/>
+                  <i class="fa fa-cubes" aria-hidden="true"></i> Recursos <br/>
                   <table width="90%" cellspacing="8" cellpadding="4">
                   <tr>
                   <td>Evaluaciónes</td>
