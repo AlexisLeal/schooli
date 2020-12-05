@@ -123,7 +123,9 @@
                   <td width="40%">
                   Materiales
             <?php foreach(getGrupoRecursos($id_grupo) as $fila){?>
+              <?php if(!empty($fila->id_grupo)){?>
                   <tr> Nombre: <?php echo $fila->nombre;?></tr>
+              <?php } ?>
             <?php }?>
                   </td> 
                   </tr>
