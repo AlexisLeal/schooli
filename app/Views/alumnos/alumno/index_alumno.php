@@ -132,7 +132,10 @@
                    }else{
                   foreach($evaluacionGrupo as $fila){
                     echo $fila->nombre;
-                   }
+                    ?>
+                    <a href="<?php echo site_url("Alumno/presentarevaluacion/$fila->id");?>"><?php echo $fila->nombre;?></a>  <br/>
+                    <?php
+                    }
                   }
                    ?>
                    
