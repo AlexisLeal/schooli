@@ -132,7 +132,10 @@
                    }else{
                   foreach($evaluacionGrupo as $fila){
                     echo $fila->nombre;
-                   }
+                    ?>
+                    <a href="<?php echo site_url("Alumno/presentarevaluacion/$fila->id");?>"><?php echo $fila->nombre;?></a>  <br/>
+                    <?php
+                    }
                   }
                    ?>
                    
@@ -200,9 +203,11 @@
                     }
                   
                   ?>
-                  <a href=""><i class="fa <?php echo $icono;?>" aria-hidden="true"></i> <?php echo $fila->nombre;?></a>  <br/>
+
+                  <a href="<?php echo base_url($fila->ruta);?>"><i class="fa <?php echo $icono;?>" aria-hidden="true"></i> <?php echo $fila->nombre;?></a>  <br/>
+                
                   <?php
-                    }
+                  }
                    }
                   }
                    ?>
