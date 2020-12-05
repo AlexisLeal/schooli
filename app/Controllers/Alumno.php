@@ -1,6 +1,7 @@
 <?php namespace App\Controllers;
-use  App\Models\Grupos_alumnos_model;
+//use  App\Models\Grupos_alumnos_model;
 use  App\Models\Grupos_model;
+use  App\Models\Evaluaciones_model;
 
 class Alumno extends BaseController{
 
@@ -48,7 +49,7 @@ class Alumno extends BaseController{
         }
 	}
     
-    public function evaluaciones()
+  /*  public function evaluaciones()
     {
         if($this->session->get('login')){
             $usermodel = new Grupos_alumnos_model($db);
@@ -67,11 +68,30 @@ class Alumno extends BaseController{
             return redirect()->to(site_url('Home/salir'));
            }
     }
-
+*/
     public function presentarevaluacion($id_evaluacion)
     {
         if($this->session->get('login')){
             $data['id_evaluacion'] = $id_evaluacion;
+            $usermodel = new Evaluaciones_model($db);
+            $usermodel->select('nombre,clave,tipo_evaluacion,nivel,leccion');
+            $usermodel->where('id',$id_evaluacion);
+            $usermodel->where('deleted',0);
+            //$query = "select * from evaluaciones where id = $id_evaluacion";
+            //$resultado = $usermodel ->query($query);
+            $resultado = $usermodel->get();
+            $row = $resultado -> getRow();
+            $data['idEvaluacion'] = $id_evaluacion;
+            $data['nombre'] = $row->nombre;
+            $data['clave'] = $row->clave;
+            $data['idtipoevaluacion'] = $row->tipo_evaluacion;
+            $data['nivel'] = $row->nivel;	
+            $data['leccion'] = $row->leccion;
+            $data['totalpreguntas'] = getTotalPreguntas($id_evaluacion);
+            $data['valorpreguntas'] =  getValorTotalPreguntas($id_evaluacion);
+            $nombre =getTipoEvaluacionEspecifico($row->tipo_evaluacion);
+            $data['tipo_evaluacion'] = $nombre->nombre;
+            $data['page_title'] = "Preguntas";	
             return view('alumnos/alumno/presentarevaluacion',$data);
         }else{
             return redirect()->to(site_url('Home/salir'));
