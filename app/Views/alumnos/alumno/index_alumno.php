@@ -150,53 +150,54 @@
                   </tr>
                   <tr>
                   <td>
-                  <?php 
-                   $recursosGrupo =  getGrupoRecursos($id_grupo);
+                  <?php
 
-                   if(empty($recursosGrupo)){
+                  $recursosGrupo =  getGrupoRecursos($id_grupo);
+
+                  if(empty($recursosGrupo)){
                     echo "No tiene evaluaciones asignadas";
-                   }else{
-                  foreach($recursosGrupo as $fila){
-                    if(!empty($fila->id_grupo)){
-                    switch($fila->extencion){
-                      case "docx":
-                        $icono = "fa-file-word-o fa-2x";
+                  }else{
+                    foreach($recursosGrupo as $fila){
+                      if(!empty($fila->id_grupo)){
+                        switch($fila->extencion){
+                          case "docx":
+                            $icono = "fa-file-word-o fa-2x";
                         //<i class="fa fa-file-word-o" aria-hidden="true"></i>
-                      break;
-                      case "xlsx":
-                        $icono = "fa-file-excel-o fa-2x";
-                        //<i class="fa fa-file-excel-o" aria-hidden="true"></i>
-                      break;
-                      case "pdf":
-                        $icono = "fa-file-pdf-o fa-2x";
-                        //<i class="fa fa-file-pdf-o" aria-hidden="true"></i>
-                      break;
-                      case "zip":
-                        $icono = "fa-file-archive-o fa-2x";
+                            break;
+                          case "xlsx":
+                            $icono = "fa-file-excel-o fa-2x";
+                            //<i class="fa fa-file-excel-o" aria-hidden="true"></i>
+                            break;
+                          case "pdf":
+                            $icono = "fa-file-pdf-o fa-2x";
+                            //<i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+                            break;
+                          case "zip":
+                            $icono = "fa-file-archive-o fa-2x";
                         //<i class="fa fa-file-archive-o" aria-hidden="true"></i>
-                      break;
-                      case "rar":
-                        $icono = "fa-file-archive-o fa-2x";
-                        //<i class="fa fa-file-archive-o" aria-hidden="true"></i>
-                      break;
-                      case "jpg":
-                        $icono = "fa-file-image-o fa-2x";
+                            break;
+                          case "rar":
+                            $icono = "fa-file-archive-o fa-2x";
+                            //<i class="fa fa-file-archive-o" aria-hidden="true"></i>
+                            break;
+                          case "jpg":
+                            $icono = "fa-file-image-o fa-2x";
                         //<i class="fa fa-file-image-o" aria-hidden="true"></i>
-                      break;
-                      case "png":
-                        $icono = "fa-file-image-o fa-2x";
+                            break;
+                          case "png":
+                            $icono = "fa-file-image-o fa-2x";
                         //<i class="fa fa-file-image-o" aria-hidden="true"></i>
-                      break;
-                      case "mp3":
-                        $icono = "fa-file-audio-o fa-2x";
+                            break;
+                          case "mp3":
+                            $icono = "fa-file-audio-o fa-2x";
                         //<i class="fa fa-file-audio-o" aria-hidden="true"></i>
-                      break;
-                      case "mp4":
-                        $icono = "fa-file-video-o fa-2x";
+                            break;
+                          case "mp4":
+                            $icono = "fa-file-video-o fa-2x";
                         //<i class="fa fa-file-video-o" aria-hidden="true"></i>
-                      break;
-                      default:
-                      $icono="fa-file fa-2x";
+                            break;
+                          default:
+                            $icono="fa-file fa-2x";
                       //<i class="fa fa-file" aria-hidden="true"></i>
                     }
                   
@@ -215,12 +216,6 @@
                   </td> 
                   </tr>
                   </table>
-
-
-
-
-
-
                   </div>
                 </div>
             <?php }?>
