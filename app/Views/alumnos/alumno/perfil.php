@@ -104,16 +104,16 @@
                 <td>Número Exterior</td><td><?php echo $numero_exterior;?></td>
                 </tr>
                 <tr>
-                <td>Número Exterior</td><td><?php echo $colonia;?></td>
+                <td>Colonia</td><td><?php echo $colonia;?></td>
                 </tr>
                 <tr>
-                <td>Número Exterior</td><td><?php echo $codigo_postal;?></td>
+                <td>Codigo Postal</td><td><?php echo $codigo_postal;?></td>
                 </tr>
                 <tr>
-                <td>Número Exterior</td><td><?php echo $municipio_delegacion;?></td>
+                <td>Municipio</td><td><?php echo $municipio_delegacion;?></td>
                 </tr>
                 <tr>
-                <td>Número Exterior</td><td><?php echo $pais;?></td>
+                <td>Pais</td><td><?php echo $pais;?></td>
                 </tr>
                 </table>
               

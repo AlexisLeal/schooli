@@ -113,7 +113,7 @@ function getGrupoRecursos($id_grupo)
 {
     $db = \Config\Database::connect();
     $usermodel = $db->table('recursos R');
-    $usermodel->select('R.id, R.nombre, G_RC.id_grupo');
+    $usermodel->select('R.id, R.nombre,R.extencion, G_RC.id_grupo');
     $usermodel->join('grupo_recursos G_RC',"R.id = G_RC.id_recurso and G_RC.id_grupo = $id_grupo and G_RC.deleted = 0",'left');
     $query = $usermodel->get();
     $resultado = $query->getResult();

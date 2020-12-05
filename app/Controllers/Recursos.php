@@ -76,7 +76,7 @@ class Recursos extends BaseController{
                 } 
                      $nombre_recurso = $recurso_archivo->getClientName();;
 
-                     $ruta_recurso_basedatos = "recursos/'.$recurso_extension.'/'.$nombre_recurso.'";
+                     $ruta_recurso_basedatos = "recursos/$recurso_extension/$nombre_recurso";
 
                      $ruta_mover_recurso = "recursos/".$recurso_extension;
                      $recurso_archivo->move($ruta_mover_recurso,$nombre_recurso);
@@ -91,6 +91,7 @@ class Recursos extends BaseController{
                 extencion,
                 tipo_archivo,
                 descripcion,
+                ruta,
                 fecha_creacion,
                 fecha_ultimo_cambio,
                 deleted
@@ -99,6 +100,7 @@ class Recursos extends BaseController{
                 '".$recurso_extension."',
                 '".$tipo_archivo."',
                 '".$descripcion."',
+                '".$ruta_recurso_basedatos."',
                 '".$hoy."',
                 '".$hoy."',
                 0)";

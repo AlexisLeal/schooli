@@ -98,8 +98,10 @@
                   <tr>
                   <td width="40%">
                 <?php if(isset($nombre_maestro)){?>
-                  Nombre del Teacher <?php echo $nombre_maestro ?>
-                <?php }?>
+                  Nombre del Teacher <?php echo $nombre_maestro ?></a>
+                <?php }else{
+                  echo "No tiene Teacher asignado.";
+                }?>
                   </td>
                   </tr>
                   </table>
@@ -111,25 +113,110 @@
             <div class="card">
                   <div class="card-body">
                   <i class="fa fa-cubes" aria-hidden="true"></i> Recursos <br/>
+
+
+
                   <table width="90%" cellspacing="8" cellpadding="4">
                   <tr>
                   <td>Evaluaciónes</td>
-            <?php foreach(getGruposEvaluacion($id_grupo) as $fila){?>
-               <tr> Nombre <?php echo $fila->nombre?> </tr>  
-                <?php }?>
-                  <td width="40%"></td>
                   </tr>
                   <tr>
-                  <td width="40%">
+                  <td>
+
+
+                   <?php 
+                   $evaluacionGrupo =  getGruposEvaluacion($id_grupo);
+
+                   if(empty($evaluacionGrupo)){
+                    echo "No tiene evaluaciones asignadas";
+                   }else{
+                  foreach($evaluacionGrupo as $fila){
+                    echo $fila->nombre;
+                   }
+                  }
+                   ?>
+                   
+                  
+                  <br/><br/>
+                  </td>
+                  </tr>  
+                
+                  <tr>
+                  <td>
                   Materiales
-            <?php foreach(getGrupoRecursos($id_grupo) as $fila){?>
-              <?php if(!empty($fila->id_grupo)){?>
-                  <tr> Nombre: <?php echo $fila->nombre;?></tr>
-              <?php } ?>
-            <?php }?>
+                  </td>
+                  </tr>
+                  <tr>
+                  <td>
+                  <?php 
+                   $recursosGrupo =  getGrupoRecursos($id_grupo);
+
+                   if(empty($recursosGrupo)){
+                    echo "No tiene evaluaciones asignadas";
+                   }else{
+                  foreach($recursosGrupo as $fila){
+                    if(!empty($fila->id_grupo)){
+                    switch($fila->extencion){
+                      case "docx":
+                        $icono = "fa-file-word-o fa-2x";
+                        //<i class="fa fa-file-word-o" aria-hidden="true"></i>
+                      break;
+                      case "xlsx":
+                        $icono = "fa-file-excel-o fa-2x";
+                        //<i class="fa fa-file-excel-o" aria-hidden="true"></i>
+                      break;
+                      case "pdf":
+                        $icono = "fa-file-pdf-o fa-2x";
+                        //<i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+                      break;
+                      case "zip":
+                        $icono = "fa-file-archive-o fa-2x";
+                        //<i class="fa fa-file-archive-o" aria-hidden="true"></i>
+                      break;
+                      case "rar":
+                        $icono = "fa-file-archive-o fa-2x";
+                        //<i class="fa fa-file-archive-o" aria-hidden="true"></i>
+                      break;
+                      case "jpg":
+                        $icono = "fa-file-image-o fa-2x";
+                        //<i class="fa fa-file-image-o" aria-hidden="true"></i>
+                      break;
+                      case "png":
+                        $icono = "fa-file-image-o fa-2x";
+                        //<i class="fa fa-file-image-o" aria-hidden="true"></i>
+                      break;
+                      case "mp3":
+                        $icono = "fa-file-audio-o fa-2x";
+                        //<i class="fa fa-file-audio-o" aria-hidden="true"></i>
+                      break;
+                      case "mp4":
+                        $icono = "fa-file-video-o fa-2x";
+                        //<i class="fa fa-file-video-o" aria-hidden="true"></i>
+                      break;
+                      default:
+                      $icono="fa-file fa-2x";
+                      //<i class="fa fa-file" aria-hidden="true"></i>
+                    }
+                  }
+                  ?>
+
+                  <a href=""><i class="fa <?php echo $icono;?>" aria-hidden="true"></i> <?php echo $fila->nombre;?></a>  <br/>
+                  <?php
+                   }
+                  }
+                   ?>
+                
+                
+
                   </td> 
                   </tr>
                   </table>
+
+
+
+
+
+
                   </div>
                 </div>
             <?php }?>
