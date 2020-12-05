@@ -7,7 +7,7 @@ class Niveles extends BaseController{
 	{
         $data['page_title'] = "Niveles";	
         //Pasamos de forma dinamica el titulo  y se crear un array
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             return view('niveles/panel_niveles',$data);
         }else{
             return redirect()->to(site_url('Home/salir'));
@@ -19,7 +19,7 @@ class Niveles extends BaseController{
     public function agregarnivel()
 	{	
         //Pasamos de forma dinamica el titulo  y se crear un array
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             $data['page_title'] = "Agregar Nivel";
             return view('niveles/crear/agregar_nivel',$data);
         }else{
@@ -31,7 +31,7 @@ class Niveles extends BaseController{
     public function vernivel($id_nivel)
 	{
         //Pasamos de forma dinamica el titulo  y se crear un array
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             $data['page_title'] = "Vista detalle Nivel";
             $nivel = getNivelEspecificogrupo($id_nivel);
             $data['nombre'] = $nivel->nombre;
@@ -47,7 +47,7 @@ class Niveles extends BaseController{
     public function editarnivel($id_nivel)
 	{
         //Pasamos de forma dinamica el titulo  y se crear un array
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             $data['page_title'] = "Editar Nivel";
             $nivel = getNivelEspecificogrupo($id_nivel);
             $data['nombre'] = $nivel->nombre;
@@ -65,7 +65,7 @@ class Niveles extends BaseController{
 
     public function insertarnivel()
     {
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             if(isset($_POST['submitNV'])){
                 $REQUEST = \Config\Services::request();
                 $hoy = date("Y-m-d H:i:s");
@@ -90,7 +90,7 @@ class Niveles extends BaseController{
 
     public function editar()
     {
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             if(isset($_POST['submitNV'])){
                 $REQUEST = \Config\Services::request();
                 $hoy = date("Y-m-d H:i:s");
@@ -116,7 +116,7 @@ class Niveles extends BaseController{
 
     public function eliminar()
     {
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             if(isset($_POST['submitNV'])){
                 $REQUEST = \Config\Services::request();
                 $id_nivel = $REQUEST->getPost('idNv');

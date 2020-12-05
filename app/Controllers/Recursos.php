@@ -5,7 +5,7 @@ class Recursos extends BaseController{
 
     public function recursos()
 	{
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             $data['page_title'] = "Recursos";	
             return view('recursos/recursos',$data);
         }else{
@@ -16,7 +16,7 @@ class Recursos extends BaseController{
     
     public function agregarRecurso()
 	{
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             $REQUEST         = \Config\Services::request();
             
             $hoy             = date("Y-m-d H:i:s");

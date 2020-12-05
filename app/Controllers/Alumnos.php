@@ -9,7 +9,7 @@ class Alumnos extends BaseController{
     public function index()
 	{
         
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
         $data['page_title'] = "Alumnos";	
              return view('alumnos/panel_alumnos',$data);
         }else{
@@ -17,7 +17,7 @@ class Alumnos extends BaseController{
            }
     }
 
-    //Funcion para darle una vista a un alumno 
+  /*  //Funcion para darle una vista a un alumno 
     public function indexAlumno()
     {  
         if($this->session->get('login')){
@@ -37,12 +37,12 @@ class Alumnos extends BaseController{
                }
         
     }
-
+*/
 
     //Tambien le podemos pasar el parametro de la matricula 
     public function verAlumno($id_alumno)
     {
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
 
 /*
             $usermodel_A = new Alumnos_model($db);
@@ -109,7 +109,7 @@ class Alumnos extends BaseController{
 
     public function agregaralumnos()
     {
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             return view('alumnos/crear/agregar_alumno');
         }else{
             return redirect()->to(site_url('Home/salir'));
@@ -119,7 +119,7 @@ class Alumnos extends BaseController{
 
     public function editaralumno($id_alumno)
     {
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
            /*
                 $usermodel_A = new Alumnos_model($db);
                 $query_A = "SELECT * from alumnos WHERE id = $id_alumno AND deleted = 0";
@@ -188,7 +188,7 @@ class Alumnos extends BaseController{
     //FUNCIONES QUE MODIFICAN A LA BASE DE DATOS
     public function insertarAlumno()
     {
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             if(isset($_POST['submitAL'])){
                 $REQUEST = \Config\Services::request();
                 $hoy = date("Y-m-d H:i:s");
@@ -257,7 +257,7 @@ class Alumnos extends BaseController{
 
     public function editar()
     {
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             if(isset($_POST['submitAL'])){
                 $REQUEST = \Config\Services::request();
                 $hoy = date("Y-m-d H:i:s");
@@ -357,7 +357,7 @@ class Alumnos extends BaseController{
 
     public function eliminarAlumno()
     {
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             if(isset($_POST['submitAL'])){
             $usermodel_D = new Direcciones($db);
             $REQUEST = \Config\Services::request();

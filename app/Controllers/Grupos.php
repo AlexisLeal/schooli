@@ -6,7 +6,7 @@ class Grupos extends BaseController{
     public function index()
 	{
         //Pasamos de forma dinamica el titulo  y se crear un array
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             $data['page_title'] = "Grupos";	
             return view('grupos/panel_grupos',$data);
         }else{
@@ -18,7 +18,7 @@ class Grupos extends BaseController{
 
     public function agregargrupo()
 	{   
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             return view('grupos/crear/agregar_grupo');
         }else{
             return redirect()->to(site_url('Home/salir'));
@@ -28,7 +28,7 @@ class Grupos extends BaseController{
     public function vergrupo($id_grupo)
 	{
         
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             $usermodel = new Grupos_model();
             $usermodel->select('nombre,codigo_acceso,id_unidad_negocio,id_plantel');
             $usermodel->where('id',$id_grupo);
@@ -56,7 +56,7 @@ class Grupos extends BaseController{
 
     public function insertargrupo()
     {
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             if(isset($_POST['submitGP'])){
                 $REQUEST = \Config\Services::request();
                 $nombregrupo = $REQUEST->getPost('nombre');
@@ -123,7 +123,7 @@ class Grupos extends BaseController{
 
     public function editar()
     {
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             if(isset($_POST['submitGP'])){
 
             }else{
@@ -138,7 +138,7 @@ class Grupos extends BaseController{
 
     public function eliminar()
     {
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             if(isset($_POST['submitGP'])){
 
         }else{

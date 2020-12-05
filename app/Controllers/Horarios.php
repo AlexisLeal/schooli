@@ -5,7 +5,7 @@ class Horarios extends BaseController{
      
     public function index()
 	{
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             $data['page_title'] = "Horarios";
             return view('horarios/panel_horarios',$data);
         }else{
@@ -17,7 +17,7 @@ class Horarios extends BaseController{
     public function agregarhorario()
 	{
         //Pasamos de forma dinamica el titulo  y se crear un array
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             $data['page_title'] = "Agregar Horario";
             return view('horarios/crear/agregar_horario',$data);
         }else{
@@ -28,7 +28,7 @@ class Horarios extends BaseController{
 
     public function verhorario($id_horario)
 	{
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             $data['page_title'] = "Vista detalle de Horario";
             $horario = getHorarioEspecifico($id_horario);
             $data['nombre'] = $horario->nombre;
@@ -47,7 +47,7 @@ class Horarios extends BaseController{
     public function editarhorario($id_horario)
 	{
         //Pasamos de forma dinamica el titulo  y se crear un array
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             $data['page_title'] = "Vista detalle de Horario";
             $horario = getHorarioEspecifico($id_horario);
             $data['nombre'] = $horario->nombre;
@@ -68,7 +68,7 @@ class Horarios extends BaseController{
 
     public function insertarHorario()
     {
-        if($this->session->get('login')){     
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             if(isset($_POST['submitHO'])){
                 $REQUEST = \Config\Services::request();
                 $hoy = date("Y-m-d H:i:s");
@@ -95,7 +95,7 @@ class Horarios extends BaseController{
     }
     public function editar()
     {
-        if($this->session->get('login')){     
+        if($this->session->get('login') && $this->session->get('roll') == 4){   
             if(isset($_POST['submitHO'])){
                 $REQUEST = \Config\Services::request();
                 $hoy = date("Y-m-d H:i:s");
@@ -125,7 +125,7 @@ class Horarios extends BaseController{
 
     public function eliminar()
     {
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             if(isset($_POST['submitHO'])){
                 $REQUEST = \Config\Services::request();
                 $id_horario = $REQUEST->getPost('idHO');

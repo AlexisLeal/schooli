@@ -7,7 +7,7 @@ class Salones extends BaseController{
     public function index()
 	{	
         //Pasamos de forma dinamica el titulo  y se crear un array
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             $data['page_title'] = "Salones";
             return view('salones/panel_salones',$data);
         }else{
@@ -19,7 +19,7 @@ class Salones extends BaseController{
     public function agregarsalon()
 	{	
         //Pasamos de forma dinamica el titulo  y se crear un array
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             $data['page_title'] = "Agregar Nivel";
             return view('salones/crear/agregar_salon',$data);
         }else{
@@ -31,7 +31,7 @@ class Salones extends BaseController{
     public function versalon($id_salon)
 	{
         //Pasamos de forma dinamica el titulo  y se crear un array
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             $data['page_title'] = "Vista detalle Salon";
             $salon = getSalonEspecificogrupo($id_salon);
             $data['nombre'] = $salon->nombre;
@@ -48,7 +48,7 @@ class Salones extends BaseController{
 	{
        
         //Pasamos de forma dinamica el titulo  y se crear un array
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             $salon = getSalonEspecificogrupo($id_salon);
             $data['page_title'] = "Editar Salon";	
             $data['nombre'] = $salon->nombre;
@@ -68,7 +68,7 @@ class Salones extends BaseController{
 
     public function insertasalon()
     {
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             if(isset($_POST['submitSL'])){
                 $REQUEST = \Config\Services::request();
                 $hoy = date("Y-m-d H:i:s");
@@ -94,7 +94,7 @@ class Salones extends BaseController{
 
     public function editar()
     {
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             if(isset($_POST['submitSL'])){
                 $REQUEST = \Config\Services::request();
                 $hoy = date("Y-m-d H:i:s");
@@ -120,7 +120,7 @@ class Salones extends BaseController{
 
     public function eliminar()
     {
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
             if(isset($_POST['submitSL'])){
                 $REQUEST = \Config\Services::request();
                 $id_salon = $REQUEST->getPost('idSl');
