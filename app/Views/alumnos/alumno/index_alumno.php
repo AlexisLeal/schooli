@@ -199,7 +199,8 @@
                     }
                   ?>
 
-                  <a href=""><i class="fa <?php echo $icono;?>" aria-hidden="true"></i> <?php echo $fila->nombre;?></a>  <br/>
+                  <a href="<?php echo base_url($fila->ruta);?>"><i class="fa <?php echo $icono;?>" aria-hidden="true"></i> <?php echo $fila->nombre;?></a>  <br/>
+                  
                   <?php
                    }
                   }
