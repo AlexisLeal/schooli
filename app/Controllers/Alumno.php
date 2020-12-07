@@ -156,7 +156,6 @@ class Alumno extends BaseController{
                 foreach($resultado as $fila){
                     if($fila->idTipoPregunta == 2){
                         
-
                     }
                 }
 
