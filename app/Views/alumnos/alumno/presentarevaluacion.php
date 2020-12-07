@@ -1,5 +1,15 @@
 <?php include(APPPATH.'/Views/include/header.php');?>
+<meta name="google" content="notranslate">
+<style>
+#contestarEvaluacion {
+    display:none;
+}
 
+.pers {
+    margin-left:20px;
+}
+
+</style>
 <div class="espacioDos"></div>
 <header id="barra-superior">
 
@@ -94,8 +104,25 @@
               <tr><td><p class="font-weight-bold">Tipo Evaluacion:</p></td><td><?php echo $tipo_evaluacion;?></td></tr>
               <tr><td><p class="font-weight-bold">Clave de evaluación:</p></td><td><?php echo $clave;?></td></tr>
               <tr><td><p class="font-weight-bold">Valor total.</p></td><td><?php echo $valorpreguntas;?></td></tr>
+              <tr><td>Instrucciones</td><td></td></tr>
+              <tr><td colspan="2">Aquí van las indiciaciones para el estaudiante de que dando click para iniciar la evaluacion
+              se tiene que completar la evaluacíon.</td></tr>
+              <tr><td colspan="2">
+              <div class="text-center">
+              <br/><br/>
+              <button name="btnIniciarEvaluacion" class="btn btn-success btn-sm" id="btnIniciarEvaluacion" onclick="mostrarEvaluacion()">Iniciar Evaluación</button>
+              </div>
+              </td></tr>
               </table>
+            <br/>
+            <br/>
 
+<!-- Esta evaluacion tiene un estimado de tiempo para contestar (timer, definido)
+cuando el usuario de click en iniciar
+que no se pueda cerrar la ventana del navegadorsi el usuario dice que 
+similar_textque se guarden todos los datos y luego ya se cierre el navegador
+-->
+            <div id="contestarEvaluacion" style="background-color:#cdcdcd;">
 
               <div class="row">
                 <div class="col-md-2 text-center">
@@ -119,7 +146,7 @@
                   </div>
                   <div class="col-md-8">
                   <?php
-                  echo $fila->pregunta;
+                  //echo $fila->pregunta;
 
                   if($fila->tiene_imagen==1 || $fila->tiene_audio_pregunta==1){
                       if($fila->tiene_imagen==1){
@@ -172,19 +199,29 @@
               // si es opcion multiple
               ?>
               <div class="row">
+              <br/>
                 <div class="col-md-2 text-center">
                 
                 </div>
                 <div class="col-md-8">
                 <?PHP
+                
                 $pregunta_multiple = getPreguntaOpcion_multiple($idEvaluacion,$idPregunta);
                 ?>
-                <table>
+                <br/>
+                
+                <table width="100%">
                   <tr>
-                  <td><?php echo empty($pregunta_multiple->valor1) ? 0 : $pregunta_multiple->valor1;?> <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2"></td>
-                  <td><?php echo empty($pregunta_multiple->valor2) ? 0 : $pregunta_multiple->valor2;?> <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2"></td>
-                  <td><?php echo empty($pregunta_multiple->valor3) ? 0 : $pregunta_multiple->valor3;?> <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2"></td>
-                  <td><?php echo empty($pregunta_multiple->valor4) ? 0 : $pregunta_multiple->valor4;?> <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2"></td>
+                  <!--
+                  <td width="20%"> < ?php echo empty($pregunta_multiple->valor1) ? 0 : $pregunta_multiple->valor1;?> <input class="form-check-input pers" type="radio" name="exampleRadios" id="exampleRadios2" value="option2"> </td>
+                  <td width="20%"> < ?php echo empty($pregunta_multiple->valor2) ? 0 : $pregunta_multiple->valor2;?> <input class="form-check-input pers" type="radio" name="exampleRadios" id="exampleRadios2" value="option2"> </td>
+                  <td width="20%"> < ?php echo empty($pregunta_multiple->valor3) ? 0 : $pregunta_multiple->valor3;?> <input class="form-check-input pers" type="radio" name="exampleRadios" id="exampleRadios2" value="option2"> </td>
+                  <td width="20%"> < ?php echo empty($pregunta_multiple->valor4) ? 0 : $pregunta_multiple->valor4;?> <input class="form-check-input pers" type="radio" name="exampleRadios" id="exampleRadios2" value="option2"> </td>
+                -->
+                  <td width="20%"> <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2"> <?php echo "<span class='pers'>".$pregunta_multiple->valor1."</span>";?>  </td>
+                  <td width="20%"> <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2"> <?php echo "<span class='pers'>".$pregunta_multiple->valor2."</span>";?>  </td>
+                  <td width="20%"> <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2"> <?php echo "<span class='pers'>".$pregunta_multiple->valor3."</span>";?>  </td>
+                  <td width="20%"> <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2"> <?php echo "<span class='pers'>".$pregunta_multiple->valor4."</span>";?>  </td>
                 </tr>
               </table>
                 
@@ -192,6 +229,7 @@
           <div class="col-md-2 text-center">
           
           </div>
+          <br/><br/>
           </div>
           <?php
           break;
@@ -290,7 +328,7 @@
           
             </div>
         </div>
-
+</div><!-- Termina el div que contiene el contenido de la evaluación que se va a contestar -->
 
 
 
@@ -381,4 +419,19 @@
       <div class="espacioDos"></div>
       <div class="espacioDos"></div>
 
+<script>
+/*
+const selectElement = document.querySelector('#btnIniciarEvaluacion');
+selectElement.addEventListener('click', (event) => {
+    var contestarEvaluacion = document.getElementById("contestarEvaluacion");
+    contestarEvaluacion.style.display="block";
+}*/
+
+function mostrarEvaluacion(){
+var contestarEvaluacion = document.getElementById("contestarEvaluacion");
+contestarEvaluacion.style.display="block";
+    //#contestarEvaluacion 
+    //display:none;
+}
+</script>
 <?php include(APPPATH.'Views/include/footer.php');?>
