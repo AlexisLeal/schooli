@@ -122,6 +122,7 @@ cuando el usuario de click en iniciar
 que no se pueda cerrar la ventana del navegadorsi el usuario dice que 
 similar_textque se guarden todos los datos y luego ya se cierre el navegador
 -->
+            <form action="" method="post">
             <div id="contestarEvaluacion" style="background-color:#cdcdcd;">
             <br/>
             <div class="text-right">
@@ -336,7 +337,7 @@ similar_textque se guarden todos los datos y luego ya se cierre el navegador
         </div>
 </div><!-- Termina el div que contiene el contenido de la evaluación que se va a contestar -->
 
-
+</form>
 
 
 
@@ -426,44 +427,28 @@ similar_textque se guarden todos los datos y luego ya se cierre el navegador
       <div class="espacioDos"></div>
 
 <script>
-/*
-const selectElement = document.querySelector('#btnIniciarEvaluacion');
-selectElement.addEventListener('click', (event) => {
-    var contestarEvaluacion = document.getElementById("contestarEvaluacion");
-    contestarEvaluacion.style.display="block";
-}*/
-
 function mostrarEvaluacion(){
-var contestarEvaluacion = document.getElementById("contestarEvaluacion");
-  contestarEvaluacion.style.display="block";
-  contestarEvaluacion.style.opacity="0";
-  
-function aparecer(){
+  let idAparecer = document.getElementById("contestarEvaluacion");
+
+
+function aparecer(idAparecer,num){
+  idAparecer.style.display="block";
+  idAparecer.style.opacity=0;
+
+  for(i = 1; i<=10; i++){
+	let time = i * 0.1;
+	let n = i * 100;
+	setTimeout(function(){ idAparecer.style.opacity=time; },n); 
+  }
 
 }
-aparecer();
-
-  setTimeout(function(){ contestarEvaluacion.style.opacity="0.1"; }, 100);
-  setTimeout(function(){ contestarEvaluacion.style.opacity="0.2"; }, 200);
-  setTimeout(function(){ contestarEvaluacion.style.opacity="0.3"; }, 300);
-  setTimeout(function(){ contestarEvaluacion.style.opacity="0.4"; }, 400);
-  setTimeout(function(){ contestarEvaluacion.style.opacity="0.5"; }, 500);
-  setTimeout(function(){ contestarEvaluacion.style.opacity="0.6"; }, 600);
-  setTimeout(function(){ contestarEvaluacion.style.opacity="0.7"; }, 700);
-  setTimeout(function(){ contestarEvaluacion.style.opacity="0.8"; }, 800);
-  setTimeout(function(){ contestarEvaluacion.style.opacity="0.9"; }, 900);
-  setTimeout(function(){ contestarEvaluacion.style.opacity="1"; }, 1000);
 
 
-  /*contestarEvaluacion.style.opacity="0.8";
-  contestarEvaluacion.style.opacity="1";*/
 
-  //#contestarEvaluacion 
-  //display:none;
+let num=10;
+aparecer(idAparecer,num);
+
   document.getElementById("btnIniciarEvaluacion").disabled=true;
-    
-
-    
 }
 </script>
 <?php include(APPPATH.'Views/include/footer.php');?>
