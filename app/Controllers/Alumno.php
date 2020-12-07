@@ -149,19 +149,13 @@ class Alumno extends BaseController{
                 $idEvaluacion = $REQUEST->getPost('');
                 $db = \Config\Database::connect();
                 $usermodel = $db->table('evaluaciones EV');
-                $usermodel->select('P.idTipoPregunta');
+                $usermodel->select('P.id, P.idTipoPregunta');
                 $usermodel->join('preguntas P',"EV.id = P.idEvaluacion AND P.idEvaluacion = $idEvaluacion AND P.deleted  = 0  and EV.deleted = 0");
                 $query = $usermodel->get();
                 $resultado = $query->getResult();
                 foreach($resultado as $fila){
                     if($fila->idTipoPregunta == 2){
-                        $usermodelPreguntas = new Preguntas_model($db);
-                        $usermodelPreguntas->select('id');
-                        $usermodelPreguntas->where('idEvaluacion',$idEvaluacion);
-                        $usermodelPreguntas->where('deleted',0);
-                        $usermodelPreguntas->where('idTipoPregunta',2);
-                        $querPreguntas = $usermodelPreguntas->get();
-                        $resultadoPreguntas = $querPreguntas->getResult();
+                        
 
                     }
                 }
