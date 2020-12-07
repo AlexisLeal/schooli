@@ -191,7 +191,7 @@ similar_textque se guarden todos los datos y luego ya se cierre el navegador
               
               </div>
               <div class="col-md-8">
-              <input type="text" class="form-control" required name="<?php echo $fila->id;?>"
+              <input type="text" class="form-control" required name="<?php echo $fila->num_pregunta;?>"
               id="">
               </div>
               <div class="col-md-2 text-center">
@@ -224,10 +224,10 @@ similar_textque se guarden todos los datos y luego ya se cierre el navegador
                   <td width="20%"> < ?php echo empty($pregunta_multiple->valor3) ? 0 : $pregunta_multiple->valor3;?> <input class="form-check-input pers" type="radio" name="exampleRadios" id="exampleRadios2" value="option2"> </td>
                   <td width="20%"> < ?php echo empty($pregunta_multiple->valor4) ? 0 : $pregunta_multiple->valor4;?> <input class="form-check-input pers" type="radio" name="exampleRadios" id="exampleRadios2" value="option2"> </td>
                 -->
-                  <td width="20%"> <input class="form-check-input" type="radio" required name="<?php echo $fila->id;?>" id="exampleRadios2" value="option2"> <?php echo "<span class='pers'>".$pregunta_multiple->valor1."</span>";?>  </td>
-                  <td width="20%"> <input class="form-check-input" type="radio" required name="<?php echo $fila->id;?>" id="exampleRadios2" value="option2"> <?php echo "<span class='pers'>".$pregunta_multiple->valor2."</span>";?>  </td>
-                  <td width="20%"> <input class="form-check-input" type="radio" required name="<?php echo $fila->id;?>" id="exampleRadios2" value="option2"> <?php echo "<span class='pers'>".$pregunta_multiple->valor3."</span>";?>  </td>
-                  <td width="20%"> <input class="form-check-input" type="radio" required name="<?php echo $fila->id;?>" id="exampleRadios2" value="option2"> <?php echo "<span class='pers'>".$pregunta_multiple->valor4."</span>";?>  </td>
+                  <td width="20%"> <input class="form-check-input" type="radio" required name="<?php echo $pregunta_multiple->idPregunta;?>" id="exampleRadios2" value="1"> <?php echo "<span class='pers'>".$pregunta_multiple->valor1."</span>";?>  </td>
+                  <td width="20%"> <input class="form-check-input" type="radio" required name="<?php echo $pregunta_multiple->idPregunta;?>" id="exampleRadios2" value="2"> <?php echo "<span class='pers'>".$pregunta_multiple->valor2."</span>";?>  </td>
+                  <td width="20%"> <input class="form-check-input" type="radio" required name="<?php echo $pregunta_multiple->idPregunta;?>" id="exampleRadios2" value="3"> <?php echo "<span class='pers'>".$pregunta_multiple->valor3."</span>";?>  </td>
+                  <td width="20%"> <input class="form-check-input" type="radio" required name="<?php echo $pregunta_multiple->idPregunta;?>" id="exampleRadios2" value="4"> <?php echo "<span class='pers'>".$pregunta_multiple->valor4."</span>";?>  </td>
                 </tr>
               </table>
                 
@@ -249,7 +249,7 @@ similar_textque se guarden todos los datos y luego ya se cierre el navegador
               $pregunta_audio = getPreguntaOpcion_audio($idEvaluacion,$idPregunta);
             ?>
           <audio class="asado img-fluid" name="" id ="" src="<?php echo base_url($pregunta_audio->ruta_audio);?>" controls></audio>
-          <textarea class="form-control" name="<?php echo $fila->id;?>" id="" rows="3" required></textarea>
+          <textarea class="form-control" name="<?php echo $fila->idPregunta;?>" id="" rows="3" required></textarea>
             </div>
             <div class="col-md-2 text-center">
               
@@ -270,7 +270,7 @@ similar_textque se guarden todos los datos y luego ya se cierre el navegador
               <video name="" id="" class = "img-fluid" src="<?php echo $pregunta_video == null ? "desconocido" :base_url($pregunta_video->ruta_video);?>" controls>
                 Tu navegador no implementa el elemento <code>video</code>.
               </video>
-          <textarea class="form-control" required name="<?php echo $fila->id;?>" id="" rows="3"></textarea>
+          <textarea class="form-control" required name="<?php echo $fila->idPregunta;?>" id="" rows="3"></textarea>
 
           </div>
               <div class="col-md-2 text-center">
@@ -326,7 +326,7 @@ similar_textque se guarden todos los datos y luego ya se cierre el navegador
               </div>
             
               <div class="col-md-8 text-center">
-                <button class="btn btn-primary" type="submit" name="btnRegEval" id="btnRegEval">Guardar</button>
+                <button class="btn btn-primary" type="submit" name="SubmitRespuestas" id="btnRegEval">Enviar</button>
               </div>
           
               <div class="col-md-2 text-center">

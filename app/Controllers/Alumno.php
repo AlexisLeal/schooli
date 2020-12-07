@@ -2,7 +2,8 @@
 //use  App\Models\Grupos_alumnos_model;
 use  App\Models\Grupos_model;
 use  App\Models\Evaluaciones_model;
-use  App\Models\Preguntas_model;
+use  App\Models\Pregunta_opcion_multiple;
+
 
 class Alumno extends BaseController{
 
@@ -149,13 +150,31 @@ class Alumno extends BaseController{
                 $idEvaluacion = $REQUEST->getPost('');
                 $db = \Config\Database::connect();
                 $usermodel = $db->table('evaluaciones EV');
-                $usermodel->select('P.id, P.idTipoPregunta');
+                $usermodel->select('P.num_pregunta, P.idTipoPregunta');
                 $usermodel->join('preguntas P',"EV.id = P.idEvaluacion AND P.idEvaluacion = $idEvaluacion AND P.deleted  = 0  and EV.deleted = 0");
                 $query = $usermodel->get();
                 $resultado = $query->getResult();
                 foreach($resultado as $fila){
                     if($fila->idTipoPregunta == 2){
-                        
+                        $usermodelPreguntasOpcionMultiple = new Pregunta_opcion_multiple($db);
+                        $usermodelPreguntasOpcionMultiple->select('idPregunta,opcion_correcta');
+                        $usermodelPreguntasOpcionMultiple->where('idEvaluacion',$idEvaluacion);
+                        //$usermodelPreguntasOpcionMultiple->where('idPregunta',$fila->num_pregunta);
+                        $usermodelPreguntasOpcionMultiple->where('deleted',0);
+                        $queryPreguntas = $usermodelPreguntasOpcionMultiple->get();
+                        $resultadoPreguntas = $queryPreguntas->getResult();
+                        foreach($resultadoPreguntas as $fila){
+                            if(!empty($REQUEST->getPost($fila->idPregunta))){
+                                if($REQUEST->getPost($fila->idPregunta) == $fila->opcion_correcta){
+                                    //La respuesta es correcta si no es erronea
+                                    $numero = $REQUEST->getPost($fila->idPregunta); 
+                                    echo "El numero de pregunta es $numero corrrecto";
+
+
+                                }
+                            }   
+
+                        }
                     }
                 }
 
