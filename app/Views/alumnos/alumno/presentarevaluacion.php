@@ -123,6 +123,12 @@ que no se pueda cerrar la ventana del navegadorsi el usuario dice que
 similar_textque se guarden todos los datos y luego ya se cierre el navegador
 -->
             <div id="contestarEvaluacion" style="background-color:#cdcdcd;">
+            <br/>
+            <div class="text-right">
+              <i class="fa fa-hourglass-start" aria-hidden="true"></i>
+            </div>
+            <br/>
+
 
               <div class="row">
                 <div class="col-md-2 text-center">
@@ -185,8 +191,8 @@ similar_textque se guarden todos los datos y luego ya se cierre el navegador
               
               </div>
               <div class="col-md-8">
-              <input type="text" class="form-control" name="<?php echo "ID".$fila->id."_EVAL".$fila->idEvaluacion."_NP".$fila->num_pregunta.""?>"
-              id="<?php echo "ID".$fila->id."EVAL".$fila->idEvaluacion."NP".$fila->num_pregunta.""?>">
+              <input type="text" class="form-control" required name="<?php echo $fila->id;?>"
+              id="">
               </div>
               <div class="col-md-2 text-center">
               
@@ -218,10 +224,10 @@ similar_textque se guarden todos los datos y luego ya se cierre el navegador
                   <td width="20%"> < ?php echo empty($pregunta_multiple->valor3) ? 0 : $pregunta_multiple->valor3;?> <input class="form-check-input pers" type="radio" name="exampleRadios" id="exampleRadios2" value="option2"> </td>
                   <td width="20%"> < ?php echo empty($pregunta_multiple->valor4) ? 0 : $pregunta_multiple->valor4;?> <input class="form-check-input pers" type="radio" name="exampleRadios" id="exampleRadios2" value="option2"> </td>
                 -->
-                  <td width="20%"> <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2"> <?php echo "<span class='pers'>".$pregunta_multiple->valor1."</span>";?>  </td>
-                  <td width="20%"> <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2"> <?php echo "<span class='pers'>".$pregunta_multiple->valor2."</span>";?>  </td>
-                  <td width="20%"> <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2"> <?php echo "<span class='pers'>".$pregunta_multiple->valor3."</span>";?>  </td>
-                  <td width="20%"> <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2"> <?php echo "<span class='pers'>".$pregunta_multiple->valor4."</span>";?>  </td>
+                  <td width="20%"> <input class="form-check-input" type="radio" required name="<?php echo $fila->id;?>" id="exampleRadios2" value="option2"> <?php echo "<span class='pers'>".$pregunta_multiple->valor1."</span>";?>  </td>
+                  <td width="20%"> <input class="form-check-input" type="radio" required name="<?php echo $fila->id;?>" id="exampleRadios2" value="option2"> <?php echo "<span class='pers'>".$pregunta_multiple->valor2."</span>";?>  </td>
+                  <td width="20%"> <input class="form-check-input" type="radio" required name="<?php echo $fila->id;?>" id="exampleRadios2" value="option2"> <?php echo "<span class='pers'>".$pregunta_multiple->valor3."</span>";?>  </td>
+                  <td width="20%"> <input class="form-check-input" type="radio" required name="<?php echo $fila->id;?>" id="exampleRadios2" value="option2"> <?php echo "<span class='pers'>".$pregunta_multiple->valor4."</span>";?>  </td>
                 </tr>
               </table>
                 
@@ -243,7 +249,7 @@ similar_textque se guarden todos los datos y luego ya se cierre el navegador
               $pregunta_audio = getPreguntaOpcion_audio($idEvaluacion,$idPregunta);
             ?>
           <audio class="asado img-fluid" name="" id ="" src="<?php echo base_url($pregunta_audio->ruta_audio);?>" controls></audio>
-          <textarea class="form-control" name="<?php echo "ID".$fila->id."EVAL".$fila->idEvaluacion."NP".$fila->num_pregunta.";"?>" id="<?php echo "ID".$fila->id."EVAL".$fila->idEvaluacion."NP".$fila->num_pregunta.";"?>" rows="3"></textarea>
+          <textarea class="form-control" name="<?php echo $fila->id;?>" id="" rows="3" required></textarea>
             </div>
             <div class="col-md-2 text-center">
               
@@ -264,7 +270,7 @@ similar_textque se guarden todos los datos y luego ya se cierre el navegador
               <video name="" id="" class = "img-fluid" src="<?php echo $pregunta_video == null ? "desconocido" :base_url($pregunta_video->ruta_video);?>" controls>
                 Tu navegador no implementa el elemento <code>video</code>.
               </video>
-          <textarea class="form-control" name="<?php echo "ID".$fila->id."EVAL".$fila->idEvaluacion."NP".$fila->num_pregunta.";"?>" id="<?php echo "ID".$fila->id."EVAL".$fila->idEvaluacion."NP".$fila->num_pregunta.";"?>" rows="3"></textarea>
+          <textarea class="form-control" required name="<?php echo $fila->id;?>" id="" rows="3"></textarea>
 
           </div>
               <div class="col-md-2 text-center">
@@ -282,13 +288,13 @@ similar_textque se guarden todos los datos y luego ya se cierre el navegador
               </div>
               <div class="col-md-8">
               <div class="form-check">
-                  <input class="form-check-input" type="radio" name="<?php echo "ID".$fila->id."EVAL".$fila->idEvaluacion."NP".$fila->num_pregunta.";"?>" id="radio1" value="verdadero">
+                  <input class="form-check-input" type="radio" name="<?php echo $fila->id;?>" id="radio1" value="verdadero">
                   <label class="form-check-label" for="exampleRadios1">
                   Verdadero
                   </label>
                   </div>
                   <div class="form-check">
-                  <input class="form-check-input" type="radio" name="<?php echo "ID".$fila->id."EVAL".$fila->idEvaluacion."NP".$fila->num_pregunta.";"?>" id="radio2" value="falso">
+                  <input class="form-check-input" type="radio" name="<?php echo $fila->id;?>" id="radio2" value="falso">
                   <label class="form-check-label" for="exampleRadios2">
                   Falso
                   </label>
@@ -320,7 +326,7 @@ similar_textque se guarden todos los datos y luego ya se cierre el navegador
               </div>
             
               <div class="col-md-8 text-center">
-                <button class="btn btn-primary" type="submit" name="" id="">Guardar</button>
+                <button class="btn btn-primary" type="submit" name="btnRegEval" id="btnRegEval">Guardar</button>
               </div>
           
               <div class="col-md-2 text-center">
@@ -429,9 +435,35 @@ selectElement.addEventListener('click', (event) => {
 
 function mostrarEvaluacion(){
 var contestarEvaluacion = document.getElementById("contestarEvaluacion");
-contestarEvaluacion.style.display="block";
-    //#contestarEvaluacion 
-    //display:none;
+  contestarEvaluacion.style.display="block";
+  contestarEvaluacion.style.opacity="0";
+  
+function aparecer(){
+
+}
+aparecer();
+
+  setTimeout(function(){ contestarEvaluacion.style.opacity="0.1"; }, 100);
+  setTimeout(function(){ contestarEvaluacion.style.opacity="0.2"; }, 200);
+  setTimeout(function(){ contestarEvaluacion.style.opacity="0.3"; }, 300);
+  setTimeout(function(){ contestarEvaluacion.style.opacity="0.4"; }, 400);
+  setTimeout(function(){ contestarEvaluacion.style.opacity="0.5"; }, 500);
+  setTimeout(function(){ contestarEvaluacion.style.opacity="0.6"; }, 600);
+  setTimeout(function(){ contestarEvaluacion.style.opacity="0.7"; }, 700);
+  setTimeout(function(){ contestarEvaluacion.style.opacity="0.8"; }, 800);
+  setTimeout(function(){ contestarEvaluacion.style.opacity="0.9"; }, 900);
+  setTimeout(function(){ contestarEvaluacion.style.opacity="1"; }, 1000);
+
+
+  /*contestarEvaluacion.style.opacity="0.8";
+  contestarEvaluacion.style.opacity="1";*/
+
+  //#contestarEvaluacion 
+  //display:none;
+  document.getElementById("btnIniciarEvaluacion").disabled=true;
+    
+
+    
 }
 </script>
 <?php include(APPPATH.'Views/include/footer.php');?>
