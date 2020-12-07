@@ -140,6 +140,21 @@ class Alumno extends BaseController{
     }
 
 
+    public function CalificarEvaluacion()
+    {
+        if($this->session->get('login')){
+            if(isset($_POST['SubmitRespuestas'])){
+                $REQUEST = \Config\Services::request();
+                
+                
+            }else{
+                return redirect()->to(site_url('Home/salir'));
+            }     
+        }else{
+            return redirect()->to(site_url('Home/salir'));
+        }
+    }    
+
 
 
 }
