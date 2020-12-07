@@ -162,7 +162,7 @@ similar_textque se guarden todos los datos y luego ya se cierre el navegador
                         <?php
                       }
                   }else{
-                      
+                  echo $fila->pregunta;
                   }
                   ?>
                   </div>
