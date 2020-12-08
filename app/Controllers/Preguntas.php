@@ -163,7 +163,7 @@ class Preguntas extends BaseController{
                 $idEvaluacion = $REQUEST->getPost('idEvaluacion');
                 $idPregunta = $REQUEST->getPost('idPregunta');
                 //$numPregunta = $REQUEST ->getPost('num_pregunta');
-                $idtipoPregunta = $REQUEST ->getPost('tipopregunta');
+                $idtipoPregunta = $REQUEST ->getPost('idtipoPregunta');
 
                 $usermodel = new Preguntas_model($db);
                 $usermodel->delete(['id' => $idPregunta]);
@@ -172,10 +172,12 @@ class Preguntas extends BaseController{
 
              //Opcion multiple
             if($idtipoPregunta == 2){
+               
                 $usermodel = new Pregunta_opcion_multiple($db);
                 $usermodel->where('idEvaluacion',$idEvaluacion);
                 $usermodel->where('idPregunta',$idPregunta);
                 $usermodel->delete();
+               
                 //$query = "UPDATE pregunta_opcion_multiple SET deleted = 1 WHERE idEvaluacion = $idEvaluacion AND idPregunta = $idPregunta";
                 //$usermodel ->query($query);
 
@@ -270,7 +272,7 @@ class Preguntas extends BaseController{
 
             }else{
                 $audio= 0;
-                $ruta_audio_basedatos = NULL;
+                $ruta_audio_basedatos = null;
             }
 
        
@@ -288,16 +290,18 @@ class Preguntas extends BaseController{
                 $ruta_imagen = "uploads/".$clave."/imagen-pregunta";  
                 $file_imagen->move($ruta_imagen,$nombre);
             }else{
+                echo "Error";
+                exit();
             //Si algo sale mal nos marca un error 
             //throw new RuntimeException($file_imagen->getErrorString().'('.$file_imagen->getError().')');
             }
 
             }else{
-                $imagen= 0;
+                $imagen = 0;
                 $ruta_imagen_basedatos = NULL;
             }  
 
-
+            /*
             $query ="INSERT INTO preguntas(
             idEvaluacion,
             num_pregunta,
@@ -311,8 +315,22 @@ class Preguntas extends BaseController{
             fecha_creacion,
             fecha_ultimo_cambio
           ) VALUES ($idEvaluacion,$numeropregunta,'".$pregunta."',$valor,$tipoPregunta,$imagen,'".$ruta_imagen_basedatos."',$audio,'".$ruta_audio_basedatos."','".$hoy."','".$hoy."')";
-
-            $usermodel->query($query);
+                */
+            $data = ['idEvaluacion' => $idEvaluacion,
+            'num_pregunta' =>$numeropregunta,
+            'pregunta' =>$pregunta,
+            'valor' =>$valor,
+            'idTipoPregunta' =>$tipoPregunta,
+            'tiene_imagen' =>$imagen,
+            'ruta_imagen' =>$ruta_imagen_basedatos,
+            'tiene_audio_pregunta' =>$audio,
+            'ruta_audio_pregunta' =>$ruta_audio_basedatos,
+            'fecha_creacion' =>$hoy,
+            'fecha_ultimo_cambio' =>$hoy,
+            ];
+            $usermodel->insert($data);
+            $idPregunta = $usermodel->insertID();
+            //$usermodel->query($query);
 
 
             //Opcion Multiple 
@@ -336,7 +354,7 @@ class Preguntas extends BaseController{
                 opcion_correcta,
                 fecha_creacion,
                 fecha_ultimo_cambio) values(
-                $idEvaluacion,$numeropregunta,'".$opcion1."','".$opcion2."','".$opcion3."','".$opcion4."',$respuesta,'".$hoy."','".$hoy."')";
+                $idEvaluacion,$idPregunta,'".$opcion1."','".$opcion2."','".$opcion3."','".$opcion4."',$respuesta,'".$hoy."','".$hoy."')";
 
                 $usermodel->query($sqlOpcionMultiple);
         }
@@ -373,7 +391,7 @@ class Preguntas extends BaseController{
                 fecha_ultimo_cambio
                 ) VALUES(
                 $idEvaluacion,
-                $numeropregunta,
+                $idPregunta,
                 '".$nombre."',
                 '".$ruta_audio_basedatos."',
                 '".$audio_extension."',
@@ -418,7 +436,7 @@ class Preguntas extends BaseController{
               fecha_ultimo_cambio
               ) VALUES(
               $idEvaluacion,
-              $numeropregunta,
+              $idPregunta,
               '".$nombre."',
               '".$ruta_video_basedatos."',
               '".$video_extension."',

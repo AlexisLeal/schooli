@@ -2,6 +2,7 @@
 //use  App\Models\Grupos_alumnos_model;
 use  App\Models\Grupos_model;
 use  App\Models\Evaluaciones_model;
+use  App\Models\Preguntas_model;
 use  App\Models\Pregunta_opcion_multiple;
 
 
@@ -147,15 +148,28 @@ class Alumno extends BaseController{
         if($this->session->get('login')){
             if(isset($_POST['SubmitRespuestas'])){
                 $REQUEST = \Config\Services::request();
-                $idEvaluacion = $REQUEST->getPost('');
-                $db = \Config\Database::connect();
-                $usermodel = $db->table('evaluaciones EV');
-                $usermodel->select('P.num_pregunta, P.idTipoPregunta');
-                $usermodel->join('preguntas P',"EV.id = P.idEvaluacion AND P.idEvaluacion = $idEvaluacion AND P.deleted  = 0  and EV.deleted = 0");
-                $query = $usermodel->get();
+                $idEvaluacion = $REQUEST->getPost('idEvaluacion');
+               // $db = \Config\Database::connect();
+                //$usermodel = $db->table('evaluaciones EV');
+                $usermodelPreguntas = new Preguntas_model($db);
+                $usermodelPreguntas->select('id , idTipoPregunta');
+                $usermodelPreguntas->where('idEvaluacion',$idEvaluacion);
+                $usermodelPreguntas->where('deleted',0);
+                //$usermodel->select('P.id as idPregunta, P.idTipoPregunta');
+                //$usermodel->join('preguntas P',"EV.id = P.idEvaluacion AND P.idEvaluacion = $idEvaluacion AND P.deleted  = 0  and EV.deleted = 0");
+                $query = $usermodelPreguntas->get();
                 $resultado = $query->getResult();
+                $preguntasMultiples = array();
                 foreach($resultado as $fila){
                     if($fila->idTipoPregunta == 2){
+                        if(!empty($REQUEST->getPost('optmulti'.$fila->id))){
+                            $preguntasMultiples[$fila->id] = $REQUEST->getPost('optmulti'.$fila->id);
+
+                        }
+                        
+                        //$preguntasMultiples[$fila->num_pregunta] = $fila->num_pregunta; 
+                       
+                        /*
                         $usermodelPreguntasOpcionMultiple = new Pregunta_opcion_multiple($db);
                         $usermodelPreguntasOpcionMultiple->select('idPregunta,opcion_correcta');
                         $usermodelPreguntasOpcionMultiple->where('idEvaluacion',$idEvaluacion);
@@ -175,8 +189,30 @@ class Alumno extends BaseController{
                             }   
 
                         }
+                        */
                     }
                 }
+                if(!empty($preguntasMultiples)){
+                    $usermodelPreguntasOpcionMultiple = new Pregunta_opcion_multiple($db);
+                    $usermodelPreguntasOpcionMultiple->select('idPregunta,opcion_correcta');
+                    $usermodelPreguntasOpcionMultiple->where('idEvaluacion',$idEvaluacion);
+                    $usermodelPreguntasOpcionMultiple->where('deleted',0);
+                    $query = $usermodelPreguntasOpcionMultiple->get();
+                    $resultado = $query->getResult();
+                    foreach($resultado as $fila){
+                        foreach($preguntasMultiples as $key=>$value){
+                            if($fila->idPregunta == $key){
+                                if($fila->opcion_correcta == $value){
+                                    echo 'La pregunta con id '.$fila->idPregunta .' con el valor mandado '.$value .' es correcta <br/>';
+
+                                }else{
+                                    echo 'La pregunta con id '.$fila->idPregunta .' con el valor mandado '.$value .' es incorrecta <br/>';
+                                }
+                            }
+                        }
+                    }         
+                }
+               
 
                 
             }else{
