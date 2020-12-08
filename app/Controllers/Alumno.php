@@ -203,10 +203,12 @@ class Alumno extends BaseController{
                         foreach($preguntasMultiples as $key=>$value){
                             if($fila->idPregunta == $key){
                                 if($fila->opcion_correcta == $value){
-                                    echo 'La pregunta con id '.$fila->idPregunta .' con el valor mandado '.$value .' es correcta <br/>';
+                                    echo 'La pregunta con id '.$fila->idPregunta .' con el valor mandado '.$fila->opcion_correcta .' es correcta <br/>';
+                                    echo 'La el id que mando el usuario es  '.$key .' con el valor mandado por el usuario  '.$value .' es correcta <br/> <br/> <br/>';
 
                                 }else{
                                     echo 'La pregunta con id '.$fila->idPregunta .' con el valor mandado '.$value .' es incorrecta <br/>';
+                                    echo 'La el id que mando el usuario es  '.$key .' con el valor mandado por el usuario  '.$value .' es incorrecta <br/> <br/> <br/> <br/>';
                                 }
                             }
                         }
