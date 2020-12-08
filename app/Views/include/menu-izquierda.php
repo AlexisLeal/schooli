@@ -77,10 +77,10 @@ $collIntegraciones="collapse";
            <li class="list-group-item"><a class="<?php if($enlaceActivoCatalogo=='Salones'){echo 'mi-active';}?>" href="<?php echo site_url('Salones/index')?>">Salones</a></li>
            <li class="list-group-item"><a class="<?php if($enlaceActivoCatalogo=='Cursos'){echo 'mi-active';}?>" href="<?php echo site_url('Cursos/index')?>">Cursos</a></li>
            <li class="list-group-item"><a class="<?php if($enlaceActivoCatalogo=='Frecuencia'){echo 'mi-active';}?>" href="<?php echo site_url('Frecuencia/index')?>">Frecuencias</a></li>
+           <li class="list-group-item"><a class="<?php if($enlaceActivoCatalogo=='Notificaciones'){echo 'mi-active';}?>" href="<?php echo site_url('Notificaciones/index')?>">Notificaciones</a></li>
            
 
-
-             
+                    
              <li class="list-group-item"><a href="#">Sucursales</a></li>
              <li class="list-group-item"><a href="#">Facultades</a></li>
              <li class="list-group-item"><a href="#">Carreras</a></li>
@@ -90,7 +90,7 @@ $collIntegraciones="collapse";
              <li class="list-group-item"><a href="#">Medios</a></li>
              <li class="list-group-item"><a href="#">Canales</a></li>
              <li class="list-group-item"><a href="#">Origenes</a></li>
-             <li class="list-group-item"><a href="#">Notificaciones</a></li>
+             
              <li class="list-group-item"><a href="#">Avisos Pop-Up</a></li>
              <li class="list-group-item"><a href="#">Black List</a></li>
              <li class="list-group-item"><a href="#">Calendario Anual</a></li>
