@@ -13,7 +13,7 @@ class Preguntas_model extends Model
     protected $useSoftDeletes = true;
 
     #Aqui ponemos el nombre de las columnas que vamos a modifcar
-    protected $allowedFields = ['idEvaluacion','num_pregunta','pregunta','valor','idTipoPregunta','tiene_imagen'.'ruta_imagen','tiene_audio_pregunta','ruta_audio_pregunta'];
+    protected $allowedFields = ['idEvaluacion','num_pregunta','pregunta','valor','idTipoPregunta','tiene_imagen','ruta_imagen','tiene_audio_pregunta','ruta_audio_pregunta','fecha_creacion','fecha_ultimo_cambio'];
 
     protected $useTimestamps = false;
     protected $createdField  = 'fecha_creacion';
