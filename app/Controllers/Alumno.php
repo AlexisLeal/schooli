@@ -4,6 +4,7 @@ use  App\Models\Grupos_model;
 use  App\Models\Evaluaciones_model;
 use  App\Models\Preguntas_model;
 use  App\Models\Pregunta_opcion_multiple;
+use  App\Models\Control_Respuestas_model;
 
 
 class Alumno extends BaseController{
@@ -72,7 +73,7 @@ class Alumno extends BaseController{
            }
     }
 */
-    public function presentarevaluacion($id_evaluacion)
+    public function presentarevaluacion($id_evaluacion,$idGrupo)
     {
         if($this->session->get('login')){
             $data['id_evaluacion'] = $id_evaluacion;
@@ -94,6 +95,7 @@ class Alumno extends BaseController{
             $data['valorpreguntas'] =  getValorTotalPreguntas($id_evaluacion);
             $nombre =getTipoEvaluacionEspecifico($row->tipo_evaluacion);
             $data['tipo_evaluacion'] = $nombre->nombre;
+            $data['idGrupo'] = $idGrupo;
             $data['page_title'] = "Preguntas";	
             return view('alumnos/alumno/presentarevaluacion',$data);
         }else{
@@ -149,10 +151,11 @@ class Alumno extends BaseController{
             if(isset($_POST['SubmitRespuestas'])){
                 $REQUEST = \Config\Services::request();
                 $idEvaluacion = $REQUEST->getPost('idEvaluacion');
+                $idGrupo = $REQUEST->getPost('idGrupo');
                // $db = \Config\Database::connect();
                 //$usermodel = $db->table('evaluaciones EV');
                 $usermodelPreguntas = new Preguntas_model($db);
-                $usermodelPreguntas->select('id , idTipoPregunta');
+                $usermodelPreguntas->select('id,idTipoPregunta');
                 $usermodelPreguntas->where('idEvaluacion',$idEvaluacion);
                 $usermodelPreguntas->where('deleted',0);
                 //$usermodel->select('P.id as idPregunta, P.idTipoPregunta');
@@ -164,35 +167,11 @@ class Alumno extends BaseController{
                     if($fila->idTipoPregunta == 2){
                         if(!empty($REQUEST->getPost('optmulti'.$fila->id))){
                             $preguntasMultiples[$fila->id] = $REQUEST->getPost('optmulti'.$fila->id);
-
-                        }
-                        
-                        //$preguntasMultiples[$fila->num_pregunta] = $fila->num_pregunta; 
-                       
-                        /*
-                        $usermodelPreguntasOpcionMultiple = new Pregunta_opcion_multiple($db);
-                        $usermodelPreguntasOpcionMultiple->select('idPregunta,opcion_correcta');
-                        $usermodelPreguntasOpcionMultiple->where('idEvaluacion',$idEvaluacion);
-                        //$usermodelPreguntasOpcionMultiple->where('idPregunta',$fila->num_pregunta);
-                        $usermodelPreguntasOpcionMultiple->where('deleted',0);
-                        $queryPreguntas = $usermodelPreguntasOpcionMultiple->get();
-                        $resultadoPreguntas = $queryPreguntas->getResult();
-                        foreach($resultadoPreguntas as $fila){
-                            if(!empty($REQUEST->getPost($fila->idPregunta))){
-                                if($REQUEST->getPost($fila->idPregunta) == $fila->opcion_correcta){
-                                    //La respuesta es correcta si no es erronea
-                                    $numero = $REQUEST->getPost($fila->idPregunta); 
-                                    echo "El numero de pregunta es $numero corrrecto";
-
-
-                                }
-                            }   
-
-                        }
-                        */
+                        }  
                     }
                 }
                 if(!empty($preguntasMultiples)){
+                    $preguntasCalificadasOptionMultiple = array();
                     $usermodelPreguntasOpcionMultiple = new Pregunta_opcion_multiple($db);
                     $usermodelPreguntasOpcionMultiple->select('idPregunta,opcion_correcta');
                     $usermodelPreguntasOpcionMultiple->where('idEvaluacion',$idEvaluacion);
@@ -203,20 +182,58 @@ class Alumno extends BaseController{
                         foreach($preguntasMultiples as $key=>$value){
                             if($fila->idPregunta == $key){
                                 if($fila->opcion_correcta == $value){
-                                    echo 'La pregunta con id '.$fila->idPregunta .' con el valor mandado '.$fila->opcion_correcta .' es correcta <br/>';
+                                    echo 'La pregunta con id '.$fila->idPregunta .' con el valor de la bse de datos  '.$fila->opcion_correcta .' es correcta <br/>';
                                     echo 'La el id que mando el usuario es  '.$key .' con el valor mandado por el usuario  '.$value .' es correcta <br/> <br/> <br/>';
+                                    $preguntasCalificadasOptionMultiple[$fila->idPregunta] = 1; 
 
                                 }else{
-                                    echo 'La pregunta con id '.$fila->idPregunta .' con el valor mandado '.$value .' es incorrecta <br/>';
+                                    echo 'La pregunta con id '.$fila->idPregunta .' con el valor de la bse de datos '.$value .' es incorrecta <br/>';
                                     echo 'La el id que mando el usuario es  '.$key .' con el valor mandado por el usuario  '.$value .' es incorrecta <br/> <br/> <br/> <br/>';
+                                    $preguntasCalificadasOptionMultiple[$fila->idPregunta] = 0; 
                                 }
                             }
                         }
-                    }         
-                }
-               
+                    }
+                    $usermodelControRespuestas = new Control_Respuestas_model($db);
+                    $hoy = date("Y-m-d H:i:s");
+                    foreach($preguntasCalificadasOptionMultiple as $idpregunta=>$respuesta){
+                        $data = ['idalumno'=> $this->session->get('id'),
+                        'idevaluacion' =>$idEvaluacion,
+                        'idpregunta'=> $idpregunta,
+                        'idtipopregunta'=> 2,
+                        'respuesta'=> $respuesta,
+                        'fecha_creacion'=> $hoy,
+                        'fecha_ultimo_cambio' => $hoy,
+                        ];
+                        $usermodelControRespuestas->insert($data);
+                    }
+                    $usermodelPreguntas->select('id,idTipoPregunta,valor');
+                    $usermodelPreguntas->where('idEvaluacion',$idEvaluacion);
+                    $usermodelPreguntas->where('idTipoPregunta',2);
+                    $usermodelPreguntas->where('deleted',0);
+                    $query = $usermodelPreguntas->get();
+                    $resultado = $query->getResult();
+                    $puntos = 0;
+                    $totalpreguntas = 0;
+                    $valortotalevaluacion = 0;
+                    foreach($resultado as $fila){
+                        foreach($preguntasCalificadasOptionMultiple as $idpregunta=>$respuesta){
+                            if($idpregunta == $fila->id){ 
+                                if($respuesta == 1){
+                                    $puntos += $fila->valor;
+                                    $valortotalevaluacion += $fila->valor;
+                                }else{
+                                    $valortotalevaluacion += $fila->valor;
+                                }
+                            }
+                        }
+                        $totalpreguntas ++;
+                    }
+                   // $calificacion = 
 
-                
+                    echo 'El valor total del examen es '.$valortotalevaluacion .' saco un maximo de '.$puntos.' puntos de un total de preguntas '.$totalpreguntas.'<br/>';
+                    var_dump($preguntasCalificadasOptionMultiple);         
+                }               
             }else{
                 return redirect()->to(site_url('Home/salir'));
             }     

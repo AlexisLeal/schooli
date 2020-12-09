@@ -329,6 +329,7 @@ similar_textque se guarden todos los datos y luego ya se cierre el navegador
             
               <div class="col-md-8 text-center">
                 <input type="hidden" value="<?php echo $idEvaluacion ?>" name="idEvaluacion">
+                <input type="hidden" value="<?php echo $idGrupo ?>" name="idGrupo">
                 <button class="btn btn-primary" type="submit" name="SubmitRespuestas" id="btnRegEval">Enviar</button>
               </div>
           
