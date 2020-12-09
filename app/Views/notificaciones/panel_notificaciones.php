@@ -52,7 +52,9 @@
 
           <div class="col-md-9">
             <?php
-              if($session->has('notificaciones_usuario')){ 
+            if($session->has('notificaciones_usuario')){ 
+              
+            if(!empty(operacionesGetNotificacionesUsuario())){
                 ?>
                 <div class="alert alert-warning alert-dismissible fade show" role="alert">
                   <?php
@@ -62,14 +64,13 @@
                     <?php
                   }
                   ?>
-                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <button type="button" class="close" onclick="eliminarSessionNotificacion();" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
-                    
                   </button>
                 </div>
                 <?php                
-                //$session->remove('notificaciones_usuario'); 
               }
+            }
               ?>
 
 
