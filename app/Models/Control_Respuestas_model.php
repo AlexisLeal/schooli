@@ -13,7 +13,7 @@ class Control_Respuestas_model extends Model
     protected $useSoftDeletes = true;
 
     #Aqui ponemos el nombre de las columnas que vamos a modifcar
-    protected $allowedFields = ['idalumno','idevaluacion','idpregunta','idtipopregunta','respuesta','fecha_creacion','fecha_ultimo_cambio'];
+    protected $allowedFields = ['idalumno','idgrupo','idevaluacion','idpregunta','idtipopregunta','respuesta','fecha_creacion','fecha_ultimo_cambio'];
 
     protected $useTimestamps = false;
     protected $createdField  = 'fecha_creacion';
