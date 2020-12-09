@@ -108,13 +108,27 @@
               <div class="espacioUno"></div>
               <div class="card">
                 <div class="card-body">
-                  <table width="100%" cellspacing="12" cellpadding="12" >
-                  <tr>
-                  <td><div class="text-left"><a href="#"><i class="fa fa-caret-square-o-right fa-2x" aria-hidden="true"></i></i><br/>Clase Demo.</a></div></td>
-                  <td>&nbsp;<br/></td>
-                  <td>&nbsp;<br/></td>
-                  </tr>
-                  </table>
+
+                    <table width="100%" cellspacing="12" cellpadding="12" >
+                    <tr>
+                    <td>
+                      <div class="text-center">
+                      <a href="#"><i class="fa fa-caret-square-o-right fa-2x" aria-hidden="true"></i><br/>Clase Demo.</a>
+                      </div>
+                    </td>
+                    <td>
+                    <div class="text-center">                      
+                      <a href="<?php echo site_url('/Notificaciones/index'); ?>"><i class="fa fa-commenting-o fa-2x" aria-hidden="true"></i><br/>Notificaciones</a>
+                      </div>
+                    </td>
+                    <td>
+                    <div class="text-center">
+                      <a href="#"></a>
+                      </div>
+                    </td>
+                    </tr>
+                    </table>
+
                 </div>
               </div>
           </div>

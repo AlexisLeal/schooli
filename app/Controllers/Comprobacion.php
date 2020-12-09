@@ -49,7 +49,8 @@ class Comprobacion extends BaseController{
             'usuario' => $row->usuario,
             'tipo_usuario' => $row ->id_tipo_usuario,
             'roll'=> $row->roll,
-            'login' => true
+            'login' => true,
+            'notificaciones_usuario' => true
             ];
         //introducimos los datos en la session y con get los obtemos checa la vista
             $this->session ->set($namearray);

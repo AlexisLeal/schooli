@@ -252,4 +252,21 @@ function operacionesGetNotificaciones()
     $rowArray = $resultado->getResult();
     return($rowArray);
 }
+
+
+function operacionesGetNotificacionesUsuario()
+{
+    $sesion_tipo = $_SESSION['tipo_usuario'];
+    $hoy = date("Y-m-d");
+    $usermodel = new Notificaciones_model($db);
+    $query = "SELECT * from notificaciones WHERE tipo_usuario=$sesion_tipo and estatus=1 and deleted=0 and fecha_inicio >= $hoy and fecha_termina >= $hoy order by fecha_creacion desc limit 1";
+    //SELECT * from notificaciones WHERE tipo_usuario=4 and fecha_inicio >= '2020-12-08' and fecha_termina <= '2020-12-09'
+    // and estatus=1 and deleted = 0 order by fecha_inicio desc limit 1";
+    // fecha_inicio
+    // fecha_termina
+
+    $resultado = $usermodel->query($query);
+    $rowArray = $resultado->getResult();
+    return($rowArray);
+}
 ?>
