@@ -259,10 +259,7 @@ function operacionesGetNotificacionesUsuario()
     $sesion_tipo = $_SESSION['tipo_usuario'];
     $hoy = date("Y-m-d");
     $usermodel = new Notificaciones_model($db);
-    //$query = "SELECT * from notificaciones WHERE tipo_usuario=$sesion_tipo and estatus=1 and deleted=0 and fecha_inicio >= $hoy and fecha_termina >= $hoy order by fecha_creacion desc limit 1";
-    $query = "SELECT * from notificaciones WHERE tipo_usuario=$sesion_tipo and estatus=1 and deleted=0 and fecha_inicio >= $hoy and fecha_termina <= $hoy order by fecha_creacion desc limit 1";
-
-    //SELECT fecha from mi_tabla WHERE fecha between 'yyyy-mm-ss' AND 'yyyy-mm-ss'
+    $query = "SELECT * from notificaciones WHERE tipo_usuario=$sesion_tipo and estatus=1 and deleted=0 and  fecha_termina <= '".$hoy."' order by fecha_creacion desc limit 1";
 
     $resultado = $usermodel->query($query);
     $rowArray = $resultado->getResult();

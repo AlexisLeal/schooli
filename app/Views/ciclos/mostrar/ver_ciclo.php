@@ -49,6 +49,8 @@
             <?php include(APPPATH.'/Views/include/menu-izquierda.php');?>
           </div>
           <div class="col-md-9">
+          <?php include(APPPATH.'/Views/include/notificacion.php');?>
+          
           <h4>Ver un ciclo.</h4>
           <div class="espacioUno"></div>
         

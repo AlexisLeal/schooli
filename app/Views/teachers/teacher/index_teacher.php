@@ -7,7 +7,7 @@
   <div class="row">
     <div class="col-md-2">
       <div class="text-center">
-        <a href="<?php echo site_url('/Panel/index'); ?>">
+        <a href="<?php echo site_url('/Alumno/index'); ?>">
           <img class="mb-4" src="<?php echo base_url('img-front/logo-brain.png');?>" alt="" width="52" height="52">
         </a>
       </div>
@@ -46,67 +46,58 @@
       <div id="general">
         <div class="row">
           <div class="col-md-3">
-            <?php include(APPPATH.'/Views/include/menu-izquierda.php');?>
+            <?php include(APPPATH.'/Views/include/menu-teacher.php');?>
           </div>
+
+
 
           <div class="col-md-9">
           <?php include(APPPATH.'/Views/include/notificacion.php');?>
-          
-          <h4>ver  Horario.</h4>
+
           <div class="espacioUno"></div>
-        
+          <div class="text-right">
+            <h4><?php echo $session->get('nombre')." ".$session->get('apellido')." ".$session->get('apellido_materno');?></h4>
+          </div>
+          <div class="espacioUno"></div>
 
-
-
+          
+            <div class="card">
+              <div class="card-body">
+                Grupos asignado.<br/>
+                <hr class="linea"/>
+              <div style="padding-left:30px">
               <div class="card">
                 <div class="card-body">
-
-               
-               
-                <div class="espacioDos"></div>
-                <div class="row">
-                  <div class="col">
-                  Nombre
-                    <input type="text" name="nombre" id="nombre" class="form-control form-control-sm" disabled = "disabled" value="<?php echo $nombre ?>">
-                  </div>
-                  <div class="col">
-                    Estatus
-                    <input type="text" name="nombre" id="nombre" class="form-control form-control-sm" disabled = "disabled" value="<?php echo $estatus ?>">
-
-                  </div>
+                  Listado de grupos asignados
                 </div>
-
-                <div class="espacioUno"></div>
-
-
-                <div class="row">
-                  <div class="col">
-                  Fecha de inicio
-                  <input type="text" name="fechaInicio" id="fechaInicio" class="form-control form-control-sm" disabled = "disabled" value="<?php echo $horaInicio ?>"> 
-
-                  </div>
-                  <div class="col">
-                  Fecha Fin
-                  <input type="text" name="fechaFIn" id="fechaFIn" class="form-control form-control-sm" disabled = "disabled" value="<?php echo $horaFin ?>">
-                  </div>
-                </div>
-
-
-              <div class="espacioUno"></div>
-
-              <div class="form-group">
-                <label for="lblInstrucciones">Descripción</label>
-                <textarea class="form-control form-control-sm" name="descripcion" id="descripcion" rows="3" disabled = "disabled" ><?php echo $comentarios ?></textarea>
               </div>
+            
+            <br/>
 
-              <div class="espacioUno"></div>
-              </form>
+            <div class="card">
+              <div class="card-body">
+              Test
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-body">
+              Ejemplo de Asistencias para 5 Alumnos:<br/>
+              Gerardo <br/>
+              Hugo <br/>
+              Saby <br/>
+              Luz <br/>
+              Angeles <br/>
 
               </div>
-              </div>
+            </div>
+
+
+            </div>
           </div>
 
-
+          </div>
+          </div>
 
 
         </div>  
@@ -165,5 +156,5 @@
       <div class="espacioDos"></div>
       <div class="espacioDos"></div>
       <div class="espacioDos"></div>
-      <?php include(APPPATH.'Views/include/footer.php');?>
-      <?php include(APPPATH.'Views/include/header-js.php');?>
+
+<?php include(APPPATH.'Views/include/footer.php');?>

@@ -2,6 +2,7 @@
 <script>
 
 function eliminarSessionNotificacion(){
+ 
     $.ajax({
       type: "GET",
       url: "<?php echo site_url('Operaciones/operacioneseliminaSessionNotificacion');?>",
@@ -10,6 +11,7 @@ function eliminarSessionNotificacion(){
 
     }
     });
+    
   }
  
   </script>

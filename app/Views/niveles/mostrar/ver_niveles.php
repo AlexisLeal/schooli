@@ -50,6 +50,10 @@
           </div>
 
           <div class="col-md-9">
+
+          <?php include(APPPATH.'/Views/include/notificacion.php');?>
+
+          
           <h4>ver nivel.</h4>
           <div class="espacioUno"></div>
         

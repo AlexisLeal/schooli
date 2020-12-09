@@ -49,61 +49,62 @@
             <?php include(APPPATH.'/Views/include/menu-izquierda.php');?>
           </div>
 
+
           <div class="col-md-9">
+
           <?php include(APPPATH.'/Views/include/notificacion.php');?>
-          
-          <h4>ver  Horario.</h4>
+
+
+              <?php
+              if($session->has('pregunta-exito')){ 
+                ?>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                  <?php
+                  echo $session->get('pregunta-exito');
+                  ?>
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <?php
+                
+                $session->remove('pregunta-exito'); 
+              }
+              ?>
+
+
+Mostrar grupos asignados del Teacher.
           <div class="espacioUno"></div>
-        
-
-
-
+            <h4>Panel de Notificaciones</h4>
               <div class="card">
                 <div class="card-body">
 
-               
-               
-                <div class="espacioDos"></div>
-                <div class="row">
-                  <div class="col">
-                  Nombre
-                    <input type="text" name="nombre" id="nombre" class="form-control form-control-sm" disabled = "disabled" value="<?php echo $nombre ?>">
-                  </div>
-                  <div class="col">
-                    Estatus
-                    <input type="text" name="nombre" id="nombre" class="form-control form-control-sm" disabled = "disabled" value="<?php echo $estatus ?>">
-
-                  </div>
-                </div>
-
-                <div class="espacioUno"></div>
-
-
-                <div class="row">
-                  <div class="col">
-                  Fecha de inicio
-                  <input type="text" name="fechaInicio" id="fechaInicio" class="form-control form-control-sm" disabled = "disabled" value="<?php echo $horaInicio ?>"> 
-
-                  </div>
-                  <div class="col">
-                  Fecha Fin
-                  <input type="text" name="fechaFIn" id="fechaFIn" class="form-control form-control-sm" disabled = "disabled" value="<?php echo $horaFin ?>">
-                  </div>
-                </div>
-
-
-              <div class="espacioUno"></div>
-
-              <div class="form-group">
-                <label for="lblInstrucciones">Descripción</label>
-                <textarea class="form-control form-control-sm" name="descripcion" id="descripcion" rows="3" disabled = "disabled" ><?php echo $comentarios ?></textarea>
-              </div>
-
-              <div class="espacioUno"></div>
-              </form>
+                <a href="<?php echo site_url('/Notificaciones/agregarnotificacion'); ?>">Crear una notificación</a> 
+                <hr class="linea"/>
+                <table class="tabla-registros" class="display" cellspacing="6" cellpadding="8">
+                <thead>
+                <tr>
+                <th>ID</th><th>Nombre</th><th>Notificación</th><th>Tipo de Usuario</th><th>Estatus</th><th>Fecha inicio</th><th>Fecha Termino</th>
+                </tr>
+                </thead>
+                
+                <?php foreach(operacionesGetNotificaciones() as $fila){ ?> 
+                  <tr>
+                  <td><?php echo $fila->id;?></td>
+                  <td><?php echo $fila->nombre;?></td>
+                  <td><?php echo $fila->notificacion;?></td>
+                  <td><?php echo $fila->usuario;?></td>
+                  <td><?php echo $fila->estatus == 1 ? "Activo" : "Inactivo"; ?></td>
+                  <td><?php echo $fila->fecha_inicio;?></td>
+                  <td><?php echo $fila->fecha_termina;?></td>
+                  </tr>
+                <?php
+                }
+                ?>
+                </table>
 
               </div>
-              </div>
+            </div>
           </div>
 
 
@@ -165,5 +166,5 @@
       <div class="espacioDos"></div>
       <div class="espacioDos"></div>
       <div class="espacioDos"></div>
-      <?php include(APPPATH.'Views/include/footer.php');?>
-      <?php include(APPPATH.'Views/include/header-js.php');?>
+
+<?php include(APPPATH.'Views/include/footer.php');?>

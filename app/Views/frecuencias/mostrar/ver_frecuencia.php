@@ -48,7 +48,7 @@
 
            
           <div class="col-md-9">
-
+          <?php include(APPPATH.'/Views/include/notificacion.php');?>
         
           <div class="espacioUno"></div>
         

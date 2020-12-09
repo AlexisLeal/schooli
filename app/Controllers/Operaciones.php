@@ -2,7 +2,7 @@
 
 class Operaciones extends BaseController{
 
-    public function eliminarSessionNotificaciones()
+    public function operacioneseliminaSessionNotificacion()
 	{
      
 

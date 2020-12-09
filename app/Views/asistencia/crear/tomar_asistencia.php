@@ -49,57 +49,99 @@
             <?php include(APPPATH.'/Views/include/menu-izquierda.php');?>
           </div>
 
+
+           
           <div class="col-md-9">
-          <?php include(APPPATH.'/Views/include/notificacion.php');?>
+
+          <?php if($session->has('Notificaciones')){;?>
+         <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>Notificaciones:</strong> <?php echo $session->get('Notificaciones')?>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div> 
+              <?php } $session->remove('Notificaciones');?>
+
+
+
+
+
+          <h4>Registrar Notificación.</h4>
           
-          <h4>ver  Horario.</h4>
           <div class="espacioUno"></div>
         
-
-
-
               <div class="card">
                 <div class="card-body">
 
-               
-               
+                <form action="<?php echo site_url('Notificaciones/insertarnotificacion');?>" method="post" enctype="multipart/form-data">
+              
+
+                
                 <div class="espacioDos"></div>
+
+
+
                 <div class="row">
                   <div class="col">
                   Nombre
-                    <input type="text" name="nombre" id="nombre" class="form-control form-control-sm" disabled = "disabled" value="<?php echo $nombre ?>">
+                    <input type="text" name="nombre" id="nombre" class="form-control form-control-sm">
                   </div>
                   <div class="col">
-                    Estatus
-                    <input type="text" name="nombre" id="nombre" class="form-control form-control-sm" disabled = "disabled" value="<?php echo $estatus ?>">
-
+                  Notificacion
+                  <textarea class="form-control form-control-sm" name="notificacion" id="notificacion" rows="3" required=""></textarea>
                   </div>
                 </div>
 
                 <div class="espacioUno"></div>
 
+                <div class="row">
+                <div class="col">
+                <label for="lblInstrucciones">Tipo de usuario</label>
+                  <select class="form-control form-control-sm" name="tipo_usuario" id="tipo_usuario" required="">
+                    <option value="">Seleccione una opción</option>
+                    <?php 
+                    foreach (getTipoUsuario() as $fila){
+                    ?>
+                    <option value="<?php echo $fila->id?>"><?php echo $fila->nombre?></option>
+                    <?php
+                    }
+                    ?>
+                  </select>
+
+                </div>
+                <div class="col">
+                <label for="lblInstrucciones">Estatus</label>
+                  <select class="form-control form-control-sm" name="estatus" id="estatus" required="">
+                    <option value="">Seleccione una opción</option>
+                    <option value="1">Activo</option>
+                    <option value="0">Inactivo</option>
+                  </select>
+                    </div>
+              </div>
+
+                <div class="espacioUno"></div>
 
                 <div class="row">
                   <div class="col">
-                  Fecha de inicio
-                  <input type="text" name="fechaInicio" id="fechaInicio" class="form-control form-control-sm" disabled = "disabled" value="<?php echo $horaInicio ?>"> 
-
+                  Fecha Inicio
+                  <input type="date" name="fecha_inicio" id="fecha_inicio" required class="form-control form-control-sm">
                   </div>
                   <div class="col">
-                  Fecha Fin
-                  <input type="text" name="fechaFIn" id="fechaFIn" class="form-control form-control-sm" disabled = "disabled" value="<?php echo $horaFin ?>">
+                  Fecha Termina
+                  <input type="date" name="fecha_termina" id="fecha_termina" required class="form-control form-control-sm">
                   </div>
                 </div>
+                
+                <div class="espacioUno"></div>
+                <div class="espacioUno"></div>
+
+
+
 
 
               <div class="espacioUno"></div>
 
-              <div class="form-group">
-                <label for="lblInstrucciones">Descripción</label>
-                <textarea class="form-control form-control-sm" name="descripcion" id="descripcion" rows="3" disabled = "disabled" ><?php echo $comentarios ?></textarea>
-              </div>
-
-              <div class="espacioUno"></div>
+              <button type="submit" name="sbNotificacion" class="btn btn-primary btn-sm">Registrar</button>
               </form>
 
               </div>
@@ -167,3 +209,4 @@
       <div class="espacioDos"></div>
       <?php include(APPPATH.'Views/include/footer.php');?>
       <?php include(APPPATH.'Views/include/header-js.php');?>
+     

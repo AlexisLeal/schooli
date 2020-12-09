@@ -53,12 +53,7 @@
 
 
           <div class="col-md-9">
-              <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                <strong>Notificaciones del sistema:</strong> Este texto es un ejemplo de notificaciones que el sistema le debe de mostrar al Administrador.
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div> 
+          <?php include(APPPATH.'/Views/include/notificacion.php');?>
 
 
               <?php
