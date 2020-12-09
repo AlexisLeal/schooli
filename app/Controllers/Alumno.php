@@ -5,6 +5,7 @@ use  App\Models\Evaluaciones_model;
 use  App\Models\Preguntas_model;
 use  App\Models\Pregunta_opcion_multiple;
 use  App\Models\Control_Respuestas_model;
+use  App\Models\Control_grupos_calificaciones_evaluaciones_model;
 
 
 class Alumno extends BaseController{
@@ -152,14 +153,10 @@ class Alumno extends BaseController{
                 $REQUEST = \Config\Services::request();
                 $idEvaluacion = $REQUEST->getPost('idEvaluacion');
                 $idGrupo = $REQUEST->getPost('idGrupo');
-               // $db = \Config\Database::connect();
-                //$usermodel = $db->table('evaluaciones EV');
                 $usermodelPreguntas = new Preguntas_model($db);
                 $usermodelPreguntas->select('id,idTipoPregunta');
                 $usermodelPreguntas->where('idEvaluacion',$idEvaluacion);
                 $usermodelPreguntas->where('deleted',0);
-                //$usermodel->select('P.id as idPregunta, P.idTipoPregunta');
-                //$usermodel->join('preguntas P',"EV.id = P.idEvaluacion AND P.idEvaluacion = $idEvaluacion AND P.deleted  = 0  and EV.deleted = 0");
                 $query = $usermodelPreguntas->get();
                 $resultado = $query->getResult();
                 $preguntasMultiples = array();
@@ -198,6 +195,7 @@ class Alumno extends BaseController{
                     $hoy = date("Y-m-d H:i:s");
                     foreach($preguntasCalificadasOptionMultiple as $idpregunta=>$respuesta){
                         $data = ['idalumno'=> $this->session->get('id'),
+                        'idgrupo'=> $idGrupo,
                         'idevaluacion' =>$idEvaluacion,
                         'idpregunta'=> $idpregunta,
                         'idtipopregunta'=> 2,
@@ -205,7 +203,9 @@ class Alumno extends BaseController{
                         'fecha_creacion'=> $hoy,
                         'fecha_ultimo_cambio' => $hoy,
                         ];
+
                         $usermodelControRespuestas->insert($data);
+                       
                     }
                     $usermodelPreguntas->select('id,idTipoPregunta,valor');
                     $usermodelPreguntas->where('idEvaluacion',$idEvaluacion);
@@ -229,6 +229,17 @@ class Alumno extends BaseController{
                         }
                         $totalpreguntas ++;
                     }
+                    $usermodelControlEvaluacion = new Control_grupos_calificaciones_evaluaciones_model($db);
+                    $data = ['id_alumno'=> $this->session->get('id'),
+                    'id_grupo'=> $idGrupo,
+                    'id_evaluacion' =>$idEvaluacion,
+                    'calificacion'=>$puntos,
+                    'calificaciontotal'=>$valortotalevaluacion,
+                    'fecha_creacion'=> $hoy,
+                    'fecha_ultimo_cambio' => $hoy,
+                    ];
+                    $usermodelControlEvaluacion->insert($data);
+
                    // $calificacion = 
 
                     echo 'El valor total del examen es '.$valortotalevaluacion .' saco un maximo de '.$puntos.' puntos de un total de preguntas '.$totalpreguntas.'<br/>';
