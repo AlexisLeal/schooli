@@ -50,14 +50,27 @@
           </div>
 
 
-
           <div class="col-md-9">
-              <!-- <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                <strong>Notificaciones del sistema:</strong> Este texto es un ejemplo de notificaciones que el sistema le debe de mostrar al Administrador.
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div> -->
+            <?php
+              if($session->has('notificaciones_usuario')){ 
+                ?>
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                  <?php
+                  foreach (operacionesGetNotificacionesUsuario() as $fila){
+                    ?>
+                    <strong><?php echo $fila->nombre;?>:</strong> <?php echo $fila->notificacion;?>.
+                    <?php
+                  }
+                  ?>
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    
+                  </button>
+                </div>
+                <?php                
+                //$session->remove('notificaciones_usuario'); 
+              }
+              ?>
 
 
               <?php
@@ -86,11 +99,12 @@
 
                 <a href="<?php echo site_url('/Notificaciones/agregarnotificacion'); ?>">Crear una notificación</a> 
                 <hr class="linea"/>
-                <table>
+                <table class="tabla-registros" class="display" cellspacing="6" cellpadding="8">
+                <thead>
                 <tr>
-                <td>ID</td><td>Nombre</td><td>Notificación</td><td>Estatus</td><td>Fecha inicio</td><td>Fecha Termino</td>
+                <th>ID</th><th>Nombre</th><th>Notificación</th><th>Tipo de Usuario</th><th>Estatus</th><th>Fecha inicio</th><th>Fecha Termino</th>
                 </tr>
-
+                </thead>
                 
                 <?php foreach(operacionesGetNotificaciones() as $fila){ ?> 
                   <tr>
@@ -98,7 +112,7 @@
                   <td><?php echo $fila->nombre;?></td>
                   <td><?php echo $fila->notificacion;?></td>
                   <td><?php echo $fila->usuario;?></td>
-                  <td><?php echo $fila->estatus;?></td>
+                  <td><?php echo $fila->estatus == 1 ? "Activo" : "Inactivo"; ?></td>
                   <td><?php echo $fila->fecha_inicio;?></td>
                   <td><?php echo $fila->fecha_termina;?></td>
                   </tr>

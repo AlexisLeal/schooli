@@ -124,11 +124,11 @@
                 <div class="row">
                   <div class="col">
                   Fecha Inicio
-                  <input type="date" name="fecha_inicio" id="fecha_inicio" class="form-control form-control-sm">
+                  <input type="date" name="fecha_inicio" id="fecha_inicio" required class="form-control form-control-sm">
                   </div>
                   <div class="col">
                   Fecha Termina
-                  <input type="date" name="fecha_termina" id="fecha_termina" class="form-control form-control-sm">
+                  <input type="date" name="fecha_termina" id="fecha_termina" required class="form-control form-control-sm">
                   </div>
                 </div>
                 
