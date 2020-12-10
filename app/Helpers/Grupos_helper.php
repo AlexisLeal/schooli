@@ -52,7 +52,7 @@ function generarCodigo() {
    }
 
    function getAllGruposReasignar()
-{
+    {
     $usermode = new Grupos_model($db);
     $usermode->select('id,nombre,id_plantel,id_unidad_negocio');
     $usermode->where('deleted',0);
@@ -61,8 +61,7 @@ function generarCodigo() {
     //$resultado = $usermode->query($query);
     $rowArray = $resultado->getResult();
     return($rowArray);
-}
-
+    }
 
 
 
