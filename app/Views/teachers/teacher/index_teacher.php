@@ -108,21 +108,22 @@
           ?>
           <table width="100%">
           <tr>
-          <td>Lunes</td><td>Martes</td><td>Miercoles</td><td>Jueves</td><td>Viernes</td><td>Sabado</td><td>Domingo</td>
+          <td>Alumno</td><td>Lunes</td><td>Martes</td><td>Miercoles</td><td>Jueves</td><td>Viernes</td><td>Sabado</td><td>Domingo</td>
           <tr>
           <tr>
-          <?php
-          foreach($alumnos as $alumno){
-            echo $alumno."<br/>";
-          }?>
+          
+              <?php
+              foreach($alumnos as $alumno){
+                echo $alumno."<br/>";
+              }?>
 
-          <?php
-          for($i=$fechaInicio; $i<=$fechaFin; $i+=86400){
-          ?>
-          <td><?php echo date("d-m-Y", $i);?></td>
-          <?php
-          }
-          ?>
+              <?php
+              for($i=$fechaInicio; $i<=$fechaFin; $i+=86400){
+              ?>
+              <td><?php echo date("d-m-Y", $i);?></td>
+              <?php
+              }
+              ?>
           </tr>
           </table>
 
