@@ -220,6 +220,20 @@ function getMiembrosDisponibles($id_unidad_negocio,$id_plantel)
 }
 
 
+function AsignacionGetGrupostAsignadosMaestro()
+{
+    $idUsuarioTipoMaestro = $_SESSION['id'];
+    $db = \Config\Database::connect();
+    $usermodel = $db->table('grupos G');
+    $usermodel->select('*');
+    $usermodel->join('grupo_teachers GT',"G.id = GT.id_grupo and GT.id_teacher = $idUsuarioTipoMaestro AND G.deleted = 0 and GT.deleted = 0;");
+    $query = $usermodel->get();
+    $resultado = $query->getResult();
+    return $resultado;  
+}
+
+
+
 
 
 
