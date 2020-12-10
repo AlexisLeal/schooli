@@ -68,7 +68,15 @@
               <div style="padding-left:30px">
               <div class="card">
                 <div class="card-body">
-                  Listado de grupos asignados
+                Listado de grupos asignados
+                <?php
+                $alumnos=array();
+                $alumnos[] = 'Gerardo';
+                $alumnos[] = 'Hugo';
+                $alumnos[] = 'Saby';
+                $alumnos[] = 'Luz';
+                $alumnos[] = 'Angeles';
+                ?>
                 </div>
               </div>
             
@@ -76,23 +84,58 @@
 
             <div class="card">
               <div class="card-body">
-              Test
+              Ejemplo de Asistencias para 5 Alumnos: <br/>
+
+              <?php
+          setlocale(LC_TIME, "spanish");
+          $mes=strftime("%B");
+          $mesEsp=ucwords($mes);
+          echo "<h2>".$mesEsp." ".date("Y")."</h2>";
+          
+
+          if (date("D") == "Mon"){
+            $week_start = date("Y-m-d");
+          } else {
+            $week_start = strtotime('last Monday', time());
+          }
+          $week_end     = strtotime('next Sunday', time());
+
+          $fechaInicio=$week_start;
+          $fechaFin=$week_end;
+
+
+
+          ?>
+          <table width="100%">
+          <tr>
+          <td>Lunes</td><td>Martes</td><td>Miercoles</td><td>Jueves</td><td>Viernes</td><td>Sabado</td><td>Domingo</td>
+          <tr>
+          <tr>
+          <?php
+          foreach($alumnos as $alumno){
+            echo $alumno."<br/>";
+          }?>
+
+          <?php
+          for($i=$fechaInicio; $i<=$fechaFin; $i+=86400){
+          ?>
+          <td><?php echo date("d-m-Y", $i);?></td>
+          <?php
+          }
+          ?>
+          </tr>
+          </table>
+
+              
+
               </div>
             </div>
 
-            <div class="card">
-              <div class="card-body">
-              Ejemplo de Asistencias para 5 Alumnos:<br/>
-              Gerardo <br/>
-              Hugo <br/>
-              Saby <br/>
-              Luz <br/>
-              Angeles <br/>
-
-              </div>
-            </div>
 
 
+  
+
+            <br/><br/>
             </div>
           </div>
 
