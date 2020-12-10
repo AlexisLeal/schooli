@@ -226,20 +226,11 @@ function AsignacionGetGrupostAsignadosMaestro()
     $db = \Config\Database::connect();
     $usermodel = $db->table('grupos G');
     $usermodel->select('*');
-    $usermodel->join('grupo_teachers GT',"G.id = GT.id_grupo and GT.id_teacher = $idUsuarioTipoMaestro AND GT.deleted = 0 and G.deleted = 0");
+    $usermodel->join('grupo_teachers GT',"G.id = GT.id_grupo and GT.id_teacher = $idUsuarioTipoMaestro AND GT.deleted = 0  and G.deleted = 0");
     $query = $usermodel->get();
     $resultado = $query->getResult();
     return $resultado;  
 }
-
-
-
-
-
-
-
-
-
 
 
 ?>

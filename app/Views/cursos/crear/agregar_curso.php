@@ -135,7 +135,8 @@
               </div>
 
               <div class="espacioUno"></div>
-
+              <button type="reset" class="btn btn-primary btn-sm">Limpiar</button> 
+              
               <button type="submit" name="submitCR" class="btn btn-primary btn-sm">Registrar</button>
               </form>
 
