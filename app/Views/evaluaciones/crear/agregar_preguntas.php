@@ -137,6 +137,8 @@
                 <input type="hidden" name="idtipoevaluacion" value="<?php echo $idtipoevaluacion;?>">
                 <input type="hidden" name="nivel" value="<?php echo $nivel;?>">
                 <input type="hidden" name="leccion"  value="<?php echo $leccion;?>">
+                <button type="reset" class="btn btn-primary btn-sm">Limpiar</button> 
+                
                 <button type="submit" name="registrarPregunta" class="btn btn-primary btn-sm">Guardar</button>
                 </div>
                 </form>
