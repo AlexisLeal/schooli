@@ -54,6 +54,17 @@
           <div class="col-md-9">
           <?php include(APPPATH.'/Views/include/notificacion.php');?>
 
+            <?php if($session->has('EvaluacionContestadaOk')){;?>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+               <?php echo $session->get('EvaluacionContestadaOk')?>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div> 
+            <?php } $session->remove('EvaluacionContestadaOk');?>
+
+              
+
           <div class="espacioUno"></div>
           <div class="text-right">
             <h4><?php echo $session->get('nombre')." ".$session->get('apellido')." ".$session->get('apellido_materno');?></h4>

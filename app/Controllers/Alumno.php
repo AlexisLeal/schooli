@@ -179,13 +179,13 @@ class Alumno extends BaseController{
                         foreach($preguntasMultiples as $key=>$value){
                             if($fila->idPregunta == $key){
                                 if($fila->opcion_correcta == $value){
-                                    echo 'La pregunta con id '.$fila->idPregunta .' con el valor de la bse de datos  '.$fila->opcion_correcta .' es correcta <br/>';
-                                    echo 'La el id que mando el usuario es  '.$key .' con el valor mandado por el usuario  '.$value .' es correcta <br/> <br/> <br/>';
+                                    //echo 'La pregunta con id '.$fila->idPregunta .' con el valor de la bse de datos  '.$fila->opcion_correcta .' es correcta <br/>';
+                                    //echo 'La el id que mando el usuario es  '.$key .' con el valor mandado por el usuario  '.$value .' es correcta <br/> <br/> <br/>';
                                     $preguntasCalificadasOptionMultiple[$fila->idPregunta] = 1; 
 
                                 }else{
-                                    echo 'La pregunta con id '.$fila->idPregunta .' con el valor de la bse de datos '.$value .' es incorrecta <br/>';
-                                    echo 'La el id que mando el usuario es  '.$key .' con el valor mandado por el usuario  '.$value .' es incorrecta <br/> <br/> <br/> <br/>';
+                                    //echo 'La pregunta con id '.$fila->idPregunta .' con el valor de la bse de datos '.$value .' es incorrecta <br/>';
+                                    //echo 'La el id que mando el usuario es  '.$key .' con el valor mandado por el usuario  '.$value .' es incorrecta <br/> <br/> <br/> <br/>';
                                     $preguntasCalificadasOptionMultiple[$fila->idPregunta] = 0; 
                                 }
                             }
@@ -242,8 +242,12 @@ class Alumno extends BaseController{
 
                    // $calificacion = 
 
-                    echo 'El valor total del examen es '.$valortotalevaluacion .' saco un maximo de '.$puntos.' puntos de un total de preguntas '.$totalpreguntas.'<br/>';
-                    var_dump($preguntasCalificadasOptionMultiple);         
+                    //echo 'El valor total del examen es '.$valortotalevaluacion .' saco un maximo de '.$puntos.' puntos de un total de preguntas '.$totalpreguntas.'<br/>';
+                    //var_dump($preguntasCalificadasOptionMultiple);  
+                    $data = ['EvaluacionContestadaOk'  => 'La evaluación de registro correctamente'];
+                    $this->session->set($data,true);
+
+                    return redirect()->to(site_url('Alumno/index'));    
                 }               
             }else{
                 return redirect()->to(site_url('Home/salir'));

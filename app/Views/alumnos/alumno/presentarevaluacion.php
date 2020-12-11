@@ -69,22 +69,7 @@
             <h4><?php echo $session->get('nombre')." ".$session->get('apellido')." ".$session->get('apellido_materno');?></h4>
           </div>
           <div class="espacioUno"></div>
-            <?php
-            //$data['idEvaluacion'] = $id_evaluacion;
-            //$data['nombre'] = $row->nombre;
-            //$nombre =getTipoEvaluacionEspecifico($row->tipo_evaluacion);
-            //$data['tipo_evaluacion'] = $nombre->nombre;
-            //$data['clave'] = $row->clave;
-            //$data['valorpreguntas'] =  getValorTotalPreguntas($id_evaluacion);
-            
-            /*
-            $data['idtipoevaluacion'] = $row->tipo_evaluacion;
-            $data['nivel'] = $row->nivel;	
-            $data['leccion'] = $row->leccion;
-            $data['totalpreguntas'] = getTotalPreguntas($id_evaluacion);
-            */
-            
-            ?>
+
           
             <div class="card">
               <div class="card-body">
@@ -112,11 +97,7 @@
             <br/>
             <br/>
 
-<!-- Esta evaluacion tiene un estimado de tiempo para contestar (timer, definido)
-cuando el usuario de click en iniciar
-que no se pueda cerrar la ventana del navegadorsi el usuario dice que 
-similar_textque se guarden todos los datos y luego ya se cierre el navegador
--->
+
             <form action="<?php echo site_url('Alumno/CalificarEvaluacion')?>" method="post">
             <div id="contestarEvaluacion" style="background-color:#cdcdcd;">
             <br/>
@@ -148,7 +129,7 @@ similar_textque se guarden todos los datos y luego ya se cierre el navegador
                   </div>
                   <div class="col-md-8">
                   <?php
-                  //echo $fila->pregunta;
+                 
 
                   if($fila->tiene_imagen==1 || $fila->tiene_audio_pregunta==1){
                       if($fila->tiene_imagen==1){
@@ -178,7 +159,7 @@ similar_textque se guarden todos los datos y luego ya se cierre el navegador
 
 
               <?php
-          //$idPregunta = $fila->num_pregunta;
+
           $idPregunta = $fila->id;
           switch ($fila->idTipoPregunta){
           case 1: // Pregunta abierta
@@ -215,12 +196,6 @@ similar_textque se guarden todos los datos y luego ya se cierre el navegador
                 
                 <table width="100%">
                   <tr>
-                  <!--
-                  <td width="20%"> < ?php echo empty($pregunta_multiple->valor1) ? 0 : $pregunta_multiple->valor1;?> <input class="form-check-input pers" type="radio" name="exampleRadios" id="exampleRadios2" value="option2"> </td>
-                  <td width="20%"> < ?php echo empty($pregunta_multiple->valor2) ? 0 : $pregunta_multiple->valor2;?> <input class="form-check-input pers" type="radio" name="exampleRadios" id="exampleRadios2" value="option2"> </td>
-                  <td width="20%"> < ?php echo empty($pregunta_multiple->valor3) ? 0 : $pregunta_multiple->valor3;?> <input class="form-check-input pers" type="radio" name="exampleRadios" id="exampleRadios2" value="option2"> </td>
-                  <td width="20%"> < ?php echo empty($pregunta_multiple->valor4) ? 0 : $pregunta_multiple->valor4;?> <input class="form-check-input pers" type="radio" name="exampleRadios" id="exampleRadios2" value="option2"> </td>
-                -->
                   <td width="20%"> <input class="form-check-input" type="radio" required name="<?php echo 'optmulti'.$pregunta_multiple->idPregunta;?>" id="exampleRadios2" value="1"> <?php echo "<span class='pers'>".$pregunta_multiple->valor1."</span>";?>  </td>
                   <td width="20%"> <input class="form-check-input" type="radio" required name="<?php echo 'optmulti'.$pregunta_multiple->idPregunta;?>" id="exampleRadios2" value="2"> <?php echo "<span class='pers'>".$pregunta_multiple->valor2."</span>";?>  </td>
                   <td width="20%"> <input class="form-check-input" type="radio" required name="<?php echo 'optmulti'.$pregunta_multiple->idPregunta;?>" id="exampleRadios2" value="3"> <?php echo "<span class='pers'>".$pregunta_multiple->valor3."</span>";?>  </td>
@@ -350,13 +325,7 @@ similar_textque se guarden todos los datos y luego ya se cierre el navegador
               </div>
             </div>
             
-            <!--
-            <div class="card">
-                <div class="card-body">
 
-                </div>
-            </div>
-            -->
 
 
 
