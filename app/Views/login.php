@@ -23,6 +23,23 @@
         <input type="password" id="inputPassword" name="inputPassword" class="form-control inputLogin" required="" placeholder="">
         <span class="labelLogin">Contraseña</span>
       </div>
+      <?php
+              if($session->has('errorcredenciales')){ 
+                ?>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                  <?php
+                  echo $session->get('errorcredenciales');
+                  ?>
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <?php
+                
+                $session->remove('errorcredenciales');
+                $session->destroy(); 
+              }
+              ?>
       <br/>
       <div class="form-label-group">
         <select name="tipo_usuario" id="tipo_usuario"  class="form-control inputLogin" required=""> 
