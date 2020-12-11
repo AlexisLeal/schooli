@@ -137,9 +137,13 @@
                 <input type="hidden" name="idtipoevaluacion" value="<?php echo $idtipoevaluacion;?>">
                 <input type="hidden" name="nivel" value="<?php echo $nivel;?>">
                 <input type="hidden" name="leccion"  value="<?php echo $leccion;?>">
-                <button type="reset" class="btn btn-primary btn-sm">Limpiar</button> 
                 
-                <button type="submit" name="registrarPregunta" class="btn btn-primary btn-sm">Guardar</button>
+                <table width="100%">
+                <tr>
+                <td><div class="text-center"><button type="submit" name="registrarPregunta" class="btn btn-primary btn-sm">Guardar</button></div></td>
+                <td><div class="text-left"><button type="reset" class="btn btn-secondary btn-sm">Limpiar</button> </div></td>
+                <tr>
+                </table>
                 </div>
                 </form>
 
