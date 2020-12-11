@@ -70,7 +70,8 @@
                 </div>
                 <?php
                 
-                $session->remove('pregunta-exito'); 
+                $session->remove('pregunta-exito');
+               
               }
               ?>
 
