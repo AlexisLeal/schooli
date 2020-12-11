@@ -13,7 +13,20 @@ class Teacher extends BaseController{
         }else{
             return redirect()->to(site_url('Home/salir'));
         }
-	}
+    }
+    
+
+
+    public function asistencia()
+	{
+        if($this->session->get('login') && $this->session->get('roll') == 3){
+            $data['page_title'] = "Teacher";
+            return view('teachers/teacher/asistencia',$data);
+        }else{
+            return redirect()->to(site_url('Home/salir'));
+        }
+    }
+    
 }
 
 
