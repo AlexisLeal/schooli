@@ -167,14 +167,25 @@ input[type='radio']:checked:after {
           <div class="espacioUno"></div>
 
 
-
-            <div class="card">
+          <div class="card">
               <div class="card-body">
-                Alumnos del grupo seleccionado.<br/>
-                <hr class="linea"/>
+                
+              </div>
+          </div>
+
+          </div> <!-- Se termina el div 10-->
+        </div><!-- Se termina el row-->
+      </div> <!-- Se termina id general -->
+    </div> <!-- Se termina el container-->
+
+
+
+
+    <div class="container">
+        <div class="row">
+        <div class="col-md-12">
+
               <div style="padding-left:2px">
-              <div class="card">
-                <div class="card-body">
 
                 <?php
                 $alumnos=array();
@@ -184,20 +195,17 @@ input[type='radio']:checked:after {
                 $alumnos[] = 'Luz';
                 $alumnos[] = 'Angeles';
                 ?>
-                </div>
-              </div>
-            
             <br/>
             
             <div class="card">
               <div class="card-body">
               Ejemplo de Asistencias para 5 Alumnos: <br/><br/>
-              <table width="80%">
+              <table width="60%">
               <tr>
-              <td width="15%"><div class="verde"> </div><span class="contenidoEtiqueta">Asistencia</span></td>
-              <td width="15%"><div class="rojo"> </div> <span class="contenidoEtiqueta">Falta</span></td>
-              <td width="15%"><div class="amarillo"> </div> <span class="contenidoEtiqueta">Retardo</span></td>
-              <td width="35%"><div class="naranja"> </div> <span class="contenidoEtiqueta">Falta Justificada</span></td>
+              <td width="10%"><div class="verde"> </div><span class="contenidoEtiqueta">Asistencia</span></td>
+              <td width="10%"><div class="rojo"> </div> <span class="contenidoEtiqueta">Falta</span></td>
+              <td width="10%"><div class="amarillo"> </div> <span class="contenidoEtiqueta">Retardo</span></td>
+              <td width="30%"><div class="naranja"> </div> <span class="contenidoEtiqueta">Falta Justificada</span></td>
               <tr>
               </table>
               <br/>
@@ -222,7 +230,8 @@ input[type='radio']:checked:after {
           $fechaFin=$week_end;
           ?>
           <br/>
-          <table class="tabla-registros" width="120%" cellspacing="3" cellpadding="4">
+          <form action="" method="post">
+          <table class="tabla-registros" width="100%" cellspacing="3" cellpadding="4">
           
           <thead>
 
@@ -271,17 +280,17 @@ input[type='radio']:checked:after {
               <td>
               
               <div class="form-check form-check-inline">
-                <input class="form-check-input form-control-sm" type="radio" name="<?=$alumno."-".$date;?>" id="" value="asistio">
+                <input class="form-check-input form-control-sm" type="radio" name="<?=$alumno."-".$date;?>" id="" value="asistio" required>
               </div>
               <div class="form-check form-check-inline">
-                <input class="form-check-input form-control-sm" type="radio" name="<?=$alumno."-".$date;?>" id="" value="no_asistio">
+                <input class="form-check-input form-control-sm" type="radio" name="<?=$alumno."-".$date;?>" id="" value="no_asistio" required>
               </div>
 
               <div class="form-check form-check-inline">
-                <input class="form-check-input form-control-sm" type="radio" name="<?=$alumno."-".$date;?>" id="" value="retardo">
+                <input class="form-check-input form-control-sm" type="radio" name="<?=$alumno."-".$date;?>" id="" value="retardo" required>
               </div>
               <div class="form-check form-check-inline">
-                <input class="form-check-input form-control-sm" type="radio" name="<?=$alumno."-".$date;?>" id="" value="falta_justificada">
+                <input class="form-check-input form-control-sm" type="radio" name="<?=$alumno."-".$date;?>" id="" value="falta_justificada" required>
               </div>
               
 
@@ -294,17 +303,23 @@ input[type='radio']:checked:after {
             <?php
           }?>
           </table>
-<br/><br/>
-<hr class="linea"/>
-<br/>
+          <br/>
+          <br/>
+          <hr class="linea"/>
+          <br/>
                   <div class="text-center">
                   <button type="submit" name="guardarAsistencia" class="btn btn-primary btn-sm" >Guardar</button>
-
                   </div>  
+            </form>
               </div>
             </div>
-
-
+            
+          
+          
+          
+          </div>
+        </div>
+      </div> <!-- Termina Div container que contiene el listado de asistencia -->
 
   
 
@@ -312,8 +327,7 @@ input[type='radio']:checked:after {
             </div>
           </div>
 
-          </div>
-          </div>
+
 
 
         </div>  

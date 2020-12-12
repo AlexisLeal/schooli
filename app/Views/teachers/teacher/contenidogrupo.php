@@ -69,9 +69,9 @@
               <div style="padding-left:2px">
               <div class="card">
                 <div class="card-body">
-                  <a href="<?php echo site_url("/Teacher/alumnosasignados/$id_grupo")?>">Alumnos asignados esté Grupo.</a><br/>
+                  <a href="<?php echo site_url("/Teacher/alumnosasignados/$id_grupo/$id_unidad_negocio/$id_plantel")?>">Alumnos asignados esté Grupo.</a><br/>
                   <a href="<?php echo site_url("/Teacher/recursosasignados/$id_grupo")?>">Recursos asignados a esté Grupo</a><br/>
-                  <a href="<?php echo site_url("/Teacher/asistencia/$id_grupo")?>">Asistencia</a><br/>
+                  <a href="<?php echo site_url("/Teacher/asistencia/$id_grupo/$id_unidad_negocio/$id_plantel")?>">Asistencia</a><br/>
                 </div>
               </div>
             

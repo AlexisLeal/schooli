@@ -69,17 +69,49 @@
               <div style="padding-left:2px">
               <div class="card">
                 <div class="card-body">
-               <!--
-                < ?php 
-                if(empty(AsignacionGetGrupostAsignadosMaestro())){
+               <br/><br/>
+                <?php 
+                if(empty(getGrupoRecursos($id_grupo))){
                   echo "No existen grupos asignados a para este Teacher.";
                 }else{
-                  echo " Listado de grupos asignados.<br/>";
-                foreach(AsignacionGetGrupostAsignadosMaestro() as $fila){ ?>
+
+                  foreach(getGrupoRecursos($id_grupo) as $fila){
+                  switch($fila->extencion){
+                    case "docx":
+                      $icono = "fa-file-word-o fa-2x";
+                      break;
+                    case "xlsx":
+                      $icono = "fa-file-excel-o fa-2x";
+                      break;
+                    case "pdf":
+                      $icono = "fa-file-pdf-o fa-2x";
+                      break;
+                    case "zip":
+                      $icono = "fa-file-archive-o fa-2x";
+                      break;
+                    case "rar":
+                      $icono = "fa-file-archive-o fa-2x";
+                      break;
+                    case "jpg":
+                      $icono = "fa-file-image-o fa-2x";
+                      break;
+                    case "png":
+                      $icono = "fa-file-image-o fa-2x";
+                      break;
+                    case "mp3":
+                      $icono = "fa-file-audio-o fa-2x";
+                      break;
+                    case "mp4":
+                      $icono = "fa-file-video-o fa-2x";
+                      break;
+                    default:
+                      $icono="fa-file fa-2x";
+                    }
+                  ?>
                   
-                  <a href="< ?php echo site_url("/Teacher/getContenidoGrupoAsignado/$fila->id_grupo");?>"> < ?php echo $fila->nombre?></a>
-                  < ?php }}?>
-                  <br/>-->
+                  <a href="<?php echo base_url($fila->ruta);?>"><i class="fa <?php echo $icono;?>" aria-hidden="true"></i> <?php echo $fila->nombre;?></a>  <br/>
+                  <?php }}?>
+                  <br/>
                   
                  
                  

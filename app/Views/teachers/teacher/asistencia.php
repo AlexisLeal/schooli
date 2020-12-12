@@ -169,7 +169,7 @@ input[type='radio']:checked:after {
 
           <div class="card">
               <div class="card-body">
-                Alumnos del grupo seleccionado.<br/>
+                
               </div>
           </div>
 
@@ -187,19 +187,15 @@ input[type='radio']:checked:after {
 
               <div style="padding-left:2px">
 
-                <?php
-                $alumnos=array();
-                $alumnos[] = 'Gerardo';
-                $alumnos[] = 'Hugo';
-                $alumnos[] = 'Saby';
-                $alumnos[] = 'Luz';
-                $alumnos[] = 'Angeles';
-                ?>
+              <?php 
+                if(empty(getGrupoAlumnos($id_grupo,$id_unidad_negocio,$id_plantel))){
+                  echo "No existen alumnos asignados.";
+                }else{
+                  echo " Listado de alumnos asignados.<br/>";
+              ?>
             <br/>
-            
             <div class="card">
               <div class="card-body">
-              Ejemplo de Asistencias para 5 Alumnos: <br/><br/>
               <table width="60%">
               <tr>
               <td width="10%"><div class="verde"> </div><span class="contenidoEtiqueta">Asistencia</span></td>
@@ -230,7 +226,17 @@ input[type='radio']:checked:after {
           $fechaFin=$week_end;
           ?>
           <br/>
-          <form action="" method="post">
+
+          <!-- Iniciar el formulario -->
+          <form action="<?php echo site_url('Teacher/asistencia'); ?>" method="post">
+          <?php
+          $num_semana = date("W"); 
+          $id_teacher=$session->get('id');
+          ?>
+          <input type="hidden" name="id_grupo" value="<?=$id_grupo;?>">
+          <input type="hidden" name="id_teacher" value="<?=$id_teacher;?>">
+
+          <input type="hidden" name="num_semana" value="<?=$num_semana;?>">
           <table class="tabla-registros" width="100%" cellspacing="3" cellpadding="4">
           
           <thead>
@@ -269,10 +275,12 @@ input[type='radio']:checked:after {
           ?>
           </tr>
           <?php
-          foreach($alumnos as $alumno){
+            $a=0;
+            foreach(getGrupoAlumnos($id_grupo,$id_unidad_negocio,$id_plantel) as $fila){ 
+            $a++;
             ?>
             <tr>
-            <td><?=$alumno?></td>
+            <td><?=$fila->nombre?></td>
             <?php
             for($i=$fechaInicio; $i<=$fechaFin; $i+=86400){
               $date = date('Y-m-d', $i);
@@ -280,34 +288,37 @@ input[type='radio']:checked:after {
               <td>
               
               <div class="form-check form-check-inline">
-                <input class="form-check-input form-control-sm" type="radio" name="<?=$alumno."-".$date;?>" id="" value="asistio" required>
+                <input class="form-check-input form-control-sm" type="radio" name="<?=$fila->id;?>" id="" value="asistio" required>
               </div>
               <div class="form-check form-check-inline">
-                <input class="form-check-input form-control-sm" type="radio" name="<?=$alumno."-".$date;?>" id="" value="no_asistio" required>
+                <input class="form-check-input form-control-sm" type="radio" name="<?=$fila->id;?>" id="" value="no_asistio" required>
               </div>
 
               <div class="form-check form-check-inline">
-                <input class="form-check-input form-control-sm" type="radio" name="<?=$alumno."-".$date;?>" id="" value="retardo" required>
+                <input class="form-check-input form-control-sm" type="radio" name="<?=$fila->id;?>" id="" value="retardo" required>
               </div>
               <div class="form-check form-check-inline">
-                <input class="form-check-input form-control-sm" type="radio" name="<?=$alumno."-".$date;?>" id="" value="falta_justificada" required>
+                <input class="form-check-input form-control-sm" type="radio" name="<?=$fila->id;?>" id="" value="falta_justificada" required>
               </div>
               
 
               </td>
               
               <?php
+                }
+              }
             }
             ?>
             </tr>
             <?php
-          }?>
+          ?>
           </table>
           <br/>
           <br/>
           <hr class="linea"/>
           <br/>
                   <div class="text-center">
+                  <input type="hidden" name="num_alumnos" value="<?=$a;?>">
                   <button type="submit" name="guardarAsistencia" class="btn btn-primary btn-sm" >Guardar</button>
                   </div>  
             </form>

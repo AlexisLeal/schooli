@@ -76,7 +76,7 @@
                 }else{
                 foreach(AsignacionGetGrupostAsignadosMaestro() as $fila){ ?>
                   
-                  <a href="<?php echo site_url("/Teacher/getContenidoGrupoAsignado/$fila->id_grupo");?>"> <?php echo $fila->nombre?></a>
+                  <a href="<?php echo site_url("/Teacher/getContenidoGrupoAsignado/$fila->id_grupo/$fila->id_unidad_negocio/$fila->id_plantel");?>"> <?php echo $fila->nombre?></a>
                 <?php }}?>
 
                 </div>
