@@ -3,6 +3,8 @@ use  App\Models\Usuarios;
 use  App\Models\Direcciones;
 use  App\Models\Alumnos_model;
 use  App\Models\Planteles;
+use  App\Models\Grupos_alumnos_model;
+use  App\Models\Grupos_model;
 
 class Alumnos extends BaseController{
 
@@ -241,7 +243,15 @@ class Alumnos extends BaseController{
                     'fecha_ultimo_cambio' => $hoy,
                 ];
                 $usermodel_A = new Alumnos_model($db);
-                $usermodel_A->insert($data_alummno); 
+                $usermodel_A->insert($data_alummno);
+                
+                $data_Grupo =['id_grupo' =>$REQUEST->getPost('id_grupo'),
+                'id_alumno' =>$ultimo_id_usuario,
+                'fecha_creacion' =>$hoy,
+                'fecha_ultimo_cambio' =>$hoy,
+                ];
+                $usermodel_GrupoAlumno = new Grupos_alumnos_model($db);
+                $usermodel_GrupoAlumno->data($data_Grupo);
                 //Poner una variable que nos cheque que los tres querys para crear una variable de session 
                 $data = ['Alumno'  => 'El Alumno se agregro correctamente'];
                 $this->session->set($data,true);
@@ -343,6 +353,24 @@ class Alumnos extends BaseController{
         $usermodel = new Planteles($db);
         $query = "SELECT id,nombre FROM  planteles WHERE deleted = 0 and id_unidad_negocio=$id_unidad_negocio";
         $resultado = $usermodel ->query($query);
+        $rowArray = $resultado->getResult();
+        echo "<option value=''>Seleccione una opción</option>";
+        foreach($rowArray as $fila){
+            echo "<option value=$fila->id>$fila->nombre</option>";
+        }
+
+    }
+    function Ajaxgrupos()
+    {
+        $REQUEST = \Config\Services::request();
+        $id_plantel = $REQUEST->getPost('id_plantel');
+        $id_unidadNegocio = $REQUEST->getPost('id_unidadNegocio');
+        $usermode = new Grupos_model($db);
+        $usermode->select('id,nombre');
+        $usermode->where('id_unidad_negocio',$id_unidadNegocio);
+        $usermode->where('id_plantel',$id_plantel);
+        $usermode->where('deleted',0);
+        $resultado = $usermode->get();
         $rowArray = $resultado->getResult();
         echo "<option value=''>Seleccione una opción</option>";
         foreach($rowArray as $fila){

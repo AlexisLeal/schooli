@@ -71,7 +71,7 @@
               <div class="card">
                 <div class="card-body">
 
-                <form action="<?php echo site_url('Teachers/insertarmaestro');?>" method="post">
+                <form action="<?php echo site_url('Teachers/insertarmaestro');?>" method="post" id = "datosteacher">
                 <div class="espacioDos"></div>
                 Datos Generales
                 <div class="espacioDos"></div>
@@ -113,7 +113,7 @@
                     <input type="text" name="telefono" id="telefono" class="form-control form-control-sm" placeholder="Teléfono">
                   </div>
                   <div class="col">
-                    <input type="text" name="movil" id="movil" class="form-control form-control-sm" placeholder="Móvil o WhatssApp">
+                    <input type="text" name="movil" id="movil" class="form-control form-control-sm" placeholder="Móvil o WhatssApp" required ="">
                   </div>
                 </div>
 
@@ -239,8 +239,10 @@
                 </div>
 
               <div class="espacioUno"></div>
-              <button type="reset" class="btn btn-primary btn-sm">Limpiar</button> 
+            
               <button type="submit" name="submitTH" class="btn btn-primary btn-sm">Registrar</button>
+              <button class="btn btn-secondary btn-sm" onclick="confirmarlimpiado()">Limpiar</button> 
+              
               </form>
 
               </div>
@@ -324,5 +326,45 @@
 
         });
       });
+    
+      function ComprobarNumeroTelefonico(){
+         var  mensaje = '';
+        if(this.value.length == 0 ){
+          mensaje = '';
+        }else if(this.value.length > 10){
+          mensaje = "Ingrese un numero de telefonico valido ";
+        }else if(this.value.length < 10){
+          mensaje = "Ingrese un numero de telefonico valido";
+         }
+        this.setCustomValidity(mensaje);
+      }
+
+      function ComprobarNumeroMovil(){
+        var  mensaje = '';
+        if(this.value.length > 10){
+          mensaje = "Ingrese un numero movil valido";
+        }else if(this.value.length < 10){
+          mensaje = "Ingrese un numero movil valido";
+         }
+        this.setCustomValidity(mensaje);
+      }
+
+      var telefono = document.querySelector("#telefono");
+      var movil = document.querySelector("#movil");
+
+      movil.addEventListener("invalid", ComprobarNumeroMovil);
+      movil.addEventListener("input", ComprobarNumeroMovil);
+
+      telefono.addEventListener("invalid", ComprobarNumeroTelefonico);
+      telefono.addEventListener("input",ComprobarNumeroTelefonico);
+
+      function confirmarlimpiado(){
+       if(confirm("Seguro que quieres limpiar el formulario")){
+        document.getElementById("datosteacher").reset();
+       }
+      
+      
+    }
+
     </script>
  

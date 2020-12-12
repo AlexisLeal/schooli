@@ -72,7 +72,7 @@
               <div class="card">
                 <div class="card-body">
 
-                <form action="<?php echo site_url('Alumnos/insertarAlumno');?>" method="post">
+                <form action="<?php echo site_url('Alumnos/insertarAlumno');?>" method="post" id = "datosalumno">
                 <div class="espacioDos"></div>
                 Datos Generales
                 <div class="espacioDos"></div>
@@ -111,13 +111,13 @@
 
                 <div class="row">
                   <div class="col">
-                    <input type="text" name="telefono" id="telefono" class="form-control form-control-sm" placeholder="Teléfono">
+                    <input type="number" name="telefono" id="telefono" class="form-control form-control-sm" placeholder="Teléfono">
                   </div>
                   <div class="col">
-                    <input type="text" name="movil" id="movil" class="form-control form-control-sm" placeholder="Móvil o WhatssApp">
+                    <input type="number" name="movil" id="movil" class="form-control form-control-sm" placeholder="Móvil o WhatssApp" required="">
                   </div>
                 </div>
-
+               
 
                 <div class="espacioUno"></div>
                 
@@ -136,8 +136,18 @@
  
                   </div>
                 </div>
+                <div class="espacioUno"></div>
+               <div class="row">
+                  <div class="col">
+                    Grupos
+               <select class="form-control form-control-sm" name="id_grupo" id="grupo" required="">
+               <option value="">Seleccione una opción</option>
+                  </div>
+                </div>
 
 
+
+                <div class="espacioDos"></div>
                 <div class="espacioDos"></div>
                 <hr class="linea"/>
                 Datos Escolares
@@ -192,10 +202,10 @@
                 <div class="espacioDos"></div>
                 <div class="row">
                   <div class="col">
-                  <input type="text" name="calle" id="calle" class="form-control form-control-sm" placeholder="Calle">
+                  <input type="number" name="calle" id="calle" class="form-control form-control-sm" placeholder="Calle">
                   </div>
                   <div class="col">
-                  <input type="text" name="num_interior" id="num_interior" class="form-control form-control-sm" placeholder="Número interior">
+                  <input type="number" name="num_interior" id="num_interior" class="form-control form-control-sm" placeholder="Número interior">
                   </div>
                 </div>
 
@@ -203,7 +213,7 @@
 
                 <div class="row">
                   <div class="col">
-                  <input type="text" name="num_exterior" id="num_exterior" class="form-control form-control-sm" placeholder="Número exterior">
+                  <input type="number" name="num_exterior" id="num_exterior" class="form-control form-control-sm" placeholder="Número exterior">
                   </div>
                   <div class="col">
                   <input type="text" name="colonia" id="colonia" class="form-control form-control-sm" placeholder="Colonia">
@@ -214,7 +224,7 @@
 
                 <div class="row">
                   <div class="col">
-                  <input type="text" name="cp" id="cp" class="form-control form-control-sm" placeholder="Código Postal">
+                  <input type="number" name="cp" id="cp" class="form-control form-control-sm" placeholder="Código Postal">
                   </div>
                   <div class="col">
                   <input type="text" name="municipio_delegacion" id="municipio_delegacion" class="form-control form-control-sm" placeholder="Municipio / Delegación">
@@ -258,10 +268,10 @@
                   </div>
                 </div>
 
-              <div class="espacioUno"></div>
-              <button type="reset" class="btn btn-primary btn-sm">Limpiar</button> 
-              
-              <button type="submit" name="submitAL" class="btn btn-primary btn-sm">Registrar</button>
+              <div class="espacioUno"></div>  
+            <button type="submit" name="submitAL" class="btn btn-primary btn-sm">Registrar</button> 
+
+           <button class="btn btn-secondary btn-sm" onclick="confirmarlimpiado()">Limpiar</button> 
               </form>
 
               </div>
@@ -345,6 +355,61 @@
 
         });
       });
+
+      $('#plantel').change(function () {
+        var id_plantel = $(this).val();
+        var id_unidadNegocio = document.getElementById('unidad_negocio').value;
+        if(id_plantel != ""){
+        $.ajax({
+          type: "POST",
+          url: "<?php echo site_url('Alumnos/Ajaxgrupos');?>",
+          data: {id_unidadNegocio,id_plantel},
+          success : function(text){
+            document.getElementById("grupo").innerHTML = "";
+            $('#grupo').append(text);
+          }
+
+        });
+        }
+      });
+
+      function ComprobarNumeroTelefonico(){
+         var  mensaje = '';
+        if(this.value.length == 0 ){
+          mensaje = '';
+        }else if(this.value.length > 10){
+          mensaje = "Ingrese un numero de telefonico valido ";
+        }else if(this.value.length < 10){
+          mensaje = "Ingrese un numero de telefonico valido";
+         }
+        this.setCustomValidity(mensaje);
+      }
+
+      function ComprobarNumeroMovil(){
+        var  mensaje = '';
+        if(this.value.length > 10){
+          mensaje = "Ingrese un numero movil valido";
+        }else if(this.value.length < 10){
+          mensaje = "Ingrese un numero movil valido";
+         }
+        this.setCustomValidity(mensaje);
+      }
+
+      var telefono = document.querySelector("#telefono");
+      var movil = document.querySelector("#movil");
+
+      movil.addEventListener("invalid", ComprobarNumeroMovil);
+      movil.addEventListener("input", ComprobarNumeroMovil);
+
+      telefono.addEventListener("invalid", ComprobarNumeroTelefonico);
+      telefono.addEventListener("input",ComprobarNumeroTelefonico);
+
+      function confirmarlimpiado(){
+       if(confirm("Seguro que quieres limpiar el formulario")){
+        document.getElementById("datosalumno").reset();
+       }
+      }
+
     </script>
     
 

@@ -1,11 +1,11 @@
 <?php namespace App\Controllers;
-use  App\Models\Niveles_grupo;
-class Niveles extends BaseController{
+use  App\Models\Tipo_grupo;
+class TiposGrupo extends BaseController{
 
      
     public function index()
 	{
-        $data['page_title'] = "Niveles";	
+        $data['page_title'] = "tipo de grupo";	
         //Pasamos de forma dinamica el titulo  y se crear un array
         if($this->session->get('login') && $this->session->get('roll') == 4){
             return view('niveles/panel_niveles',$data);
@@ -16,7 +16,7 @@ class Niveles extends BaseController{
 	
 
 
-    public function agregarnivel()
+    public function agregartipogrupo()
 	{	
         //Pasamos de forma dinamica el titulo  y se crear un array
         if($this->session->get('login') && $this->session->get('roll') == 4){
@@ -28,7 +28,7 @@ class Niveles extends BaseController{
 	}
 
 
-    public function vernivel($id_nivel)
+    public function vertipogrupo($id_nivel)
 	{
         //Pasamos de forma dinamica el titulo  y se crear un array
         if($this->session->get('login') && $this->session->get('roll') == 4){
@@ -44,7 +44,7 @@ class Niveles extends BaseController{
     
 
     
-    public function editarnivel($id_nivel)
+    public function editartipogrupo($id_nivel)
 	{
         //Pasamos de forma dinamica el titulo  y se crear un array
         if($this->session->get('login') && $this->session->get('roll') == 4){
@@ -63,7 +63,7 @@ class Niveles extends BaseController{
 
     //Funciones para editar la base de datos
 
-    public function insertarnivel()
+    public function insertartipogrupo()
     {
         if($this->session->get('login') && $this->session->get('roll') == 4){
             if(isset($_POST['submitNV'])){
@@ -74,11 +74,11 @@ class Niveles extends BaseController{
                 'fecha_creacion'=>$hoy,
                 'fecha_ultimo_cambio'=>$hoy,
                 ];
-                $usermodel = new Niveles_grupo($db);
+                $usermodel = new Tipo_grupo($db);
                 $usermodel->insert($data);
                 $data = ['Nivel'  => 'El nivel se agregro correctamente'];
                 $this->session->set($data,true);
-                return redirect()->to(site_url('Niveles/agregarnivel'));
+                return redirect()->to(site_url('TiposGrupo/agregartipogrupo'));
             }else{
                 return redirect()->to(site_url('Home/salir'));
             }
@@ -99,11 +99,11 @@ class Niveles extends BaseController{
                 'fecha_ultimo_cambio'=>$hoy,
                 ];
                 $id_nivel = $REQUEST->getPost('idNv');
-                $usermodel = new Niveles_grupo($db);
+                $usermodel = new Tipo_grupo($db);
                 $usermodel->update($id_nivel,$data);
                 $data = ['Nivel'  => 'El nivel se modifico correctamente'];
                 $this->session->set($data,true);
-                return redirect()->to(site_url("Niveles/editarnivel/$id_nivel"));
+                return redirect()->to(site_url("TiposGrupo/editartipogrupo/$id_nivel"));
             }else{
                 return redirect()->to(site_url('Home/salir'));
             }
@@ -120,7 +120,7 @@ class Niveles extends BaseController{
             if(isset($_POST['submitNV'])){
                 $REQUEST = \Config\Services::request();
                 $id_nivel = $REQUEST->getPost('idNv');
-                $usermodel= new Niveles_grupo($db);
+                $usermodel= new Tipo_grupo($db);
                 $usermodel->delete(['id'=> $id_nivel]);
                 return redirect()->to(site_url('Niveles/index'));
 

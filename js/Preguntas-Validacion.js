@@ -51,7 +51,8 @@ $("#activarCargarAudioPregunta" ).click(function() {
     document.getElementById("agregarCampos").innerHTML = "";
     if(document.querySelector('#agregarCampos').childElementCount < 1){ 
     while (i < numCampos) {
-      var nombreCampo = idEvaluacion + '-' + valor + '-' + i;  
+      //var nombreCampo = idEvaluacion + '-' + valor + '-' + i; 
+      alert('Hola');
       $('#agregarCampos').append('<div class="form-group mb-2">\
             Opcion '+ i +' <input class="form-control form-control-sm" type="text" id="opcion_'+i+'" name="opcion_'+i+'" required="">\
             </div>\

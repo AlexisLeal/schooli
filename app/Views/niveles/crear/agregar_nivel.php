@@ -67,12 +67,12 @@
 
 
 
-          <h4>Agregar un nivel</h4>
+          <h4>Agregar un tipo de grupo</h4>
           <div class="espacioUno"></div>
               <div class="card">
                 <div class="card-body">
 
-                <form action="<?php echo site_url('Niveles/insertarnivel');?>" method="post" enctype="multipart/form-data">
+                <form action="<?php echo site_url('TiposGrupo/insertartipogrupo');?>" method="post" enctype="multipart/form-data">
                
                 <div class="espacioDos"></div>
                 <div class="row">

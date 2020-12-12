@@ -1,7 +1,7 @@
 <?php 
 use  App\Models\Ciclos_model;
 use  App\Models\Horarios_model;
-use  App\Models\Niveles_grupo;
+use  App\Models\Tipo_grupo;
 use  App\Models\Salones_model;
 use  App\Models\Cursos_model;
 use  App\Models\Frecuencia_model;
@@ -52,7 +52,7 @@ function getHorarioEspecifico($id_horario)
 }
  function getAllNiveles()
 {
-    $usermode = new Niveles_grupo($db);
+    $usermode = new Tipo_grupo($db);
     $usermode->select('id,nombre,comentarios');
     $usermode->where('deleted',0);
     // $query = "SELECT * FROM niveles_grupo WHERE deleted = 0";
@@ -64,7 +64,7 @@ function getHorarioEspecifico($id_horario)
 
 function getNivelEspecificogrupo($id_nivel)
 {
-    $usermode = new Niveles_grupo($db);
+    $usermode = new Tipo_grupo($db);
     $usermode->select('id,nombre,comentarios');
     $usermode->where('deleted',0);
     $usermode->where('id',$id_nivel);

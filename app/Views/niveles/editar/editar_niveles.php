@@ -74,7 +74,7 @@
 
               <div class="card">
                 <div class="card-body">
-                <form action="<?php echo site_url('Niveles/editar');?>" method="post">
+                <form action="<?php echo site_url('TiposGrupo/editar');?>" method="post">
 
                 <div class="espacioDos"></div>
                 <div class="row">

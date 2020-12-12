@@ -90,6 +90,7 @@ class Grupos extends BaseController{
                 'estatus' => $REQUEST->getPost('estatus'),
                 'id_plantel' => $REQUEST->getPost('plantel'),
                 'id_horario' => $REQUEST->getPost('horarios'),
+                'id_frecuencia' => $REQUEST->getPost('frecuencia'),
                 'id_salon' => $REQUEST->getPost('salon'),
                 'id_nivel' => $REQUEST->getPost('nivel'),
                 'codigo_acceso' =>$codigo,

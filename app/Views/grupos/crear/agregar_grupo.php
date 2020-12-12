@@ -72,7 +72,7 @@
               <div class="card">
                 <div class="card-body">
 
-                <form action="<?php echo site_url('Grupos/insertargrupo');?>" method="post" enctype="multipart/form-data">
+                <form action="<?php echo site_url('Grupos/insertargrupo');?>" method="post" enctype="multipart/form-data" id = "datosgrupo">
                
                 <div class="espacioDos"></div>
                 <div class="row">
@@ -107,6 +107,15 @@
                   Plantel
                   <select class="form-control form-control-sm" name="plantel" id="plantel" required="">
                   <option value="">Selecciona una opción</option> 
+                  </select>
+                  </div>
+                  <div class="col">
+                  Frecuencia
+                  <select class="form-control form-control-sm" name="frecuencia" id="frecuencia" required="">
+                  <option value="">Selecciona una opción</option>
+                  <?php foreach(GruposgetAllFrecuencia() as $fila){?>
+                    <option value="<?php echo $fila->id?>"><?php echo $fila->nombre?></option>
+                    <?php } ?> 
                   </select>
                   </div>
                 </div>
@@ -176,9 +185,9 @@
               </div>
 
               <div class="espacioUno"></div>
-              <button type="reset" class="btn btn-primary btn-sm">Limpiar</button> 
-
               <button type="submit" name="submitGP" class="btn btn-primary btn-sm">Registrar</button>
+
+              <button class="btn btn-secondary btn-sm" onclick="confirmarlimpiado()">Limpiar</button>
               </form>
 
               </div>
@@ -263,5 +272,12 @@
 
         });
       });
+
+
+      function confirmarlimpiado(){
+       if(confirm("Seguro que quieres limpiar el formulario")){
+        document.getElementById("datosgrupo").reset();
+       }
+      }
     </script>
  

@@ -2,10 +2,10 @@
 
 use CodeIgniter\Model;
 
-class Niveles_grupo extends Model
+class Tipo_grupo extends Model
 {
     #Nombre de la tabla
-    protected $table      = 'niveles_grupo';
+    protected $table      = 'tipos_grupo';
     #nombre de la clave primaria 
     protected $primaryKey = 'id';
 
