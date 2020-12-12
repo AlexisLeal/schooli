@@ -64,21 +64,57 @@
 
             <div class="card">
               <div class="card-body">
-                Grupos asignados.<br/>
+                Recursos asignados al Grupo.<br/>
                 <hr class="linea"/>
               <div style="padding-left:2px">
               <div class="card">
                 <div class="card-body">
-               
+               <br/><br/>
                 <?php 
-                if(empty(AsignacionGetGrupostAsignadosMaestro())){
+                if(empty(getGrupoRecursos($id_grupo))){
                   echo "No existen grupos asignados a para este Teacher.";
                 }else{
-                foreach(AsignacionGetGrupostAsignadosMaestro() as $fila){ ?>
-                  
-                  <a href="<?php echo site_url("/Teacher/getContenidoGrupoAsignado/$fila->id_grupo/$fila->id_unidad_negocio/$fila->id_plantel");?>"> <?php echo $fila->nombre?></a>
-                <?php }}?>
 
+                  foreach(getGrupoRecursos($id_grupo) as $fila){
+                  switch($fila->extencion){
+                    case "docx":
+                      $icono = "fa-file-word-o fa-2x";
+                      break;
+                    case "xlsx":
+                      $icono = "fa-file-excel-o fa-2x";
+                      break;
+                    case "pdf":
+                      $icono = "fa-file-pdf-o fa-2x";
+                      break;
+                    case "zip":
+                      $icono = "fa-file-archive-o fa-2x";
+                      break;
+                    case "rar":
+                      $icono = "fa-file-archive-o fa-2x";
+                      break;
+                    case "jpg":
+                      $icono = "fa-file-image-o fa-2x";
+                      break;
+                    case "png":
+                      $icono = "fa-file-image-o fa-2x";
+                      break;
+                    case "mp3":
+                      $icono = "fa-file-audio-o fa-2x";
+                      break;
+                    case "mp4":
+                      $icono = "fa-file-video-o fa-2x";
+                      break;
+                    default:
+                      $icono="fa-file fa-2x";
+                    }
+                  ?>
+                  
+                  <a href="<?php echo base_url($fila->ruta);?>"><i class="fa <?php echo $icono;?>" aria-hidden="true"></i> <?php echo $fila->nombre;?></a>  <br/>
+                  <?php }}?>
+                  <br/>
+                  
+                 
+                 
                 </div>
               </div>
             

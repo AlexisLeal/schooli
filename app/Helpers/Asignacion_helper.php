@@ -47,7 +47,7 @@ function getGrupoAlumnos($id_grupo,$id_unidad_negocio,$id_plantel)
     
     $db = \Config\Database::connect();
     $usermodel = $db->table('usuarios U');
-    $usermodel->select('U.id,U.nombre,G_AL.id_grupo');
+    $usermodel->select('U.id,U.nombre,U.apellido_paterno,U.apellido_materno,G_AL.id_grupo');
     $usermodel->join('grupo_alumnos G_AL',"U.id = G_AL.id_alumno and G_AL.id_grupo = $id_grupo and G_AL.deleted = 0",'left');
     $usermodel->join('alumnos AL',"AL.id_usuario = U.id and  AL.id_plantel = $id_plantel AND AL.id_unidad_negocio = $id_unidad_negocio");
     //$usermodel->where('U.id_tipo_usuario',1);
@@ -225,7 +225,7 @@ function AsignacionGetGrupostAsignadosMaestro()
     $idUsuarioTipoMaestro = $_SESSION['id'];
     $db = \Config\Database::connect();
     $usermodel = $db->table('grupos G');
-    $usermodel->select('*');
+    $usermodel->select('G.nombre,G.id_unidad_negocio,G.id_plantel,GT.id_grupo');
     $usermodel->join('grupo_teachers GT',"G.id = GT.id_grupo and GT.id_teacher = $idUsuarioTipoMaestro AND GT.deleted = 0  and G.deleted = 0");
     $query = $usermodel->get();
     $resultado = $query->getResult();

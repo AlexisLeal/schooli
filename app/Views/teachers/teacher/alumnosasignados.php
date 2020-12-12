@@ -64,21 +64,23 @@
 
             <div class="card">
               <div class="card-body">
-                Grupos asignados.<br/>
+              Alumnos asignados esté Grupo.<br/>
                 <hr class="linea"/>
               <div style="padding-left:2px">
               <div class="card">
                 <div class="card-body">
                
                 <?php 
-                if(empty(AsignacionGetGrupostAsignadosMaestro())){
-                  echo "No existen grupos asignados a para este Teacher.";
+                if(empty(getGrupoAlumnos($id_grupo,$id_unidad_negocio,$id_plantel))){
+                  echo "No existen alumnos asignados a para este Teacher.";
                 }else{
-                foreach(AsignacionGetGrupostAsignadosMaestro() as $fila){ ?>
+                  echo " Listado de alumnos asignados.<br/>";
+                foreach(getGrupoAlumnos($id_grupo,$id_unidad_negocio,$id_plantel) as $fila){ ?>
                   
-                  <a href="<?php echo site_url("/Teacher/getContenidoGrupoAsignado/$fila->id_grupo/$fila->id_unidad_negocio/$fila->id_plantel");?>"> <?php echo $fila->nombre?></a>
-                <?php }}?>
-
+                  <?php echo $fila->nombre?><br/>
+                  
+                  <?php }}?>
+                  <br/>
                 </div>
               </div>
             
