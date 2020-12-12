@@ -116,7 +116,7 @@
 
                 <div class="form-group">
                   <label for="exampleFormControlSelect1">Tipo de pregunta</label>
-                  <select class="form-control form-control-sm" name="tipoPregunta" id="tipoPregunta" onchange="tPregunta()" required="">
+                  <select class="form-control form-control-sm" name="tipoPregunta" id="tipoPregunta" required="">
                   <option value="">Selecciona una opcion</option>
                   <?php
                   foreach(getTipoPreguntas() as $fila){

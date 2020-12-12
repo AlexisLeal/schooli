@@ -18,12 +18,7 @@ background-color: #eee;
 .tabla-registros tr:nth-child(odd) {
 background-color: #fff;
 }
-/*
-input[type="button"] {
-border: none;
-outline:none;
-}
-*/
+
 
 a {
   font-family: Arial, Helvetica, sans-serif;

@@ -27,6 +27,20 @@ class Teacher extends BaseController{
         }
     }
     
+
+    public function getContenidoGrupoAsignado($id_grupo)
+	{
+        if($this->session->get('login') && $this->session->get('roll') == 3){
+            $data['page_title'] = "Teacher";
+            $data['id_grupo'] = $id_grupo;
+
+            return view('teachers/teacher/contenidogrupo',$data);
+        }else{
+            return redirect()->to(site_url('Home/salir'));
+        }
+    }
+    
+
 }
 
 
