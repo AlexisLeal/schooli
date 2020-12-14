@@ -214,21 +214,18 @@ input[type='radio']:checked:after {
           $mesEsp=ucwords($mes);
           echo "<h2>".$mesEsp." ".date("Y")."</h2>";
           
-
           if (date("D") == "Mon"){
-            $week_start = date("Y-m-d");
+            $week_start = strtotime(date("d-m-Y"));
           } else {
             $week_start = strtotime('last Monday', time());
           }
           $week_end     = strtotime('next Sunday', time());
-
-          $fechaInicio=$week_start;
-          $fechaFin=$week_end;
+          $alumnos = array();
           ?>
           <br/>
 
           <!-- Iniciar el formulario -->
-          <form action="<?php echo site_url('Teacher/asistencia'); ?>" method="post">
+          <form action="<?php echo site_url('Teacher/insertar_asistencia'); ?>" method="post">
           <?php
           $num_semana = date("W"); 
           $id_teacher=$session->get('id');
@@ -249,6 +246,10 @@ input[type='radio']:checked:after {
           <tr>
           <td></td>
           <?php
+          
+          $fechaInicio=$week_start;
+          $fechaFin=$week_end;
+
             for($i=$fechaInicio; $i<=$fechaFin; $i+=86400){
             ?>
             <td><?=date("d-m-Y", $i);?>
@@ -277,6 +278,8 @@ input[type='radio']:checked:after {
           <?php
             $a=0;
             foreach(getGrupoAlumnos($id_grupo,$id_unidad_negocio,$id_plantel) as $fila){ 
+            $alumnos[] = $fila->id;
+            $alumnosComa = implode(",", $alumnos);
             $a++;
             ?>
             <tr>
@@ -284,21 +287,24 @@ input[type='radio']:checked:after {
             <?php
             for($i=$fechaInicio; $i<=$fechaFin; $i+=86400){
               $date = date('Y-m-d', $i);
+              if($date != date("Y-m-d")){
+                $d="disabled";
+              }else{$d="";}
               ?>
               <td>
               
               <div class="form-check form-check-inline">
-                <input class="form-check-input form-control-sm" type="radio" name="<?=$fila->id;?>" id="" value="asistio" required>
+                <input class="form-check-input form-control-sm" type="radio" name="<?=$fila->id;?>" id="<?=$fila->id;?>" <?php echo $d;?> value="1" required>
               </div>
               <div class="form-check form-check-inline">
-                <input class="form-check-input form-control-sm" type="radio" name="<?=$fila->id;?>" id="" value="no_asistio" required>
+                <input class="form-check-input form-control-sm" type="radio" name="<?=$fila->id;?>" id="<?=$fila->id;?>" <?php echo $d;?> value="2" required>
               </div>
 
               <div class="form-check form-check-inline">
-                <input class="form-check-input form-control-sm" type="radio" name="<?=$fila->id;?>" id="" value="retardo" required>
+                <input class="form-check-input form-control-sm" type="radio" name="<?=$fila->id;?>" id="<?=$fila->id;?>" <?php echo $d;?> value="3" required>
               </div>
               <div class="form-check form-check-inline">
-                <input class="form-check-input form-control-sm" type="radio" name="<?=$fila->id;?>" id="" value="falta_justificada" required>
+                <input class="form-check-input form-control-sm" type="radio" name="<?=$fila->id;?>" id="<?=$fila->id;?>" <?php echo $d;?> value="4" required>
               </div>
               
 
@@ -318,7 +324,11 @@ input[type='radio']:checked:after {
           <hr class="linea"/>
           <br/>
                   <div class="text-center">
+                  <input type="hidden" name="alumnos" value="<?=$alumnosComa;?>">
                   <input type="hidden" name="num_alumnos" value="<?=$a;?>">
+                  <input type="hidden" name="id_unidad_negocio" value="<?=$id_unidad_negocio;?>">
+                  <input type="hidden" name="id_plantel" value="<?=$id_plantel;?>">
+                  
                   <button type="submit" name="guardarAsistencia" class="btn btn-primary btn-sm" >Guardar</button>
                   </div>  
             </form>
