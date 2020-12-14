@@ -2,14 +2,16 @@
 
 //FUNCIONES DE PRUEBA 
 
-function getGrupoMaestros($id_grupo,$id_unidad_negocio,$id_plantel)
+function getGrupoMaestros($id_grupo)
+//function getGrupoMaestros($id_grupo,$id_unidad_negocio,$id_plantel)
 {
     $db = \Config\Database::connect();
     $usermodel = $db->table('usuarios U');
    //$usermodel = new Grupos_teachers_model($db);
     $usermodel->select('U.id, U.nombre, G_TH.id_grupo');
     $usermodel->join('grupo_teachers G_TH',"U.id = G_TH.id_teacher and G_TH.id_grupo = $id_grupo and G_TH.deleted = 0",'left');
-    $usermodel->join('maestros M',"M.id_usuario = U.id and M.idPlantel = $id_plantel and M.idUnidadNegocio = $id_unidad_negocio");
+    $usermodel->join('maestros M','M.id_usuario = U.id');
+    //$usermodel->join('maestros M',"M.id_usuario = U.id and M.idPlantel = $id_plantel and M.idUnidadNegocio = $id_unidad_negocio");
     $usermodel->where('U.id_tipo_usuario',3);
     $usermodel->where('U.deleted',0);
     $query = $usermodel->get();
