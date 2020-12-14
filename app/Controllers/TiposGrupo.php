@@ -8,7 +8,7 @@ class TiposGrupo extends BaseController{
         $data['page_title'] = "tipo de grupo";	
         //Pasamos de forma dinamica el titulo  y se crear un array
         if($this->session->get('login') && $this->session->get('roll') == 4){
-            return view('niveles/panel_niveles',$data);
+            return view('tiposgrupos/panel_tiposgrupos',$data);
         }else{
             return redirect()->to(site_url('Home/salir'));
            }
@@ -20,23 +20,23 @@ class TiposGrupo extends BaseController{
 	{	
         //Pasamos de forma dinamica el titulo  y se crear un array
         if($this->session->get('login') && $this->session->get('roll') == 4){
-            $data['page_title'] = "Agregar Nivel";
-            return view('niveles/crear/agregar_nivel',$data);
+            $data['page_title'] = "Agregar tipo de grupo";
+            return view('tiposgrupos/crear/agregar_tipogrupo',$data);
         }else{
             return redirect()->to(site_url('Home/salir'));
            }
 	}
 
 
-    public function vertipogrupo($id_nivel)
+    public function vertipogrupo($id_tipogrupo)
 	{
         //Pasamos de forma dinamica el titulo  y se crear un array
         if($this->session->get('login') && $this->session->get('roll') == 4){
-            $data['page_title'] = "Vista detalle Nivel";
-            $nivel = getNivelEspecificogrupo($id_nivel);
-            $data['nombre'] = $nivel->nombre;
-            $data['comentarios'] = $nivel->comentarios;
-            return view('niveles/mostrar/ver_niveles',$data);
+            $data['page_title'] = "Vista detalle tipo grupo";
+            $tipogrupo = getNivelEspecificogrupo($id_tipogrupo);
+            $data['nombre'] = $tipogrupo->nombre;
+            $data['comentarios'] = $tipogrupo->comentarios;
+            return view('tiposgrupos/mostrar/ver_tipogrupo',$data);
         }else{
             return redirect()->to(site_url('Home/salir'));
            }
@@ -44,16 +44,16 @@ class TiposGrupo extends BaseController{
     
 
     
-    public function editartipogrupo($id_nivel)
+    public function editartipogrupo($id_tipogrupo)
 	{
         //Pasamos de forma dinamica el titulo  y se crear un array
         if($this->session->get('login') && $this->session->get('roll') == 4){
-            $data['page_title'] = "Editar Nivel";
-            $nivel = getNivelEspecificogrupo($id_nivel);
-            $data['nombre'] = $nivel->nombre;
-            $data['comentarios'] = $nivel->comentarios;
-            $data['idNv'] = $id_nivel;
-            return view('niveles/editar/editar_niveles',$data);
+            $data['page_title'] = "Editar Tipo de grupo";
+            $tipogrupo = getNivelEspecificogrupo($id_tipogrupo);
+            $data['nombre'] = $tipogrupo->nombre;
+            $data['comentarios'] = $tipogrupo->comentarios;
+            $data['idtipogrupo'] = $id_tipogrupo;
+            return view('tiposgrupos/editar/editar_tipogrupo',$data);
         }else{
             return redirect()->to(site_url('Home/salir'));
            }
@@ -98,12 +98,12 @@ class TiposGrupo extends BaseController{
                 'comentarios'=>$REQUEST->getPost('descripcion'),
                 'fecha_ultimo_cambio'=>$hoy,
                 ];
-                $id_nivel = $REQUEST->getPost('idNv');
+                $idtipogrupo = $REQUEST->getPost('idtipogrupo');
                 $usermodel = new Tipo_grupo($db);
-                $usermodel->update($id_nivel,$data);
+                $usermodel->update($idtipogrupo,$data);
                 $data = ['Nivel'  => 'El nivel se modifico correctamente'];
                 $this->session->set($data,true);
-                return redirect()->to(site_url("TiposGrupo/editartipogrupo/$id_nivel"));
+                return redirect()->to(site_url("TiposGrupo/editartipogrupo/$idtipogrupo"));
             }else{
                 return redirect()->to(site_url('Home/salir'));
             }
@@ -119,10 +119,10 @@ class TiposGrupo extends BaseController{
         if($this->session->get('login') && $this->session->get('roll') == 4){
             if(isset($_POST['submitNV'])){
                 $REQUEST = \Config\Services::request();
-                $id_nivel = $REQUEST->getPost('idNv');
+                $idtipogrupo = $REQUEST->getPost('idtipogrupo');
                 $usermodel= new Tipo_grupo($db);
-                $usermodel->delete(['id'=> $id_nivel]);
-                return redirect()->to(site_url('Niveles/index'));
+                $usermodel->delete(['id'=> $idtipogrupo]);
+                return redirect()->to(site_url('TiposGrupo/index'));
 
             }else{
                 return redirect()->to(site_url('Home/salir'));
