@@ -30,7 +30,7 @@ class Grupos extends BaseController{
         
         if($this->session->get('login') && $this->session->get('roll') == 4){
             $usermodel = new Grupos_model();
-            $usermodel->select('nombre,codigo_acceso,id_unidad_negocio,id_plantel');
+            $usermodel->select('nombre,codigo_acceso,id_unidad_negocio,id_plantel,id_nivel');
             $usermodel->where('id',$id_grupo);
             $usermodel->where('deleted',0);
             $query = $usermodel->get();
@@ -40,6 +40,7 @@ class Grupos extends BaseController{
             $data['id_grupo'] = $id_grupo;	
             $data['nombre_grupo'] = $row->nombre;	
             $data['codigo_acceso'] = $row->codigo_acceso;
+            $data['nivel'] = getnivelEspecifico($row->id_nivel);
             //-------------------------------------
             $data['id_plantel'] = $row->id_plantel;
             $data['id_unidad_negocio'] = $row->id_unidad_negocio;
