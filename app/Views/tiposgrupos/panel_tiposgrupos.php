@@ -50,59 +50,51 @@
           </div>
 
 
-           
+
           <div class="col-md-9">
           <?php include(APPPATH.'/Views/include/notificacion.php');?>
 
-          
-          <?php if($session->has('Nivel')){;?>
-         <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                <strong>Notificaciones del sistema:</strong> <?php echo $session->get('Nivel')?>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div> 
-              <?php } $session->remove('Nivel');?>
 
 
-
-          <h4>Editar nivel.</h4>
           <div class="espacioUno"></div>
-        
-
-
-
+            <h4>Tipo de grupo</h4>
               <div class="card">
                 <div class="card-body">
-                <form action="<?php echo site_url('TiposGrupo/editar');?>" method="post">
+                <a href="<?php echo site_url('/TiposGrupo/agregartipogrupo'); ?>">Crea un tipo de grupo</a><br/>
+                <table class="tabla-registros" class="display" cellspacing="6" cellpadding="8">
+                <thead>
+                <tr>
+                <th class="text-left">ID</th>
+                <th class="text-left">Nombre</th>
+                <th class="text-left">Comentarios</th>
+                <th class="text-left">Ver</th>
+                <th class="text-left">Editar</th>
+                </tr>
+                </thead>
+                  <tr>
+                  <?php foreach(getAllNiveles() as $fila){ ?>
+                  <tr>
+                <td><?php echo $fila->id;?></td>
+                <td><?php echo "$fila->nombre"?></td>
+                <td><?php echo $fila->comentarios;?></td>
+                <td class="text-center">
+                  <a href="<?php echo site_url("/TiposGrupo/vertipogrupo/$fila->id") ?>">
+                  <i class="fa fa-file-text-o fa-1x" aria-hidden="true"></i>
+                </td>
+                <td class="text-center">
+                <a href="<?php echo site_url("/TiposGrupo/editartipogrupo/$fila->id") ?>">
+                <i class="fa fa-pencil-square-o fa-1x" aria-hidden="true"></i>
+                </a>
+                </td>
+                </tr>
+                <?php }?>
+                </table>
 
-                <div class="espacioDos"></div>
-                <div class="row">
-                  <div class="col">
-                  Nombre
-                    <input type="text" name="nombre" id="nombre" class="form-control form-control-sm" required="" value="<?php echo  $nombre?>">
-                  </div>
-                  
-                </div>
-
-                <div class="espacioUno"></div>
 
 
 
-              <div class="espacioUno"></div>
-
-              <div class="form-group">
-                <label for="lblInstrucciones">Descripción</label>
-                <textarea class="form-control form-control-sm" name="descripcion" id="descripcion" rows="3" required=""><?php echo $comentarios?></textarea>
               </div>
-
-              <div class="espacioUno"></div>
-              <input type="hidden" name="idNv" id="idNv" value="<?php echo $idNv;?>">
-              <button type="submit" name="submitNV" class="btn btn-primary btn-sm">Registrar</button>
-              </form>
-
-              </div>
-              </div>
+            </div>
           </div>
 
 
@@ -164,5 +156,5 @@
       <div class="espacioDos"></div>
       <div class="espacioDos"></div>
       <div class="espacioDos"></div>
-      <?php include(APPPATH.'Views/include/footer.php');?>
-      <?php include(APPPATH.'Views/include/header-js.php');?>
+
+<?php include(APPPATH.'Views/include/footer.php');?>
