@@ -73,7 +73,7 @@
 
             <div class="card">
               <div class="card-body">
-                Contenido del Grupo.<br/>
+                <h4>Contenido del Grupo.</h4>
                 <hr class="linea"/>
               <div style="padding-left:2px">
               <div class="card">

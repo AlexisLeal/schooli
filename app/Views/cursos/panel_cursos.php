@@ -55,12 +55,14 @@
           <?php include(APPPATH.'/Views/include/notificacion.php');?>
 
 
-
           <div class="espacioUno"></div>
             <h4>Panel de Cursos</h4>
+            <a class="btn btn-success btn-sm" href="<?php echo site_url('/Cursos/agregarcurso'); ?>" role="button">Registrar un Curso</a>
+            <div class="espacioUno"></div>
+
+           
               <div class="card">
                 <div class="card-body">
-                <a href="<?php echo site_url('/Cursos/agregarcurso'); ?>">Crea curso</a><br/>
                 <table class="tabla-registros" class="display" cellspacing="6" cellpadding="8">
                 <thead>
                 <tr>

@@ -54,13 +54,14 @@
           <div class="col-md-9">
           <?php include(APPPATH.'/Views/include/notificacion.php');?>
 
-
-
           <div class="espacioUno"></div>
-            <h4>Panel de Salones</h4>
+          <h4>Panel de Salones</h4>
+          <a class="btn btn-success btn-sm" href="<?php echo site_url('/Salones/agregarsalon'); ?>" role="button">Registrar un Salon</a>
+          <div class="espacioUno"></div>
+
               <div class="card">
                 <div class="card-body">
-                <a href="<?php echo site_url('/Salones/agregarsalon'); ?>">Crea un Salon</a><br/>
+
                 <table class="tabla-registros" class="display" cellspacing="6" cellpadding="8">
                 <thead>
                 <tr>

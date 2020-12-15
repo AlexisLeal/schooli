@@ -73,13 +73,16 @@
               ?>
 
 
+            <div class="espacioUno"></div>
+            <h4>Panel de Grupos</h4>
+            <a class="btn btn-success btn-sm" href="<?php echo site_url('/Grupos/agregargrupo'); ?>" role="button">Registrar un Grupo</a>
+            <div class="espacioUno"></div>
 
-          <div class="espacioUno"></div>
-            <h4>Grupos</h4>
+
+
               <div class="card">
                 <div class="card-body">
 
-                <a href="<?php echo site_url('/Grupos/agregargrupo'); ?>">Crear un grupo</a> 
                 <hr class="linea"/>
 
                 <?php foreach(getAllGrupos() as $fila){ ?> 

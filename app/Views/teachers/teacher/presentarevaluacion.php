@@ -1,5 +1,5 @@
 <?php include(APPPATH.'/Views/include/header.php');?>
-<meta name="google" content="notranslate">
+
 <style>
 #contestarEvaluacion {
     display:none;
@@ -69,26 +69,11 @@
             <h4><?php echo $session->get('nombre')." ".$session->get('apellido')." ".$session->get('apellido_materno');?></h4>
           </div>
           <div class="espacioUno"></div>
-            <?php
-            //$data['idEvaluacion'] = $id_evaluacion;
-            //$data['nombre'] = $row->nombre;
-            //$nombre =getTipoEvaluacionEspecifico($row->tipo_evaluacion);
-            //$data['tipo_evaluacion'] = $nombre->nombre;
-            //$data['clave'] = $row->clave;
-            //$data['valorpreguntas'] =  getValorTotalPreguntas($id_evaluacion);
-            
-            /*
-            $data['idtipoevaluacion'] = $row->tipo_evaluacion;
-            $data['nivel'] = $row->nivel;	
-            $data['leccion'] = $row->leccion;
-            $data['totalpreguntas'] = getTotalPreguntas($id_evaluacion);
-            */
-            
-            ?>
+
           
             <div class="card">
               <div class="card-body">
-              Evaluación.<br/>
+              <h4>Evaluación</h4>
               <hr class="linea"/>
               <div style="padding-left:20px">
               <div class="card">

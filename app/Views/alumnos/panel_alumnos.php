@@ -54,10 +54,10 @@
           <div class="col-md-9">
           <?php include(APPPATH.'/Views/include/notificacion.php');?>
 
-
-              <a href="<?php echo site_url('/Alumnos/agregaralumnos'); ?>">Registrar Alumno.</a><br/>
-
-          <div class="espacioUno"></div>
+            <div class="espacioUno"></div>
+            <h4>Panel de Grupos</h4>
+            <a class="btn btn-success btn-sm" href="<?php echo site_url('/Alumnos/agregaralumnos'); ?>" role="button">Registrar un Alumno</a>
+            <div class="espacioUno"></div>
         
               <div class="card">
                 <div class="card-body">

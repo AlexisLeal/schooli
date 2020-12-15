@@ -54,10 +54,16 @@
           <div class="col-md-6">
           <?php include(APPPATH.'/Views/include/notificacion.php');?>
 
-              <H1>Tipo de evaluacion: <?php echo $tipo_evaluacion?></h1>
+              <H4>Tipo de evaluacion: <?php echo $tipo_evaluacion?></h4>
 
-              <a href="<?php echo site_url('/Panel/index'); ?>">Panel</a><br/>
-              <a href="<?php echo site_url('/Evaluaciones/crear_evaluacion'); ?>">Crear evaluaciones.</a><br/>
+              
+              
+
+              <div class="espacioUno"></div>
+            <a class="btn btn-success btn-sm" href="<?php echo site_url('/Evaluaciones/crear_evaluacion'); ?>" role="button">Registrar una Evaluación</a>
+            <div class="espacioUno"></div>
+
+
               <a href="<?php echo site_url('/Evaluaciones/index'); ?>">Tipo Evaluaciones </a> <br>
 <div class="espacioDos"></div>
           Niveles:<br/>

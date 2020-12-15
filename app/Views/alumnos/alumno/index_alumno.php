@@ -74,7 +74,7 @@
           
               <div class="card">
                 <div class="card-body">
-                Grupo asignado.<br/>
+                <h4>Grupo asignado.</h4>
                 <hr class="linea"/>
                 <div style="padding-left:30px">
                 <div class="card">
@@ -99,7 +99,7 @@
 
             <div class="card">
                   <div class="card-body">
-                  <i class="fa fa-university" aria-hidden="true"> </i> Teachers
+                  <i class="fa fa-university" aria-hidden="true"> </i> <span class="font-weight-bold">Teachers</span>
                   <table width="90%" cellspacing="8" cellpadding="4">
                   <tr>
                   <td width="40%">
@@ -118,7 +118,7 @@
             <?php if($id_grupo != null){ ?>
             <div class="card">
                   <div class="card-body">
-                  <i class="fa fa-cubes" aria-hidden="true"></i> Recursos <br/>
+                  <i class="fa fa-cubes" aria-hidden="true"></i> <span class="font-weight-bold">Recursos </span><br/>
 
 
 
@@ -138,7 +138,7 @@
                    }else{
                   foreach($evaluacionGrupo as $fila){
                     ?>
-                    <a href="<?php echo site_url("Alumno/presentarevaluacion/$fila->id/$id_grupo");?>"><?php echo $fila->nombre;?></a>  <br/>
+                    <a href="<?php echo site_url("Alumno/presentarevaluacion/$fila->id/$id_grupo");?>"><i class="fa fa-file-text-o" aria-hidden="true"></i> <?php echo $fila->nombre;?></a>  <br/>
                     <?php
                     }
                   }

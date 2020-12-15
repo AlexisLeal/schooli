@@ -54,13 +54,13 @@
           <div class="col-md-9">
           <?php include(APPPATH.'/Views/include/notificacion.php');?>
 
-
-
           <div class="espacioUno"></div>
-            <h4>Tipo de grupo</h4>
+          <h4>Panel Tipo de grupo</h4>
+          <a class="btn btn-success btn-sm" href="<?php echo site_url('/TiposGrupo/agregartipogrupo'); ?>" role="button">Registrar un Tipo de Grupo</a>
+          <div class="espacioUno"></div>
+
               <div class="card">
                 <div class="card-body">
-                <a href="<?php echo site_url('/TiposGrupo/agregartipogrupo'); ?>">Crea un tipo de grupo</a><br/>
                 <table class="tabla-registros" class="display" cellspacing="6" cellpadding="8">
                 <thead>
                 <tr>

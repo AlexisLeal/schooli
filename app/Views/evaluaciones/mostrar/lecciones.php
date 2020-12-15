@@ -59,12 +59,18 @@
             $nombreEvaluaciones = getTipoEvaluacionEspecifico($id_evaluaciones);
             //$nombreNivel = getnivelEspecifico($id_nivel);
             ?>
-          <H1>Tipo de evaluacion: <?php echo $nombreEvaluaciones->nombre ?></H1>
-          <H2>Nivel: <?php echo getnivelEspecifico($id_nivel); ?></H2>
+          <H4>Tipo de evaluacion: <?php echo $nombreEvaluaciones->nombre ?></H4>
+          <H4>Nivel: <?php echo getnivelEspecifico($id_nivel); ?></H4>
 
-          <a href="<?php echo site_url('/Panel/index'); ?>">Panel</a><br/>
-          <a href="<?php echo site_url('/Evaluaciones/crear_evaluacion'); ?>">Crear evaluaciones.</a><br/>
-          <a href="<?php echo site_url('/Evaluaciones/index'); ?>">Tipo Evaluaciones </a> <br>
+          
+          
+
+          <div class="espacioUno"></div>
+            <a class="btn btn-success btn-sm" href="<?php echo site_url('/Evaluaciones/crear_evaluacion'); ?>" role="button">Registrar una Evaluación</a>
+            <div class="espacioUno"></div>
+
+
+          <!--<a href="< ?php echo site_url('/Evaluaciones/index'); ?>">Tipo Evaluaciones </a>--> <br>
           <a href="<?php echo site_url("/Evaluaciones/tipo_evaluacion/$nombreEvaluaciones->id"); ?>">Niveles.</a><br/>
 
           

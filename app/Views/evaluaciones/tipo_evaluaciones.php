@@ -52,11 +52,16 @@
           <div class="col-md-6">
           <?php include(APPPATH.'/Views/include/notificacion.php');?>
 
-          <a href="<?php echo site_url('/Panel/index'); ?>">Panel.</a><br/>
-            <a href="<?php echo site_url('/Evaluaciones/crear_evaluacion'); ?>">Crear evaluaciones.</a><br/>
-          <br/>
 
-          Tipo de evaluaciones:<br/>
+
+
+
+          <div class="espacioUno"></div>
+            <h4>Tipo de evaluaciones.</h4>
+            <a class="btn btn-success btn-sm" href="<?php echo site_url('/Evaluaciones/crear_evaluacion'); ?>" role="button">Registrar una Evaluación</a>
+            <div class="espacioUno"></div>
+
+
           <div class="espacioUno"></div>
               <div class="card">
                 <div class="card-body">

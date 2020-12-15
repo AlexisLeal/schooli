@@ -58,9 +58,15 @@
 
           <div class="espacioUno"></div>
             <h4>Panel de Horarios</h4>
+            <a class="btn btn-success btn-sm" href="<?php echo site_url('/Horarios/agregarhorario'); ?>" role="button">Registrar un horario</a>
+            <div class="espacioUno"></div>
+             
+
               <div class="card">
                 <div class="card-body">
-                <a href="<?php echo site_url('/Horarios/agregarhorario'); ?>">Crea un horario</a><br/>
+
+
+
                 <table class="tabla-registros" class="display" cellspacing="6" cellpadding="8">
                 <thead>
                 <tr>

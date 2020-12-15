@@ -64,7 +64,7 @@
 
             <div class="card">
               <div class="card-body">
-                Grupos asignados.<br/>
+                <h4>Grupos asignados.</h4>
                 <hr class="linea"/>
               <div style="padding-left:2px">
               <div class="card">
@@ -76,7 +76,11 @@
                 }else{
                 foreach(AsignacionGetGrupostAsignadosMaestro() as $fila){ ?>
                   
-                  <a href="<?php echo site_url("/Teacher/getContenidoGrupoAsignado/$fila->id_grupo/$fila->id_unidad_negocio/$fila->id_plantel");?>"> <?php echo $fila->nombre?></a>
+                  <a href="<?php echo site_url("/Teacher/getContenidoGrupoAsignado/$fila->id_grupo/$fila->id_unidad_negocio/$fila->id_plantel");?>"> 
+                  <h5>
+                  <i class="fa fa-users" aria-hidden="true"></i> <?php echo $fila->nombre;?>                  
+                  </h5>
+                  </a>
                 <?php }}?>
 
                 </div>

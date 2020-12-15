@@ -73,7 +73,7 @@
           
             <div class="card">
               <div class="card-body">
-              Evaluación.<br/>
+              <h4>Evaluación</h4>
               <hr class="linea"/>
               <div style="padding-left:20px">
               <div class="card">
@@ -99,10 +99,11 @@
 
 
             <form action="<?php echo site_url('Alumno/CalificarEvaluacion')?>" method="post">
-            <div id="contestarEvaluacion" style="background-color:#cdcdcd;">
+            <div id="contestarEvaluacion">
+            <!--<div id="contestarEvaluacion" style="background-color:#cdcdcd;">-->
             <br/>
             <div class="text-right">
-              <i class="fa fa-hourglass-start" aria-hidden="true"></i>
+              <!--<i class="fa fa-hourglass-start" aria-hidden="true"></i>-->
             </div>
             <br/>
 
@@ -300,7 +301,7 @@
               <div class="col-md-8 text-center">
                 <input type="hidden" value="<?php echo $idEvaluacion ?>" name="idEvaluacion">
                 <input type="hidden" value="<?php echo $idGrupo ?>" name="idGrupo">
-                <button class="btn btn-primary" type="submit" name="SubmitRespuestas" id="btnRegEval">Enviar</button>
+                <button class="btn btn-primary btn-sm" type="submit" name="SubmitRespuestas" id="btnRegEval">Enviar</button>
               </div>
           
               <div class="col-md-2 text-center">

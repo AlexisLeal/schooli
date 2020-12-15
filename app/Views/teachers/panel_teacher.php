@@ -71,12 +71,17 @@
                 $session->remove('pregunta-exito'); 
               }
               ?>
-          <div class="espacioUno"></div>
+
+            <div class="espacioUno"></div>
+            <h4>Panel de Teachers</h4>
+            <a class="btn btn-success btn-sm" href="<?php echo site_url('/Teachers/agregarteacher'); ?>" role="button">Registrar un Teacher</a>
+            <div class="espacioUno"></div>
         
+                
+
+
               <div class="card">
                 <div class="card-body">
-
-                <a href="<?php echo site_url('/Teachers/agregarteacher'); ?>">Registrar un Teacher.</a><br/>
                 <!-- Asignar a un grupo-->
               <table class="tabla-registros" class="display" cellspacing="6" cellpadding="8">
                 <thead>

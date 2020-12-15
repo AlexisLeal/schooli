@@ -53,10 +53,9 @@
 
           <div class="col-md-9">
           <?php include(APPPATH.'/Views/include/notificacion.php');?>
-
-
-              <a href="<?php echo site_url('/Ciclos/agregarciclo'); ?>">Registrar un ciclo.</a><br/>
-
+          <div class="espacioUno"></div>
+          <h4>Panel de Ciclos</h4>
+          <a class="btn btn-success btn-sm" href="<?php echo site_url('/Ciclos/agregarciclo'); ?>" role="button">Registrar un ciclo</a>
           <div class="espacioUno"></div>
         
               <div class="card">

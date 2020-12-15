@@ -76,10 +76,14 @@
 
           <div class="espacioUno"></div>
             <h4>Panel de Notificaciones</h4>
+            <a class="btn btn-success btn-sm" href="<?php echo site_url('/Notificaciones/agregarnotificacion'); ?>" role="button">Registrar una Notificación</a>
+            <div class="espacioUno"></div>
+
+
+
+
               <div class="card">
                 <div class="card-body">
-
-                <a href="<?php echo site_url('/Notificaciones/agregarnotificacion'); ?>">Crear una notificación</a> 
                 <hr class="linea"/>
                 <table class="tabla-registros" class="display" cellspacing="6" cellpadding="8">
                 <thead>

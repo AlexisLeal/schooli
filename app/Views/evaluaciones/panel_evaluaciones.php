@@ -78,11 +78,14 @@
           <a href="<?php echo site_url('/Panel/index'); ?>">Panel principal</a> / <a href="<?php echo site_url('/Evaluaciones/index'); ?>">Tipo Evaluaciones </a> /
           <a href="<?php echo site_url('/Evaluaciones/tipo_evaluacion/1'); ?>">Niveles.</a> / <a href="<?php echo site_url("/Evaluaciones/lecciones/$id_evaluacion/$id_nivel"); ?>">Lecciones.</a><br/>
 
-          <a href="<?php echo site_url('/Evaluaciones/crear_evaluacion'); ?>">Crear evaluaciones.</a><br/>
-          
+
           Evaluación: Nivel : <?php echo $id_nivel;?> / Lección: <?php echo $id_leccion;?><br/>
 
 
+          <div class="espacioUno"></div>
+            <h4>Panel de Evaluaciones</h4>
+            <a class="btn btn-success btn-sm" href="<?php echo site_url('/Evaluaciones/crear_evaluacion'); ?>" role="button">Registrar una Evaluación</a>
+            <div class="espacioUno"></div>
 
 
 
