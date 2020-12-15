@@ -149,11 +149,11 @@
                 <div class="row">
                   <div class="col">
                   Cupo
-                    <input type="text" name="cupo" id="cupo" class="form-control form-control-sm">
+                    <input type="number" name="cupo" id="cupo" class="form-control form-control-sm">
                   </div>
                   <div class="col">
                   Precio
-                  <input type="text" name="precio" id="precio" class="form-control form-control-sm">
+                  <input type="number" name="precio" id="precio" class="form-control form-control-sm">
                   </div>
                 </div>
                 

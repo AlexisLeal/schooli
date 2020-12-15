@@ -222,12 +222,34 @@ class Teachers extends BaseController{
                 $usermodel_U = new Usuarios($db);
                 $usermodel_U->insert($data_usuario); 
                 $ultimo_id_usuario = $usermodel_U->insertID();
-                //Capturamos los datos del Alumno 
+                
+                if(!empty($REQUEST->getFile('imagen_maestro'))){
+
+                    $file_imagen = $REQUEST->getFile('imagen_maestro');
+                    if($file_imagen->isValid() && ! $file_imagen->hasMoved()){
+
+                        if (!is_dir('uploads/Maestros/fotos')) {
+                            mkdir('uploads/Maestros/fotos', 0777, TRUE);
+                        }
+                    $nombremaestro =  $REQUEST->getPost('nombre').''. $REQUEST->getPost('apellido_paterno').''.$REQUEST->getPost('apellido_materno');  
+                    $nombre = 'Foto'.$nombremaestro.'.jpg';
+                    $ruta_imagen_basedatos = "uploads/Maestros/fotos/".$nombre."";  
+                    $ruta_imagen = 'uploads/Maestros/fotos';  
+                    $file_imagen->move($ruta_imagen,$nombre);
+                    }else{
+   
+                    }
+
+                }else{
+                    $ruta_imagen_basedatos = "Null";
+                }
+                 
 
                 $data_maestro =[
                     'id_usuario' => $ultimo_id_usuario,
                     'idPlantel' => $REQUEST->getPost('plantel'),
                     'idUnidadNegocio' => $REQUEST->getPost('unidad_negocio'),
+                    'url_foto' => $ruta_imagen_basedatos,
                     'comentarios' => $REQUEST->getPost('comentarios'),
                     'fecha_creacion' => $hoy,
                     'fecha_ultimo_cambio' => $hoy,

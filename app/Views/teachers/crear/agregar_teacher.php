@@ -70,8 +70,8 @@
         
               <div class="card">
                 <div class="card-body">
-
-                <form action="<?php echo site_url('Teachers/insertarmaestro');?>" method="post" id = "datosteacher">
+ 
+                <form action="<?php echo site_url('Teachers/insertarmaestro');?>" method="post" id = "datosteacher" enctype="multipart/form-data">
                 <div class="espacioDos"></div>
                 Datos Generales
                 <div class="espacioDos"></div>
@@ -156,6 +156,12 @@
                   <select class="form-control form-control-sm" name="plantel" id="plantel" required="">
                   <option value="">Selecciona una opción</option> 
                   </select>
+                  </div>
+                  <div class="col">
+                    Cargar Foto
+                    <div class="form-group">
+                    <input  class="form-control form-control-sm" type="file" id="imagen_maestro" name="imagen_maestro">
+                  </div>
                   </div>
                 </div>
 

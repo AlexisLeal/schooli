@@ -235,4 +235,15 @@ function AsignacionGetGrupostAsignadosMaestro()
 }
 
 
+function AsignacionGetGrupoHorario($id_grupo)
+{
+    $db = \Config\Database::connect();
+    $usermodel = $db->table('grupos G');
+    $usermodel->select('HO.nombre');
+    $usermodel->join('horarios HO',"G.id_horario = HO.id and G.id = $id_grupo AND G.deleted = 0 and HO.deleted = 0");
+    $query = $usermodel->get();
+    $resultado = $query->getResult();
+    return $resultado;  
+}
+
 ?>
