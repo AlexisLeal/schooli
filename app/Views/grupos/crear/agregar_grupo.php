@@ -164,7 +164,7 @@
                   Nivel
                     <select class="form-control form-control-sm" name="nivel" id="nivel" required="">
                     <option value="">Seleccione una opción</option>
-                    <?php foreach(getAllNiveles() as $fila){ ?>
+                    <?php foreach(getNivel() as $fila){ ?>
                      <option value="<?php echo $fila->id; ?>"><?php echo $fila->nombre;?></option>
                     <?php } ?>
                     </select>

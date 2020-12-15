@@ -97,6 +97,9 @@
                       <tr>
                       <td>Unidad Negocio: <?php echo  $unidad_negocio;?></td><td>Plantel: <?php echo $nombre_plantel;?></td>
                     </tr>
+                      <tr>
+                      <td>Nivel: <?php echo  $nivel;?></td>
+                    </tr>
                   </table>
                   </div>
                 </div>
