@@ -133,20 +133,95 @@
                   segun el horario esablecido por el administrador del sistema.</p>
 
                    <?php 
-                   $evaluacionGrupo =  getGruposEvaluacion($id_grupo);
+                    $horario = AsignacionGetGrupoHorario($id_grupo);
+                    
+                   $hi              = $horario->hora_inicio;
+                   $hf              = $horario->hora_fin;
+                   $horaActual      = date("H:i");
+                   $day             = date("l");
+                   $frecuenciaGrupo = AsignacionGetGrupoFrecuencia($id_grupo);
+                   
+                   if($day == "Sunday" && $frecuenciaGrupo->domingo==1){
+                     $goahead=1;
+                    }else{
+                    $goahead="aa";
+                  }
 
+                   if($day == "Monday" && $frecuenciaGrupo->lunes==1){
+                     $goahead=1;}
+                     else{
+                       $goahead="bb";}
+
+                   if($day == "Tuesday" && $frecuenciaGrupo->martes==1){
+                     $goahead=1;}
+                     else{
+                       $goahead="cc";}
+
+                   if($day == "Wednesday" && $frecuenciaGrupo->miercoles==1){
+                     $goahead=1;}
+                     else{
+                       $goahead="dd";}
+
+                   if($day == "Thursday" && $frecuenciaGrupo->jueves==1){
+                     $goahead=1;}
+                     else{
+                       $goahead="ee";}
+                   if($day == "Friday" && $frecuenciaGrupo->viernes==1){
+                     $goahead=1;}
+                     else{
+                       $goahead="ff";}
+                   
+                   if($day == "Saturday" && $frecuenciaGrupo->sabado==1){
+                     $goahead=1;}
+                     else{
+                       $goahead="gg";}
+
+
+
+
+                   echo "Day".$day."<br/>";
+                   echo "Valor de Martes".$frecuenciaGrupo->martes."<br/>";
+                   echo "Goahead ".$goahead."<br/>";
+
+
+                   $evaluacionGrupo =  getGruposEvaluacion($id_grupo);
+                   ?>
+                  <table width="40%" le cellspacing="2" cellpadding="3">
+                  <tr><td></td><td></td></tr>
+
+                   <?php
                    if(empty($evaluacionGrupo)){
                     echo "No tiene evaluaciones asignadas";
                    }else{
-                  foreach($evaluacionGrupo as $fila){
+                    foreach($evaluacionGrupo as $fila){
+
+                      if($goahead==1 && $horaActual>=$hi && $horaActual<=$hf){?>
+                      <tr>
+                      <td><i class="fa fa-file-text-o fa-2x" aria-hidden="true"></i></td>
+                      <td><a class="btn btn-success btn-sm" href="<?php echo site_url("Alumno/presentarevaluacion/$fila->id/$id_grupo"); ?>" role="button"><?php echo $fila->nombre;?></a></td>
+                      </tr>
+  
+                    <?php
+                      }else{?>
+                      <tr>
+                      <td><i class="fa fa-file-text-o fa-2x" aria-hidden="true"></i></td>
+                      <td><button type="button" class="btn btn-secondary btn-sm"><?php echo $fila->nombre;?></button></td>
+                      </tr>
+                      <?php
+                    }
                     ?>
-                    <a href="<?php echo site_url("Alumno/presentarevaluacion/$fila->id/$id_grupo");?>"><i class="fa fa-file-text-o fa-2x" aria-hidden="true"></i> <?php echo $fila->nombre;?></a>  <br/><br/>
+                    
+
+
                     <?php
                     }
                   }
-                   ?>
-                   
-                  
+                   ?>                   
+                  <tr>
+                  <td></td>
+                  <td></td>
+                  </tr>
+                  </table>
                   <br/><br/>
                   </td>
                   </tr>  
