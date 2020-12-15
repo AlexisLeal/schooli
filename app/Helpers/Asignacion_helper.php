@@ -239,11 +239,22 @@ function AsignacionGetGrupoHorario($id_grupo)
 {
     $db = \Config\Database::connect();
     $usermodel = $db->table('grupos G');
-    $usermodel->select('HO.nombre');
+    $usermodel->select('HO.nombre,HO.hora_inicio,HO.hora_fin');
     $usermodel->join('horarios HO',"G.id_horario = HO.id and G.id = $id_grupo AND G.deleted = 0 and HO.deleted = 0");
     $query = $usermodel->get();
-    $resultado = $query->getResult();
+    $resultado = $query->getRow();
     return $resultado;  
 }
 
+
+function AsignacionGetGrupoFrecuencia($id_grupo)
+{
+    $db = \Config\Database::connect();
+    $usermodel = $db->table('grupos G');
+    $usermodel->select('F.lunes,F.martes,F.miercoles,F.jueves,F.viernes,F.sabado,F.domingo');
+    $usermodel->join('frecuencia F',"G.id_frecuencia = F.id and G.id = $id_grupo AND G.deleted = 0 and F.deleted = 0");
+    $query = $usermodel->get();
+    $resultado = $query->getRow();
+    return $resultado;  
+}
 ?>
