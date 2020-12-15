@@ -146,7 +146,7 @@
                         <?php
                       }
                   }else{
-                  echo $fila->pregunta;
+                  //echo $fila->pregunta;
                   }
                   ?>
                   </div>

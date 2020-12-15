@@ -129,6 +129,8 @@
                   <tr>
                   <td>
 
+                  <p>Las evaluaciones enlistadas son las asignadas acontinuación, pero estas evaluacion solo estan activadas 
+                  segun el horario esablecido por el administrador del sistema.</p>
 
                    <?php 
                    $evaluacionGrupo =  getGruposEvaluacion($id_grupo);
@@ -138,7 +140,7 @@
                    }else{
                   foreach($evaluacionGrupo as $fila){
                     ?>
-                    <a href="<?php echo site_url("Alumno/presentarevaluacion/$fila->id/$id_grupo");?>"><i class="fa fa-file-text-o" aria-hidden="true"></i> <?php echo $fila->nombre;?></a>  <br/>
+                    <a href="<?php echo site_url("Alumno/presentarevaluacion/$fila->id/$id_grupo");?>"><i class="fa fa-file-text-o fa-2x" aria-hidden="true"></i> <?php echo $fila->nombre;?></a>  <br/><br/>
                     <?php
                     }
                   }

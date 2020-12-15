@@ -85,7 +85,7 @@
                   </div>
                   <div class="col-md-8">
                   <?php
-                  echo $fila->pregunta;
+
 
                   if($fila->tiene_imagen==1 || $fila->tiene_audio_pregunta==1){
                       if($fila->tiene_imagen==1){
@@ -145,14 +145,32 @@
                 <?PHP
                 $pregunta_multiple = getPreguntaOpcion_multiple($idEvaluacion,$idPregunta);
                 ?>
-                <table>
+                <style>
+                .pers {
+                  margin-left:20px;
+                  font-weight:bold;
+                }
+                </style>
+                <!--
+                <table width="100%">
                   <tr>
-                  <td><?php echo empty($pregunta_multiple->valor1) ? 0 : $pregunta_multiple->valor1;?> <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2"></td>
-                  <td><?php echo empty($pregunta_multiple->valor2) ? 0 : $pregunta_multiple->valor2;?> <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2"></td>
-                  <td><?php echo empty($pregunta_multiple->valor3) ? 0 : $pregunta_multiple->valor3;?> <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2"></td>
-                  <td><?php echo empty($pregunta_multiple->valor4) ? 0 : $pregunta_multiple->valor4;?> <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2"></td>
+                  <td width="20%">< ?php echo empty($pregunta_multiple->valor1) ? 0 : "<span class='pers'>".$pregunta_multiple->valor1."</span>"?> <input class="form-check-input" type="radio" name="opcionmultiple" id="" value="1"></td>
+                  <td width="20%">< php echo empty($pregunta_multiple->valor2) ? 0 : $pregunta_multiple->valor2;?> <input class="form-check-input" type="radio" name="opcionmultiple" id="" value="2"></td>
+                  <td width="20%">< ?php echo empty($pregunta_multiple->valor3) ? 0 : $pregunta_multiple->valor3;?> <input class="form-check-input" type="radio" name="opcionmultiple" id="" value="3"></td>
+                  <td width="20%">< ?php echo empty($pregunta_multiple->valor4) ? 0 : $pregunta_multiple->valor4;?> <input class="form-check-input" type="radio" name="opcionmultiple" id="" value="4"></td>
+                </tr>
+              </table>-->
+                <br/>
+              <table width="100%">
+                  <tr>
+                  <td width="20%"> <input class="form-check-input" type="radio" required name="<?php echo 'optmulti'.$pregunta_multiple->idPregunta;?>" id="exampleRadios2" value="1"> <?php echo "<span class='pers'>".$pregunta_multiple->valor1."</span>";?>  </td>
+                  <td width="20%"> <input class="form-check-input" type="radio" required name="<?php echo 'optmulti'.$pregunta_multiple->idPregunta;?>" id="exampleRadios2" value="2"> <?php echo "<span class='pers'>".$pregunta_multiple->valor2."</span>";?>  </td>
+                  <td width="20%"> <input class="form-check-input" type="radio" required name="<?php echo 'optmulti'.$pregunta_multiple->idPregunta;?>" id="exampleRadios2" value="3"> <?php echo "<span class='pers'>".$pregunta_multiple->valor3."</span>";?>  </td>
+                  <td width="20%"> <input class="form-check-input" type="radio" required name="<?php echo 'optmulti'.$pregunta_multiple->idPregunta;?>" id="exampleRadios2" value="4"> <?php echo "<span class='pers'>".$pregunta_multiple->valor4."</span>";?>  </td>
                 </tr>
               </table>
+
+
                 
           </div>
           <div class="col-md-2 text-center">

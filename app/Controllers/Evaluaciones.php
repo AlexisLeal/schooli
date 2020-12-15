@@ -132,16 +132,10 @@ class Evaluaciones extends BaseController{
                 }
             }
 
-          
- //$sqlInsert = "INSERT INTO evaluaciones(nombre,instrucciones,tipo_evaluacion,idCategoriaEvaluacion,nivel,leccion,usuario_creo,usuario_modifico,estado,fecha_creacion,fecha_ultimo_cambio) values ('".$nombre_evaluacion."','".$instrucciones."',$tipo_evaluacion,$categoriaEvaluacion,$nivel,$leccion,$id_usuario,$id_usuario,$estado,'".$hoy."','".$hoy."')";
-               
+             
             //Ejecutamos el query 
             $usermodel->insert($data);
 
-            //Obtenemos el id de la evaluacion 
-            //$query = "select id from evaluaciones where tipo_evaluacion = $tipo_evaluacion AND nivel = $nivel AND leccion = $leccion";
-            //$resultado = $usermodel ->query($query);
-            //$fila = $resultado -> getRow();
             $id = $usermodel->insertID();
     
              

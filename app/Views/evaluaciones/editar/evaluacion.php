@@ -97,7 +97,7 @@
                   </div>
                   <div class="col-md-8">
                   <?php
-                  echo $fila->pregunta;
+ 
 
                   if($fila->tiene_imagen==1 || $fila->tiene_audio_pregunta==1){
                       if($fila->tiene_imagen==1){

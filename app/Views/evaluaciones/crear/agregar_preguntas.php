@@ -81,10 +81,12 @@
                 <input type="hidden" class="form-control" name="idEvaluacion" id="idEvaluacion" value="<?php echo $idEvaluacion;?>">
                 <input type="hidden" class="form-control" name="clave" id="clave" value="<?php echo $clave;?>">
                 <input type="hidden" class="form-control" name="valorpreguntas" id="valorpreguntas" value="<?php echo empty($valorpreguntas) ? 0 : $valorpreguntas;?>">
-                <div class="form-group">
+                
+                
+                <!--<div class="form-group">
                   <label for="lblPregunta">Pregunta</label>
                   <input type="text" class="form-control form-control-sm" name="pregunta" id="pregunta" placeholder="" required="">
-                </div>
+                </div>--> 
 
                 <div class="form-group">
                   <div class="form-check">

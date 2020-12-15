@@ -10,14 +10,11 @@ class Preguntas extends BaseController{
 	{
 
         if($this->session->get('login') && $this->session->get('roll') == 4){
-            //$REQUEST = \Config\Services::request(); 
            
             $usermodel = new Evaluaciones_model($db);
             $usermodel->select('nombre,clave,nivel,leccion,tipo_evaluacion,estado,usuario_creo');
             $usermodel->where('id',$id_evaluacion);
             $usermodel->where('deleted',0);
-            //$query = "select * from evaluaciones where id = $id_evaluacion";
-            //$resultado = $usermodel ->query($query);
             $resultado = $usermodel->get();
             $row = $resultado -> getRow();
 
@@ -39,21 +36,6 @@ class Preguntas extends BaseController{
             $usuarioCreo = getUsuarioCreo($row->usuario_creo);
             $data['usuario_creo'] = $usuarioCreo->nombre .' '.$usuarioCreo->apellido_paterno;
 
-            /*
-            $data['idEvaluacion'] = $REQUEST->getPost('id_e');
-            $data['nombre'] = $REQUEST->getPost('nombre');
-            $data['tipo_evaluacion'] = $REQUEST->getPost('nombre_tipo_evaluacion');
-            $data['usuario_creo'] = $REQUEST->getPost('usuario_creo');
-            $data['estado'] = $REQUEST->getPost('estado');
-            $data['clave'] = $REQUEST->getPost('clave');
-            $data['valorpreguntas'] = $REQUEST->getPost('valorpreguntas');	
-            $data['totalpreguntas'] = $REQUEST->getPost('totalpreguntas');
-
-            $data['idtipoevaluacion'] = $REQUEST->getPost('idtipoevaluacion');	
-            $data['nivel'] = $REQUEST->getPost('nivel');	
-            $data['leccion'] = $REQUEST->getPost('leccion');	
-            $data['page_title'] = "Preguntas";	
-*/
             return view('evaluaciones/crear/agregar_preguntas',$data);
         }else{
             return redirect()->to(site_url('Home/salir'));
@@ -62,7 +44,7 @@ class Preguntas extends BaseController{
 
 
 
-//Nos muestra las preguntas de la evaluacion
+
     public function verEvaluacion($id_evaluacion)
     {
         if($this->session->get('login') && $this->session->get('roll') == 4){
@@ -70,8 +52,7 @@ class Preguntas extends BaseController{
             $usermodel->select('nombre,clave,tipo_evaluacion,nivel,leccion');
             $usermodel->where('id',$id_evaluacion);
             $usermodel->where('deleted',0);
-            //$query = "select * from evaluaciones where id = $id_evaluacion";
-            //$resultado = $usermodel ->query($query);
+
             $resultado = $usermodel->get();
             $row = $resultado -> getRow();
             $data['idEvaluacion'] = $id_evaluacion;
@@ -85,21 +66,7 @@ class Preguntas extends BaseController{
             $nombre =getTipoEvaluacionEspecifico($row->tipo_evaluacion);
             $data['tipo_evaluacion'] = $nombre->nombre;
             $data['page_title'] = "Preguntas";	
-        /*
-        $data['idEvaluacion'] = $REQUEST->getPost('id_e');
-        $data['nombre'] = $REQUEST->getPost('nombre');
-        $data['tipo_evaluacion'] = $REQUEST->getPost('nombre_tipo_evaluacion');
 
-        $data['clave'] = $REQUEST->getPost('clave');
-        $data['valorpreguntas'] = $REQUEST->getPost('valorpreguntas');	
-        $data['totalpreguntas'] = $REQUEST->getPost('totalpreguntas');
-
-        $data['idtipoevaluacion'] = $REQUEST->getPost('idtipoevaluacion');	
-        $data['nivel'] = $REQUEST->getPost('nivel');	
-        $data['leccion'] = $REQUEST->getPost('leccion');	
-
-        $data['page_title'] = "Preguntas";	
-*/
             return view('evaluaciones/mostrar/evaluacion',$data);
         }else{
             return redirect()->to(site_url('Home/salir'));
@@ -115,8 +82,7 @@ class Preguntas extends BaseController{
             $usermodel->select('nombre,clave,tipo_evaluacion,nivel,leccion');
             $usermodel->where('id',$id_evaluacion);
             $usermodel->where('deleted',0);
-           // $query = "select * from evaluaciones where id = $id_evaluacion";
-            //$resultado = $usermodel ->query($query);
+
             $resultado = $usermodel ->get();
             $row = $resultado -> getRow();
             $data['idEvaluacion'] = $id_evaluacion;
@@ -129,24 +95,7 @@ class Preguntas extends BaseController{
             $data['valorpreguntas'] =  getValorTotalPreguntas($id_evaluacion);
             $nombre = getTipoEvaluacionEspecifico( $row->tipo_evaluacion);
             $data['tipo_evaluacion'] = $nombre->nombre;
-            $data['page_title'] = "Preguntas";	
-        
-          /* $REQUEST = \Config\Services::request();  
-           $data['idEvaluacion'] = $REQUEST->getPost('id_e');
-           $data['nombre'] = $REQUEST->getPost('nombre');
-           $data['tipo_evaluacion'] = $REQUEST->getPost('nombre_tipo_evaluacion');
-   
-           $data['clave'] = $REQUEST->getPost('clave');
-           $data['valorpreguntas'] = $REQUEST->getPost('valorpreguntas');	
-           $data['totalpreguntas'] = $REQUEST->getPost('totalpreguntas');
-   
-           $data['idtipoevaluacion'] = $REQUEST->getPost('idtipoevaluacion');	
-           $data['nivel'] = $REQUEST->getPost('nivel');	
-           $data['leccion'] = $REQUEST->getPost('leccion');	
-   
-           $data['page_title'] = "Preguntas";	
-*/
-
+            $data['page_title'] = "Preguntas";
 
         return view('evaluaciones/editar/evaluacion',$data);
         }else{
@@ -162,13 +111,10 @@ class Preguntas extends BaseController{
                 $REQUEST = \Config\Services::request();
                 $idEvaluacion = $REQUEST->getPost('idEvaluacion');
                 $idPregunta = $REQUEST->getPost('idPregunta');
-                //$numPregunta = $REQUEST ->getPost('num_pregunta');
                 $idtipoPregunta = $REQUEST ->getPost('idtipoPregunta');
 
                 $usermodel = new Preguntas_model($db);
                 $usermodel->delete(['id' => $idPregunta]);
-                //$query = "UPDATE preguntas SET deleted = 1 WHERE id = $idPregunta AND idEvaluacion = $idEvaluacion AND num_pregunta = $numPregunta";
-                //$usermodel->query($query);
 
              //Opcion multiple
             if($idtipoPregunta == 2){
@@ -177,10 +123,6 @@ class Preguntas extends BaseController{
                 $usermodel->where('idEvaluacion',$idEvaluacion);
                 $usermodel->where('idPregunta',$idPregunta);
                 $usermodel->delete();
-               
-                //$query = "UPDATE pregunta_opcion_multiple SET deleted = 1 WHERE idEvaluacion = $idEvaluacion AND idPregunta = $idPregunta";
-                //$usermodel ->query($query);
-
             }   
             //Opcion Audio 
             if($idtipoPregunta == 3){
@@ -188,9 +130,6 @@ class Preguntas extends BaseController{
                 $usermodel->where('idEvaluacion',$idEvaluacion);
                 $usermodel->where('idPregunta',$idPregunta);
                 $usermodel->delete();
-                //$usermodel->delete(['id' => $idEvaluacion]);
-                //$query = "UPDATE pregunta_opcion_audio SET deleted = 1 WHERE idEvaluacion = $idEvaluacion AND idPregunta = $idPregunta";
-                //$usermodel ->query($query);
             
             }
             //Opcion Video
@@ -199,8 +138,6 @@ class Preguntas extends BaseController{
                 $usermodel->where('idEvaluacion',$idEvaluacion);
                 $usermodel->where('idPregunta',$idPregunta);
                 $usermodel->delete();
-            //$query = "UPDATE pregunta_opcion_video SET deleted = 1 WHERE idEvaluacion = $idEvaluacion AND idPregunta = $idPregunta";
-            //$usermodel ->query($query);
 
             }
 
@@ -228,22 +165,22 @@ class Preguntas extends BaseController{
     public function insertarPregunta()
     {
         if($this->session->get('login') && $this->session->get('roll') == 4){
-            $REQUEST = \Config\Services::request();  
-            $pregunta = $REQUEST->getPost('pregunta');
-            $clave = $REQUEST->getPost('clave');
-            $idEvaluacion = $REQUEST->getPost('idEvaluacion');
+            $REQUEST  = \Config\Services::request();  
+            //$pregunta = $REQUEST->getPost('pregunta');
+            $clave    = $REQUEST->getPost('clave');
+            $idEvaluacion   = $REQUEST->getPost('idEvaluacion');
             $valorpreguntas = $REQUEST->getPost('valorpreguntas');//Es el valor total de todas las preguntas
-            $valor = $REQUEST->getPost('valor');//Valor que le da al usuario a la pregunta
-            $hoy = date("Y-m-d H:i:s");
-            $tipoPregunta = $REQUEST->getPost('tipoPregunta');
-            $usermodel = new Preguntas_model($db);
+            $valor    = $REQUEST->getPost('valor');//Valor que le da al usuario a la pregunta
+            $hoy      = date("Y-m-d H:i:s");
+            $tipoPregunta   = $REQUEST->getPost('tipoPregunta');
+            $usermodel      = new Preguntas_model($db);
         if(empty($valorpreguntas)){
               $numeropregunta = 1;
         }else{
           //Vamos a obtener el numero maximo de preguntas
           $usermodel->Select('(SELECT max(num_pregunta) FROM preguntas WHERE idEvaluacion= '.$idEvaluacion.' AND deleted = 0) as ultimo_numero_pregunta ', FALSE);
             $query = $usermodel->get();
-            $fila = $query -> getRow();
+            $fila  = $query -> getRow();
             $numeropregunta = $fila->ultimo_numero_pregunta + 1;
 
         }
@@ -301,24 +238,9 @@ class Preguntas extends BaseController{
                 $ruta_imagen_basedatos = NULL;
             }  
 
-            /*
-            $query ="INSERT INTO preguntas(
-            idEvaluacion,
-            num_pregunta,
-            pregunta,
-            valor,
-            idTipoPregunta,
-            tiene_imagen,
-            ruta_imagen,
-            tiene_audio_pregunta,
-            ruta_audio_pregunta,
-            fecha_creacion,
-            fecha_ultimo_cambio
-          ) VALUES ($idEvaluacion,$numeropregunta,'".$pregunta."',$valor,$tipoPregunta,$imagen,'".$ruta_imagen_basedatos."',$audio,'".$ruta_audio_basedatos."','".$hoy."','".$hoy."')";
-                */
             $data = ['idEvaluacion' => $idEvaluacion,
             'num_pregunta' =>$numeropregunta,
-            'pregunta' =>$pregunta,
+            //'pregunta' =>$pregunta,
             'valor' =>$valor,
             'idTipoPregunta' =>$tipoPregunta,
             'tiene_imagen' =>$imagen,
