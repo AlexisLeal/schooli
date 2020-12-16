@@ -36,7 +36,7 @@ class Comprobacion extends BaseController{
             $row = $resultado->getRow(); //Nos regresa la primera fila (y en este caso solo debe ser una) 
             if(empty($row)){ //Si no encuntra nada  nos regresa a login 
             //Ponemos una variable que indique que los datos ingresados son incorrectos
-            $data = ['errorcredenciales'  => 'Datos incorrectos por favor de volver intentar'];
+            $data = ['errorcredenciales'  => 'Los datos ingresados son incorrectos.'];
             $this->session->set($data);
                 return redirect()->to(site_url('Home/index'));
         }

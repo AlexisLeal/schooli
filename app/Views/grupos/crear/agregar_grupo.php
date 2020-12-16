@@ -77,8 +77,7 @@
                 <div class="espacioDos"></div>
                 <div class="row">
                   <div class="col">
-                  Nombre
-                    <input type="text" name="nombre" id="nombre" class="form-control form-control-sm">
+                  Nombre <input type="text" name="nombre" id="nombre" class="form-control form-control-sm">
                   </div>
                   <div class="col">
                     Estatus
@@ -90,7 +89,7 @@
                   </div>
                 </div>
 
-                <div class="espacioUno"></div>
+                <div class="espacioDos"></div>
 
 
                 <div class="row">
@@ -109,7 +108,13 @@
                   <option value="">Selecciona una opción</option> 
                   </select>
                   </div>
-                  <div class="col">
+                </div>
+
+
+                <div class="espacioDos"></div>
+
+              <div class="row">
+              <div class="col">
                   Curso
                   <select class="form-control form-control-sm" name="curso" id="curso" required="">
                   <option value="">Selecciona una opción</option>
@@ -118,12 +123,7 @@
                     <?php } ?> 
                   </select>
                   </div>
-                </div>
 
-
-              <div class="espacioUno"></div>
-
-              <div class="row">
                   <div class="col">
                   Horarios
                     <select class="form-control form-control-sm" name="horarios" id="horarios" required="">
@@ -133,7 +133,12 @@
                    <?php } ?>
                     </select>
                   </div>
-                  <div class="col">
+                </div>
+
+                <div class="espacioDos"></div>
+
+                <div class="row">
+                <div class="col">
                     Salon
                     <select class="form-control form-control-sm" name="salon" id="salon" required="">
                     <option value="">Seleccione una opción</option>
@@ -142,18 +147,13 @@
                     <?php } ?>
                     </select>
                   </div>
-                </div>
-
-                <div class="espacioUno"></div>
-
-                <div class="row">
                   <div class="col">
                   Cupo
                     <input type="number" name="cupo" id="cupo" class="form-control form-control-sm">
                   </div>
                 </div>
                 
-                <div class="espacioUno"></div>
+                <div class="espacioDos"></div>
 
                 <div class="row">
                   <div class="col">
@@ -174,6 +174,9 @@
                     <?php } ?>
                     </select>
                   </div>
+                  
+                  <div class="espacioDos"></div>
+
                   <div class="col">
                     Cargar Imagen
                     <div class="form-group">
@@ -192,7 +195,7 @@
                   
                 </div>
                 
-                <div class="espacioUno"></div>
+                <div class="espacioDos"></div>
 
               <div class="form-group">
                 <label for="lblInstrucciones">Descripción</label>

@@ -12,17 +12,6 @@
         <img class="mb-4" src="<?php echo base_url('img-front/logo-app.png');?>" alt="" width="142" height="142">
         <!-- <p>Ingrése sus credenciales para poder acceder a la plataforma Brain.</p>-->
       </div>
-
-
-      <div class="form-label-group">
-        <input type="text" id="credencial" name="credencial" class="form-control inputLogin" placeholder="" required="" autofocus="">
-        <span class="labelLogin">Matricula, Usuario ó Correo electrónico.</span>
-      </div>
-      <br/>
-      <div class="form-label-group">
-        <input type="password" id="inputPassword" name="inputPassword" class="form-control inputLogin" required="" placeholder="">
-        <span class="labelLogin">Contraseña</span>
-      </div>
       <?php
               if($session->has('errorcredenciales')){ 
                 ?>
@@ -40,6 +29,17 @@
                 $session->destroy(); 
               }
               ?>
+
+      <div class="form-label-group">
+        <input type="text" id="credencial" name="credencial" class="form-control inputLogin" placeholder="" required="" autofocus="">
+        <span class="labelLogin">Matricula, Usuario ó Correo electrónico.</span>
+      </div>
+      <br/>
+      <div class="form-label-group">
+        <input type="password" id="inputPassword" name="inputPassword" class="form-control inputLogin" required="" placeholder="">
+        <span class="labelLogin">Contraseña</span>
+      </div>
+
       <br/>
       <div class="form-label-group">
         <select name="tipo_usuario" id="tipo_usuario"  class="form-control inputLogin" required=""> 
