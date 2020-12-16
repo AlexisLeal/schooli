@@ -141,48 +141,13 @@
                    $day             = date("l");
                    $frecuenciaGrupo = AsignacionGetGrupoFrecuencia($id_grupo);
                    
-                   if($day == "Sunday" && $frecuenciaGrupo->domingo==1){
-                     $goahead=1;
-                    }else{
-                    $goahead="aa";
-                  }
-
-                   if($day == "Monday" && $frecuenciaGrupo->lunes==1){
-                     $goahead=1;}
-                     else{
-                       $goahead="bb";}
-
-                   if($day == "Tuesday" && $frecuenciaGrupo->martes==1){
-                     $goahead=1;}
-                     else{
-                       $goahead="cc";}
-
-                   if($day == "Wednesday" && $frecuenciaGrupo->miercoles==1){
-                     $goahead=1;}
-                     else{
-                       $goahead="dd";}
-
-                   if($day == "Thursday" && $frecuenciaGrupo->jueves==1){
-                     $goahead=1;}
-                     else{
-                       $goahead="ee";}
-                   if($day == "Friday" && $frecuenciaGrupo->viernes==1){
-                     $goahead=1;}
-                     else{
-                       $goahead="ff";}
-                   
-                   if($day == "Saturday" && $frecuenciaGrupo->sabado==1){
-                     $goahead=1;}
-                     else{
-                       $goahead="gg";}
-
-
-
-
-                   echo "Day".$day."<br/>";
-                   echo "Valor de Martes".$frecuenciaGrupo->martes."<br/>";
-                   echo "Goahead ".$goahead."<br/>";
-
+                   if($day == "Sunday" && $frecuenciaGrupo->domingo==1){ $goahead=1;}
+                   if($day == "Monday" && $frecuenciaGrupo->lunes==1){ $goahead=1;}
+                   if($day == "Tuesday" && $frecuenciaGrupo->martes==1){ $goahead=1; }
+                   if($day == "Wednesday" && $frecuenciaGrupo->miercoles==1){ $goahead=1; }
+                   if($day == "Thursday" && $frecuenciaGrupo->jueves==1){ $goahead=1; }
+                   if($day == "Friday" && $frecuenciaGrupo->viernes==1){$goahead=1;}
+                   if($day == "Saturday" && $frecuenciaGrupo->sabado==1){$goahead=1;}
 
                    $evaluacionGrupo =  getGruposEvaluacion($id_grupo);
                    ?>
