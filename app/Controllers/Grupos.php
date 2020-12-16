@@ -1,5 +1,6 @@
 <?php namespace App\Controllers;
 use  App\Models\Grupos_model;
+use  App\Models\Grupos_teachers_model;
 
 class Grupos extends BaseController{
 
@@ -90,13 +91,13 @@ class Grupos extends BaseController{
                 $data = ['nombre' => $nombregrupo,
                 'estatus' => $REQUEST->getPost('estatus'),
                 'id_plantel' => $REQUEST->getPost('plantel'),
+                'id_ciclo' => $REQUEST->getPost('ciclo'),
                 'id_horario' => $REQUEST->getPost('horarios'),
-                'id_frecuencia' => $REQUEST->getPost('frecuencia'),
+                'id_curso' => $REQUEST->getPost('curso'),
                 'id_salon' => $REQUEST->getPost('salon'),
                 'id_nivel' => $REQUEST->getPost('nivel'),
                 'codigo_acceso' =>$codigo,
                 'cupo' => $REQUEST->getPost('cupo'),
-                'precio' => $REQUEST->getPost('precio'),
                 'descripcion' => $REQUEST->getPost('descripcion'),
                 'id_unidad_negocio' => $REQUEST->getPost('unidad_negocio'),
                 'usuario_creo' => $this->session->get('id'),
@@ -107,6 +108,20 @@ class Grupos extends BaseController{
                 ];
                 $usermodel = new Grupos_model();
                 $usermodel->insert($data);
+
+                if(!empty($REQUEST->getPost('maestro'))){
+                    $idgrupo = $usermodel->insertID();
+
+                    $data = ['id_grupo' =>$idgrupo,
+                        'id_teacher' =>$REQUEST->getPost('maestro'),
+                        'fecha_creacion' =>$hoy,
+                        'fecha_ultimo_cambio' =>$hoy,
+                        ];
+
+                    $usermodelTeacher = new Grupos_teachers_model();
+                    $usermodelTeacher->insert($data);
+
+                }
                 $data = ['Grupo'  => 'El Grupo se agregro correctamente'];
                 $this->session->set($data,true);
                 return redirect()->to(site_url('Grupos/agregargrupo'));

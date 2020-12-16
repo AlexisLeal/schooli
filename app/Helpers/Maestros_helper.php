@@ -1,16 +1,7 @@
 <?php 
-use  App\Models\Maestros; 
 use  App\Models\Usuarios; 
 
 //FuncionOLD
-function getAllMaestros2()
-{
-    $usermodel = new Maestros($db);
-    $query = "SELECT * FROM  maestros WHERE deleted = 0";
-    $resultado = $usermodel ->query($query);   
-    $rowArray = $resultado->getResult();
-    return($rowArray); 
-}
 
 function getMaestroEspecifico($id_usuario)
 {
@@ -38,7 +29,16 @@ function getAllMaestros()
     $rowArray = $resultado->getResult();
     return($rowArray); 
 }
-
+function MaestrosGetAllMaestros()
+{
+    $db = \Config\Database::connect();
+    $usermodel = $db->table('usuarios U');
+    $usermodel->select('U.nombre, U.apellido_paterno, U.apellido_materno,TH.id_usuario');
+    $usermodel->join('maestros TH','U.id = TH.id_usuario and TH.deleted = 0 and U.deleted = 0');
+    $resultado = $usermodel->get();   
+    $rowArray = $resultado->getResult();
+    return($rowArray); 
+}
 
 
 

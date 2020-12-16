@@ -86,17 +86,6 @@
               <div class="espacioUno"></div>
 
                 <div class="espacioUno"></div>
-
-                <div class="row">
-                  <div class="col">
-                  precio por el curso
-                  <input type="text" name="nombre" id="nombre" class="form-control form-control-sm" disabled = "disabled" value ="<?php echo $p_curso?>">
-                  </div>
-                  <div class="col">
-                  Precio por nivel
-                  <input type="text" name="nombre" id="nombre" class="form-control form-control-sm" disabled = "disabled" value ="<?php echo $p_nivel?>">
-                  </div>
-                </div>
                 
                 <div class="espacioUno"></div>
                 

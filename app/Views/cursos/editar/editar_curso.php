@@ -107,7 +107,7 @@
                   Numero de niveles
                   <select class="form-control form-control-sm" name="numero_niveles" id="numero_niveles" required="">
                   <option value="">Selecciona una opción</option>
-                  <?php for($i=1;$i<=50;$i++){?>
+                  <?php for($i=1;$i<=14;$i++){?>
                     <?php if($numero_niveles == $i){?>
                     <option selected = "selected" value="<?php echo $i?>"><?php echo $i?></option>
                     <?php } ?> 
@@ -121,17 +121,6 @@
               <div class="espacioUno"></div>
 
                 <div class="espacioUno"></div>
-
-                <div class="row">
-                  <div class="col">
-                  precio por el curso
-                    <input type="text" name="p_curso" id="cupo" class="form-control form-control-sm" value="<?php echo $p_curso;?>"> 
-                  </div>
-                  <div class="col">
-                  Precio por nivel
-                  <input type="text" name="p_nivel" id="precio" class="form-control form-control-sm" value="<?php echo $p_nivel?>">
-                  </div>
-                </div>
                 
                 <div class="espacioUno"></div>
                 

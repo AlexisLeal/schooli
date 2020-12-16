@@ -102,8 +102,17 @@
                   Numero de niveles
                   <select class="form-control form-control-sm" name="numero_niveles" id="numero_niveles" required="">
                   <option value="">Selecciona una opción</option>
-                  <?php for($i=1;$i<=50;$i++){?>
+                  <?php for($i=1;$i<=14;$i++){?>
                     <option value="<?php echo $i?>"><?php echo $i?></option>
+                    <?php } ?> 
+                  </select>
+                  </div>
+                  <div class="col">
+                  Frecuencia 
+                  <select class="form-control form-control-sm" name="frecuencia" id="frecuencia" required="">
+                  <option value="">Selecciona una opción</option>
+                  <?php foreach(CatalagoGetAllFrecuencias() as $fila){?>
+                    <option value="<?php echo $fila->id?>"><?php echo $fila->nombre?></option>
                     <?php } ?> 
                   </select>
                   </div>
@@ -114,17 +123,6 @@
 
                 <div class="espacioUno"></div>
 
-                <div class="row">
-                  <div class="col">
-                  precio por el curso
-                    <input type="text" name="p_curso" id="cupo" class="form-control form-control-sm">
-                  </div>
-                  <div class="col">
-                  Precio por nivel
-                  <input type="text" name="p_nivel" id="precio" class="form-control form-control-sm">
-                  </div>
-                </div>
-                
                 <div class="espacioUno"></div>
                 
                 <div class="espacioUno"></div>

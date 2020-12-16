@@ -64,17 +64,7 @@ function generarCodigo() {
     return($rowArray);
     }
 
-    function GruposgetAllFrecuencia()
-    {
-    $usermode = new Frecuencia_model($db);
-    $usermode->select('id,nombre');
-    $usermode->where('deleted',0);
-    $resultado = $usermode->get();
-    $rowArray = $resultado->getResult();
-    return($rowArray);
-
-    }
-
+    
 
 
 ?>

@@ -36,8 +36,6 @@ class Cursos extends BaseController{
             $data['nombre'] = $curso->nombre;
             $data['estatus'] = $curso->estatus;
             $data['numero_niveles'] = $curso->num_niveles;
-            $data['p_curso'] = $curso->precio;
-            $data['p_nivel'] = $curso->precio_por_nivel;
             $data['descripcion'] = $curso->comentarios;
             return view('cursos/mostrar/ver_curso',$data);
         }else{
@@ -56,8 +54,6 @@ class Cursos extends BaseController{
             $data['nombre'] = $curso->nombre;
             $data['estatus'] = $curso->estatus;
             $data['numero_niveles'] = $curso->num_niveles;
-            $data['p_curso'] = $curso->precio;
-            $data['p_nivel'] = $curso->precio_por_nivel;
             $data['descripcion'] = $curso->comentarios;
             $data['idCr'] = $id_curso;
             return view('cursos/editar/editar_curso',$data);
@@ -76,8 +72,7 @@ class Cursos extends BaseController{
                 $hoy = date("Y-m-d H:i:s");
                 $data = ['nombre'=>$REQUEST->getPost('nombre'),
                 'num_niveles'=>$REQUEST->getPost('numero_niveles'),
-                'precio'=>$REQUEST->getPost('p_curso'),
-                'precio_por_nivel'=>$REQUEST->getPost('p_nivel'),
+                'id_frecuencia'=>$REQUEST->getPost('frecuencia'),
                 'comentarios'=>$REQUEST->getPost('descripcion'),
                 'fecha_creacion'=>$hoy,
                 'fecha_ultimo_cambio'=>$hoy,
@@ -106,8 +101,6 @@ class Cursos extends BaseController{
                 $hoy = date("Y-m-d H:i:s");
                 $data = ['nombre'=>$REQUEST->getPost('nombre'),
                 'num_niveles'=>$REQUEST->getPost('numero_niveles'),
-                'precio'=>$REQUEST->getPost('p_curso'),
-                'precio_por_nivel'=>$REQUEST->getPost('p_nivel'),
                 'comentarios'=>$REQUEST->getPost('descripcion'),
                 'fecha_ultimo_cambio'=>$hoy,
                 'estatus'=>$REQUEST->getPost('estatus'),

@@ -110,10 +110,10 @@
                   </select>
                   </div>
                   <div class="col">
-                  Frecuencia
-                  <select class="form-control form-control-sm" name="frecuencia" id="frecuencia" required="">
+                  Curso
+                  <select class="form-control form-control-sm" name="curso" id="curso" required="">
                   <option value="">Selecciona una opción</option>
-                  <?php foreach(GruposgetAllFrecuencia() as $fila){?>
+                  <?php foreach(CatalagoGetCursos() as $fila){?>
                     <option value="<?php echo $fila->id?>"><?php echo $fila->nombre?></option>
                     <?php } ?> 
                   </select>
@@ -151,10 +151,6 @@
                   Cupo
                     <input type="number" name="cupo" id="cupo" class="form-control form-control-sm">
                   </div>
-                  <div class="col">
-                  Precio
-                  <input type="number" name="precio" id="precio" class="form-control form-control-sm">
-                  </div>
                 </div>
                 
                 <div class="espacioUno"></div>
@@ -170,11 +166,30 @@
                     </select>
                   </div>
                   <div class="col">
+                  Ciclo
+                    <select class="form-control form-control-sm" name="ciclo" id="ciclo" required="">
+                    <option value="">Seleccione una opción</option>
+                    <?php foreach(CatalagogetGetCiclo() as $fila){ ?>
+                     <option value="<?php echo $fila->id; ?>"><?php echo $fila->nombre;?></option>
+                    <?php } ?>
+                    </select>
+                  </div>
+                  <div class="col">
                     Cargar Imagen
                     <div class="form-group">
                     <input  class="form-control form-control-sm" type="file" id="imagen_grupo" name="imagen_grupo" required="">
                   </div>
                   </div>
+                  <div class="col">
+                  Teacher
+                    <select class="form-control form-control-sm" name="maestro" id="maestro">
+                    <option value="">Seleccione una opción</option>
+                    <?php foreach(MaestrosGetAllMaestros() as $fila){ ?>
+                     <option value="<?php echo $fila->id_usuario; ?>"><?php echo $fila->nombre.' '.$fila->apellido_paterno.' '.$fila->apellido_materno;?></option>
+                    <?php } ?>
+                    </select>
+                  </div>
+                  
                 </div>
                 
                 <div class="espacioUno"></div>
