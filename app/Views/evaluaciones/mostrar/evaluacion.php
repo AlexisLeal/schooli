@@ -266,7 +266,7 @@
               </div>
             
               <div class="col-md-8 text-center">
-                <button class="btn btn-primary" type="submit" name="" id="">Guardar</button>
+                <!--<button class="btn btn-primary" type="submit" name="" id="">Guardar</button>-->
               </div>
           
               <div class="col-md-2 text-center">

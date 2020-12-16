@@ -3,7 +3,7 @@ var fileName = this.files[0].name;
 var fileSize = this.files[0].size;
 
 if(fileSize > 5000000){
-  alert('El archivo no debe superar los 5MB');
+  alert('El archivo no debe superar los 5MB, el peso de esté archivo es:' + fileSize);
   this.value         = '';
   this.files[0].name = '';
 }else{

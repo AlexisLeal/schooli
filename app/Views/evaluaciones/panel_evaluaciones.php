@@ -142,7 +142,7 @@
                
                 ?></td>
                 <td><?php echo getTotalPreguntas($fila->id);?></td>
-                <td><?php echo getValorTotalPreguntas($fila->id);;?></td>
+                <td><?php echo getValorTotalPreguntas($fila->id);?></td>
                 <td><?php if($fila->estado == 1){
                   echo "Activo";
                   $estado = "Activo";

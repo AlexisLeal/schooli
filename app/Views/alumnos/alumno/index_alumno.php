@@ -1,5 +1,9 @@
 <?php include(APPPATH.'/Views/include/header.php');?>
-
+<style>
+.evalacionesSinPreguntas{
+  font-size:70%;
+}
+</style>
 <div class="espacioDos"></div>
 <header id="barra-superior">
 
@@ -151,19 +155,39 @@
 
                    $evaluacionGrupo =  getGruposEvaluacion($id_grupo);
                    ?>
-                  <table width="40%" le cellspacing="2" cellpadding="3">
-                  <tr><td></td><td></td></tr>
+                  <table width="80%" le cellspacing="2" cellpadding="3">
+                  <tr><td></td><td></td><td></td></tr>
 
                    <?php
                    if(empty($evaluacionGrupo)){
                     echo "No tiene evaluaciones asignadas";
                    }else{
                     foreach($evaluacionGrupo as $fila){
-
+                      $num_preg = 0;
+                      $num_preg = getTotalPreguntas($fila->id);
                       if($goahead==1 && $horaActual>=$hi && $horaActual<=$hf){?>
                       <tr>
                       <td><i class="fa fa-file-text-o fa-2x" aria-hidden="true"></i></td>
+                      
+
+
+                      <?php
+                      if($num_preg==0){
+                        ?>
+                        <td><button type="button" class="btn btn-success btn-sm"><?php echo $fila->nombre;?></button></td>
+                        <td><span class="evalacionesSinPreguntas">Esta evaluación no tiene preguntas asignadas.</span></td>
+                         
+                        <?php
+                      }else{
+                      ?>
                       <td><a class="btn btn-success btn-sm" href="<?php echo site_url("Alumno/presentarevaluacion/$fila->id/$id_grupo"); ?>" role="button"><?php echo $fila->nombre;?></a></td>
+                      <td></td>
+                      
+                      <?php
+                      }
+                      ?>
+                      
+
                       </tr>
   
                     <?php
@@ -171,6 +195,7 @@
                       <tr>
                       <td><i class="fa fa-file-text-o fa-2x" aria-hidden="true"></i></td>
                       <td><button type="button" class="btn btn-secondary btn-sm"><?php echo $fila->nombre;?></button></td>
+                      <td></td>
                       </tr>
                       <?php
                     }
