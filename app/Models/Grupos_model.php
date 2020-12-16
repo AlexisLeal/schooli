@@ -13,8 +13,8 @@ class Grupos_model extends Model
     protected $useSoftDeletes = true;
 
     #Aqui ponemos el nombre de las columnas que vamos a modifcar
-    protected $allowedFields = ['nombre','estatus','id_plantel','id_horario','id_frecuencia','id_salon','id_nivel',
-    'codigo_acceso','cupo','precio','inscritos','disponibles','descripcion','id_unidad_negocio','usuario_creo',
+    protected $allowedFields = ['nombre','estatus','id_plantel','id_ciclo','id_horario','id_curso','id_salon','id_nivel',
+    'codigo_acceso','cupo','inscritos','disponibles','descripcion','id_unidad_negocio','usuario_creo',
     'usuario_modifico','url_imagen','fecha_creacion','fecha_ultimo_cambio'];
 
     protected $useTimestamps = false;

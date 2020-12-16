@@ -1,7 +1,6 @@
 <?php 
 use  App\Models\Ciclos_model;
 use  App\Models\Horarios_model;
-use  App\Models\Tipo_grupo;
 use  App\Models\Salones_model;
 use  App\Models\Cursos_model;
 use  App\Models\Frecuencia_model;
@@ -28,6 +27,17 @@ function getCicloEspecifico($id_ciclo)
     return($row);
 }
 
+function CatalagogetGetCiclo()
+{
+    $usermode = new Ciclos_model($db);
+    $usermode->select('id,nombre');
+    $usermode->where('deleted',0);
+    //$query = "SELECT * FROM ciclos WHERE deleted = 0";
+    $resultado = $usermode->get();
+    $rowArray = $resultado->getResult();
+    return($rowArray);
+}
+
 function getAllHorarios()
 {       
     $usermode = new Horarios_model($db);
@@ -50,30 +60,7 @@ function getHorarioEspecifico($id_horario)
     $row = $resultado->getRow();
     return($row);
 }
- function getAllNiveles()
-{
-    $usermode = new Tipo_grupo($db);
-    $usermode->select('id,nombre,comentarios');
-    $usermode->where('deleted',0);
-    // $query = "SELECT * FROM niveles_grupo WHERE deleted = 0";
-    $resultado = $usermode->get();
-    $rowArray = $resultado->getResult();
-    return($rowArray);
-
-}
-
-function getNivelEspecificogrupo($id_nivel)
-{
-    $usermode = new Tipo_grupo($db);
-    $usermode->select('id,nombre,comentarios');
-    $usermode->where('deleted',0);
-    $usermode->where('id',$id_nivel);
-    //$query = "SELECT * FROM niveles_grupo WHERE deleted = 0 AND id = $id_nivel";
-    $resultado = $usermode->get();
-    $row = $resultado->getRow();
-    return($row);
-
-}
+ 
 function getAllSalones()
 {
     $usermode = new Salones_model($db);
@@ -102,7 +89,7 @@ function getSalonEspecificogrupo($id_nivel)
 function getAllCursos()
 {
     $usermode = new Cursos_model($db);
-    $usermode->select('id,nombre,num_niveles,precio,precio_por_nivel,comentarios,estatus');
+    $usermode->select('id,nombre,num_niveles,comentarios,estatus');
     $usermode->where('deleted',0);
 
     //$query = "SELECT * FROM cursos WHERE deleted = 0";
@@ -115,12 +102,22 @@ function getAllCursos()
 function getCursoEspecifico($id_curso)
 {
     $usermode = new Cursos_model($db);
-    $usermode->select('id,nombre,num_niveles,precio,precio_por_nivel,comentarios,estatus');
+    $usermode->select('id,nombre,num_niveles,comentarios,estatus');
     $usermode->where('deleted',0);
     $usermode->where('id',$id_curso);
     //$query = "SELECT * FROM cursos WHERE deleted = 0 AND id = $id_curso";
     $resultado = $usermode->get();
     $row = $resultado->getRow();
+    return($row);
+
+}
+function CatalagoGetCursos()
+{
+    $usermode = new Cursos_model($db);
+    $usermode->select('id,nombre');
+    $usermode->where('deleted',0);
+    $resultado = $usermode->get();
+    $row = $resultado->getResult();
     return($row);
 
 }
@@ -150,6 +147,17 @@ function getFrencueciaEspecifica($id_frencuencia)
     return($row);
 
 }
+function CatalagoGetAllFrecuencias()
+    {
+    $usermode = new Frecuencia_model($db);
+    $usermode->select('id,nombre');
+    $usermode->where('deleted',0);
+    $resultado = $usermode->get();
+    $rowArray = $resultado->getResult();
+    return($rowArray);
+
+    }
+
 
 function getAllModalidad()
 {

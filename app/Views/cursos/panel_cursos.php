@@ -69,8 +69,6 @@
                 <th class="text-left">ID</th>
                 <th class="text-left">Nombre</th>
                 <th class="text-left">Numero de niveles</th>
-                <th class="text-left">precio total</th>
-                <th class="text-left">precio por nivel</th>
                 <th class="text-left">comentarios</th>
                 <th class="text-left">estatus</th>
                 <th class="text-left">Ver</th>
@@ -82,8 +80,6 @@
                 <td><?php echo $fila->id ?></td>
                 <td><?php echo "$fila->nombre" ?></td>
                 <td><?php echo $fila->num_niveles;  ?></td>
-                <td><?php echo $fila->precio; ?></td>
-                <td><?php echo $fila->precio_por_nivel; ?></td>
                 <td><?php echo $fila->comentarios; ?></td>
                 <td><?php echo $fila->estatus; ?></td>
                 <td class="text-center">
