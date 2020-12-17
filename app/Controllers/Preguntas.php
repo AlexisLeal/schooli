@@ -39,15 +39,13 @@ class Preguntas extends BaseController{
             return view('evaluaciones/crear/agregar_preguntas',$data);
         }else{
             return redirect()->to(site_url('Home/salir'));
-           }
-}
-
-
-
+        }
+    }
 
     public function verEvaluacion($id_evaluacion)
     {
         if($this->session->get('login') && $this->session->get('roll') == 4){
+
             $usermodel = new Evaluaciones_model($db);
             $usermodel->select('nombre,clave,tipo_evaluacion,nivel,leccion');
             $usermodel->where('id',$id_evaluacion);
@@ -74,7 +72,6 @@ class Preguntas extends BaseController{
 
     }
 
-//Editar las preguntas de la evaluacion
     public function editarEvaluacion($id_evaluacion)
     {   
         if($this->session->get('login') && $this->session->get('roll') == 4){
@@ -102,7 +99,6 @@ class Preguntas extends BaseController{
             return redirect()->to(site_url('Home/salir'));
         }
     }
-
 
     public function deletedPreguntas()
     {
@@ -155,18 +151,10 @@ class Preguntas extends BaseController{
 
     }
 
-
-
-
-
-
-
-
     public function insertarPregunta()
     {
         if($this->session->get('login') && $this->session->get('roll') == 4){
             $REQUEST  = \Config\Services::request();  
-            //$pregunta = $REQUEST->getPost('pregunta');
             $clave    = $REQUEST->getPost('clave');
             $idEvaluacion   = $REQUEST->getPost('idEvaluacion');
             $valorpreguntas = $REQUEST->getPost('valorpreguntas');//Es el valor total de todas las preguntas
@@ -178,7 +166,7 @@ class Preguntas extends BaseController{
               $numeropregunta = 1;
         }else{
           //Vamos a obtener el numero maximo de preguntas
-          $usermodel->Select('(SELECT max(num_pregunta) FROM preguntas WHERE idEvaluacion= '.$idEvaluacion.' AND deleted = 0) as ultimo_numero_pregunta ', FALSE);
+            $usermodel->Select('(SELECT max(num_pregunta) FROM preguntas WHERE idEvaluacion= '.$idEvaluacion.' AND deleted = 0) as ultimo_numero_pregunta ', FALSE);
             $query = $usermodel->get();
             $fila  = $query -> getRow();
             $numeropregunta = $fila->ultimo_numero_pregunta + 1;
@@ -203,8 +191,6 @@ class Preguntas extends BaseController{
                     $ruta_audio = "uploads/".$clave."/audio-pregunta";
                     $file_audio->move($ruta_audio,$nombre);
                 }else{
-            //Si algo sale mal nos marca un error 
-                //throw new RuntimeException($file_audio->getErrorString().'('.$file_audio->getError().')');
                 }
 
             }else{
@@ -348,7 +334,7 @@ class Preguntas extends BaseController{
                 $file_video->move($ruta_video,$nombre);
 
           //Insertamos en la base de datos 
-                $sqlvideo ="INSERT INTO pregunta_opcion_video(
+              $sqlvideo ="INSERT INTO pregunta_opcion_video(
               idEvaluacion,
               idPregunta,
               nombre_video,
@@ -378,11 +364,10 @@ class Preguntas extends BaseController{
         $nivel = $REQUEST->getPost('nivel');	
         $leccion = $REQUEST->getPost('leccion');	
 
-        // Aqui se valida que no hubo ningun error y que se agrego la pregunta
         $data = ['pregunta-exito'  => 'La pregunta se agrego de forma correcta'];
         $this->session->set($data,true);
 
-        // Aqui se valida si la pregunta no a rebasado el puntaje total permitido de la evaluación.
+      
 
         return redirect()->to(site_url("Evaluaciones/panel_evaluaciones/$idtipoevaluacion/$nivel/$leccion"));
     

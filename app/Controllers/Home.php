@@ -3,7 +3,8 @@ class Home extends BaseController{
 	
 	public function index()
 	{
-		$data['page_title'] = "INBI";			
+		$data['page_title'] = "INBI";	
+				
 		return view('login',$data);
 	}
 	
@@ -12,9 +13,4 @@ class Home extends BaseController{
 		$this->session->destroy();		
 		return redirect()->to(site_url('Home/index'));	
 	}
-	
-
-
-	//--------------------------------------------------------------------
-
 }

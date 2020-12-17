@@ -4,10 +4,6 @@ class Operaciones extends BaseController{
 
     public function operacioneseliminaSessionNotificacion()
 	{
-     
-
-            $this->session->remove('notificaciones_usuario');
-           
-        
+        $this->session->remove('notificaciones_usuario');   
 	}
 }

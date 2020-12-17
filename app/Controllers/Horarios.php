@@ -2,33 +2,32 @@
 use  App\Models\Horarios_model;
 class Horarios extends BaseController{
 
-     
     public function index()
 	{
         if($this->session->get('login') && $this->session->get('roll') == 4){
             $data['page_title'] = "Horarios";
+
             return view('horarios/panel_horarios',$data);
         }else{
             return redirect()->to(site_url('Home/salir'));
-           }
+        }
 	}
 	
-
     public function agregarhorario()
 	{
-        //Pasamos de forma dinamica el titulo  y se crear un array
         if($this->session->get('login') && $this->session->get('roll') == 4){
             $data['page_title'] = "Agregar Horario";
+
             return view('horarios/crear/agregar_horario',$data);
         }else{
             return redirect()->to(site_url('Home/salir'));
-           }
+        }
 	}
-
 
     public function verhorario($id_horario)
 	{
         if($this->session->get('login') && $this->session->get('roll') == 4){
+
             $data['page_title'] = "Vista detalle de Horario";
             $horario = getHorarioEspecifico($id_horario);
             $data['nombre'] = $horario->nombre;
@@ -36,18 +35,17 @@ class Horarios extends BaseController{
             $data['horaInicio'] = $horario->hora_inicio;
             $data['horaFin'] = $horario->hora_fin;
             $data['comentarios'] = $horario->comentarios; 
+
             return view('horarios/mostrar/ver_horarios',$data);
         }else{
             return redirect()->to(site_url('Home/salir'));
-           }
+        }
     }
-    
-
     
     public function editarhorario($id_horario)
 	{
-        //Pasamos de forma dinamica el titulo  y se crear un array
         if($this->session->get('login') && $this->session->get('roll') == 4){
+
             $data['page_title'] = "Vista detalle de Horario";
             $horario = getHorarioEspecifico($id_horario);
             $data['nombre'] = $horario->nombre;
@@ -56,22 +54,20 @@ class Horarios extends BaseController{
             $data['horaFin'] = $horario->hora_fin;
             $data['comentarios'] = $horario->comentarios; 
             $data['idHO'] = $id_horario; 
+
             return view('horarios/editar/editar_horarios',$data);
         }else{
             return redirect()->to(site_url('Home/salir'));
         }
     }
-
-
-
 //Funciones para modificar la base de datos 
-
     public function insertarHorario()
     {
         if($this->session->get('login') && $this->session->get('roll') == 4){
             if(isset($_POST['submitHO'])){
                 $REQUEST = \Config\Services::request();
                 $hoy = date("Y-m-d H:i:s");
+
                 $data = ['nombre' =>$REQUEST->getPost('nombre'),
                 'hora_inicio' =>$REQUEST->getPost('horaInicio'),
                 'hora_fin' =>$REQUEST->getPost('horaFin'),
@@ -80,10 +76,13 @@ class Horarios extends BaseController{
                 'fecha_ultimo_cambio' =>$hoy,
                 'estatus' =>$REQUEST->getPost('estatus'),
                 ];
+
                 $usermodel = new Horarios_model($db);
                 $usermodel->insert($data);
+
                 $data = ['Horario'  => 'El Horario se agregro correctamente'];
                 $this->session->set($data,true);
+
                 return redirect()->to(site_url('Horarios/agregarhorario'));
             }else{
                 return redirect()->to(site_url('Home/salir'));
@@ -93,12 +92,15 @@ class Horarios extends BaseController{
         }
   
     }
+    
     public function editar()
     {
         if($this->session->get('login') && $this->session->get('roll') == 4){   
             if(isset($_POST['submitHO'])){
+
                 $REQUEST = \Config\Services::request();
                 $hoy = date("Y-m-d H:i:s");
+
                 $data_horario = ['nombre' =>$REQUEST->getPost('nombre'),
                 'hora_inicio' =>$REQUEST->getPost('horaInicio'),
                 'hora_fin' =>$REQUEST->getPost('horaFin'),
@@ -107,9 +109,11 @@ class Horarios extends BaseController{
                 'fecha_ultimo_cambio' =>$hoy,
                 'estatus' =>$REQUEST->getPost('estatus'),
                 ];
+
                 $id_horario = $REQUEST->getPost('idHO');
                 $usermodel = new Horarios_model($db);
                 $usermodel->update($id_horario,$data_horario);
+
                 $data = ['Horario'  => 'El Horario se modifico correctamente'];
                 $this->session->set($data,true);
                 return redirect()->to(site_url("Horarios/editarhorario/$id_horario"));
@@ -127,10 +131,12 @@ class Horarios extends BaseController{
     {
         if($this->session->get('login') && $this->session->get('roll') == 4){
             if(isset($_POST['submitHO'])){
+
                 $REQUEST = \Config\Services::request();
                 $id_horario = $REQUEST->getPost('idHO');
                 $usermodel= new Horarios_model($db);
                 $usermodel->delete(['id'=> $id_horario]);
+
                 return redirect()->to(site_url('Horarios/index'));
             }else{
                 return redirect()->to(site_url('Home/salir'));

@@ -90,9 +90,6 @@
                   <div class="col">
                     <input type="text" name="apellido_materno" id="apellido_materno" class="form-control form-control-sm" placeholder="Apellido Materno" value ="<?php echo $apeliido_materno;?>">
                   </div>
-                  <div class="col">
-                    <input type="text" name="usuario" id="usuario" class="form-control form-control-sm" placeholder="Usuario" value ="<?php echo $usuario;?>">
-                  </div>
                 </div>
                 
                 <div class="espacioUno"></div>
