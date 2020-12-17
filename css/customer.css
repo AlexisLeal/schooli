@@ -67,6 +67,12 @@ color:#fff;
   width: 100%;
   height: 20px;
 }
+
+.espacioAmplio {
+  width: 100%;
+  height: 120px;
+}
+
 .buscador {
   width: 330px;
   height: 35px;
@@ -85,8 +91,6 @@ padding-bottom: 5px;
 
 #general {
   background-color: #F2F3F4;
-  /*background-color: #EAEDED;*/
-  /*background-color: #000;*/
   border-radius: 20px 20px 0 0;
   padding-left: 10px;
   
@@ -107,7 +111,6 @@ ul.horizontal{
   margin:0;
   padding:0;
   font-size: 95%;
-  /*color:#808B96;*/
   color:#5D6D7E;
   display: block;
   }
@@ -179,7 +182,6 @@ ul.horizontal li a:hover{
 }
 
 .linea {
-  /*border-top: 1px dotted #E5E7E9;*/
   border-top: 2px dotted #CCD1D1;
 }
 
@@ -193,7 +195,6 @@ ul.footer{
   margin:0;
   padding:0;
   font-size: 95%;
-  /*color:#808B96;*/
   color:#5D6D7E;
   display: block;
   }
@@ -256,17 +257,3 @@ ul.list-group li a.mi-active{
 .lineaSolida{
   border-top: 2px dotted #CCD1D1;
 }
-
-
-/*
-input[type=button] {
-  color:#08233e;
-  font:2.4em Futura, ‘Century Gothic’, AppleGothic, sans-serif;
-  font-size:70%;
-  
-  cursor:pointer;
-}
-
-input[type=button]:hover {
-  background-color:rgba(255,204,0,0.8);
-}*/

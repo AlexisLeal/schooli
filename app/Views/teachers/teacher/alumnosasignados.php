@@ -39,120 +39,81 @@
 
 
 
-
-
-    <!--Ejemplo tabla con DataTables-->
-    <div class="container">
-      <div id="general">
-        <div class="row">
-          <div class="col-md-2">
-            <?php include(APPPATH.'/Views/include/menu-teacher.php');?>
-          </div>
-
-
-
-          <div class="col-md-10">
-          <?php include(APPPATH.'/Views/include/notificacion.php');?>
-
-          <div class="espacioUno"></div>
-          <div class="text-right">
-            <h4><?php echo $session->get('nombre')." ".$session->get('apellido')." ".$session->get('apellido_materno');?></h4>
-          </div>
-          <div class="espacioUno"></div>
-
-
-
-            <div class="card">
-              <div class="card-body">
-              Alumnos asignados esté Grupo.<br/>
-                <hr class="linea"/>
-              <div style="padding-left:2px">
-              <div class="card">
-                <div class="card-body">
-               
-                <?php 
-                if(empty(getGrupoAlumnos($id_grupo,$id_unidad_negocio,$id_plantel))){
-                  echo "No existen alumnos asignados a para este Teacher.";
-                }else{
-                  echo " Listado de alumnos asignados.<br/>";
-                foreach(getGrupoAlumnos($id_grupo,$id_unidad_negocio,$id_plantel) as $fila){ ?>
-                  
-                  <?php echo $fila->nombre?><br/>
-                  
-                  <?php }}?>
-                  <br/>
-                </div>
-              </div>
-            
-            <br/>
-
-
-
-  
-
-            <br/><br/>
-            </div>
-          </div>
-
-          </div>
-          </div>
-
-
-        </div>  
+<div class="container">
+  <div id="general">
+    <div class="row">
+      <div class="col-md-2">
+        <?php include(APPPATH.'/Views/include/menu-teacher.php');?>
       </div>
-    </div>
+      <div class="col-md-10">
+        <?php include(APPPATH.'/Views/include/notificacion.php');?>
+        <div class="espacioUno"></div>
+        <div class="text-right">
+        <h4><?php echo $session->get('nombre')." ".$session->get('apellido')." ".$session->get('apellido_materno');?></h4>
+      </div>
+      <div class="espacioUno"></div>
 
-
-      <div class="espacioDos"></div>
-      <div class="espacioDos"></div>
-      <div class="espacioDos"></div>
-      
-      <div class="espacioDos"></div>
-      <div class="espacioDos"></div>
-      <div class="espacioDos"></div>
-
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6">
-            <p class="mt-5 mb-3 text-muted text-center"> © <span class="brain-foot">Brain</span> <?php echo date("Y");?></p>
-          </div>
-          <div class="col-md-3">
-          <ul class="footer">
-            <li><a href="">Aviso de privacidad</a>
-            </li>
-            <li><a href="">Certificado AMIPCI</a>
-            </li>
-            <li><a href="">Certificado Pagos en Linea.</a>
-            </li>
-            <li><a href="">Certificado SSL.</a>
-            </li>
-          </ul>            
-          </div>
-                   
- 
-          <div class="col-md-3">
-          <ul class="footer">
-            <li><a href="">Company</a>
-            </li>
-            <li><a href="">About</a>
-            </li>
-            <li><a href="">Blog</a>
-            </li>
-            <li><a href="">Careers</a>
-            </li>
-            <li><a href="">Press</a>
-            </li>
-          </ul>         
+        <div class="card">
+          <div class="card-body">
+            Alumnos asignados esté Grupo.<br/>
+            <hr class="linea"/>
+              <div style="padding-left:2px">
+                <div class="card">
+                  <div class="card-body">
+                    <?php 
+                    if(empty(getGrupoAlumnos($id_grupo,$id_unidad_negocio,$id_plantel))){
+                      echo "No existen alumnos asignados a para este Teacher.";
+                    }else{
+                      echo " Listado de alumnos asignados.<br/>";
+                      foreach(getGrupoAlumnos($id_grupo,$id_unidad_negocio,$id_plantel) as $fila){ ?>
+                        <?php echo $fila->nombre?>
+                        <div class="espacioUno"></div>
+                      <?php 
+                      }
+                    }
+                    ?>
+                    <div class="espacioUno"></div>
+                  </div>
+                </div>
+                <div class="espacioDos"></div>
+              </div>
           </div>
         </div>
       </div>
+    </div>  
+  </div>
+</div>
+
+
+<div class="espacioAmplio"></div>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <p class="mt-5 mb-3 text-muted text-center"> © <span class="brain-foot">Brain</span> <?php echo date("Y");?></p>
+    </div>
+    <div class="col-md-3">
+      <ul class="footer">
+        <li><a href="">Aviso de privacidad</a></li>
+        <li><a href="">Certificado AMIPCI</a></li>
+        <li><a href="">Certificado Pagos en Linea.</a></li>
+        <li><a href="">Certificado SSL.</a></li>
+      </ul>            
+    </div>
+                   
+    <div class="col-md-3">
+      <ul class="footer">
+        <li><a href="">Company</a></li>
+        <li><a href="">About</a></li>
+        <li><a href="">Blog</a></li>
+        <li><a href="">Careers</a></li>
+        <li><a href="">Press</a></li>
+      </ul>         
+    </div>
+  </div>
+</div>
       
-      <div class="espacioDos"></div>
-      <div class="espacioDos"></div>
-      <div class="espacioDos"></div>
-      
-      <div class="espacioDos"></div>
-      <div class="espacioDos"></div>
-      <div class="espacioDos"></div>
+<div class="espacioAmplio"></div>
 
 <?php include(APPPATH.'Views/include/footer.php');?>

@@ -41,151 +41,126 @@
 
 
 
-    <!--Ejemplo tabla con DataTables-->
-    <div class="container">
-      <div id="general">
-        <div class="row">
-          <div class="col-md-3">
-          <?php include('include/menu-izquierda.php');?>
-          </div>
-          <div class="col-md-6">
-           
-          <?php include(APPPATH.'/Views/include/notificacion.php');?>
-          
-              Accesos Rapidos:<br/><br/>
 
-              <div class="card">
-                <div class="card-body">
-                <table width="100%" cellspacing="12" cellpadding="12" >
-                <tr>
+<div class="container">
+  <div id="general">
+    <div class="row">
+      <div class="col-md-3">
+        <?php include('include/menu-izquierda.php');?>
+      </div>
+      <div class="col-md-6">
+      <?php include(APPPATH.'/Views/include/notificacion.php');?>
+          
+      Accesos Rapidos:
+        <div class="espacioUno"></div>
+        <div class="card">
+          <div class="card-body">
+            <table width="100%" cellspacing="12" cellpadding="12" >
+              <tr>
                 <td><div class="text-center"><a href="<?php echo site_url('/Evaluaciones/index'); ?>"><i class="fa fa-file-text-o fa-2x" aria-hidden="true"></i><br/>Evaluaciones.</a></div></td>
                 <td><div class="text-center"><a href="<?php echo site_url('/Evaluaciones/index'); ?>"><br/>Tipos de <br/> evaluaciones:</a></div></td>
                 <td><div class="text-center">
-                <?php
-                foreach(getTipoEvaluacion() as $fila){ ?>
+                  <?php
+                  foreach(getTipoEvaluacion() as $fila){ ?>
                   <a href="<?php echo site_url("/Evaluaciones/tipo_evaluacion/$fila->id"); ?>"><?php echo $fila->nombre ?></a> / 
                   <?php
                   }
                   ?>
+                    </div>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="espacioUno"></div>
+        <div class="card">
+          <div class="card-body">
+            <table width="100%" cellspacing="12" cellpadding="12" >
+              <tr>
+                <td><div class="text-center"><a href="<?php echo site_url('/Ciclos/index'); ?>"><i class="fa fa-circle-o-notch fa-2x" aria-hidden="true"></i><br/>Ciclos.</a></div></td>
+                <td><div class="text-center"><a href="<?php echo site_url('/Grupos/index'); ?>"><i class="fa fa-users fa-2x" aria-hidden="true"></i><br/>Grupos.</a></div></td>
+                <td><div class="text-center"><a href="<?php echo site_url('/Alumnos/index'); ?>"><i class="fa fa-graduation-cap fa-2x" aria-hidden="true"></i><br/>Estudiantes.</a></div></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+              
+        <div class="espacioUno"></div>
+        <div class="card">
+          <div class="card-body">
+            <table width="100%" cellspacing="12" cellpadding="12" >
+              <tr>
+                <td><div class="text-center"><a href="#"><i class="fa fa-handshake-o fa-2x" aria-hidden="true"></i></i><br/>Prospectos.</a></div></td>
+                <td><div class="text-center"><a href="<?php echo site_url('/Teachers/index'); ?>"><i class="fa fa-user-circle-o fa-2x" aria-hidden="true"></i><br/>Teachers.</a></div></td>
+                <td><div class="text-center"><a href="<?php echo site_url('/Tutores/index'); ?>"><i class="fa fa-user-secret fa-2x" aria-hidden="true"></i><br/>Tutores.</a></div></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="espacioUno"></div>
+        <div class="card">
+          <div class="card-body">
+            <table width="100%" cellspacing="12" cellpadding="12" >
+              <tr>
+                <td>
+                  <div class="text-center">
+                    <a href="#"><i class="fa fa-caret-square-o-right fa-2x" aria-hidden="true"></i><br/>Clase Demo.</a>
                   </div>
                 </td>
-                </tr>
-                </table>
-                </div>
-              </div>
-
-              <div class="espacioUno"></div>
-              <div class="card">
-                <div class="card-body">
-                  <table width="100%" cellspacing="12" cellpadding="12" >
-                  <tr>
-                  <td><div class="text-center"><a href="<?php echo site_url('/Ciclos/index'); ?>"><i class="fa fa-circle-o-notch fa-2x" aria-hidden="true"></i><br/>Ciclos.</a></div></td>
-                  <td><div class="text-center"><a href="<?php echo site_url('/Grupos/index'); ?>"><i class="fa fa-users fa-2x" aria-hidden="true"></i><br/>Grupos.</a></div></td>
-                  <td><div class="text-center"><a href="<?php echo site_url('/Alumnos/index'); ?>"><i class="fa fa-graduation-cap fa-2x" aria-hidden="true"></i><br/>Estudiantes.</a></div></td>
-                  </tr>
-                  </table>
-                </div>
-              </div>
-              
-              <div class="espacioUno"></div>
-              <div class="card">
-                <div class="card-body">
-                  <table width="100%" cellspacing="12" cellpadding="12" >
-                    <tr>
-                    <td><div class="text-center"><a href="#"><i class="fa fa-handshake-o fa-2x" aria-hidden="true"></i></i><br/>Prospectos.</a></div></td>
-                    <td><div class="text-center"><a href="<?php echo site_url('/Teachers/index'); ?>"><i class="fa fa-user-circle-o fa-2x" aria-hidden="true"></i><br/>Teachers.</a></div></td>
-                    <td><div class="text-center"><a href="<?php echo site_url('/Tutores/index'); ?>"><i class="fa fa-user-secret fa-2x" aria-hidden="true"></i><br/>Tutores.</a></div></td>
-                    </tr>
-                    <tr>
-                  </table>
-                </div>
-              </div>
-
-              <div class="espacioUno"></div>
-              <div class="card">
-                <div class="card-body">
-
-                    <table width="100%" cellspacing="12" cellpadding="12" >
-                    <tr>
-                    <td>
-                      <div class="text-center">
-                      <a href="#"><i class="fa fa-caret-square-o-right fa-2x" aria-hidden="true"></i><br/>Clase Demo.</a>
-                      </div>
-                    </td>
-                    <td>
-                    <div class="text-center">                      
-                      <a href="<?php echo site_url('/Notificaciones/index'); ?>"><i class="fa fa-commenting-o fa-2x" aria-hidden="true"></i><br/>Notificaciones</a>
-                      </div>
-                    </td>
-                    <td>
-                    <div class="text-center">
-                      <a href="#"></a>
-                      </div>
-                    </td>
-                    </tr>
-                    </table>
-
-                </div>
-              </div>
-          </div>
-
-          <div class="col-md-3">
-           Con tenido de lado derecho. Con tenido de lado derecho.Con tenido de lado derecho.Con tenido de lado derecho.Con tenido de lado derecho.Con tenido de lado derecho.Con tenido de lado derecho.Con tenido de lado derecho.Con tenido de lado derecho.
-          </div>
-        </div>  
-      </div>
-    </div>
-
-
-      <div class="espacioDos"></div>
-      <div class="espacioDos"></div>
-      <div class="espacioDos"></div>
-      
-      <div class="espacioDos"></div>
-      <div class="espacioDos"></div>
-      <div class="espacioDos"></div>
-
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6">
-            <p class="mt-5 mb-3 text-muted text-center"> © <span class="brain-foot">Brain</span> <?php echo date("Y");?></p>
-          </div>
-          <div class="col-md-3">
-          <ul class="footer">
-            <li><a href="">Aviso de privacidad</a>
-            </li>
-            <li><a href="">Certificado AMIPCI</a>
-            </li>
-            <li><a href="">Certificado Pagos en Linea.</a>
-            </li>
-            <li><a href="">Certificado SSL.</a>
-            </li>
-          </ul>            
-          </div>
-                   
- 
-          <div class="col-md-3">
-          <ul class="footer">
-            <li><a href="">Company</a>
-            </li>
-            <li><a href="">About</a>
-            </li>
-            <li><a href="">Blog</a>
-            </li>
-            <li><a href="">Careers</a>
-            </li>
-            <li><a href="">Press</a>
-            </li>
-          </ul>         
+                <td>
+                  <div class="text-center">                      
+                    <a href="<?php echo site_url('/Notificaciones/index'); ?>"><i class="fa fa-commenting-o fa-2x" aria-hidden="true"></i><br/>Notificaciones</a>
+                  </div>
+                </td>
+                <td>
+                  <div class="text-center">
+                    <a href="#"></a>
+                  </div>
+                </td>
+              </tr>
+            </table>
           </div>
         </div>
       </div>
-      
-      <div class="espacioDos"></div>
-      <div class="espacioDos"></div>
-      <div class="espacioDos"></div>
-      
-      <div class="espacioDos"></div>
-      <div class="espacioDos"></div>
-      <div class="espacioDos"></div>
+
+      <div class="col-md-3">
+        Con tenido de lado derecho. Con tenido de lado derecho.Con tenido de lado derecho.Con tenido de lado derecho.Con tenido de lado derecho.Con tenido de lado derecho.Con tenido de lado derecho.Con tenido de lado derecho.Con tenido de lado derecho.
+      </div>
+    </div>  
+  </div>
+</div>
+
+
+<div class="espacioAmplio"></div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <p class="mt-5 mb-3 text-muted text-center"> © <span class="brain-foot">Brain</span> <?php echo date("Y");?></p>
+    </div>
+    <div class="col-md-3">
+      <ul class="footer">
+        <li><a href="">Aviso de privacidad</a></li>
+        <li><a href="">Certificado AMIPCI</a></li>
+        <li><a href="">Certificado Pagos en Linea.</a></li>
+        <li><a href="">Certificado SSL.</a></li>
+      </ul>            
+    </div>
+                   
+    <div class="col-md-3">
+      <ul class="footer">
+        <li><a href="">Company</a></li>
+        <li><a href="">About</a></li>
+        <li><a href="">Blog</a></li>
+        <li><a href="">Careers</a></li>
+        <li><a href="">Press</a></li>
+      </ul>         
+    </div>
+  </div>
+</div>
+
+<div class="espacioAmplio"></div>
+
 <?php include("include/footer.php");?>
