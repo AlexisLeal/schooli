@@ -1,6 +1,5 @@
 <?php 
 use  App\Models\Grupos_model;
-use  App\Models\Frecuencia_model;
 
 function getAllGrupos()
 {
@@ -8,8 +7,6 @@ function getAllGrupos()
     $usermode->select('id,nombre,id_horario,url_imagen');
     $usermode->where('deleted',0);
     $resultado = $usermode->get();
-    //$query = "SELECT * FROM grupos WHERE deleted = 0";
-    //$resultado = $usermode->query($query);
     $rowArray = $resultado->getResult();
     return($rowArray);
 }
@@ -25,46 +22,38 @@ function generarCodigo() {
        $codigo .= $pattern[rand(0,$max)];
            }
    }
-   //En el srtlen se le pone el -1 por que cuenta desde el 1 y el array cuenta desde el 0
     return $codigo;
    }
 
-   function DBCodigo()
-   {
+function DBCodigo()
+{
     $usermode = new Grupos_model($db);
     $usermode->select('codigo_acceso');
     $usermode->where('deleted',0);
-   // $query = "SELECT codigo_acceso FROM grupos WHERE deleted = 0";
     $resultado = $usermode->get();
     $rowArray = $resultado->getResult();
     return($rowArray);
      
-   }
+}
    
-   function checkCodigo(){
-        $codigo = generarCodigo();
-        foreach(DBCodigo() as $fila){
-            if($fila->codigo_acceso  == $codigo){
-                return checkCodigo();
-            }
+function checkCodigo(){
+    $codigo = generarCodigo();
+    foreach(DBCodigo() as $fila){
+        if($fila->codigo_acceso  == $codigo){
+            return checkCodigo();
         }
-        return $codigo;
+    }
+    return $codigo;
 
-   }
+}
 
-   function getAllGruposReasignar()
-    {
+function getAllGruposReasignar()
+{
     $usermode = new Grupos_model($db);
     $usermode->select('id,nombre,id_plantel,id_unidad_negocio');
     $usermode->where('deleted',0);
     $resultado = $usermode->get();
-    //$query = "SELECT * FROM grupos WHERE deleted = 0";
-    //$resultado = $usermode->query($query);
     $rowArray = $resultado->getResult();
     return($rowArray);
-    }
-
-    
-
-
+}
 ?>

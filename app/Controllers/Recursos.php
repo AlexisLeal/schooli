@@ -7,12 +7,12 @@ class Recursos extends BaseController{
 	{
         if($this->session->get('login') && $this->session->get('roll') == 4){
             $data['page_title'] = "Recursos";	
+
             return view('recursos/recursos',$data);
         }else{
             return redirect()->to(site_url('Home/salir'));
         }
 	}
-    
     
     public function agregarRecurso()
 	{
@@ -22,17 +22,6 @@ class Recursos extends BaseController{
             $hoy             = date("Y-m-d H:i:s");
             $recurso_archivo = $REQUEST->getFile('recurso_archivo');
             $descripcion     = $REQUEST->getPost('descripcion');
-/*
-                case 'docx':
-                case 'xlsx':
-                case 'pdf':
-                case 'zip':
-                case 'rar':
-                case 'jpg':
-                case 'png':
-                case 'mp3':
-                case 'mp4':*/
-
 
             $recurso_extension= $recurso_archivo->getClientExtension();
             switch ($recurso_extension){
@@ -67,7 +56,6 @@ class Recursos extends BaseController{
                 $tipo_archivo ="Desconocido";
             }
 
-
             if ($recurso_archivo->isValid() && !$recurso_archivo->hasMoved())
             {
              
@@ -84,8 +72,7 @@ class Recursos extends BaseController{
                 //Si algo sale mal nos marca un error 
                 //throw new RuntimeException($recurso_audio->getErrorString().'('.$recurso_audio->getError().')');
                      }
-    
-                      
+             
             $sqlRecurso ="INSERT INTO recursos(
                 nombre,
                 extencion,

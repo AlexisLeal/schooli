@@ -8,7 +8,7 @@ class Evaluaciones extends BaseController{
 	{
         if($this->session->get('login') && $this->session->get('roll') == 4){
             $data['page_title'] = "Evaluaciones";	
-            //Pasamos de forma dinamica el titulo  y se crear un array   
+           
             return view('evaluaciones/tipo_evaluaciones',$data);
         }else{
             return redirect()->to(site_url('Home/salir'));
@@ -19,6 +19,7 @@ class Evaluaciones extends BaseController{
     {
         if($this->session->get('login') && $this->session->get('roll') == 4){
             $data['page_title'] = "Evaluaciones";	
+
             return view('evaluaciones/crear/crear_evaluaciones',$data);
         }else{
             return redirect()->to(site_url('Home/salir'));
@@ -28,22 +29,18 @@ class Evaluaciones extends BaseController{
 
     public function tipo_evaluacion($view)
     {
-        //Nos indica si es sistema o exci o basic 
-
         if($this->session->get('login') && $this->session->get('roll') == 4){
             if($view == 1){
+
             $data["tipo_evaluacion"] = "Sistema";
             $data["id_evaluacion"] = 1;
-            //El id de Sistema es uno por la tabla de tipo_evaluacion
+           
             return view('evaluaciones/mostrar/niveles',$data);
             
         }elseif($view == 2){
-           //Mas a futuro se agrega la vista apropiada 
-          //  $data["tipo_evaluacion"] = "EXCI";
-           // return view('evaluaciones/mostrar/niveles',$data);
-
+           
         }else{
-            //Mas adelante se agrega la vista apropiada 
+           
 
         }
         }else{
@@ -53,15 +50,14 @@ class Evaluaciones extends BaseController{
     }
 
     public function lecciones($id_evaluacion,$id_nivel)
-    {   //Estos parametros son enviados desde la vista niveles 
-        $data['id_evaluaciones'] = $id_evaluacion;
-        $data['id_nivel'] = $id_nivel;
-        //Hacemos esto para pasarlo ala pagina de manera dinamica 
-        //y mas adelante se hara un query 
+    {   
         if($this->session->get('login') && $this->session->get('roll') == 4){
+            $data['id_evaluaciones'] = $id_evaluacion;
+            $data['id_nivel'] = $id_nivel;
+
             return view('evaluaciones/mostrar/lecciones',$data);
-    }else{
-        return redirect()->to(site_url('Home/salir'));
+        }else{
+            return redirect()->to(site_url('Home/salir'));
        }
     }
 
@@ -69,33 +65,30 @@ class Evaluaciones extends BaseController{
     public function panel_evaluaciones($id_evaluacion,$id_nivel,$id_leccion)
     {
         if($this->session->get('login') && $this->session->get('roll') == 4){
+
             $data['id_evaluacion'] = $id_evaluacion;
             $data['id_nivel'] = $id_nivel;
             $data['id_leccion'] = $id_leccion;
         
             return view('evaluaciones/panel_evaluaciones',$data);
-    }else{
-        return redirect()->to(site_url('Home/salir'));
-       }
+        }else{
+            return redirect()->to(site_url('Home/salir'));
+        }
     }
 
-    //-------------------------------------------------- Funciones para insertar o actualizar en la base de datos ----------------------------------
+   
     public function insertar_evaluacion()
     {
         if($this->session->get('login') && $this->session->get('roll') == 4){
             if(isset($_POST['crearEvaluacion'])){
                 $usermodel = new Evaluaciones_model($db);
                 $REQUEST = \Config\Services::request();
-                //Capturamos los datos que son enviados 
-                //$nombre_evaluacion = $REQUEST->getPost('nombreEvaluacion');
-                //$instrucciones = $REQUEST->getPost('instrucciones');
+               
                 $tipo_evaluacion = $REQUEST->getPost('tipoEvaluacion');
-                //$categoriaEvaluacion = $REQUEST->getPost('categoriaEvaluacion');
                 $nivel = $REQUEST->getPost('nivel');
                 $leccion = $REQUEST->getPost('leccion');
-                //$id_usuario = $REQUEST->getPost('idUsuario');
-                //$estado = $REQUEST->getPost('estado');
                 $hoy = date("Y-m-d H:i:s");
+
                 $data = ['nombre' => $REQUEST->getPost('nombreEvaluacion'),
                 'instrucciones' => $REQUEST->getPost('instrucciones'),
                 'tipo_evaluacion' => $REQUEST->getPost('tipoEvaluacion'),
@@ -108,23 +101,20 @@ class Evaluaciones extends BaseController{
                 'fecha_creacion' => $hoy,
                 'fecha_ultimo_cambio' => $hoy,
                 ];
-                //Primero comprobamos si ya existe una evaluacion
+               
                 $usermodel->select('tipo_evaluacion,nivel,leccion');
                 $usermodel->where('tipo_evaluacion',$tipo_evaluacion);
                 $usermodel->where('nivel',$nivel);
                 $usermodel->where('leccion',$leccion);
                 $usermodel->where('deleted',0);
-                //$query = "SELECT * FROM evaluaciones WHERE tipo_evaluacion = $tipo_evaluacion AND nivel = $nivel AND leccion = $leccion AND deleted = 0;";
                 $resultado = $usermodel->get();
-                //$resultado = $usermodel->query($query);
-                $fila = $resultado -> getRow();
-                // Crear variable se sesion
-            
+                $fila = $resultado -> getRow();    
 
             if(!empty($fila)){
-                //Si esta vacio segnifica que no hay una evaluacion para en el nivel y seccion especifico 
+               
                 $data = ['existe'  => 'La evaluaciòn ya existe'];
                 $this->session->set($data,true);
+
                 if($this->session->get('login')){	
                     return redirect()->to(site_url('Evaluaciones/crear_evaluacion'));
                 }else{
@@ -132,10 +122,7 @@ class Evaluaciones extends BaseController{
                 }
             }
 
-             
-            //Ejecutamos el query 
             $usermodel->insert($data);
-
             $id = $usermodel->insertID();
     
              
@@ -165,9 +152,7 @@ class Evaluaciones extends BaseController{
             }
         }
 
-        }
-        
-       
+    }  
 }
 
    

@@ -91,9 +91,6 @@
                   <div class="col">
                     <input type="text" name="apellido_materno" id="apellido_materno" class="form-control form-control-sm" placeholder="Apellido Materno">
                   </div>
-                  <div class="col">
-                    <input type="text" name="usuario" id="usuario" class="form-control form-control-sm" placeholder="Usuario">
-                  </div>
                 </div>
                 
                 <div class="espacioUno"></div>

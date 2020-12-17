@@ -6,20 +6,19 @@ class Grupos extends BaseController{
 
     public function index()
 	{
-        //Pasamos de forma dinamica el titulo  y se crear un array
         if($this->session->get('login') && $this->session->get('roll') == 4){
             $data['page_title'] = "Grupos";	
+
             return view('grupos/panel_grupos',$data);
         }else{
             return redirect()->to(site_url('Home/salir'));
            }
 	}
-	
-
 
     public function agregargrupo()
 	{   
         if($this->session->get('login') && $this->session->get('roll') == 4){
+
             return view('grupos/crear/agregar_grupo');
         }else{
             return redirect()->to(site_url('Home/salir'));
@@ -30,6 +29,7 @@ class Grupos extends BaseController{
 	{
         
         if($this->session->get('login') && $this->session->get('roll') == 4){
+
             $usermodel = new Grupos_model();
             $usermodel->select('nombre,codigo_acceso,id_unidad_negocio,id_plantel,id_nivel');
             $usermodel->where('id',$id_grupo);
@@ -42,20 +42,18 @@ class Grupos extends BaseController{
             $data['nombre_grupo'] = $row->nombre;	
             $data['codigo_acceso'] = $row->codigo_acceso;
             $data['nivel'] = getnivelEspecifico($row->id_nivel);
-            //-------------------------------------
             $data['id_plantel'] = $row->id_plantel;
             $data['id_unidad_negocio'] = $row->id_unidad_negocio;
-            
             //Funcion ubicada en helper alumnos 	
             $data['unidad_negocio'] = getUnidadNegocioEspecifico($row->id_unidad_negocio);	
             $data['nombre_plantel'] = getPlanteEspecifico($row->id_plantel);
+
             return view('grupos/mostrar/ver_grupo',$data);
         }else{
             return redirect()->to(site_url('Home/salir'));
         }
     }
     
-
     public function insertargrupo()
     {
         if($this->session->get('login') && $this->session->get('roll') == 4){
@@ -68,7 +66,6 @@ class Grupos extends BaseController{
                     $file_imagen = $REQUEST->getFile('imagen_grupo');
                     if($file_imagen->isValid() && ! $file_imagen->hasMoved()){
             
-                //Comprobar si existe la ruta donde se va a guardar el audio
                     if (!is_dir('uploads/Grupos/Imagenes')) {
                         mkdir('uploads/Grupos/Imagenes', 0777, TRUE);
                      }
@@ -78,14 +75,12 @@ class Grupos extends BaseController{
                     $ruta_imagen = 'uploads/Grupos/Imagenes';  
                     $file_imagen->move($ruta_imagen,$nombre);
                     }else{
-            //Si algo sale mal nos marca un error 
-           // throw new RuntimeException($file_imagen->getErrorString().'('.$file_imagen->getError().')');
                     }
 
                 }else{
                     $ruta_imagen_basedatos = "Null";
                 }
-        //Es una funcion recursiva esta esta en  helper      
+
                 $codigo = checkCodigo();
 
                 $data = ['nombre' => $nombregrupo,
@@ -106,6 +101,7 @@ class Grupos extends BaseController{
                 'fecha_creacion' => $hoy, 
                 'fecha_ultimo_cambio' => $hoy,     
                 ];
+
                 $usermodel = new Grupos_model();
                 $usermodel->insert($data);
 
@@ -135,9 +131,6 @@ class Grupos extends BaseController{
         }
     }
 
-
-
-
     public function editar()
     {
         if($this->session->get('login') && $this->session->get('roll') == 4){
@@ -151,7 +144,6 @@ class Grupos extends BaseController{
             return redirect()->to(site_url('Home/salir'));
         }
     }
-
 
     public function eliminar()
     {

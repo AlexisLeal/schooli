@@ -6,9 +6,10 @@ class Cursos extends BaseController{
      
     public function index()
 	{
-        $data['page_title'] = "Cursos";	
-        //Pasamos de forma dinamica el titulo  y se crear un array
         if($this->session->get('login') && $this->session->get('roll') == 4){
+
+            $data['page_title'] = "Cursos";	
+
             return view('cursos/panel_cursos',$data);
         }else{
             return redirect()->to(site_url('Home/salir'));
@@ -17,33 +18,32 @@ class Cursos extends BaseController{
 	
     public function agregarcurso()
 	{
-       
-        //Pasamos de forma dinamica el titulo  y se crear un array
         if($this->session->get('login') && $this->session->get('roll') == 4){
-            $data['page_title'] = "Agregar Curso";	
+
+            $data['page_title'] = "Agregar Curso";
+
             return view('cursos/crear/agregar_curso',$data);
         }else{
             return redirect()->to(site_url('Home/salir'));
            }
 	}
 
-
     public function vercurso($id_curso)
 	{
         if($this->session->get('login') && $this->session->get('roll') == 4){
+
             $curso = getCursoEspecifico($id_curso);
             $data['page_title'] = "Vista detalle del Curso";
             $data['nombre'] = $curso->nombre;
             $data['estatus'] = $curso->estatus;
             $data['numero_niveles'] = $curso->num_niveles;
             $data['descripcion'] = $curso->comentarios;
+
             return view('cursos/mostrar/ver_curso',$data);
         }else{
             return redirect()->to(site_url('Home/salir'));
            }
     }
-    
-
     
     public function editarcurso($id_curso)
 	{
@@ -56,13 +56,12 @@ class Cursos extends BaseController{
             $data['numero_niveles'] = $curso->num_niveles;
             $data['descripcion'] = $curso->comentarios;
             $data['idCr'] = $id_curso;
+
             return view('cursos/editar/editar_curso',$data);
         }else{
             return redirect()->to(site_url('Home/salir'));
            }
     }
-
-
 
     public function insertarcurso()
     {
@@ -70,6 +69,7 @@ class Cursos extends BaseController{
             if(isset($_POST['submitCR'])){
                 $REQUEST = \Config\Services::request();
                 $hoy = date("Y-m-d H:i:s");
+
                 $data = ['nombre'=>$REQUEST->getPost('nombre'),
                 'num_niveles'=>$REQUEST->getPost('numero_niveles'),
                 'id_frecuencia'=>$REQUEST->getPost('frecuencia'),
@@ -78,10 +78,12 @@ class Cursos extends BaseController{
                 'fecha_ultimo_cambio'=>$hoy,
                 'estatus'=>$REQUEST->getPost('estatus'),
                 ];
+
                 $usermodel = new Cursos_model($db);
                 $usermodel->insert($data);
                 $data = ['Curso'  => 'El curso se agregro correctamente'];
                 $this->session->set($data,true);
+
                 return redirect()->to(site_url('Cursos/agregarcurso'));
             }else{
                 return redirect()->to(site_url('Home/salir'));
@@ -92,24 +94,28 @@ class Cursos extends BaseController{
         
     }
 
-
     public function editar()
     {
         if($this->session->get('login') && $this->session->get('roll') == 4){
             if(isset($_POST['submitCR'])){
+
                 $REQUEST = \Config\Services::request();
                 $hoy = date("Y-m-d H:i:s");
+
                 $data = ['nombre'=>$REQUEST->getPost('nombre'),
                 'num_niveles'=>$REQUEST->getPost('numero_niveles'),
                 'comentarios'=>$REQUEST->getPost('descripcion'),
                 'fecha_ultimo_cambio'=>$hoy,
                 'estatus'=>$REQUEST->getPost('estatus'),
                 ];
+
                 $id_curso = $REQUEST->getPost('idCr');
                 $usermodel = new Cursos_model($db);
                 $usermodel->update($id_curso,$data);
+
                 $data = ['Curso'  => 'El curso se modifico  correctamente'];
                 $this->session->set($data,true);
+
                 return redirect()->to(site_url("Cursos/editarcurso/$id_curso"));
 
 
@@ -122,16 +128,16 @@ class Cursos extends BaseController{
         
     }
 
-
-
     public function eliminar()
     {
         if($this->session->get('login') && $this->session->get('roll') == 4){
             if(isset($_POST['submitCR'])){
                 $REQUEST = \Config\Services::request();
                 $id_curso = $REQUEST->getPost('idCr');
+
                 $usermodel = new Cursos_model($db);
                 $usermodel->delete(['id'=> $id_curso]);
+
                 return redirect()->to(site_url('Curso/index'));
             }else{
                 return redirect()->to(site_url('Home/salir'));
