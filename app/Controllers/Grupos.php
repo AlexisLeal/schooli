@@ -107,16 +107,25 @@ class Grupos extends BaseController{
 
                 if(!empty($REQUEST->getPost('maestro'))){
                     $idgrupo = $usermodel->insertID();
-
-                    $data = ['id_grupo' =>$idgrupo,
+                    $usermodelTeacher = new Grupos_teachers_model();
+                    if(!empty($REQUEST->getPost('maestro2'))){
+                        $data = ['id_grupo' =>$idgrupo,
+                        'id_teacher' =>$REQUEST->getPost('maestro'),
+                        'id_teacher_2' =>$REQUEST->getPost('maestro2'),
+                        'fecha_creacion' =>$hoy,
+                        'fecha_ultimo_cambio' =>$hoy,
+                        ];
+                    
+                        $usermodelTeacher->insert($data);
+                    }else{
+                        $data = ['id_grupo' =>$idgrupo,
                         'id_teacher' =>$REQUEST->getPost('maestro'),
                         'fecha_creacion' =>$hoy,
                         'fecha_ultimo_cambio' =>$hoy,
                         ];
 
-                    $usermodelTeacher = new Grupos_teachers_model();
-                    $usermodelTeacher->insert($data);
-
+                        $usermodelTeacher->insert($data);
+                    }
                 }
                 $data = ['Grupo'  => 'El Grupo se agregro correctamente'];
                 $this->session->set($data,true);
@@ -156,6 +165,17 @@ class Grupos extends BaseController{
     
         }else{
             return redirect()->to(site_url('Home/salir'));
+        }
+    }
+
+    function ajaxlistadomaestrostipo2(){
+        $REQUEST = \Config\Services::request();
+        $idmaestro1 = $REQUEST->getPost('id_maestro1');
+        echo "<option value=''>Seleccione una opción</option>";
+        foreach(MaestrosGetAllMaestros() as $fila){
+            if($idmaestro1 != $fila->id_usuario){
+                echo "<option value = $fila->id_usuario> $fila->nombre $fila->apellido_paterno $fila->apellido_materno</option>";
+            }
         }
     }
 

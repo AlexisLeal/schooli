@@ -184,12 +184,18 @@
                   </div>
                   </div>
                   <div class="col">
-                  Teacher
+                  Teacher 1
                     <select class="form-control form-control-sm" name="maestro" id="maestro">
                     <option value="">Seleccione una opción</option>
                     <?php foreach(MaestrosGetAllMaestros() as $fila){ ?>
                      <option value="<?php echo $fila->id_usuario; ?>"><?php echo $fila->nombre.' '.$fila->apellido_paterno.' '.$fila->apellido_materno;?></option>
                     <?php } ?>
+                    </select>
+                  </div>
+                  <div class="col">
+                  Teacher 2
+                    <select class="form-control form-control-sm" name="maestro2" id="maestro2">
+                    <option value="">Seleccione una opción</option>
                     </select>
                   </div>
                   
@@ -289,6 +295,25 @@
         }
 
         });
+      });
+
+      $('#maestro').change(function () {
+        var id_maestro1 = $(this).val();
+        if(id_maestro1 != ""){
+          $.ajax({
+          type: "POST",
+          url: "<?php echo site_url('Grupos/ajaxlistadomaestrostipo2');?>",
+          data: {id_maestro1},
+          success : function(text){
+            document.getElementById("maestro2").innerHTML = "";
+            $('#maestro2').append(text);
+          }
+        });
+        }else{
+          document.getElementById("maestro2").innerHTML="";
+          $('#maestro2').append('<option value="">Seleccione una opción</option>\
+          </select>');
+        }
       });
 
 
