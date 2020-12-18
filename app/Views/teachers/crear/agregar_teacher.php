@@ -38,101 +38,83 @@
 </header>
 
 
+<div class="container">
+  <div id="general">
+    <div class="row">
+      <div class="col-md-3">
+        <?php include(APPPATH.'/Views/include/menu-izquierda.php');?>
+      </div>
+      <div class="col-md-9">
+        <?php include(APPPATH.'/Views/include/notificacion.php');?>
+        <?php if($session->has('Maestro')){;?>
+          <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>Notificaciones del sistema:</strong> <?php echo $session->get('Maestro')?>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+          </div> 
+        <?php } $session->remove('Maestro');?>
 
 
 
-    <!--Ejemplo tabla con DataTables-->
-    <div class="container">
-      <div id="general">
-        <div class="row">
-          <div class="col-md-3">
-            <?php include(APPPATH.'/Views/include/menu-izquierda.php');?>
-          </div>
-
-
-           
-          <div class="col-md-9">
-          <?php include(APPPATH.'/Views/include/notificacion.php');?>
-          
-          <?php if($session->has('Maestro')){;?>
-         <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                <strong>Notificaciones del sistema:</strong> <?php echo $session->get('Maestro')?>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div> 
-              <?php } $session->remove('Maestro');?>
-
-
-
-          <h4>Registro de Teachers.</h4>
-          <div class="espacioUno"></div>
+        <h4>Registro de Teachers.</h4>
+        <div class="espacioUno"></div>
         
-              <div class="card">
-                <div class="card-body">
- 
-                <form action="<?php echo site_url('Teachers/insertarmaestro');?>" method="post" id = "datosteacher" enctype="multipart/form-data">
+          <div class="card">
+            <div class="card-body">
+              <form action="<?php echo site_url('Teachers/insertarmaestro');?>" method="post" id = "datosteacher" enctype="multipart/form-data">
                 <div class="espacioDos"></div>
-                Datos Generales
-                <div class="espacioDos"></div>
-                <div class="row">
-                  <div class="col">
-                    <input type="text" name="nombre" id="nombre" class="form-control form-control-sm" placeholder="Nombre">
-                  </div>
-                  <div class="col">
-                    <input type="text" name="apellido_paterno" id="apellido_paterno" class="form-control form-control-sm" placeholder="Apellido Paterno">
-                  </div>
-                </div>
+                  Datos Generales
+                  <div class="espacioDos"></div>
+                    <div class="row">
+                      <div class="col">
+                        <input type="text" name="nombre" id="nombre" class="form-control form-control-sm" placeholder="Nombre">
+                      </div>
+                      <div class="col">
+                        <input type="text" name="apellido_paterno" id="apellido_paterno" class="form-control form-control-sm" placeholder="Apellido Paterno">
+                      </div>
+                    </div>
+                  <div class="espacioUno"></div>
 
-                <div class="espacioUno"></div>
-
-                <div class="row">
-                  <div class="col">
-                    <input type="text" name="apellido_materno" id="apellido_materno" class="form-control form-control-sm" placeholder="Apellido Materno">
-                  </div>
-                  <div class="col">
-                    <input type="text" name="usuario" id="usuario" class="form-control form-control-sm" placeholder="Usuario">
-                  </div>
-                </div>
+                    <div class="row">
+                      <div class="col">
+                        <input type="text" name="apellido_materno" id="apellido_materno" class="form-control form-control-sm" placeholder="Apellido Materno">
+                        </div>
+                      <div class="col">
+                        <input type="text" name="usuario" id="usuario" class="form-control form-control-sm" placeholder="Usuario">
+                      </div>
+                    </div>
                 
-                <div class="espacioUno"></div>
-
-                <div class="row">
-                  <div class="col">
-                    <input type="email" name="email" id="email" class="form-control form-control-sm" placeholder="Correo">
-                  </div>
-                  <div class="col">
-                    <input type="password" name="password" id="password" class="form-control form-control-sm" placeholder="Contraseña">
-                  </div>
-                </div>
-            
-                <div class="espacioUno"></div>
-
-                <div class="row">
-                  <div class="col">
-                    <input type="text" name="telefono" id="telefono" class="form-control form-control-sm" placeholder="Teléfono">
-                  </div>
-                  <div class="col">
-                    <input type="text" name="movil" id="movil" class="form-control form-control-sm" placeholder="Móvil o WhatssApp" required ="">
-                  </div>
-                </div>
-
-
-                <div class="espacioUno"></div>
-                
-
-                <div class="row">
-                  <div class="col">
-                  Roll
-                  <select class="form-control form-control-sm" name="roll" id="roll" required="">
-                    <option value="">Seleccione una opción</option>
-                    <?php foreach(getRoll() as $fila){?>
-                    <option value="<?php echo $fila->id?>"><?php echo $fila->nombre?></option>
-                    <?php } ?> 
-                  </select>
-                  </div>
-                  <div class="col">
- 
+                  <div class="espacioUno"></div>
+                    <div class="row">
+                      <div class="col">
+                        <input type="email" name="email" id="email" class="form-control form-control-sm" placeholder="Correo">
+                      </div>
+                      <div class="col">
+                        <input type="password" name="password" id="password" class="form-control form-control-sm" placeholder="Contraseña">
+                      </div>
+                    </div>
+                  <div class="espacioUno"></div>
+                    <div class="row">
+                      <div class="col">
+                        <input type="text" name="telefono" id="telefono" class="form-control form-control-sm" placeholder="Teléfono">
+                      </div>
+                      <div class="col">
+                        <input type="text" name="movil" id="movil" class="form-control form-control-sm" placeholder="Móvil o WhatssApp" required ="">
+                      </div>
+                    </div>
+                  <div class="espacioUno"></div>
+                    <div class="row">
+                      <div class="col">
+                      Roll
+                        <select class="form-control form-control-sm" name="roll" id="roll" required="">
+                        <option value="">Seleccione una opción</option>
+                        <?php foreach(getRoll() as $fila){?>
+                        <option value="<?php echo $fila->id?>"><?php echo $fila->nombre?></option>
+                        <?php } ?> 
+                        </select>
+                      </div>
+                    <div class="col">
                   </div>
                 </div>
 
@@ -143,78 +125,77 @@
                 <div class="espacioDos"></div>
                 <div class="row">
                   <div class="col">
-                  Unidad de negocio
-                  <select class="form-control form-control-sm" name="unidad_negocio" id="unidad_negocio" required="">
-                  <option value="">Selecciona una opción</option>
-                  <?php foreach(getUnidadNegocio() as $fila){?>
-                    <option value="<?php echo $fila->id?>"><?php echo $fila->nombre?></option>
-                    <?php } ?> 
-                  </select>
+                    Unidad de negocio
+                    <select class="form-control form-control-sm" name="unidad_negocio" id="unidad_negocio" required="">
+                      <option value="">Selecciona una opción</option>
+                      <?php foreach(getUnidadNegocio() as $fila){?>
+                      <option value="<?php echo $fila->id?>"><?php echo $fila->nombre?></option>
+                      <?php } ?> 
+                    </select>
                   </div>
                   <div class="col">
-                  Plantel
-                  <select class="form-control form-control-sm" name="plantel" id="plantel" required="">
-                  <option value="">Selecciona una opción</option> 
-                  </select>
+                    Plantel
+                    <select class="form-control form-control-sm" name="plantel" id="plantel" required="">
+                      <option value="">Selecciona una opción</option> 
+                    </select>
                   </div>
                   <div class="col">
                     Cargar Foto
                     <div class="form-group">
-                    <input  class="form-control form-control-sm" type="file" id="imagen_maestro" name="imagen_maestro">
-                  </div>
-                  </div>
-                </div>
-
-                <div class="espacioUno"></div>
-
-
-              <div class="form-group">
-                <label for="lblInstrucciones">Comentarios</label>
-                <textarea class="form-control form-control-sm" name="comentarios" id="comentarios" rows="3" required=""></textarea>
-              </div>
-
-                <div class="espacioDos"></div>
-                <hr class="linea"/>
-                Direccion
-                <div class="espacioDos"></div>
-                <div class="row">
-                  <div class="col">
-                  <input type="text" name="calle" id="calle" class="form-control form-control-sm" placeholder="Calle">
-                  </div>
-                  <div class="col">
-                  <input type="text" name="num_interior" id="num_interior" class="form-control form-control-sm" placeholder="Número interior">
+                      <input  class="form-control form-control-sm" type="file" id="imagen_maestro" name="imagen_maestro">
+                    </div>
                   </div>
                 </div>
 
                 <div class="espacioUno"></div>
 
-                <div class="row">
-                  <div class="col">
-                  <input type="text" name="num_exterior" id="num_exterior" class="form-control form-control-sm" placeholder="Número exterior">
+                  <div class="form-group">
+                    <label for="lblInstrucciones">Comentarios</label>
+                    <textarea class="form-control form-control-sm" name="comentarios" id="comentarios" rows="3" required=""></textarea>
                   </div>
-                  <div class="col">
-                  <input type="text" name="colonia" id="colonia" class="form-control form-control-sm" placeholder="Colonia">
+
+                  <div class="espacioDos"></div>
+                    <hr class="linea"/>
+                    Direccion
+                  <div class="espacioDos"></div>
+                  <div class="row">
+                    <div class="col">
+                      <input type="text" name="calle" id="calle" class="form-control form-control-sm" placeholder="Calle">
+                    </div>
+                    <div class="col">
+                      <input type="text" name="num_interior" id="num_interior" class="form-control form-control-sm" placeholder="Número interior">
+                    </div>
                   </div>
-                </div>
 
                 <div class="espacioUno"></div>
 
-                <div class="row">
-                  <div class="col">
-                  <input type="text" name="cp" id="cp" class="form-control form-control-sm" placeholder="Código Postal">
+                  <div class="row">
+                    <div class="col">
+                      <input type="text" name="num_exterior" id="num_exterior" class="form-control form-control-sm" placeholder="Número exterior">
+                    </div>
+                    <div class="col">
+                      <input type="text" name="colonia" id="colonia" class="form-control form-control-sm" placeholder="Colonia">
+                    </div>
                   </div>
-                  <div class="col">
-                  <input type="text" name="municipio_delegacion" id="municipio_delegacion" class="form-control form-control-sm" placeholder="Municipio / Delegación">
+
+                  <div class="espacioUno"></div>
+
+                  <div class="row">
+                    <div class="col">
+                      <input type="text" name="cp" id="cp" class="form-control form-control-sm" placeholder="Código Postal">
+                    </div>
+                    <div class="col">
+                      <input type="text" name="municipio_delegacion" id="municipio_delegacion" class="form-control form-control-sm" placeholder="Municipio / Delegación">
+                    </div>
                   </div>
-                </div>
 
-                <div class="espacioUno"></div>
+                  <div class="espacioUno"></div>
 
-                <div class="row">
-                  <div class="col">
-                  Estado
-                  <select class="form-control form-control-sm" name="entidad_federativa" id="entidad_federativa" required="">
-                    <?php foreach(getEstados() as $fila){?>
+                  <div class="row">
+                    <div class="col">
+                      Estado
+                      <select class="form-control form-control-sm" name="entidad_federativa" id="entidad_federativa" required="">
+                      <?php foreach(getEstados() as $fila){?>
                       <?php
                       if($fila->id==19){
                         ?>
@@ -227,150 +208,117 @@
                       }
                       ?>
                     
-                    <?php } ?> 
-                  </select>
-                  </div>
-                  <div class="col">
-                  Pais
-                  <select class="form-control form-control-sm" name="pais" id="pais" required="">
-                  <?php foreach(getPaises() as $fila){?>
-                    <?php if($fila->id == 35){?>
+                      <?php } ?> 
+                      </select>
+                    </div>
+                    <div class="col">
+                    Pais
+                    <select class="form-control form-control-sm" name="pais" id="pais" required="">
+                    <?php foreach(getPaises() as $fila){?>
+                      <?php if($fila->id == 35){?>
                       <option selected="selected" value="<?php echo $fila->id;?>"><?php echo $fila->pais;?></option>
                     <?php }else{ ?>
-                    <option value="<?php echo $fila->id;?>"><?php echo $fila->pais;?></option>
+                      <option value="<?php echo $fila->id;?>"><?php echo $fila->pais;?></option>
                     <?php } ?> 
                     <?php } ?> 
                     </select>
                   </div>
                 </div>
 
-              <div class="espacioUno"></div>
+                <div class="espacioUno"></div>
             
-              <button type="submit" name="submitTH" class="btn btn-primary btn-sm">Registrar</button>
-              <button class="btn btn-secondary btn-sm" onclick="confirmarlimpiado()">Limpiar</button> 
-              
+                <button type="submit" name="submitTH" class="btn btn-primary btn-sm">Registrar</button>
+                <button class="btn btn-secondary btn-sm" onclick="confirmarlimpiado()">Limpiar</button> 
               </form>
-
-              </div>
-              </div>
-          </div>
-
-
-
-
-        </div>  
-      </div>
-    </div>
-
-
-      <div class="espacioDos"></div>
-      <div class="espacioDos"></div>
-      <div class="espacioDos"></div>
-      
-      <div class="espacioDos"></div>
-      <div class="espacioDos"></div>
-      <div class="espacioDos"></div>
-
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6">
-            <p class="mt-5 mb-3 text-muted text-center"> © <span class="brain-foot">Brain</span> <?php echo date("Y");?></p>
-          </div>
-          <div class="col-md-3">
-          <ul class="footer">
-            <li><a href="">Aviso de privacidad</a>
-            </li>
-            <li><a href="">Certificado AMIPCI</a>
-            </li>
-            <li><a href="">Certificado Pagos en Linea.</a>
-            </li>
-            <li><a href="">Certificado SSL.</a>
-            </li>
-          </ul>            
-          </div>
-                   
- 
-          <div class="col-md-3">
-          <ul class="footer">
-            <li><a href="">Company</a>
-            </li>
-            <li><a href="">About</a>
-            </li>
-            <li><a href="">Blog</a>
-            </li>
-            <li><a href="">Careers</a>
-            </li>
-            <li><a href="">Press</a>
-            </li>
-          </ul>         
+            </div>
           </div>
         </div>
-      </div>
+    </div>  
+  </div>
+</div>
+
+<div class="espacioAmplio"></div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <p class="mt-5 mb-3 text-muted text-center"> © <span class="brain-foot">Brain</span> <?php echo date("Y");?></p>
+    </div>
+    <div class="col-md-3">
+      <ul class="footer">
+        <li><a href="">Aviso de privacidad</a></li>
+        <li><a href="">Certificado AMIPCI</a></li>
+        <li><a href="">Certificado Pagos en Linea.</a></li>
+        <li><a href="">Certificado SSL.</a></li>
+      </ul>            
+    </div>
+                   
+    <div class="col-md-3">
+      <ul class="footer">
+        <li><a href="">Company</a></li>
+        <li><a href="">About</a></li>
+        <li><a href="">Blog</a></li>
+        <li><a href="">Careers</a></li>
+        <li><a href="">Press</a></li>
+      </ul>         
+    </div>
+  </div>
+</div>
       
-      <div class="espacioDos"></div>
-      <div class="espacioDos"></div>
-      <div class="espacioDos"></div>
-      
-      <div class="espacioDos"></div>
-      <div class="espacioDos"></div>
-      <div class="espacioDos"></div>
-      <?php include(APPPATH.'Views/include/footer.php');?>
-      <?php include(APPPATH.'Views/include/header-js.php');?>
+<div class="espacioAmplio"></div>
+
+<?php include(APPPATH.'Views/include/footer.php');?>
+<?php include(APPPATH.'Views/include/header-js.php');?>
      
  
-    <script>
-      $('#unidad_negocio').change(function () {
-        var id_unidad = $(this).val();
-        $.ajax({
-          type: "POST",
-          url: "<?php echo site_url('Alumnos/plantelesUnidadNegocio');?>",
-          data: "id_unidad_negocio=" + id_unidad,
-          success : function(text){
-            document.getElementById("plantel").innerHTML = "";
-            $('#plantel').append(text);
-        }
-
-        });
-      });
+<script>
+$('#unidad_negocio').change(function () {
+  var id_unidad = $(this).val();
+    $.ajax({
+      type: "POST",
+      url: "<?php echo site_url('Alumnos/plantelesUnidadNegocio');?>",
+      data: "id_unidad_negocio=" + id_unidad,
+      success : function(text){
+        document.getElementById("plantel").innerHTML = "";
+          $('#plantel').append(text);
+      }
+    });
+  });
     
-      function ComprobarNumeroTelefonico(){
-         var  mensaje = '';
-        if(this.value.length == 0 ){
-          mensaje = '';
-        }else if(this.value.length > 10){
-          mensaje = "Ingrese un numero de telefonico valido ";
-        }else if(this.value.length < 10){
-          mensaje = "Ingrese un numero de telefonico valido";
-         }
+  function ComprobarNumeroTelefonico(){
+    var  mensaje = '';
+      if(this.value.length == 0 ){
+        mensaje = '';
+      }else if(this.value.length > 10){
+        mensaje = "Ingrese un numero de telefonico valido ";
+      }else if(this.value.length < 10){
+        mensaje = "Ingrese un numero de telefonico valido";
+      }
+      this.setCustomValidity(mensaje);
+  }
+
+  function ComprobarNumeroMovil(){
+    var  mensaje = '';
+      if(this.value.length > 10){
+        mensaje = "Ingrese un numero movil valido";
+      }else if(this.value.length < 10){
+        mensaje = "Ingrese un numero movil valido";
+        }
         this.setCustomValidity(mensaje);
       }
 
-      function ComprobarNumeroMovil(){
-        var  mensaje = '';
-        if(this.value.length > 10){
-          mensaje = "Ingrese un numero movil valido";
-        }else if(this.value.length < 10){
-          mensaje = "Ingrese un numero movil valido";
-         }
-        this.setCustomValidity(mensaje);
-      }
+    var telefono = document.querySelector("#telefono");
+    var movil = document.querySelector("#movil");
 
-      var telefono = document.querySelector("#telefono");
-      var movil = document.querySelector("#movil");
+    movil.addEventListener("invalid", ComprobarNumeroMovil);
+    movil.addEventListener("input", ComprobarNumeroMovil);
+    telefono.addEventListener("invalid", ComprobarNumeroTelefonico);
+    telefono.addEventListener("input",ComprobarNumeroTelefonico);
 
-      movil.addEventListener("invalid", ComprobarNumeroMovil);
-      movil.addEventListener("input", ComprobarNumeroMovil);
-
-      telefono.addEventListener("invalid", ComprobarNumeroTelefonico);
-      telefono.addEventListener("input",ComprobarNumeroTelefonico);
-
-      function confirmarlimpiado(){
-       if(confirm("Seguro que quieres limpiar el formulario")){
+    function confirmarlimpiado(){
+      if(confirm("Seguro que quieres limpiar el formulario")){
         document.getElementById("datosteacher").reset();
-       }
-      
-      
+      }
     }
-
-    </script>
+</script>
  

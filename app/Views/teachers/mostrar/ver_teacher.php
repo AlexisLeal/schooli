@@ -39,39 +39,31 @@
 
 
 
-
-
-    <!--Ejemplo tabla con DataTables-->
-    <div class="container">
-      <div id="general">
-        <div class="row">
-          <div class="col-md-3">
-            <?php include(APPPATH.'/Views/include/menu-izquierda.php');?>
-          </div>
-
-
-           
-          <div class="col-md-9">
-          <?php include(APPPATH.'/Views/include/notificacion.php');?>
-          
-          <?php if($session->has('Alumno')){;?>
-         <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                <strong>Notificaciones del sistema:</strong> <?php echo $session->get('Alumno')?>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div> 
-              <?php } $session->remove('Alumno');?>
-
-
-          <h4>Datos del Alumno.</h4>
-          <div class="espacioUno"></div>
+<div class="container">
+  <div id="general">
+    <div class="row">
+    <div class="col-md-3">
+      <?php include(APPPATH.'/Views/include/menu-izquierda.php');?>
+    </div>
+     
+    <div class="col-md-9">
+      <?php include(APPPATH.'/Views/include/notificacion.php');?>        
+      <?php if($session->has('Alumno')){;?>
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          <strong>Notificaciones del sistema:</strong> <?php echo $session->get('Alumno')?>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+            </button>
+        </div> 
+        <?php } $session->remove('Alumno');?>
+        <h4>Datos del Alumno.</h4>
+        <div class="espacioUno"></div>
         
-              <div class="card">
-                <div class="card-body">
-                <div class="espacioDos"></div>
-                Datos Generales
-                <div class="espacioDos"></div>
+        <div class="card">
+          <div class="card-body">
+            <div class="espacioDos"></div>
+              Datos Generales
+              <div class="espacioDos"></div>
                 <div class="row">
                   <div class="col">
                     Nombre
@@ -80,11 +72,9 @@
                   <div class="col">
                     Apellido Paterno
                     <input type="text" id="apellido_paterno" class="form-control form-control-sm" disabled="disabled" value="<?php echo $apeliido_paterno ?>">
-                  </div>
                 </div>
-
-                <div class="espacioUno"></div>
-
+              </div>
+              <div class="espacioUno"></div>
                 <div class="row">
                   <div class="col">
                     Apellido Materno
@@ -97,7 +87,6 @@
                 </div>
                 
                 <div class="espacioUno"></div>
-
                 <div class="row">
                   <div class="col">
                     Correo Electronico 
@@ -117,20 +106,16 @@
                     <input type="text" id="movil" class="form-control form-control-sm" disabled="disabled" value="<?php echo $movil?>">
                   </div>
                 </div>
-
-
                 <div class="espacioUno"></div>
                 
-
                 <div class="row">
                   <div class="col">
-                  Roll
-                  <input type="text" id="movil" class="form-control form-control-sm" disabled="disabled" value="<?php echo $roll?>">
+                    Roll
+                    <input type="text" id="movil" class="form-control form-control-sm" disabled="disabled" value="<?php echo $roll?>">
                   </div>
                   <div class="col">
                   </div>
                 </div>
-
 
                 <div class="espacioDos"></div>
                 <hr class="linea"/>
@@ -143,146 +128,113 @@
                   </div>
                 </div>
 
-                <div class="espacioUno"></div>
+              <div class="espacioUno"></div>
 
                 <div class="row">
                   <div class="col">
-                  Plantel
-                  <input type="text" id="matricula" class="form-control form-control-sm" disabled="disabled" value="<?php echo $plantel?>">
-                  </div>
+                    Plantel
+                    <input type="text" id="matricula" class="form-control form-control-sm" disabled="disabled" value="<?php echo $plantel?>">
+                    </div>
                   <div class="col">
                   </div>
                 </div>
 
-              <div class="form-group">
-                <label for="lblInstrucciones">Comentarios</label>
-                <textarea class="form-control form-control-sm" id="comentarios" rows="3" disabled= "disabled"><?php echo $comentarios?></textarea>
-              </div>
+                <div class="form-group">
+                  <label for="lblInstrucciones">Comentarios</label>
+                  <textarea class="form-control form-control-sm" id="comentarios" rows="3" disabled= "disabled"><?php echo $comentarios?></textarea>
+                </div>
                 <div class="espacioDos"></div>
                 <hr class="linea"/>
                 Direccion
                 <div class="espacioDos"></div>
-                <div class="row">
-                  <div class="col">
-                  Calle
-                  <input type="text" id="calle" class="form-control form-control-sm" disabled="disabled" value="<?php echo $calle?>">
+                  <div class="row">
+                    <div class="col">
+                    Calle
+                      <input type="text" id="calle" class="form-control form-control-sm" disabled="disabled" value="<?php echo $calle?>">
                   </div>
                   <div class="col">
-                  Numero Interior
-                  <input type="text" id="num_interior" class="form-control form-control-sm" disabled="disabled" value="<?php echo $numero_interior?>">
+                    Numero Interior
+                    <input type="text" id="num_interior" class="form-control form-control-sm" disabled="disabled" value="<?php echo $numero_interior?>">
                   </div>
                 </div>
-
                 <div class="espacioUno"></div>
 
                 <div class="row">
                   <div class="col">
-                  Numero Exterior
-                  <input type="text" id="num_exterior" class="form-control form-control-sm" disabled="disabled" value="<?php echo $numero_exterior?>">
+                    Numero Exterior
+                    <input type="text" id="num_exterior" class="form-control form-control-sm" disabled="disabled" value="<?php echo $numero_exterior?>">
                   </div>
                   <div class="col">
-                  Colonia
-                  <input type="text" id="colonia" class="form-control form-control-sm" disabled="disabled" value="<?php echo $colonia?>">
+                    Colonia
+                    <input type="text" id="colonia" class="form-control form-control-sm" disabled="disabled" value="<?php echo $colonia?>">
                   </div>
                 </div>
-
-                <div class="espacioUno"></div>
-
+              <div class="espacioUno"></div>
                 <div class="row">
                   <div class="col">
-                  Codigo Postal
-                  <input type="text" id="cp" class="form-control form-control-sm" disabled="disabled" value="<?php echo $codigo_postal?>" >
+                    Codigo Postal
+                   <input type="text" id="cp" class="form-control form-control-sm" disabled="disabled" value="<?php echo $codigo_postal?>" >
                   </div>
-                  <div class="col">
+                <div class="col">
                   Municipio o Delegacion
                   <input type="text" id="municipio_delegacion" class="form-control form-control-sm" disabled="disabled" value="<?php echo $municipio_delegacion?>">
-                  </div>
                 </div>
+              </div>
 
-                <div class="espacioUno"></div>
-
+              <div class="espacioUno"></div>
                 <div class="row">
                   <div class="col">
-                  Estado
-                  <input type="text" id="municipio_delegacion" class="form-control form-control-sm" disabled="disabled" value="<?php echo $estado?>">
+                    Estado
+                    <input type="text" id="municipio_delegacion" class="form-control form-control-sm" disabled="disabled" value="<?php echo $estado?>">
                   </div>
                   <div class="col">
-                  Pais
-                  <input type="text" id="municipio_delegacion" class="form-control form-control-sm" disabled="disabled" value="<?php echo $pais?>">
-
+                    Pais
+                    <input type="text" id="municipio_delegacion" class="form-control form-control-sm" disabled="disabled" value="<?php echo $pais?>">
                   </div>
                 </div>
                
 
-              <div class="espacioUno"></div>
+            <div class="espacioUno"></div>
               <input type="button" value="Página anterior" onClick="history.go(-1);">
-            
-
-              </div>
-              </div>
-          </div>
-
-
-
-        </div>  
-      </div>
-    </div>
-    
-
-
-
-      <div class="espacioDos"></div>
-      <div class="espacioDos"></div>
-      <div class="espacioDos"></div>
-      
-      <div class="espacioDos"></div>
-      <div class="espacioDos"></div>
-      <div class="espacioDos"></div>
-
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6">
-            <p class="mt-5 mb-3 text-muted text-center"> © <span class="brain-foot">Brain</span> <?php echo date("Y");?></p>
-          </div>
-          <div class="col-md-3">
-          <ul class="footer">
-            <li><a href="">Aviso de privacidad</a>
-            </li>
-            <li><a href="">Certificado AMIPCI</a>
-            </li>
-            <li><a href="">Certificado Pagos en Linea.</a>
-            </li>
-            <li><a href="">Certificado SSL.</a>
-            </li>
-          </ul>            
-          </div>
-                   
- 
-          <div class="col-md-3">
-          <ul class="footer">
-            <li><a href="">Company</a>
-            </li>
-            <li><a href="">About</a>
-            </li>
-            <li><a href="">Blog</a>
-            </li>
-            <li><a href="">Careers</a>
-            </li>
-            <li><a href="">Press</a>
-            </li>
-          </ul>         
           </div>
         </div>
       </div>
+    </div>  
+  </div>
+</div>
+    
+
+<div class="espacioAmplio"></div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <p class="mt-5 mb-3 text-muted text-center"> © <span class="brain-foot">Brain</span> <?php echo date("Y");?></p>
+    </div>
+    <div class="col-md-3">
+      <ul class="footer">
+        <li><a href="">Aviso de privacidad</a></li>
+        <li><a href="">Certificado AMIPCI</a></li>
+        <li><a href="">Certificado Pagos en Linea.</a></li>
+        <li><a href="">Certificado SSL.</a></li>
+      </ul>            
+    </div>
+                   
+    <div class="col-md-3">
+      <ul class="footer">
+        <li><a href="">Company</a></li>
+        <li><a href="">About</a></li>
+        <li><a href="">Blog</a></li>
+        <li><a href="">Careers</a></li>
+        <li><a href="">Press</a></li>
+      </ul>         
+    </div>
+  </div>
+</div>
       
-      <div class="espacioDos"></div>
-      <div class="espacioDos"></div>
-      <div class="espacioDos"></div>
-      
-      <div class="espacioDos"></div>
-      <div class="espacioDos"></div>
-      <div class="espacioDos"></div>
-      <?php include(APPPATH.'Views/include/footer.php');?>
+<div class="espacioAmplio"></div>
+
+<?php include(APPPATH.'Views/include/footer.php');?>
     
 
  

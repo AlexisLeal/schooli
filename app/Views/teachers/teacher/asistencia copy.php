@@ -263,24 +263,29 @@ input[type=radio] ~ .verde{
             ?>
           </tr>
         </table>
-              <div class="espacioDos"></div>
-              <hr class="linea"/>
-              <div class="espacioUno"></div>
-              <div class="text-center">
-                <input type="hidden" name="alumnos" value="<?=$alumnosComa;?>">
-                <input type="hidden" name="num_alumnos" value="<?=$a;?>">
-                <input type="hidden" name="id_unidad_negocio" value="<?=$id_unidad_negocio;?>">
-                <input type="hidden" name="id_plantel" value="<?=$id_plantel;?>">
-                <button type="submit" name="guardarAsistencia" class="btn btn-primary btn-sm" >Guardar</button>
-              </div>  
-            </form>
-          </div>
-        </div>        
+        <div class="espacioDos"></div>
+                      <hr class="linea"/>
+                      <div class="espacioUno"></div>
+                        <div class="text-center">
+                          <input type="hidden" name="alumnos" value="<?=$alumnosComa;?>">
+                          <input type="hidden" name="num_alumnos" value="<?=$a;?>">
+                          <input type="hidden" name="id_unidad_negocio" value="<?=$id_unidad_negocio;?>">
+                          <input type="hidden" name="id_plantel" value="<?=$id_plantel;?>">
+                          <button type="submit" name="guardarAsistencia" class="btn btn-primary btn-sm" >Guardar</button>
+                        </div>  
+                      </form>
+                    </div>
+                  </div>        
+                </div>
+              </div>
+            </div>
+          <div class="espacioDos"></div>
+        </div>
       </div>
-    </div>
+    </div>  
   </div>
 </div>
-<div class="espacioDos"></div>
+
 
 
 
