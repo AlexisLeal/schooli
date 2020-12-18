@@ -23,7 +23,6 @@ input[type=radio] ~ .verde{
   margin:1px;
 }
 
-
 .tabla-registros col:first-child {background: #FF0}
 .tabla-registros col:nth-child(2n+3) {background: #CCC}
 
@@ -78,34 +77,7 @@ input[type=radio] ~ .verde{
   margin-left:5px;
   margin-right:2px;
 }
-/*
-input[type='radio']:after {
-           width: 15px;
-           height: 15px;
-           border-radius: 15px;
-           top: -2px;
-           left: -1px;
-           position: relative;
-           background-color: #229954;
-           content: '';
-           display: inline-block;
-           visibility: visible;
-           border: 2px solid white;
-}
 
-input[type='radio']:checked:after {
-           width: 15px;
-           height: 15px;
-           border-radius: 15px;
-           top: -2px;
-           left: -1px;
-           position: relative;
-           background-color: #ffa500;
-           content: '';
-           display: inline-block;
-           visibility: visible;
-           border: 2px solid white;
-}*/
 </style>
 <div class="espacioDos"></div>
 <header id="barra-superior">
