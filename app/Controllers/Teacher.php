@@ -115,8 +115,7 @@ class Teacher extends BaseController{
             $data = ['Asistencia'  => 'Se registro la asistencia correctamente'];
 
             $this->session->set($data,true);
-
-            return view('teachers/teacher/contenidogrupo',$data);
+            return redirect()->to(site_url("Teacher/getContenidoGrupoAsignado/$id_grupo/$id_unidad_negocio/$id_plantel"));
 
         }else{
             return redirect()->to(site_url('Home/salir'));

@@ -38,123 +38,78 @@
 </header>
 
 
-
-
-
-    <!--Ejemplo tabla con DataTables-->
-    <div class="container">
-      <div id="general">
-        <div class="row">
-          <div class="col-md-2">
-            <?php include(APPPATH.'/Views/include/menu-teacher.php');?>
-          </div>
-
-
-
-          <div class="col-md-10">
-          <?php include(APPPATH.'/Views/include/notificacion.php');?>
-
-          <div class="espacioUno"></div>
-          <div class="text-right">
-            <h4><?php echo $session->get('nombre')." ".$session->get('apellido')." ".$session->get('apellido_materno');?></h4>
-          </div>
-          <div class="espacioUno"></div>
-
-
-
-            <div class="card">
-              <div class="card-body">
-                <h4>Grupos asignados.</h4>
-                <hr class="linea"/>
-              <div style="padding-left:2px">
-              <div class="card">
-                <div class="card-body">
-               
-                <?php 
-                if(empty(AsignacionGetGrupostAsignadosMaestro())){
-                  echo "No existen grupos asignados a para este Teacher.";
-                }else{
-                foreach(AsignacionGetGrupostAsignadosMaestro() as $fila){ ?>
-                  
-                  <a href="<?php echo site_url("/Teacher/getContenidoGrupoAsignado/$fila->id_grupo/$fila->id_unidad_negocio/$fila->id_plantel");?>"> 
-                  <h5>
-                  <i class="fa fa-users" aria-hidden="true"></i> <?php echo $fila->nombre;?>                  
-                  </h5>
-                  </a>
-                <?php }}?>
-
-                </div>
-              </div>
-            
-            <br/>
-
-
-
-  
-
-            <br/><br/>
-            </div>
-          </div>
-
-          </div>
-          </div>
-
-
-        </div>  
+<div class="container">
+  <div id="general">
+    <div class="row">
+      <div class="col-md-2">
+        <?php include(APPPATH.'/Views/include/menu-teacher.php');?>
       </div>
-    </div>
 
 
-      <div class="espacioDos"></div>
-      <div class="espacioDos"></div>
-      <div class="espacioDos"></div>
-      
-      <div class="espacioDos"></div>
-      <div class="espacioDos"></div>
-      <div class="espacioDos"></div>
+      <div class="col-md-10">
+        <?php include(APPPATH.'/Views/include/notificacion.php');?>
+        <div class="espacioUno"></div>
+        <div class="text-right">
+          <h4><?php echo $session->get('nombre')." ".$session->get('apellido')." ".$session->get('apellido_materno');?></h4>
+        </div>
+        <div class="espacioUno"></div>
 
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6">
-            <p class="mt-5 mb-3 text-muted text-center"> © <span class="brain-foot">Brain</span> <?php echo date("Y");?></p>
-          </div>
-          <div class="col-md-3">
-          <ul class="footer">
-            <li><a href="">Aviso de privacidad</a>
-            </li>
-            <li><a href="">Certificado AMIPCI</a>
-            </li>
-            <li><a href="">Certificado Pagos en Linea.</a>
-            </li>
-            <li><a href="">Certificado SSL.</a>
-            </li>
-          </ul>            
-          </div>
-                   
- 
-          <div class="col-md-3">
-          <ul class="footer">
-            <li><a href="">Company</a>
-            </li>
-            <li><a href="">About</a>
-            </li>
-            <li><a href="">Blog</a>
-            </li>
-            <li><a href="">Careers</a>
-            </li>
-            <li><a href="">Press</a>
-            </li>
-          </ul>         
+        <div class="card">
+          <div class="card-body">
+            <h4>Grupos asignados.</h4>
+            <hr class="linea"/>
+              <div style="padding-left:2px">
+                <div class="card">
+                  <div class="card-body">
+                    <?php 
+                    if(empty(AsignacionGetGrupostAsignadosMaestro())){
+                      echo "No existen grupos asignados a para este Teacher.";
+                    }else{
+                      foreach(AsignacionGetGrupostAsignadosMaestro() as $fila){ ?>
+                        <a href="<?php echo site_url("/Teacher/getContenidoGrupoAsignado/$fila->id_grupo/$fila->id_unidad_negocio/$fila->id_plantel");?>"> 
+                          <h5><i class="fa fa-users" aria-hidden="true"></i> <?php echo $fila->nombre;?></h5>
+                        </a>
+                    <?php }}?>
+                  </div>
+                </div>
+                <div class="espacioUno"></div>
+                <div class="espacioDos"></div>
+              </div>
           </div>
         </div>
       </div>
+    </div>  
+  </div>
+</div>
+
+<div class="espacioAmplio"></div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <p class="mt-5 mb-3 text-muted text-center"> © <span class="brain-foot">Brain</span> <?php echo date("Y");?></p>
+    </div>
+    <div class="col-md-3">
+      <ul class="footer">
+        <li><a href="">Aviso de privacidad</a></li>
+        <li><a href="">Certificado AMIPCI</a></li>
+        <li><a href="">Certificado Pagos en Linea.</a></li>
+        <li><a href="">Certificado SSL.</a></li>
+      </ul>            
+    </div>
+                   
+    <div class="col-md-3">
+      <ul class="footer">
+        <li><a href="">Company</a></li>
+        <li><a href="">About</a></li>
+        <li><a href="">Blog</a></li>
+        <li><a href="">Careers</a></li>
+        <li><a href="">Press</a></li>
+      </ul>         
+    </div>
+  </div>
+</div>
       
-      <div class="espacioDos"></div>
-      <div class="espacioDos"></div>
-      <div class="espacioDos"></div>
-      
-      <div class="espacioDos"></div>
-      <div class="espacioDos"></div>
-      <div class="espacioDos"></div>
+<div class="espacioAmplio"></div>
 
 <?php include(APPPATH.'Views/include/footer.php');?>
