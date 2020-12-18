@@ -47,7 +47,7 @@ $("#activarCargarAudioPregunta" ).click(function() {
             Opcion '+ i +' <input class="form-control form-control-sm" type="text" id="opcion_'+i+'" name="opcion_'+i+'" value="' + abcd[j] + '" required="">\
             </div>\
             <div class="form-group mb-2">\
-            <input class="form-check-input form-control-sm" type="radio" name="opcion_correcta" id="'+i+'" value="'+i+'">\
+            <input class="form-check-input form-control-sm" type="radio" required="required" name="opcion_correcta" id="'+i+'" value="'+i+'">\
             <label class="form-check-label" for="exampleRadios1">\
             Opción correcta <br/><br/><br/>\
             </label>\
