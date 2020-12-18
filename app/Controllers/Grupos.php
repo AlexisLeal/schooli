@@ -105,8 +105,11 @@ class Grupos extends BaseController{
                 $usermodel = new Grupos_model();
                 $usermodel->insert($data);
 
+                $idgrupo = $usermodel->insertID();
+                $idNivel = $REQUEST->getPost('nivel');
+                GruposSetEvaluacionesGrupo($idgrupo,$idNivel);
+
                 if(!empty($REQUEST->getPost('maestro'))){
-                    $idgrupo = $usermodel->insertID();
                     $usermodelTeacher = new Grupos_teachers_model();
                     if(!empty($REQUEST->getPost('maestro2'))){
                         $data = ['id_grupo' =>$idgrupo,
@@ -129,6 +132,7 @@ class Grupos extends BaseController{
                 }
                 $data = ['Grupo'  => 'El Grupo se agregro correctamente'];
                 $this->session->set($data,true);
+                
                 return redirect()->to(site_url('Grupos/agregargrupo'));
 
             }else{

@@ -1,5 +1,7 @@
 <?php 
 use  App\Models\Grupos_model;
+use  App\Models\Grupos_evaluaciones_model;
+use  App\Models\Evaluaciones_model;
 
 function getAllGrupos()
 {
@@ -56,4 +58,32 @@ function getAllGruposReasignar()
     $rowArray = $resultado->getResult();
     return($rowArray);
 }
+
+function GruposAsignacionAutomaticaEvaluaciones($idGrupo,$idNivel)
+{
+    $UseModelGruposEvaluaciones = new Grupos_evaluaciones_model($db);
+    $hoy = date("Y-m-d H:i:s");
+    foreach(GruposGetNivelEvaluaciones($idNivel) as $fila){
+        $data = ['id_grupo'=> $idGrupo,
+        'id_evaluacion' => $fila->id,
+        'fecha_creacion' => $hoy,
+        'fecha_ultimo_cambio' => $hoy,
+        ];
+        $UseModelGruposEvaluaciones->insert($data);
+    }
+   
+   
+}
+function GruposGetNivelEvaluaciones($idNivel)
+{
+    $UseModelEvaluacion = new Evaluaciones_model($db);
+    $UseModelEvaluacion->select('id');
+    $UseModelEvaluacion->where('nivel',$idNivel);
+    $UseModelEvaluacion->where('deleted',0);
+    $resultado = $UseModelEvaluacion->get();
+    $rowArray = $resultado->getResult();
+    return($rowArray);
+   
+}
+
 ?>
