@@ -185,15 +185,26 @@ function AsignacionGetGrupoHorario($id_grupo)
 
 function AsignacionGetGrupoFrecuencia($id_grupo)
 {
+    $idfrecuencia = AsignacionGetIdFrecuencia($id_grupo);
     $db = \Config\Database::connect();
-    // Cursos
-    // Obtener el id de curso que esta en el grupo
-    // Con ese id de curso relacionarlos con la frecuencia
-    $usermodel = $db->table('cursos G');
+    $usermodel = $db->table('frecuencia F');
     $usermodel->select('F.lunes,F.martes,F.miercoles,F.jueves,F.viernes,F.sabado,F.domingo');
-    $usermodel->join('frecuencia F',"G.id_frecuencia = F.id and G.id = $id_grupo AND G.deleted = 0 and F.deleted = 0");
+    $usermodel->where('id',$idfrecuencia);
+    $usermodel->where('deleted',0);
     $query = $usermodel->get();
     $resultado = $query->getRow();
     return $resultado;  
+}
+
+function AsignacionGetIdFrecuencia($id_grupo)
+{
+    $db = \Config\Database::connect();
+    $usermodel = $db->table('grupos G');
+    $usermodel->select('C.id_frecuencia');
+    $usermodel->join('cursos C',"G.id_curso = C.id and G.id = $id_grupo AND G.deleted = 0 and C.deleted = 0");
+    $query = $usermodel->get();
+    $resultado = $query->getRow();
+    $idFrecuencia = $resultado->id_frecuencia;
+    return $idFrecuencia;  
 }
 ?>
