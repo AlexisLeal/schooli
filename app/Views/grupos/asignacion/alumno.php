@@ -100,20 +100,24 @@
               <td width="30%">Miembros del grupo</td>
               <td width="30%">Reasignar grupo</td>
               </tr>
-            <?php foreach(getGrupoAlumnos($id_grupo,$id_unidad_negocio,$id_plantel) as $fila){
-            if(empty($fila->id_grupo)){?>
+            <?php foreach(AsignacionGetAlumnosAsignados($id_unidad_negocio,$id_plantel) as $fila){
+              if(empty($fila->id_grupo)){?>
               <tr>
-              <td><input type="checkbox" name="<?php echo $fila->id?>"  value="<?php echo $fila->id?>"> <?php echo $fila->nombre;?></td>
+              <td><input type="checkbox" name="<?php echo $fila->id?>"  value="<?php echo $fila->id?>"> <?php echo $fila->nombre;?> Disponible</td>
               <td></td>
+              <?php }elseif($fila->id_grupo != $id_grupo && !empty($fila->id_grupo)){?>
               </tr>
-            <?php }else{?>
+            <td><input type="checkbox" disabled="disabled"  checked name="<?php echo $fila->id?>"  value="<?php echo $fila->id?>"> <?php echo $fila->nombre;?> Otro Grupo</td>
+            <?php 
+             }else{?>
+           
               <tr>
               <td><input type="checkbox"  disabled="disabled"  checked> <?php echo $fila->nombre?></td>
               <td><button type="button" class="btn btn-primary btn-sm" value="<?php echo $fila->id?>" onclick="auxiliar(<?php echo $fila->id?>)" data-toggle="modal" data-target="#reasignar" data-whatever="@mdo">Resasignar alumno</button></td>
               </tr>
-              
+              <?php }?>
             <?php }?>
-            <?php }?>
+
             </table>
             <input type="hidden" name="id_grupo" value= "<?php echo $id_grupo?>">
             <input type="hidden" name="id_unidad_negocio" value= "<?php echo $id_unidad_negocio?>">
