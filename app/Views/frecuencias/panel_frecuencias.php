@@ -39,9 +39,6 @@
 
 
 
-
-
-<<<<<<< HEAD
     <!--Ejemplo tabla con DataTables-->
     <div class="container">
       <div id="general">
@@ -54,20 +51,6 @@
 
           <div class="col-md-10">
           <?php include(APPPATH.'/Views/include/notificacion.php');?>
-=======
-<!--Ejemplo tabla con DataTables-->
-<div class="container">
-  <div id="general">
-    <div class="row">
-      <div class="col-md-3">
-        <?php include(APPPATH . '/Views/include/menu-izquierda.php'); ?>
-      </div>
-
-
-
-      <div class="col-md-9">
-        <?php include(APPPATH . '/Views/include/notificacion.php'); ?>
->>>>>>> ac637f0c04ff0827f2c7b2ee4d41e0a516c1d26b
 
 
         <div class="espacioUno"></div>
@@ -102,7 +85,7 @@
                 </thead>
                   <tr>
                   <?php foreach(getAllFrecuencia() as $fila){ 
-                 $nombreModalidad = getModalidadEspecifica($fila->id_modalidad) ?>
+                 $nombreModalidad = getModalidadEspecifica($fila->id_modalidad); ?>
                 <td><?php echo $fila->id ?></td>
                 <td><?php echo $fila->nombre ?></td>
                 <td><?php echo $fila->descripcion ?></td>
@@ -130,34 +113,10 @@
                 </a>
                 </td>
                 </tr>
+                <?php
+              }
+              ?>
               </thead>
-              <tr>
-                <?php foreach (getAllFrecuencia() as $fila) {
-                  $nombreModalidad = getModalidadEspecifica($fila->id_modalidad) ?>
-                  <td><?php echo $fila->id ?></td>
-                  <td><?php echo $fila->nombre ?></td>
-                  <td><?php echo $fila->descripcion ?></td>
-                  <td><?php echo $nombreModalidad->nombre ?></td>
-                  <td><?php echo $fila->lunes ?></td>
-                  <td><?php echo $fila->martes ?></td>
-                  <td><?php echo $fila->miercoles ?></td>
-                  <td><?php echo $fila->jueves ?></td>
-                  <td><?php echo $fila->viernes ?></td>
-                  <td><?php echo $fila->sabado ?></td>
-                  <td><?php echo $fila->domingo ?></td>
-                  <td><?php echo ($fila->estatus == 1) ? "Activo" : "Inactivo" ?></td>
-                  <td class="text-center">
-                    <a href="<?php echo site_url("/Frecuencia/verfrecuencia/$fila->id") ?>">
-                      <i class="fa fa-file-text-o fa-1x" aria-hidden="true"></i>
-                  </td>
-                  <td class="text-center">
-                    <a href="<?php echo site_url("/Frecuencia/editarfrecuencia/$fila->id") ?>">
-                      <i class="fa fa-pencil-square-o fa-1x" aria-hidden="true"></i>
-                    </a>
-                  </td>
-
-              </tr>
-            <?php } ?>
             </table>
 
 
