@@ -143,6 +143,7 @@
                    $hf              = $horario->hora_fin;
                    $horaActual      = date("H:i");
                    $day             = date("l");
+                   $goahead=0;
                    $frecuenciaGrupo = AsignacionGetGrupoFrecuencia($id_grupo);
                    
                    if($day == "Sunday" && $frecuenciaGrupo->domingo==1){ $goahead=1;}
