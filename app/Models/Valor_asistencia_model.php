@@ -5,7 +5,7 @@ use CodeIgniter\Model;
 class Valor_asistencia_model extends Model
 {
     #Nombre de la tabla
-    protected $table      = 'valor_asistencia';
+    protected $table      = 'valores_asistencia';
     #nombre de la clave primaria 
     protected $primaryKey = 'id';
 
@@ -13,7 +13,7 @@ class Valor_asistencia_model extends Model
     protected $useSoftDeletes = true;
 
     #Aqui ponemos el nombre de las columnas que vamos a modifcar
-    protected $allowedFields = ['valor','id_frecuencia','fecha_creacion','fecha_ultimo_cambio'];
+    protected $allowedFields = ['id_frecuencia','lunes','martes','miercoles','jueves','viernes','sabado','domingo','fecha_creacion','fecha_ultimo_cambio'];
 
     protected $useTimestamps = false;
     protected $createdField  = 'fecha_creacion';

@@ -178,5 +178,17 @@ class Frecuencia extends BaseController{
         }
     }
 
+    public function asignarValorAsistenciaFrecuencia($id_frecuencia)
+	{
+        if($this->session->get('login') && $this->session->get('roll') == 4){
+
+            $data['page_title']    = "Frecuencias";
+            $data['id_frecuencia'] = $id_frecuencia; 
+            return view('frecuencias/asignarvalorasistenciafrecuencia',$data);
+        }else{
+            return redirect()->to(site_url('Home/salir'));
+           }
+    }
+    
 
 }

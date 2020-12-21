@@ -65,58 +65,21 @@
             
               <div class="card">
                 <div class="card-body">
-                <table class="tabla-registros" class="display" cellspacing="6" cellpadding="8">
-                <thead>
-                <tr>
-                <th class="text-left">ID</th>
-                <th class="text-left">Nombre</th>
-                <th class="text-left">Descripcion</th>
-                <th class="text-left">Modalidad</th>
-                <th class="text-left">Lun</th>
-                <th class="text-left">Mar</th>
-                <th class="text-left">Mier</th>
-                <th class="text-left">Jue</th>
-                <th class="text-left">Vier</th>
-                <th class="text-left">Sab</th>
-                <th class="text-left">Dom</th>
-                <th class="text-left">estatus</th>
-                <th class="text-left">Ver</th>
-                <th class="text-left">Editar</th>
-                <th class="text-left">Asignar Valor Asistencia</th>
-                </tr>
-                </thead>
-                  <tr>
-                  <?php foreach(getAllFrecuencia() as $fila){ 
-                 $nombreModalidad = getModalidadEspecifica($fila->id_modalidad) ?>
-                <td><?php echo $fila->id ?></td>
-                <td><?php echo $fila->nombre ?></td>
-                <td><?php echo $fila->descripcion ?></td>
-                <td><?php echo $nombreModalidad->nombre?></td>
-                <td><?php echo $fila->lunes ?></td>
-                <td><?php echo $fila->martes ?></td>
-                <td><?php echo $fila->miercoles ?></td>
-                <td><?php echo $fila->jueves ?></td>
-                <td><?php echo $fila->viernes ?></td>
-                <td><?php echo $fila->sabado ?></td>
-                <td><?php echo $fila->domingo ?></td>
-                <td><?php echo ($fila->estatus == 1) ? "Activo" : "Inactivo"?></td>
-                <td class="text-center">
-                  <a href="<?php echo site_url("/Frecuencia/verfrecuencia/$fila->id") ?>">
-                  <i class="fa fa-file-text-o fa-1x" aria-hidden="true"></i>
-                </td>
-                <td>
-                <a href="<?php echo site_url("/Frecuencia/editarfrecuencia/$fila->id") ?>">
-                <i class="fa fa-pencil-square-o fa-1x" aria-hidden="true"></i>
-                </a>
-                </td>
-                <td class="text-center">
-                <a href="<?php echo site_url("/Frecuencia/asignarValorAsistenciaFrecuencia/$fila->id") ?>">
-                <i class="fa fa-plus-square-o" aria-hidden="true"></i>
-                </a>
-                </td>
-                </tr>
-                  <?php } ?>
-                </table>
+                <?php
+                $diasFrecuencia = getFrencueciaId($id_frecuencia);
+                foreach($diasFrecuencia as $fila){
+                  echo "Lunes ".$fila->lunes."<br/>";
+                  echo "Martes ".$fila->martes."<br/>";
+                  echo "Miercoles ".$fila->miercoles."<br/>";
+                  echo "Jueves ".$fila->jueves."<br/>";
+                  echo "Viernes ".$fila->viernes."<br/>";
+                  echo "Sabado ".$fila->sabado."<br/>";
+                  echo "Domingo ".$fila->domingo."<br/>";
+                }
+                // Obtener los valores de la base de datos con el id de frecuencia
+                // Poner todos los dias en vertical y los dias que tengan 1 habilitarlos, a esos se les va agregar un valor
+                // Guardar Formulario en
+                ?>
 
 
 

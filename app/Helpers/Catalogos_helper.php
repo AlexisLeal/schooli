@@ -134,6 +134,20 @@ function getFrencueciaEspecifica($id_frencuencia)
     return($row);
 
 }
+
+function getFrencueciaId($id_frencuencia)
+{
+    $usermode = new Frecuencia_model($db);
+    $usermode->select('id,nombre,descripcion,id_modalidad,lunes,martes,miercoles,jueves,viernes,sabado,domingo,estatus');
+    $usermode->where('deleted',0);
+    $usermode->where('id',$id_frencuencia);
+    $resultado = $usermode->get();
+    $row = $resultado->getResult();
+    return($row);
+
+}
+
+
 function CatalagoGetAllFrecuencias()
 {
     $usermode = new Frecuencia_model($db);
