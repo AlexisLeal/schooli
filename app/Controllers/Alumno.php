@@ -27,7 +27,7 @@ class Alumno extends BaseController{
 
             if($row->id_grupo != null){
                 $usermodel_grupo = new Grupos_model();
-                $usermodel_grupo->select('nombre,codigo_acceso,id_unidad_negocio,id_plantel');
+                $usermodel_grupo->select('nombre,codigo_acceso,id_unidad_negocio,id_plantel,id_curso,id_nivel');
                 $usermodel_grupo->where('id',$row->id_grupo);
                 $usermodel_grupo->where('deleted',0);
                 $query = $usermodel_grupo->get();
@@ -38,6 +38,8 @@ class Alumno extends BaseController{
                 $data['codigo_acceso'] = $row_grupo->codigo_acceso;
                 $data['id_unidad_negocio']= $row_grupo->id_unidad_negocio;	
                 $data['id_plantel']= $row_grupo->id_plantel;	
+                $data['id_curso']= $row_grupo->id_curso;	
+                $data['id_nivel']= $row_grupo->id_nivel;	
                 $data['unidad_negocio'] = getUnidadNegocioEspecifico($row_grupo->id_unidad_negocio);	
                 $data['nombre_plantel'] = getPlanteEspecifico($row_grupo->id_plantel);
 

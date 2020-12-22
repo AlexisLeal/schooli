@@ -1,7 +1,6 @@
 <?php namespace App\Controllers;
-use  App\Models\Usuarios;
-use  App\Models\Maestros;
 use  App\Models\Asistencias;
+use  App\Models\Grupos_model;
 
 class Teacher extends BaseController{
 
@@ -47,12 +46,19 @@ class Teacher extends BaseController{
     }
 
     public function recursosasignados($id_grupo)
-	{
+	{ 
         if($this->session->get('login') && $this->session->get('roll') == 3){
             
             $data['page_title'] = "Teacher";
             $data['id_grupo'] = $id_grupo;
-
+            $UseModelGrupo = new Grupos_model($db);
+            $UseModelGrupo->select('id_curso,id_nivel');
+            $UseModelGrupo->where('id',$id_grupo);
+            $UseModelGrupo->where('deleted',0);
+            $querey =$UseModelGrupo->get();
+            $row = $querey->getRow();
+            $data['id_curso'] = $row->id_curso;
+            $data['id_nivel'] = $row->id_nivel;
             return view('teachers/teacher/recursosasignados',$data);
         }else{
             return redirect()->to(site_url('Home/salir'));

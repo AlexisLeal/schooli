@@ -60,11 +60,11 @@
                 <div class="card">
                   <div class="card-body">
                     <div class="espacioUno"></div>
-                   <!-- < ?php 
-                    if(empty(getGrupoRecursos($id_grupo))){
+                   <?php 
+                    if(empty(getGrupoRecursos($id_curso,$id_nivel))){
                       echo "No existen grupos asignados a para este Teacher.";
                     }else{
-                      foreach(getGrupoRecursos($id_grupo) as $fila){
+                      foreach(getGrupoRecursos($id_curso,$id_nivel) as $fila){
                         switch($fila->extencion){
                           case "docx":
                             $icono = "fa-file-word-o fa-2x";
@@ -97,11 +97,11 @@
                             $icono="fa-file fa-2x";
                         }
                       ?>
-                      <a href="< ?php echo base_url($fila->ruta);?>"><i class="fa < ?php echo $icono;?>" aria-hidden="true"></i> < ?php echo $fila->nombre;?></a>  <br/>
-                    < ?php }
+                      <a href="< ?php echo base_url($fila->ruta);?>"><i class="fa < ?php echo $icono;?>" aria-hidden="true"></i> <?php echo $fila->nombre;?></a>  <br/>
+                    <?php }
                     }
                   ?>
-                  -->
+                
                   <div class="espacioUno"></div>            
                 </div>
               </div>
