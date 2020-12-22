@@ -198,7 +198,7 @@ function getValorAsistenciaFrecuencia($id_frencuencia)
     $usermode = new Valor_asistencia_model($db);
     $usermode->select('id_frecuencia');
     $usermode->where('deleted',0);
-    $usermode->where('id',$id_frencuencia);
+    $usermode->where('id_frecuencia',$id_frencuencia);
     $resultado = $usermode->get();
     $row = $resultado->getRow();
     return($row);
