@@ -1,5 +1,6 @@
 <?php namespace App\Controllers;
 use  App\Models\Frecuencia_model;
+use  App\Models\Valor_asistencia_model;
 
 class Frecuencia extends BaseController{
 
@@ -192,15 +193,14 @@ class Frecuencia extends BaseController{
     
 
 
-    public function insertarValorAsistenciaFrecuencia($id_frecuencia)
+    public function insertarValorAsistenciaFrecuencia()
 	{
         if(isset($_POST['submitAVF'])){
             $REQUEST       = \Config\Services::request();
             $hoy           = date("Y-m-d H:i:s");
             $id_frecuencia = $REQUEST->getPost('id_frecuencia');
-            $submit        = $REQUEST->getPost('submitAVF');
 
-            $data = ['id_frecuencia' =>$REQUEST->getPost('nombre'),
+            $data = ['id_frecuencia' =>$REQUEST->getPost('id_frecuencia'),
             'lunes' =>(empty($REQUEST->getPost('lunes'))) ? 0 :$REQUEST->getPost('lunes'),
             'martes' =>(empty($REQUEST->getPost('martes'))) ? 0 :$REQUEST->getPost('martes'),
             'miercoles' =>(empty($REQUEST->getPost('miercoles'))) ? 0 :$REQUEST->getPost('miercoles'),
@@ -211,14 +211,16 @@ class Frecuencia extends BaseController{
             'fecha_creacion' => $hoy,
             'fecha_ultimo_cambio' => $hoy,
             'deleted' =>0,
-        ];
+            ];
 
             
-            $usermodel = new Valor_asistencia_model($db);
-            $usermodel->insert($data);
-            $data = ['ValorAsitencia'  => 'El valor de la asitencia fue asignado correctamente'];
-            $this->session->set($data,true);
-                return redirect()->to(site_url('frecuencias/asignarvalorasistenciafrecuencia',$data));
+                $usermodel = new Valor_asistencia_model($db);
+                $usermodel->insert($data);
+                $data['id_frecuencia'] = $id_frecuencia; 
+                $data = ['ValorAsitencia'  => 'El valor de la asitencia fue asignado correctamente'];
+                $this->session->set($data,true);
+                return redirect()->to(site_url('frecuencias/asignarvalorasistenciafrecuencia'));
+
             }else{
                 return redirect()->to(site_url('Home/salir'));
            }

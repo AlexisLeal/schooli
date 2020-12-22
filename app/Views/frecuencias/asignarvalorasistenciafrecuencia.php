@@ -75,7 +75,7 @@
             
               <div class="card">
                 <div class="card-body">
-                <form action="<?php echo site_url('Frecuencia/insertarfrecuencia');?>" method="post">
+                <form action="<?php echo site_url('Frecuencia/insertarValorAsistenciaFrecuencia');?>" method="post">
                 <table width="60%">
                 <tr>
                 <td>Asignación de valor de la asistencia para está frecuencia.</td>
