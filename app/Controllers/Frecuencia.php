@@ -191,4 +191,38 @@ class Frecuencia extends BaseController{
     }
     
 
+
+    public function insertarValorAsistenciaFrecuencia($id_frecuencia)
+	{
+        if(isset($_POST['submitAVF'])){
+            $REQUEST       = \Config\Services::request();
+            $hoy           = date("Y-m-d H:i:s");
+            $id_frecuencia = $REQUEST->getPost('id_frecuencia');
+            $submit        = $REQUEST->getPost('submitAVF');
+
+            $data = ['id_frecuencia' =>$REQUEST->getPost('nombre'),
+            'lunes' =>(empty($REQUEST->getPost('lunes'))) ? 0 :$REQUEST->getPost('lunes'),
+            'martes' =>(empty($REQUEST->getPost('martes'))) ? 0 :$REQUEST->getPost('martes'),
+            'miercoles' =>(empty($REQUEST->getPost('miercoles'))) ? 0 :$REQUEST->getPost('miercoles'),
+            'jueves' =>(empty($REQUEST->getPost('jueves'))) ? 0 :$REQUEST->getPost('jueves'),
+            'viernes' => (empty($REQUEST->getPost('viernes'))) ? 0 :$REQUEST->getPost('viernes'),
+            'sabado' => (empty($REQUEST->getPost('sabado'))) ? 0 :$REQUEST->getPost('sabado'),
+            'domingo' => (empty($REQUEST->getPost('domingo'))) ? 0 :$REQUEST->getPost('domingo'),
+            'fecha_creacion' => $hoy,
+            'fecha_ultimo_cambio' => $hoy,
+            'deleted' =>0,
+        ];
+
+            
+            $usermodel = new Valor_asistencia_model($db);
+            $usermodel->insert($data);
+            $data = ['ValorAsitencia'  => 'El valor de la asitencia fue asignado correctamente'];
+            $this->session->set($data,true);
+                return redirect()->to(site_url('frecuencias/asignarvalorasistenciafrecuencia',$data));
+            }else{
+                return redirect()->to(site_url('Home/salir'));
+           }
+    }
 }
+
+

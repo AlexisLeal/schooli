@@ -54,6 +54,16 @@
           <div class="col-md-10">
           <?php include(APPPATH.'/Views/include/notificacion.php');?>
 
+          <?php if ($session->has('ValorAsitencia')) {; ?>
+          <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong></strong> <?php echo $session->get('Frecuencia') ?>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        <?php }
+        $session->remove('ValorAsitencia'); ?>
+
 
           <div class="espacioUno"></div>
           <h4>Panel de Frecuencias</h4>
@@ -65,22 +75,88 @@
             
               <div class="card">
                 <div class="card-body">
+                <form action="<?php echo site_url('Frecuencia/insertarfrecuencia');?>" method="post">
+                <table width="60%">
+                <tr>
+                <td>Asignación de valor de la asistencia para está frecuencia.</td>
+                </tr>
+
+                
                 <?php
                 $diasFrecuencia = getFrencueciaId($id_frecuencia);
                 foreach($diasFrecuencia as $fila){
-                  echo "Lunes ".$fila->lunes."<br/>";
-                  echo "Martes ".$fila->martes."<br/>";
-                  echo "Miercoles ".$fila->miercoles."<br/>";
-                  echo "Jueves ".$fila->jueves."<br/>";
-                  echo "Viernes ".$fila->viernes."<br/>";
-                  echo "Sabado ".$fila->sabado."<br/>";
-                  echo "Domingo ".$fila->domingo."<br/>";
-                }
-                // Obtener los valores de la base de datos con el id de frecuencia
-                // Poner todos los dias en vertical y los dias que tengan 1 habilitarlos, a esos se les va agregar un valor
-                // Guardar Formulario en
-                ?>
+                  if($fila->lunes==1){
+                    ?>
+                    <tr>
+                      <td>Lunes</td><td><input type="text" class="form-control form-control-sm" name="lunes" id="lunes" required></td>
+                    </tr>
+                    <?php
+                  }
+                  
+                  if($fila->martes==1){
+                    ?>
+                    <tr>
+                      <td>Martes</td><td><input type="text" class="form-control form-control-sm" name="martes" id="martes" required></td>
+                    </tr>
+                    <?php
+                  }
 
+                                    
+                  if($fila->miercoles==1){
+                    ?>
+                    <tr>
+                      <td>Miercoles</td><td><input type="text" class="form-control form-control-sm" name="miercoles" id="miercoles" required></td>
+                    </tr>
+                    <?php
+                  }
+
+                  if($fila->jueves==1){
+                    ?>
+                    <tr>
+                      <td>Jueves</td><td><input type="text" class="form-control form-control-sm" name="jueves" id="jueves" required></td>
+                    </tr>
+                    <?php
+                  }
+
+
+                  if($fila->viernes==1){
+                    ?>
+                    <tr>
+                      <td>Viernes</td><td><input type="text" class="form-control form-control-sm" name="viernes" id="viernes" required></td>
+                    </tr>
+                    <?php
+                  }
+                  
+
+                  if($fila->sabado==1){
+                    ?>
+                    <tr>
+                      <td>Sabado</td><td><input type="text" class="form-control form-control-sm" name="sabado" id="sabado" required></td>
+                    </tr>
+                    <?php
+                  }
+
+                  if($fila->domingo==1){
+                    ?>
+                    <tr>
+                      <td>Domingo</td><td><input type="text" class="form-control form-control-sm" name="domingo" id="domingo" required></td>
+                    </tr>
+                    <?php
+                  }
+
+                  ?>
+                  
+
+                <?php
+                }
+                ?>
+                <tr>
+                  <td>
+                  <input type="hidden" name="id_frecuencia" id="id_frecuencia" value="<?php echo $id_frecuencia;?>" class="form-control form-control-sm">
+                    <button type="submit" name="submitAVF" class="btn btn-primary btn-sm">Registrar</button>
+                  </td>
+                </tr>
+                </table>
 
 
 
