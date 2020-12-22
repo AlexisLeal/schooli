@@ -100,19 +100,19 @@ class Frecuencia extends BaseController{
                 'estatus' => $REQUEST->getPost('estatus'),
                 'fecha_creacion' => $hoy,
                 'fecha_ultimo_cambio' => $hoy,
-            ];
+                ];
 
-            $usermodel = new Frecuencia_model($db);
-            $usermodel->insert($data);
+                $usermodel = new Frecuencia_model($db);
+                $usermodel->insert($data);
 
-            $data = ['Frecuencia'  => 'El Frecuencia  se agregro correctamente'];
-            $this->session->set($data,true);
+                $data = ['Frecuencia'  => 'El Frecuencia  se agregro correctamente'];
+                $this->session->set($data,true);
 
-            return redirect()->to(site_url('Frecuencia/agregarfrecuencia'));
+                return redirect()->to(site_url('Frecuencia/agregarfrecuencia'));
     
-        }else{
-            return redirect()->to(site_url('Home/salir'));
-        }
+            }else{
+                return redirect()->to(site_url('Home/salir'));
+            }
         }else{
             return redirect()->to(site_url('Home/salir'));
         }
@@ -122,7 +122,6 @@ class Frecuencia extends BaseController{
     {
         if($this->session->get('login') && $this->session->get('roll') == 4){
             if(isset($_POST['submitFR'])){
-
                 $REQUEST = \Config\Services::request();
                 $hoy = date("Y-m-d H:i:s");
 
@@ -138,15 +137,15 @@ class Frecuencia extends BaseController{
                 'domingo' => (empty($REQUEST->getPost('domingo'))) ? 0 :$REQUEST->getPost('domingo'),
                 'estatus' => $REQUEST->getPost('estatus'),
                 'fecha_ultimo_cambio' => $hoy,
-            ];
+                ];
 
-            $id_frecuencia = $REQUEST->getPost('idFr');
-            $usermodel = new Frecuencia_model($db);
-            $usermodel->update($id_frecuencia,$data);
+                $id_frecuencia = $REQUEST->getPost('idFr');
+                $usermodel = new Frecuencia_model($db);
+                $usermodel->update($id_frecuencia,$data);
 
-            $data = ['Frecuencia'  => 'El Frecuencia  se actualizado correctamente'];
-            $this->session->set($data,true);
-            return redirect()->to(site_url("Frecuencia/editarfrecuencia/$id_frecuencia"));
+                $data = ['Frecuencia'  => 'El Frecuencia  se actualizado correctamente'];
+                $this->session->set($data,true);
+                return redirect()->to(site_url("Frecuencia/editarfrecuencia/$id_frecuencia"));
     
         }else{
             return redirect()->to(site_url('Home/salir'));
@@ -213,13 +212,13 @@ class Frecuencia extends BaseController{
             'deleted' =>0,
             ];
 
-            
-                $usermodel = new Valor_asistencia_model($db);
-                $usermodel->insert($data);
-                $data['id_frecuencia'] = $id_frecuencia; 
-                $data = ['ValorAsitencia'  => 'El valor de la asitencia fue asignado correctamente'];
-                $this->session->set($data,true);
-                return redirect()->to(site_url('frecuencias/asignarvalorasistenciafrecuencia'));
+            $usermodel = new Valor_asistencia_model($db);
+            $usermodel->insert($data);
+
+            $data = ['ValorAsitencia'  => 'El valor de la asitencia fue asignado correctamente'];
+            $this->session->set($data,true);
+
+            return redirect()->to(site_url("Frecuencia/asignarValorAsistenciaFrecuencia/$id_frecuencia"));
 
             }else{
                 return redirect()->to(site_url('Home/salir'));
