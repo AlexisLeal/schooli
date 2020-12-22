@@ -78,6 +78,31 @@
                 <div id="cargar_recurso_archivo">
                   <input class="form-control form-control-sm" type="file" id="recurso_archivo" name="recurso_archivo" required="">
                   <div class="espacioUno"></div>
+                  curso
+                  <select class="form-control form-control-sm" name="curso" id="curso" required="">
+                    <option value="">Seleccione una opción</option>
+                    <?php foreach (CatalagoGetCursos() as $fila) { ?>
+                      <option value="<?php echo $fila->id; ?>"><?php echo $fila->nombre; ?></option>
+                    <?php } ?>
+                  </select>
+                  <div class="espacioUno"></div>
+                  Nivel
+                  <select class="form-control form-control-sm" name="nivel" id="nivel" required="">
+                    <option value="">Seleccione una opción</option>
+                    <?php foreach (getNivel() as $fila) { ?>
+                      <option value="<?php echo $fila->id; ?>"><?php echo $fila->nombre; ?></option>
+                    <?php } ?>
+                  </select>
+                  <div class="espacioUno"></div>
+                  Leccion
+                  <select class="form-control form-control-sm" name="leccion" id="leccion" required="">
+                    <option value="">Seleccione una opción</option>
+                    <?php foreach (getleccion() as $fila) { ?>
+                      <option value="<?php echo $fila->id; ?>"><?php echo $fila->nombre; ?></option>
+                    <?php } ?>
+                  </select>
+
+                  <div class="espacioUno"></div>
                   <div class="form-group">
                     <label for="lblInstrucciones">Instrucciones</label>
                     <textarea class="form-control form-control-sm" name="descripcion" id="descripcion" rows="3" required=""></textarea>

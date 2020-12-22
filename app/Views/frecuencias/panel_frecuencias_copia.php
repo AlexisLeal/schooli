@@ -41,7 +41,6 @@
 
 
 
-<<<<<<< HEAD
     <!--Ejemplo tabla con DataTables-->
     <div class="container">
       <div id="general">
@@ -54,20 +53,6 @@
 
           <div class="col-md-10">
           <?php include(APPPATH.'/Views/include/notificacion.php');?>
-=======
-<!--Ejemplo tabla con DataTables-->
-<div class="container">
-  <div id="general">
-    <div class="row">
-      <div class="col-md-3">
-        <?php include(APPPATH . '/Views/include/menu-izquierda.php'); ?>
-      </div>
-
-
-
-      <div class="col-md-9">
-        <?php include(APPPATH . '/Views/include/notificacion.php'); ?>
->>>>>>> ac637f0c04ff0827f2c7b2ee4d41e0a516c1d26b
 
 
         <div class="espacioUno"></div>
@@ -77,7 +62,6 @@
 
 
 
-<<<<<<< HEAD
             
               <div class="card">
                 <div class="card-body">
@@ -130,28 +114,6 @@
                 <i class="fa fa-plus-square-o" aria-hidden="true"></i>
                 </a>
                 </td>
-=======
-
-        <div class="card">
-          <div class="card-body">
-            <table class="tabla-registros" class="display" cellspacing="6" cellpadding="8">
-              <thead>
-                <tr>
-                  <th class="text-left">ID</th>
-                  <th class="text-left">Nombre</th>
-                  <th class="text-left">Descripcion</th>
-                  <th class="text-left">Modalidad</th>
-                  <th class="text-left">Lun</th>
-                  <th class="text-left">Mar</th>
-                  <th class="text-left">Mier</th>
-                  <th class="text-left">Jue</th>
-                  <th class="text-left">Vier</th>
-                  <th class="text-left">Sab</th>
-                  <th class="text-left">Dom</th>
-                  <th class="text-left">estatus</th>
-                  <th class="text-left">Ver</th>
-                  <th class="text-left">Editar</th>
->>>>>>> ac637f0c04ff0827f2c7b2ee4d41e0a516c1d26b
                 </tr>
               </thead>
               <tr>

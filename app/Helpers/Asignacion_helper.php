@@ -94,12 +94,13 @@ function getGrupoAlumnosEliminar($id_grupo)
 
 }
 
-function getGrupoRecursos($id_grupo)
+function getGrupoRecursos($idcurso,$idnivel)
 {
     $db = \Config\Database::connect();
     $usermodel = $db->table('recursos R');
-    $usermodel->select('R.id, R.nombre,R.extencion,R.ruta, G_RC.id_grupo');
-    $usermodel->join('grupo_recursos G_RC',"R.id = G_RC.id_recurso and G_RC.id_grupo = $id_grupo and G_RC.deleted = 0",'left');
+    $usermodel->select('R.id, R.nombre,R.extencion,R.ruta');
+    $usermodel->where('id_curso',$idcurso);
+    $usermodel->where('id_nivel',$idnivel);
     $query = $usermodel->get();
     $resultado = $query->getResult();
     return($resultado);

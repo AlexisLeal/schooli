@@ -26,6 +26,7 @@ function getCicloEspecifico($id_ciclo)
     return($row);
 }
 
+
 function CatalagogetGetCiclo()
 {
     $usermode = new Ciclos_model($db);
@@ -110,6 +111,17 @@ function CatalagoGetCursos()
     $row = $resultado->getResult();
     return($row);
 
+}
+function CatalagoGetNombreCurso($id_curso)
+{
+    $usermode = new Cursos_model($db);
+    $usermode->select('nombre');
+    $usermode->where('deleted',0);
+    $usermode->where('id',$id_curso);
+    $resultado = $usermode->get();
+    $row = $resultado->getRow();
+    $nombre = $row->nombre;
+    return($nombre);
 }
 
 function getAllFrecuencia()
