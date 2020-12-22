@@ -177,36 +177,7 @@ class Asignacion extends BaseController{
         }
     }
 
-    public function asignarrecurso()
-    {
-        if($this->session->get('login') && $this->session->get('roll') == 4){
-
-            if(isset($_POST['submitRC'])){
-
-                $REQUEST = \Config\Services::request();
-                $hoy = date("Y-m-d H:i:s");
-
-                $usermodel = new Grupos_recursos_model($db);
-                    foreach(getRecursos() as $fila){
-                        if(!empty($REQUEST->getPost($fila->id))){
-                             $data = ['id_grupo' =>$REQUEST->getPost('id_grupo'),
-                            'id_recurso' =>$REQUEST->getPost($fila->id),
-                            'fecha_creacion' =>$hoy,
-                            'fecha_ultimo_cambio' =>$hoy,
-                            ]; 
-                            $usermodel->insert($data);
-                        }
-                    }
-                $idgrupo = $REQUEST->getPost('id_grupo');
-
-                return redirect()->to(site_url("Asignacion/recursos/$idgrupo"));
-            }else{
-                return redirect()->to(site_url('Home/salir'));
-           }  
-        }else{
-            return redirect()->to(site_url('Home/salir'));
-           }
-    }
+   
 
     public function asigniarevaluacion()
     {
@@ -295,29 +266,6 @@ class Asignacion extends BaseController{
             return redirect()->to(site_url('Home/salir'));
         }
 
-    }
-
-    public function eliminarRecurso()
-    {
-        if($this->session->get('login') && $this->session->get('roll') == 4){
-            if(isset($_POST['submitRC'])){  
-
-                $REQUEST = \Config\Services::request();
-                $usermodel = new Grupos_recursos_model($db);
-                $id_grupo = $REQUEST->getPost('id_grupo');
-
-                foreach(getGrupoRecursosEliminar($id_grupo) as $fila){
-                    if(!empty($REQUEST->getPost($fila->id))){
-                        $usermodel->delete(['id'=> $fila->id]);
-                    }
-                }
-                return redirect()->to(site_url("Asignacion/deletedRecursos/$id_grupo"));
-            }else{
-                return redirect()->to(site_url('Home/salir'));
-            }  
-        }else{
-            return redirect()->to(site_url('Home/salir'));
-           }
     }
 
     public function eliminarEvaluacion()

@@ -49,6 +49,15 @@ function getleccion(){
     return ($rowArray);
     
 }
+function OperacionesGetNombreLeccion($idLeccion){
+    $usermodel = new Lecciones_evaluacion($db);
+    $query = "SELECT nombre from lecciones_evaluacion WHERE deleted = 0 and id = $idLeccion";
+    $resultado = $usermodel ->query($query);
+    $row = $resultado -> getRow();
+    $nombre = $row->nombre;
+    return ($nombre);
+    
+}
 
 function getTotalEvaluacion($id_tipo_evaluacion,$nivel)
 {
