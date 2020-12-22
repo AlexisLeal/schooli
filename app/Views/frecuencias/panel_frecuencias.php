@@ -82,6 +82,7 @@
                   <th class="text-left">Editar</th>
                   <th class="text-left">Asignar Valor Asistencia</th>
                 </tr>
+
               </thead>
               <tr>
                 <?php foreach (getAllFrecuencia() as $fila) {

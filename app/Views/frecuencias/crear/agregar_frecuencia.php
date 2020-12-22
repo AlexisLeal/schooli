@@ -58,7 +58,7 @@
 
         <?php if ($session->has('Frecuencia')) {; ?>
           <div class="alert alert-warning alert-dismissible fade show" role="alert">
-            <strong>Notificaciones del sistema:</strong> <?php echo $session->get('Frecuencia') ?>
+            <strong></strong> <?php echo $session->get('Frecuencia') ?>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -77,7 +77,7 @@
         <div class="card">
           <div class="card-body">
 
-            <form action="<?php echo site_url('Frecuencia/insertarfrecuencia'); ?>" method="post" enctype="multipart/form-data">
+            <form action="<?php echo site_url('Frecuencia/insertarfrecuencia');?>" method="post" enctype="multipart/form-data">
 
               <div class="espacioDos"></div>
               <div class="row">
