@@ -109,9 +109,19 @@
                     </a>
                   </td>
                   <td class="text-center">
+                  <?php
+                  $resultadoValorAsistencia = getValorAsistenciaFrecuencia($fila->id);
+                  if(empty($resultadoValorAsistencia)){
+                    ?>
                     <a href="<?php echo site_url("/Frecuencia/asignarValorAsistenciaFrecuencia/$fila->id") ?>">
                       <i class="fa fa-plus-square-o" aria-hidden="true"></i>
                     </a>
+                  <?php
+                  }else{
+                    echo "Ya tiene valores asignados";
+                  }
+                  ?>
+
                   </td>
               </tr>
             <?php

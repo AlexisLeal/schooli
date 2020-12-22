@@ -5,6 +5,7 @@ use  App\Models\Salones_model;
 use  App\Models\Cursos_model;
 use  App\Models\Frecuencia_model;
 use  App\Models\Modalidad_model;
+use  App\Models\Valor_asistencia_model;
 
 function getAllCiclo()
 {
@@ -156,7 +157,6 @@ function getFrencueciaId($id_frencuencia)
     $resultado = $usermode->get();
     $row = $resultado->getResult();
     return($row);
-
 }
 
 
@@ -191,6 +191,16 @@ function getModalidadEspecifica($id_modalidad)
     $resultado = $usermode->get();
     $row = $resultado->getRow();
     return($row);
+}
 
+function getValorAsistenciaFrecuencia($id_frencuencia)
+{
+    $usermode = new Valor_asistencia_model($db);
+    $usermode->select('id_frecuencia');
+    $usermode->where('deleted',0);
+    $usermode->where('id',$id_frencuencia);
+    $resultado = $usermode->get();
+    $row = $resultado->getRow();
+    return($row);
 }
 ?>

@@ -54,15 +54,15 @@
           <div class="col-md-10">
           <?php include(APPPATH.'/Views/include/notificacion.php');?>
 
-          <?php if ($session->has('ValorAsitencia')) {; ?>
+          <?php if ($session->has('ValorAsistencia')) {; ?>
           <div class="alert alert-warning alert-dismissible fade show" role="alert">
-            <strong></strong> <?php echo $session->get('Frecuencia') ?>
+            <strong></strong> <?php echo $session->get('ValorAsistencia') ?>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
         <?php }
-        $session->remove('ValorAsitencia'); ?>
+        $session->remove('ValorAsistencia'); ?>
 
 
           <div class="espacioUno"></div>

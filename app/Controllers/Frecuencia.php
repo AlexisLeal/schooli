@@ -215,7 +215,7 @@ class Frecuencia extends BaseController{
             $usermodel = new Valor_asistencia_model($db);
             $usermodel->insert($data);
 
-            $data = ['ValorAsitencia'  => 'El valor de la asitencia fue asignado correctamente'];
+            $data = ['ValorAsistencia'  => 'El valor de la asitencia fue asignado correctamente'];
             $this->session->set($data,true);
 
             return redirect()->to(site_url("Frecuencia/asignarValorAsistenciaFrecuencia/$id_frecuencia"));
