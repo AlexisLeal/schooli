@@ -193,12 +193,12 @@ function getModalidadEspecifica($id_modalidad)
     return($row);
 }
 
-function getValorAsistenciaFrecuencia($id_frencuencia)
+function getValorAsistenciaFrecuencia($id_frecuencia)
 {
     $usermode = new Valor_asistencia_model($db);
     $usermode->select('id_frecuencia');
     $usermode->where('deleted',0);
-    $usermode->where('id',$id_frencuencia);
+    $usermode->where('id_frecuencia',$id_frecuencia);
     $resultado = $usermode->get();
     $row = $resultado->getRow();
     return($row);

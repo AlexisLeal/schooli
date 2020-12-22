@@ -197,7 +197,7 @@ class Frecuencia extends BaseController{
         if(isset($_POST['submitAVF'])){
             $REQUEST       = \Config\Services::request();
             $hoy           = date("Y-m-d H:i:s");
-            $id_frecuencia = $REQUEST->getPost('id_frecuencia');
+            
 
             $data = ['id_frecuencia' =>$REQUEST->getPost('id_frecuencia'),
             'lunes' =>(empty($REQUEST->getPost('lunes'))) ? 0 :$REQUEST->getPost('lunes'),
