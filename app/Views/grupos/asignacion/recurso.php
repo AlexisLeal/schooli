@@ -77,7 +77,7 @@
 
           <div class="espacioUno"></div>
             <!--<h4>Grupos</h4>-->
-              <h4>Asignación de Recursos y Recursos Asignadas.</h4>
+              <h4>Recursos Asignados.</h4>
               <div class="card">
                 <div class="card-body">
 
@@ -87,16 +87,20 @@
                 <i class="fa fa-arrow-circle-o-left fa-2x" aria-hidden="true"></i>
                 </a>
                 </h4>
+                <?php foreach(getGrupoRecursos($id_curso,$id_nivel) as $fila){ ?>
+                  <br>
+                  Nombre <?php echo $fila->nombre;?>
+
+                  <?php }?>
+
 
                 <hr class="linea"/>
 
-                <input type="hidden" name="id_grupo" value="<?php echo $id_grupo?>">
+               
                 <br/>
                 <br/>
                 <div class="text-center">
-                  <input type="submit" value="Asignar" name="submitRC" class="btn btn-primary btn-sm">
                 </div>
-              </form>
               <br/>
               <br/>
             

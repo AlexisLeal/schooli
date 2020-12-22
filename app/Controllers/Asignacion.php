@@ -36,10 +36,12 @@ class Asignacion extends BaseController{
         }
     }
 
-    public function recursos($id_grupo)
+    public function recursos($id_grupo,$id_curso,$id_nivel)
     {
         if($this->session->get('login') && $this->session->get('roll') == 4){
 
+            $data['id_curso'] = $id_curso;
+            $data['id_nivel'] = $id_nivel;
             $data['id_grupo'] = $id_grupo;
 
             return view('grupos/asignacion/recurso',$data);
@@ -86,17 +88,6 @@ class Asignacion extends BaseController{
             return redirect()->to(site_url('Home/salir'));
         }
 
-    }
-    public function deletedRecursos($id_grupo)
-    {
-        if($this->session->get('login') && $this->session->get('roll') == 4){
-
-            $data['id_grupo'] = $id_grupo;
-
-            return view('grupos/asignacion/eliminar/recurso',$data);
-        }else{
-            return redirect()->to(site_url('Home/salir'));
-        }
     }
 
     public function deletedEvaluacion($id_grupo)

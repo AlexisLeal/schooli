@@ -121,10 +121,7 @@
 
                     <tr>
                       <td width="40%">
-                        <a href="<?php echo site_url("Asignacion/recursos/$id_grupo"); ?>"> Recursos y asignacion de recursos </a>
-                      </td>
-                      <td width="40%">
-                        <a href="<?php echo site_url("Asignacion/deletedRecursos/$id_grupo"); ?>"> Eliminar Recursos </a>
+                        <a href="<?php echo site_url("Asignacion/recursos/$id_grupo/$id_curso/$id_nivel"); ?>"> Ver recursos del grupo </a>
                       </td>
                       <td width="40%">
                         <a href="<?php echo site_url("Asignacion/deletedEvaluacion/$id_grupo"); ?>"> Eliminar Evaluacion </a>

@@ -31,7 +31,7 @@ class Grupos extends BaseController{
         if($this->session->get('login') && $this->session->get('roll') == 4){
 
             $usermodel = new Grupos_model();
-            $usermodel->select('nombre,codigo_acceso,id_unidad_negocio,id_plantel,id_nivel');
+            $usermodel->select('nombre,codigo_acceso,id_unidad_negocio,id_plantel,id_nivel,id_curso');
             $usermodel->where('id',$id_grupo);
             $usermodel->where('deleted',0);
             $query = $usermodel->get();
@@ -44,6 +44,8 @@ class Grupos extends BaseController{
             $data['nivel'] = getnivelEspecifico($row->id_nivel);
             $data['id_plantel'] = $row->id_plantel;
             $data['id_unidad_negocio'] = $row->id_unidad_negocio;
+            $data['id_curso'] = $row->id_curso;
+            $data['id_nivel'] = $row->id_nivel;
             //Funcion ubicada en helper alumnos 	
             $data['unidad_negocio'] = getUnidadNegocioEspecifico($row->id_unidad_negocio);	
             $data['nombre_plantel'] = getPlanteEspecifico($row->id_plantel);
