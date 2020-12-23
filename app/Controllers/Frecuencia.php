@@ -197,7 +197,7 @@ class Frecuencia extends BaseController{
         if(isset($_POST['submitAVF'])){
             $REQUEST       = \Config\Services::request();
             $hoy           = date("Y-m-d H:i:s");
-            
+            $id_frecuencia = $REQUEST->getPost('id_frecuencia');
 
             $data = ['id_frecuencia' =>$REQUEST->getPost('id_frecuencia'),
             'lunes' =>(empty($REQUEST->getPost('lunes'))) ? 0 :$REQUEST->getPost('lunes'),
@@ -224,6 +224,20 @@ class Frecuencia extends BaseController{
                 return redirect()->to(site_url('Home/salir'));
            }
     }
+
+    public function vervaloresasistencia($id_frecuencia)
+	{
+        if($this->session->get('login') && $this->session->get('roll') == 4){
+
+            $data['page_title'] = "Frecuencias";
+            $data['id_frecuencia'] = $id_frecuencia;
+            return view('frecuencias/ver_valores_asistencia',$data);
+        }else{
+            return redirect()->to(site_url('Home/salir'));
+           }
+    
+    }
+    
 }
 
 
