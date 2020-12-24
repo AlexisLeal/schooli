@@ -13,7 +13,7 @@ class Ciclos extends BaseController{
         }else{
             return redirect()->to(site_url('Home/salir'));
         }
-	}
+	} 
 	
     public function agregarciclo()
 	{

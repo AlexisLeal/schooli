@@ -1,4 +1,11 @@
 <?php include(APPPATH . '/Views/include/header.php'); ?>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.3/daterangepicker.css" rel="stylesheet"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.3/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.3/daterangepicker.js"></script>
+
+
 
 <div class="espacioDos"></div>
 <header id="barra-superior">
@@ -99,12 +106,12 @@
               <div class="row">
                 <div class="col">
                   Fecha de inicio
-                  <input type="date" name="fechaInicio" id="fechaInicio" class="form-control form-control-sm" require="">
+                  <input type="date" name="fechaInicio" id="fechaInicio" value="<?php echo date("Y-m-d");?>" class="form-control form-control-sm" required="">
 
                 </div>
                 <div class="col">
                   Fecha Fin
-                  <input type="date" name="fechaFIn" id="fechaFIn" class="form-control form-control-sm" require="">
+                  <input type="date" name="fechaFIn" id="fechaFIn"  class="form-control form-control-sm" required="">
 
                   </select>
                 </div>
@@ -117,8 +124,12 @@
                 <label for="lblInstrucciones">Descripción</label>
                 <textarea class="form-control form-control-sm" name="descripcion" id="descripcion" rows="3" required=""></textarea>
               </div>
+              <div class="espacioUno"></div>
+              <div id="calendar-box"></div>
+
 
               <div class="espacioUno"></div>
+
               <button type="reset" class="btn btn-primary btn-sm">Limpiar</button>
 
               <button type="submit" name="submitCL" class="btn btn-primary btn-sm">Registrar</button>
@@ -190,3 +201,74 @@
 <div class="espacioDos"></div>
 <?php include(APPPATH . 'Views/include/footer.php'); ?>
 <?php include(APPPATH . 'Views/include/header-js.php'); ?>
+
+<script>
+//$('#fechaFIn').change(function(){
+  $(document).ready(function () {
+  //var FechaInicio = document.getElementById("fechaInicio").value;
+  //var FechaFin =  document.getElementById("fechaFIn").value;
+  //if (FechaInicio < FechaFin) {
+    $('#calendar-box').daterangepicker({
+        "locale": {
+            "format": "DD/MM/YYYY",
+            "separator": " - ",
+            "applyLabel": "Aplicar",
+            "cancelLabel": "Cancelar",
+            "fromLabel": "Desde",
+            "toLabel": "Hasta",
+            "customRangeLabel": "Custom",
+            "daysOfWeek": [
+                "Lu",
+                "Ma",
+                "Mi",
+                "Ju",
+                "Vi",
+                "Sa",
+                "Do"
+            ],
+            "monthNames": [
+                "Enero",
+                "Febrero",
+                "Marzo",
+                "Abril",
+                "Mayo",
+                "Junio",
+                "Julio",
+                "Agosto",
+                "Septiembre",
+                "Octubre",
+                "Noviembre",
+                "Diciembre"
+            ],
+            "firstDay": 0
+        },
+       // "startDate": FechaInicio,
+       // "endDate": FechaFin,
+        // opens: 'left'
+    }, function (start, end, label) {
+        $("#calendar-box").html(start.format('DD-MM-YYYY') + " <i class='fas fa-minus'></i> " + end.format('DD-MM-YYYY'));
+    });
+    
+    $('#calendar-box').data('daterangepicker').show();
+    $('#calendar-box').data('daterangepicker').hide = function () { };
+
+ 
+  //}
+  
+});
+
+function ComprobarRangoFechas(){
+  var Mensaje = '';
+  var FechaInicio = document.getElementById("fechaInicio").value;
+  var FechaFin = this.value;
+  if (FechaFin < FechaInicio) {
+    Mensaje = "La fecha final debe ser mayor a la fecha inicio";
+    this.setCustomValidity(Mensaje);
+  }
+  this.setCustomValidity(Mensaje);
+}
+
+  var FechaFin = document.querySelector("#fechaFIn");
+  FechaFin.addEventListener("invalid", ComprobarRangoFechas);
+  FechaFin.addEventListener("input", ComprobarRangoFechas);
+</script>
