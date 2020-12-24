@@ -91,13 +91,13 @@
                   <td><?php echo $fila->nombre ?></td>
                   <td><?php echo $fila->descripcion ?></td>
                   <td><?php echo $nombreModalidad->nombre ?></td>
-                  <td><?php echo $fila->lunes ?></td>
-                  <td><?php echo $fila->martes ?></td>
-                  <td><?php echo $fila->miercoles ?></td>
-                  <td><?php echo $fila->jueves ?></td>
-                  <td><?php echo $fila->viernes ?></td>
-                  <td><?php echo $fila->sabado ?></td>
-                  <td><?php echo $fila->domingo ?></td>
+                  <td><?php if($fila->lunes==1){echo "<i class='fa fa-check' aria-hidden='true'></i>";} ?></td>
+                  <td><?php if($fila->martes==1){echo "<i class='fa fa-check' aria-hidden='true'></i>";} ?></td>
+                  <td><?php if($fila->miercoles==1){echo "<i class='fa fa-check' aria-hidden='true'></i>";} ?></td>
+                  <td><?php if($fila->jueves==1){echo "<i class='fa fa-check' aria-hidden='true'></i>";} ?></td>
+                  <td><?php if($fila->viernes==1){echo "<i class='fa fa-check' aria-hidden='true'></i>";} ?></td>
+                  <td><?php if($fila->sabado==1){echo "<i class='fa fa-check' aria-hidden='true'></i>";} ?></td>
+                  <td><?php if($fila->domingo==1){echo "<i class='fa fa-check' aria-hidden='true'></i>";} ?></td>
                   <td><?php echo ($fila->estatus == 1) ? "Activo" : "Inactivo" ?></td>
                   <td class="text-center">
                     <a href="<?php echo site_url("/Frecuencia/verfrecuencia/$fila->id") ?>">
@@ -112,13 +112,18 @@
                   <?php
                   $resultadoValorAsistencia = getValorAsistenciaFrecuencia($fila->id);
                   if(empty($resultadoValorAsistencia)){
+                    
                     ?>
                     <a href="<?php echo site_url("/Frecuencia/asignarValorAsistenciaFrecuencia/$fila->id") ?>">
                       <i class="fa fa-plus-square-o" aria-hidden="true"></i>
                     </a>
                   <?php
                   }else{
-                    echo "Ya tiene valores asignados";
+                   ?>
+                    <a href="<?php echo site_url("/Frecuencia/vervaloresasistencia/$fila->id") ?>">
+                      Valores asignados
+                    </a>
+                    <?php
                   }
                   ?>
 

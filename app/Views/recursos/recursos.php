@@ -68,17 +68,25 @@
               </div>
             <?php
               $session->remove('mensaje-recurso');
-              $session->remove('mensaje-mensaje');
             }
             ?>
             <div class="espacioUno"></div>
-            Cargar un archivo:<br />
             <form action="<?php echo site_url('Recursos/agregarRecurso'); ?>" method="post" enctype="multipart/form-data">
+            Tipo de recurso:
+              <select class="form-control form-control-sm" name="nivel" id="nivel" required="">
+                <option value="">Seleccione una opción</option>
+                <option value=""></option>  
+                <option value=""></option>
+              </select>
+              <div class="espacioUno"></div>
+
+            Cargar un archivo:<br />
+            
               <div class="form-group">
                 <div id="cargar_recurso_archivo">
                   <input class="form-control form-control-sm" type="file" id="recurso_archivo" name="recurso_archivo" required="">
                   <div class="espacioUno"></div>
-                  curso
+                  Curso
                   <select class="form-control form-control-sm" name="curso" id="curso" required="">
                     <option value="">Seleccione una opción</option>
                     <?php foreach (CatalagoGetCursos() as $fila) { ?>
