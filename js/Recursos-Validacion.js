@@ -30,5 +30,8 @@ if(fileSize > 5000000){
 
 });
 
+function eleccion() {
+  alert ("Hola");
+}
 
-
+  

@@ -73,19 +73,40 @@
             <div class="espacioUno"></div>
             <form action="<?php echo site_url('Recursos/agregarRecurso'); ?>" method="post" enctype="multipart/form-data">
             Tipo de recurso:
-              <select class="form-control form-control-sm" name="nivel" id="nivel" required="">
+              <select class="form-control form-control-sm" name="tipoRecurso" onchange="eleccion();" id="tipoRecurso" required="">
                 <option value="">Seleccione una opción</option>
-                <option value=""></option>  
-                <option value=""></option>
+                <option value="1">Formulario</option>
+                <option value="2">Imagen</option>
+                <option value="3">Multimedia</option>
+                <option value="4">PDF</option>
               </select>
               <div class="espacioUno"></div>
 
-            Cargar un archivo:<br />
             
+            <style>
+            #contenidoTipoRecurso {
+              display:none;
+            }
+            #contenidoTipoRecursoFormulario {
+              display:none;
+            }
+            </style>
               <div class="form-group">
                 <div id="cargar_recurso_archivo">
-                  <input class="form-control form-control-sm" type="file" id="recurso_archivo" name="recurso_archivo" required="">
+                  
+                  <div id="contenidoTipoRecurso">
+                    Cargar un archivo:<br />
+                    <input class="form-control form-control-sm" type="file" id="recurso_archivo" name="recurso_archivo" required="">
+                  </div>
+                  <div id="contenidoTipoRecursoFormulario">
+                    Formulario:<br />
+                    <input class="form-control form-control-sm" type="text" name="test" id="test">
+                  </div>
                   <div class="espacioUno"></div>
+                  
+                  
+                  
+                  
                   Curso
                   <select class="form-control form-control-sm" name="curso" id="curso" required="">
                     <option value="">Seleccione una opción</option>
@@ -93,6 +114,9 @@
                       <option value="<?php echo $fila->id; ?>"><?php echo $fila->nombre; ?></option>
                     <?php } ?>
                   </select>
+
+
+
                   <div class="espacioUno"></div>
                   Nivel
                   <select class="form-control form-control-sm" name="nivel" id="nivel" required="">
