@@ -1,11 +1,4 @@
 <?php include(APPPATH . '/Views/include/header.php'); ?>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.3/daterangepicker.css" rel="stylesheet"/>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.3/moment.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.3/daterangepicker.js"></script>
-
-
 
 <div class="espacioDos"></div>
 <header id="barra-superior">
@@ -111,7 +104,7 @@
                 </div>
                 <div class="col">
                   Fecha Fin
-                  <input type="date" name="fechaFIn" id="fechaFIn"  class="form-control form-control-sm" required="">
+                  <input type="date" name="fechaFIn" id="fechaFIn" class="form-control form-control-sm" required="">
 
                   </select>
                 </div>
@@ -125,7 +118,7 @@
                 <textarea class="form-control form-control-sm" name="descripcion" id="descripcion" rows="3" required=""></textarea>
               </div>
               <div class="espacioUno"></div>
-              <div id="calendar-box"></div>
+              <div class="calendar-box"></div>
 
 
               <div class="espacioUno"></div>
@@ -201,19 +194,24 @@
 <div class="espacioDos"></div>
 <?php include(APPPATH . 'Views/include/footer.php'); ?>
 <?php include(APPPATH . 'Views/include/header-js.php'); ?>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.3/daterangepicker.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.3/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.3/daterangepicker.js"></script>
 
 <script>
-//$('#fechaFIn').change(function(){
-  $(document).ready(function () {
-  //var FechaInicio = document.getElementById("fechaInicio").value;
-  //var FechaFin =  document.getElementById("fechaFIn").value;
-  //if (FechaInicio < FechaFin) {
-    $('#calendar-box').daterangepicker({
+$('#fechaFIn').change(function(){
+  var FechaInicio = document.getElementById("fechaInicio").value;
+  var FechaFin =  document.getElementById("fechaFIn").value;
+  if (FechaInicio < FechaFin) {
+    var NuevaFechaInicio = FormatoFecha(FechaInicio);
+    var NuevaFechaFin = FormatoFecha(FechaFin);
+    $('.calendar-box').daterangepicker({
         "locale": {
             "format": "DD/MM/YYYY",
             "separator": " - ",
-            "applyLabel": "Aplicar",
-            "cancelLabel": "Cancelar",
+            "applyLabel": "",
+            "cancelLabel": "",
             "fromLabel": "Desde",
             "toLabel": "Hasta",
             "customRangeLabel": "Custom",
@@ -242,21 +240,22 @@
             ],
             "firstDay": 0
         },
-       // "startDate": FechaInicio,
-       // "endDate": FechaFin,
-        // opens: 'left'
+        "startDate": NuevaFechaInicio,
+        "endDate": NuevaFechaFin,
+        "minDate":NuevaFechaInicio,
+        "maxDate":NuevaFechaFin,
+          opens: 'left'
     }, function (start, end, label) {
-        $("#calendar-box").html(start.format('DD-MM-YYYY') + " <i class='fas fa-minus'></i> " + end.format('DD-MM-YYYY'));
+        $(".calendar-box").html(start.format('DD-MM-YYYY') + " <i class='fas fa-minus'></i> " + end.format('DD-MM-YYYY'));
     });
     
-    $('#calendar-box').data('daterangepicker').show();
-    $('#calendar-box').data('daterangepicker').hide = function () { };
+    $('.calendar-box').data('daterangepicker').show();
+    $('.calendar-box').data('daterangepicker').hide = function () { };
 
  
-  //}
+  }
   
 });
-
 function ComprobarRangoFechas(){
   var Mensaje = '';
   var FechaInicio = document.getElementById("fechaInicio").value;
@@ -267,8 +266,11 @@ function ComprobarRangoFechas(){
   }
   this.setCustomValidity(Mensaje);
 }
-
   var FechaFin = document.querySelector("#fechaFIn");
   FechaFin.addEventListener("invalid", ComprobarRangoFechas);
   FechaFin.addEventListener("input", ComprobarRangoFechas);
+
+function FormatoFecha(texto){
+  return texto.replace(/^(\d{4})-(\d{2})-(\d{2})$/g,'$3/$2/$1');
+}
 </script>
