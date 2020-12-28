@@ -118,7 +118,7 @@
                 <textarea class="form-control form-control-sm" name="descripcion" id="descripcion" rows="3" required=""></textarea>
               </div>
               <div class="espacioUno"></div>
-              <div class="calendar-box"></div>
+              <div class="calendar-box" id ="calendar-box" ></div>
 
 
               <div class="espacioUno"></div>
@@ -250,9 +250,13 @@ $('#fechaFIn').change(function(){
     });
     
     $('.calendar-box').data('daterangepicker').show();
-    $('.calendar-box').data('daterangepicker').hide = function () { };
+    $('.calendar-box').data('calendar-box').hide = function () { };
 
  
+  }else{
+    alert("entro");
+    document.getElementById("agregarAudioPregunta").innerHTML = "";
+    
   }
   
 });
