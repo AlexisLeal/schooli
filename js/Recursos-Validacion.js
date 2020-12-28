@@ -31,7 +31,23 @@ if(fileSize > 5000000){
 });
 
 function eleccion() {
-  alert ("Hola");
+  
+  let tipoRecurso = document.getElementById("tipoRecurso").value;
+  let contenidoTipoRecurso = document.getElementById("contenidoTipoRecurso");
+  let contenidoTipoRecursoFormulario = document.getElementById("contenidoTipoRecursoFormulario");
+  if(tipoRecurso==""){
+    contenidoTipoRecurso.style.display='none';
+    contenidoTipoRecursoFormulario.style.display='none';
+  }
+  if(tipoRecurso==1){
+    contenidoTipoRecurso.style.display='none';
+    contenidoTipoRecursoFormulario.style.display='block';
+  }
+  if(tipoRecurso==2 || tipoRecurso==3 || tipoRecurso==4){
+    contenidoTipoRecurso.style.display='block';
+    contenidoTipoRecursoFormulario.style.display='none';
+  }
+
 }
 
   
