@@ -98,6 +98,9 @@
                     Cargar un archivo:<br />
                     <input class="form-control form-control-sm" type="file" id="recurso_archivo" name="recurso_archivo" required="">
                   </div>
+
+
+                  
                   <div id="contenidoTipoRecursoFormulario">
                     Formulario:<br />
                     <input class="form-control form-control-sm" type="text" name="test" id="test">
