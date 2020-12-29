@@ -117,9 +117,10 @@
                 <label for="lblInstrucciones">Descripción</label>
                 <textarea class="form-control form-control-sm" name="descripcion" id="descripcion" rows="3" required=""></textarea>
               </div>
-              <div class="col">
-                  Numero de samanas
-                  <input type="text" name="No.Semanas" id="No.Semanas" class="form-control form-control-sm">
+              Numero de samanas
+              <div class="col" id="No.Semanas">
+                 
+                  <input type="text" name="No.Semanas" class="form-control form-control-sm">
                 </div>
               <div class="espacioUno"></div>
               <div class="calendar-box" id ="calendar-box" ></div>
@@ -296,16 +297,13 @@ function FormatoFecha(Texto){
   return Texto.replace(/^(\d{4})-(\d{2})-(\d{2})$/g,'$3/$2/$1');
 }
 
-function ObtenerNumeroSemanas(FechaInicio,FechaFinal){
+function ObtenerNumeroSemanas(FechaInicio,FechaFin){
   if(FechaInicio < FechaFin){
     alert('entra a ajax');
     $.ajax({
       type: "POST",
         url: "<?php echo site_url('Ciclos/AjaxCiclos'); ?>",
-        data: {
-          FechaInicio,
-          FechaFin
-        },
+        data: {FechaInicio,FechaFin},
         success: function(text) {
           document.getElementById("No.Semanas").innerHTML = "";
           $('#No.Semenas').append(text);
