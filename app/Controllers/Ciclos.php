@@ -1,5 +1,6 @@
 <?php namespace App\Controllers;
 use  App\Models\Ciclos_model;
+use \Datetime;
 
 class Ciclos extends BaseController{
 
@@ -153,12 +154,13 @@ class Ciclos extends BaseController{
 
     public function AjaxCiclos()
     {
-       $REQUEST = \Config\Services::request();
-        $FechaInicio = new DateTime ($REQUEST->getPost('FechaInicio'));
-        $FechaFin = new DateTime ($REQUEST->getPost('FechaFin'));
+        $REQUEST = \Config\Services::request();
+
+        $FechaInicio = new Datetime($REQUEST->getPost('FechaInicio'));
+        $FechaFin = new Datetime($REQUEST->getPost('FechaFin'));
         $Intervarlo = $FechaInicio->diff($FechaFin);
         $No_Semanas = floor($Intervarlo->format('%a')/7).'Semanas';
-
+     
         echo  "<input type=text id=No.Semanas class=form-control form-control-sm value= $No_Semanas>";
 
         
