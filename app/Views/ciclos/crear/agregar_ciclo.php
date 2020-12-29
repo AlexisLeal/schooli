@@ -123,7 +123,7 @@
                   <input type="text" name="No.Semanas" class="form-control form-control-sm">
                 </div>
               <div class="espacioUno"></div>
-              <div class="calendar-box" id ="calendar-box" ></div>
+              <div class="calendar-box" id="calendar-box"></div>
 
 
               <div class="espacioUno"></div>

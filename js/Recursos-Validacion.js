@@ -14,12 +14,8 @@ if(fileSize > 5000000){
     case 'docx':
     case 'xlsx':
     case 'pdf':
-    case 'zip':
-    case 'rar':
     case 'jpg':
     case 'png':
-    case 'mp3':
-    case 'mp4':
      break;
     default:
       alert('El la imagen no tiene la extension correcta ');
