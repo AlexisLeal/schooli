@@ -117,6 +117,10 @@
                 <label for="lblInstrucciones">Descripción</label>
                 <textarea class="form-control form-control-sm" name="descripcion" id="descripcion" rows="3" required=""></textarea>
               </div>
+              <div class="col">
+                  Numero de samanas
+                  <input type="text" name="No.Semanas" id="No.Semanas" class="form-control form-control-sm">
+                </div>
               <div class="espacioUno"></div>
               <div class="calendar-box" id="calendar-box"></div>
 
@@ -203,6 +207,35 @@
 $('#fechaFIn').change(function(){
   var FechaInicio = document.getElementById("fechaInicio").value;
   var FechaFin =  document.getElementById("fechaFIn").value;
+  ObtenerNumeroSemanas(FechaInicio,FechaFin);
+  MostraCalendario(FechaInicio,FechaFin);
+  
+  
+});
+
+$('#fechaInicio').change(function(){
+  var FechaInicio = document.getElementById("fechaInicio").value;
+  var FechaFin =  document.getElementById("fechaFIn").value;
+  MostraCalendario(FechaInicio,FechaFin);
+  ObtenerNumeroSemanas(FechaInicio,FechaFin);
+});
+
+
+function ComprobarRangoFechas(){
+  var Mensaje = '';
+  var FechaInicio = document.getElementById("fechaInicio").value;
+  var FechaFin = this.value;
+  if (FechaFin < FechaInicio) {
+    Mensaje = "La fecha final debe ser mayor a la fecha inicio";
+    this.setCustomValidity(Mensaje);
+  }
+  this.setCustomValidity(Mensaje);
+}
+  var FechaFin = document.querySelector("#fechaFIn");
+  FechaFin.addEventListener("invalid", ComprobarRangoFechas);
+  FechaFin.addEventListener("input", ComprobarRangoFechas);
+
+function MostraCalendario(FechaInicio,FechaFin){
   if (FechaInicio < FechaFin) {
     var NuevaFechaInicio = FormatoFecha(FechaInicio);
     var NuevaFechaFin = FormatoFecha(FechaFin);
@@ -251,32 +284,39 @@ $('#fechaFIn').change(function(){
     
     $('.calendar-box').data('daterangepicker').show();
     $('.calendar-box').data('daterangepicker').hide = function () { };
-    
 
  
   }else{
-    alert("entro");
-    document.getElementById("calendar-box").innerHTML = "";
+    $('#calendar-box').data('daterangepicker').remove();
     
-    
+  }
+}
+
+function FormatoFecha(Texto){
+  return Texto.replace(/^(\d{4})-(\d{2})-(\d{2})$/g,'$3/$2/$1');
+}
+
+function ObtenerNumeroSemanas(FechaInicio,FechaFinal){
+  if(FechaInicio < FechaFin){
+    alert('entra a ajax');
+    $.ajax({
+      type: "POST",
+        url: "<?php echo site_url('Ciclos/AjaxCiclos'); ?>",
+        data: {
+          FechaInicio,
+          FechaFin
+        },
+        success: function(text) {
+          document.getElementById("No.Semanas").innerHTML = "";
+          $('#No.Semenas').append(text);
+        }
+    });
+
+  }else{
+    //Se resetea a cero 
   }
   
-});
-function ComprobarRangoFechas(){
-  var Mensaje = '';
-  var FechaInicio = document.getElementById("fechaInicio").value;
-  var FechaFin = this.value;
-  if (FechaFin < FechaInicio) {
-    Mensaje = "La fecha final debe ser mayor a la fecha inicio";
-    this.setCustomValidity(Mensaje);
-  }
-  this.setCustomValidity(Mensaje);
-}
-  var FechaFin = document.querySelector("#fechaFIn");
-  FechaFin.addEventListener("invalid", ComprobarRangoFechas);
-  FechaFin.addEventListener("input", ComprobarRangoFechas);
 
-function FormatoFecha(texto){
-  return texto.replace(/^(\d{4})-(\d{2})-(\d{2})$/g,'$3/$2/$1');
 }
+
 </script>
