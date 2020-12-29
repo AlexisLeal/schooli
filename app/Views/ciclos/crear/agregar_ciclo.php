@@ -203,6 +203,31 @@
 $('#fechaFIn').change(function(){
   var FechaInicio = document.getElementById("fechaInicio").value;
   var FechaFin =  document.getElementById("fechaFIn").value;
+  MostraCalendario(FechaInicio,FechaFin);
+});
+
+$('#fechaInicio').change(function(){
+  var FechaInicio = document.getElementById("fechaInicio").value;
+  var FechaFin =  document.getElementById("fechaFIn").value;
+  MostraCalendario(FechaInicio,FechaFin);
+});
+
+
+function ComprobarRangoFechas(){
+  var Mensaje = '';
+  var FechaInicio = document.getElementById("fechaInicio").value;
+  var FechaFin = this.value;
+  if (FechaFin < FechaInicio) {
+    Mensaje = "La fecha final debe ser mayor a la fecha inicio";
+    this.setCustomValidity(Mensaje);
+  }
+  this.setCustomValidity(Mensaje);
+}
+  var FechaFin = document.querySelector("#fechaFIn");
+  FechaFin.addEventListener("invalid", ComprobarRangoFechas);
+  FechaFin.addEventListener("input", ComprobarRangoFechas);
+
+function MostraCalendario(FechaInicio,FechaFin){
   if (FechaInicio < FechaFin) {
     var NuevaFechaInicio = FormatoFecha(FechaInicio);
     var NuevaFechaFin = FormatoFecha(FechaFin);
@@ -250,29 +275,14 @@ $('#fechaFIn').change(function(){
     });
     
     $('.calendar-box').data('daterangepicker').show();
-    $('.calendar-box').data('calendar-box').hide = function () { };
+    $('.calendar-box').data('daterangepicker').hide = function () { };
 
  
   }else{
-    alert("entro");
-    document.getElementById("agregarAudioPregunta").innerHTML = "";
+    $('#calendar-box').data('daterangepicker').remove();
     
   }
-  
-});
-function ComprobarRangoFechas(){
-  var Mensaje = '';
-  var FechaInicio = document.getElementById("fechaInicio").value;
-  var FechaFin = this.value;
-  if (FechaFin < FechaInicio) {
-    Mensaje = "La fecha final debe ser mayor a la fecha inicio";
-    this.setCustomValidity(Mensaje);
-  }
-  this.setCustomValidity(Mensaje);
 }
-  var FechaFin = document.querySelector("#fechaFIn");
-  FechaFin.addEventListener("invalid", ComprobarRangoFechas);
-  FechaFin.addEventListener("input", ComprobarRangoFechas);
 
 function FormatoFecha(texto){
   return texto.replace(/^(\d{4})-(\d{2})-(\d{2})$/g,'$3/$2/$1');
