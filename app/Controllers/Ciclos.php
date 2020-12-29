@@ -151,4 +151,15 @@ class Ciclos extends BaseController{
        }
     }
 
+    public function AjaxCiclos()
+    {
+        $REQUEST = \Config\Services::request();
+        $FechaInicio = new DateTime ($REQUEST->getPost('FechaInicio'));
+        $FechaFin = new DateTime ($REQUEST->getPost('FechaFin'));
+        $Intervarlo = $FechaInicio->diff($FechaFin);
+
+        echo floor($Intervarlo->format('%a')/7).'Semanas';
+        
+    }
+
 }
