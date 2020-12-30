@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use  App\Models\Recursos_model;
+use  App\Models\Cursos_model;
 
 class Recursos extends BaseController
 {
@@ -109,5 +110,40 @@ class Recursos extends BaseController
         } else {
             return redirect()->to(site_url('Home/salir'));
         }
+    }
+
+    public function AjaxNiveles(){
+        $REQUEST = \Config\Services::request();
+        $Id_Curso = $REQUEST->getPost('Id_Curso');
+        $UserModel = new Cursos_model($db);
+        $UserModel->select('num_niveles');
+        $UserModel->where('id',$Id_Curso);
+        $UserModel->where('deleted',0);
+        $Query = $UserModel->get();
+        $Resultado = $Query->getRow();
+        echo "<option value=''>Seleccione una opción</option>";
+        for($i=1;$i<=$Resultado;$i++){
+            echo "<option value=$i>$i</option>";
+        }
+
+        
+    }
+
+    public function AjaxSesiones(){
+        $REQUEST = \Config\Services::request();
+        $Id_Curso = $REQUEST->getPost('Id_Curso');
+        $UserModel = new Cursos_model($db);
+        $UserModel->select('total_dias_laborales');
+        $UserModel->where('id',$Id_Curso);
+        $UserModel->where('deleted',0);
+        $Query = $UserModel->get();
+        $Resultado = $Query->getRow();
+        echo "<option value=''>Seleccione una opción</option>";
+        for($i=1;$i<=$Resultado;$i++){
+            echo "<option value=$i>Session $i</option>";
+        }
+
+
+        
     }
 }

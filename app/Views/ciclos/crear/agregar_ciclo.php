@@ -318,7 +318,8 @@ function ObtenerNumeroSemanas(FechaInicio,FechaFin){
     });
 
   }else{
-    //Se resetea a cero 
+    document.getElementById("No.Semanas").innerHTML = "";
+    document.getElementById("No.Semanas").innerHTML = "Fecha invalidad";
   }
   
 

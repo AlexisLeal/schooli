@@ -13,7 +13,7 @@ class Cursos_model extends Model
     protected $useSoftDeletes = true;
 
     #Aqui ponemos el nombre de las columnas que vamos a modifcar
-    protected $allowedFields = ['nombre','num_niveles','id_frecuencia','comentarios',
+    protected $allowedFields = ['nombre','num_niveles','total_dias_laborales','id_frecuencia','comentarios',
     'fecha_creacion','fecha_ultimo_cambio','estatus'];
 
     protected $useTimestamps = false;

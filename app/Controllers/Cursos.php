@@ -72,6 +72,7 @@ class Cursos extends BaseController{
 
                 $data = ['nombre'=>$REQUEST->getPost('nombre'),
                 'num_niveles'=>$REQUEST->getPost('numero_niveles'),
+                'total_dias_laborales'=>$REQUEST->getPost('dias'),
                 'id_frecuencia'=>$REQUEST->getPost('frecuencia'),
                 'comentarios'=>$REQUEST->getPost('descripcion'),
                 'fecha_creacion'=>$hoy,

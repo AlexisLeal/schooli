@@ -83,7 +83,7 @@
               <div class="row">
                 <div class="col">
                   Nombre
-                  <input type="text" name="nombre" id="nombre" class="form-control form-control-sm">
+                  <input type="text" name="nombre" id="nombre" class="form-control form-control-sm" required="">
                 </div>
                 <div class="col">
                   Estatus
@@ -107,6 +107,10 @@
                       <option value="<?php echo $i ?>"><?php echo $i ?></option>
                     <?php } ?>
                   </select>
+                </div>
+                <div class="col">
+                  Total de dias laborales
+                  <input type="number" name="dias" id="dias" class="form-control form-control-sm" required="" min=1>
                 </div>
                 <div class="col">
                   Frecuencia

@@ -263,3 +263,58 @@
 <?php include(APPPATH . '/Views/include/header-js.php'); ?>
 <script src="<?php echo base_url('js/Recursos-Validacion.js'); ?>"></script>
 <?php include(APPPATH . 'Views/include/footer.php'); ?>
+
+<script>
+$('#curso').change(function(){
+ var Id_Curso = document.getElementById('curso').value;
+ if(Id_Curso != ''){
+   
+  ObtenerTodosNivelesPorCurso(Id_Curso);
+
+  ObtenerTodasSesionesPorCurso(Id_Curso);
+
+
+  }
+});
+
+
+function ObtenerTodosNivelesPorCurso(Id_Curso){
+  $.ajax({
+    type: "POST",
+    url: "<?php echo site_url('Recursos/AjaxNiveles'); ?>",
+    data: {Id_Curso},
+    success: function(text) {
+      document.getElementById("nivel").innerHTML = "";
+      $('#nivel').append(text);
+
+    }
+    });
+
+}
+
+function ObtenerTodasSesionesPorCurso(Id_Curso){
+  $.ajax({
+    type: "POST",
+    url: "<?php echo site_url('Recursos/AjaxSesiones'); ?>",
+    data: {Id_Curso},
+    success: function(text) {
+      document.getElementById("leccion").innerHTML = "";
+      $('#leccion').append(text);
+
+    }
+    });
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+</script>

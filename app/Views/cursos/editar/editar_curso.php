@@ -118,6 +118,12 @@
                 </div>
               </div>
 
+              <div class="col">
+                  Total de dias laborales
+                  <input type="number" name="dias" id="dias" class="form-control form-control-sm" required="" min=1>
+                </div>
+                <div class="col">
+
 
               <div class="espacioUno"></div>
 
