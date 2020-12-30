@@ -159,9 +159,11 @@ class Ciclos extends BaseController{
         $FechaInicio = new Datetime($REQUEST->getPost('FechaInicio'));
         $FechaFin = new Datetime($REQUEST->getPost('FechaFin'));
         $Intervarlo = $FechaInicio->diff($FechaFin);
-        $No_Semanas = floor($Intervarlo->format('%a')/7).'Semanas';
+        $No_Semanas = floor($Intervarlo->format('%a')/7);
+        $No_dias = $Intervarlo->format('%a') % 7;
+        $Rango = $No_Semanas.'Semanascon'.$No_dias.'dias';
      
-        echo  "<input type=text id=No.Semanas class=form-control form-control-sm value= $No_Semanas>";
+        echo  "<input type=text id=No.Semanas class=form-control form-control-sm value= $Rango>";
 
         
         

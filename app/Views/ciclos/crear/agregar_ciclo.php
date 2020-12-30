@@ -306,7 +306,7 @@ function ObtenerNumeroSemanas(FechaInicio,FechaFin){
         data: {FechaInicio,FechaFin},
         success: function(text) {
           document.getElementById("No.Semanas").innerHTML = "";
-          $('#No.Semanas').append(text);
+          document.getElementById("No.Semanas").innerHTML = text;
         }
     });
 
