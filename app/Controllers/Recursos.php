@@ -122,8 +122,8 @@ class Recursos extends BaseController
         $Query = $UserModel->get();
         $Resultado = $Query->getRow();
         echo "<option value=''>Seleccione una opción</option>";
-        for($i=1;$i<=$Resultado;$i++){
-            echo "<option value=$i>$i</option>";
+        for($i=1;$i<=$Resultado->num_niveles;$i++){
+          echo "<option value=$i>$i</option>";
         }
 
         
@@ -139,8 +139,8 @@ class Recursos extends BaseController
         $Query = $UserModel->get();
         $Resultado = $Query->getRow();
         echo "<option value=''>Seleccione una opción</option>";
-        for($i=1;$i<=$Resultado;$i++){
-            echo "<option value=$i>Session $i</option>";
+        for($i=1;$i<=$Resultado->total_dias_laborales;$i++){
+            echo "<option value=$i>Sesion $i</option>";
         }
 
 

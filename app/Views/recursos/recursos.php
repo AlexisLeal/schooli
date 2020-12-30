@@ -124,17 +124,11 @@
                   Nivel
                   <select class="form-control form-control-sm" name="nivel" id="nivel" required="">
                     <option value="">Seleccione una opción</option>
-                    <?php foreach (getNivel() as $fila) { ?>
-                      <option value="<?php echo $fila->id; ?>"><?php echo $fila->nombre; ?></option>
-                    <?php } ?>
                   </select>
                   <div class="espacioUno"></div>
                   Leccion
                   <select class="form-control form-control-sm" name="leccion" id="leccion" required="">
-                    <option value="">Seleccione una opción</option>
-                    <?php foreach (getleccion() as $fila) { ?>
-                      <option value="<?php echo $fila->id; ?>"><?php echo $fila->nombre; ?></option>
-                    <?php } ?>
+                  <option value="">Seleccione una opción</option>
                   </select>
 
                   <div class="espacioUno"></div>
@@ -268,7 +262,7 @@
 $('#curso').change(function(){
  var Id_Curso = document.getElementById('curso').value;
  if(Id_Curso != ''){
-   
+
   ObtenerTodosNivelesPorCurso(Id_Curso);
 
   ObtenerTodasSesionesPorCurso(Id_Curso);
