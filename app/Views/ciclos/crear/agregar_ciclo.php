@@ -305,8 +305,15 @@ function ObtenerNumeroSemanas(FechaInicio,FechaFin){
         url: "<?php echo site_url('Ciclos/AjaxCiclos'); ?>",
         data: {FechaInicio,FechaFin},
         success: function(text) {
+          
+          var contenido = text.split('-');
+          var semanas = contenido[0];
+          var dias    = contenido[1]
+          var datos   = "Numero de semanas "+ semanas + " Numero de dias " + dias; 
+          //alert(text);
+          //alert();
           document.getElementById("No.Semanas").innerHTML = "";
-          document.getElementById("No.Semanas").innerHTML = text;
+          document.getElementById("No.Semanas").innerHTML = datos;
         }
     });
 

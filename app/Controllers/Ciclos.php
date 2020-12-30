@@ -161,9 +161,9 @@ class Ciclos extends BaseController{
         $Intervarlo = $FechaInicio->diff($FechaFin);
         $No_Semanas = floor($Intervarlo->format('%a')/7);
         $No_dias = $Intervarlo->format('%a') % 7;
-        $Rango = $No_Semanas.'Semanascon'.$No_dias.'dias';
-     
-        echo  "<input type=text id=No.Semanas class=form-control form-control-sm value= $Rango>";
+        $Rango = $No_Semanas.'-'.$No_dias;
+        echo $Rango;
+        //echo  "<input type=text id=No.Semanas class=form-control form-control-sm value= $Rango>";
 
         
         
