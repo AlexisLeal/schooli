@@ -86,9 +86,13 @@
             <style>
             #contenidoTipoRecurso {
               display:none;
+              background-color:#D5DBDB;
+              padding:20px 5px 20px 20px;
             }
             #contenidoTipoRecursoFormulario {
               display:none;
+              background-color:#FAE5D3;
+              padding:20px 5px 20px 20px;
             }
             </style>
               <div class="form-group">
@@ -102,9 +106,29 @@
 
                   
                   <div id="contenidoTipoRecursoFormulario">
-                    Formulario:<br />
+                  <h3>Formulario</h3><br />
+                  Tipo de Formulario:
+                  <select class="form-control form-control-sm" name="tipoFormulario" id="tipoFormulario" required="">
+                    <option value="">Seleccione una opción</option>
+                      <option value="1">Ejercicio</option>
+                      <option value="2">Examen</option>
+                      <option value="3">Otro</option>
+                  </select>
+
+                  Tipo de applicacion:
+                  <select class="form-control form-control-sm" name="tipoFormulario" id="tipoFormulario" required="">
+                    <option value="">Seleccione una opción</option>
+                      <option value="1">Normal</option>
+                      <option value="2">Recuperación</option>
+                  </select>
+
+                  <!-- Agregar las preguntaas, solo tipo abiertas-->
+                  <br/>
+                  Agregar pregunta:<br/>
+                  <br/>
                     <input class="form-control form-control-sm" type="text" name="test" id="test">
                   </div>
+                  <br/>
                   <div class="espacioUno"></div>
                   
                   
@@ -264,9 +288,7 @@ $('#curso').change(function(){
  if(Id_Curso != ''){
 
   ObtenerTodosNivelesPorCurso(Id_Curso);
-
   ObtenerTodasSesionesPorCurso(Id_Curso);
-
 
   }
 });
