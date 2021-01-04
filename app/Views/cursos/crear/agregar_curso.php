@@ -123,7 +123,7 @@
                 </div>
                 <div class="col">
                   Valor Total de Ejercicios
-                  <input type="number" name="valor_total_ejercicios" id="valor_total_ejercicios" class="form-control form-control-sm" required="" min = 0>
+                  <input type="text" name="valor_total_ejercicios" id="valor_total_ejercicios" class="form-control form-control-sm" required>
                 </div>
                 <div class="col">
                   Valor Total de Examenes 
@@ -135,7 +135,7 @@
                 </div>
                 <div class="col">
                   Total de puntos 
-                  <input type="text" name="valor_total" id="valor_total" class="form-control form-control-sm" required="" max=100>
+                  <input type="text" name="valor_total" id="valor_total" class="form-control form-control-sm" required>
                 </div>
               </div>
 
@@ -242,24 +242,25 @@ function ObtenerTotalPuntos(valor1,valor2,valor3){
 
       });
 }
-
-$('#valor_total_ejercicios').keydown(function(){
+    
+$('#valor_total_ejercicios').keyup(function(){
   alert('Hola');
   var ValorTotalEjercicios = document.getElementById('valor_total_ejercicios').value;
-  var ValorTotalExamanes = document.getElementById('valor_total_examanes').value;
-  var ValorTotalAsistencia = document.getElementById('valor_total_asistencia').value;
-  
+  alert(ValorTotalEjercicios);
+  var ValorTotalExamanes = 1;//document.getElementById('valor_total_examanes').value;
+  var ValorTotalAsistencia = 1;//document.getElementById('valor_total_asistencia').value;
   ObtenerTotalPuntos(ValorTotalEjercicios,ValorTotalExamanes,ValorTotalAsistencia);
-
-
 });
 
+
+/*
 $('#valor_total_examanes').keypress(function(e){
  
 });
 $('#valor_total_asistencia').keypress(function(e){
 
 });
+*/
 
 
 
