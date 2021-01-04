@@ -126,8 +126,8 @@
                     <option value="">Seleccione una opción</option>
                   </select>
                   <div class="espacioUno"></div>
-                  Leccion
-                  <select class="form-control form-control-sm" name="leccion" id="leccion" required="">
+                  Sesión
+                  <select class="form-control form-control-sm" name="sesion" id="sesion" required="">
                   <option value="">Seleccione una opción</option>
                   </select>
 
@@ -292,8 +292,8 @@ function ObtenerTodasSesionesPorCurso(Id_Curso){
     url: "<?php echo site_url('Recursos/AjaxSesiones'); ?>",
     data: {Id_Curso},
     success: function(text) {
-      document.getElementById("leccion").innerHTML = "";
-      $('#leccion').append(text);
+      document.getElementById("sesion").innerHTML = "";
+      $('#sesion').append(text);
 
     }
     });
