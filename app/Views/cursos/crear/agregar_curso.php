@@ -121,6 +121,22 @@
                     <?php } ?>
                   </select>
                 </div>
+                <div class="col">
+                  Valor Total de Ejercicios
+                  <input type="number" name="valor_total_ejercicios" id="valor_total_ejercicios" class="form-control form-control-sm" required="" min = 0>
+                </div>
+                <div class="col">
+                  Valor Totas de Examenes 
+                  <input type="number" name="valor_total_examanes" id="valor_total_examanes" class="form-control form-control-sm" required="" min = 0>
+                </div>
+                <div class="col">
+                  Valor Total de la asistencia 
+                  <input type="number" name="valor_total_asistencia" id="valor_total_asistencia" class="form-control form-control-sm" required="" min=0>
+                </div>
+                <div class="col">
+                  Total de puntos 
+                  <input type="number" name="" id="valor_total" class="form-control form-control-sm" required="" max=100>
+                </div>
               </div>
 
 
@@ -208,3 +224,29 @@
 <div class="espacioDos"></div>
 <?php include(APPPATH . 'Views/include/footer.php'); ?>
 <?php include(APPPATH . 'Views/include/header-js.php'); ?>
+
+<script>
+  
+$('#valor_total_ejercicios').change(function(){
+  alert('Hola');
+  var ValorTotalEjercicios = document.getElementById('valor_total_ejercicios').value;
+ // var ValorTotalExamanes = document.getElementById('valor_total_examanes').value;
+  //var ValorTotalAsistencia = document.getElementById('valor_total_asistencia').value;
+  //var TotalPuntos = ValorTotalEjercicios + ValorTotalExamanes + ValorTotalAsistencia;
+
+  //document.getElementById('valor_total').value = ValorTotalEjercicios;
+  //Estafallando
+
+
+});
+
+$('#valor_total_examanes').keypress(function(e){
+ 
+});
+$('#valor_total_asistencia').keypress(function(e){
+
+});
+
+
+
+</script>
