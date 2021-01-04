@@ -123,19 +123,27 @@
                 </div>
                 <div class="col">
                   Valor Total de Ejercicios
-                  <input type="text" name="valor_total_ejercicios" id="valor_total_ejercicios" class="form-control form-control-sm" required>
+                  <input type="number" name="valor_total_ejercicios" id="valor_total_ejercicios" class="form-control form-control-sm" required min = 0>
                 </div>
                 <div class="col">
                   Valor Total de Examenes 
-                  <input type="number" name="valor_total_examanes" id="valor_total_examanes" class="form-control form-control-sm" required="" min = 0>
+                  <input type="number" name="valor_total_examanes" id="valor_total_examanes" class="form-control form-control-sm" required min = 0>
                 </div>
                 <div class="col">
                   Valor Total de la asistencia 
-                  <input type="number" name="valor_total_asistencia" id="valor_total_asistencia" class="form-control form-control-sm" required="" min=0>
+                  <input type="number" name="valor_total_asistencia" id="valor_total_asistencia" class="form-control form-control-sm" required min=0>
                 </div>
                 <div class="col">
                   Total de puntos 
-                  <input type="text" name="valor_total" id="valor_total" class="form-control form-control-sm" required>
+                  <input type="number" name="valor_total" id="valor_total" class="form-control form-control-sm" required max = 100 disabled>
+                </div>
+                <div class="col">
+                  Numero de ejericios
+                  <input type="number" name="num_ejercicios" id="num_ejercicios" class="form-control form-control-sm" required min=0>
+                </div>
+                <div class="col">
+                  Numero de examenes
+                  <input type="number" name="num_examenes" id="num_examenes" class="form-control form-control-sm" required min=0>
                 </div>
               </div>
 
@@ -226,42 +234,52 @@
 <?php include(APPPATH . 'Views/include/header-js.php'); ?>
 
 <script>
-function ObtenerTotalPuntos(valor1,valor2,valor3){
-  $.ajax({
-        type: "POST",
-        url: "<?php echo site_url('Cursos/AjaxObtenerTotalPuntos'); ?>",
-        data: {
-          valor1,
-          valor2,
-          valor3
-        },
-        success: function(result) {
-          document.getElementById('valor_total').value = result;
-         
-        }
-
-      });
-}
-    
 $('#valor_total_ejercicios').keyup(function(){
-  alert('Hola');
-  var ValorTotalEjercicios = document.getElementById('valor_total_ejercicios').value;
-  alert(ValorTotalEjercicios);
-  var ValorTotalExamanes = 1;//document.getElementById('valor_total_examanes').value;
-  var ValorTotalAsistencia = 1;//document.getElementById('valor_total_asistencia').value;
-  ObtenerTotalPuntos(ValorTotalEjercicios,ValorTotalExamanes,ValorTotalAsistencia);
+  ValidacionCamposPonderacionyTotalPuntos();
+  
 });
 
+$('#valor_total_examanes').keyup(function(){
+  ValidacionCamposPonderacionyTotalPuntos();
 
-/*
-$('#valor_total_examanes').keypress(function(e){
  
 });
-$('#valor_total_asistencia').keypress(function(e){
+$('#valor_total_asistencia').keyup(function(){
+  ValidacionCamposPonderacionyTotalPuntos();
 
 });
-*/
 
+
+function ObtenerTotalPuntos(valor1,valor2,valor3){
+
+return valor1+valor2+valor3;
+}
+
+function ValidacionCamposPonderacionyTotalPuntos(){
+  if(document.getElementById('valor_total_ejercicios').value == ""){
+    var ValorTotalEjercicios = 0;
+
+  }else{
+    var ValorTotalEjercicios = parseInt(document.getElementById('valor_total_ejercicios').value);
+
+  }
+
+  if(document.getElementById('valor_total_examanes').value == ""){
+    var ValorTotalExamanes = 0;
+
+  }else{
+    var ValorTotalExamanes = parseInt(document.getElementById('valor_total_examanes').value);
+
+  }
+  if(document.getElementById('valor_total_asistencia').value == ""){
+    var ValorTotalAsistencia = 0;
+
+  }else{
+    var ValorTotalAsistencia = parseInt(document.getElementById('valor_total_asistencia').value);
+
+  }
+  document.getElementById('valor_total').value = ObtenerTotalPuntos(ValorTotalEjercicios,ValorTotalExamanes,ValorTotalAsistencia);
+}
 
 
 

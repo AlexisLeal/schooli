@@ -74,6 +74,11 @@ class Cursos extends BaseController{
                 'num_niveles'=>$REQUEST->getPost('numero_niveles'),
                 'total_dias_laborales'=>$REQUEST->getPost('dias'),
                 'id_frecuencia'=>$REQUEST->getPost('frecuencia'),
+                'num_examenes'=>$REQUEST->getPost('num_examenes'),
+                'num_ejercicios'=>$REQUEST->getPost('num_ejercicios'),
+                'valor_asistencia'=>$REQUEST->getPost('valor_total_asistencia'),
+                'valor_ejercicios'=>$REQUEST->getPost('valor_total_ejercicios'),
+                'valor_examenes'=>$REQUEST->getPost('valor_total_examanes'),
                 'comentarios'=>$REQUEST->getPost('descripcion'),
                 'fecha_creacion'=>$hoy,
                 'fecha_ultimo_cambio'=>$hoy,
@@ -147,18 +152,6 @@ class Cursos extends BaseController{
             return redirect()->to(site_url('Home/salir'));
            }
     }
-
-    public function AjaxObtenerTotalPuntos()
-    {
-        $REQUEST = \Config\Services::request();
-        $valor1 = $REQUEST->getPost('valor1');
-        $valor2 = $REQUEST->getPost('valor2');
-        $valor3 = $REQUEST->getPost('valor3');
-
-        return $valor1.'-'.$valor2.'-'.$valor3;
-
-    }
-
 
 
 }
