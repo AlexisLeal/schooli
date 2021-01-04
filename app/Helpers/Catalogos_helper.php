@@ -203,4 +203,41 @@ function getValorAsistenciaFrecuencia($id_frecuencia)
     $row = $resultado->getRow();
     return($row);
 }
+
+function getTipoFormularioRecursos()
+{
+    $db = \Config\Database::connect();
+    $usermodel = $db->table('tipo_recurso_evaluacion');
+    $usermodel->select('id,nombre');
+    $usermodel->where('deleted',0);
+    $query = $usermodel->get();
+    $resultado = $query->getResult();
+    return($resultado);
+
+}
+function getCategoriaEvaluacionRecursos()
+{
+    $db = \Config\Database::connect();
+    $usermodel = $db->table('categoria_recurso_evaluacion');
+    $usermodel->select('id,nombre');
+    $usermodel->where('deleted',0);
+    $query = $usermodel->get();
+    $resultado = $query->getResult();
+    return($resultado);
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ?>

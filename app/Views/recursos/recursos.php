@@ -110,16 +110,19 @@
                   Tipo de Formulario:
                   <select class="form-control form-control-sm" name="tipoFormulario" id="tipoFormulario" required="">
                     <option value="">Seleccione una opción</option>
-                      <option value="1">Ejercicio</option>
-                      <option value="2">Examen</option>
-                      <option value="3">Otro</option>
+                    <?php foreach(getTipoFormularioRecursos() as $fila){?>
+                      <option value=<?php echo $fila->id?>><?php echo $fila->nombre ?></option>
+                     
+                      <?php }?>
                   </select>
 
                   Tipo de applicacion:
-                  <select class="form-control form-control-sm" name="tipoFormulario" id="tipoFormulario" required="">
+                  <select class="form-control form-control-sm" name="tipocategoriaevaluacion" id="tipocategoriaevaluacion" required="">
                     <option value="">Seleccione una opción</option>
-                      <option value="1">Normal</option>
-                      <option value="2">Recuperación</option>
+                    <?php foreach(getCategoriaEvaluacionRecursos() as $fila){?>
+                      <option value=<?php echo $fila->id?>><?php echo $fila->nombre ?></option>
+                     
+                      <?php }?>
                   </select>
 
                   <!-- Agregar las preguntaas, solo tipo abiertas-->
