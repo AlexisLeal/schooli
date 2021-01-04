@@ -148,6 +148,17 @@ class Cursos extends BaseController{
            }
     }
 
+    public function AjaxObtenerTotalPuntos()
+    {
+        $REQUEST = \Config\Services::request();
+        $valor1 = $REQUEST->getPost('valor1');
+        $valor2 = $REQUEST->getPost('valor2');
+        $valor3 = $REQUEST->getPost('valor3');
+
+        return $valor1.'-'.$valor2.'-'.$valor3;
+
+    }
+
 
 
 }

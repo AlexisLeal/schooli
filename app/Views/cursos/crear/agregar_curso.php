@@ -126,7 +126,7 @@
                   <input type="number" name="valor_total_ejercicios" id="valor_total_ejercicios" class="form-control form-control-sm" required="" min = 0>
                 </div>
                 <div class="col">
-                  Valor Totas de Examenes 
+                  Valor Total de Examenes 
                   <input type="number" name="valor_total_examanes" id="valor_total_examanes" class="form-control form-control-sm" required="" min = 0>
                 </div>
                 <div class="col">
@@ -135,7 +135,7 @@
                 </div>
                 <div class="col">
                   Total de puntos 
-                  <input type="number" name="" id="valor_total" class="form-control form-control-sm" required="" max=100>
+                  <input type="text" name="valor_total" id="valor_total" class="form-control form-control-sm" required="" max=100>
                 </div>
               </div>
 
@@ -226,16 +226,30 @@
 <?php include(APPPATH . 'Views/include/header-js.php'); ?>
 
 <script>
-  
-$('#valor_total_ejercicios').change(function(){
+function ObtenerTotalPuntos(valor1,valor2,valor3){
+  $.ajax({
+        type: "POST",
+        url: "<?php echo site_url('Cursos/AjaxObtenerTotalPuntos'); ?>",
+        data: {
+          valor1,
+          valor2,
+          valor3
+        },
+        success: function(result) {
+          document.getElementById('valor_total').value = result;
+         
+        }
+
+      });
+}
+
+$('#valor_total_ejercicios').keydown(function(){
   alert('Hola');
   var ValorTotalEjercicios = document.getElementById('valor_total_ejercicios').value;
- // var ValorTotalExamanes = document.getElementById('valor_total_examanes').value;
-  //var ValorTotalAsistencia = document.getElementById('valor_total_asistencia').value;
-  //var TotalPuntos = ValorTotalEjercicios + ValorTotalExamanes + ValorTotalAsistencia;
-
-  //document.getElementById('valor_total').value = ValorTotalEjercicios;
-  //Estafallando
+  var ValorTotalExamanes = document.getElementById('valor_total_examanes').value;
+  var ValorTotalAsistencia = document.getElementById('valor_total_asistencia').value;
+  
+  ObtenerTotalPuntos(ValorTotalEjercicios,ValorTotalExamanes,ValorTotalAsistencia);
 
 
 });
@@ -246,6 +260,8 @@ $('#valor_total_examanes').keypress(function(e){
 $('#valor_total_asistencia').keypress(function(e){
 
 });
+
+
 
 
 
