@@ -91,10 +91,7 @@
 
             <div class="espacioUno"></div>
 
-            <div class="form-group">
-              <label for="lblInstrucciones">Descripción</label>
-              <textarea class="form-control form-control-sm" name="descripcion" id="descripcion" rows="3" required="" disabled="disabled"><?php echo "$descripcion" ?></textarea>
-            </div>
+
 
             <div class="espacioUno"></div>
             </form>

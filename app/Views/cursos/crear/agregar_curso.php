@@ -100,6 +100,7 @@
 
               <div class="row">
                 <div class="col">
+                <br/>
                   Numero de niveles
                   <select class="form-control form-control-sm" name="numero_niveles" id="numero_niveles" required="">
                     <option value="">Selecciona una opción</option>
@@ -109,10 +110,12 @@
                   </select>
                 </div>
                 <div class="col">
+                <br/>
                   Total de dias laborales
                   <input type="number" name="dias" id="dias" class="form-control form-control-sm" required="" min=1>
                 </div>
                 <div class="col">
+                <br/>
                   Frecuencia
                   <select class="form-control form-control-sm" name="frecuencia" id="frecuencia" required="">
                     <option value="">Selecciona una opción</option>
@@ -121,28 +124,41 @@
                     <?php } ?>
                   </select>
                 </div>
+                </div>
+
+                <div class="row">
                 <div class="col">
-                  Valor Total de Ejercicios
+                <br/>
+                  Valor total ejercicios
                   <input type="number" name="valor_total_ejercicios" id="valor_total_ejercicios" class="form-control form-control-sm" required min = 0>
                 </div>
                 <div class="col">
-                  Valor Total de Examenes 
+                <br/>
+                  Valor total examenes 
                   <input type="number" name="valor_total_examanes" id="valor_total_examanes" class="form-control form-control-sm" required min = 0>
                 </div>
                 <div class="col">
-                  Valor Total de la asistencia 
+                <br/>
+                  Valor Total asistencia 
                   <input type="number" name="valor_total_asistencia" id="valor_total_asistencia" class="form-control form-control-sm" required min=0>
                 </div>
                 <div class="col">
+                <br/>
                   Total de puntos 
                   <input type="number" name="valor_total" id="valor_total" class="form-control form-control-sm" required max = 100 disabled>
                 </div>
+                </div>
+
+                <div class="row">
+                <br/>
                 <div class="col">
-                  Numero de ejericios
+                <br/>
+                  Número de ejericios
                   <input type="number" name="num_ejercicios" id="num_ejercicios" class="form-control form-control-sm" required min=0>
                 </div>
                 <div class="col">
-                  Numero de examenes
+                <br/>
+                  Número de examenes
                   <input type="number" name="num_examenes" id="num_examenes" class="form-control form-control-sm" required min=0>
                 </div>
               </div>
@@ -150,16 +166,7 @@
 
               <div class="espacioUno"></div>
 
-              <div class="espacioUno"></div>
 
-              <div class="espacioUno"></div>
-
-              <div class="espacioUno"></div>
-
-              <div class="form-group">
-                <label for="lblInstrucciones">Descripción</label>
-                <textarea class="form-control form-control-sm" name="descripcion" id="descripcion" rows="3" required=""></textarea>
-              </div>
 
               <div class="espacioUno"></div>
               <button type="reset" class="btn btn-primary btn-sm">Limpiar</button>

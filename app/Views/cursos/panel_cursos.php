@@ -69,7 +69,7 @@
                   <th class="text-left">ID</th>
                   <th class="text-left">Nombre</th>
                   <th class="text-left">Numero de niveles</th>
-                  <th class="text-left">comentarios</th>
+
                   <th class="text-left">estatus</th>
                   <th class="text-left">Ver</th>
                   <th class="text-left">Editar</th>
@@ -80,7 +80,7 @@
                   <td><?php echo $fila->id ?></td>
                   <td><?php echo "$fila->nombre" ?></td>
                   <td><?php echo $fila->num_niveles;  ?></td>
-                  <td><?php echo $fila->comentarios; ?></td>
+
                   <td><?php echo $fila->estatus; ?></td>
                   <td class="text-center">
                     <a href="<?php echo site_url("/Cursos/vercurso/$fila->id") ?>">

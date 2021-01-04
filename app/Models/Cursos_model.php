@@ -14,7 +14,7 @@ class Cursos_model extends Model
 
     #Aqui ponemos el nombre de las columnas que vamos a modifcar
     protected $allowedFields = ['nombre','num_niveles','total_dias_laborales','id_frecuencia','num_examenes','num_ejercicios',
-    'valor_asistencia','valor_ejercicios','valor_examenes','comentarios','fecha_creacion','fecha_ultimo_cambio','estatus'];
+    'valor_asistencia','valor_ejercicios','valor_examenes','fecha_creacion','fecha_ultimo_cambio','estatus'];
 
     protected $useTimestamps = false;
     protected $createdField  = 'fecha_creacion';

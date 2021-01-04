@@ -84,7 +84,7 @@ function getSalonEspecificogrupo($id_nivel)
 function getAllCursos()
 {
     $usermode = new Cursos_model($db);
-    $usermode->select('id,nombre,num_niveles,comentarios,estatus');
+    $usermode->select('id,nombre,num_niveles,estatus');
     $usermode->where('deleted',0);
     $resultado = $usermode->get();
     $rowArray = $resultado->getResult();
@@ -95,7 +95,7 @@ function getAllCursos()
 function getCursoEspecifico($id_curso)
 {
     $usermode = new Cursos_model($db);
-    $usermode->select('id,nombre,num_niveles,comentarios,estatus');
+    $usermode->select('id,nombre,num_niveles,estatus');
     $usermode->where('deleted',0);
     $usermode->where('id',$id_curso);
     $resultado = $usermode->get();
