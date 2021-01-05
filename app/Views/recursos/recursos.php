@@ -108,6 +108,7 @@
                   <div id="contenidoTipoRecursoFormulario">
                   <h3>Formulario</h3><br />
                   Tipo de Formulario:
+                  <form action="<?php echo site_url('Evaluaciones/insertar_evaluacion'); ?>" method="post">
                   <select class="form-control form-control-sm" name="tipoFormulario" id="tipoFormulario" required="">
                     <option value="">Seleccione una opción</option>
                     <?php foreach(getTipoFormularioRecursos() as $fila){?>
@@ -124,12 +125,32 @@
                      
                       <?php }?>
                   </select>
+                  
+                  <script>
+                    function limpiarNombre() {
 
-                  <!-- Agregar las preguntaas, solo tipo abiertas-->
-                  <br/>
-                  Agregar pregunta:<br/>
-                  <br/>
-                    <input class="form-control form-control-sm" type="text" name="test" id="test">
+                      if (document.getElementById("existeNombreEvaluacion")) {
+
+                        document.getElementById("existeNombreEvaluacion").style.display = "none";
+                      }
+                    }
+                  </script>
+
+                  <div class="form-group">
+                    <label for="lblNombreEvaluacion">Nombre de la evaluación.</label>
+                    <input type="text" class="form-control form-control-sm" name="nombreEvaluacion" id="nombreEvaluación" required="" onkeyup="limpiarNombre()">
+                  </div>
+
+                  <?php
+                  if (isset($existeNombre)) {
+                  ?>
+                    <div class="alert alert-danger" role="alert" id="existeNombreEvaluacion">El nombre ya existe.</div>
+                  <?php
+                  }
+                  ?>
+
+
+
                   </div>
                   <br/>
                   <div class="espacioUno"></div>
@@ -148,20 +169,23 @@
 
 
                   <div class="espacioUno"></div>
-                  Nivel
+                  Asignar al la siguiente nivel:
                   <select class="form-control form-control-sm" name="nivel" id="nivel" required="">
                     <option value="">Seleccione una opción</option>
                   </select>
                   <div class="espacioUno"></div>
-                  Sesión
+                  Asignar a la siguiente sesión
                   <select class="form-control form-control-sm" name="sesion" id="sesion" required="">
                   <option value="">Seleccione una opción</option>
                   </select>
 
                   <div class="espacioUno"></div>
                   <div class="form-group">
-                    <label for="lblInstrucciones">Instrucciones</label>
-                    <textarea class="form-control form-control-sm" name="descripcion" id="descripcion" rows="3" required=""></textarea>
+                    <label for="lblEstado">Estado</label>
+                    <select class="form-control form-control-sm" name="estado" id="estado" required="">
+                      <option value="1">Activo</option>
+                      <option value="0">Inactivo</option>
+                    </select>
                   </div>
                   <button type="submit" name="registrarRecurso" class="btn btn-primary btn-sm">Subir</button>
                 </div>
