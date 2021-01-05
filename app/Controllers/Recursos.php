@@ -118,12 +118,17 @@ class Recursos extends BaseController
                 $tipo_evaluacion = $REQUEST->getPost('tipoFormulario');
                 $categoria_evaluacion = $REQUEST->getPost('tipocategoriaevaluacion');
                 $nombre_evaluacion = $REQUEST->getPost('nombreEvaluacion');
-                
+
                 $id_evaluacion = InsertarEvaluacion($id_recurso,$tipo_evaluacion,$categoria_evaluacion,$nombre_evaluacion);
                 $nombreCurso = CatalagoGetNombreCurso($REQUEST->getPost('curso'));
                 $nombreNivel = getnivelEspecifico($REQUEST->getPost('nivel'));
                 $nombreSesion = 'Sesion'.''.$REQUEST->getPost('sesion');
                 InsertaRutaEvaluacion($id_evaluacion,$nombreCurso,$nombreNivel,$nombreSesion);
+
+                $DataUpdateRecursor = [
+                    'id_evaluacion' => $id_evaluacion,
+                ];
+                $usermodel->update($id_recurso,$DataUpdateRecursor);
 
             }
     
