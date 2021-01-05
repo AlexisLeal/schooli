@@ -174,6 +174,8 @@ function getPreguntas($id_evaluacion)
     $rowArray = $resultado -> getRow();
     return($rowArray);
 }
+
+
  function getPreguntaOpcion_audio($id_evaluacion,$id_pregunta)
 {
     $usermodel = new Pregunta_opcion_audio($db);

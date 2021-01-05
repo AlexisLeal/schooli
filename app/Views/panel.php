@@ -116,7 +116,7 @@
                 </td>
                 <td>
                   <div class="text-center">
-                    <a href="#"></a>
+                    <a href="<?php echo site_url('/Cursos/index'); ?>"><i class="fa fa-th-large fa-2x" aria-hidden="true"></i><br/>Cursos</a>
                   </div>
                 </td>
               </tr>
