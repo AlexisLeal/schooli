@@ -76,10 +76,11 @@
             Tipo de recurso:
               <select class="form-control form-control-sm" name="tipoRecurso" onchange="eleccion();" id="tipoRecurso" required>
                 <option value="">Seleccione una opción</option>
-                <option value="1">Formulario</option>
-                <option value="2">Imagen</option>
-                <option value="3">Multimedia</option>
-                <option value="4">PDF</option>
+                <?php foreach(getTipoRecursos() as $fila){?>
+                      <option value="<?php echo $fila->id;?>"><?php echo $fila->nombre ?></option>
+                     
+                      <?php }?>
+               
               </select>
               <div class="espacioUno"></div>
 

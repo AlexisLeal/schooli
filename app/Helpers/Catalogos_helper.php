@@ -224,6 +224,16 @@ function getCategoriaEvaluacionRecursos()
     $query = $usermodel->get();
     $resultado = $query->getResult();
     return($resultado);
+}
+function getTipoRecursos()
+{
+    $db = \Config\Database::connect();
+    $usermodel = $db->table('tipo_recurso');
+    $usermodel->select('id,nombre');
+    $usermodel->where('deleted',0);
+    $query = $usermodel->get();
+    $resultado = $query->getResult();
+    return($resultado);
 
 }
 
