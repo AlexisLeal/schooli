@@ -1,5 +1,5 @@
 <?php 
-
+use  App\Models\Recursos_model;
 function getGrupoMaestros($id_grupo)
 {
     $db = \Config\Database::connect();
@@ -221,5 +221,17 @@ function AsignacionGetIdFrecuencia($id_grupo)
     $resultado = $query->getRow();
     $idFrecuencia = $resultado->id_frecuencia;
     return $idFrecuencia;  
+}
+
+
+function getRecursosPorCurso($IdCurso)
+{
+    $usermodel = new Recursos_model($db);
+    $usermodel->select('id,nombre,extencion,tipo_archivo,tipo_recurso');
+    $usermodel->where('id_curso',$IdCurso);
+    $usermodel->where('deleted',0);	
+    $resultado = $usermodel->get();
+    $rowArray = $resultado->getResult();
+    return($rowArray);
 }
 ?>

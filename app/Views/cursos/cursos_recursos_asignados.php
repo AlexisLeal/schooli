@@ -56,55 +56,27 @@
 
 
         <div class="espacioUno"></div>
-        <h4>Panel de Cursos</h4>
-        <a class="btn btn-success btn-sm" href="<?php echo site_url('/Cursos/agregarcurso'); ?>" role="button">Registrar un Curso</a>
+        <h4>Recursos asignados a esté curso.</h4>
+        
         <div class="espacioUno"></div>
 
 
         <div class="card">
           <div class="card-body">
-            <table class="tabla-registros" class="display" cellspacing="6" cellpadding="8">
-              <thead>
-                <tr>
-                  <th class="text-left">ID</th>
-                  <th class="text-left">Nombre</th>
-                  <th class="text-left">Numero de niveles</th>
 
-                  <th class="text-left">Estatus</th>
-                  <th class="text-left">Ver</th>
-                  <th class="text-left">Editar</th>
-                  <th class="text-left"></th>
-                  <th class="text-left">Recursos asignados</th>
-                </tr>
-              </thead>
-              <?php foreach (getAllCursos() as $fila) { ?>
-                <tr>
-                  <td><?php echo $fila->id ?></td>
-                  <td><?php echo "$fila->nombre" ?></td>
-                  <td><?php echo $fila->num_niveles;  ?></td>
-
-                  <td><?php echo $fila->estatus; ?></td>
-                  <td class="text-center">
-                    <a href="<?php echo site_url("/Cursos/vercurso/$fila->id") ?>">
-                      <i class="fa fa-file-text-o fa-1x" aria-hidden="true"></i>
-                  </td>
-                  <td class="text-center">
-                    <a href="<?php echo site_url("/Cursos/editarcurso/$fila->id") ?>">
-                      <i class="fa fa-pencil-square-o fa-1x" aria-hidden="true"></i>
-                    </a>
-                  </td>
-                  <td></td>
-                  <td class="text-center">
-                  <a href="<?php echo site_url("/Cursos/cursosrecursos/$fila->id") ?>">
-                  <i class="fa fa-list" aria-hidden="true"></i>
-                  </a>
-                  
-                  </td>
-                </tr>
+          <?php foreach (getRecursosPorCurso($id_curso) as $fila) { ?>
+              <div class="niveles" style="width:230px;height:100px;background-image:url('<?php echo base_url($fila->nombre) ?>');float:left;margin-left:10px;margin-right:10px;margin-bottom:10px;padding-top:5px;padding-bottom:5px;padding-left:10px;">
               <?php
+              if($fila->tipo_recurso==1){
+                echo "Agregar preguntas";
               }
+              echo $fila->nombre."<br/>";
+              echo $fila->tipo_archivo."<br/>";
               ?>
-            </table>
+              </div>
+            <?php
+            }
+            ?>
 
 
 

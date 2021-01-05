@@ -14,8 +14,13 @@ class Cursos extends BaseController{
         }else{
             return redirect()->to(site_url('Home/salir'));
            }
-	}
-	
+    }
+    
+
+
+    
+
+    
     public function agregarcurso()
 	{
         if($this->session->get('login') && $this->session->get('roll') == 4){
@@ -62,6 +67,18 @@ class Cursos extends BaseController{
             return redirect()->to(site_url('Home/salir'));
            }
     }
+
+    public function cursosrecursos($id_curso)
+	{
+        if($this->session->get('login') && $this->session->get('roll') == 4){
+
+            $data['id_curso'] = $id_curso;	
+            return view('cursos/cursos_recursos_asignados',$data);
+        }else{
+            return redirect()->to(site_url('Home/salir'));
+           }
+    }
+    
 
     public function insertarcurso()
     {
