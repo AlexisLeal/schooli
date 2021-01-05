@@ -218,7 +218,6 @@
                   <td class="text-left"><?php echo $fila->nombre; ?></td>
                   <td class="text-left"><?php echo $fila->extencion; ?></td>
                   <td class="text-left"><?php echo $fila->tipo_archivo; ?></td>
-                  <td class="text-left"><?php echo $fila->descripcion; ?></td>
                 </tr>
               <?php
               }

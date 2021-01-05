@@ -26,8 +26,6 @@ class Recursos extends BaseController
 
             $hoy = date("Y-m-d H:i:s");
             $recurso_archivo = $REQUEST->getFile('recurso_archivo');
-            $descripcion = $REQUEST->getPost('descripcion');
-
             $recurso_extension = $recurso_archivo->getClientExtension();
             switch ($recurso_extension) {
                 case 'docx':
@@ -57,22 +55,23 @@ class Recursos extends BaseController
                 case 'mp4':
                     $tipo_archivo = "Mp4";
                     break;
-                    deafult:
+                default:
                     $tipo_archivo = "Desconocido";
             }
 
             if ($recurso_archivo->isValid() && !$recurso_archivo->hasMoved()) {
                 $nombreCurso = CatalagoGetNombreCurso($REQUEST->getPost('curso'));
                 $nombreNivel = getnivelEspecifico($REQUEST->getPost('nivel'));
-                $nombreLeccion = OperacionesGetNombreLeccion($REQUEST->getPost('leccion'));
-                if (!is_dir("recursos/$nombreCurso/$nombreNivel/$nombreLeccion")) {
-                    mkdir("recursos/$nombreCurso/$nombreNivel/$nombreLeccion", 0777, TRUE);
+                //$nombreLeccion = OperacionesGetNombreLeccion($REQUEST->getPost('leccion'));
+                $nombreSesion = 'Sesion'.''.$REQUEST->getPost('sesion');
+                if (!is_dir("recursos/$nombreCurso/$nombreNivel/$nombreSesion")) {
+                    mkdir("recursos/$nombreCurso/$nombreNivel/$nombreSesion", 0777, TRUE);
                 }
                 $nombre_recurso = $recurso_archivo->getClientName();;
 
-                $ruta_recurso_basedatos = "recursos/$nombreCurso/$nombreNivel/$nombreLeccion/$nombre_recurso";
+                $ruta_recurso_basedatos = "recursos/$nombreCurso/$nombreNivel/$nombreSesion/$nombre_recurso";
 
-                $ruta_mover_recurso = "recursos/$nombreCurso/$nombreNivel/$nombreLeccion";
+                $ruta_mover_recurso = "recursos/$nombreCurso/$nombreNivel/$nombreSesion";
                 $recurso_archivo->move($ruta_mover_recurso, $nombre_recurso);
             } else {
                 //Si algo sale mal nos marca un error 
@@ -84,8 +83,7 @@ class Recursos extends BaseController
                 'tipo_archivo' => $tipo_archivo,
                 'id_curso' => $REQUEST->getPost('curso'),
                 'id_nivel' => $REQUEST->getPost('nivel'),
-                'id_leccion' => $REQUEST->getPost('leccion'),
-                'descripcion' => $descripcion,
+                'id_leccion' => $REQUEST->getPost('sesion'),
                 'ruta' => $ruta_recurso_basedatos,
                 'fecha_creacion' => $hoy,
                 'fecha_ultimo_cambio' => $hoy,
