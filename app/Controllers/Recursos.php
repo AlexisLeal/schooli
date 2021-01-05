@@ -81,6 +81,7 @@ class Recursos extends BaseController
                 'nombre' => $nombre_recurso,
                 'extencion' => $recurso_extension,
                 'tipo_archivo' => $tipo_archivo,
+                'tipo_recurso' => $REQUEST->getPost('tipoRecurso'),
                 'id_curso' => $REQUEST->getPost('curso'),
                 'id_nivel' => $REQUEST->getPost('nivel'),
                 'id_leccion' => $REQUEST->getPost('sesion'),
