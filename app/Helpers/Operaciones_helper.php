@@ -249,4 +249,70 @@ function operacionesGetNotificacionesUsuario()
     $rowArray = $resultado->getResult();
     return($rowArray);
 }
+
+
+function InsertarEvaluacion($id_recurso,$tipo_evaluacion,$categoria_evaluacion,$nombre_evaluacion){
+
+    $usermodel = new Evaluaciones_model($db);
+   
+    $hoy = date("Y-m-d H:i:s");
+    $data = ['nombre' => $nombre_evaluacion,
+    'tipo_evaluacion' => $tipo_evaluacion,
+    'idCategoriaEvaluacion' => $categoria_evaluacion,
+    'id_recurso' => $id_recurso,
+    'usuario_creo' => $_SESSION['id'],
+    'usuario_modifico' => $_SESSION['id'],
+    'fecha_creacion' => $hoy,
+    'fecha_ultimo_cambio' => $hoy,
+    ];
+    //Pornelo en un bloque TryCatch
+    $usermodel->insert($data);
+    $id_evaluacion = $usermodel->insertID();
+
+    return $id_evaluacion;
+
+
+}
+
+function InsertaRutaEvaluacion($id_evaluacion,$nombreCurso,$nombreNivel,$nombreSesion)
+{
+     $hoy = date("Y-m-d H:i:s");
+     $usermodel = new Evaluaciones_model($db);
+    //Forma de tener la clave 
+     $hoyLimpio        = str_replace(' ','',$hoy);
+     $hoyLimpio        = str_replace(':','',$hoyLimpio);
+     $hoyLimpio        = str_replace('-','',$hoyLimpio);
+     $clave ="EV".$id_evaluacion.$hoyLimpio;           
+     $nombreRuta = "recursos/$nombreCurso/$nombreNivel/$nombreSesion/$clave";
+ 
+     //Actualizamos para inserta la clave y su ruta 
+     $sqlUpdate ="UPDATE evaluaciones set clave = '".$clave."',directorio_uploads='".$nombreRuta."' where id=$id_evaluacion";
+     $usermodel->query($sqlUpdate);
+ 
+     //Creamos una carpeta donde se guardaran todos los archivos de la evaluacion(Imagenes,videos etc )
+     if (!is_dir("recursos/$nombreCurso/$nombreNivel/$nombreSesion/$clave")) {
+         mkdir("recursos/$nombreCurso/$nombreNivel/$nombreSesion/$clave", 0777, TRUE);
+     }else{
+         echo "Error inesperado";
+     }
+ 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ?>

@@ -13,8 +13,8 @@ class Evaluaciones_model extends Model
     protected $useSoftDeletes = true;
 
     #Aqui ponemos el nombre de las columnas que vamos a modifcar
-    protected $allowedFields = ['nombre','instrucciones','tipo_evaluacion','idCategoriaEvaluacion','nivel','leccion','estado','usuario_creo','usuario_modifico','fecha_creacion',
-                                'fecha_ultimo_cambio','clave','directorio_uploads'];
+    protected $allowedFields = ['nombre','tipo_evaluacion','idCategoriaEvaluacion','id_recurso','usuario_creo','usuario_modifico',
+    'fecha_creacion','fecha_ultimo_cambio','clave','directorio_uploads'];
 
     protected $useTimestamps = false;
     protected $createdField  = 'fecha_creacion';

@@ -22,61 +22,70 @@ class Recursos extends BaseController
     public function agregarRecurso()
     {
         if ($this->session->get('login') && $this->session->get('roll') == 4) {
+            if(isset($_POST['registrarRecurso'])){
             $REQUEST = \Config\Services::request();
-
             $hoy = date("Y-m-d H:i:s");
-            $recurso_archivo = $REQUEST->getFile('recurso_archivo');
-            $recurso_extension = $recurso_archivo->getClientExtension();
-            switch ($recurso_extension) {
-                case 'docx':
-                    $tipo_archivo = "Word";
-                    break;
-                case 'xlsx':
-                    $tipo_archivo = "Excel";
-                    break;
-                case 'pdf':
-                    $tipo_archivo = "Pdf";
-                    break;
-                case 'zip':
-                    $tipo_archivo = "Zip";
-                    break;
-                case 'rar':
-                    $tipo_archivo = "Rar";
-                    break;
-                case 'jpg':
-                    $tipo_archivo = "Jpg";
-                    break;
-                case 'png':
-                    $tipo_archivo = "Png";
-                    break;
-                case 'mp3':
-                    $tipo_archivo = "Mp3";
-                    break;
-                case 'mp4':
-                    $tipo_archivo = "Mp4";
-                    break;
-                default:
-                    $tipo_archivo = "Desconocido";
-            }
-
-            if ($recurso_archivo->isValid() && !$recurso_archivo->hasMoved()) {
-                $nombreCurso = CatalagoGetNombreCurso($REQUEST->getPost('curso'));
-                $nombreNivel = getnivelEspecifico($REQUEST->getPost('nivel'));
-                //$nombreLeccion = OperacionesGetNombreLeccion($REQUEST->getPost('leccion'));
-                $nombreSesion = 'Sesion'.''.$REQUEST->getPost('sesion');
-                if (!is_dir("recursos/$nombreCurso/$nombreNivel/$nombreSesion")) {
-                    mkdir("recursos/$nombreCurso/$nombreNivel/$nombreSesion", 0777, TRUE);
+            if($REQUEST->getPost('tipoRecurso') != 1){
+                $recurso_archivo = $REQUEST->getFile('recurso_archivo');
+                $recurso_extension = $recurso_archivo->getClientExtension();
+                switch ($recurso_extension) {
+                    case 'docx':
+                        $tipo_archivo = "Word";
+                        break;
+                    case 'xlsx':
+                        $tipo_archivo = "Excel";
+                        break;
+                    case 'pdf':
+                        $tipo_archivo = "Pdf";
+                        break;
+                    case 'zip':
+                        $tipo_archivo = "Zip";
+                        break;
+                    case 'rar':
+                        $tipo_archivo = "Rar";
+                        break;
+                    case 'jpg':
+                        $tipo_archivo = "Jpg";
+                        break;
+                    case 'png':
+                        $tipo_archivo = "Png";
+                        break;
+                    case 'mp3':
+                        $tipo_archivo = "Mp3";
+                        break;
+                    case 'mp4':
+                        $tipo_archivo = "Mp4";
+                        break;
+                    default:
+                        $tipo_archivo = "Desconocido";
                 }
-                $nombre_recurso = $recurso_archivo->getClientName();;
 
-                $ruta_recurso_basedatos = "recursos/$nombreCurso/$nombreNivel/$nombreSesion/$nombre_recurso";
+                if ($recurso_archivo->isValid() && !$recurso_archivo->hasMoved()) {
+                    $nombreCurso = CatalagoGetNombreCurso($REQUEST->getPost('curso'));
+                    $nombreNivel = getnivelEspecifico($REQUEST->getPost('nivel'));
+                    $nombreSesion = 'Sesion'.''.$REQUEST->getPost('sesion');
+                    if (!is_dir("recursos/$nombreCurso/$nombreNivel/$nombreSesion")) {
+                        mkdir("recursos/$nombreCurso/$nombreNivel/$nombreSesion", 0777, TRUE);
+                    }
+                    $nombre_recurso = $recurso_archivo->getClientName();
+                    $ruta_recurso_basedatos = "recursos/$nombreCurso/$nombreNivel/$nombreSesion/$nombre_recurso";
+                    $ruta_mover_recurso = "recursos/$nombreCurso/$nombreNivel/$nombreSesion";
+                    $recurso_archivo->move($ruta_mover_recurso, $nombre_recurso);
 
-                $ruta_mover_recurso = "recursos/$nombreCurso/$nombreNivel/$nombreSesion";
-                $recurso_archivo->move($ruta_mover_recurso, $nombre_recurso);
-            } else {
+                
+                }else {
                 //Si algo sale mal nos marca un error 
                 //throw new RuntimeException($recurso_audio->getErrorString().'('.$recurso_audio->getError().')');
+                }
+            }elseif($REQUEST->getPost('tipoRecurso')==1){
+
+                $nombre_recurso = $REQUEST->getPost('nombreEvaluacion');
+                $recurso_extension = null;
+                $tipo_archivo = null;
+                $ruta_recurso_basedatos = null;
+
             }
+            
             $data = [
                 'nombre' => $nombre_recurso,
                 'extencion' => $recurso_extension,
@@ -104,8 +113,25 @@ class Recursos extends BaseController
                 ];
                 $this->session->set($data, true);
             }
+            if($REQUEST->getPost('tipoRecurso') == 1){
+                $id_recurso = $usermodel->insertID();
+                $tipo_evaluacion = $REQUEST->getPost('tipoFormulario');
+                $categoria_evaluacion = $REQUEST->getPost('tipocategoriaevaluacion');
+                $nombre_evaluacion = $REQUEST->getPost('nombreEvaluacion');
+                
+                $id_evaluacion = InsertarEvaluacion($id_recurso,$tipo_evaluacion,$categoria_evaluacion,$nombre_evaluacion);
+                $nombreCurso = CatalagoGetNombreCurso($REQUEST->getPost('curso'));
+                $nombreNivel = getnivelEspecifico($REQUEST->getPost('nivel'));
+                $nombreSesion = 'Sesion'.''.$REQUEST->getPost('sesion');
+                InsertaRutaEvaluacion($id_evaluacion,$nombreCurso,$nombreNivel,$nombreSesion);
 
-            return redirect()->to(site_url("Recursos/recursos"));
+            }
+    
+                return redirect()->to(site_url("Recursos/recursos"));
+            }else{
+                return redirect()->to(site_url('Home/salir'));
+
+            }
         } else {
             return redirect()->to(site_url('Home/salir'));
         }
