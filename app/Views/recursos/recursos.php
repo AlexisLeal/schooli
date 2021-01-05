@@ -72,8 +72,9 @@
             ?>
             <div class="espacioUno"></div>
             <form action="<?php echo site_url('Recursos/agregarRecurso'); ?>" method="post" enctype="multipart/form-data">
+            
             Tipo de recurso:
-              <select class="form-control form-control-sm" name="tipoRecurso" onchange="eleccion();" id="tipoRecurso" required="">
+              <select class="form-control form-control-sm" name="tipoRecurso" onchange="eleccion();" id="tipoRecurso" required>
                 <option value="">Seleccione una opción</option>
                 <option value="1">Formulario</option>
                 <option value="2">Imagen</option>
@@ -100,7 +101,7 @@
                   
                   <div id="contenidoTipoRecurso">
                     Cargar un archivo:<br />
-                    <input class="form-control form-control-sm" type="file" id="recurso_archivo" name="recurso_archivo" required="">
+                    <input class="form-control form-control-sm" type="file" id="recurso_archivo" name="recurso_archivo">
                   </div>
 
 
@@ -108,46 +109,31 @@
                   <div id="contenidoTipoRecursoFormulario">
                   <h3>Formulario</h3><br />
                   Tipo de Formulario:
-                  <form action="<?php echo site_url('Evaluaciones/insertar_evaluacion'); ?>" method="post">
-                  <select class="form-control form-control-sm" name="tipoFormulario" id="tipoFormulario" required="">
+                  
+                  <select class="form-control form-control-sm" name="tipoFormulario" id="tipoFormulario">
                     <option value="">Seleccione una opción</option>
                     <?php foreach(getTipoFormularioRecursos() as $fila){?>
-                      <option value=<?php echo $fila->id?>><?php echo $fila->nombre ?></option>
+                      <option value="<?php echo $fila->id;?>"><?php echo $fila->nombre ?></option>
                      
                       <?php }?>
                   </select>
 
                   Tipo de applicacion:
-                  <select class="form-control form-control-sm" name="tipocategoriaevaluacion" id="tipocategoriaevaluacion" required="">
+                  <select class="form-control form-control-sm" name="tipocategoriaevaluacion" id="tipocategoriaevaluacion">
                     <option value="">Seleccione una opción</option>
                     <?php foreach(getCategoriaEvaluacionRecursos() as $fila){?>
-                      <option value=<?php echo $fila->id?>><?php echo $fila->nombre ?></option>
+                      <option value="<?php echo $fila->id;?>"><?php echo $fila->nombre ?></option>
                      
                       <?php }?>
                   </select>
                   
-                  <script>
-                    function limpiarNombre() {
 
-                      if (document.getElementById("existeNombreEvaluacion")) {
-
-                        document.getElementById("existeNombreEvaluacion").style.display = "none";
-                      }
-                    }
-                  </script>
 
                   <div class="form-group">
                     <label for="lblNombreEvaluacion">Nombre de la evaluación.</label>
-                    <input type="text" class="form-control form-control-sm" name="nombreEvaluacion" id="nombreEvaluación" required="" onkeyup="limpiarNombre()">
+                    <input type="text" class="form-control form-control-sm" name="nombreEvaluacion" id="nombreEvaluacion">
                   </div>
 
-                  <?php
-                  if (isset($existeNombre)) {
-                  ?>
-                    <div class="alert alert-danger" role="alert" id="existeNombreEvaluacion">El nombre ya existe.</div>
-                  <?php
-                  }
-                  ?>
 
 
 
@@ -159,7 +145,7 @@
                   
                   
                   Curso
-                  <select class="form-control form-control-sm" name="curso" id="curso" required="">
+                  <select class="form-control form-control-sm" name="curso" id="curso" required>
                     <option value="">Seleccione una opción</option>
                     <?php foreach (CatalagoGetCursos() as $fila) { ?>
                       <option value="<?php echo $fila->id; ?>"><?php echo $fila->nombre; ?></option>
@@ -170,19 +156,19 @@
 
                   <div class="espacioUno"></div>
                   Asignar al la siguiente nivel:
-                  <select class="form-control form-control-sm" name="nivel" id="nivel" required="">
+                  <select class="form-control form-control-sm" name="nivel" id="nivel" required>
                     <option value="">Seleccione una opción</option>
                   </select>
                   <div class="espacioUno"></div>
                   Asignar a la siguiente sesión
-                  <select class="form-control form-control-sm" name="sesion" id="sesion" required="">
+                  <select class="form-control form-control-sm" name="sesion" id="sesion" required>
                   <option value="">Seleccione una opción</option>
                   </select>
 
                   <div class="espacioUno"></div>
                   <div class="form-group">
                     <label for="lblEstado">Estado</label>
-                    <select class="form-control form-control-sm" name="estado" id="estado" required="">
+                    <select class="form-control form-control-sm" name="estado" id="estado" required>
                       <option value="1">Activo</option>
                       <option value="0">Inactivo</option>
                     </select>
@@ -346,18 +332,5 @@ function ObtenerTodasSesionesPorCurso(Id_Curso){
 
     }
     });
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
 </script>
