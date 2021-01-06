@@ -134,7 +134,7 @@
 
 
           <?php
-          $idPregunta = $fila->num_pregunta;
+          $idPregunta = $fila->id;
           switch ($fila->idTipoPregunta) {
             case 1: // Pregunta abierta
           ?>
@@ -160,7 +160,7 @@
 
                 </div>
                 <div class="col-md-8">
-                  <?PHP
+                  <?php
                   $pregunta_multiple = getPreguntaOpcion_multiple($idEvaluacion, $idPregunta);
                   ?>
                   <style>

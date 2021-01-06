@@ -99,7 +99,6 @@
             <td>
               <p class="font-weight-bold">Estado:</p>
             </td>
-            <td><?php echo $estado ?></td>
             <td></td>
             <td></td>
           </tr>
@@ -175,8 +174,6 @@
 
             <div class="form-group">
               <input type="hidden" name="idtipoevaluacion" value="<?php echo $idtipoevaluacion; ?>">
-              <input type="hidden" name="nivel" value="<?php echo $nivel; ?>">
-              <input type="hidden" name="leccion" value="<?php echo $leccion; ?>">
 
               <table width="100%">
                 <tr>
