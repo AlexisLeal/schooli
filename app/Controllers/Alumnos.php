@@ -159,8 +159,14 @@ class Alumnos extends BaseController{
                
                 
                 $usermodel_D = new Direcciones($db);
-                $usermodel_D->insert($data_direccion); 
-                $ultimo_id_direccion = $usermodel_D->insertID();
+                try {
+                    $usermodel_D->insert($data_direccion); 
+                    $ultimo_id_direccion = $usermodel_D->insertID();
+                } catch (\Exception $e) {
+                    $data = ['Alumno'  => 'El Alumno no se pudo agregar correctamente'];
+                    $this->session->set($data,true);
+                    return redirect()->to(site_url('Alumnos/agregaralumnos'));
+                }
 
                 $usuario = trim($REQUEST->getPost('email'));
                 $data_usuario =[
@@ -181,9 +187,18 @@ class Alumnos extends BaseController{
                 ];
                
                 $usermodel_U = new Usuarios($db);
-                $usermodel_U->insert($data_usuario); 
-                $ultimo_id_usuario = $usermodel_U->insertID();
-               
+                try {
+                    $usermodel_U->insert($data_usuario); 
+                    $ultimo_id_usuario = $usermodel_U->insertID();
+                } catch (\Exception $e) {
+
+                    $usermodel_D->delete(['id' => $ultimo_id_direccion]);
+                    $data = ['Alumno'  => 'El Alumno no se pudo agregar correctamente'];
+                    $this->session->set($data,true);
+                    return redirect()->to(site_url('Alumnos/agregaralumnos'));
+                    
+                }
+                
                 $data_alummno=[
                     'id_usuario' => $ultimo_id_usuario,
                     'matricula' => trim($REQUEST->getPost('matricula')),
@@ -194,7 +209,18 @@ class Alumnos extends BaseController{
                     'fecha_ultimo_cambio' => $hoy,
                 ];
                 $usermodel_A = new Alumnos_model($db);
-                $usermodel_A->insert($data_alummno);
+                try {
+                    $usermodel_A->insert($data_alummno);
+                    $ultimo_id_alumno = $usermodel_A->insertID();   
+                } catch (\Exception $e) {
+                    $usermodel_U->delete(['id' => $ultimo_id_usuario]);
+                    $usermodel_D->delete(['id' => $ultimo_id_direccion]);
+                    $data = ['Alumno'  => 'El Alumno no se pudo agregar correctamente'];
+                    $this->session->set($data,true);
+                    return redirect()->to(site_url('Alumnos/agregaralumnos'));
+                    
+                }
+               
                 
                 $data_Grupo =['id_grupo' =>$REQUEST->getPost('id_grupo'),
                 'id_alumno' =>$ultimo_id_usuario,
@@ -202,8 +228,18 @@ class Alumnos extends BaseController{
                 'fecha_ultimo_cambio' =>$hoy,
                 ];
 
-                $usermodel_GrupoAlumno = new Grupos_alumnos_model($db);
-                $usermodel_GrupoAlumno->data($data_Grupo);
+                try {
+                    $usermodel_GrupoAlumno = new Grupos_alumnos_model($db);
+                    $usermodel_GrupoAlumno->insert($data_Grupo);
+                } catch (\Exception $e) {
+                    $usermodel_A->delete(['id'=> $ultimo_id_alumno]);
+                    $usermodel_U->delete(['id' => $ultimo_id_usuario]);
+                    $usermodel_D->delete(['id' => $ultimo_id_direccion]);
+                    $data = ['Alumno'  => 'El Alumno no se pudo agregar correctamente'];
+                    $this->session->set($data,true);
+                    return redirect()->to(site_url('Alumnos/agregaralumnos'));   
+                }
+                
 
                 $data = ['Alumno'  => 'El Alumno se agregro correctamente'];
 
@@ -274,10 +310,31 @@ class Alumnos extends BaseController{
                 $row_U = $resultado_U->getRow();
 
                 $usermodel_D = new Direcciones($db);
-                $usermodel_A->update($id_alumno,$data_alummno);
-                $usermodel_U->update($row_A->id_usuario,$data_usuario);
-               
-                $usermodel_D->update($row_U->id_direccion,$data_direccion);
+                try {
+                    $usermodel_A->update($id_alumno,$data_alummno);
+                   
+                } catch (\Exception $e) {
+                    $data = ['Alumno'  => 'Los datos del alumno no se pudieron modificar'];
+                    $this->session->set($data,true);
+                    return redirect()->to(site_url("Alumnos/editaralumno/$id_alumno"));
+                    
+                }
+                try {
+                    $usermodel_U->update($row_A->id_usuario,$data_usuario);
+                   
+                }catch (\Exception $e) {
+                    $data = ['Alumno'  => 'El datos del alumno no se pudieron actualizar'];
+                    $this->session->set($data,true);
+                    return redirect()->to(site_url("Alumnos/editaralumno/$id_alumno"));    
+                }
+                try {
+                    $usermodel_D->update($row_U->id_direccion,$data_direccion);
+                   
+                }catch (\Exception $e) {
+                    $data = ['Alumno'  => 'Los datos de la dirrecion del alumno no se pudieron modificar'];
+                    $this->session->set($data,true);
+                    return redirect()->to(site_url("Alumnos/editaralumno/$id_alumno"));
+                }    
                 
                 $data = ['Alumno'  => 'El Alumno se modifico correctamente'];
                 $this->session->set($data,true);
@@ -346,13 +403,46 @@ class Alumnos extends BaseController{
             $usermodel_U = new Usuarios($db);
             $usermodel_U->select('id_direccion');
             $usermodel_U->where('id',$row_A->id_usuario);
-            $usermodel_U->wherer('deleted',0);
+            $usermodel_U->where('deleted',0);
             $resultado_U = $usermodel_U->get();
             $row_U = $resultado_U->getRow();
+            
+            try {
+                $usermodel_A->delete(['id'=> $id_alumno]);
+                   
+            } catch (\Exception $e) {
+                $data = ['Alumno'  => 'No se pudo eleminar el alumno'];
+                $this->session->set($data,true);
+                return redirect()->to(site_url("Alumnos/editaralumno/$id_alumno"));
+               
+            }
+            try {
+                $usermodel_U->delete(['id' => $row_A->id_usuario]);
+                   
+            } catch (\Exception $e) {
+                $DataDB = ['deleted' => 0,];
+                $usermodel_A->update($id_alumno,$DataDB);
+                $data = ['Alumno'  => 'No se pudo eleminar el alumno'];
+                $this->session->set($data,true);
+                return redirect()->to(site_url("Alumnos/editaralumno/$id_alumno"));
+                
+            }
+            try {
+                $usermodel_D->delete(['id' => $row_U->id_direccion]);
+                   
+            } catch (\Exception $e) {
+                $DataDB = ['deleted' => 0,];
+                $usermodel_A->update($id_alumno,$DataDB);
+                $usermodel_U->update($id_alumno,$DataDB);
+                $data = ['Alumno'  => 'No se pudo eleminar el alumno'];
+                $this->session->set($data,true);
+
+                return redirect()->to(site_url("Alumnos/editaralumno/$id_alumno"));
+                
+            }
            
-            $usermodel_A->delete(['id'=> $id_alumno]);
-            $usermodel_U->delete(['id' => $row_A->id_usuario]);
-            $usermodel_D->delete(['id' => $row_U->id_direccion]);
+            
+            
 
             return redirect()->to(site_url('Alumnos/index'));
         

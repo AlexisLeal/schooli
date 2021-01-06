@@ -84,7 +84,14 @@ class Ciclos extends BaseController{
                 ];
 
                 $usermodel_C = new Ciclos_model($db);
-                $usermodel_C->insert($data);
+                try {
+                    $usermodel_C->insert($data);
+                } catch (\Exception  $e) {
+                    $data = ['Ciclo'  => 'Hubo un error, no se pudo agrega el ciclo'];
+                    $this->session->set($data,true);
+                    return redirect()->to(site_url('Ciclos/agregarciclo'));
+                }
+                
 
                 $data = ['Ciclo'  => 'El Ciclo se agregro correctamente'];
                 $this->session->set($data,true);
@@ -117,7 +124,14 @@ class Ciclos extends BaseController{
                 $id_ciclo = $REQUEST->getPost('idCiclo');
 
                 $usermodel_C = new Ciclos_model($db);
-                $usermodel_C->update($id_ciclo,$data);
+                try {
+                    $usermodel_C->update($id_ciclo,$data);
+                } catch (\Exception $e) {
+                    $data = ['Ciclo'  => 'El Ciclo no se pudo actualizar correctamente'];
+                    $this->session->set($data,true);
+                    return redirect()->to(site_url("Ciclos/editarciclo/$id_ciclo"));
+                }
+               
 
                 $data = ['Ciclo'  => 'El Ciclo se actualizo correctamente'];
                 $this->session->set($data,true);
@@ -141,7 +155,14 @@ class Ciclos extends BaseController{
                 $id_ciclo = $REQUEST->getPost('idCiclo');
 
                 $usermodel_C = new Ciclos_model($db);
-                $usermodel_C->delete(['id'=> $id_ciclo]);
+                try {
+                    $usermodel_C->delete(['id'=> $id_ciclo]);
+                } catch (\Exception $e) {
+                    $data = ['Ciclo'  => 'El Ciclo no se pudo eliminar'];
+                    $this->session->set($data,true);
+                    return redirect()->to(site_url("Ciclos/editarciclo/$id_ciclo"));
+                }
+               
 
                 return redirect()->to(site_url('Ciclos/index'));
             }else{

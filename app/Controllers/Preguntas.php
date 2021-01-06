@@ -299,7 +299,14 @@ class Preguntas extends BaseController{
                 '".$hoy."')";
 
                 $usermodel = new Pregunta_opcion_audio($db);
-                $usermodel ->query($sqlAudio);
+                try{
+
+                    $usermodel ->query($sqlAudio);
+                }catch(\Exception $e){
+                    
+                    die($e->getMessage());
+                }
+               
         }else{
             //Si algo sale mal nos marca un error 
            // throw new RuntimeException($file_audio->getErrorString().'('.$file_audio->getError().')');
