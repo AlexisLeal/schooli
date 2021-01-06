@@ -98,16 +98,19 @@
               <table width="70%">
               <tr>
               <td width="30%">Miembros del grupo</td>
-              <td width="30%">Reasignar grupo</td>
+              <td width="30%">Acciones de grupo</td>
               </tr>
-            <?php foreach(AsignacionGetAlumnosAsignados($id_unidad_negocio,$id_plantel) as $fila){
+              <?php foreach(AsignacionGetAlumnosAsignados($id_unidad_negocio,$id_plantel) as $fila){
               if(empty($fila->id_grupo)){?>
               <tr>
-              <td><input type="checkbox" name="<?php echo $fila->id?>"  value="<?php echo $fila->id?>"> <?php echo $fila->nombre;?> Disponible</td>
-              <td></td>
+              <td><input type="checkbox" name="<?php echo $fila->id?>"  value="<?php echo $fila->id?>"> <?php echo $fila->nombre;?> </td>
+              <td>Disponible</td>
               <?php }elseif($fila->id_grupo != $id_grupo && !empty($fila->id_grupo)){?>
               </tr>
-            <td><input type="checkbox" disabled="disabled"  checked name="<?php echo $fila->id?>"  value="<?php echo $fila->id?>"> <?php echo $fila->nombre;?> Otro Grupo</td>
+              <tr>
+            <td><input type="checkbox" disabled="disabled"  checked name="<?php echo $fila->id?>"  value="<?php echo $fila->id?>"> <?php echo $fila->nombre;?> </td>
+            <td>Esta en otro Grupo</td>
+            </tr>
             <?php 
              }else{?>
            
