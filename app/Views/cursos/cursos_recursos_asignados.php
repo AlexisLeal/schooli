@@ -68,14 +68,14 @@
               <div class="niveles" style="width:230px;height:100px;background-image:url('<?php echo base_url($fila->nombre) ?>');float:left;margin-left:10px;margin-right:10px;margin-bottom:10px;padding-top:5px;padding-bottom:5px;padding-left:10px;">
               <?php
               if($fila->tipo_recurso==1){
-                
-                echo $fila->tipo_recurso."<br/>";
                 ?>
-                <a class="dropdown-item" href="<?php echo site_url("/Evaluaciones/panel_evaluaciones/$fila->id_evaluacion"); ?>">Agregar preguntas</a>
+                <a href="<?php echo site_url("/Evaluaciones/panel_evaluaciones/$fila->id_evaluacion"); ?>"><?php echo $fila->nombre;?></a>
                 <?php
+              }else{
+                ?>
+              <a href="<?php echo base_url($fila->nombre)?>"> <?php echo $fila->nombre;?></a>
+              <?php
               }
-              echo $fila->nombre."<br/>";
-              echo $fila->tipo_archivo."<br/>";
               ?>
               </div>
             <?php
