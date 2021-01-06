@@ -102,10 +102,10 @@ function getTotalEvaluacionLeccion($id_tipo_evaluacion,$id_nivel,$id_leccion)
     
 }
 
-function getEvaluacion($id_tipo_evaluacion,$id_nivel,$id_leccion)
+function getEvaluacion($id_evaluacion)
 { 
     $usermodel = new Evaluaciones_model($db);
-    $query = "SELECT * from evaluaciones where tipo_evaluacion = $id_tipo_evaluacion AND nivel = $id_nivel AND leccion = $id_leccion AND deleted = 0";
+    $query = "SELECT * from evaluaciones where id = $id_evaluacion AND deleted = 0";
     $resultado = $usermodel ->query($query);
     $rowArray = $resultado -> getResult();
     return($rowArray);

@@ -79,7 +79,6 @@
           <a href="<?php echo site_url('/Evaluaciones/tipo_evaluacion/1'); ?>">Niveles.</a> / <a href="<?php echo site_url("/Evaluaciones/lecciones/$id_evaluacion"); ?>">Lecciones.</a><br/>
 
 
-          Evaluación: Nivel : <?php echo $id_nivel;?> / Lección:<br/>
 
 
           <div class="espacioUno"></div>
@@ -119,7 +118,7 @@
                 ?>
             <?php
               //Dejarsala asi no moverle 
-              $nombreEvaluaciones = getTipoEvaluacionEspecifico($id_evaluacion);
+             // $nombreEvaluaciones = getTipoEvaluacionEspecifico($id_evaluacion);
               //obtiene si es sistema o exci 
               //la variable id_evaluacion hace referencia al id del tipo de evaluacion 
             //Estos paremetros nos lo pasen el contralador
@@ -132,7 +131,7 @@
                 <tr>
                 <td><?php echo $fila->id;?></td>
                 <td><?php echo $fila ->nombre;?></td>
-                <td><?php echo $nombreEvaluaciones->nombre;?></td>
+                <!--<td>< ?php echo $nombreEvaluaciones->nombre;?></td> -->
                 <td><?php
                 if(empty($fila->idCategoriaEvaluacion)){
                   echo "vacia";
@@ -143,14 +142,14 @@
                 ?></td>
                 <td><?php echo getTotalPreguntas($fila->id);?></td>
                 <td><?php echo getValorTotalPreguntas($fila->id);?></td>
-                <td><?php if($fila->estado == 1){
+              <!--  <td>< ?php if($fila->estado == 1){
                   echo "Activo";
                   $estado = "Activo";
                 }else{
                   echo "Inactivo";
                   $estado = "Inactivo";
                 } ?></td>
-
+              -->
                 <td class="text-center">
                 <!--CAMBIAR A LINK-->
                 <a href="<?php echo site_url("Preguntas/verEvaluacion/$fila->id") ?>">
