@@ -80,7 +80,7 @@
                   <th class="text-left">estatus</th>
                   <th class="text-left">Ver</th>
                   <th class="text-left">Editar</th>
-                  <th class="text-left">Asignar Valor Asistencia</th>
+                  <!--<th class="text-left">Asignar Valor Asistencia</th>-->
                 </tr>
 
               </thead>
@@ -108,26 +108,26 @@
                       <i class="fa fa-pencil-square-o fa-1x" aria-hidden="true"></i>
                     </a>
                   </td>
-                  <td class="text-center">
-                  <?php
+                  <!--<td class="text-center">
+                  < ?php
                   $resultadoValorAsistencia = getValorAsistenciaFrecuencia($fila->id);
                   if(empty($resultadoValorAsistencia)){
                     
                     ?>
-                    <a href="<?php echo site_url("/Frecuencia/asignarValorAsistenciaFrecuencia/$fila->id") ?>">
+                    <a href="< ?php echo site_url("/Frecuencia/asignarValorAsistenciaFrecuencia/$fila->id") ?>">
                       <i class="fa fa-plus-square-o" aria-hidden="true"></i>
                     </a>
-                  <?php
+                  < ?php
                   }else{
                    ?>
-                    <a href="<?php echo site_url("/Frecuencia/vervaloresasistencia/$fila->id") ?>">
+                    <a href="< ?php echo site_url("/Frecuencia/vervaloresasistencia/$fila->id") ?>">
                       Valores asignados
                     </a>
-                    <?php
+                    < ?php
                   }
                   ?>
 
-                  </td>
+                  </td>-->
               </tr>
             <?php
                 }

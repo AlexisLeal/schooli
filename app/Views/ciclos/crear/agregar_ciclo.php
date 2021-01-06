@@ -299,7 +299,6 @@ function FormatoFecha(Texto){
 
 function ObtenerNumeroSemanas(FechaInicio,FechaFin){
   if(FechaInicio < FechaFin){
-    alert('entra a ajax');
     $.ajax({
       type: "POST",
         url: "<?php echo site_url('Ciclos/AjaxCiclos'); ?>",

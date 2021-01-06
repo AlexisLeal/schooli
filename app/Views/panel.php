@@ -52,18 +52,19 @@
       <?php include(APPPATH.'/Views/include/notificacion.php');?>
           
       Accesos Rapidos:
+      <!--
         <div class="espacioUno"></div>
         <div class="card">
           <div class="card-body">
             <table width="100%" cellspacing="12" cellpadding="12" >
               <tr>
-                <td><div class="text-center"><a href="<?php echo site_url('/Evaluaciones/index'); ?>"><i class="fa fa-file-text-o fa-2x" aria-hidden="true"></i><br/>Evaluaciones.</a></div></td>
-                <td><div class="text-center"><a href="<?php echo site_url('/Evaluaciones/index'); ?>"><br/>Tipos de <br/> evaluaciones:</a></div></td>
+                <td><div class="text-center"><a href="< ?php echo site_url('/Evaluaciones/index'); ?>"><i class="fa fa-file-text-o fa-2x" aria-hidden="true"></i><br/>Evaluaciones.</a></div></td>
+                <td><div class="text-center"><a href="< ?php echo site_url('/Evaluaciones/index'); ?>"><br/>Tipos de <br/> evaluaciones:</a></div></td>
                 <td><div class="text-center">
-                  <?php
+                  < ?php
                   foreach(getTipoEvaluacion() as $fila){ ?>
-                  <a href="<?php echo site_url("/Evaluaciones/tipo_evaluacion/$fila->id"); ?>"><?php echo $fila->nombre ?></a> / 
-                  <?php
+                  <a href="< ?php echo site_url("/Evaluaciones/tipo_evaluacion/$fila->id"); ?>">< ?php echo $fila->nombre ?></a> / 
+                  < ?php
                   }
                   ?>
                     </div>
@@ -72,6 +73,7 @@
             </table>
           </div>
         </div>
+        -->
 
         <div class="espacioUno"></div>
         <div class="card">
