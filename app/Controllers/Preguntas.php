@@ -69,7 +69,7 @@ class Preguntas extends BaseController{
     {   
         if($this->session->get('login') && $this->session->get('roll') == 4){
             $usermodel = new Evaluaciones_model($db);
-            $usermodel->select('nombre,clave,tipo_evaluacion,nivel,leccion');
+            $usermodel->select('nombre,clave,tipo_evaluacion');
             $usermodel->where('id',$id_evaluacion);
             $usermodel->where('deleted',0);
 
@@ -79,8 +79,6 @@ class Preguntas extends BaseController{
             $data['nombre'] = $row->nombre;
             $data['clave'] = $row->clave;
             $data['idtipoevaluacion'] = $row->tipo_evaluacion;
-            $data['nivel'] = $row->nivel;	
-            $data['leccion'] = $row->leccion;
             $data['totalpreguntas'] = getTotalPreguntas($id_evaluacion);
             $data['valorpreguntas'] =  getValorTotalPreguntas($id_evaluacion);
             $nombre = getTipoEvaluacionEspecifico( $row->tipo_evaluacion);
