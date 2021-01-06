@@ -38,9 +38,6 @@
 </header>
 
 
-
-
-
     <!--Ejemplo tabla con DataTables-->
     <div class="container">
       <div id="general">
@@ -51,9 +48,6 @@
 
           <div class="col-md-6">
           <?php include(APPPATH.'/Views/include/notificacion.php');?>
-
-
-
 
 
           <div class="espacioUno"></div>

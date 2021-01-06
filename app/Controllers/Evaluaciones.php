@@ -62,14 +62,12 @@ class Evaluaciones extends BaseController{
     }
 
 
-    public function panel_evaluaciones($id_evaluacion,$id_nivel,$id_leccion)
+    public function panel_evaluaciones($id_evaluacion)
     {
         if($this->session->get('login') && $this->session->get('roll') == 4){
 
             $data['id_evaluacion'] = $id_evaluacion;
-            $data['id_nivel'] = $id_nivel;
-            $data['id_leccion'] = $id_leccion;
-        
+
             return view('evaluaciones/panel_evaluaciones',$data);
         }else{
             return redirect()->to(site_url('Home/salir'));

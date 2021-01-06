@@ -76,10 +76,10 @@
 
 
           <a href="<?php echo site_url('/Panel/index'); ?>">Panel principal</a> / <a href="<?php echo site_url('/Evaluaciones/index'); ?>">Tipo Evaluaciones </a> /
-          <a href="<?php echo site_url('/Evaluaciones/tipo_evaluacion/1'); ?>">Niveles.</a> / <a href="<?php echo site_url("/Evaluaciones/lecciones/$id_evaluacion"); ?>">Lecciones.</a><br/>
+          <a href="<?php echo site_url('/Evaluaciones/tipo_evaluacion/1'); ?>">Niveles.</a> / <a href="<?php echo site_url("/Evaluaciones/lecciones/$id_evaluacion/$id_nivel"); ?>">Lecciones.</a><br/>
 
 
-          Evaluación: Nivel : <?php echo $id_nivel;?> / Lección:<br/>
+          Evaluación: Nivel : <?php echo $id_nivel;?> / Lección: <?php echo $id_leccion;?><br/>
 
 
           <div class="espacioUno"></div>
@@ -94,7 +94,7 @@
               <div class="card">
                 <div class="card-body">
                 <?php
-                if(!empty(getEvaluacion($id_evaluacion))){
+                if(!empty(getEvaluacion($id_evaluacion,$id_nivel,$id_leccion))){
                 ?>
               <table class="tabla-registros" class="display" cellspacing="6" cellpadding="8">
                 <thead>
@@ -124,7 +124,7 @@
               //la variable id_evaluacion hace referencia al id del tipo de evaluacion 
             //Estos paremetros nos lo pasen el contralador
             //Esto puede cambiar 
-            foreach(getEvaluacion($id_evaluacion) as $fila){
+            foreach(getEvaluacion($id_evaluacion,$id_nivel,$id_leccion) as $fila){
               $valor = getValorTotalPreguntas($fila->id);
               $usuarioCreo = getUsuarioCreo($fila->usuario_creo);
               //MUY IMPORTANTE ESTE FUNCION 

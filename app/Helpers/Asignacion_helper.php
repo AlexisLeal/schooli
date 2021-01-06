@@ -227,7 +227,7 @@ function AsignacionGetIdFrecuencia($id_grupo)
 function getRecursosPorCurso($IdCurso)
 {
     $usermodel = new Recursos_model($db);
-    $usermodel->select('id,nombre,extencion,tipo_archivo,tipo_recurso');
+    $usermodel->select('id,nombre,extencion,tipo_archivo,tipo_recurso,id_evaluacion');
     $usermodel->where('id_curso',$IdCurso);
     $usermodel->where('deleted',0);	
     $resultado = $usermodel->get();
