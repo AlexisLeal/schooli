@@ -3,7 +3,7 @@ use  App\Models\Evaluaciones_model;
 class Evaluaciones extends BaseController{
 
 
-
+    //Funcion old
     public function index()
 	{
         if($this->session->get('login') && $this->session->get('roll') == 4){
@@ -14,7 +14,7 @@ class Evaluaciones extends BaseController{
             return redirect()->to(site_url('Home/salir'));
            }
     }
-  
+    //Funcion old
     public function crear_evaluacion()
     {
         if($this->session->get('login') && $this->session->get('roll') == 4){
@@ -26,7 +26,7 @@ class Evaluaciones extends BaseController{
            }
         
     }
-
+    //Funcion old
     public function tipo_evaluacion($view)
     {
         if($this->session->get('login') && $this->session->get('roll') == 4){
@@ -48,7 +48,7 @@ class Evaluaciones extends BaseController{
        }
         
     }
-
+    //Funcion old 
     public function lecciones($id_evaluacion,$id_nivel)
     {   
         if($this->session->get('login') && $this->session->get('roll') == 4){
@@ -75,6 +75,7 @@ class Evaluaciones extends BaseController{
     }
 
    
+    //Funcion old
     public function insertar_evaluacion()
     {
         if($this->session->get('login') && $this->session->get('roll') == 4){

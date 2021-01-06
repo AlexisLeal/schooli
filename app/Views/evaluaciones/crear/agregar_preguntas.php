@@ -97,7 +97,7 @@
           </tr>
           <tr>
             <td>
-              <p class="font-weight-bold">Estado:</p>
+         
             </td>
             <td></td>
             <td></td>
@@ -173,7 +173,7 @@
             </div>
 
             <div class="form-group">
-              <input type="hidden" name="idtipoevaluacion" value="<?php echo $idtipoevaluacion; ?>">
+             
 
               <table width="100%">
                 <tr>

@@ -301,6 +301,19 @@ function InsertaRutaEvaluacion($id_evaluacion,$nombreCurso,$nombreNivel,$nombreS
 }
 
 
+function ObtenerRutaEvaluacion($IdEvaluacion)
+{
+    $UseModelEvaluacion = new Evaluaciones_model($db);
+    $UseModelEvaluacion->select('directorio_uploads');
+    $UseModelEvaluacion->where('id',$IdEvaluacion);
+    $UseModelEvaluacion->where('deleted',0);
+    $Query = $UseModelEvaluacion->get();
+    $Resultado = $Query->getRow();
+    return  $Resultado->directorio_uploads;
+    
+}
+
+
 
 
 

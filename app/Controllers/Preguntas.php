@@ -22,7 +22,6 @@ class Preguntas extends BaseController{
             $data['idEvaluacion'] = $id_evaluacion;
             $data['nombre'] = $row->nombre;
             $data['clave'] = $row->clave;
-            $data['idtipoevaluacion'] = $row->tipo_evaluacion;
             $data['totalpreguntas'] = getTotalPreguntas($id_evaluacion);
             $data['valorpreguntas'] =  getValorTotalPreguntas($id_evaluacion);
             $nombre =getTipoEvaluacionEspecifico( $row->tipo_evaluacion);
@@ -155,7 +154,8 @@ class Preguntas extends BaseController{
             $valor    = $REQUEST->getPost('valor');//Valor que le da al usuario a la pregunta
             $hoy      = date("Y-m-d H:i:s");
             $tipoPregunta   = $REQUEST->getPost('tipoPregunta');
-            $usermodel      = new Preguntas_model($db);
+            $usermodel      = new Preguntas_model($db); 
+            $Ruta = ObtenerRutaEvaluacion($idEvaluacion);
         if(empty($valorpreguntas)){
               $numeropregunta = 1;
         }else{
@@ -173,16 +173,16 @@ class Preguntas extends BaseController{
                 if ($file_audio->isValid() && ! $file_audio->hasMoved()){
           
                 //Comprobar si existe la ruta donde se va a guardar el audio
-                    if (!is_dir('uploads/'.$clave.'/audio-pregunta')) {
-                        mkdir('./uploads/' .$clave.'/audio-pregunta', 0777, TRUE);
+                    if (!is_dir("$Ruta/audio-pregunta")) {
+                        mkdir("$Ruta/audio-pregunta", 0777, TRUE);
                     }
                  //Obtenemos el archivo 
                     $audio= 1;
                     $nombre = 'pre'.$clave.$numeropregunta.'.mp3';
                  //Ruta para la base de datos 
-                    $ruta_audio_basedatos = "uploads/".$clave."/audio-pregunta/".$nombre."";
+                    $ruta_audio_basedatos = "$Ruta/audio-pregunta/".$nombre."";
                  //Ruta para mover el archivo
-                    $ruta_audio = "uploads/".$clave."/audio-pregunta";
+                    $ruta_audio = "$Ruta/audio-pregunta";
                     $file_audio->move($ruta_audio,$nombre);
                 }else{
                 }
@@ -197,14 +197,14 @@ class Preguntas extends BaseController{
             $file_imagen = $REQUEST->getFile('archivo_imagen');
             if ($file_imagen->isValid() && ! $file_imagen->hasMoved()){
                 //Comprobar si existe la ruta donde se va a guardar el audio
-                if (!is_dir('uploads/'.$clave.'/imagen-pregunta')) {
-                    mkdir('./uploads/' .$clave.'/imagen-pregunta', 0777, TRUE);
+                if (!is_dir("$Ruta/imagen-pregunta")) {
+                    mkdir("$Ruta/imagen-pregunta", 0777, TRUE);
                 }
             //Obtenemos el archivo 
                 $imagen= 1;
                 $nombre = 'pre'.$clave.$numeropregunta.'.jpg';
-                $ruta_imagen_basedatos = "uploads/".$clave."/imagen-pregunta/".$nombre."";  
-                $ruta_imagen = "uploads/".$clave."/imagen-pregunta";  
+                $ruta_imagen_basedatos = "$Ruta/imagen-pregunta/".$nombre."";  
+                $ruta_imagen = "$Ruta/imagen-pregunta";  
                 $file_imagen->move($ruta_imagen,$nombre);
             }else{
                 echo "Error";
@@ -270,14 +270,14 @@ class Preguntas extends BaseController{
         {
 
                 //Comprobar si existe la ruta donde se va a guardar el audio
-            if (!is_dir('uploads/'.$clave.'/audio')) {
-                mkdir('./uploads/' .$clave.'/audio', 0777, TRUE);
+            if (!is_dir("$Ruta/audio")) {
+                mkdir("$Ruta/audio", 0777, TRUE);
             }
 
             //Obtenemos el archivo 
             $nombre = 'pregunta-ingles'.$numeropregunta.'.mp3';  
-            $ruta_audio_basedatos = "uploads/".$clave."/audio/".$nombre."";
-            $ruta_audio = "uploads/".$clave."/audio";
+            $ruta_audio_basedatos = "$Ruta/audio/".$nombre."";
+            $ruta_audio = "$Ruta/audio";
 
             $audio_extension= $file_audio->getClientExtension();
             $file_audio->move($ruta_audio,$nombre);
@@ -316,14 +316,14 @@ class Preguntas extends BaseController{
             if ($file_video->isValid() && ! $file_video->hasMoved()){
          
               //Comprobar si existe la ruta donde se va a guardar el audio
-                if (!is_dir('uploads/'.$clave.'/video')) {
-                 mkdir('./uploads/' .$clave.'/video', 0777, TRUE);
+                if (!is_dir("$Ruta/video")) {
+                 mkdir("$Ruta/video", 0777, TRUE);
                 }
 
           //Obtenemos el archivo 
                 $nombre = 'pregunta-ingles'.$numeropregunta.'.mp4';  
-                $ruta_video_basedatos = "uploads/".$clave."/video/".$nombre."";
-                $ruta_video = "uploads/".$clave."/video";
+                $ruta_video_basedatos = "$Ruta/video/".$nombre."";
+                $ruta_video = "$Ruta/video";
                 $video_extension= $file_video->getClientExtension();
                 $file_video->move($ruta_video,$nombre);
 
@@ -353,17 +353,11 @@ class Preguntas extends BaseController{
             }
 
         }
-        //Creamos una variable que nos indica 
-        $idtipoevaluacion = $REQUEST->getPost('idtipoevaluacion');	//Si es sistema o exci 
-        $nivel = $REQUEST->getPost('nivel');	
-        $leccion = $REQUEST->getPost('leccion');	
-
+       
         $data = ['pregunta-exito'  => 'La pregunta se agrego de forma correcta'];
         $this->session->set($data,true);
 
-      
-
-        return redirect()->to(site_url("Evaluaciones/panel_evaluaciones/$idtipoevaluacion/$nivel/$leccion"));
+        return redirect()->to(site_url("Evaluaciones/panel_evaluaciones/$idEvaluacion"));
     
 
         }else{
