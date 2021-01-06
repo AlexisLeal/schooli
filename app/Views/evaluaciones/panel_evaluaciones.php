@@ -118,12 +118,13 @@
                 ?>
             <?php
               //Dejarsala asi no moverle 
-             // $nombreEvaluaciones = getTipoEvaluacionEspecifico($id_evaluacion);
+            
               //obtiene si es sistema o exci 
               //la variable id_evaluacion hace referencia al id del tipo de evaluacion 
             //Estos paremetros nos lo pasen el contralador
             //Esto puede cambiar 
             foreach(getEvaluacion($id_evaluacion) as $fila){
+              $nombreEvaluaciones = getTipoEvaluacionEspecifico($fila->tipo_evaluacion);
               $valor = getValorTotalPreguntas($fila->id);
               $usuarioCreo = getUsuarioCreo($fila->usuario_creo);
               //MUY IMPORTANTE ESTE FUNCION 
@@ -131,7 +132,7 @@
                 <tr>
                 <td><?php echo $fila->id;?></td>
                 <td><?php echo $fila ->nombre;?></td>
-                <!--<td>< ?php echo $nombreEvaluaciones->nombre;?></td> -->
+                <td><?php echo $nombreEvaluaciones->nombre;?></td> 
                 <td><?php
                 if(empty($fila->idCategoriaEvaluacion)){
                   echo "vacia";

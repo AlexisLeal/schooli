@@ -85,7 +85,7 @@ function getTotalEvaluacion($id_tipo_evaluacion,$nivel)
 function getTipoEvaluacionEspecifico($id_tipo_evaluacion)
 {
     $usermodel = new Tipo_evaluacion($db);
-    $query = "SELECT id,nombre from tipo_evaluacion WHERE id = $id_tipo_evaluacion AND deleted = 0";
+    $query = "SELECT id,nombre from tipo_recurso_evaluacion WHERE id = $id_tipo_evaluacion AND deleted = 0";
     $resultado = $usermodel ->query($query);
     $row = $resultado->getRow();
     return ($row);
@@ -213,7 +213,7 @@ function getCategoriaEvaluacion()
 function getCategoriaEvaluacionEspecifica($id_categoria_evaluacion)
 {
     $usermodel = new Categorias_Evaluaciones($db);
-    $query = "SELECT nombre from categorias_evaluaciones WHERE id = $id_categoria_evaluacion AND deleted = 0";
+    $query = "SELECT nombre from categoria_recurso_evaluacion WHERE id = $id_categoria_evaluacion AND deleted = 0";
     $resultado = $usermodel->query($query);
     $row = $resultado->getRow();
     $nombre = $row->nombre;
