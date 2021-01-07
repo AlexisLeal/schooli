@@ -1,4 +1,3 @@
-
 <?php include(APPPATH.'/Views/include/header.php');?>
 
 <div class="espacioDos"></div>
@@ -74,26 +73,25 @@
               ?>
 
 
-
+ 
           <div class="espacioUno"></div>
             <!--<h4>Grupos</h4>-->
               <h4>Recursos Asignados.</h4>
               <div class="card">
                 <div class="card-body">
-
-                <!--<a href="< ?php echo site_url('/Grupos/agregargrupo'); ?>">Crear un grupo</a> -->
                 </h4>
-                <a href="<?php echo site_url("/Grupos/vergrupo/$id_grupo");?>">
                 <i class="fa fa-arrow-circle-o-left fa-2x" aria-hidden="true"></i>
                 </a>
                 </h4>
-                <?php foreach(getGrupoRecursos($id_curso,$id_nivel) as $fila){ ?>
-                  <br>
-                  Nombre <?php echo $fila->nombre;?>
+                <?php if(empty(GruposObteneRecursosporCursoNivelSesion($IdCurso,$IdNivel,$Sesion))){ ?>
+                    <h1>No hay recursos asignados</h1>
+                <?php }else{
+                     foreach(GruposObteneRecursosporCursoNivelSesion($IdCurso,$IdNivel,$Sesion) as $fila){ ?>
+                        Nombre es : <?php echo $fila->nombre?>;
 
-                  <?php }?>
-
-
+                    <?php }
+                    }?>
+               
                 <hr class="linea"/>
 
                

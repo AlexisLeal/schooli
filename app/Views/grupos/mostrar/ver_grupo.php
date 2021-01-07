@@ -121,7 +121,7 @@
 
                     <tr>
                       <td width="40%">
-                        <a href="<?php echo site_url("Asignacion/recursos/$id_grupo/$id_curso/$id_nivel"); ?>"> Ver recursos del grupo </a>
+                        <a href="<?php echo site_url("Asignacion/sesiones/$id_grupo/$id_curso/$id_nivel"); ?>"> Ver sesiones </a>
                       </td>
                       <td width="40%">
                         <a href="<?php echo site_url("Asignacion/deletedEvaluacion/$id_grupo"); ?>"> Eliminar Evaluacion </a>

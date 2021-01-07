@@ -440,9 +440,6 @@ class Alumnos extends BaseController{
                 return redirect()->to(site_url("Alumnos/editaralumno/$id_alumno"));
                 
             }
-           
-            
-            
 
             return redirect()->to(site_url('Alumnos/index'));
         

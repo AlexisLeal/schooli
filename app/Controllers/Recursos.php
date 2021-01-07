@@ -65,7 +65,18 @@ class Recursos extends BaseController
                     $nombreNivel = getnivelEspecifico($REQUEST->getPost('nivel'));
                     $nombreSesion = 'Sesion'.''.$REQUEST->getPost('sesion');
                     if (!is_dir("recursos/$nombreCurso/$nombreNivel/$nombreSesion")) {
-                        mkdir("recursos/$nombreCurso/$nombreNivel/$nombreSesion", 0777, TRUE);
+                        try {
+                            mkdir("recursos/$nombreCurso/$nombreNivel/$nombreSesion", 0777, TRUE);
+                        } catch (\Exception $e) {
+                            $data = [
+                                'mensaje-recurso'  => 'Hay problemas a crear la carpeta',
+                                'tipo-mensaje' => 'alert-danger'
+                            ];
+                            $this->session->set($data, true);
+                            return redirect()->to(site_url("Recursos/recursos"));
+                            
+                        }
+                        
                     }
                     $nombre_recurso = $recurso_archivo->getClientName();
                     $ruta_recurso_basedatos = "recursos/$nombreCurso/$nombreNivel/$nombreSesion/$nombre_recurso";
@@ -175,5 +186,5 @@ class Recursos extends BaseController
 
 
         
-    }
+    } 
 }

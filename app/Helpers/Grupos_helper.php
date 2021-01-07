@@ -2,6 +2,7 @@
 use  App\Models\Grupos_model;
 use  App\Models\Grupos_evaluaciones_model;
 use  App\Models\Evaluaciones_model;
+use  App\Models\Cursos_model;
 use  App\Models\Recursos_model;
 
 
@@ -86,6 +87,29 @@ function GruposGetNivelEvaluaciones($idNivel)
     $rowArray = $resultado->getResult();
     return($rowArray);
    
+}
+
+function GruposObtenerSesionesporCurso($Id_Curso)
+{
+        $UserModel = new Cursos_model($db);
+        $UserModel->select('total_dias_laborales');
+        $UserModel->where('id',$Id_Curso);
+        $UserModel->where('deleted',0);
+        $Query = $UserModel->get();
+        $Resultado = $Query->getRow();
+        return $Resultado->total_dias_laborales;
+}
+function GruposObteneRecursosporCursoNivelSesion($IdCurso,$IdNivel,$Sesion)
+{
+        $UserModel = new Recursos_model($db);
+        $UserModel->select('id,nombre');
+        $UserModel->where('id_curso',$IdCurso);
+        $UserModel->where('id_nivel',$IdNivel);
+        $UserModel->where('id_leccion',$Sesion);
+        $UserModel->where('deleted',0);
+        $Query = $UserModel->get();
+        $Resultado = $Query->getResult();
+        return $Resultado;
 }
 
 ?>

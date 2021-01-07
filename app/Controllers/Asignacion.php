@@ -36,18 +36,34 @@ class Asignacion extends BaseController{
         }
     }
 
-    public function recursos($id_grupo,$id_curso,$id_nivel)
+    public function sesiones($id_grupo,$id_curso,$id_nivel)
     {
         if($this->session->get('login') && $this->session->get('roll') == 4){
 
             $data['id_curso'] = $id_curso;
             $data['id_nivel'] = $id_nivel;
             $data['id_grupo'] = $id_grupo;
-
-            return view('grupos/asignacion/recurso',$data);
+            
+            return view('grupos/asignacion/sesiones',$data);
         }else{
             return redirect()->to(site_url('Home/salir'));
         }
+    }
+
+
+    public function recursosasignados($IdCurso,$IdNivel,$Sesion)
+    {
+        if($this->session->get('login') && $this->session->get('roll') == 4){
+
+            $data['IdCurso'] = $IdCurso;
+            $data['IdNivel'] = $IdNivel;
+            $data['Sesion'] = $Sesion;
+
+           return view('grupos/asignacion/recursos',$data);
+        }else{
+            return redirect()->to(site_url('Home/salir'));
+        }
+
     }
 
     public function evaluacion($id_grupo)
