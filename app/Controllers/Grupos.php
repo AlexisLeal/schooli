@@ -108,8 +108,6 @@ class Grupos extends BaseController{
                 $usermodel->insert($data);
 
                 $idgrupo = $usermodel->insertID();
-                $idNivel = $REQUEST->getPost('nivel'); 
-                GruposAsignacionAutomaticaEvaluaciones($idgrupo,$idNivel);
 
                 if(!empty($REQUEST->getPost('maestro'))){
                     $usermodelTeacher = new Grupos_teachers_model();
