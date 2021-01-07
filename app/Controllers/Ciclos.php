@@ -179,6 +179,7 @@ class Ciclos extends BaseController{
 
         $FechaInicio = new Datetime($REQUEST->getPost('FechaInicio'));
         $FechaFin = new Datetime($REQUEST->getPost('FechaFin'));
+        date_sub($FechaInicio, date_interval_create_from_date_string('1 days'));
         $Intervarlo = $FechaInicio->diff($FechaFin);
         $No_Semanas = floor($Intervarlo->format('%a')/7);
         $No_dias = $Intervarlo->format('%a') % 7;
