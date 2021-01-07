@@ -271,7 +271,7 @@ function MostraCalendario(FechaInicio,FechaFin){
                 "Octubre",
                 "Noviembre",
                 "Diciembre"
-            ],
+            ], 
             "firstDay": 0
         },
         "startDate": NuevaFechaInicio,
