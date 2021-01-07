@@ -250,13 +250,13 @@ function MostraCalendario(FechaInicio,FechaFin){
             "toLabel": "Hasta",
             "customRangeLabel": "Custom",
             "daysOfWeek": [
+                "Do",
                 "Lu",
                 "Ma",
                 "Mi",
                 "Ju",
                 "Vi",
-                "Sa",
-                "Do"
+                "Sa"
             ],
             "monthNames": [
                 "Enero",
@@ -276,8 +276,8 @@ function MostraCalendario(FechaInicio,FechaFin){
         },
         "startDate": NuevaFechaInicio,
         "endDate": NuevaFechaFin,
-        "minDate":NuevaFechaInicio,
-        "maxDate":NuevaFechaFin,
+        "minDate": NuevaFechaInicio,
+        "maxDate": NuevaFechaFin,
           opens: 'left'
     }, function (start, end, label) {
         $(".calendar-box").html(start.format('DD-MM-YYYY') + " <i class='fas fa-minus'></i> " + end.format('DD-MM-YYYY'));
