@@ -200,7 +200,7 @@
               <div class="espacioDos"></div>
               <div class="row">
                 <div class="col">
-                  <input type="number" name="calle" id="calle" class="form-control form-control-sm" placeholder="Calle">
+                  <input type="text" name="calle" id="calle" class="form-control form-control-sm" placeholder="Calle">
                 </div>
                 <div class="col">
                   <input type="number" name="num_interior" id="num_interior" class="form-control form-control-sm" placeholder="Número interior">
