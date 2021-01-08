@@ -124,6 +124,16 @@ function CatalagoGetNombreCurso($id_curso)
     $nombre = $row->nombre;
     return($nombre);
 }
+function CatalagoObtenerPonderaciondeCurso($id_curso)
+{
+    $usermode = new Cursos_model($db);
+    $usermode->select('valor_asistencia,valor_ejercicios,valor_examenes');
+    $usermode->where('deleted',0);
+    $usermode->where('id',$id_curso);
+    $resultado = $usermode->get();
+    $Row = $resultado->getRow();
+    return($Row);
+}
 
 function getAllFrecuencia()
 {
