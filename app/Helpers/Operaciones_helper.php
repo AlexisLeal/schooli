@@ -313,6 +313,12 @@ function ObtenerRutaEvaluacion($IdEvaluacion)
     
 }
 
+function EliminarEvaluacion($IdEvaluacion)
+{
+    $UseModelEvaluacion = new Evaluaciones_model($db);
+    $UseModelEvaluacion->delete(['id'=>$IdEvaluacion]);
+}
+
 
 
 

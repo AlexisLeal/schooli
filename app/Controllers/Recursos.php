@@ -5,6 +5,7 @@ namespace App\Controllers;
 use  App\Models\Recursos_model;
 use  App\Models\Cursos_model;
 
+
 class Recursos extends BaseController
 {
 
@@ -81,7 +82,17 @@ class Recursos extends BaseController
                     $nombre_recurso = $recurso_archivo->getClientName();
                     $ruta_recurso_basedatos = "recursos/$nombreCurso/$nombreNivel/$nombreSesion/$nombre_recurso";
                     $ruta_mover_recurso = "recursos/$nombreCurso/$nombreNivel/$nombreSesion";
-                    $recurso_archivo->move($ruta_mover_recurso, $nombre_recurso);
+                    try {
+                        $recurso_archivo->move($ruta_mover_recurso, $nombre_recurso);
+                    } catch (\Exception $e) {
+                        $data = [
+                            'mensaje-recurso'  => 'El recurso no se pudo copiar a ruta destino',
+                            'tipo-mensaje' => 'alert-danger'
+                        ];
+                        $this->session->set($data, true);
+                        return redirect()->to(site_url("Recursos/recursos"));
+                    }
+                   
 
                 
                 }else {
@@ -113,16 +124,13 @@ class Recursos extends BaseController
 
             $usermodel = new Recursos_model($db);
             if ($usermodel->insert($data)) {
-                $data = [
-                    'mensaje-recurso'  => 'El recurso se agrego de forma correcta',
-                    'tipo-mensaje' => 'alert-success'
-                ];
-                $this->session->set($data, true);
+
             } else {
                 $data = [
                     'mensaje-recurso'  => 'El recurso no  se pudo agregar, consulte con el administrador del sistema.', 'tipo-mensaje' => 'alert-danger'
                 ];
                 $this->session->set($data, true);
+                return redirect()->to(site_url("Recursos/recursos"));
             }
             if($REQUEST->getPost('tipoRecurso') == 1){
                 $id_recurso = $usermodel->insertID();
@@ -130,20 +138,66 @@ class Recursos extends BaseController
                 $categoria_evaluacion = $REQUEST->getPost('tipocategoriaevaluacion');
                 $nombre_evaluacion = $REQUEST->getPost('nombreEvaluacion');
 
-                $id_evaluacion = InsertarEvaluacion($id_recurso,$tipo_evaluacion,$categoria_evaluacion,$nombre_evaluacion);
+                try{
+                    $id_evaluacion = InsertarEvaluacion($id_recurso,$tipo_evaluacion,$categoria_evaluacion,$nombre_evaluacion);
+
+                }catch(\Exception $e){
+                    $usermodel->delete(['id'=>$id_recurso]);
+                    $data = [
+                        'mensaje-recurso'  => 'El recurso no se puede crear correctamente',
+                        'tipo-mensaje' => 'alert-danger'
+                    ];
+                    $this->session->set($data, true);
+                    return redirect()->to(site_url("Recursos/recursos"));
+
+                }
                 $nombreCurso = CatalagoGetNombreCurso($REQUEST->getPost('curso'));
                 $nombreNivel = getnivelEspecifico($REQUEST->getPost('nivel'));
                 $nombreSesion = 'Sesion'.''.$REQUEST->getPost('sesion');
-                InsertaRutaEvaluacion($id_evaluacion,$nombreCurso,$nombreNivel,$nombreSesion);
+                try{
+                    InsertaRutaEvaluacion($id_evaluacion,$nombreCurso,$nombreNivel,$nombreSesion);
+                }catch(\Exception $e){
+                    $data = [
+                        'mensaje-recurso'  => 'El recurso no se puede crear correctamente',
+                        'tipo-mensaje' => 'alert-danger'
+                    ];
+                    EliminarEvaluacion($id_evaluacion);
+                    $this->session->set($data, true);
+                    return redirect()->to(site_url("Recursos/recursos"));
 
-                $DataUpdateRecursor = [
-                    'id_evaluacion' => $id_evaluacion,
-                ];
-                $usermodel->update($id_recurso,$DataUpdateRecursor);
 
+                }
+                
+
+               
+                //Actualiza el idevaluacion de la tabla recurso
+                try {
+                    $DataUpdateRecursor = [
+                        'id_evaluacion' => $id_evaluacion,
+                    ];
+                    $usermodel->update($id_recurso,$DataUpdateRecursor);
+                } catch (\Exception $e) {
+                    $data = [
+                        'mensaje-recurso'  => 'El recurso no se puede crear correctamente',
+                        'tipo-mensaje' => 'alert-danger'
+                    ];
+                    EliminarEvaluacion($id_evaluacion);
+                    $usermodel->delete(['id'=>$id_recurso]);
+                    $this->session->set($data, true);
+                    return redirect()->to(site_url("Recursos/recursos"));
+
+                }
+                return redirect()->to(site_url("Evaluaciones/panel_evaluaciones/$id_evaluacion"));
+                
             }
-    
-                return redirect()->to(site_url("Recursos/recursos"));
+
+            $data = [
+                'mensaje-recurso'  => 'El recurso no se puede crear correctamente',
+                'tipo-mensaje' => 'alert-danger'
+            ];
+            $this->session->set($data, true);
+            return redirect()->to(site_url("Recursos/recursos"));
+                
             }else{
                 return redirect()->to(site_url('Home/salir'));
 
