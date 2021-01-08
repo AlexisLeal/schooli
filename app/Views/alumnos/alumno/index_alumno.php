@@ -92,8 +92,9 @@
                 }else{ ?>
                   Nombre del grupo:<?php echo $nombre_grupo;?> <br/>
                   Codigo de acceso: <?php echo $codigo_acceso;?> <br/>
-                  <?php echo $unidad_negocio;?> <br/>
+                  Unidad Negocio: <?php echo $unidad_negocio;?> <br/>
                   Plantel: <?php echo $nombre_plantel;?> <br/>
+                  Curso: <?php echo $nombre_curso;?> <br/>
                 
                 <?php }?>
 
@@ -230,15 +231,20 @@
                     echo "No tiene recursos asignados";
                   }else{
                     foreach(getGrupoRecursos($id_curso,$id_nivel) as $fila){ 
-                      //if(!empty($fila->id_grupo)){  ?>
-                      <h4>Nombre <?php echo $fila->nombre?></h4> <br>   
-
-                    <a href="< ?php echo base_url($fila->ruta);?>"><i class="fa < ?php echo $icono;?>" aria-hidden="true"></i> <?php echo $fila->nombre;?></a>  <br/>
+                      //if(!empty($fila->id_grupo)){  
+                        if($fila->tipo_recurso == 1){?>
+                         <a class="btn btn-success btn-sm" href="<?php echo site_url("Alumno/presentarevaluacion/$fila->id_evaluacion/$id_grupo"); ?>" role="button"><?php echo $fila->nombre;?></a> 
+                      <h4>Nombre de la evaluacion es: <?php echo $fila->nombre?></h4> <br>   
+                      <?php }else{?>
+                        <h4>Nombre del recurso es: <?php echo $fila->nombre?></h4> <br>
+                       
+                    <!--<a href="< ?php echo base_url($fila->ruta);?>"><i class="fa < ?php echo $icono;?>" aria-hidden="true"></i> < ?php echo $fila->nombre;?></a>-->  <br/>
                 
                   <?php
                   //}
                    }
                   }
+                }
                    ?>
                 
                 
