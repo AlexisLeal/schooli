@@ -76,6 +76,8 @@ class Ciclos extends BaseController{
                 'estatus' =>$REQUEST->getPost('estatus'),
                 'fecha_inicio' =>$REQUEST->getPost('fechaInicio'),
                 'fecha_fin' =>$REQUEST->getPost('fechaFIn'),
+                'fecha_inicio_excluir' =>$REQUEST->getPost('fecha_inicio_excluir'),
+                'fecha_fIn_excluir' =>$REQUEST->getPost('fecha_fIn_excluir'),
                 'comentarios' =>$REQUEST->getPost('descripcion'),
                 'fecha_creacion' =>$hoy,
                 'fecha_ultimo_cambio' =>$hoy,
