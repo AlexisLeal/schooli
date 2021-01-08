@@ -110,8 +110,25 @@
                 </div>
               </div>
 
+              <div class="espacioUno"></div>
+
+
+              <div class="row">
+                <div class="col">
+                  Fecha inicio excluir dias
+                  <input type="date" name="fecha_inicio_excluir" id="fecha_inicio_excluir" class="form-control form-control-sm" required="">
+
+                </div>
+                <div class="col">
+                  Fecha fin excluir dias
+                  <input type="date" name="fecha_fIn_excluir" id="fecha_fIn_excluir" class="form-control form-control-sm" required="">
+
+                  </select>
+                </div>
+              </div>
 
               <div class="espacioUno"></div>
+
 
               <div class="form-group">
                 <label for="lblInstrucciones">Descripción</label>
