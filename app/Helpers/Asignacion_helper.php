@@ -98,9 +98,10 @@ function getGrupoRecursos($idcurso,$idnivel)
 {
     $db = \Config\Database::connect();
     $usermodel = $db->table('recursos R');
-    $usermodel->select('R.id, R.nombre,R.extencion,R.ruta');
+    $usermodel->select('R.id, R.nombre,R.extencion,R.ruta,R.tipo_recurso,R.id_evaluacion');
     $usermodel->where('id_curso',$idcurso);
     $usermodel->where('id_nivel',$idnivel);
+    $usermodel->where('deleted',0);
     $query = $usermodel->get();
     $resultado = $query->getResult();
     return($resultado);
