@@ -128,14 +128,14 @@
 
                   <table width="90%" cellspacing="8" cellpadding="4">
                   <tr>
-                  <td>Evaluaciónes</td>
+                  <!--<td>Evaluaciónes</td> -->
                   </tr>
                   <tr>
                   <td>
 
-                  <p>Las evaluaciones enlistadas son las asignadas acontinuación, pero estas evaluacion solo estan activadas 
+                 <!-- <p>Las evaluaciones enlistadas son las asignadas acontinuación, pero estas evaluacion solo estan activadas 
                   segun el horario esablecido por el administrador del sistema.</p>
-
+                   -->
                    <?php 
                     $horario = AsignacionGetGrupoHorario($id_grupo);
                     
@@ -154,12 +154,12 @@
                    if($day == "Friday" && $frecuenciaGrupo->viernes==1){$goahead=1;}
                    if($day == "Saturday" && $frecuenciaGrupo->sabado==1){$goahead=1;}
 
-                   $evaluacionGrupo =  getGruposEvaluacion($id_grupo);
+                   //$evaluacionGrupo =  getGruposEvaluacion($id_grupo);
                    ?>
                   <table width="80%" le cellspacing="2" cellpadding="3">
                   <tr><td></td><td></td><td></td></tr>
 
-                   <?php
+                  <!-- < ?php
                    if(empty($evaluacionGrupo)){
                     echo "No tiene evaluaciones asignadas";
                    }else{
@@ -170,44 +170,45 @@
                       <tr>
                       <td><i class="fa fa-file-text-o fa-2x" aria-hidden="true"></i></td>
                       
-
-
-                      <?php
+                      -->
+                          <!--
+                      < ?php
                       if($num_preg==0){
                         ?>
-                        <td><button type="button" class="btn btn-success btn-sm"><?php echo $fila->nombre;?></button></td>
+                        <td><button type="button" class="btn btn-success btn-sm">< ?php echo $fila->nombre;?></button></td>
                         <td><span class="evalacionesSinPreguntas">Esta evaluación no tiene preguntas asignadas.</span></td>
                          
-                        <?php
+                        < ?php
                       }else{
                       ?>
-                      <td><a class="btn btn-success btn-sm" href="<?php echo site_url("Alumno/presentarevaluacion/$fila->id/$id_grupo"); ?>" role="button"><?php echo $fila->nombre;?></a></td>
+                      <td><a class="btn btn-success btn-sm" href="< ?php echo site_url("Alumno/presentarevaluacion/$fila->id/$id_grupo"); ?>" role="button">< ?php echo $fila->nombre;?></a></td>
                       <td></td>
                       
-                      <?php
+                      < ?php
                       }
                       ?>
                       
 
                       </tr>
   
-                    <?php
+                    < ?php
                       }else{?>
                       <tr>
                       <td><i class="fa fa-file-text-o fa-2x" aria-hidden="true"></i></td>
-                      <td><button type="button" class="btn btn-secondary btn-sm"><?php echo $fila->nombre;?></button></td>
+                      <td><button type="button" class="btn btn-secondary btn-sm">< ?php echo $fila->nombre;?></button></td>
                       <td></td>
                       </tr>
-                      <?php
+                      < ?php
                     }
                     ?>
                     
 
 
-                    <?php
+                    < ?php
                     }
                   }
-                   ?>                   
+                   ?>    
+                -->               
                   <tr>
                   <td></td>
                   <td></td>
@@ -218,68 +219,24 @@
                   </tr>  
                 
                   <tr>
-                  <td>
+                 <!-- <td>
                   Materiales
-                  </td>
-                  </tr>
+                  </td> -->
+                  </tr> 
                   <tr>
                   <td>
                   <?php
-
-                  $recursosGrupo =  getGrupoRecursos($id_curso,$id_nivel);
-                  if(empty($recursosGrupo)){
-                    echo "No tiene evaluaciones asignadas";
+                  if(empty(getGrupoRecursos($id_curso,$id_nivel))){
+                    echo "No tiene recursos asignados";
                   }else{
-                    foreach($recursosGrupo as $fila){
-                      if(!empty($fila->id_grupo)){
-                        switch($fila->extencion){
-                          case "docx":
-                            $icono = "fa-file-word-o fa-2x";
-                        //<i class="fa fa-file-word-o" aria-hidden="true"></i>
-                            break;
-                          case "xlsx":
-                            $icono = "fa-file-excel-o fa-2x";
-                            //<i class="fa fa-file-excel-o" aria-hidden="true"></i>
-                            break;
-                          case "pdf":
-                            $icono = "fa-file-pdf-o fa-2x";
-                            //<i class="fa fa-file-pdf-o" aria-hidden="true"></i>
-                            break;
-                          case "zip":
-                            $icono = "fa-file-archive-o fa-2x";
-                        //<i class="fa fa-file-archive-o" aria-hidden="true"></i>
-                            break;
-                          case "rar":
-                            $icono = "fa-file-archive-o fa-2x";
-                            //<i class="fa fa-file-archive-o" aria-hidden="true"></i>
-                            break;
-                          case "jpg":
-                            $icono = "fa-file-image-o fa-2x";
-                        //<i class="fa fa-file-image-o" aria-hidden="true"></i>
-                            break;
-                          case "png":
-                            $icono = "fa-file-image-o fa-2x";
-                        //<i class="fa fa-file-image-o" aria-hidden="true"></i>
-                            break;
-                          case "mp3":
-                            $icono = "fa-file-audio-o fa-2x";
-                        //<i class="fa fa-file-audio-o" aria-hidden="true"></i>
-                            break;
-                          case "mp4":
-                            $icono = "fa-file-video-o fa-2x";
-                        //<i class="fa fa-file-video-o" aria-hidden="true"></i>
-                            break;
-                          default:
-                            $icono="fa-file fa-2x";
-                      //<i class="fa fa-file" aria-hidden="true"></i>
-                    }
-                  
-                  ?>
+                    foreach(getGrupoRecursos($id_curso,$id_nivel) as $fila){ 
+                      //if(!empty($fila->id_grupo)){  ?>
+                      <h4>Nombre <?php echo $fila->nombre?></h4> <br>   
 
-                  <a href="< ?php echo base_url($fila->ruta);?>"><i class="fa < ?php echo $icono;?>" aria-hidden="true"></i> <?php echo $fila->nombre;?></a>  <br/>
+                    <a href="< ?php echo base_url($fila->ruta);?>"><i class="fa < ?php echo $icono;?>" aria-hidden="true"></i> <?php echo $fila->nombre;?></a>  <br/>
                 
                   <?php
-                  }
+                  //}
                    }
                   }
                    ?>
