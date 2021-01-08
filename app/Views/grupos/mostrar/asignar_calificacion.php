@@ -55,94 +55,68 @@
         <?php include(APPPATH . '/Views/include/notificacion.php'); ?>
 
 
-        <?php if ($session->has('Curso')) {; ?>
-          <div class="alert alert-warning alert-dismissible fade show" role="alert">
-            <strong>Notificaciones del sistema:</strong> <?php echo $session->get('Curso') ?>
+        <?php
+        if ($session->has('pregunta-exito')) {
+        ?>
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <?php
+            echo $session->get('pregunta-exito');
+            ?>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-        <?php }
-        $session->remove('Curso'); ?>
+        <?php
+
+          $session->remove('pregunta-exito');
+        }
+        ?>
 
 
 
 
-        <h4>editar curso.</h4>
+
+
+
         <div class="espacioUno"></div>
-
-
-
-
+        <h4>Asignar calificaciones de los alumnos de esté grupo.</h4>
         <div class="card">
           <div class="card-body">
 
-            <form action="<?php echo site_url('Cursos/editar'); ?>" method="post" enctype="multipart/form-data">
+ 
 
-              <div class="espacioDos"></div>
-              <div class="row">
-                <div class="col">
-                  Nombre
-                  <input type="text" name="nombre" id="nombre" class="form-control form-control-sm" value="<?php echo $nombre ?>">
-                </div>
-                <div class="col">
-                  Estatus
-                  <select class="form-control form-control-sm" name="estatus" id="estatus" required="">
-                    <option value="">Seleccione una opción</option>
-                    <?php if ($estatus == 1) { ?>
-                      <option selected="selected" value="1">Activo</option>
-                      <option value="0">Inactivo</option>
-                    <?php } elseif ($estatus == 0) { ?>
-                      <option selected="selected" value="0">Inactivo</option>
-                      <option value="1">Activo</option>
-                    <?php } ?>
-                  </select>
+            <div style="padding-left:30px">
+            <br/>
+
+
+              <div class="card">
+                <div class="card-body">
+                <!-- Obtener mediante una funcion los valores asignados de examen.ejercicio y asistencia para este grupo -->
+                <!-- Obtener los alumnos que pertenecen a este grupo -->
+                <!-- En cada alumno ejecutar funcion de calculo -->
+                <!-- Obtener la asistencia y los promedios obtenidos en ejercicios y examenes -->
+
+
+                
+
                 </div>
               </div>
 
-              <div class="espacioUno"></div>
-
-
-              <div class="row">
-                <div class="col">
-                  Numero de niveles
-                  <select class="form-control form-control-sm" name="numero_niveles" id="numero_niveles" required="">
-                    <option value="">Selecciona una opción</option>
-                    <?php for ($i = 1; $i <= 14; $i++) { ?>
-                      <?php if ($numero_niveles == $i) { ?>
-                        <option selected="selected" value="<?php echo $i ?>"><?php echo $i ?></option>
-                      <?php } ?>
-                      <option value="<?php echo $i ?>"><?php echo $i ?></option>
-                    <?php } ?>
-                  </select>
-                </div>
-              </div>
-
-              <div class="col">
-                  Total de dias laborales
-                  <input type="number" name="dias" id="dias" class="form-control form-control-sm" required="" min=1>
-                </div>
-                <div class="col">
-
-
-              <div class="espacioUno"></div>
-
-              <div class="espacioUno"></div>
-
-              <div class="espacioUno"></div>
-
-              <div class="espacioUno"></div>
 
 
 
-              <div class="espacioUno"></div>
-              <input type="hidden" name="idCr" value="<?php echo $idCr ?>">
-              <button type="submit" name="submitCR" class="btn btn-primary btn-sm">Registrar</button>
-            </form>
+              <br />
 
+
+            </div>
           </div>
+
+
+
         </div>
       </div>
+
+
 
 
 
@@ -203,5 +177,5 @@
 <div class="espacioDos"></div>
 <div class="espacioDos"></div>
 <div class="espacioDos"></div>
+
 <?php include(APPPATH . 'Views/include/footer.php'); ?>
-<?php include(APPPATH . 'Views/include/header-js.php'); ?>

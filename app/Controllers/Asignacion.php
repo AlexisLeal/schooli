@@ -22,6 +22,22 @@ class Asignacion extends BaseController{
         }
     }
 
+    
+    public function asignarcalificaciones($id_grupo,$id_curso)
+    {
+        if($this->session->get('login') && $this->session->get('roll') == 4){
+
+            $data['id_grupo'] = $id_grupo;
+            $data['id_curso']  = $id_curso;
+
+            return view('grupos/mostrar/asignar_calificacion',$data);
+        }else{
+            return redirect()->to(site_url('Home/salir'));
+        }
+    }
+
+
+
     public function teacher($id_grupo,$id_unidad_negocio,$id_plantel)
     {
         if($this->session->get('login') && $this->session->get('roll') == 4){
