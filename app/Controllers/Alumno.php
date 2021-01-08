@@ -42,6 +42,7 @@ class Alumno extends BaseController{
                 $data['id_nivel']= $row_grupo->id_nivel;	
                 $data['unidad_negocio'] = getUnidadNegocioEspecifico($row_grupo->id_unidad_negocio);	
                 $data['nombre_plantel'] = getPlanteEspecifico($row_grupo->id_plantel);
+                $data['nombre_curso'] = CatalagoGetNombreCurso($row_grupo->id_curso);
 
                 if($row->id_teacher != null){
                     $maestro = getMaestroEspecifico($row->id_teacher);
@@ -66,7 +67,7 @@ class Alumno extends BaseController{
         if($this->session->get('login')){
 
             $usermodel = new Evaluaciones_model($db);
-            $usermodel->select('nombre,clave,tipo_evaluacion,nivel,leccion');
+            $usermodel->select('nombre,clave,tipo_evaluacion');
             $usermodel->where('id',$id_evaluacion);
             $usermodel->where('deleted',0);
             $resultado = $usermodel->get();
@@ -76,8 +77,6 @@ class Alumno extends BaseController{
             $data['nombre'] = $row->nombre;
             $data['clave'] = $row->clave;
             $data['idtipoevaluacion'] = $row->tipo_evaluacion;
-            $data['nivel'] = $row->nivel;	
-            $data['leccion'] = $row->leccion;
             $data['totalpreguntas'] = getTotalPreguntas($id_evaluacion);
             $data['valorpreguntas'] =  getValorTotalPreguntas($id_evaluacion);
             $nombre =getTipoEvaluacionEspecifico($row->tipo_evaluacion);

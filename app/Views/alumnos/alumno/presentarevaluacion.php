@@ -298,7 +298,7 @@
             <div class="col-md-2 text-center">
               </div>
             
-              <div class="col-md-8 text-center">
+              <div class="col-md-8 text-center"> 
                 <input type="hidden" value="<?php echo $idEvaluacion ?>" name="idEvaluacion">
                 <input type="hidden" value="<?php echo $idGrupo ?>" name="idGrupo">
                 <button class="btn btn-primary btn-sm" type="submit" name="SubmitRespuestas" id="btnRegEval">Enviar</button>
