@@ -88,12 +88,10 @@
             <style>
             #contenidoTipoRecurso {
               display:none;
-              background-color:#D5DBDB;
               padding:20px 5px 20px 20px;
             }
             #contenidoTipoRecursoFormulario {
               display:none;
-              background-color:#FAE5D3;
               padding:20px 5px 20px 20px;
             }
             </style>
@@ -185,47 +183,7 @@
           </div>
         </div>
 
-        Listado de recursos
-        <div class="espacioUno"></div>
 
-        <div class="card">
-          <div class="card-body">
-
-            <table class="tabla-registros" width="100%" cellspacing="6" cellpadding="8">
-              <thead>
-                <tr>
-                  <th>
-                    <p class="font-weight-bold text-center">ID</p>
-                  </th>
-                  <th>
-                    <p class="font-weight-bold text-center">Nombre:</p>
-                  </th>
-                  <th>
-                    <p class="font-weight-bold text-center">Extension:</p>
-                  </th>
-                  <th>
-                    <p class="font-weight-bold text-center">Tipo de archivo.</p>
-                  </th>
-                  <th>
-                    <p class="font-weight-bold text-center">Descripcion:</p>
-                  </th>
-                </tr>
-              </thead>
-              <?php
-              foreach (getRecursos() as $fila) {
-              ?>
-                <tr>
-                  <td class="text-left"><?php echo $fila->id; ?></td>
-                  <td class="text-left"><?php echo $fila->nombre; ?></td>
-                  <td class="text-left"><?php echo $fila->extencion; ?></td>
-                  <td class="text-left"><?php echo $fila->tipo_archivo; ?></td>
-                </tr>
-              <?php
-              }
-              ?>
-            </table>
-          </div>
-        </div>
 
 
 

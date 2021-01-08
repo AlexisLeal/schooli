@@ -143,10 +143,7 @@
               <div class="espacioUno"></div>
 
               <div class="row">
-                <div class="col">
-                  Grupo
-                  <input type="text" name="grupo" id="grupo" class="form-control form-control-sm">
-                </div>
+
                 <div class="col">
                   Estatus
                   <select class="form-control form-control-sm" name="estatus" id="estatus" required="">
@@ -154,6 +151,8 @@
                     <option value="1">Activo</option>
                     <option value="0">Inactivo</option>
                   </select>
+                </div>
+                <div class="col">
                 </div>
               </div>
 

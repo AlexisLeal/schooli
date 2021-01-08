@@ -13,11 +13,23 @@ class Recursos extends BaseController
         if ($this->session->get('login') && $this->session->get('roll') == 4) {
             $data['page_title'] = "Recursos";
 
+            return view('recursos/biblioteca_recursos', $data);
+        } else {
+            return redirect()->to(site_url('Home/salir'));
+        }
+    }
+
+    public function formrecursos()
+    {
+        if ($this->session->get('login') && $this->session->get('roll') == 4) {
+            $data['page_title'] = "Recursos";
+
             return view('recursos/recursos', $data);
         } else {
             return redirect()->to(site_url('Home/salir'));
         }
     }
+
 
     public function agregarRecurso()
     {
@@ -73,7 +85,7 @@ class Recursos extends BaseController
                                 'tipo-mensaje' => 'alert-danger'
                             ];
                             $this->session->set($data, true);
-                            return redirect()->to(site_url("Recursos/recursos"));
+                            return redirect()->to(site_url("Recursos/formrecursos"));
                             
                         }
                         
@@ -143,7 +155,7 @@ class Recursos extends BaseController
 
             }
     
-                return redirect()->to(site_url("Recursos/recursos"));
+                return redirect()->to(site_url("Recursos/formrecursos"));
             }else{
                 return redirect()->to(site_url('Home/salir'));
 
