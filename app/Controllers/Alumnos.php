@@ -168,7 +168,7 @@ class Alumnos extends BaseController{
                     return redirect()->to(site_url('Alumnos/agregaralumnos'));
                 }
 
-                $usuario = trim($REQUEST->getPost('email'));
+                $usuario = strtolower(trim($REQUEST->getPost('email')));
                 $data_usuario =[
                     'nombre' => $REQUEST->getPost('nombre'),
                     'apellido_paterno' => $REQUEST->getPost('apellido_paterno'),
@@ -269,7 +269,7 @@ class Alumnos extends BaseController{
                     'fecha_ultimo_cambio' => $hoy,
                 ];
                
-                $usuario = trim($REQUEST->getPost('email'));
+                $usuario = strtolower(trim($REQUEST->getPost('email')));
                 $data_usuario =[
                     'nombre' => $REQUEST->getPost('nombre'),
                     'apellido_paterno' => $REQUEST->getPost('apellido_paterno'),
