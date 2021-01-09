@@ -6,7 +6,7 @@ class Comprobacion extends BaseController{
 
         $REQUEST = \Config\Services::request();  
         if(isset($_POST['login'])){
-            $username = trim($REQUEST->getPost('credencial'));
+            $username = strtolower(trim($REQUEST->getPost('credencial')));
             $password = trim($REQUEST ->getPost('inputPassword'));
             $tipo_usuario =  $REQUEST ->getPost('tipo_usuario');
             
