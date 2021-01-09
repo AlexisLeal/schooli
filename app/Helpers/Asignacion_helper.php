@@ -33,7 +33,7 @@ function getGrupoAlumnos($id_grupo,$id_unidad_negocio,$id_plantel)
     $db = \Config\Database::connect();
     $usermodel = $db->table('usuarios U');
     $usermodel->select('U.id,U.nombre,U.apellido_paterno,U.apellido_materno,G_AL.id_grupo');
-    $usermodel->join('grupo_alumnos G_AL',"U.id = G_AL.id_alumno and G_AL.id_grupo = $id_grupo and G_AL.deleted = 0",'left');
+    $usermodel->join('grupo_alumnos G_AL',"U.id = G_AL.id_alumno and G_AL.id_grupo = $id_grupo and G_AL.deleted = 0");
     $usermodel->join('alumnos AL',"AL.id_usuario = U.id and  AL.id_plantel = $id_plantel AND AL.id_unidad_negocio = $id_unidad_negocio");
     $usermodel->where('U.deleted',0);
     $query = $usermodel->get();
