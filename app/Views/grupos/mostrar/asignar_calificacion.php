@@ -114,16 +114,20 @@
                 
                 <!-- Obtener los alumnos que pertenecen a este grupo -->
                 <?php
-                echo "el id del grupo es ".$id_grupo;
+                
                 foreach(getMiembros($id_grupo) as $fila){
-                  echo $fila->nombre." ".$fila->apellido_paterno." ".$fila->apellido_materno."<br/>";
+                  echo $fila->nombre." ".$fila->apellido_paterno." ".$fila->apellido_materno;
+                  foreach(getAsistenciaGrupo($fila->id,$id_grupo) as $fila2){
+                    echo "Numero de semana:".$fila2->numero_de_semana." Fecha asistencia:".$fila2->fecha_asistencia." Valor Asistencia:".$fila2->valor_asistencia."<br/>";
+                  }
+                  // Obtener la asitencia mediante una funcion que consulte la tabla asistencia_grupo
                 }
                 ?>
-                <!-- En cada alumno ejecutar funcion para obtener asistencia, promedio de examenes y ejercicios-->
-                <!-- Dividir los promedio obtenidos  entre los valores asignados en la ponderaciòn -->
+                <!-- Para obtener la asitencia se debe obtener dias totales del curso entre el valor total, y ese resultado multipllicarlo por lo dias que asisitio -->
+                <!-- Funcion para obtener la asistencia del alumno de este curso -->
 
-
-                
+                <!-- Para obtener los examenes se debe obtener el valor total de los examanes entre la cantidad de examenes, y ese resultado se multiplica por la cantidad de la calificacion del examen -->
+                <!-- Para obtener los ejercicios se debe obtener el valor total de los ejercicio entre la cantidad de ejercicios, y ese resultado se multiplica por la cantidad de la calificacion del ejercicio -->
 
                 </div>
               </div>

@@ -1,5 +1,6 @@
 <?php 
 use  App\Models\Recursos_model;
+use  App\Models\Asistencias;
 function getGrupoMaestros($id_grupo)
 {
     $db = \Config\Database::connect();
@@ -135,7 +136,7 @@ function getMiembros($id_grupo)
 {
     $db = \Config\Database::connect();
     $usermodel = $db->table('usuarios U');
-    $usermodel->select('U.nombre,U.apellido_paterno,U.apellido_materno, AL.matricula');
+    $usermodel->select('U.id,U.nombre,U.apellido_paterno,U.apellido_materno, AL.matricula');
     $usermodel->join('grupo_alumnos G_AL','U.id = G_AL.id_alumno and G_AL.deleted=0');
     $usermodel->join('alumnos AL','AL.id_usuario = U.id');
     $usermodel->where('G_AL.id_grupo',$id_grupo);
@@ -230,6 +231,18 @@ function getRecursosPorCurso($IdCurso)
     $usermodel = new Recursos_model($db);
     $usermodel->select('id,nombre,extencion,tipo_archivo,tipo_recurso,id_evaluacion,ruta');
     $usermodel->where('id_curso',$IdCurso);
+    $usermodel->where('deleted',0);	
+    $resultado = $usermodel->get();
+    $rowArray = $resultado->getResult();
+    return($rowArray);
+}
+
+function getAsistenciaGrupo($IdUsuario,$IdGrupo)
+{
+    $usermodel = new Asistencias($db);
+    $usermodel->select('id,id_grupo,id_usuario,numero_de_semana,fecha_asistencia,valor_asistencia');
+    $usermodel->where('id_usuario',$IdUsuario);
+    $usermodel->where('id_grupo',$IdGrupo);
     $usermodel->where('deleted',0);	
     $resultado = $usermodel->get();
     $rowArray = $resultado->getResult();

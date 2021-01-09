@@ -86,7 +86,7 @@ input[type=radio] ~ .verde{
   <div class="row">
     <div class="col-md-2">
       <div class="text-center">
-        <a href="<?php echo site_url('/Alumno/index'); ?>">
+        <a href="<?php echo site_url('/Teacher/index'); ?>">
           <img class="mb-4" src="<?php echo base_url('img-front/logo-brain.png');?>" alt="" width="52" height="52">
         </a>
       </div>
