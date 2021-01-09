@@ -87,11 +87,30 @@
 
             <div style="padding-left:30px">
             <br/>
-
-
+                <?php
+                /*** Obtenemos valores de la ponderación */
+                $valoresPonderacion = CatalagoObtenerPonderaciondeCurso($id_curso);
+                ?>
+                <table>
+                <tr>
+                  <td>Ponderacion</td><td></td><td></td><td></td><td></td><td></td>
+                </tr>
+                <tr>
+                  <td>Total de dias laborales:</td><td><?php echo $valoresPonderacion->total_dias_laborales;?></td>
+                  <td>Número de exámenes:</td><td><?php echo $valoresPonderacion->num_examenes;?></td>
+                  <td>Número de ejercicios:</td><td><?php echo $valoresPonderacion->num_ejercicios;?></td>
+                </tr>
+                <tr>
+                  <td>Valor de asistencia:</td><td><?php echo $valoresPonderacion->valor_asistencia;?></td>
+                  <td>Valor de ejercicios:</td><td><?php echo $valoresPonderacion->valor_ejercicios;?></td>
+                  <td>Valor de examenes:</td><td><?php echo $valoresPonderacion->valor_examenes;?></td>
+                </tr>
+                </table>
+              <br/>
+              <br/>
+              
               <div class="card">
-                <div class="card-body">
-                <!-- Obtener mediante una funcion los valores asignados de examen.ejercicio y asistencia para este grupo -->
+                <div class="card-body">                
                 <!-- Obtener los alumnos que pertenecen a este grupo -->
                 <!-- En cada alumno ejecutar funcion de calculo -->
                 <!-- Obtener la asistencia y los promedios obtenidos en ejercicios y examenes -->

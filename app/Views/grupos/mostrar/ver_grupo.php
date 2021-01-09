@@ -40,7 +40,6 @@
 
 
 
-
 <!--Ejemplo tabla con DataTables-->
 <div class="container">
   <div id="general">
@@ -48,7 +47,6 @@
       <div class="col-md-3">
         <?php include(APPPATH . '/Views/include/menu-izquierda.php'); ?>
       </div>
-
 
 
       <div class="col-md-9">
@@ -71,11 +69,6 @@
           $session->remove('pregunta-exito');
         }
         ?>
-
-
-
-
-
 
 
         <div class="espacioUno"></div>
@@ -117,8 +110,6 @@
                       <td width="40%"><a href="<?php echo site_url("Asignacion/evaluacion/$id_grupo"); ?>">Evaluaciónes</a></td>
                       <td width="40%"></td>
                     </tr>
-
-
                     <tr>
                       <td width="40%">
                         <a href="<?php echo site_url("Asignacion/sesiones/$id_grupo/$id_curso/$id_nivel"); ?>"> Ver sesiones </a>
@@ -128,8 +119,6 @@
                       </td>
                     </tr>
                   </table>
-
-
 
                 </div>
               </div>
@@ -151,11 +140,8 @@
                       </td>
                     </tr>
                   </table>
-
-
                 </div>
               </div>
-
 
               <br />
 
@@ -177,8 +163,7 @@
                 </div>
               </div>
 
-              <br />
-
+              <br/>
 
 
               <div class="card">
@@ -198,7 +183,7 @@
                 </div>
               </div>
 
-              <br />
+              <br/>
 
               <div class="card">
                 <div class="card-body">
@@ -207,9 +192,6 @@
               </div>
 
               <br />
-
-
-
 
             </div>
           </div>
@@ -231,21 +213,15 @@
                 < ?php } ?>
                 <br>
 
-
                 < ?php foreach(getMiembrosOtrosGrupos($id_grupo,$id_unidad_negocio,$id_plantel) as $fila){ ?>
                 Nombre de alumnos de otro grupos < ?php echo $fila->nombre ?> No.Grupo < ?php echo $fila->id_grupo?> <br>
                 < ?php } ?>
                 ?>
                 -->
-
           </div>
 
         </div>
       </div>
-
-
-
-
 
 
     </div>
