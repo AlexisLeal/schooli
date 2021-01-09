@@ -108,12 +108,19 @@
                 </table>
               <br/>
               <br/>
-              
+
               <div class="card">
-                <div class="card-body">                
+                <div class="card-body">    
+                
                 <!-- Obtener los alumnos que pertenecen a este grupo -->
-                <!-- En cada alumno ejecutar funcion de calculo -->
-                <!-- Obtener la asistencia y los promedios obtenidos en ejercicios y examenes -->
+                <?php
+                echo "el id del grupo es ".$id_grupo;
+                foreach(getMiembros($id_grupo) as $fila){
+                  echo $fila->nombre." ".$fila->apellido_paterno." ".$fila->apellido_materno."<br/>";
+                }
+                ?>
+                <!-- En cada alumno ejecutar funcion para obtener asistencia, promedio de examenes y ejercicios-->
+                <!-- Dividir los promedio obtenidos  entre los valores asignados en la ponderaciòn -->
 
 
                 

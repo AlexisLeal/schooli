@@ -131,32 +131,18 @@
                   </select>
                 </div>
                 <div class="col">
-
-                </div>
-              </div>
-              <div class="espacioUno"></div>
-              <div class="row">
-                <div class="col">
-                  Grupos
-                  <select class="form-control form-control-sm" name="id_grupo" id="grupo" required="">
-                    <option value="">Seleccione una opción</option>
-                </div>
-              </div>
-
-
-
-              <div class="espacioDos"></div>
-              <div class="espacioDos"></div>
-              <hr class="linea" />
-              Datos Escolares
-              <div class="espacioDos"></div>
-              <div class="row">
-                <div class="col">
-                  Matricula
+                Matricula
                   <input type="text" name="matricula" id="matricula" class="form-control form-control-sm" placeholder="Matricula">
                 </div>
+              </div>
+
+              <div class="espacioDos"></div>
+              <hr class="linea"/>
+
+              <div class="espacioDos"></div>
+              <div class="row">
                 <div class="col">
-                  Unidad de negocio
+                Unidad de negocio
                   <select class="form-control form-control-sm" name="unidad_negocio" id="unidad_negocio" required="">
                     <option value="">Selecciona una opción</option>
                     <?php foreach (getUnidadNegocio() as $fila) { ?>
@@ -164,31 +150,31 @@
                     <?php } ?>
                   </select>
                 </div>
-              </div>
-
-
-
-
-
-
-
-
-              <div class="espacioUno"></div>
-
-              <div class="row">
                 <div class="col">
-                  Plantel
+                Plantel
                   <select class="form-control form-control-sm" name="plantel" id="plantel" required="">
                     <option value="">Selecciona una opción</option>
                   </select>
-
-                </div>
-                <div class="col">
                 </div>
               </div>
 
+              <div class="espacioUno"></div>
 
 
+
+              <div class="row">
+                <div class="col">
+                  Grupos
+                  <select class="form-control form-control-sm" name="id_grupo" id="grupo" required="">
+                    <option value="">Seleccione una opción</option>
+                  </select>
+                </div>
+                <div class="col">
+                
+                </div>
+              </div>
+              
+              <div class="espacioUno"></div>
 
               <div class="form-group">
                 <label for="lblInstrucciones">Comentarios</label>

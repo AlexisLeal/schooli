@@ -147,7 +147,7 @@
 
               <div class="card">
                 <div class="card-body">
-                  <i class="fa fa-id-card-o" aria-hidden="true"></i><a href="#"> Cardex </a>
+                  <i class="fa fa-id-card-o" aria-hidden="true"></i><a href="#"> Kardex </a>
                   <table width="90%" cellspacing="8" cellpadding="4">
                     <tr>
                       <td width="40%">
