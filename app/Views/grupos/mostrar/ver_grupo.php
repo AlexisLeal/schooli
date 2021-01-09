@@ -156,7 +156,29 @@
                 </div>
               </div>
 
+
               <br />
+
+              <div class="card">
+                <div class="card-body">
+                  <i class="fa fa-id-card-o" aria-hidden="true"></i><a href="#"> Cardex </a>
+                  <table width="90%" cellspacing="8" cellpadding="4">
+                    <tr>
+                      <td width="40%">
+                      <!--Alumnos que esten asignados a este grupo -->
+                      <!--Obtener un listado de todos los alumnos con el primededio de examenes, ejercicios,y asistencia, dividos por los valores asignados del curso -->
+                        <a href="<?php echo site_url("Asignacion/asignarcalificaciones/$id_grupo/$id_curso"); ?>"> Asignar calificaciones </a>
+                      </td>
+                      <td width="40%">
+                        <a href="<?php echo site_url("Asignacion/deletedAlumno/$id_grupo"); ?>"> Calificaciones aplicadas </a>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+
+              <br />
+
 
 
               <div class="card">
@@ -178,12 +200,15 @@
 
               <br />
 
-
               <div class="card">
                 <div class="card-body">
                   <i class="fa fa-list-ul" aria-hidden="true"></i> <a href="#"> Libreta de calificaciones. </a>
                 </div>
               </div>
+
+              <br />
+
+
 
 
             </div>
