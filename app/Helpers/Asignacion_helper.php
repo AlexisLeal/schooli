@@ -248,4 +248,6 @@ function getAsistenciaGrupo($IdUsuario,$IdGrupo)
     $rowArray = $resultado->getResult();
     return($rowArray);
 }
-?>
+
+
+?> 

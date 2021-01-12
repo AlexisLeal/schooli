@@ -233,7 +233,7 @@
                     foreach(getGrupoRecursos($id_curso,$id_nivel) as $fila){ 
                       //if(!empty($fila->id_grupo)){  
                         if($fila->tipo_recurso == 1){?>
-                         <a class="btn btn-success btn-sm" href="<?php echo site_url("Alumno/presentarevaluacion/$fila->id_evaluacion/$id_grupo"); ?>" role="button"><?php echo $fila->nombre;?></a> 
+                         <a class="btn btn-success btn-sm" href="<?php echo site_url("Alumno/presentarevaluacion/$fila->id_evaluacion/$id_grupo/$id_curso/$id_nivel/$id_ciclo"); ?>" role="button"><?php echo $fila->nombre;?></a> 
                       <h4>Nombre de la evaluacion es: <?php echo $fila->nombre?></h4> <br>   
                       <?php }else{?>
                         <h4>Nombre del recurso es: <?php echo $fila->nombre?></h4> <br>
