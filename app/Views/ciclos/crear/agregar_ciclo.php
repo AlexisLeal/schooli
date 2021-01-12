@@ -121,7 +121,7 @@
                 </div>
                 <div class="col">
                   Fecha fin excluir dias
-                  <input type="date" name="fecha_fIn_excluir" id="fecha_fIn_excluir" class="form-control form-control-sm" >
+                  <input type="date" name="fecha_fin_excluir" id="fecha_fin_excluir" class="form-control form-control-sm" >
 
                   </select>
                 </div>

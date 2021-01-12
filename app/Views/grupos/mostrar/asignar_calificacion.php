@@ -88,6 +88,45 @@
             <div style="padding-left:30px">
             <br/>
                 <?php
+
+                /** Obtener los valores de la asistencia */
+                $a = array();
+                foreach(getValorAsistencia() as $fila){
+                  $a[$fila->id]=$fila->valor;
+                }
+
+
+                /*** Obtener los dias que dura el  ciclo fecha de inicio, fecha final y fecha inicio exclusion y fecha final exclusion (Parametro id_ciclo*/
+                $info_ciclo = getCicloEspecifico($id_ciclo);
+                //echo "Nombre del ciclo:".$info_ciclo->nombre."<br/>";
+                /*
+                echo "fecha inicio del ciclo:".$info_ciclo->fecha_inicio."<br/>";
+                echo "fecha final del ciclo:".$info_ciclo->fecha_fin."<br/>";
+                echo "fecha inicio exclusion del ciclo:".$info_ciclo->fecha_inicio_excluir."<br/>";
+                echo "fecha final exclusion del ciclo:".$info_ciclo->fecha_fin_excluir."<br/>";*/
+
+                /** Obtener datos de la frecuencia,el id de la frecuenci esta en la tabla del curso Ok*/
+                $curso_especifico = getCursoEspecifico($id_curso);
+                $id_frecuencia = $curso_especifico->id_frecuencia;
+                /*echo "id de la frecuencia es".$id_frecuencia."<br/>";*/
+
+                /*** Obtenemos los datos de la frecuencia */
+                $infoFrecuencia = getFrencueciaEspecifica($id_frecuencia);
+                /*
+                echo "id de frecuenciaaaaaaa:".$infoFrecuencia->id."<br/>";
+                echo "nombre:".$infoFrecuencia->nombre."<br/>";
+                echo "id modalidad:".$infoFrecuencia->id_modalidad."<br/>";
+                echo "lunes:".$infoFrecuencia->lunes."<br/>";
+                echo "martes:".$infoFrecuencia->martes."<br/>";
+                echo "miercoles:".$infoFrecuencia->miercoles."<br/>";
+                echo "jueves:".$infoFrecuencia->jueves."<br/>";
+                echo "viernes:".$infoFrecuencia->viernes."<br/>";
+                echo "sabado:".$infoFrecuencia->sabado."<br/>";
+                echo "domingo :".$infoFrecuencia->domingo."<br/>";
+                echo "estatus:".$infoFrecuencia->estatus."<br/>";*/
+
+              
+
                 /*** Obtenemos valores de la ponderación */
                 $valoresPonderacion = CatalagoObtenerPonderaciondeCurso($id_curso);
                 ?>
@@ -109,18 +148,60 @@
               <br/>
               <br/>
 
+            Testeando la fecha de iniicio del ciclo y la fecha final.<br/>
+            <?php
+            // Obtener los dias de con el paraemtro especificado(se validar con los datos del ciclo)
+            $fechaInicio = $info_ciclo->fecha_inicio;
+            $fechaFin    = $info_ciclo->fecha_fin;
+
+            $week_start = strtotime(date($fechaInicio));
+            $week_end = strtotime(date($fechaFin));
+
+
+            // validar si hay dias que se van a excluir
+            if(!empty($info_ciclo->fecha_inicio_excluir)){
+              // si hay fechas a excluir
+              $info_ciclo->fecha_inicio_excluir;
+              $info_ciclo->fecha_fin_excluir;
+            }
+            
+            // Se mostrara por semana actual, el tiempo que dure el ciclo  
+              for($i=$week_start; $i<=$week_end; $i+=86400){
+                  echo "Fecha".date("d-m-Y", $i)."<br/>";
+              }
+            ?>
+
+
               <div class="card">
                 <div class="card-body">    
                 
-                <!-- Obtener los alumnos que pertenecen a este grupo -->
-                <?php
                 
+                <?php
+                // Obtener los alumnos que pertenecen a este grupo OK
                 foreach(getMiembros($id_grupo) as $fila){
                   echo $fila->nombre." ".$fila->apellido_paterno." ".$fila->apellido_materno;
+                  
+                  
+                  // Obtener los registros de este alumno de la tabla de asistencia OK
                   foreach(getAsistenciaGrupo($fila->id,$id_grupo) as $fila2){
-                    echo "Numero de semana:".$fila2->numero_de_semana." Fecha asistencia:".$fila2->fecha_asistencia." Valor Asistencia:".$fila2->valor_asistencia."<br/>";
+                    echo "Número de semana:".$fila2->numero_de_semana." Fecha asistencia:".$fila2->fecha_asistencia." Valor Asistencia:".$fila2->valor_asistencia."<br/>";
+
+
+                  /** PENDIENTE */
+                  
+                  // Cada asistencia tiene un valor, ya que puede ser asistencia, falta,retardo o falta justificada.
+
+
                   }
-                  // Obtener la asitencia mediante una funcion que consulte la tabla asistencia_grupo
+
+
+
+
+
+
+
+
+                  
                 }
                 ?>
                 <!-- Para obtener la asitencia se debe obtener dias totales del curso entre el valor total, y ese resultado multipllicarlo por lo dias que asisitio -->

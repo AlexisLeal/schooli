@@ -6,6 +6,7 @@ use  App\Models\Cursos_model;
 use  App\Models\Frecuencia_model;
 use  App\Models\Modalidad_model;
 use  App\Models\Valor_asistencia_model;
+use  App\Models\ValoresAsistencia;
 
 function getAllCiclo()
 {
@@ -19,7 +20,7 @@ function getAllCiclo()
 function getCicloEspecifico($id_ciclo)
 {
     $usermode = new Ciclos_model($db);
-    $usermode->select('id,nombre,estatus,fecha_inicio,fecha_fin,comentarios');
+    $usermode->select('id,nombre,estatus,fecha_inicio,fecha_fin,fecha_inicio_excluir,fecha_fin_excluir,comentarios');
     $usermode->where('deleted',0);
     $usermode->where('id',$id_ciclo);
     $resultado = $usermode->get();
@@ -95,7 +96,7 @@ function getAllCursos()
 function getCursoEspecifico($id_curso)
 {
     $usermode = new Cursos_model($db);
-    $usermode->select('id,nombre,num_niveles,estatus');
+    $usermode->select('id,nombre,num_niveles,id_frecuencia,estatus');
     $usermode->where('deleted',0);
     $usermode->where('id',$id_curso);
     $resultado = $usermode->get();
@@ -248,7 +249,16 @@ function getTipoRecursos()
 }
 
 
+function getValorAsistencia()
+{
+    $usermode = new ValoresAsistencia($db);
+    $usermode->select('id,nombre,valor');
+    $usermode->where('deleted',0);
+    $resultado = $usermode->get();
+    $row = $resultado->getResult();
+    return($row);
 
+}
 
 
 
