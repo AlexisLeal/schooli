@@ -153,35 +153,53 @@
               $info_ciclo->fecha_inicio_excluir;
               $info_ciclo->fecha_fin_excluir;
             }
-            
-            // Se mostrara por semana actual, el tiempo que dure el ciclo  
-              for($i=$week_start; $i<=$week_end; $i+=86400){
-                  //echo "Fecha".date("d-m-Y", $i)."<br/>";
-              }
             ?>
-
-
-
-
-
-
 
               <div class="card">
                 <div class="card-body">
                 <?php
+                
+                
+
                 // Obtener los alumnos que pertenecen a este grupo OK
                 foreach(getMiembros($id_grupo) as $fila){
-                  echo $fila->nombre." ".$fila->apellido_paterno." ".$fila->apellido_materno;
-                    foreach(getAsistenciaGrupo($fila->id,$id_grupo) as $fila2){
-                      echo "Fecha asistencia:".$fila2->fecha_asistencia." Valor Asistencia:".$fila2->valor_asistencia."<br/>";
+                  $total = 0; 
+                  $numeroAsistencia       = 0;
+                  $numeroFalta            = 0;
+                  $numeroRetardo          = 0;
+                  $numeroFaltaJustificada = 0;
+                    foreach(getAsistenciaGrupo($fila->id,$id_grupo) as $fila2){                        
+                        for($i=$week_start; $i<=$week_end; $i+=86400){
+                          if(date("Y-m-d", $i)==$fila2->fecha_asistencia){
+                            $total+=$a[$fila2->valor_asistencia];
+                            
+                            if($fila2->valor_asistencia==1){
+                              $numeroAsistencia++;
+                            }
+                            if($fila2->valor_asistencia==2){
+                              $numeroFalta++;
+                            }
+                            if($fila2->valor_asistencia==3){
+                              $numeroRetardo++;
+                            }
+                            if($fila2->valor_asistencia==4){
+                              $numeroFaltaJustificada++;
+                            }
+                            
+
+                          }
+                        }
                     }
+                    echo $fila->nombre." ".$fila->apellido_paterno." ".$fila->apellido_materno." ---".$total."<br/>";
+                    $valAsistDiaria = $valoresPonderacion->total_dias_laborales/$valoresPonderacion->valor_asistencia;
+
+
                 }
                 ?>
 
-
-
-                <!-- Para obtener la asitencia se debe obtener dias totales del curso entre el valor total, y ese resultado multipllicarlo por lo dias que asisitio -->
-                <!-- Funcion para obtener la asistencia del alumno de este curso -->
+                <!-- Para obtener la asitencia se debe obtener dias totales del curso entre el valor total, 
+                // y ese resultado multipllicarlo por lo dias que asisitio -->
+                
                 <!-- Para obtener los examenes se debe obtener el valor total de los examanes entre la cantidad de examenes, y ese resultado se multiplica por la cantidad de la calificacion del examen -->
                 <!-- Para obtener los ejercicios se debe obtener el valor total de los ejercicio entre la cantidad de ejercicios, y ese resultado se multiplica por la cantidad de la calificacion del ejercicio -->
 
