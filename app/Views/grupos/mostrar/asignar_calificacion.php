@@ -73,17 +73,10 @@
         ?>
 
 
-
-
-
-
-
         <div class="espacioUno"></div>
         <h4>Asignar calificaciones de los alumnos de esté grupo.</h4>
         <div class="card">
           <div class="card-body">
-
- 
 
             <div style="padding-left:30px">
             <br/>
@@ -94,7 +87,6 @@
                 foreach(getValorAsistencia() as $fila){
                   $a[$fila->id]=$fila->valor;
                 }
-
 
                 /*** Obtener los dias que dura el  ciclo fecha de inicio, fecha final y fecha inicio exclusion y fecha final exclusion (Parametro id_ciclo*/
                 $info_ciclo = getCicloEspecifico($id_ciclo);
@@ -125,30 +117,28 @@
                 echo "domingo :".$infoFrecuencia->domingo."<br/>";
                 echo "estatus:".$infoFrecuencia->estatus."<br/>";*/
 
-              
-
                 /*** Obtenemos valores de la ponderación */
                 $valoresPonderacion = CatalagoObtenerPonderaciondeCurso($id_curso);
                 ?>
+                <!--
                 <table>
                 <tr>
                   <td>Ponderacion</td><td></td><td></td><td></td><td></td><td></td>
                 </tr>
                 <tr>
-                  <td>Total de dias laborales:</td><td><?php echo $valoresPonderacion->total_dias_laborales;?></td>
-                  <td>Número de exámenes:</td><td><?php echo $valoresPonderacion->num_examenes;?></td>
-                  <td>Número de ejercicios:</td><td><?php echo $valoresPonderacion->num_ejercicios;?></td>
+                  <td>Total de dias laborales:</td><td>< ?php echo $valoresPonderacion->total_dias_laborales;?></td>
+                  <td>Número de exámenes:</td><td>< ?php echo $valoresPonderacion->num_examenes;?></td>
+                  <td>Número de ejercicios:</td><td>< ?php echo $valoresPonderacion->num_ejercicios;?></td>
                 </tr>
                 <tr>
-                  <td>Valor de asistencia:</td><td><?php echo $valoresPonderacion->valor_asistencia;?></td>
-                  <td>Valor de ejercicios:</td><td><?php echo $valoresPonderacion->valor_ejercicios;?></td>
-                  <td>Valor de examenes:</td><td><?php echo $valoresPonderacion->valor_examenes;?></td>
+                  <td>Valor de asistencia:</td><td>< ?php echo $valoresPonderacion->valor_asistencia;?></td>
+                  <td>Valor de ejercicios:</td><td>< ?php echo $valoresPonderacion->valor_ejercicios;?></td>
+                  <td>Valor de examenes:</td><td>< ?php echo $valoresPonderacion->valor_examenes;?></td>
                 </tr>
-                </table>
+                </table>-->
               <br/>
               <br/>
 
-            Testeando la fecha de iniicio del ciclo y la fecha final.<br/>
             <?php
             // Obtener los dias de con el paraemtro especificado(se validar con los datos del ciclo)
             $fechaInicio = $info_ciclo->fecha_inicio;
@@ -156,7 +146,6 @@
 
             $week_start = strtotime(date($fechaInicio));
             $week_end = strtotime(date($fechaFin));
-
 
             // validar si hay dias que se van a excluir
             if(!empty($info_ciclo->fecha_inicio_excluir)){
@@ -167,46 +156,32 @@
             
             // Se mostrara por semana actual, el tiempo que dure el ciclo  
               for($i=$week_start; $i<=$week_end; $i+=86400){
-                  echo "Fecha".date("d-m-Y", $i)."<br/>";
+                  //echo "Fecha".date("d-m-Y", $i)."<br/>";
               }
             ?>
 
 
+
+
+
+
+
               <div class="card">
-                <div class="card-body">    
-                
-                
+                <div class="card-body">
                 <?php
                 // Obtener los alumnos que pertenecen a este grupo OK
                 foreach(getMiembros($id_grupo) as $fila){
                   echo $fila->nombre." ".$fila->apellido_paterno." ".$fila->apellido_materno;
-                  
-                  
-                  // Obtener los registros de este alumno de la tabla de asistencia OK
-                  foreach(getAsistenciaGrupo($fila->id,$id_grupo) as $fila2){
-                    echo "Número de semana:".$fila2->numero_de_semana." Fecha asistencia:".$fila2->fecha_asistencia." Valor Asistencia:".$fila2->valor_asistencia."<br/>";
-
-
-                  /** PENDIENTE */
-                  
-                  // Cada asistencia tiene un valor, ya que puede ser asistencia, falta,retardo o falta justificada.
-
-
-                  }
-
-
-
-
-
-
-
-
-                  
+                    foreach(getAsistenciaGrupo($fila->id,$id_grupo) as $fila2){
+                      echo "Fecha asistencia:".$fila2->fecha_asistencia." Valor Asistencia:".$fila2->valor_asistencia."<br/>";
+                    }
                 }
                 ?>
+
+
+
                 <!-- Para obtener la asitencia se debe obtener dias totales del curso entre el valor total, y ese resultado multipllicarlo por lo dias que asisitio -->
                 <!-- Funcion para obtener la asistencia del alumno de este curso -->
-
                 <!-- Para obtener los examenes se debe obtener el valor total de los examanes entre la cantidad de examenes, y ese resultado se multiplica por la cantidad de la calificacion del examen -->
                 <!-- Para obtener los ejercicios se debe obtener el valor total de los ejercicio entre la cantidad de ejercicios, y ese resultado se multiplica por la cantidad de la calificacion del ejercicio -->
 
