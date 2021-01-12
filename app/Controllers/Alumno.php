@@ -27,7 +27,7 @@ class Alumno extends BaseController{
 
             if($row->id_grupo != null){
                 $usermodel_grupo = new Grupos_model();
-                $usermodel_grupo->select('nombre,codigo_acceso,id_unidad_negocio,id_plantel,id_curso,id_nivel');
+                $usermodel_grupo->select('nombre,codigo_acceso,id_unidad_negocio,id_plantel,id_curso,id_nivel,id_ciclo');
                 $usermodel_grupo->where('id',$row->id_grupo);
                 $usermodel_grupo->where('deleted',0);
                 $query = $usermodel_grupo->get();
@@ -38,6 +38,7 @@ class Alumno extends BaseController{
                 $data['codigo_acceso'] = $row_grupo->codigo_acceso;
                 $data['id_unidad_negocio']= $row_grupo->id_unidad_negocio;	
                 $data['id_plantel']= $row_grupo->id_plantel;	
+                $data['id_ciclo']= $row_grupo->id_ciclo;	
                 $data['id_curso']= $row_grupo->id_curso;	
                 $data['id_nivel']= $row_grupo->id_nivel;	
                 $data['unidad_negocio'] = getUnidadNegocioEspecifico($row_grupo->id_unidad_negocio);	
@@ -62,7 +63,7 @@ class Alumno extends BaseController{
         }
 	}
     
-    public function presentarevaluacion($id_evaluacion,$idGrupo)
+    public function presentarevaluacion($id_evaluacion,$idGrupo,$IdCurso,$IdNivel,$Idciclo)
     {
         if($this->session->get('login')){
 
@@ -74,6 +75,9 @@ class Alumno extends BaseController{
             $row = $resultado -> getRow();
 
             $data['idEvaluacion'] = $id_evaluacion;
+            $data['IdCurso'] = $IdCurso;
+            $data['IdNivel'] = $IdNivel;
+            $data['Idciclo'] = $Idciclo;
             $data['nombre'] = $row->nombre;
             $data['clave'] = $row->clave;
             $data['idtipoevaluacion'] = $row->tipo_evaluacion;
@@ -233,6 +237,9 @@ class Alumno extends BaseController{
                     $data = ['id_alumno'=> $this->session->get('id'),
                     'id_grupo'=> $idGrupo,
                     'id_evaluacion' =>$idEvaluacion,
+                    'id_curso' =>$REQUEST->getPost('IdCurso'),
+                    'id_nivel' =>$REQUEST->getPost('IdNivel'),
+                    'id_ciclo' =>$REQUEST->getPost('Idciclo'),
                     'calificacion'=>$puntos,
                     'calificaciontotal'=>$valortotalevaluacion,
                     'fecha_creacion'=> $hoy,

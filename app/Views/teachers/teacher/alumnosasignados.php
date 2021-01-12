@@ -70,7 +70,7 @@
                         <div class="espacioUno"></div>
                       <?php 
                       }
-                    }
+                    } 
                     ?>
                     <div class="espacioUno"></div>
                   </div>

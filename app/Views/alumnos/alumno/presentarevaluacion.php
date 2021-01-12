@@ -301,6 +301,9 @@
               <div class="col-md-8 text-center"> 
                 <input type="hidden" value="<?php echo $idEvaluacion ?>" name="idEvaluacion">
                 <input type="hidden" value="<?php echo $idGrupo ?>" name="idGrupo">
+                <input type="hidden" value="<?php echo $IdCurso ?>" name="IdCurso">
+                <input type="hidden" value="<?php echo $IdNivel ?>" name="IdNivel">
+                <input type="hidden" value="<?php echo $Idciclo ?>" name="Idciclo">
                 <button class="btn btn-primary btn-sm" type="submit" name="SubmitRespuestas" id="btnRegEval">Enviar</button>
               </div>
           
