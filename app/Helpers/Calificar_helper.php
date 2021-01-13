@@ -2,7 +2,23 @@
 use  App\Models\Control_grupos_calificaciones_evaluaciones_model;
 use  App\Models\Evaluaciones_model;
 
-function getEvaluacionesContestadas($IdUsuario,$IdGrupo,$IdCurso,$IdNivel,$IdCiclo)
+
+
+function CalificarObtenerMiembrosdeGrupo($id_grupo)
+{
+    $db = \Config\Database::connect();
+    $usermodel = $db->table('usuarios U');
+    $usermodel->select('U.id');
+    $usermodel->join('grupo_alumnos G_AL','U.id = G_AL.id_alumno and G_AL.deleted=0');
+    $usermodel->where('G_AL.id_grupo',$id_grupo);
+    $usermodel->where('U.deleted',0);
+    $query = $usermodel->get();
+    $resultado = $query->getResult();
+    return($resultado);
+
+}
+
+function CalificarGetEvaluacionesContestadas($IdUsuario,$IdGrupo,$IdCurso,$IdNivel,$IdCiclo)
 {
     $usermodel = new Control_grupos_calificaciones_evaluaciones_model($db);
     $usermodel->select('id_evaluacion,calificacion');
@@ -17,7 +33,7 @@ function getEvaluacionesContestadas($IdUsuario,$IdGrupo,$IdCurso,$IdNivel,$IdCic
     return($rowArray);
 }
 
-function getTipoyCategoriaEvaluacion($IdEvaluacion){
+function CalificarGetTipoyCategoriaEvaluacion($IdEvaluacion){
     $UseModelEvaluaciones = new Evaluaciones_model($db);
     $UseModelEvaluaciones->select('tipo_evaluacion,idCategoriaEvaluacion');
     $UseModelEvaluaciones->where('id',$IdEvaluacion);
@@ -27,36 +43,39 @@ function getTipoyCategoriaEvaluacion($IdEvaluacion){
     return($row);
 
 }
-
-function CalificarEvaluacionTipoEjercio($IdEvaluacion,$IdCategoria){
+/*
+function CalificarEvaluacionTipoEjercio($IdCategoria){
     if($IdCategoria == 1){
-        CalificarEvaluacionTipoEjercioNormal($IdEvaluacion);
-    }else{
-        CalificarEvaluacionTipoEjercioRecuperacion($IdEvaluacion);
+        return 1;
+        
+    }elseif($IdCategoria == 2){
+        return 2;
+        
     }
 
 }
-function CalificarEvaluacionTipoExamen($IdEvaluacion,$IdCategoria){
+function CalificarEvaluacionTipoExamen($IdCategoria){
     if($IdCategoria == 1){
-        CalificarEvaluacionTipoExamenNormal($IdEvaluacion);
-    }else{
-        CalificarEvaluacionTipoExamenRecupercion($IdEvaluacion);
+        return 1;
+    }elseif($IdCategoria == 2){
+        return 2;
     }
     
 }
-function CalificarEvaluacionTipoEjercioNormal($IdEvaluacion){
+
+function CalificarEvaluacionTipoEjercioNormal($IdEvaluacion,$Calificacion){
+    //Regresar un array con el idevaluacion y su calificacion final 
+}
+function CalificarEvaluacionTipoEjercioRecuperacion($IdEvaluacion,$Calificacion){
     
 }
-function CalificarEvaluacionTipoEjercioRecuperacion($IdEvaluacion){
+function CalificarEvaluacionTipoExamenNormal($IdEvaluacion,$Calificacion){
     
 }
-function CalificarEvaluacionTipoExamenNormal($IdEvaluacion){
-    
-}
-function CalificarEvaluacionTipoExamenRecupercion($IdEvaluacion){
+function CalificarEvaluacionTipoExamenRecupercion($IdEvaluacion,$Calificacion){
     
 }
 
-
+*/
 
 ?>
