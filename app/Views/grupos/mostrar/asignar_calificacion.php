@@ -184,14 +184,19 @@
                             }
                             if($fila2->valor_asistencia==4){
                               $numeroFaltaJustificada++;
-                            }
-                            
+                            }     
 
                           }
                         }
                     }
                     echo $fila->nombre." ".$fila->apellido_paterno." ".$fila->apellido_materno." ---".$total."<br/>";
                     $valAsistDiaria = $valoresPonderacion->total_dias_laborales/$valoresPonderacion->valor_asistencia;
+                    echo "Valor de la asistencia diaria es ".$valAsistDiaria."<br/>";
+                    $asistencia = $valAsistDiaria*$numeroAsistencia;
+                    echo "la asistencia es".$asistencia."<br/>";
+                    
+                    $retardo = $numeroRetardo 
+                    
 
 
                 }
