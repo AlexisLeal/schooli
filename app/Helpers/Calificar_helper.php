@@ -43,6 +43,27 @@ function CalificarGetTipoyCategoriaEvaluacion($IdEvaluacion){
     return($row);
 
 }
+
+function Porcentaje($ValorAsitenciaDiara, $Porcentaje) {
+    if($ValorAsitenciaDiara>=1){
+      $PorcentajeAplicado="0.".$Porcentaje;
+      return $ValorAsitenciaDiara*floatval($PorcentajeAplicado);
+    }else{
+      $PorcentajeAplicado="0.".$Porcentaje;
+      return $ValorAsitenciaDiara*floatval($PorcentajeAplicado);
+    }
+  }
+
+function ObtenerIdAsistencia(){
+    $ArrayIdAsistencia = array ();
+    foreach(getValorAsistencia() as $fila){
+        $ArrayIdAsistencia[$fila->id]=$fila->valor;
+      }
+
+    return $ArrayIdAsistencia;
+}
+
+
 /*
 function CalificarEvaluacionTipoEjercio($IdCategoria){
     if($IdCategoria == 1){

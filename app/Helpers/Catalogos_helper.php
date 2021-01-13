@@ -133,7 +133,7 @@ function CatalagoObtenerPonderaciondeCurso($id_curso)
     $usermode->where('id',$id_curso);
     $resultado = $usermode->get();
     $Row = $resultado->getRow();
-    return($Row);
+    return($Row); 
 }
 
 function getAllFrecuencia()
