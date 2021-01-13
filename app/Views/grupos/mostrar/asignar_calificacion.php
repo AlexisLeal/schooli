@@ -80,6 +80,7 @@
 
             <div style="padding-left:30px">
             <br/>
+            <form action="" method="">
                 <?php
                 $a = array();
                 foreach(getValorAsistencia() as $fila){
@@ -102,7 +103,6 @@
                   $info_ciclo->fecha_fin_excluir;
                 }
                 ?>
-
               <div class="card">
                 <div class="card-body">
                 <?php
@@ -158,9 +158,20 @@
                 }
                 ?>
 
+                
+                <div class="espacioUno"></div>
+                                
+                <input type="hidden" name="IdGrupo" id="IdGrupo" value="<?=$id_grupo;?>">
+                <input type="hidden" name="IdCurso" id="IdCurso" value="<?=$id_curso;?>">
+                <input type="hidden" name="IdNivel" id="IdNivel" value="<?=$id_nivel;?>">
+                <input type="hidden" name="IdCiclo" id="IdCiclo" value="<?=$id_ciclo;?>">
+
+                <button type="submit" name="submitGP" class="btn btn-primary btn-sm">Registrar</button>
+                <button class="btn btn-secondary btn-sm" onclick="confirmarlimpiado()">Limpiar</button>
+                
                 </div>
               </div>
-
+              </form>
 
 
 

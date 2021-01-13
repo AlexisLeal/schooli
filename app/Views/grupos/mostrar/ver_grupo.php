@@ -153,7 +153,7 @@
                       <td width="40%">
                       <!--Alumnos que esten asignados a este grupo -->
                       <!--Obtener un listado de todos los alumnos con el primededio de examenes, ejercicios,y asistencia, dividos por los valores asignados del curso -->
-                        <a href="<?php echo site_url("Asignacion/asignarcalificaciones/$id_grupo/$id_curso/$id_ciclo"); ?>"> Asignar calificaciones </a>
+                        <a href="<?php echo site_url("Asignacion/asignarcalificaciones/$id_grupo/$id_curso/$id_ciclo/$id_nivel"); ?>"> Asignar calificaciones </a>
                       </td>
                       <td width="40%">
                         <a href="<?php echo site_url("Asignacion/deletedAlumno/$id_grupo"); ?>"> Calificaciones aplicadas </a>

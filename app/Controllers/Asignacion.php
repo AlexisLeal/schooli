@@ -23,13 +23,14 @@ class Asignacion extends BaseController{
     }
 
     
-    public function asignarcalificaciones($id_grupo,$id_curso,$id_ciclo)
+    public function asignarcalificaciones($id_grupo,$id_curso,$id_ciclo,$id_nivel)
     {
         if($this->session->get('login') && $this->session->get('roll') == 4){
 
             $data['id_grupo']  = $id_grupo;
             $data['id_curso']  = $id_curso;
             $data['id_ciclo']  = $id_ciclo;
+            $data['id_nivel']  = $id_nivel;
 
             return view('grupos/mostrar/asignar_calificacion',$data);
         }else{
