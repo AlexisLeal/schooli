@@ -81,27 +81,79 @@
             <div style="padding-left:30px">
             <br/>
                 <?php
+
+                /** Obtener los valores de la asistencia */
                 $a = array();
                 foreach(getValorAsistencia() as $fila){
                   $a[$fila->id]=$fila->valor;
                 }
 
-                $info_ciclo         = getCicloEspecifico($id_ciclo);
-                $curso_especifico   = getCursoEspecifico($id_curso);
-                $id_frecuencia      = $curso_especifico->id_frecuencia;
-                $infoFrecuencia     = getFrencueciaEspecifica($id_frecuencia);
-                $valoresPonderacion = CatalagoObtenerPonderaciondeCurso($id_curso);
-                $fechaInicio        = $info_ciclo->fecha_inicio;
-                $fechaFin           = $info_ciclo->fecha_fin;
-                $week_start         = strtotime(date($fechaInicio));
-                $week_end           = strtotime(date($fechaFin));
+                /*** Obtener los dias que dura el  ciclo fecha de inicio, fecha final y fecha inicio exclusion y fecha final exclusion (Parametro id_ciclo*/
+                $info_ciclo = getCicloEspecifico($id_ciclo);
+                //echo "Nombre del ciclo:".$info_ciclo->nombre."<br/>";
+                /*
+                echo "fecha inicio del ciclo:".$info_ciclo->fecha_inicio."<br/>";
+                echo "fecha final del ciclo:".$info_ciclo->fecha_fin."<br/>";
+                echo "fecha inicio exclusion del ciclo:".$info_ciclo->fecha_inicio_excluir."<br/>";
+                echo "fecha final exclusion del ciclo:".$info_ciclo->fecha_fin_excluir."<br/>";*/
 
-                
-                if(!empty($info_ciclo->fecha_inicio_excluir)){
-                  $info_ciclo->fecha_inicio_excluir;
-                  $info_ciclo->fecha_fin_excluir;
-                }
+                /** Obtener datos de la frecuencia,el id de la frecuenci esta en la tabla del curso Ok*/
+                $curso_especifico = getCursoEspecifico($id_curso);
+                $id_frecuencia = $curso_especifico->id_frecuencia;
+                /*echo "id de la frecuencia es".$id_frecuencia."<br/>";*/
+
+                /*** Obtenemos los datos de la frecuencia */
+                $infoFrecuencia = getFrencueciaEspecifica($id_frecuencia);
+                /*
+                echo "id de frecuenciaaaaaaa:".$infoFrecuencia->id."<br/>";
+                echo "nombre:".$infoFrecuencia->nombre."<br/>";
+                echo "id modalidad:".$infoFrecuencia->id_modalidad."<br/>";
+                echo "lunes:".$infoFrecuencia->lunes."<br/>";
+                echo "martes:".$infoFrecuencia->martes."<br/>";
+                echo "miercoles:".$infoFrecuencia->miercoles."<br/>";
+                echo "jueves:".$infoFrecuencia->jueves."<br/>";
+                echo "viernes:".$infoFrecuencia->viernes."<br/>";
+                echo "sabado:".$infoFrecuencia->sabado."<br/>";
+                echo "domingo :".$infoFrecuencia->domingo."<br/>";
+                echo "estatus:".$infoFrecuencia->estatus."<br/>";*/
+
+                /*** Obtenemos valores de la ponderación */
+                $valoresPonderacion = CatalagoObtenerPonderaciondeCurso($id_curso);
                 ?>
+                <!--
+                <table>
+                <tr>
+                  <td>Ponderacion</td><td></td><td></td><td></td><td></td><td></td>
+                </tr>
+                <tr>
+                  <td>Total de dias laborales:</td><td>< ?php echo $valoresPonderacion->total_dias_laborales;?></td>
+                  <td>Número de exámenes:</td><td>< ?php echo $valoresPonderacion->num_examenes;?></td>
+                  <td>Número de ejercicios:</td><td>< ?php echo $valoresPonderacion->num_ejercicios;?></td>
+                </tr>
+                <tr>
+                  <td>Valor de asistencia:</td><td>< ?php echo $valoresPonderacion->valor_asistencia;?></td>
+                  <td>Valor de ejercicios:</td><td>< ?php echo $valoresPonderacion->valor_ejercicios;?></td>
+                  <td>Valor de examenes:</td><td>< ?php echo $valoresPonderacion->valor_examenes;?></td>
+                </tr>
+                </table>-->
+              <br/>
+              <br/>
+
+            <?php
+            // Obtener los dias de con el paraemtro especificado(se validar con los datos del ciclo)
+            $fechaInicio = $info_ciclo->fecha_inicio;
+            $fechaFin    = $info_ciclo->fecha_fin;
+
+            $week_start = strtotime(date($fechaInicio));
+            $week_end = strtotime(date($fechaFin));
+
+            // validar si hay dias que se van a excluir
+            if(!empty($info_ciclo->fecha_inicio_excluir)){
+              // si hay fechas a excluir
+              $info_ciclo->fecha_inicio_excluir;
+              $info_ciclo->fecha_fin_excluir;
+            }
+            ?>
 
               <div class="card">
                 <div class="card-body">
@@ -109,13 +161,15 @@
                 
                 function porcentaje($t, $porcent) {
                   if($t>=1){
-                    $p="0.".$porcent;
-                    return $t*floatval($p);
+                      return $t*$porcent;
                   }else{
                     $p="0.".$porcent;
                     return $t*floatval($p);
                   }
+                  //return round($porcent / $t * 100);
                 }
+
+                // Obtener los alumnos que pertenecen a este grupo OK
                 foreach(getMiembros($id_grupo) as $fila){
                   $total = 0; 
                   $numeroAsistencia       = 0;
@@ -143,20 +197,30 @@
                           }
                         }
                     }
+                    echo $fila->nombre." ".$fila->apellido_paterno." ".$fila->apellido_materno." ---".$total."<br/>";
+                    $valAsistDiaria = $valoresPonderacion->total_dias_laborales/$valoresPonderacion->valor_asistencia;
+                    echo "Valor de la asistencia diaria es ".$valAsistDiaria."<br/>";
                     
-                    $valAsistDiaria   = $valoresPonderacion->valor_asistencia/$valoresPonderacion->total_dias_laborales;
-                    $valorRetardo     = porcentaje($valAsistDiaria, 50 );
-                    $sumValorRetardo  = $valorRetardo*$numeroRetardo;
-                    $valorFaltaJustificada      = porcentaje($valAsistDiaria, 50 );
-                    $sumCalorFaltasJustificadas = $valorFaltaJustificada*$numeroFaltaJustificada;
-                    $asistencia                 = $valAsistDiaria*$numeroAsistencia;
-                    $valorTotalAsistencia       = $asistencia+$sumValorRetardo+$sumCalorFaltasJustificadas;
+
+                    $valorRetardo=porcentaje($valAsistDiaria, 50 );
+                    $sumValorRetardo = $valorRetardo*$numeroRetardo;
                     
-                    
-                    echo $fila->nombre." ".$fila->apellido_paterno." ".$fila->apellido_materno." ---".$valorTotalAsistencia."<br/>";
+                    $valorFaltaJustificada=porcentaje($valAsistDiaria, 50 );
+                    $sumCalorFaltasJustificadas=$valorFaltaJustificada*$numeroFaltaJustificada;
+
+                    $asistencia = $valAsistDiaria*$numeroAsistencia;
+                    $valorTotalAsistencia=$asistencia+$sumValorRetardo+$sumCalorFaltasJustificadas;
+                    echo "la asistencia es".$valorTotalAsistencia."<br/>";                   
+
 
                 }
                 ?>
+
+                <!-- Para obtener la asitencia se debe obtener dias totales del curso entre el valor total, 
+                // y ese resultado multipllicarlo por lo dias que asisitio -->
+                
+                <!-- Para obtener los examenes se debe obtener el valor total de los examanes entre la cantidad de examenes, y ese resultado se multiplica por la cantidad de la calificacion del examen -->
+                <!-- Para obtener los ejercicios se debe obtener el valor total de los ejercicio entre la cantidad de ejercicios, y ese resultado se multiplica por la cantidad de la calificacion del ejercicio -->
 
                 </div>
               </div>
