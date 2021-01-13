@@ -195,7 +195,7 @@
                     $asistencia = $valAsistDiaria*$numeroAsistencia;
                     echo "la asistencia es".$asistencia."<br/>";
                     
-                    $retardo = $numeroRetardo 
+                    $retardo = $numeroRetardo; 
                     
 
 
