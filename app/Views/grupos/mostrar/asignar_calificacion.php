@@ -80,7 +80,7 @@
 
             <div style="padding-left:30px">
             <br/>
-            <form action="" method="">
+            <form action="<?php echo site_url('Calificaciones/ObtenerCalificacionesparaKardex');?>" method="post">
                 <?php
                 $a = array();
                 foreach(getValorAsistencia() as $fila){
@@ -166,7 +166,7 @@
                 <input type="hidden" name="IdNivel" id="IdNivel" value="<?=$id_nivel;?>">
                 <input type="hidden" name="IdCiclo" id="IdCiclo" value="<?=$id_ciclo;?>">
 
-                <button type="submit" name="submitGP" class="btn btn-primary btn-sm">Registrar</button>
+                <button type="submit" name="SubmitObtenerCalificaciones" class="btn btn-primary btn-sm">Registrar</button>
                 <button class="btn btn-secondary btn-sm" onclick="confirmarlimpiado()">Limpiar</button>
                 
                 </div>

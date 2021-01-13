@@ -1,5 +1,5 @@
 <?php namespace App\Controllers;
-use  App\Models\Karedex_model;
+use  App\Models\Kardex_model;
 helper('Calificar');
 
 class Calificaciones extends BaseController{
@@ -29,7 +29,7 @@ class Calificaciones extends BaseController{
                 $ValordeCadaEjercio = $ValoresPonderacion->valor_ejercicios/$ValoresPonderacion->num_ejercicios;
                 $ValordeCadaExamen = $ValoresPonderacion->valor_examenes/$ValoresPonderacion->num_examenes;
             
-                $UseModelKarex = new Karedex_model($db);
+                $UseModelKarex = new Kardex_model($db);
 
                 foreach(CalificarObtenerMiembrosdeGrupo($IdGrupo) as $FilaMiembro){
                     $CalificacionFinalEvaluaciones = 0;
@@ -41,11 +41,18 @@ class Calificaciones extends BaseController{
                     $CalficacionFinalKardex = 0;
                     //Empieza a obtener la calificacion de las evaluaciones por alumno
                     foreach(CalificarGetEvaluacionesContestadas($FilaMiembro->id,$IdGrupo,$IdCurso,$IdNivel,$IdCiclo) as $FilaEvaluacion){
-                        $FilaTipoyCategoria = CalificarGetTipoyCategoriaEvaluacion($FilaEvaluacion->id);
+                        $FilaTipoyCategoria = CalificarGetTipoyCategoriaEvaluacion($FilaEvaluacion->id_evaluacion);
 
                             if($FilaTipoyCategoria->tipo_evaluacion == 1){
                                 if(($FilaTipoyCategoria->idCategoriaEvaluacion) == 1){
-                                    $CalificacionFinalEvaluaciones += $FilaEvaluacion->calificacion * $ValordeCadaEjercio;
+                                    if($FilaEvaluacion->calificacion == 100){
+                                        $CalificacionFinalEvaluaciones += $ValordeCadaEjercio;
+                                    }else{
+                                        $CalificacionFinalEvaluaciones += porcentaje($ValordeCadaEjercio, $FilaEvaluacion->calificacion );
+                                    }
+                                    //echo $FilaEvaluacion->calificacion;
+                                    //echo $ValordeCadaEjercio;
+                                    //echo $CalificacionFinalEvaluaciones;
         
                                 }elseif(($FilaTipoyCategoria->idCategoriaEvaluacion) == 2){
                                     $CalificacionFinalEvaluaciones += $FilaEvaluacion->calificacion * ($ValordeCadaEjercio * 0.50);
@@ -53,8 +60,11 @@ class Calificaciones extends BaseController{
 
                             }elseif($FilaTipoyCategoria->tipo_evaluacion == 2){
                                 if(($FilaTipoyCategoria->idCategoriaEvaluacion) == 1){
-                                    $CalificacionFinalEvaluaciones += $FilaEvaluacion->calificacion *  $ValordeCadaExamen;
-
+                                    if($FilaEvaluacion->calificacion == 100){
+                                        $CalificacionFinalEvaluaciones += $ValordeCadaEjercio;
+                                    }else{
+                                        $CalificacionFinalEvaluaciones += porcentaje($ValordeCadaEjercio, $FilaEvaluacion->calificacion );
+                                    }
                                 }elseif(($FilaTipoyCategoria->idCategoriaEvaluacion) == 2){
                                     $CalificacionFinalEvaluaciones += $FilaEvaluacion->calificacion *  ($ValordeCadaExamen * 0.50);
                                     

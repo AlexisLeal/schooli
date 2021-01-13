@@ -2,7 +2,7 @@
 
 use CodeIgniter\Model;
 
-class Karedex_model extends Model
+class Kardex_model extends Model
 {
     
     protected $table      = 'kardex';
