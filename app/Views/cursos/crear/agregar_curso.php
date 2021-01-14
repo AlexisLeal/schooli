@@ -111,8 +111,8 @@
                 </div>
                 <div class="col">
                 <br/>
-                  Total de dias laborales
-                  <input type="number" name="dias" id="dias" class="form-control form-control-sm" required="" min=1>
+                  Sesiones
+                  <input type="number" name="dias" id="dias" class="form-control form-control-sm" required="" min=1 disabled>
                 </div>
                 <div class="col">
                 <br/>
@@ -145,7 +145,10 @@
                 <div class="col">
                 <br/>
                   Total de puntos 
-                  <input type="number" name="valor_total" id="valor_total" class="form-control form-control-sm" required max = 100 disabled>
+                  <input type="number" name="valor_total" id="valor_total" class="form-control form-control-sm" required max = 100  min = 100 disabled>
+                  <br/>
+                  Numero de semanas
+                  <input type="number" id="NumeroSemanas" class="form-control form-control-sm" min = 1 >
                 </div>
                 </div>
 
@@ -255,6 +258,24 @@ $('#valor_total_asistencia').keyup(function(){
   ValidacionCamposPonderacionyTotalPuntos();
 
 });
+$('#NumeroSemanas').keyup(function(){
+  var NumeroSesiones = document.getElementById('NumeroSemanas').value;
+  var IdFrecuencia = document.getElementById('frecuencia').value;
+  if(IdFrecuencia == ''){
+    IdFrecuencia = 0;
+  }
+  ObtenerNumerodeSessiones(NumeroSesiones,IdFrecuencia);
+});
+
+$('frecuencia').change(function(){
+  var NumeroSesiones = document.getElementById('NumeroSemanas').value;
+  var IdFrecuencia = document.getElementById('frecuencia').value;
+  if(IdFrecuencia == ''){
+    IdFrecuencia = 0;
+  }
+  ObtenerNumerodeSessiones(NumeroSesiones,IdFrecuencia);
+
+});
 
 
 function ObtenerTotalPuntos(valor1,valor2,valor3){
@@ -286,6 +307,28 @@ function ValidacionCamposPonderacionyTotalPuntos(){
 
   }
   document.getElementById('valor_total').value = ObtenerTotalPuntos(ValorTotalEjercicios,ValorTotalExamanes,ValorTotalAsistencia);
+}
+
+function  ObtenerNumerodeSessiones($NumeroSesiones,$IdFrecuencia){
+  $.ajax({
+    type: "POST",
+        url: "<?php echo site_url('Curso/Ajaxgrupos'); ?>",
+        data: {
+          NumeroSesiones,
+          IdFrecuencia
+        },
+        success: function(text) {
+          document.getElementById("dias").innerHTML = "";
+          $('#dias').append(text);
+        }
+
+
+
+
+  });
+
+
+
 }
 
 
