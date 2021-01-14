@@ -88,7 +88,6 @@ class Frecuencia extends BaseController{
                 $hoy = date("Y-m-d H:i:s");
 
                 $data = ['nombre' =>$REQUEST->getPost('nombre'),
-                'id_modalidad' =>$REQUEST->getPost('modalidad'),
                 'descripcion' =>$REQUEST->getPost('descripcion'),
                 'lunes' =>(empty($REQUEST->getPost('lunes'))) ? 0 :$REQUEST->getPost('lunes'),
                 'martes' =>(empty($REQUEST->getPost('martes'))) ? 0 :$REQUEST->getPost('martes'),

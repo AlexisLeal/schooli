@@ -13,6 +13,7 @@ use  App\Models\Pregunta_opcion_video;
 use  App\Models\Categorias_Evaluaciones;
 use  App\Models\Recursos_model;
 use  App\Models\Notificaciones_model;
+use  App\Models\Planteles;
 
 function getTipoUsuario()
 {
@@ -319,21 +320,14 @@ function EliminarEvaluacion($IdEvaluacion)
     $UseModelEvaluacion->delete(['id'=>$IdEvaluacion]);
 }
 
+function getPlanteles()
+{
+    $usermodel = new Planteles($db);
+    $usermodel->select('id, nombre');
+    $usermodel->where('deleted',0);
+    $query = $usermodel->get();
+    $row = $query->getResult();
+    return($row);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}
 ?>

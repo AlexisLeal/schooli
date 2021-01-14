@@ -107,10 +107,6 @@
                   <i class="fa fa-cubes" aria-hidden="true"></i> Materiales <br />
                   <table width="90%" cellspacing="8" cellpadding="4">
                     <tr>
-                      <td width="40%"><a href="<?php echo site_url("Asignacion/evaluacion/$id_grupo"); ?>">Evaluaciónes</a></td>
-                      <td width="40%"></td>
-                    </tr>
-                    <tr>
                       <td width="40%">
                         <a href="<?php echo site_url("Asignacion/sesiones/$id_grupo/$id_curso/$id_nivel"); ?>"> Ver sesiones </a>
                       </td>

@@ -13,7 +13,7 @@ class Frecuencia_model extends Model
     protected $useSoftDeletes = true;
 
     #Aqui ponemos el nombre de las columnas que vamos a modifcar
-    protected $allowedFields = ['nombre','descripcion','id_modalidad','lunes','martes','miercoles','jueves','viernes','sabado','domingo','estatus','fecha_creacion','fecha_ultimo_cambio'];
+    protected $allowedFields = ['nombre','descripcion','lunes','martes','miercoles','jueves','viernes','sabado','domingo','estatus','fecha_creacion','fecha_ultimo_cambio'];
 
     protected $useTimestamps = false;
     protected $createdField  = 'fecha_creacion';

@@ -111,7 +111,7 @@
                 </div>
                 <div class="col">
                 <br/>
-                  Total de dias laborales
+                  Sesiones
                   <input type="number" name="dias" id="dias" class="form-control form-control-sm" required="" min=1>
                 </div>
                 <div class="col">
