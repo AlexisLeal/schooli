@@ -1,6 +1,7 @@
 <?php
 use  App\Models\Control_grupos_calificaciones_evaluaciones_model;
 use  App\Models\Evaluaciones_model;
+use  App\Models\Kardex_model;
 
 
 
@@ -60,8 +61,18 @@ function ObtenerIdAsistencia(){
     foreach(getValorAsistencia() as $fila){
         $ArrayIdAsistencia[$fila->id]=$fila->valor;
       }
-
     return $ArrayIdAsistencia;
+}
+
+function ObtenerCalificacionesdeKardex($IdUsuario,$IdNivel)
+{
+    $UseModelKardex = new Kardex_model($db);
+    $UseModelKardex->select('primera_oportunidad,segunda_oportunidad');
+    $UseModelKardex->where('id_usuario',$IdUsuario);
+    $UseModelKardex->where('id_nivel',$IdNivel);
+    $UseModelKardex->where('deleted',0);
+    $Query = $UseModelKardex->get();
+    return $Query->getRow();
 }
 
 

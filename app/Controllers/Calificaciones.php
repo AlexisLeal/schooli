@@ -119,6 +119,8 @@ class Calificaciones extends BaseController{
                     
                 }
 
+            }else{
+                return redirect()->to(site_url('Home/salir'));
             }
 
             echo "ok";
@@ -128,5 +130,16 @@ class Calificaciones extends BaseController{
 
         }
         
-	}
+    }
+    public function CalificacionesAplicadas($IdGrupo,$IdNivel){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
+            $data['IdGrupo']=$IdGrupo;
+            $data['$IdNivel']=$IdNivel;
+
+            return view('grupos/mostrar/calificacionesaplicadas',$data);
+        }else{
+            return redirect()->to(site_url('Home/salir'));
+        }   
+       
+    }
 }

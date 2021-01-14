@@ -156,7 +156,7 @@
                         <a href="<?php echo site_url("Asignacion/asignarcalificaciones/$id_grupo/$id_curso/$id_ciclo/$id_nivel"); ?>"> Asignar calificaciones </a>
                       </td>
                       <td width="40%">
-                        <a href="<?php echo site_url("Asignacion/deletedAlumno/$id_grupo"); ?>"> Calificaciones aplicadas </a>
+                        <a href="<?php echo site_url("Calificaciones/CalificacionesAplicadas/$id_grupo/$id_nivel"); ?>"> Calificaciones aplicadas </a>
                       </td>
                     </tr>
                   </table>
