@@ -117,6 +117,7 @@
                   }
                 }
                 foreach(getMiembros($id_grupo) as $fila){
+                  echo $fila->id."<br/>";
                   $total = 0; 
                   $numeroAsistencia       = 0;
                   $numeroFalta            = 0;

@@ -93,15 +93,17 @@
           <div class="card-body">
             <table width="100%" cellspacing="12" cellpadding="12" >
               <tr>
-                <td><div class="text-center"><a href="#"><i class="fa fa-handshake-o fa-2x" aria-hidden="true"></i></i><br/>Prospectos.</a></div></td>
+                <td><div class="text-center"><a href="<?php echo site_url('/Notificaciones/index'); ?>"><i class="fa fa-commenting-o fa-2x" aria-hidden="true"></i><br/>Notificaciones</a>                </div></td>
                 <td><div class="text-center"><a href="<?php echo site_url('/Teachers/index'); ?>"><i class="fa fa-user-circle-o fa-2x" aria-hidden="true"></i><br/>Teachers.</a></div></td>
-                <td><div class="text-center"><a href="<?php echo site_url('/Tutores/index'); ?>"><i class="fa fa-user-secret fa-2x" aria-hidden="true"></i><br/>Tutores.</a></div></td>
+                <td><div class="text-center"><a href="<?php echo site_url('/Cursos/index'); ?>"><i class="fa fa-th-large fa-2x" aria-hidden="true"></i><br/>Cursos</a>
+                </div></td>
               </tr>
             </table>
           </div>
         </div>
 
         <div class="espacioUno"></div>
+        <!--
         <div class="card">
           <div class="card-body">
             <table width="100%" cellspacing="12" cellpadding="12" >
@@ -113,18 +115,19 @@
                 </td>
                 <td>
                   <div class="text-center">                      
-                    <a href="<?php echo site_url('/Notificaciones/index'); ?>"><i class="fa fa-commenting-o fa-2x" aria-hidden="true"></i><br/>Notificaciones</a>
+                  <a href="#"><i class="fa fa-handshake-o fa-2x" aria-hidden="true"></i></i><br/>Prospectos.</a>
                   </div>
                 </td>
                 <td>
                   <div class="text-center">
-                    <a href="<?php echo site_url('/Cursos/index'); ?>"><i class="fa fa-th-large fa-2x" aria-hidden="true"></i><br/>Cursos</a>
+                  <a href="< ?php echo site_url('/Tutores/index'); ?>"><i class="fa fa-user-secret fa-2x" aria-hidden="true"></i><br/>Tutores.</a>
                   </div>
                 </td>
               </tr>
             </table>
           </div>
         </div>
+        -->
       </div>
 
       <div class="col-md-3">

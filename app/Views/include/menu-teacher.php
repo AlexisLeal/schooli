@@ -12,8 +12,8 @@
 
 <ul class="list-group">        
   <li class="list-group-item"><a class="" href="">Perfil</a></li>
-  <li class="list-group-item"><a class="" href="">Grupos Asignados</a></li>
-  <li class="list-group-item"><a class="" href="">Notificaciones</a></li>
+  <!--<li class="list-group-item"><a class="" href="">Grupos Asignados</a></li>-->
+  <!--<li class="list-group-item"><a class="" href="">Notificaciones</a></li>-->
 </ul>
 
 
