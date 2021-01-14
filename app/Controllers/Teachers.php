@@ -171,7 +171,7 @@ class Teachers extends BaseController{
                 'telefono' => $REQUEST->getPost('telefono'),
                 'movil' => $REQUEST->getPost('movil'),
                 'id_direccion' => $ultimo_id_direccion,
-                'roll' => $REQUEST->getPost('roll'),
+                'roll' => 3,
                 'fecha_creacion' => $hoy,
                 'fecha_ultimo_cambio' => $hoy,
                 'id_tipo_usuario' => 3,

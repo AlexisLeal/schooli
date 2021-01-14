@@ -98,7 +98,7 @@
 
               <div class="row">
                 <div class="col">
-                  <input type="email" name="email" id="email" class="form-control form-control-sm" placeholder="Correo">
+                  <input type="email" name="email" id="email" class="form-control form-control-sm" placeholder="Nombre de usuario">
                 </div>
                 <div class="col">
                   <input type="password" name="password" id="password" class="form-control form-control-sm" placeholder="Contraseña">
@@ -122,17 +122,11 @@
 
               <div class="row">
                 <div class="col">
-                  Roll
-                  <select class="form-control form-control-sm" name="roll" id="roll" required="">
-                    <option value="">Seleccione una opción</option>
-                    <?php foreach (getRoll() as $fila) { ?>
-                      <option value="<?php echo $fila->id ?>"><?php echo $fila->nombre ?></option>
-                    <?php } ?>
-                  </select>
-                </div>
-                <div class="col">
                 Matricula
                   <input type="text" name="matricula" id="matricula" class="form-control form-control-sm" placeholder="Matricula">
+                </div>
+                <div class="col">
+
                 </div>
               </div>
 

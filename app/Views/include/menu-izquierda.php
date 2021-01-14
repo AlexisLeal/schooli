@@ -74,11 +74,11 @@ $collIntegraciones="collapse";
            <li class="list-group-item"><a class="<?php if($enlaceActivoCatalogo=='Ciclos'){echo 'mi-active';}?>" href="<?php echo site_url('Ciclos/index')?>">Ciclos</a></li>
            <li class="list-group-item"><a class="<?php if($enlaceActivoCatalogo=='Horarios'){echo 'mi-active';}?>" href="<?php echo site_url('Horarios/index')?>">Horarios</a></li>
            <li class="list-group-item"><a class="<?php if($enlaceActivoCatalogo=='Salones'){echo 'mi-active';}?>" href="<?php echo site_url('Salones/index')?>">Salones</a></li>
-           <li class="list-group-item"><a class="<?php if($enlaceActivoCatalogo=='Cursos'){echo 'mi-active';}?>" href="<?php echo site_url('Cursos/index')?>">Cursos</a></li>
            <li class="list-group-item"><a class="<?php if($enlaceActivoCatalogo=='Frecuencia'){echo 'mi-active';}?>" href="<?php echo site_url('Frecuencia/index')?>">Frecuencias</a></li>
            <li class="list-group-item"><a class="<?php if($enlaceActivoCatalogo=='Notificaciones'){echo 'mi-active';}?>" href="<?php echo site_url('Notificaciones/index')?>">Notificaciones</a></li>
-           
-
+           <li class="list-group-item"><a class="<?php if($enlaceActivoModulo=='Alumnos'){echo 'mi-active';}?>" href="<?php echo site_url('Alumnos/index')?>">Alumnos</a></li>
+           <li class="list-group-item"><a class="<?php if($enlaceActivoModulo=='Teachers'){echo 'mi-active';}?>" href="<?php echo site_url('Teachers/index')?>">Teachers</a></li>
+           <li class="list-group-item"><a class="<?php if($enlaceActivoCatalogo=='Cursos'){echo 'mi-active';}?>" href="<?php echo site_url('Cursos/index')?>">Cursos</a></li>
             <!--
              <li class="list-group-item"><a href="#">Sucursales</a></li>
              <li class="list-group-item"><a href="#">Facultades</a></li>
@@ -109,11 +109,8 @@ $collIntegraciones="collapse";
 
             <div class="<?php echo $collModulos;?>" id="collapseModulos">
            <ul class="list-group">
-             <li class="list-group-item"><a class="<?php if($enlaceActivoModulo=='Recursos'){echo 'mi-active';}?>" href="<?php echo site_url('Recursos/recursos')?>">Recursos</a></li>
-             <!-- <li class="list-group-item"><a class="< ?php if($enlaceActivoModulo=='Evaluaciones' || $enlaceActivo=='Preguntas'){echo 'mi-active';}?>" href="< ?php echo site_url('Evaluaciones/index')?>">Evaluaciones</a></li>-->
-             <li class="list-group-item"><a class="<?php if($enlaceActivoModulo=='Alumnos'){echo 'mi-active';}?>" href="<?php echo site_url('Alumnos/index')?>">Alumnos</a></li>
-             <li class="list-group-item"><a class="<?php if($enlaceActivoModulo=='Grupos'){echo 'mi-active';}?>" href="<?php echo site_url('Grupos/index')?>">Grupos</a></li>
-             <li class="list-group-item"><a class="<?php if($enlaceActivoModulo=='Teachers'){echo 'mi-active';}?>" href="<?php echo site_url('Teachers/index')?>">Teachers</a></li>
+            <li class="list-group-item"><a class="<?php if($enlaceActivoModulo=='Grupos'){echo 'mi-active';}?>" href="<?php echo site_url('Grupos/index')?>">Grupos</a></li>  
+            <li class="list-group-item"><a class="<?php if($enlaceActivoModulo=='Recursos'){echo 'mi-active';}?>" href="<?php echo site_url('Recursos/recursos')?>">Recursos</a></li> 
              <!--<li class="list-group-item"><a href="#">Prospectos</a></li>
              <li class="list-group-item"><a href="#">Empleados</a></li>
              <li class="list-group-item"><a href="#">Roles</a></li>

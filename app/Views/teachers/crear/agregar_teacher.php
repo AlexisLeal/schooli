@@ -103,40 +103,21 @@
                         <input type="text" name="movil" id="movil" class="form-control form-control-sm" placeholder="Móvil o WhatssApp" required ="">
                       </div>
                     </div>
-                  <div class="espacioUno"></div>
-                    <div class="row">
-                      <div class="col">
-                      Roll
-                        <select class="form-control form-control-sm" name="roll" id="roll" required="">
-                        <option value="">Seleccione una opción</option>
-                        <?php foreach(getRoll() as $fila){?>
-                        <option value="<?php echo $fila->id?>"><?php echo $fila->nombre?></option>
-                        <?php } ?> 
-                        </select>
-                      </div>
-                    <div class="col">
-                  </div>
-                </div>
-
-
+                
                 <div class="espacioDos"></div>
                 <hr class="linea"/>
                 Datos Laborales
                 <div class="espacioDos"></div>
                 <div class="row">
                   <div class="col">
-                    Unidad de negocio
-                    <select class="form-control form-control-sm" name="unidad_negocio" id="unidad_negocio" required="">
-                      <option value="">Selecciona una opción</option>
-                      <?php foreach(getUnidadNegocio() as $fila){?>
-                      <option value="<?php echo $fila->id?>"><?php echo $fila->nombre?></option>
-                      <?php } ?> 
-                    </select>
-                  </div>
-                  <div class="col">
                     Plantel
                     <select class="form-control form-control-sm" name="plantel" id="plantel" required="">
-                      <option value="">Selecciona una opción</option> 
+                      <option value="">Selecciona una opción</option>
+                      <?php foreach(getPlanteles() as $fila){?>
+                        <option value="<?php echo $fila->id;?>"><?php echo $fila->nombre;?></option>
+                        <?php
+                      }
+                      ?>
                     </select>
                   </div>
                   <div class="col">
@@ -272,18 +253,19 @@
      
  
 <script>
+  /*
 $('#unidad_negocio').change(function () {
   var id_unidad = $(this).val();
     $.ajax({
       type: "POST",
-      url: "<?php echo site_url('Alumnos/plantelesUnidadNegocio');?>",
+      url: "< ?php echo site_url('Alumnos/plantelesUnidadNegocio');?>",
       data: "id_unidad_negocio=" + id_unidad,
       success : function(text){
         document.getElementById("plantel").innerHTML = "";
           $('#plantel').append(text);
       }
     });
-  });
+  });*/
     
   function ComprobarNumeroTelefonico(){
     var  mensaje = '';
