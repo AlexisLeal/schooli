@@ -55,9 +55,19 @@
         <?php include(APPPATH . '/Views/include/notificacion.php'); ?>
 
         <div class="espacioUno"></div>
-        <h4>Panel de Grupos</h4>
+        <h4>Panel de Alumnos</h4>
         <a class="btn btn-success btn-sm" href="<?php echo site_url('/Alumnos/agregaralumnos'); ?>" role="button">Registrar un Alumno</a>
+
         <div class="espacioUno"></div>
+        <div class="espacioUno"></div>
+        <table>
+        <tr>
+          <td><a href="<?php echo site_url('/Panel/index'); ?>" ><i class="fa fa-arrow-circle-o-left fa-2x" aria-hidden="true"></i></a></td>
+          <td><a href="<?php echo site_url('/Panel/index'); ?>" >  Ir al Panel</a></td>
+        </tr>
+        </table>  
+        <div class="espacioUno"></div>
+
 
         <div class="card">
           <div class="card-body">
