@@ -61,9 +61,9 @@ class Calificaciones extends BaseController{
                             }elseif($FilaTipoyCategoria->tipo_evaluacion == 2){
                                 if(($FilaTipoyCategoria->idCategoriaEvaluacion) == 1){
                                     if($FilaEvaluacion->calificacion == 100){
-                                        $CalificacionFinalEvaluaciones += $ValordeCadaEjercio;
+                                        $CalificacionFinalEvaluaciones += $ValordeCadaExamen;
                                     }else{
-                                        $CalificacionFinalEvaluaciones += porcentaje($ValordeCadaEjercio, $FilaEvaluacion->calificacion );
+                                        $CalificacionFinalEvaluaciones += porcentaje($ValordeCadaExamen, $FilaEvaluacion->calificacion );
                                     }
                                 }elseif(($FilaTipoyCategoria->idCategoriaEvaluacion) == 2){
                                     $CalificacionFinalEvaluaciones += $FilaEvaluacion->calificacion *  ($ValordeCadaExamen * 0.50);

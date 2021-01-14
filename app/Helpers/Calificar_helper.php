@@ -12,6 +12,7 @@ function CalificarObtenerMiembrosdeGrupo($id_grupo)
     $usermodel->join('grupo_alumnos G_AL','U.id = G_AL.id_alumno and G_AL.deleted=0');
     $usermodel->where('G_AL.id_grupo',$id_grupo);
     $usermodel->where('U.deleted',0);
+    $usermodel->where('G_AL.deleted',0);
     $query = $usermodel->get();
     $resultado = $query->getResult();
     return($resultado);
