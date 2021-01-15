@@ -120,7 +120,7 @@
                 <div class="col">
                 <br/>
                   Sesiones
-                  <input type="number" name="dias" id="dias" class="form-control form-control-sm" required="" min=1 disabled>
+                  <input type="number" name="dias" id="dias" class="form-control form-control-sm" min="1" onkeydown="return false" value="0" required>
                 </div>
                 <div class="col">
                 <br/>
@@ -131,6 +131,9 @@
                       <option value="<?php echo $fila->id ?>"><?php echo $fila->nombre ?></option>
                     <?php } ?>
                   </select>
+                  <br/>
+                  Dias de Frencuencia
+                  <input type="number"  id="diasdeFrecuencia" class="form-control form-control-sm" readonly>
                 </div>
                 </div>
 
@@ -138,25 +141,25 @@
                 <div class="col">
                 <br/>
                   Valor total ejercicios
-                  <input type="number" name="valor_total_ejercicios" id="valor_total_ejercicios" class="form-control form-control-sm" required min = 0>
+                  <input type="number" name="valor_total_ejercicios" id="valor_total_ejercicios" class="form-control form-control-sm" required min = "0">
                 </div>
                 <div class="col">
                 <br/>
                   Valor total examenes 
-                  <input type="number" name="valor_total_examanes" id="valor_total_examanes" class="form-control form-control-sm" required min = 0>
+                  <input type="number" name="valor_total_examanes" id="valor_total_examanes" class="form-control form-control-sm" required min = "0">
                 </div>
                 <div class="col">
                 <br/>
                   Valor Total asistencia 
-                  <input type="number" name="valor_total_asistencia" id="valor_total_asistencia" class="form-control form-control-sm" required min=0>
+                  <input type="number" name="valor_total_asistencia" id="valor_total_asistencia" class="form-control form-control-sm" required min="0">
                 </div>
                 <div class="col">
                 <br/>
                   Total de puntos 
-                  <input type="number" name="valor_total" id="valor_total" class="form-control form-control-sm" required max = 100  min = 100 disabled>
+                  <input type="number" name="valor_total" id="valor_total" class="form-control form-control-sm" onkeydown="return false" max = "100"  min = "100" required>
                   <br/>
                   Numero de semanas
-                  <input type="number" id="NumeroSemanas" class="form-control form-control-sm" min = 1 >
+                  <input type="number" id="NumeroSemanas" class="form-control form-control-sm" min = "1" value="0" require>
                 </div>
                 </div>
 
@@ -165,12 +168,12 @@
                 <div class="col">
                 <br/>
                   Número de ejericios
-                  <input type="number" name="num_ejercicios" id="num_ejercicios" class="form-control form-control-sm" required min=0>
+                  <input type="number" name="num_ejercicios" id="num_ejercicios" class="form-control form-control-sm" required min="1">
                 </div>
                 <div class="col">
                 <br/>
                   Número de examenes
-                  <input type="number" name="num_examenes" id="num_examenes" class="form-control form-control-sm" required min=0>
+                  <input type="number" name="num_examenes" id="num_examenes" class="form-control form-control-sm" required min="1" >
                 </div>
               </div>
 
@@ -276,6 +279,7 @@ $('#NumeroSemanas').keyup(function(){
     NumeroSesiones = 0;
   }
   ObtenerNumerodeSessiones(NumeroSesiones,IdFrecuencia);
+  
 });
 
 $('#frecuencia').change(function(){
@@ -288,9 +292,9 @@ $('#frecuencia').change(function(){
     NumeroSesiones = 0;
   }
    ObtenerNumerodeSessiones(NumeroSesiones,IdFrecuencia);
+   ObtenerNumerodeDiasdeFrecuencia(IdFrecuencia);
 
 });
-
 
 function ObtenerTotalPuntos(valor1,valor2,valor3){
 
@@ -324,8 +328,6 @@ function ValidacionCamposPonderacionyTotalPuntos(){
 }
 
 function  ObtenerNumerodeSessiones(NumeroSesiones,IdFrecuencia){
-  alert(NumeroSesiones);
-  alert(IdFrecuencia);
   $.ajax({
     type: "POST",
         url: "<?php echo site_url('Cursos/AjaxObtenerNumeroSesiones'); ?>",
@@ -339,11 +341,37 @@ function  ObtenerNumerodeSessiones(NumeroSesiones,IdFrecuencia){
 
   });
 
+}
+
+function ValidaciondePuntosdePonderacion(){
+  mensaje = "";
+  if(this.value > 100 || this.value < 100){
+    mensaje = "El total de puntos tiene que ser igual a 100";
+
+  }
+  this.setCustomValidity(mensaje);
+}
+
+var totalPuntos = document.querySelector("#valor_total");
+
+totalPuntos.addEventListener("invalid", ValidaciondePuntosdePonderacion);
+totalPuntos.addEventListener("input", ValidaciondePuntosdePonderacion);
+
+function ObtenerNumerodeDiasdeFrecuencia(IdFrecuencia){
+  $.ajax({
+    type: "POST",
+        url: "<?php echo site_url('Cursos/AjaxObtenerNumerodeDiasdeFrecuencia'); ?>",
+        data: {
+          IdFrecuencia
+        },
+        success: function(response) {
+          document.getElementById('diasdeFrecuencia').value = parseInt(response);
+        }
+
+  });
 
 
 }
-
-
 
 
 </script>
