@@ -69,6 +69,14 @@
 
         <h4>Registro de alumno.</h4>
         <div class="espacioUno"></div>
+        <div class="espacioUno"></div>
+        <table>
+        <tr>
+          <td><a href="<?php echo site_url('/Alumnos/index'); ?>" ><i class="fa fa-arrow-circle-o-left fa-2x" aria-hidden="true"></i></a></td>
+          <td><a href="<?php echo site_url('/Alumnos/index'); ?>" >  Atras</a></td>
+        </tr>
+        </table>  
+        <div class="espacioUno"></div>
 
         <div class="card">
           <div class="card-body">
