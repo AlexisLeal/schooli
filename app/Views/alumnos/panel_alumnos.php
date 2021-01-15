@@ -66,7 +66,7 @@
                 <tr>
                   <th class="text-left">ID</th>
                   <th class="text-left">Nombre</th>
-                  <th class="text-left">Unidd de negocio</th>
+                  
                   <th class="text-left">Plantel</th>
                   <th class="text-left">Matricula</th>
                   <th class="text-left">Ver</th>
@@ -77,7 +77,7 @@
                 <tr>
                   <td><?php echo $fila->id; ?></td>
                   <td><?php echo $fila->nombre . ' ' . $fila->apellido_paterno . ' ' . $fila->apellido_materno; ?></td>
-                  <td><?php echo getUnidadNegocioEspecifico($fila->id_unidad_negocio); ?></td>
+                  
                   <td><?php echo getPlanteEspecifico($fila->id_plantel); ?></td>
                   <td><?php echo $fila->matricula; ?></td>
                   <td class="text-center">
