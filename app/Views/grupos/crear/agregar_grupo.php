@@ -152,9 +152,6 @@
                   Nivel
                   <select class="form-control form-control-sm" name="nivel" id="nivel" required="">
                     <option value="">Seleccione una opción</option>
-                    <?php foreach (getNivel() as $fila) { ?>
-                      <option value="<?php echo $fila->id; ?>"><?php echo $fila->nombre; ?></option>
-                    <?php } ?>
                   </select>
                 </div>
                 <div class="col">
@@ -289,5 +286,34 @@
     if (confirm("Seguro que quieres limpiar el formulario")) {
       document.getElementById("datosgrupo").reset();
     }
+  }
+
+  $('#curso').change(function(){
+    var idCurso = $(this).val();
+    if(idCurso != ""){
+      ObtenerNivelesporCurso(idCurso);
+
+    }else{
+      document.getElementById('nivel').innerHTML = "";
+      $('#nivel').append('<option value="">Seleccione una opción</option>\
+        </select>');
+    }
+
+  });
+
+function ObtenerNivelesporCurso(idCurso){
+  alert('Holaa');
+  $.ajax({
+        type: "POST",
+        url: "<?php echo site_url('Grupos/ajaxListadodeNiveles'); ?>",
+        data: {
+          idCurso
+        },
+        success: function(text) {
+          document.getElementById("nivel").innerHTML = "";
+          $('#nivel').append(text);
+        }
+      });
+
   }
 </script>

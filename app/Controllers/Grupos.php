@@ -1,6 +1,7 @@
 <?php namespace App\Controllers;
 use  App\Models\Grupos_model;
 use  App\Models\Grupos_teachers_model;
+use  App\Models\Cursos_model;
 
 class Grupos extends BaseController{
 
@@ -182,6 +183,24 @@ class Grupos extends BaseController{
                 echo "<option value = $fila->id_usuario> $fila->nombre $fila->apellido_paterno $fila->apellido_materno</option>";
             }
         }
+    }
+    function ajaxListadodeNiveles(){
+        $REQUEST = \Config\Services::request();
+        $idCurso = $REQUEST->getPost('idCurso');
+        $UserModel = new Cursos_model($db);
+        $UserModel->select('num_niveles');
+        $UserModel->where('id',$idCurso);
+        $UserModel->where('deleted',0);
+        $Query = $UserModel->get();
+        $Resultado = $Query->getRow();
+        echo "<option value=''>Seleccione una opción</option>";
+        foreach(getNivel() as $fila){
+            if($fila->id <= $Resultado->num_niveles){
+                echo "<option value=$fila->id>$fila->nombre</option>";
+            }
+
+        }
+        
     }
 
 }
