@@ -362,7 +362,7 @@ class Preguntas extends BaseController{
         $data = ['pregunta-exito'  => 'La pregunta se agrego de forma correcta'];
         $this->session->set($data,true);
 
-        return redirect()->to(site_url("Evaluaciones/panel_evaluaciones/$idEvaluacion"));
+        return redirect()->to(site_url("Preguntas/editarEvaluacion/$idEvaluacion"));
     
 
         }else{

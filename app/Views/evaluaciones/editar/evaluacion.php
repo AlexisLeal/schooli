@@ -61,6 +61,15 @@
         <?php }
         $session->remove('Eliminacion'); ?>
 
+      <?php
+        if($session->has('pregunta-exito')){ ?>
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <?php echo $session->get('pregunta-exito');?>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span> </button>
+              </div>
+              <?php $session->remove('pregunta-exito'); } ?>
+
         <a href="panel.php">Panel.</a><br />
         <a href="evaluaciones.php">Evaluaciones.</a><br />
 
@@ -90,6 +99,13 @@
               <p class="font-weight-bold">Valor total.</p>
             </td>
             <td><?php echo $valorpreguntas; ?></td>
+          </tr>
+          <tr>
+            <td>
+              <p class="font-weight-bold">Agregar una pregunta.</p>
+            </td>
+            <td><a href="<?php echo site_url("Preguntas/agregar_preguntas/$idEvaluacion")?>">
+            <i class="fa fa-plus-circle fa-1x" aria-hidden="true"></i></a></td>
           </tr>
         </table>
 
