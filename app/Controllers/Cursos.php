@@ -1,5 +1,6 @@
 <?php namespace App\Controllers;
 use  App\Models\Cursos_model;
+use  App\Models\Frecuencia_model;
 
 class Cursos extends BaseController{
 
@@ -167,6 +168,27 @@ class Cursos extends BaseController{
         }else{
             return redirect()->to(site_url('Home/salir'));
            }
+    }
+
+    public function AjaxObtenerNumeroSesiones()
+    {
+        $REQUEST = \Config\Services::request();
+        $IdFrecuencia = $REQUEST->getPost('IdFrecuencia');
+        $NumeroSesiones = $REQUEST->getPost('NumeroSesiones');
+        if($IdFrecuencia != 0){
+            
+            $UseModelFrecuencia = new Frecuencia_model($db);
+            $UseModelFrecuencia->select('(lunes+martes+miercoles+jueves+viernes+sabado+domingo) as suma');
+            $UseModelFrecuencia->where('id',$IdFrecuencia);
+            $UseModelFrecuencia->where('deleted',0);
+            $Query = $UseModelFrecuencia->get();
+            $Resultado = $Query->getRow();
+            $Suma = $Resultado->suma; 
+            
+        }else{
+            $Suma = 0;
+        }
+        echo $Suma*$NumeroSesiones;
     }
 
 

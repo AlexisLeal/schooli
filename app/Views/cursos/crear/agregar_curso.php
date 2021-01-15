@@ -264,16 +264,22 @@ $('#NumeroSemanas').keyup(function(){
   if(IdFrecuencia == ''){
     IdFrecuencia = 0;
   }
+  if(NumeroSesiones == ''){
+    NumeroSesiones = 0;
+  }
   ObtenerNumerodeSessiones(NumeroSesiones,IdFrecuencia);
 });
 
-$('frecuencia').change(function(){
+$('#frecuencia').change(function(){
   var NumeroSesiones = document.getElementById('NumeroSemanas').value;
   var IdFrecuencia = document.getElementById('frecuencia').value;
   if(IdFrecuencia == ''){
     IdFrecuencia = 0;
   }
-  ObtenerNumerodeSessiones(NumeroSesiones,IdFrecuencia);
+  if(NumeroSesiones == ''){
+    NumeroSesiones = 0;
+  }
+   ObtenerNumerodeSessiones(NumeroSesiones,IdFrecuencia);
 
 });
 
@@ -309,21 +315,19 @@ function ValidacionCamposPonderacionyTotalPuntos(){
   document.getElementById('valor_total').value = ObtenerTotalPuntos(ValorTotalEjercicios,ValorTotalExamanes,ValorTotalAsistencia);
 }
 
-function  ObtenerNumerodeSessiones($NumeroSesiones,$IdFrecuencia){
+function  ObtenerNumerodeSessiones(NumeroSesiones,IdFrecuencia){
+  alert(NumeroSesiones);
+  alert(IdFrecuencia);
   $.ajax({
     type: "POST",
-        url: "<?php echo site_url('Curso/Ajaxgrupos'); ?>",
+        url: "<?php echo site_url('Cursos/AjaxObtenerNumeroSesiones'); ?>",
         data: {
           NumeroSesiones,
           IdFrecuencia
         },
-        success: function(text) {
-          document.getElementById("dias").innerHTML = "";
-          $('#dias').append(text);
+        success: function(response) {
+          document.getElementById('dias').value = parseInt(response);
         }
-
-
-
 
   });
 
