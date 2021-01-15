@@ -51,8 +51,16 @@
       <div class="col-md-9">
         <?php include(APPPATH . '/Views/include/notificacion.php'); ?>
 
-        <a href="panel.php">Panelllllllllllllll.</a><br />
-        <a href="evaluaciones.php">Evaluaciones.</a><br />
+        <div class="espacioUno"></div>
+        <div class="espacioUno"></div>
+          <table>
+            <tr>
+              <td><a href="javascript:history.back()"><i class="fa fa-arrow-circle-o-left fa-2x" aria-hidden="true"></i></a></td>
+              <td><a href="javascript:history.back()">Atras</a></td>
+            </tr>
+          </table>  
+        <div class="espacioUno"></div>
+
 
         <div class="espacioUno"></div>
 

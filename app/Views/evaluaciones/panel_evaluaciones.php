@@ -80,12 +80,15 @@
 
           <div class="espacioUno"></div>
             <h4>Panel de Evaluaciones</h4>
-            
-            <div class="espacioUno"></div>
-
-
-
-          <div class="espacioUno"></div>
+              <div class="espacioUno"></div>
+              <div class="espacioUno"></div>
+              <table>
+              <tr>
+                <td><a href="javascript:history.back()"><i class="fa fa-arrow-circle-o-left fa-2x" aria-hidden="true"></i></a></td>
+                <td><a href="javascript:history.back()">Atras</a></td>
+              </tr>
+              </table>  
+              <div class="espacioUno"></div>
         
               <div class="card">
                 <div class="card-body">

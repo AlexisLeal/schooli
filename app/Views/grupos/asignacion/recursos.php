@@ -94,10 +94,25 @@
                 <?php if(empty(GruposObteneRecursosporCursoNivelSesion($IdCurso,$IdNivel,$Sesion))){ ?>
                     <h1>No hay recursos asignados</h1>
                 <?php }else{
-                     foreach(GruposObteneRecursosporCursoNivelSesion($IdCurso,$IdNivel,$Sesion) as $fila){ ?>
+                     foreach(GruposObteneRecursosporCursoNivelSesion($IdCurso,$IdNivel,$Sesion) as $fila){ 
+                       if($fila->tipo_recurso==1){
+                         // poner la ruta con el id de evaluacion
+                         ?>
+                         <a href="<?php echo site_url("/Evaluaciones/panel_evaluaciones/$fila->id_evaluacion");?>">
+                         <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i> <?php echo $fila->nombre?>
+                         </a>
 
-
+                         <br/>
+                        <?php
+                       }else{
+                        ?>
                         <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i> <?php echo $fila->nombre?><br/>
+                        <?php
+                       }
+                       ?>
+
+
+                        
                     
                     
                     <?php }
