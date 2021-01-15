@@ -99,7 +99,7 @@
                 </div>
               </div>
 
-              <br />
+              <br/>
 
 
               <div class="card">
@@ -119,7 +119,7 @@
                 </div>
               </div>
 
-              <br />
+              <br/>
 
 
               <div class="card">
@@ -147,9 +147,7 @@
                   <table width="90%" cellspacing="8" cellpadding="4">
                     <tr>
                       <td width="40%">
-                      <!--Alumnos que esten asignados a este grupo -->
-                      <!--Obtener un listado de todos los alumnos con el primededio de examenes, ejercicios,y asistencia, dividos por los valores asignados del curso -->
-                        <a href="<?php echo site_url("Asignacion/asignarcalificaciones/$id_grupo/$id_curso/$id_ciclo/$id_nivel"); ?>"> Asignar calificaciones </a>
+                        <a href="<?php echo site_url("Asignacion/asignarcalificaciones/$id_grupo/$id_curso/$id_ciclo/$id_nivel"); ?>"> Asistencia y calificaciones </a>
                       </td>
                       <td width="40%">
                         <a href="<?php echo site_url("Calificaciones/CalificacionesAplicadas/$id_grupo/$id_nivel"); ?>"> Calificaciones aplicadas </a>
@@ -187,7 +185,7 @@
                 </div>
               </div>
 
-              <br />
+              <br/>
 
             </div>
           </div>

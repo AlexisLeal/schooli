@@ -84,17 +84,7 @@
                   <input type="text" name="nombre" id="nombre" class="form-control form-control-sm" value="<?php echo $nombre ?>">
                 </div>
                 <div class="col">
-                  Modalidad
-                  <select class="form-control form-control-sm" name="modalidad" id="modalidad" required="">
-                    <option value="">Seleccione una opción</option>
-                    <?php foreach (getAllModalidad() as $fila) { ?>
-                      <?php if ($fila->id == $modalidad) { ?>
-                        <option selected="selected" value="<?php echo $fila->id; ?>"> <?php echo $fila->nombre; ?></option>
-                      <?php } else { ?>
-                        <option value="<?php echo $fila->id; ?>"> <?php echo $fila->nombre; ?></option>
-                      <?php } ?>
-                    <?php } ?>
-                  </select>
+                
                 </div>
               </div>
 

@@ -139,7 +139,7 @@ function CatalagoObtenerPonderaciondeCurso($id_curso)
 function getAllFrecuencia()
 {
     $usermode = new Frecuencia_model($db);
-    $usermode->select('id,nombre,descripcion,id_modalidad,lunes,martes,miercoles,jueves,viernes,sabado,domingo,estatus');
+    $usermode->select('id,nombre,descripcion,lunes,martes,miercoles,jueves,viernes,sabado,domingo,estatus');
     $usermode->where('deleted',0);
     $resultado = $usermode->get();
     $rowArray = $resultado->getResult();
@@ -150,7 +150,7 @@ function getAllFrecuencia()
 function getFrencueciaEspecifica($id_frencuencia)
 {
     $usermode = new Frecuencia_model($db);
-    $usermode->select('id,nombre,descripcion,id_modalidad,lunes,martes,miercoles,jueves,viernes,sabado,domingo,estatus');
+    $usermode->select('id,nombre,descripcion,lunes,martes,miercoles,jueves,viernes,sabado,domingo,estatus');
     $usermode->where('deleted',0);
     $usermode->where('id',$id_frencuencia);
     $resultado = $usermode->get();
@@ -162,7 +162,7 @@ function getFrencueciaEspecifica($id_frencuencia)
 function getFrencueciaId($id_frencuencia)
 {
     $usermode = new Frecuencia_model($db);
-    $usermode->select('id,nombre,descripcion,id_modalidad,lunes,martes,miercoles,jueves,viernes,sabado,domingo,estatus');
+    $usermode->select('id,nombre,descripcion,lunes,martes,miercoles,jueves,viernes,sabado,domingo,estatus');
     $usermode->where('deleted',0);
     $usermode->where('id',$id_frencuencia);
     $resultado = $usermode->get();

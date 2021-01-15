@@ -81,6 +81,7 @@
             <div style="padding-left:30px">
             <br/>
             <form action="<?php echo site_url('Calificaciones/ObtenerCalificacionesparaKardex');?>" method="post">
+
                 <?php
                 $a = array();
                 foreach(getValorAsistencia() as $fila){
@@ -105,6 +106,10 @@
                 ?>
               <div class="card">
                 <div class="card-body">
+                <table width="100%">
+                  <tr>
+                  <td>Nombre estudiante</td><td>Asistencia</td><td>Examenes</td><td>Ejercicios</td>
+                  </tr>
                 <?php
                 
                 function porcentaje($t, $porcent) {
@@ -117,7 +122,7 @@
                   }
                 }
                 foreach(getMiembros($id_grupo) as $fila){
-                  echo $fila->id."<br/>";
+                  
                   $total = 0; 
                   $numeroAsistencia       = 0;
                   $numeroFalta            = 0;
@@ -152,13 +157,15 @@
                     $sumCalorFaltasJustificadas = $valorFaltaJustificada*$numeroFaltaJustificada;
                     $asistencia                 = $valAsistDiaria*$numeroAsistencia;
                     $valorTotalAsistencia       = $asistencia+$sumValorRetardo+$sumCalorFaltasJustificadas;
-                    
-                    
-                    echo $fila->nombre." ".$fila->apellido_paterno." ".$fila->apellido_materno." ---".$valorTotalAsistencia."<br/>";
-
+                    ?>
+                    <tr>
+                    <td><?php echo $fila->nombre." ".$fila->apellido_paterno." ".$fila->apellido_materno;?></td>
+                    <td><?php echo $valorTotalAsistencia;?></td><td>0</td><td>0</td>
+                    <tr>
+                    <?php
                 }
                 ?>
-
+                </table>
                 
                 <div class="espacioUno"></div>
                                 
@@ -166,10 +173,11 @@
                 <input type="hidden" name="IdCurso" id="IdCurso" value="<?=$id_curso;?>">
                 <input type="hidden" name="IdNivel" id="IdNivel" value="<?=$id_nivel;?>">
                 <input type="hidden" name="IdCiclo" id="IdCiclo" value="<?=$id_ciclo;?>">
-
-                <button type="submit" name="SubmitObtenerCalificaciones" class="btn btn-primary btn-sm">Registrar</button>
-                <button class="btn btn-secondary btn-sm" onclick="confirmarlimpiado()">Limpiar</button>
-                
+                <div class="espacioDos"></div>
+                <hr class="linea"/>
+                  <div class="text-center">
+                    <button type="submit" name="SubmitObtenerCalificaciones" class="btn btn-primary btn-sm">Aplicar calificaciónes</button>                
+                  </div>
                 </div>
               </div>
               </form>

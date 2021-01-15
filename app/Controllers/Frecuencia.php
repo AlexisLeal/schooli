@@ -62,7 +62,6 @@ class Frecuencia extends BaseController{
             $frecuencia = getFrencueciaEspecifica($id_frecuencia);
             $data['nombre'] = $frecuencia->nombre;
             $data['descripcion'] = $frecuencia->descripcion;
-            $data['modalidad'] = $frecuencia->id_modalidad;
             $data['lunes'] = $frecuencia->lunes;
             $data['martes'] = $frecuencia->martes;
             $data['miercoles'] = $frecuencia->miercoles;
@@ -125,7 +124,6 @@ class Frecuencia extends BaseController{
                 $hoy = date("Y-m-d H:i:s");
 
                 $data = ['nombre' =>$REQUEST->getPost('nombre'),
-                'id_modalidad' =>$REQUEST->getPost('modalidad'),
                 'descripcion' =>$REQUEST->getPost('descripcion'),
                 'lunes' =>(empty($REQUEST->getPost('lunes'))) ? 0 :$REQUEST->getPost('lunes'),
                 'martes' =>(empty($REQUEST->getPost('martes'))) ? 0 :$REQUEST->getPost('martes'),
