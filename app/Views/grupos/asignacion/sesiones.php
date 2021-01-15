@@ -73,7 +73,7 @@
                   <div style="padding-left:30px;">
                     <?php for($Sesion=1;$Sesion<=GruposObtenerSesionesporCurso($id_curso);$Sesion++){ ?>
                     <div class="espacioUno"></div>
-                    <a href="<?php echo site_url("/Asignacion/recursosasignados/$id_curso/$id_nivel/$Sesion");?>"><i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i> Sesion <?php echo $Sesion?></a>
+                    <a href="<?php echo site_url("/Asignacion/recursosasignados/$id_curso/$id_nivel/$Sesion/$id_grupo");?>"><i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i> Sesion <?php echo $Sesion?></a>
                     <?php } ?>
                     </div>
 

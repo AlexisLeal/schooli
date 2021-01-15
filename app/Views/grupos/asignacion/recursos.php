@@ -77,21 +77,32 @@
           <div class="espacioUno"></div>
             <!--<h4>Grupos</h4>-->
               <h4>Recursos asignados a esta sesion.</h4>
+              <div class="espacioUno"></div>
+              <div class="espacioUno"></div>
+              <table>
+              <tr>
+                <td><a href="<?php echo site_url("/Asignacion/sesiones/$id_grupo/$IdCurso/$Sesion"); ?>" ><i class="fa fa-arrow-circle-o-left fa-2x" aria-hidden="true"></i></a></td>
+                <td><a href="<?php echo site_url("/Asignacion/sesiones/$id_grupo/$IdCurso/$Sesion"); ?>" >Atras</a></td>
+              </tr>
+              </table>  
+              <div class="espacioUno"></div>
+
               <div class="card">
                 <div class="card-body">
-                </h4>
-                <i class="fa fa-arrow-circle-o-left fa-2x" aria-hidden="true"></i>
-                </a>
-                </h4>
+                <hr class="linea"/>
+                  <div style="padding-left:30px;">
                 <?php if(empty(GruposObteneRecursosporCursoNivelSesion($IdCurso,$IdNivel,$Sesion))){ ?>
                     <h1>No hay recursos asignados</h1>
                 <?php }else{
                      foreach(GruposObteneRecursosporCursoNivelSesion($IdCurso,$IdNivel,$Sesion) as $fila){ ?>
-                        Nombre es : <?php echo $fila->nombre?>;
 
+
+                        <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i> <?php echo $fila->nombre?><br/>
+                    
+                    
                     <?php }
                     }?>
-               
+                </div>
                 <hr class="linea"/>
 
                

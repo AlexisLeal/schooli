@@ -76,7 +76,7 @@ function GruposObtenerSesionesporCurso($Id_Curso)
 function GruposObteneRecursosporCursoNivelSesion($IdCurso,$IdNivel,$Sesion)
 {
         $UserModel = new Recursos_model($db);
-        $UserModel->select('id,nombre');
+        $UserModel->select('id,nombre,tipo_recurso,id_evaluacion');
         $UserModel->where('id_curso',$IdCurso);
         $UserModel->where('id_nivel',$IdNivel);
         $UserModel->where('id_leccion',$Sesion);

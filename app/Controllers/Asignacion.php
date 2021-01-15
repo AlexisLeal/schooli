@@ -69,13 +69,14 @@ class Asignacion extends BaseController{
     }
 
 
-    public function recursosasignados($IdCurso,$IdNivel,$Sesion)
+    public function recursosasignados($IdCurso,$IdNivel,$Sesion,$id_grupo)
     {
         if($this->session->get('login') && $this->session->get('roll') == 4){
 
-            $data['IdCurso'] = $IdCurso;
-            $data['IdNivel'] = $IdNivel;
-            $data['Sesion'] = $Sesion;
+            $data['IdCurso']  = $IdCurso;
+            $data['IdNivel']  = $IdNivel;
+            $data['Sesion']   = $Sesion;
+            $data['id_grupo'] = $id_grupo;
 
            return view('grupos/asignacion/recursos',$data);
         }else{
