@@ -55,55 +55,30 @@
           <div class="col-md-9">
           <?php include(APPPATH.'/Views/include/notificacion.php');?>
 
-
-              <?php
-              if($session->has('pregunta-exito')){ 
-                ?>
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                  <?php
-                  echo $session->get('pregunta-exito');
-                  ?>
-                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <?php
-                
-                $session->remove('pregunta-exito'); 
-              }
-              ?>
-
-
- 
+          <h4>Sesiones del Grupo.</h4>
           <div class="espacioUno"></div>
-            <!--<h4>Grupos</h4>-->
-              <h4>Sesiones.</h4>
+          <div class="espacioUno"></div>
+          <table>
+          <tr>
+            <td><a href="<?php echo site_url("/Grupos/vergrupo/$id_grupo"); ?>" ><i class="fa fa-arrow-circle-o-left fa-2x" aria-hidden="true"></i></a></td>
+            <td><a href="<?php echo site_url("/Grupos/vergrupo/$id_grupo"); ?>" >Atras</a></td>
+          </tr>
+          </table>  
+          <div class="espacioUno"></div>
+
               <div class="card">
                 <div class="card-body">
-
-                <!--<a href="< ?php echo site_url('/Grupos/agregargrupo'); ?>">Crear un grupo</a> -->
-                </h4>
-                <a href="<?php echo site_url("/Grupos/vergrupo/$id_grupo");?>">
-                <i class="fa fa-arrow-circle-o-left fa-2x" aria-hidden="true"></i>
-                </a>
-                </h4>
-                <?php for($Sesion=1;$Sesion<=GruposObtenerSesionesporCurso($id_curso);$Sesion++){ ?>
-                  <br>
-                  <a href="<?php echo site_url("/Asignacion/recursosasignados/$id_curso/$id_nivel/$Sesion");?>">Sesion <?php echo $Sesion?></a>
-
-                  <?php }?>
-
+                
+                <hr class="linea"/>
+                  <div style="padding-left:30px;">
+                    <?php for($Sesion=1;$Sesion<=GruposObtenerSesionesporCurso($id_curso);$Sesion++){ ?>
+                    <div class="espacioUno"></div>
+                    <a href="<?php echo site_url("/Asignacion/recursosasignados/$id_curso/$id_nivel/$Sesion");?>"><i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i> Sesion <?php echo $Sesion?></a>
+                    <?php } ?>
+                    </div>
 
                 <hr class="linea"/>
-
-               
-                <br/>
-                <br/>
-                <div class="text-center">
-                </div>
-              <br/>
-              <br/>
-            
+                <br/>            
 
               </div>
             </div>

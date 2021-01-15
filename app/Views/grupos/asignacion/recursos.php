@@ -76,7 +76,7 @@
  
           <div class="espacioUno"></div>
             <!--<h4>Grupos</h4>-->
-              <h4>Recursos Asignados.</h4>
+              <h4>Recursos asignados a esta sesion.</h4>
               <div class="card">
                 <div class="card-body">
                 </h4>
