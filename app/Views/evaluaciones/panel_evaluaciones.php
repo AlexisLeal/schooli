@@ -55,29 +55,6 @@
           <?php include(APPPATH.'/Views/include/notificacion.php');?>
 
 
-              <?php
-              if($session->has('pregunta-exito')){ 
-                ?>
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                  <?php
-                  echo $session->get('pregunta-exito');
-                  ?>
-                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <?php
-                
-                $session->remove('pregunta-exito'); 
-              }
-              ?>
-
-
-
-
-
-
-
           <div class="espacioUno"></div>
             <h4>Panel de Evaluaciones</h4>
               <div class="espacioUno"></div>
@@ -106,7 +83,6 @@
               <th class="text-left">Valor total</th>
               <th class="text-left">Ver</th>
               <th class="text-left">Editar</th>
-              <th class="text-left">Agregar preguntas</th>
               </tr>
               </thead>
               <tbody>
@@ -156,12 +132,6 @@
                 <a href="<?php echo site_url("Preguntas/editarEvaluacion/$fila->id") ?>">
                 <i class="fa fa-pencil-square-o fa-1x" aria-hidden="true"></i>
                 </a>
-                </td>
-
-
-                <td class="text-center">
-                <a href="<?php echo site_url("Preguntas/agregar_preguntas/$fila->id")?>">
-                <i class="fa fa-plus-circle fa-1x" aria-hidden="true"></i></a>
                 </td>
                 
                 </tr>
