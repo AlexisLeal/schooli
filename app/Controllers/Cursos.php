@@ -190,6 +190,24 @@ class Cursos extends BaseController{
         }
         echo $Suma*$NumeroSesiones;
     }
+    public function AjaxObtenerNumerodeDiasdeFrecuencia()
+    {
+        $REQUEST = \Config\Services::request();
+        $IdFrecuencia = $REQUEST->getPost('IdFrecuencia');
+        if($IdFrecuencia != 0){
+            $UseModelFrecuencia = new Frecuencia_model($db);
+            $UseModelFrecuencia->select('(lunes+martes+miercoles+jueves+viernes+sabado+domingo) as suma');
+            $UseModelFrecuencia->where('id',$IdFrecuencia);
+            $UseModelFrecuencia->where('deleted',0);
+            $Query = $UseModelFrecuencia->get();
+            $Resultado = $Query->getRow();
+            $dias = $Resultado->suma; 
+            
+        }else{
+            $dias = 0;
+        }
+        echo $dias;
+    }
 
 
 }
