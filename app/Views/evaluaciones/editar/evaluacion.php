@@ -70,10 +70,15 @@
               </div>
               <?php $session->remove('pregunta-exito'); } ?>
 
-        <a href="panel.php">Panel.</a><br />
-        <a href="evaluaciones.php">Evaluaciones.</a><br />
-
-        <div class="espacioUno"></div>
+              <div class="espacioUno"></div>
+              <div class="espacioUno"></div>
+              <table>
+              <tr>
+                <td><a href="javascript:history.back()"><i class="fa fa-arrow-circle-o-left fa-2x" aria-hidden="true"></i></a></td>
+                <td><a href="javascript:history.back()">Atras</a></td>
+              </tr>
+              </table>  
+              <div class="espacioUno"></div>
 
         <table width="80%">
           <tr>
