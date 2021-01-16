@@ -82,7 +82,7 @@
               <th class="text-left">Numero de preguntas</th>
               <th class="text-left">Valor total</th>
               <th class="text-left">Ver</th>
-              <th class="text-left">Editar</th>
+              <th class="text-left">Agregar preguntas</th>
               </tr>
               </thead>
               <tbody>
