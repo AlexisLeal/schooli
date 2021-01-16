@@ -98,9 +98,13 @@
 
                 </h4><a href="<?php echo site_url("/Grupos/vergrupo/$fila->id"); ?>"><?php echo $fila->nombre ?></a></h4>
                 <br />
-                HORARIO: SABATINO
-                PRESCENCIAL <br />
+                <?php
+                echo "Estatus: ".$fila->estatus."<br/>";
+                echo "Plantel: ".$fila->id_plantel."<br/>";
+                ?>
                 INBI English School<br />
+                
+
                 <?php //echo $fila->descripcion;
                 ?><br />
                 <?php //echo $fila->codigo_acceso;

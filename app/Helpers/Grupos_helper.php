@@ -9,7 +9,7 @@ use  App\Models\Recursos_model;
 function getAllGrupos()
 {
     $usermode = new Grupos_model($db);
-    $usermode->select('id,nombre,id_horario,url_imagen');
+    $usermode->select('id,nombre,estatus,id_plantel,id_horario,url_imagen');
     $usermode->where('deleted',0);
     $resultado = $usermode->get();
     $rowArray = $resultado->getResult();

@@ -186,6 +186,7 @@
                   <td width="20%">< ?php echo empty($pregunta_multiple->valor4) ? 0 : $pregunta_multiple->valor4;?> <input class="form-check-input" type="radio" name="opcionmultiple" id="" value="4"></td>
                 </tr>
               </table>-->
+              
                   <br />
                   <table width="100%">
                     <tr>

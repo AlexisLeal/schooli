@@ -77,8 +77,16 @@
           <div class="card-body">
 
             <!--<a href="< ?php echo site_url('/Grupos/agregargrupo'); ?>">Crear un grupo</a> / -->
-            <a href="<?php echo site_url('Grupos/index') ?>"> Panel de grupos </a> <br />
-            <hr class="linea" />
+            
+            <div class="espacioUno"></div>
+            <div class="espacioUno"></div>
+            <table>
+            <tr>
+              <td><a href="<?php echo site_url('/Grupos/index'); ?>" ><i class="fa fa-arrow-circle-o-left fa-2x" aria-hidden="true"></i></a></td>
+              <td><a href="<?php echo site_url('/Grupos/index'); ?>" >Panel de grupos</a></td>
+            </tr>
+            </table>  
+            <div class="espacioUno"></div>
 
             <div style="padding-left:30px">
               <div class="card">
