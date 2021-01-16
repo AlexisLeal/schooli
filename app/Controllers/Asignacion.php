@@ -1,10 +1,10 @@
 <?php namespace App\Controllers;
-use  App\Models\Grupos_recursos_model;
 use  App\Models\Grupos_teachers_model;
 use  App\Models\Grupos_alumnos_model;
 use  App\Models\Grupos_evaluaciones_model;
 use  App\Models\Grupos_model;
 use  App\Models\Alumnos_model;
+helper('Calificar');
 
 class Asignacion extends BaseController{	
 
