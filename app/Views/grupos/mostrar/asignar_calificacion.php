@@ -111,7 +111,7 @@
                 <div class="card-body">
                 <table width="100%">
                   <tr>
-                  <td>Nombre estudiante</td><td>Asistencia</td><td>Examenes</td><td>Ejercicios</td>
+                  <td>Nombre estudiante</td><td>Asistencia</td><td>Examenes</td><td>Ejercicios</td><td>Calificación</td>
                   </tr>
                 <?php
                 foreach(getMiembros($id_grupo) as $fila){
@@ -125,7 +125,10 @@
                     ?>
                     <tr>
                     <td><?php echo $fila->nombre." ".$fila->apellido_paterno." ".$fila->apellido_materno;?></td>
-                    <td><?php echo $calificaionesPreliminaresAsitencia;?></td><td><?php echo $calificaionesPreliminaresEvaluaciones['calificaionesExamenes']; ?></td><td><?php echo  $calificaionesPreliminaresEvaluaciones['calificacionesEjercicios']?></td>
+                    <td><?php echo $calificaionesPreliminaresAsitencia;?></td>
+                    <td><?php echo $calificaionesPreliminaresEvaluaciones['calificaionesExamenes']; ?></td>
+                    <td><?php echo $calificaionesPreliminaresEvaluaciones['calificacionesEjercicios']?></td>
+                    <td>Aqui pon la calificacion total</td>
                     <tr>
                     <?php
                 }
