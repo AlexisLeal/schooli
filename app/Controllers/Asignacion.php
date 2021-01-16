@@ -32,6 +32,17 @@ class Asignacion extends BaseController{
             $data['id_ciclo']  = $id_ciclo;
             $data['id_nivel']  = $id_nivel;
 
+            $valoresPonderacion = CatalagoObtenerPonderaciondeCurso($id_curso);
+            $info_ciclo = getCicloEspecifico($id_ciclo);
+            $fechaInicio = $info_ciclo->fecha_inicio;
+            $fechaFin = $info_ciclo->fecha_fin;
+
+            $data['week_start']  = strtotime(date($fechaInicio));
+            $data['week_end']  = strtotime(date($fechaFin));
+            $data['ValordeCadaEjercio']  = $valoresPonderacion->valor_ejercicios/$valoresPonderacion->num_ejercicios;
+            $data['ValordeCadaExamen']  = $valoresPonderacion->valor_examenes/$valoresPonderacion->num_examenes;
+            $data['valorAsistDiaria']  = $valoresPonderacion->valor_asistencia/$valoresPonderacion->total_dias_laborales;
+
             return view('grupos/mostrar/asignar_calificacion',$data);
         }else{
             return redirect()->to(site_url('Home/salir'));

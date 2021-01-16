@@ -84,22 +84,22 @@
 
                 <?php
                
-                $info_ciclo         = getCicloEspecifico($id_ciclo);
+               /*
                 $curso_especifico   = getCursoEspecifico($id_curso);
                 $id_frecuencia      = $curso_especifico->id_frecuencia;
                 $infoFrecuencia     = getFrencueciaEspecifica($id_frecuencia);
                 
                 $valoresPonderacion = CatalagoObtenerPonderaciondeCurso($id_curso);
-                
+                $info_ciclo         = getCicloEspecifico($id_ciclo);
                 $fechaInicio        = $info_ciclo->fecha_inicio;
                 $fechaFin           = $info_ciclo->fecha_fin;
+
                 $week_start         = strtotime(date($fechaInicio));
                 $week_end           = strtotime(date($fechaFin));
-                
                 $ValordeCadaEjercio = $valoresPonderacion->valor_ejercicios/$valoresPonderacion->num_ejercicios;
                 $ValordeCadaExamen = $valoresPonderacion->valor_examenes/$valoresPonderacion->num_examenes;
                 $valorAsistDiaria  = $valoresPonderacion->valor_asistencia/$valoresPonderacion->total_dias_laborales;
-
+                */
 
               /*  
                 if(!empty($info_ciclo->fecha_inicio_excluir)){
@@ -116,19 +116,20 @@
                 <?php
                 foreach(getMiembros($id_grupo) as $fila){
 
-                 $calificaionesPreliminaresEvaluaciones = ObtenerCalificacionesPreviasdeEvaluaciones($fila->id,$id_grupo,$id_curso,$id_nivel,$id_ciclo,$ValordeCadaEjercio,$ValordeCadaExamen);
-                 $calificaionesPreliminaresAsitencia = ObtenerCalificaionesPreviasAsistencia($fila->id,$id_grupo,$week_start,$week_end,$valorAsistDiaria);
-                  
+                 $calificacionesPreliminaresEvaluaciones = ObtenerCalificacionesPreviasdeEvaluaciones($fila->id,$id_grupo,$id_curso,$id_nivel,$id_ciclo,$ValordeCadaEjercio,$ValordeCadaExamen);
+                 $calificacionesPreliminaresAsitencia = ObtenerCalificaionesPreviasAsistencia($fila->id,$id_grupo,$week_start,$week_end,$valorAsistDiaria);
+                 
+                 $calificacionPreliminarFinal =  $calificacionesPreliminaresEvaluaciones['calificaionesExamenes'] + $calificacionesPreliminaresEvaluaciones['calificacionesEjercicios'] + $calificacionesPreliminaresAsitencia;
                   
                     
                     
                     ?>
                     <tr>
                     <td><?php echo $fila->nombre." ".$fila->apellido_paterno." ".$fila->apellido_materno;?></td>
-                    <td><?php echo $calificaionesPreliminaresAsitencia;?></td>
-                    <td><?php echo $calificaionesPreliminaresEvaluaciones['calificaionesExamenes']; ?></td>
-                    <td><?php echo $calificaionesPreliminaresEvaluaciones['calificacionesEjercicios']?></td>
-                    <td>Aqui pon la calificacion total</td>
+                    <td><?php echo $calificacionesPreliminaresAsitencia;?></td>
+                    <td><?php echo $calificacionesPreliminaresEvaluaciones['calificaionesExamenes']; ?></td>
+                    <td><?php echo $calificacionesPreliminaresEvaluaciones['calificacionesEjercicios']?></td>
+                    <td><?php echo $calificacionPreliminarFinal; ?></td>
                     <tr>
                     <?php
                 }
