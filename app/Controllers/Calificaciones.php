@@ -50,9 +50,6 @@ class Calificaciones extends BaseController{
                                     }else{
                                         $CalificacionFinalEvaluaciones += porcentaje($ValordeCadaEjercio, $FilaEvaluacion->calificacion );
                                     }
-                                    echo $FilaEvaluacion->calificacion;
-                                    echo $ValordeCadaEjercio;
-                                    echo $CalificacionFinalEvaluaciones;
         
                                 }elseif(($FilaTipoyCategoria->idCategoriaEvaluacion) == 2){
                                     $CalificacionFinalEvaluaciones += $FilaEvaluacion->calificacion * ($ValordeCadaEjercio * 0.50);

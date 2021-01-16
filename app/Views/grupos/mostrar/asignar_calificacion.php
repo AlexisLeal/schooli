@@ -83,26 +83,29 @@
             <form action="<?php echo site_url('Calificaciones/ObtenerCalificacionesparaKardex');?>" method="post">
 
                 <?php
-                $a = array();
-                foreach(getValorAsistencia() as $fila){
-                  $a[$fila->id]=$fila->valor;
-                }
-
+               
                 $info_ciclo         = getCicloEspecifico($id_ciclo);
                 $curso_especifico   = getCursoEspecifico($id_curso);
                 $id_frecuencia      = $curso_especifico->id_frecuencia;
                 $infoFrecuencia     = getFrencueciaEspecifica($id_frecuencia);
+                
                 $valoresPonderacion = CatalagoObtenerPonderaciondeCurso($id_curso);
+                
                 $fechaInicio        = $info_ciclo->fecha_inicio;
                 $fechaFin           = $info_ciclo->fecha_fin;
                 $week_start         = strtotime(date($fechaInicio));
                 $week_end           = strtotime(date($fechaFin));
-
                 
+                $ValordeCadaEjercio = $valoresPonderacion->valor_ejercicios/$valoresPonderacion->num_ejercicios;
+                $ValordeCadaExamen = $valoresPonderacion->valor_examenes/$valoresPonderacion->num_examenes;
+                $valorAsistDiaria  = $valoresPonderacion->valor_asistencia/$valoresPonderacion->total_dias_laborales;
+
+
+              /*  
                 if(!empty($info_ciclo->fecha_inicio_excluir)){
                   $info_ciclo->fecha_inicio_excluir;
                   $info_ciclo->fecha_fin_excluir;
-                }
+                }*/
                 ?>
               <div class="card">
                 <div class="card-body">
@@ -111,56 +114,18 @@
                   <td>Nombre estudiante</td><td>Asistencia</td><td>Examenes</td><td>Ejercicios</td>
                   </tr>
                 <?php
-                
-                function porcentaje($t, $porcent) {
-                  if($t>=1){
-                    $p="0.".$porcent;
-                    return $t*floatval($p);
-                  }else{
-                    $p="0.".$porcent;
-                    return $t*floatval($p);
-                  }
-                }
                 foreach(getMiembros($id_grupo) as $fila){
-                  
-                  $total = 0; 
-                  $numeroAsistencia       = 0;
-                  $numeroFalta            = 0;
-                  $numeroRetardo          = 0;
-                  $numeroFaltaJustificada = 0;
-                    foreach(getAsistenciaGrupo($fila->id,$id_grupo) as $fila2){                        
-                        for($i=$week_start; $i<=$week_end; $i+=86400){
-                          if(date("Y-m-d", $i)==$fila2->fecha_asistencia){
-                            $total+=$a[$fila2->valor_asistencia];
-                            
-                            if($fila2->valor_asistencia==1){
-                              $numeroAsistencia++;
-                            }
-                            if($fila2->valor_asistencia==2){
-                              $numeroFalta++;
-                            }
-                            if($fila2->valor_asistencia==3){
-                              $numeroRetardo++;
-                            }
-                            if($fila2->valor_asistencia==4){
-                              $numeroFaltaJustificada++;
-                            }     
 
-                          }
-                        }
-                    }
+                 $calificaionesPreliminaresEvaluaciones = ObtenerCalificacionesPreviasdeEvaluaciones($fila->id,$id_grupo,$id_curso,$id_nivel,$id_ciclo,$ValordeCadaEjercio,$ValordeCadaExamen);
+                 $calificaionesPreliminaresAsitencia = ObtenerCalificaionesPreviasAsistencia($fila->id,$id_grupo,$week_start,$week_end,$valorAsistDiaria);
+                  
+                  
                     
-                    $valAsistDiaria   = $valoresPonderacion->valor_asistencia/$valoresPonderacion->total_dias_laborales;
-                    $valorRetardo     = porcentaje($valAsistDiaria, 50 );
-                    $sumValorRetardo  = $valorRetardo*$numeroRetardo;
-                    $valorFaltaJustificada      = porcentaje($valAsistDiaria, 50 );
-                    $sumCalorFaltasJustificadas = $valorFaltaJustificada*$numeroFaltaJustificada;
-                    $asistencia                 = $valAsistDiaria*$numeroAsistencia;
-                    $valorTotalAsistencia       = $asistencia+$sumValorRetardo+$sumCalorFaltasJustificadas;
+                    
                     ?>
                     <tr>
                     <td><?php echo $fila->nombre." ".$fila->apellido_paterno." ".$fila->apellido_materno;?></td>
-                    <td><?php echo $valorTotalAsistencia;?></td><td>0</td><td>0</td>
+                    <td><?php echo $calificaionesPreliminaresAsitencia;?></td><td><?php echo $calificaionesPreliminaresEvaluaciones['calificaionesExamenes']; ?></td><td><?php echo  $calificaionesPreliminaresEvaluaciones['calificacionesEjercicios']?></td>
                     <tr>
                     <?php
                 }
