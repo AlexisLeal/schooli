@@ -455,10 +455,17 @@ class Alumnos extends BaseController{
     }
 
 
-    public function asignarGrupoAlumno($id_usuario,$id_plantel){
+    public function asignarGrupoAlumno($id_alumno,$id_plantel){
         if($this->session->get('login') && $this->session->get('roll') == 4){
+            $usermodel_A = new Alumnos_model($db);
+            $usermodel_A->select('id_usuario');
+            $usermodel_A->where('id',$id_alumno);
+            $usermodel_A->where('deleted',0);
+            $resultado_A = $usermodel_A->get();
+            $row_A = $resultado_A->getRow();
+
             $data['page_title'] = "Alumnos";
-            $data['id_usuario']  = $id_usuario;
+            $data['id_usuario']  = $row_A->id_usuario;
             $data['id_plantel'] = $id_plantel;
                 return view('alumnos/asignargrupo/asignar_grupo',$data);
                 

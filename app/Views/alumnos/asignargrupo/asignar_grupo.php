@@ -72,6 +72,11 @@
             Imprimir los valores obtenidos: <br/>
             <?php echo "ID Usuario ".$id_usuario."<br/>";?>
             <?php echo "ID Plantel ".$id_plantel."<br/>";?>
+            <?php foreach(AsignacionObtenerGruposconCursosDisponibles($id_plantel,$id_usuario) as $fila){?>
+
+              <p><?php echo "Nombre del Gpo es $fila->nombre y su id es $fila->id"?></p>
+              
+             <?php }?>
 
           </div>
         </div>

@@ -1,6 +1,8 @@
 <?php 
 use  App\Models\Recursos_model;
 use  App\Models\Asistencias;
+use  App\Models\Grupos_model;
+use  App\Models\Grupos_alumnos_model;
 function getGrupoMaestros($id_grupo)
 {
     $db = \Config\Database::connect();
@@ -247,6 +249,17 @@ function getAsistenciaGrupo($IdUsuario,$IdGrupo)
     $resultado = $usermodel->get();
     $rowArray = $resultado->getResult();
     return($rowArray);
+}
+function AsignacionObtenerGruposconCursosDisponibles($idPlantel,$IdUsuario){
+    $db = \Config\Database::connect();
+    $usermodel = $db->table('grupos G');
+    $usermodel->select('G.id,G.nombre');
+    $usermodel->join('grupo_alumnos GA',"G.id_curso != GA.id_curso and G.id_plantel = $idPlantel and GA.id_alumno = $IdUsuario");
+    $usermodel->where('GA.deleted',0);
+    $usermodel->where('G.deleted',0);
+    $query = $usermodel->get();
+    $resultado = $query->getResult();
+    return $resultado;  
 }
 
 
