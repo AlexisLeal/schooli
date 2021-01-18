@@ -203,7 +203,7 @@ class Alumnos extends BaseController{
                     'id_usuario' => $ultimo_id_usuario,
                     'matricula' => trim($REQUEST->getPost('matricula')),
                     'id_plantel' => $REQUEST->getPost('plantel'),
-                    'id_unidad_negocio' => $REQUEST->getPost('unidad_negocio'),
+                    'id_unidad_negocio' => 1,
                     'comentarios' => $REQUEST->getPost('comentarios'),
                     'fecha_creacion' => $hoy,
                     'fecha_ultimo_cambio' => $hoy,
@@ -223,14 +223,16 @@ class Alumnos extends BaseController{
                
                 
                 $data_Grupo =['id_grupo' =>$REQUEST->getPost('id_grupo'),
+                'id_curso' =>GruposGetIddeCursoPorGrupo($REQUEST->getPost('id_grupo')),
                 'id_alumno' =>$ultimo_id_usuario,
                 'fecha_creacion' =>$hoy,
                 'fecha_ultimo_cambio' =>$hoy,
                 ];
-
+                
                 try {
                     $usermodel_GrupoAlumno = new Grupos_alumnos_model($db);
-                    $usermodel_GrupoAlumno->insert($data_Grupo);
+                    $usermodel_GrupoAlumno->insert($data_Grupo);   
+                    
                 } catch (\Exception $e) {
                     $usermodel_A->delete(['id'=> $ultimo_id_alumno]);
                     $usermodel_U->delete(['id' => $ultimo_id_usuario]);

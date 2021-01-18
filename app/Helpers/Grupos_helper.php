@@ -86,4 +86,16 @@ function GruposObteneRecursosporCursoNivelSesion($IdCurso,$IdNivel,$Sesion)
         return $Resultado;
 }
 
+function GruposGetIddeCursoPorGrupo($idGrupo)
+{
+    $usermode = new Grupos_model($db);
+    $usermode->select('id_curso');
+    $usermode->where('deleted',0);
+    $usermode->where('id',$idGrupo);
+    $resultado = $usermode->get();
+    $row = $resultado->getRow();
+    $id_curso = $row->id_curso;
+    return($id_curso);
+}
+
 ?>

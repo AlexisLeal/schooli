@@ -13,7 +13,7 @@ class Grupos_alumnos_model extends Model
     protected $useSoftDeletes = true;
 
     #Aqui ponemos el nombre de las columnas que vamos a modifcar
-    protected $allowedFields = ['id_grupo','id_alumno','estatus','fecha_creacion','fecha_ultimo_cambio'];
+    protected $allowedFields = ['id_grupo','id_curso','id_alumno','estatus','fecha_creacion','fecha_ultimo_cambio'];
 
     protected $useTimestamps = false;
     protected $createdField  = 'fecha_creacion';
