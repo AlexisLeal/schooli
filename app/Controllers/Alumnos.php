@@ -454,4 +454,18 @@ class Alumnos extends BaseController{
         }
     }
 
+
+    public function asignarGrupoAlumno($id_usuario,$id_plantel){
+        if($this->session->get('login') && $this->session->get('roll') == 4){
+            $data['page_title'] = "Alumnos";
+            $data['id_usuario']  = $id_usuario;
+            $data['id_plantel'] = $id_plantel;
+                return view('alumnos/asignargrupo/asignar_grupo',$data);
+                
+            }else{
+                return redirect()->to(site_url('Home/salir'));
+        }
+    }
+
+
 }
