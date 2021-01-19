@@ -66,22 +66,21 @@
             <table class="tabla-registros" width="100%" cellspacing="6" cellpadding="8">
               <thead>
                 <tr>
-                  <th>
+                  <th width="5%">
                     <p class="font-weight-bold text-left">ID</p>
                   </th>
-                  <th>
-            
+                  <th width="20%">
+                    <p class="font-weight-bold text-left">Nombre:</p>
                   </th>
-                  <th>
-                    <p class="font-weight-bold text-left">Nombre de recurso:</p>
+                  <th width="15%">
+                    <p class="font-weight-bold text-center">Tipo de recurso:</p>
                   </th>
-                  <th>
-                    <p class="font-weight-bold text-center">Extension:</p>
+                  <th width="15%">
+                    <p class="font-weight-bold text-center">Categoría.</p>
                   </th>
-                  <th>
-                    <p class="font-weight-bold text-center">Tipo de archivo.</p>
+                  <th width="15%">
+                    <p class="font-weight-bold text-center">Editar.</p>
                   </th>
-
                 </tr>
               </thead>
               <?php
@@ -89,11 +88,23 @@
               ?>
                 <tr>
                   <td class="text-left"><?php echo $fila->id; ?></td>
-                  <td class="text-left">ico</td>
                   <td class="text-left"><?php echo $fila->nombre; ?></td>
-                  <td class="text-left"><?php echo $fila->extencion; ?></td>
-                  <td class="text-left"><?php echo $fila->tipo_archivo; ?></td>
-                  <td class="text-left"><a href="<?php echo site_url("Recursos/editar/$fila->id"); ?>">Link</a></td>
+                  <td class="text-left">
+                  <?php
+                  $recurso = getTipoRecursoEspecifico($fila->tipo_recurso);
+                  echo $recurso->nombre;
+                  ?>
+                  </td>
+                  <td class="text-left">
+                  <?php
+                  if($fila->tipo_recurso==1){
+                    $categoriaEvaluacion = getCategoriaRecursoFormulario($fila->id_evaluacion);
+                    echo $categoriaEvaluacion->nombreTipo."<br/>";
+                    echo $categoriaEvaluacion->nombreCategoria."<br/>";
+                  }
+                  ?>
+                  </td>
+                  <td class="text-left"><a href="<?php echo site_url("Recursos/editar/$fila->id"); ?>"><i class="fa fa-pencil-square-o fa-1x" aria-hidden="true"></i></a></td>
                 </tr>
               <?php
               }

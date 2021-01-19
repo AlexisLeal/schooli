@@ -248,6 +248,18 @@ function getTipoRecursos()
 
 }
 
+function getTipoRecursoEspecifico($id_tipo_recurso)
+{
+    $db = \Config\Database::connect();
+    $usermodel = $db->table('tipo_recurso');
+    $usermodel->select('id,nombre');
+    $usermodel->where('deleted',0);
+    $usermodel->where('id',$id_tipo_recurso);
+    $query = $usermodel->get();
+    $resultado = $query->getRow();
+    return($resultado);
+}
+
 
 function getValorAsistencia()
 {
