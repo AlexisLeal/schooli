@@ -69,7 +69,6 @@
                   <th class="text-left">ID</th>
                   <th class="text-left">Nombre</th>
                   <th class="text-left">Descripcion</th>
-                  <th class="text-left">Modalidad</th>
                   <th class="text-left">Lun</th>
                   <th class="text-left">Mar</th>
                   <th class="text-left">Mier</th>
@@ -85,12 +84,10 @@
 
               </thead>
               <tr>
-                <?php foreach (getAllFrecuencia() as $fila) {
-                  $nombreModalidad = getModalidadEspecifica($fila->id_modalidad); ?>
+                <?php foreach (getAllFrecuencia() as $fila) { ?>
                   <td><?php echo $fila->id ?></td>
                   <td><?php echo $fila->nombre ?></td>
                   <td><?php echo $fila->descripcion ?></td>
-                  <td><?php echo $nombreModalidad->nombre ?></td>
                   <td><?php if($fila->lunes==1){echo "<i class='fa fa-check' aria-hidden='true'></i>";} ?></td>
                   <td><?php if($fila->martes==1){echo "<i class='fa fa-check' aria-hidden='true'></i>";} ?></td>
                   <td><?php if($fila->miercoles==1){echo "<i class='fa fa-check' aria-hidden='true'></i>";} ?></td>

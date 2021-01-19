@@ -62,10 +62,6 @@
                 Nombre
                 <input type="text" id="nombre" class="form-control form-control-sm" disabled="disabled" value="<?php echo $nombre; ?>">
               </div>
-              <div class="col">
-                modalidad
-                <input type="text" id="apellido_paterno" class="form-control form-control-sm" disabled="disabled" value="<?php echo $modalidad; ?>">
-              </div>
             </div>
             <div class="row">
               <div class="col">
