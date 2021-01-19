@@ -224,7 +224,7 @@ function getCategoriaEvaluacionEspecifica($id_categoria_evaluacion)
 function getRecursos()
 {
     $usermodel = new Recursos_model($db);
-    $query = "SELECT id,nombre,extencion,tipo_archivo from recursos WHERE deleted = 0";
+    $query = "SELECT id,nombre,extencion,tipo_recurso,id_evaluacion,tipo_archivo from recursos WHERE deleted = 0";
     $resultado = $usermodel->query($query);
     $rowArray = $resultado->getResult();
     return($rowArray);
@@ -338,5 +338,32 @@ function getPlanteles()
     $row = $query->getResult();
     return($row);
 
+}
+
+function getCategoriaRecursoFormulario($id_evaluacion)
+{
+    $db = \Config\Database::connect();
+    $usermodel = $db->table('evaluaciones E');
+    $usermodel->select('TRE.id,TRE.nombre as nombreTipo,CRE.nombre as nombreCategoria');
+    $usermodel->join('tipo_recurso_evaluacion TRE',"E.id=$id_evaluacion and E.tipo_evaluacion=TRE.id");
+    $usermodel->join('categoria_recurso_evaluacion CRE',"E.idCategoriaEvaluacion=CRE.id");
+    $usermodel->where('E.deleted',0);
+    
+    // evaluaciones tipo_evaluacion,idCategoriaEvaluacion
+    //tipo_recurso_evaluacion campos id,nombre
+    // categoria_recurso_evaluacion
+
+    /*
+    $usermodel->select('U.id,U.nombre,U.apellido_paterno,U.apellido_materno,G_AL.id_grupo');
+    $usermodel->join('grupo_alumnos G_AL',"U.id = G_AL.id_alumno and G_AL.deleted = 0",'left');
+    $usermodel->join('alumnos AL',"AL.id_usuario = U.id and  AL.id_plantel = $id_plantel AND AL.id_unidad_negocio = $id_unidad_negocio");
+    $usermodel->where('U.deleted',0);
+    */
+
+
+
+    $query = $usermodel->get();
+    $resultado = $query->getRow();
+    return($resultado);
 }
 ?>
