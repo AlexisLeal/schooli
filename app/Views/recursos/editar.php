@@ -264,4 +264,43 @@
 
 <?php include(APPPATH . '/Views/include/header-js.php'); ?>
 <?php include(APPPATH . 'Views/include/footer.php'); ?>
+<script>
+$('#curso').change(function(){
+ var Id_Curso = document.getElementById('curso').value;
+ if(Id_Curso != ''){
+
+  ObtenerTodosNivelesPorCurso(Id_Curso);
+  ObtenerTodasSesionesPorCurso(Id_Curso);
+
+  }
+});
+
+
+function ObtenerTodosNivelesPorCurso(Id_Curso){
+  $.ajax({
+    type: "POST",
+    url: "<?php echo site_url('Recursos/AjaxNiveles'); ?>",
+    data: {Id_Curso},
+    success: function(text) {
+      document.getElementById("nivel").innerHTML = "";
+      $('#nivel').append(text);
+
+    }
+    });
+
+}
+
+function ObtenerTodasSesionesPorCurso(Id_Curso){
+  $.ajax({
+    type: "POST",
+    url: "<?php echo site_url('Recursos/AjaxSesiones'); ?>",
+    data: {Id_Curso},
+    success: function(text) {
+      document.getElementById("sesion").innerHTML = "";
+      $('#sesion').append(text);
+
+    }
+    });
+}
+</script>
 
