@@ -15,6 +15,8 @@ use  App\Models\Recursos_model;
 use  App\Models\Notificaciones_model;
 use  App\Models\Planteles;
 
+
+
 function getTipoUsuario()
 {
     $usermodel = new Tipo_usuarios($db);
@@ -352,4 +354,6 @@ function getCategoriaRecursoFormulario($id_evaluacion)
     $resultado = $query->getRow();
     return($resultado);
 }
+
+
 ?>

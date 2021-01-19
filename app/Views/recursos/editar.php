@@ -156,13 +156,19 @@
                     ?>
                     <?php } ?>
                   </select>
-            </td>
+            </td> 
             </tr>
             <tr>
             <td>Nivel</td>
             <td>
             <select class="form-control form-control-sm" name="nivel" id="nivel" required>
                     <option value="">Seleccione una opción</option>
+                    <?php for($i=1;$i<=ObtenerNivelesparaCurso($idCurso);$i++){ ?>
+                    <?php if($i==$idNivel){ ?>
+                        <option value="<?php echo $i;?>" selected="selected"><?php echo $i ?></option>
+                    <?php }else{ ?>
+                        <option value="<?php echo $i;?>"><?php echo $i ?></option>
+                    <?php } }?>
                   </select>
             </td>
             </tr>
@@ -171,6 +177,12 @@
             <td>
             <select class="form-control form-control-sm" name="sesion" id="sesion" required>
                   <option value="">Seleccione una opción</option>
+                  <?php for($i=1;$i<=ObtenerSesionesparaCurso($idCurso);$i++){ ?>
+                    <?php if($i==$sesion){ ?>
+                        <option value="<?php echo $i;?>" selected="selected"><?php echo $i ?></option>
+                    <?php }else{ ?>
+                        <option value="<?php echo $i;?>"><?php echo $i ?></option>
+                    <?php } }?>
             </select></td>
             </tr>
             <input type="hidden" name="tipoRecurso" id="tipoRecurso" value="<?php echo $tipoRecurso;?>">

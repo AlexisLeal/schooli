@@ -261,6 +261,29 @@ function getValorAsistencia()
 
 }
 
+function ObtenerNivelesparaCurso($idCurso){
+    $UserModel = new Cursos_model($db);
+    $UserModel->select('num_niveles');
+    $UserModel->where('id',$idCurso);
+    $UserModel->where('deleted',0);
+    $Query = $UserModel->get();
+    $resultado = $Query->getRow();
+    return $resultado->num_niveles;
+    
+}
+
+function ObtenerSesionesparaCurso($idCurso)
+{
+    $UserModel = new Cursos_model($db);
+    $UserModel->select('total_dias_laborales');
+    $UserModel->where('id',$idCurso);
+    $UserModel->where('deleted',0);
+    $Query = $UserModel->get();
+    $resultado = $Query->getRow();
+    return $resultado->total_dias_laborales;
+   
+}
+
 
 
 

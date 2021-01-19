@@ -243,7 +243,6 @@ class Recursos extends BaseController
             echo "<option value=$i>Sesion $i</option>";
         }
 
-
         
     } 
 
