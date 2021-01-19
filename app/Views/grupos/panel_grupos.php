@@ -92,24 +92,40 @@
           <div class="card-body">
 
             <hr class="linea" />
-
+              <style>
+              .nombreGrupo {
+              color: #283747;
+              font-weight:bold;
+              }
+              </style>
             <?php foreach (getAllGrupos() as $fila) { ?>
-              <div class="niveles" style="width:230px;height:100px;background-image:url('<?php echo base_url($fila->url_imagen) ?>');float:left;margin-left:10px;margin-right:10px;margin-bottom:10px;padding-top:5px;padding-bottom:5px;padding-left:10px;">
-
-                </h4><a href="<?php echo site_url("/Grupos/vergrupo/$fila->id"); ?>"><?php echo $fila->nombre ?></a></h4>
-                <br />
-                <?php
-                echo "Estatus: ".$fila->estatus."<br/>";
-                echo "Plantel: ".$fila->id_plantel."<br/>";
-                ?>
-                INBI English School<br />
+              <div class="niveles" style="width:230px;height:100px;background-image:url('<?php echo base_url($fila->url_imagen) ?>');float:left;margin-left:10px;margin-right:10px;margin-bottom:50px;padding-top:5px;padding-bottom:5px;padding-left:10px;">  
+              
+                <div class="row">
+                  <div class="col">
+                    <a class="nombreGrupo" href="<?php echo site_url("/Grupos/vergrupo/$fila->id"); ?>"><?php echo $fila->nombre ?></a>
+                    
+                    <?php
+                    echo "Estatus: ".$fila->estatus."<br/>";
+                    echo "Plantel: ".$fila->id_plantel."<br/>";
+                    ?>
+                    INBI English School <br/>
+                  </div>
+                  
+                  <div class="col">
+                    <div style="text-align:right;padding-right:40px;">
+                      <a class="nombreGrupo" href="<?php echo site_url("/Grupos/editar/$fila->id"); ?>">
+                        <i class="fa fa-pencil-square-o fa-1x" aria-hidden="true"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
                 
 
-                <?php //echo $fila->descripcion;
-                ?><br />
-                <?php //echo $fila->codigo_acceso;
-                ?><br />
+
+
               </div>
+              
             <?php
             }
             ?>

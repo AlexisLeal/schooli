@@ -146,19 +146,36 @@ class Grupos extends BaseController{
         }
     }
 
-    public function editar()
+    public function editar($id_grupo)
     {
         if($this->session->get('login') && $this->session->get('roll') == 4){
-            if(isset($_POST['submitGP'])){
+                $data['page_title'] = "Grupos";	
+                $data['id_grupo'] = $id_grupo;
+                
+                $usermodel = new Grupos_model();
+                $usermodel->select('nombre,id_plantel,estatus');
+                $usermodel->where('id',$id_grupo);
+                $usermodel->where('deleted',0);
+                $query = $usermodel->get();
+                $row = $query->getRow();
 
-            }else{
-                return redirect()->to(site_url('Home/salir'));
-            }
-    
+                $data['nombre']     = $row->nombre;
+                $data['id_plantel'] = $row->id_plantel;
+                $data['estatus']    = $row->estatus;
+
+
+
+                return view('grupos/editar/editar_grupo',$data);
         }else{
             return redirect()->to(site_url('Home/salir'));
         }
     }
+
+
+
+
+
+
 
     public function eliminar()
     {
@@ -202,5 +219,43 @@ class Grupos extends BaseController{
         }
         
     }
+
+    public function editargrupo()
+    {
+        if($this->session->get('login') && $this->session->get('roll') == 4){
+                $usermodel = new Grupos_model($db);
+                $REQUEST = \Config\Services::request();
+                if(isset($_POST['editarGrupo'])){
+
+                    $data['page_title'] = "Grupos";	
+                    $id_grupo   = $REQUEST->getPost('id_grupo');
+                    $nombre     = $REQUEST->getPost('nombreGrupo');
+                    $id_plantel = $REQUEST->getPost('plantelGrupo');
+                    $estatus    = $REQUEST->getPost('estatusGrupo');
+
+                    $usermodel = new Grupos_model();
+                    $data_grupo = ['nombre'=>$nombre,
+                                   'id_plantel'=>$id_plantel,
+                                   'estatus'=>$estatus,];
+                    $usermodel->update($id_grupo,$data_grupo);
+                    
+                    $data['id_grupo']   = $id_grupo;
+                    $data['nombre']     = $nombre;
+                    $data['id_plantel'] = $id_plantel;
+                    $data['estatus']    = $estatus;
+
+                    $data_session = ['editar-grupo-exito'  => 'El Grupo se edito correctamente'];
+                    $this->session->set($data_session,true);
+                    return view('grupos/editar/editar_grupo',$data);
+
+
+                }else{
+                    return redirect()->to(site_url('Home/salir'));
+                }
+        }else{
+            return redirect()->to(site_url('Home/salir'));
+        }
+    }
+    
 
 }
