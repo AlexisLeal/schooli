@@ -33,11 +33,9 @@ class Frecuencia extends BaseController{
         if($this->session->get('login') && $this->session->get('roll') == 4){
 
             $frecuencia = getFrencueciaEspecifica($id_frecuencia);
-            $nombremodalidad = getModalidadEspecifica($frecuencia->id_modalidad);
 
             $data['nombre'] = $frecuencia->nombre;
             $data['descripcion'] = $frecuencia->descripcion;
-            $data['modalidad'] = $nombremodalidad->nombre;
             $data['lunes'] = $frecuencia->lunes;
             $data['martes'] = $frecuencia->martes;
             $data['miercoles'] = $frecuencia->miercoles;

@@ -192,17 +192,6 @@ function getAllModalidad()
     return($rowArray);
 
 }
- 
-function getModalidadEspecifica($id_modalidad)
-{
-    $usermode = new Modalidad_model($db);
-    $usermode->select('nombre');
-    $usermode->where('deleted',0);
-    $usermode->where('id',$id_modalidad);
-    $resultado = $usermode->get();
-    $row = $resultado->getRow();
-    return($row);
-}
 
 function getValorAsistenciaFrecuencia($id_frecuencia)
 {
