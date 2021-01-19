@@ -1,7 +1,5 @@
 <?php 
 use  App\Models\Grupos_model;
-use  App\Models\Grupos_evaluaciones_model;
-use  App\Models\Evaluaciones_model;
 use  App\Models\Cursos_model;
 use  App\Models\Recursos_model;
 

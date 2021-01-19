@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Controllers;
-
 use  App\Models\Recursos_model;
 use  App\Models\Cursos_model;
 
@@ -247,4 +246,48 @@ class Recursos extends BaseController
 
         
     } 
+
+
+    public function editar($idRecurso){
+        if ($this->session->get('login') && $this->session->get('roll') == 4) {
+            $useModelRecurso = new Recursos_model($db);
+            $useModelRecurso->select('tipo_recurso,id_evaluacion,id_curso,id_nivel,id_leccion');
+            $useModelRecurso->where('id',$idRecurso);
+            $useModelRecurso->where('deleted',0);
+            $query = $useModelRecurso->get();
+            try {
+                $resultado = $query->getRow();
+            } catch (\Throwable $th) {
+
+                echo "Colocamos que se regrese ala vista anterior y que marque un error ";
+                //throw $th;
+            }
+          
+            $data['tipoRecurso'] = $resultado->tipo_recurso;
+            $data['idRecurso'] = $idRecurso;
+            $data['idCurso'] = $resultado->id_curso;
+            $data['idNivel'] = $resultado->id_nivel;
+            $data['sesion'] = $resultado->id_leccion;
+
+            if($resultado->tipo_recurso == 1){
+                $evaluacion = OperacionesObtenerDatosParaEditarEvaluacion($resultado->id_evaluacion);
+                $data['idEvaluacion'] = $resultado->id_evaluacion;
+                $data['nombreEvaluacion'] = $evaluacion->nombre;
+                $data['idTipoEvaluacion'] = $evaluacion->tipo_evaluacion;
+                $data['idCategoriaEvaluacion'] = $evaluacion->idCategoriaEvaluacion;
+
+            }else{
+                $data['idEvaluacion'] = null;
+                $data['nombreEvaluacion'] = null;
+                $data['idTipoEvaluacion'] = null;
+                $data['idCategoriaEvaluacion'] = null;
+            }
+
+            return view('recursos/editar', $data);
+        }else{
+            return redirect()->to(site_url('Home/salir'));
+        }
+
+        
+    }
 }

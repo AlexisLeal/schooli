@@ -319,6 +319,15 @@ function EliminarEvaluacion($IdEvaluacion)
     $UseModelEvaluacion = new Evaluaciones_model($db);
     $UseModelEvaluacion->delete(['id'=>$IdEvaluacion]);
 }
+function OperacionesObtenerDatosParaEditarEvaluacion($IdEvaluacion)
+{
+    $UseModelEvaluacion = new Evaluaciones_model($db);
+    $UseModelEvaluacion->select('nombre,tipo_evaluacion,idCategoriaEvaluacion');
+    $UseModelEvaluacion->where('id',$IdEvaluacion);
+    $UseModelEvaluacion->where('deleted',0);
+    $query = $UseModelEvaluacion->get();
+    return $query->getRow();   
+}
 
 function getPlanteles()
 {

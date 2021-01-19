@@ -93,6 +93,7 @@
                   <td class="text-left"><?php echo $fila->nombre; ?></td>
                   <td class="text-left"><?php echo $fila->extencion; ?></td>
                   <td class="text-left"><?php echo $fila->tipo_archivo; ?></td>
+                  <td class="text-left"><a href="<?php echo site_url("Recursos/editar/$fila->id"); ?>">Link</a></td>
                 </tr>
               <?php
               }
