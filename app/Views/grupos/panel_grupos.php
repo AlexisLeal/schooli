@@ -114,7 +114,9 @@
                   
                   <div class="col">
                     <div style="text-align:right;padding-right:40px;">
-                      <i class="fa fa-pencil-square-o fa-1x" aria-hidden="true"></i>
+                      <a class="nombreGrupo" href="<?php echo site_url("/Grupos/editar/$fila->id"); ?>">
+                        <i class="fa fa-pencil-square-o fa-1x" aria-hidden="true"></i>
+                      </a>
                     </div>
                   </div>
                 </div>
