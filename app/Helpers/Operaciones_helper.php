@@ -231,6 +231,16 @@ function getRecursos()
     $rowArray = $resultado->getResult();
     return($rowArray);
 }
+function ObtenerRutaActualdeRecurso($idRecurso)
+{
+    $usermodel = new Recursos_model($db);
+    $usermodel->select('ruta');
+    $usermodel->where('id',$idRecurso);
+    $usermodel->where('deleted',0);
+    $resultado = $usermodel->get();
+    $rowArray = $resultado->getRow();
+    return $rowArray->ruta;
+}
 
 
 function operacionesGetNotificaciones()

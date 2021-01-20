@@ -73,7 +73,7 @@
             //sesion
             ?>
             
-            <form action="">
+            <form action="<?php echo site_url('Recursos/ActualizarRecurso'); ?>" method="post">
             <table width="70%" cellspacing="6" cellpadding="6">
             <?php
             if($tipoRecurso==1){
@@ -188,9 +188,10 @@
             <input type="hidden" name="tipoRecurso" id="tipoRecurso" value="<?php echo $tipoRecurso;?>">
             <input type="hidden" name="idRecurso" id="idRecurso" value="<?php echo $idRecurso;?>">
             <input type="hidden" name="idEvaluacion" id="idEvaluacion" value="<?php echo $idEvaluacion;?>">
+            <input type="hidden" name="nombreRecurso" id="nombreRecurso" value="<?php echo $nombreRecurso;?>">
             <tr>
             <td colspan="2">
-                <button type="submit" name="editarRecurso" class="btn btn-primary btn-sm">Subir</button>
+                <button type="submit" name="actualizarRecurso" class="btn btn-primary btn-sm">Subir</button>
             </td>
             </tr>
             </table>

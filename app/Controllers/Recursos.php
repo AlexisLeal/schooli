@@ -30,6 +30,49 @@ class Recursos extends BaseController
         }
     }
 
+    public function editar($idRecurso){
+        if ($this->session->get('login') && $this->session->get('roll') == 4) {
+            $useModelRecurso = new Recursos_model($db);
+            $useModelRecurso->select('nombre,tipo_recurso,id_evaluacion,id_curso,id_nivel,id_leccion');
+            $useModelRecurso->where('id',$idRecurso);
+            $useModelRecurso->where('deleted',0);
+            $query = $useModelRecurso->get();
+            try {
+                $resultado = $query->getRow();
+            } catch (\Throwable $th) {
+
+                echo "Colocamos que se regrese ala vista anterior y que marque un error ";
+                //throw $th;
+            }
+          
+            $data['tipoRecurso'] = $resultado->tipo_recurso;
+            $data['idRecurso'] = $idRecurso;
+            $data['idCurso'] = $resultado->id_curso;
+            $data['idNivel'] = $resultado->id_nivel;
+            $data['sesion'] = $resultado->id_leccion;
+            $data['nombreRecurso'] = $resultado->nombre;
+
+            if($resultado->tipo_recurso == 1){
+                $evaluacion = OperacionesObtenerDatosParaEditarEvaluacion($resultado->id_evaluacion);
+                $data['idEvaluacion'] = $resultado->id_evaluacion;
+                $data['nombreEvaluacion'] = $evaluacion->nombre;
+                $data['idTipoEvaluacion'] = $evaluacion->tipo_evaluacion;
+                $data['idCategoriaEvaluacion'] = $evaluacion->idCategoriaEvaluacion;
+
+            }else{
+                $data['idEvaluacion'] = null;
+                $data['nombreEvaluacion'] = null;
+                $data['idTipoEvaluacion'] = null;
+                $data['idCategoriaEvaluacion'] = null;
+            }
+
+            return view('recursos/editar', $data);
+        }else{
+            return redirect()->to(site_url('Home/salir'));
+        }
+    }
+
+
 
     public function agregarRecurso()
     {
@@ -87,8 +130,7 @@ class Recursos extends BaseController
                             $this->session->set($data, true);
                             return redirect()->to(site_url("Recursos/formrecursos"));
                             
-                        }
-                        
+                        }  
                     }
                     $nombre_recurso = $recurso_archivo->getClientName();
                     $ruta_recurso_basedatos = "recursos/$nombreCurso/$nombreNivel/$nombreSesion/$nombre_recurso";
@@ -103,9 +145,6 @@ class Recursos extends BaseController
                         $this->session->set($data, true);
                         return redirect()->to(site_url("Recursos/recursos"));
                     }
-                   
-
-                
                 }else {
                 //Si algo sale mal nos marca un error 
                 //throw new RuntimeException($recurso_audio->getErrorString().'('.$recurso_audio->getError().')');
@@ -132,10 +171,8 @@ class Recursos extends BaseController
                 'fecha_ultimo_cambio' => $hoy,
             ];
 
-
             $usermodel = new Recursos_model($db);
             if ($usermodel->insert($data)) {
-
             } else {
                 $data = [
                     'mensaje-recurso'  => 'El recurso no  se pudo agregar, consulte con el administrador del sistema.', 'tipo-mensaje' => 'alert-danger'
@@ -175,12 +212,8 @@ class Recursos extends BaseController
                     EliminarEvaluacion($id_evaluacion);
                     $this->session->set($data, true);
                     return redirect()->to(site_url("Recursos/recursos"));
-
-
                 }
                 
-
-               
                 //Actualiza el idevaluacion de la tabla recurso
                 try {
                     $DataUpdateRecursor = [
@@ -196,16 +229,13 @@ class Recursos extends BaseController
                     $usermodel->delete(['id'=>$id_recurso]);
                     $this->session->set($data, true);
                     return redirect()->to(site_url("Recursos/recursos"));
-
                 }
                 return redirect()->to(site_url("Evaluaciones/panel_evaluaciones/$id_evaluacion"));
                 
             }
-    
                 return redirect()->to(site_url("Recursos/formrecursos"));
             }else{
                 return redirect()->to(site_url('Home/salir'));
-
             }
         } else {
             return redirect()->to(site_url('Home/salir'));
@@ -224,9 +254,7 @@ class Recursos extends BaseController
         echo "<option value=''>Seleccione una opción</option>";
         for($i=1;$i<=$Resultado->num_niveles;$i++){
           echo "<option value=$i>$i</option>";
-        }
-
-        
+        } 
     }
 
     public function AjaxSesiones(){
@@ -242,51 +270,68 @@ class Recursos extends BaseController
         for($i=1;$i<=$Resultado->total_dias_laborales;$i++){
             echo "<option value=$i>Sesion $i</option>";
         }
-
-        
     } 
 
-
-    public function editar($idRecurso){
+    public function ActualizarRecurso(){
         if ($this->session->get('login') && $this->session->get('roll') == 4) {
-            $useModelRecurso = new Recursos_model($db);
-            $useModelRecurso->select('tipo_recurso,id_evaluacion,id_curso,id_nivel,id_leccion');
-            $useModelRecurso->where('id',$idRecurso);
-            $useModelRecurso->where('deleted',0);
-            $query = $useModelRecurso->get();
-            try {
-                $resultado = $query->getRow();
-            } catch (\Throwable $th) {
+            if(isset($_POST['actualizarRecurso'])){
+                $hoy = date("Y-m-d H:i:s");
+                $REQUEST = \Config\Services::request();
+                $useModelRecursos = new Recursos_model($db);
+                $curso = $REQUEST->getPost('curso');
+                $nivel = $REQUEST->getPost('nivel');
+                $sesion = $REQUEST->getPost('sesion');
 
-                echo "Colocamos que se regrese ala vista anterior y que marque un error ";
-                //throw $th;
-            }
-          
-            $data['tipoRecurso'] = $resultado->tipo_recurso;
-            $data['idRecurso'] = $idRecurso;
-            $data['idCurso'] = $resultado->id_curso;
-            $data['idNivel'] = $resultado->id_nivel;
-            $data['sesion'] = $resultado->id_leccion;
+                $nombreCurso = CatalagoGetNombreCurso($curso);
+                $nombreNivel = getnivelEspecifico($nivel);
+                $nombreSesion = 'Sesion'.''.$sesion;
 
-            if($resultado->tipo_recurso == 1){
-                $evaluacion = OperacionesObtenerDatosParaEditarEvaluacion($resultado->id_evaluacion);
-                $data['idEvaluacion'] = $resultado->id_evaluacion;
-                $data['nombreEvaluacion'] = $evaluacion->nombre;
-                $data['idTipoEvaluacion'] = $evaluacion->tipo_evaluacion;
-                $data['idCategoriaEvaluacion'] = $evaluacion->idCategoriaEvaluacion;
+                if($REQUEST->getPost('tipoRecurso') == 1){
+                    $idTipoEvaluacion = $REQUEST->getPost('tipoFormulario');
+                    $idCategegoriaEvaluacion = $REQUEST->getPost('tipocategoriaevaluacion');
+                    $nombreEvaluacion = $REQUEST->getPost('nombreEvaluacion');
+                }else{
+                     //NUEVA RUTA
+                    $nombreRecurso = $REQUEST->getPost('nombreRecurso');
+                    if (!is_dir("recursos/$nombreCurso/$nombreNivel/$nombreSesion")) {
+                        try {
+                            mkdir("recursos/$nombreCurso/$nombreNivel/$nombreSesion", 0777, TRUE);
+                        }catch(\Exception $e){
+
+                        }  
+                    }
+                    $rutaActual = ObtenerRutaActualdeRecurso($REQUEST->getPost('idRecurso'));
+                    $rutaNueva = "recursos/$nombreCurso/$nombreNivel/$nombreSesion/$nombreRecurso";
+
+                    try {
+                        rename($rutaActual,$rutaNueva);
+                    } catch (\Exception $e) {
+                         
+                    }
+                    $data = ['id_curso' => $curso,
+                    'id_nivel' => $nivel,
+                    'id_leccion' => $sesion,
+                    'ruta' => $rutaNueva,
+                    'fecha_ultimo_cambio' => $hoy,
+                    ];
+
+                    try {
+                        $useModelRecursos->update($REQUEST->getPost('idRecurso'),$data);
+                    }catch(\Exception $e) {
+                         
+                    }
+                   
+
+                }
+                echo "Checar la vieja ruta $rutaActual y ver la nueva ruta $rutaNueva";
 
             }else{
-                $data['idEvaluacion'] = null;
-                $data['nombreEvaluacion'] = null;
-                $data['idTipoEvaluacion'] = null;
-                $data['idCategoriaEvaluacion'] = null;
+                return redirect()->to(site_url('Home/salir'));
             }
 
-            return view('recursos/editar', $data);
         }else{
             return redirect()->to(site_url('Home/salir'));
         }
-
-        
+       
     }
 }
