@@ -43,7 +43,14 @@ class Cursos extends BaseController{
             $data['nombre'] = $curso->nombre;
             $data['estatus'] = $curso->estatus;
             $data['numero_niveles'] = $curso->num_niveles;
-
+            
+            $data['total_dias_laborales'] = $curso->total_dias_laborales;
+            $data['id_frecuencia'] = $curso->id_frecuencia;
+            $data['num_examenes'] = $curso->num_examenes;
+            $data['num_ejercicios'] = $curso->num_ejercicios;
+            $data['valor_asistencia'] = $curso->valor_asistencia;
+            $data['valor_ejercicios'] = $curso->valor_ejercicios;
+            $data['valor_examenes'] = $curso->valor_examenes;
 
             return view('cursos/mostrar/ver_curso',$data);
         }else{
@@ -62,7 +69,7 @@ class Cursos extends BaseController{
             $data['numero_niveles'] = $curso->num_niveles;
 
             $data['idCr'] = $id_curso;
-
+            
             return view('cursos/editar/editar_curso',$data);
         }else{
             return redirect()->to(site_url('Home/salir'));

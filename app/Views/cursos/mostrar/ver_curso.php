@@ -54,7 +54,14 @@
 
         <h4>Ver curso.</h4>
         <div class="espacioUno"></div>
-
+        <div class="espacioUno"></div>
+        <table>
+        <tr>
+          <td><a href="<?php echo site_url('/Cursos/index'); ?>" ><i class="fa fa-arrow-circle-o-left fa-2x" aria-hidden="true"></i></a></td>
+          <td><a href="<?php echo site_url('/Cursos/index'); ?>" >  Atras</a></td>
+        </tr>
+        </table>  
+        <div class="espacioUno"></div>
 
 
 
@@ -80,7 +87,51 @@
                 Numero de niveles
                 <input type="text" name="nombre" id="nombre" class="form-control form-control-sm" disabled="disabled" value="<?php echo $numero_niveles; ?>">
               </div>
+              <div class="col">
+                Sesiones
+                <input type="text" name="nombre" id="nombre" class="form-control form-control-sm" disabled="disabled" value="<?php echo $total_dias_laborales; ?>">
+              </div>
             </div>
+
+
+            <div class="row">
+              <div class="col">
+                Frecuencia
+                <?php
+                $f = getFrencueciaEspecifica($id_frecuencia);
+                
+                ?>
+                <input type="text" name="nombre" id="nombre" class="form-control form-control-sm" disabled="disabled" value="<?php echo $f->nombre; ?>">
+              </div>
+              <div class="col">
+                Número de examenes
+                <input type="text" name="nombre" id="nombre" class="form-control form-control-sm" disabled="disabled" value="<?php echo $num_examenes; ?>">
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col">
+                Número de ejercicios
+                <input type="text" name="nombre" id="nombre" class="form-control form-control-sm" disabled="disabled" value="<?php echo $num_ejercicios; ?>">
+              </div>
+              <div class="col">
+                Valor de asistencia
+                <input type="text" name="nombre" id="nombre" class="form-control form-control-sm" disabled="disabled" value="<?php echo $valor_asistencia; ?>">
+              </div>
+            </div>
+
+
+            <div class="row">
+              <div class="col">
+                Valor de ejercicios
+                <input type="text" name="nombre" id="nombre" class="form-control form-control-sm" disabled="disabled" value="<?php echo $valor_ejercicios; ?>">
+              </div>
+              <div class="col">
+                Valor de examenes
+                <input type="text" name="nombre" id="nombre" class="form-control form-control-sm" disabled="disabled" value="<?php echo $valor_examenes; ?>">
+              </div>
+            </div>
+
 
 
             <div class="espacioUno"></div>

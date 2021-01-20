@@ -302,7 +302,7 @@
   });
 
 function ObtenerNivelesporCurso(idCurso){
-  alert('Holaa');
+
   $.ajax({
         type: "POST",
         url: "<?php echo site_url('Grupos/ajaxListadodeNiveles'); ?>",

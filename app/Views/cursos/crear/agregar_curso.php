@@ -122,6 +122,10 @@
                   Sesiones
                   <input type="number" name="dias" id="dias" class="form-control form-control-sm" min="1" onkeydown="return false" value="0" required>
                 </div>
+              </div>
+
+
+              <div class="row">
                 <div class="col">
                 <br/>
                   Frecuencia
@@ -132,12 +136,18 @@
                     <?php } ?>
                   </select>
                   <br/>
+                  </div>
+                  <div class="col">
+                  <br/>
                   Dias de Frencuencia
                   <input type="number"  id="diasdeFrecuencia" class="form-control form-control-sm" readonly>
                 </div>
-                </div>
+              </div>
 
-                <div class="row">
+
+
+
+              <div class="row">
                 <div class="col">
                 <br/>
                   Valor total ejercicios
@@ -148,6 +158,9 @@
                   Valor total examenes 
                   <input type="number" name="valor_total_examanes" id="valor_total_examanes" class="form-control form-control-sm" required min = "0">
                 </div>
+              </div>
+
+              <div class="row">
                 <div class="col">
                 <br/>
                   Valor Total asistencia 
@@ -158,22 +171,33 @@
                   Total de puntos 
                   <input type="number" name="valor_total" id="valor_total" class="form-control form-control-sm" onkeydown="return false" max = "100"  min = "100" required>
                   <br/>
-                  Numero de semanas
-                  <input type="number" id="NumeroSemanas" class="form-control form-control-sm" min = "1" value="0" require>
                 </div>
-                </div>
+              </div>
 
-                <div class="row">
-                <br/>
+
+              <div class="row">
+              <br/>
                 <div class="col">
                 <br/>
+                Numero de semanas
+                  <input type="number" id="NumeroSemanas" class="form-control form-control-sm" min = "1" value="0" require>
+                  </div>
+                
+                  <div class="col">
+                  <br/>
                   Número de ejericios
                   <input type="number" name="num_ejercicios" id="num_ejercicios" class="form-control form-control-sm" required min="1">
                 </div>
+              </div>
+              
+              
+              <div class="row">
                 <div class="col">
                 <br/>
                   Número de examenes
                   <input type="number" name="num_examenes" id="num_examenes" class="form-control form-control-sm" required min="1" >
+                </div>
+                <div class="col">
                 </div>
               </div>
 

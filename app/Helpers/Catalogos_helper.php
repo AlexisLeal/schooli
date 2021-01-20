@@ -96,7 +96,7 @@ function getAllCursos()
 function getCursoEspecifico($id_curso)
 {
     $usermode = new Cursos_model($db);
-    $usermode->select('id,nombre,num_niveles,id_frecuencia,estatus');
+    $usermode->select('id,nombre,num_niveles,id_frecuencia,estatus,total_dias_laborales,id_frecuencia,num_examenes,num_ejercicios,valor_asistencia,valor_ejercicios,valor_examenes');
     $usermode->where('deleted',0);
     $usermode->where('id',$id_curso);
     $resultado = $usermode->get();

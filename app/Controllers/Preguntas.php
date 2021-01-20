@@ -154,6 +154,7 @@ class Preguntas extends BaseController{
             $tipoPregunta   = $REQUEST->getPost('tipoPregunta');
             $usermodel      = new Preguntas_model($db); 
             $Ruta = ObtenerRutaEvaluacion($idEvaluacion);
+            $pregunta   = $REQUEST->getPost('pregunta');
         if(empty($valorpreguntas)){
               $numeropregunta = 1;
         }else{
@@ -218,7 +219,7 @@ class Preguntas extends BaseController{
 
             $data = ['idEvaluacion' => $idEvaluacion,
             'num_pregunta' =>$numeropregunta,
-            //'pregunta' =>$pregunta,
+            'pregunta' =>$pregunta,
             'valor' =>$valor,
             'idTipoPregunta' =>$tipoPregunta,
             'tiene_imagen' =>$imagen,

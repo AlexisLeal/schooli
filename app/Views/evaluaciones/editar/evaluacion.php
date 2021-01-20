@@ -169,6 +169,7 @@
                         <?php
                           }
                         } else {
+                          echo $fila->pregunta;
                         }
                         ?>
                       </div>
