@@ -37,7 +37,13 @@
   </div>
 </header>
 
-
+<style>
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+</style>
 
 
 
@@ -120,7 +126,7 @@
                 <div class="col">
                 <br/>
                   Sesiones
-                  <input type="number" name="dias" id="dias" class="form-control form-control-sm" min="1" onkeydown="return false" value="0" required>
+                  <input type="text" name="dias" id="dias" class="form-control form-control-sm" onkeydown="return false" value="0" required>
                 </div>
               </div>
 
@@ -140,7 +146,7 @@
                   <div class="col">
                   <br/>
                   Dias de Frencuencia
-                  <input type="number"  id="diasdeFrecuencia" class="form-control form-control-sm" readonly>
+                  <input type="text"  id="diasdeFrecuencia" class="form-control form-control-sm" readonly>
                 </div>
               </div>
 
@@ -151,12 +157,12 @@
                 <div class="col">
                 <br/>
                   Valor total ejercicios
-                  <input type="number" name="valor_total_ejercicios" id="valor_total_ejercicios" class="form-control form-control-sm" required min = "0">
+                  <input type="number" name="valor_total_ejercicios" onblur="validaMonto('valor_total_ejercicios');" id="valor_total_ejercicios" class="form-control form-control-sm" required min = "0">
                 </div>
                 <div class="col">
                 <br/>
                   Valor total examenes 
-                  <input type="number" name="valor_total_examanes" id="valor_total_examanes" class="form-control form-control-sm" required min = "0">
+                  <input type="number" name="valor_total_examanes" onblur="validaMonto('valor_total_examanes');" id="valor_total_examanes" class="form-control form-control-sm" required min = "0">
                 </div>
               </div>
 
@@ -164,7 +170,7 @@
                 <div class="col">
                 <br/>
                   Valor Total asistencia 
-                  <input type="number" name="valor_total_asistencia" id="valor_total_asistencia" class="form-control form-control-sm" required min="0">
+                  <input type="number" name="valor_total_asistencia" onblur="validaMonto('valor_total_asistencia');" id="valor_total_asistencia" class="form-control form-control-sm" required min="0">
                 </div>
                 <div class="col">
                 <br/>
@@ -173,7 +179,30 @@
                   <br/>
                 </div>
               </div>
+<script>
+function validaMonto(id){
+  var valor_total_ejercicios = document.getElementById("valor_total_ejercicios").value;
+  var valor_total_examanes   = document.getElementById("valor_total_examanes").value;
+  var valor_total_asistencia = document.getElementById("valor_total_asistencia").value;
+  var total;
+  
+  var uno = parseInt(valor_total_ejercicios,0)
+  var dos = parseInt(valor_total_examanes,0)
+  var tres = parseInt(valor_total_asistencia,0);
+  //alert(typeof(valor_total_ejercicios));
 
+  total = uno+dos+tres;
+  if(total > 100){
+    alert("No debe de exceder de 100 puntos" +  total);
+    document.getElementById(id).value="";
+    document.getElementById("valor_total").value="";
+    
+    document.getElementById(id).onfocus;
+  }
+  
+
+}
+</script>
 
               <div class="row">
               <br/>
