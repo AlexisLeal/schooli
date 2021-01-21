@@ -278,6 +278,7 @@ class Recursos extends BaseController
                 $hoy = date("Y-m-d H:i:s");
                 $REQUEST = \Config\Services::request();
                 $useModelRecursos = new Recursos_model($db);
+
                 $curso = $REQUEST->getPost('curso');
                 $nivel = $REQUEST->getPost('nivel');
                 $sesion = $REQUEST->getPost('sesion');
@@ -290,6 +291,66 @@ class Recursos extends BaseController
                     $idTipoEvaluacion = $REQUEST->getPost('tipoFormulario');
                     $idCategegoriaEvaluacion = $REQUEST->getPost('tipocategoriaevaluacion');
                     $nombreEvaluacion = $REQUEST->getPost('nombreEvaluacion');
+                   
+                    if (!is_dir("recursos/$nombreCurso/$nombreNivel/$nombreSesion")) {
+                        try {
+                            mkdir("recursos/$nombreCurso/$nombreNivel/$nombreSesion", 0777, TRUE);
+                        }catch(\Exception $e){
+
+                        }  
+                    }
+                    $rutaActual = ObtenerRutaEvaluacion($REQUEST->getPost('idEvaluacion'));
+                    $claveEvaluacion = ObtenerClaveEvaluacion($REQUEST->getPost('idEvaluacion'));
+                    $rutaNueva = "recursos/$nombreCurso/$nombreNivel/$nombreSesion/$claveEvaluacion";
+
+                    try {
+                        rename($rutaActual,$rutaNueva);
+                    } catch (\Exception $e) {
+                         
+                    }
+                    $dataEvaluacion = [ 'nombre' =>$nombreEvaluacion, 
+                    'tipo_evaluacion'=> $idTipoEvaluacion,
+                    'idCategoriaEvaluacion' => $idCategegoriaEvaluacion,
+                    'fecha_ultimo_cambio'=>$hoy,
+                    'directorio_uploads' => $rutaNueva,
+                    ];
+                    try {
+                        ActualizarEvaluacion($REQUEST->getPost('idEvaluacion'),$dataEvaluacion);
+                    } catch (\Exception $e){
+                        //throw $th;
+                    }
+                    $dataRecurso = ['nombre' =>$nombreEvaluacion,
+                    'id_curso' => $curso,
+                    'id_nivel' => $nivel,
+                    'id_leccion' => $sesion,
+                    'fecha_ultimo_cambio' => $hoy,
+                    ];
+
+                    try{
+                        $useModelRecursos->update($REQUEST->getPost('idRecurso'),$dataRecurso);
+                    }catch(\Exception $e) {
+                         
+                    }
+                    foreach(ObtenerPreguntasdeEvaluacionEspecifica($REQUEST->getPost('idEvaluacion')) as $fila){
+                        if($fila->tiene_imagen == 1){
+                            $rutaNuevaImagen = "recursos/$nombreCurso/$nombreNivel/$nombreSesion/$claveEvaluacion/imagen-pregunta/$fila->clave_pregunta_imagen";
+                            $data = ['ruta_imagen'=>$rutaNuevaImagen,
+                            'fecha_ultimo_cambio' => $hoy,
+                            ];
+                            ActualizarPregunta($fila->id,$data);
+                        }
+                        if($fila->tiene_audio_pregunta == 1){
+                            $rutaNuevaAudio = "recursos/$nombreCurso/$nombreNivel/$nombreSesion/$claveEvaluacion/audio-pregunta/$fila->clave_pregunta_audio";
+                            $data = ['ruta_audio_pregunta'=>$rutaNuevaAudio,
+                            'fecha_ultimo_cambio' => $hoy,
+                            ];
+                            ActualizarPregunta($fila->id,$data);
+                        }
+
+                    }
+                   
+                    echo "Checar la vieja ruta $rutaActual y ver la nueva ruta $rutaNueva";
+
                 }else{
                      //NUEVA RUTA
                     $nombreRecurso = $REQUEST->getPost('nombreRecurso');
@@ -321,10 +382,9 @@ class Recursos extends BaseController
                          
                     }
                    
-
+                    echo "Checar la vieja ruta $rutaActual y ver la nueva ruta $rutaNueva";
                 }
-                echo "Checar la vieja ruta $rutaActual y ver la nueva ruta $rutaNueva";
-
+                
             }else{
                 return redirect()->to(site_url('Home/salir'));
             }

@@ -177,18 +177,19 @@ class Preguntas extends BaseController{
                     }
                  //Obtenemos el archivo 
                     $audio= 1;
-                    $nombre = 'pre'.$clave.$numeropregunta.'.mp3';
+                    $claveAudio = 'pre'.$clave.$numeropregunta.'.mp3';
                  //Ruta para la base de datos 
-                    $ruta_audio_basedatos = "$Ruta/audio-pregunta/".$nombre."";
+                    $ruta_audio_basedatos = "$Ruta/audio-pregunta/".$claveAudio."";
                  //Ruta para mover el archivo
                     $ruta_audio = "$Ruta/audio-pregunta";
-                    $file_audio->move($ruta_audio,$nombre);
+                    $file_audio->move($ruta_audio,$claveAudio);
                 }else{
                 }
 
             }else{
                 $audio= 0;
                 $ruta_audio_basedatos = null;
+                $claveAudio = null;
             }
 
        
@@ -201,10 +202,10 @@ class Preguntas extends BaseController{
                 }
             //Obtenemos el archivo 
                 $imagen= 1;
-                $nombre = 'pre'.$clave.$numeropregunta.'.jpg';
-                $ruta_imagen_basedatos = "$Ruta/imagen-pregunta/".$nombre."";  
+                $claveImagen = 'pre'.$clave.$numeropregunta.'.jpg';
+                $ruta_imagen_basedatos = "$Ruta/imagen-pregunta/".$claveImagen."";  
                 $ruta_imagen = "$Ruta/imagen-pregunta";  
-                $file_imagen->move($ruta_imagen,$nombre);
+                $file_imagen->move($ruta_imagen,$claveImagen);
             }else{
                 echo "Error";
                 exit();
@@ -215,6 +216,7 @@ class Preguntas extends BaseController{
             }else{
                 $imagen = 0;
                 $ruta_imagen_basedatos = NULL;
+                $claveImagen = null;
             }  
 
             $data = ['idEvaluacion' => $idEvaluacion,
@@ -224,8 +226,10 @@ class Preguntas extends BaseController{
             'idTipoPregunta' =>$tipoPregunta,
             'tiene_imagen' =>$imagen,
             'ruta_imagen' =>$ruta_imagen_basedatos,
+            'clave_pregunta_imagen' =>$claveImagen,
             'tiene_audio_pregunta' =>$audio,
             'ruta_audio_pregunta' =>$ruta_audio_basedatos,
+            'clave_pregunta_audio' =>$claveAudio,
             'fecha_creacion' =>$hoy,
             'fecha_ultimo_cambio' =>$hoy,
             ];
