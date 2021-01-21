@@ -168,6 +168,23 @@ function getPreguntas($id_evaluacion)
     return($rowArray);
     
 }
+function ObtenerPreguntasdeEvaluacionEspecifica($id_evaluacion)
+{
+    $usermodel = new Preguntas_model($db);
+    $usermodel->select('id,tiene_imagen,tiene_audio_pregunta,clave_pregunta_imagen,clave_pregunta_audio');
+    $usermodel->where('idEvaluacion',$id_evaluacion);
+    $usermodel->where('deleted',0);
+    $resultado = $usermodel->get();
+    $rowArray = $resultado->getResult();
+    return($rowArray);
+    
+}
+function ActualizarPregunta($idPregunta,$data)
+{
+    $usermodel = new Preguntas_model($db);
+    $usermodel->update($idPregunta,$data);
+    
+}
 
  function getPreguntaOpcion_multiple($id_evaluacion,$id_pregunta)
 {
@@ -269,7 +286,6 @@ function operacionesGetNotificacionesUsuario()
 function InsertarEvaluacion($id_recurso,$tipo_evaluacion,$categoria_evaluacion,$nombre_evaluacion){
 
     $usermodel = new Evaluaciones_model($db);
-   
     $hoy = date("Y-m-d H:i:s");
     $data = ['nombre' => $nombre_evaluacion,
     'tipo_evaluacion' => $tipo_evaluacion,
@@ -286,6 +302,12 @@ function InsertarEvaluacion($id_recurso,$tipo_evaluacion,$categoria_evaluacion,$
 
     return $id_evaluacion;
 
+
+}
+function ActualizarEvaluacion($idEvaluacion,$data){
+
+    $usermodel = new Evaluaciones_model($db);
+    $usermodel->update($idEvaluacion,$data);
 
 }
 
@@ -323,6 +345,17 @@ function ObtenerRutaEvaluacion($IdEvaluacion)
     $Query = $UseModelEvaluacion->get();
     $Resultado = $Query->getRow();
     return  $Resultado->directorio_uploads;
+    
+}
+function ObtenerClaveEvaluacion($IdEvaluacion)
+{
+    $UseModelEvaluacion = new Evaluaciones_model($db);
+    $UseModelEvaluacion->select('clave');
+    $UseModelEvaluacion->where('id',$IdEvaluacion);
+    $UseModelEvaluacion->where('deleted',0);
+    $Query = $UseModelEvaluacion->get();
+    $Resultado = $Query->getRow();
+    return  $Resultado->clave;
     
 }
 
