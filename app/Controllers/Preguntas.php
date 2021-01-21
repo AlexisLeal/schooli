@@ -155,6 +155,7 @@ class Preguntas extends BaseController{
             $usermodel      = new Preguntas_model($db); 
             $Ruta = ObtenerRutaEvaluacion($idEvaluacion);
             $pregunta   = $REQUEST->getPost('pregunta');
+            $pregunta = htmlentities($pregunta);
         if(empty($valorpreguntas)){
               $numeropregunta = 1;
         }else{

@@ -98,7 +98,7 @@ class Grupos extends BaseController{
                 'codigo_acceso' =>$codigo,
                 'cupo' => $REQUEST->getPost('cupo'),
                 'descripcion' => $REQUEST->getPost('descripcion'),
-                'id_unidad_negocio' => $REQUEST->getPost('unidad_negocio'),
+                'id_unidad_negocio' => 1,
                 'usuario_creo' => $this->session->get('id'),
                 'usuario_modifico' => $this->session->get('id'),
                 'url_imagen' => $ruta_imagen_basedatos, 

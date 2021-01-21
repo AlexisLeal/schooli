@@ -111,6 +111,23 @@ input[type=number]::-webkit-outer-spin-button {
 
               <div class="espacioUno"></div>
 
+              <div class="row">
+              <br/>
+                <div class="col">
+                <br/>
+                Numero de semanas
+                  <input type="number" id="NumeroSemanas" class="form-control form-control-sm" min = "1" value="0" require>
+                  </div>
+                
+                  <div class="col">
+                  <br/>
+                  Número de ejericios
+                  <input type="number" name="num_ejercicios" id="num_ejercicios" class="form-control form-control-sm" required min="1">
+                </div>
+              </div>
+
+              <div class="espacioUno"></div>
+
 
               <div class="row">
                 <div class="col">
@@ -196,28 +213,13 @@ function validaMonto(id){
     alert("No debe de exceder de 100 puntos" +  total);
     document.getElementById(id).value="";
     document.getElementById("valor_total").value="";
-    
     document.getElementById(id).onfocus;
   }
   
-
 }
 </script>
 
-              <div class="row">
-              <br/>
-                <div class="col">
-                <br/>
-                Numero de semanas
-                  <input type="number" id="NumeroSemanas" class="form-control form-control-sm" min = "1" value="0" require>
-                  </div>
-                
-                  <div class="col">
-                  <br/>
-                  Número de ejericios
-                  <input type="number" name="num_ejercicios" id="num_ejercicios" class="form-control form-control-sm" required min="1">
-                </div>
-              </div>
+
               
               
               <div class="row">
