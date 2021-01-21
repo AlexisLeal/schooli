@@ -101,6 +101,21 @@ class Preguntas extends BaseController{
                 $idtipoPregunta = $REQUEST ->getPost('idtipoPregunta');
 
                 $usermodel = new Preguntas_model($db);
+                $usermodel->select('tiene_imagen,ruta_imagen,clave_pregunta_imagen,tiene_audio_pregunta,ruta_audio_pregunta,clave_pregunta_audio');
+                $usermodel->where('id',$idPregunta);
+                $usermodel->where('deleted',0);
+                $query = $usermodel->get();
+                $resultado = $query->getRow();
+                if($resultado->tiene_imagen == 1){
+                    $nuevoNombre = $resultado->ruta_imagen.'.old';
+                    rename($resultado->ruta_imagen,$nuevoNombre);
+
+                }
+                if($resultado->tiene_audio_pregunta == 1){
+                    $nuevoNombre = $resultado->ruta_audio_pregunta.'.old';
+                    rename($resultado->ruta_audio_pregunta,$nuevoNombre);
+
+                }
                 $usermodel->delete(['id' => $idPregunta]);
 
              //Opcion multiple

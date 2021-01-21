@@ -337,14 +337,24 @@ class Recursos extends BaseController
                             $data = ['ruta_imagen'=>$rutaNuevaImagen,
                             'fecha_ultimo_cambio' => $hoy,
                             ];
-                            ActualizarPregunta($fila->id,$data);
+                            try {
+                                ActualizarPregunta($fila->id,$data);
+                            } catch (\Throwable $th) {
+                                //throw $th;
+                            }
+                            
                         }
                         if($fila->tiene_audio_pregunta == 1){
                             $rutaNuevaAudio = "recursos/$nombreCurso/$nombreNivel/$nombreSesion/$claveEvaluacion/audio-pregunta/$fila->clave_pregunta_audio";
                             $data = ['ruta_audio_pregunta'=>$rutaNuevaAudio,
                             'fecha_ultimo_cambio' => $hoy,
                             ];
-                            ActualizarPregunta($fila->id,$data);
+                            try {
+                                ActualizarPregunta($fila->id,$data);
+                            } catch (\Throwable $th) {
+                                //throw $th;
+                            }
+                            
                         }
 
                     }
