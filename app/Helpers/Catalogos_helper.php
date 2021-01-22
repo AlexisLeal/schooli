@@ -7,6 +7,7 @@ use  App\Models\Frecuencia_model;
 use  App\Models\Modalidad_model;
 use  App\Models\Valor_asistencia_model;
 use  App\Models\ValoresAsistencia;
+use  App\Models\Grupos_model;
 
 function getAllCiclo()
 {
@@ -285,7 +286,17 @@ function ObtenerSesionesparaCurso($idCurso)
 }
 
 
+function getCicloGrupoEspecifico($id_grupo)
+{
+    $usermode = new Grupos_model($db);
+    $usermode->select('id,id_ciclo');
+    $usermode->where('deleted',0);
+    $usermode->where('id',$id_grupo);
+    $resultado = $usermode->get();
+    $row = $resultado->getRow();
+    return($row);
 
+}
 
 
 

@@ -228,15 +228,7 @@
                             font-weight: bold;
                           }
                           </style>
-                          <!-- <table>
-                              <tr>
-                                <td>< ?php echo empty($pregunta_multiple->valor1) ? 0 : $pregunta_multiple->valor1; ?> <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="1"></td>
-                                <td>< ?php echo empty($pregunta_multiple->valor2) ? 0 : $pregunta_multiple->valor2; ?> <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="2"></td>
-                                <td>< ?php echo empty($pregunta_multiple->valor3) ? 0 : $pregunta_multiple->valor3; ?> <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="3"></td>
-                                <td>< ?php echo empty($pregunta_multiple->valor4) ? 0 : $pregunta_multiple->valor4; ?> <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="4"></td>
-                              </tr>
-                            </table>
-                            -->
+
                             <br/>
                             <table width="100%">
                               <tr>
@@ -322,6 +314,29 @@
                         </div>
                     <?php
                         break;
+                        case 6:
+                        ?>
+                        <div class="row">
+                          <div class="col-md-2 text-center">
+
+                          </div>
+                          <div class="col-md-8">
+                            <div class="form-check">
+
+<img src="<?php echo base_url($fila->ruta_imagen); ?>" class="img-fluid" alt="INBI"><br />
+
+                            </div>
+                            <div class="form-check">
+
+                            </div>
+
+                          </div>
+                          <div class="col-md-2 text-center">
+
+                          </div>
+                        </div>
+
+                      <?php
                     }
                     ?>
                     <div class="espacioUno"></div>
