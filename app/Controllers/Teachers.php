@@ -205,7 +205,7 @@ class Teachers extends BaseController{
                 $data_maestro =[
                     'id_usuario' => $ultimo_id_usuario,
                     'idPlantel' => $REQUEST->getPost('plantel'),
-                    'idUnidadNegocio' => $REQUEST->getPost('unidad_negocio'),
+                    'idUnidadNegocio' => 1,
                     'url_foto' => $ruta_imagen_basedatos,
                     'comentarios' => $REQUEST->getPost('comentarios'),
                     'fecha_creacion' => $hoy,

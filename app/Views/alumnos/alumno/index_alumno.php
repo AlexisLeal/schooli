@@ -155,12 +155,12 @@
                    if($day == "Friday" && $frecuenciaGrupo->viernes==1){$goahead=1;}
                    if($day == "Saturday" && $frecuenciaGrupo->sabado==1){$goahead=1;}
 
-                   //$evaluacionGrupo =  getGruposEvaluacion($id_grupo);
+                   $evaluacionGrupo =  getGruposEvaluacion($id_grupo);
                    ?>
                   <table width="80%" le cellspacing="2" cellpadding="3">
                   <tr><td></td><td></td><td></td></tr>
 
-                  <!-- < ?php
+                   <?php
                    if(empty($evaluacionGrupo)){
                     echo "No tiene evaluaciones asignadas";
                    }else{
@@ -171,45 +171,39 @@
                       <tr>
                       <td><i class="fa fa-file-text-o fa-2x" aria-hidden="true"></i></td>
                       
-                      -->
-                          <!--
-                      < ?php
+
+                      <?php
                       if($num_preg==0){
                         ?>
-                        <td><button type="button" class="btn btn-success btn-sm">< ?php echo $fila->nombre;?></button></td>
+                        <td><button type="button" class="btn btn-success btn-sm"><?php echo $fila->nombre;?></button></td>
                         <td><span class="evalacionesSinPreguntas">Esta evaluación no tiene preguntas asignadas.</span></td>
                          
-                        < ?php
+                        <?php
                       }else{
                       ?>
-                      <td><a class="btn btn-success btn-sm" href="< ?php echo site_url("Alumno/presentarevaluacion/$fila->id/$id_grupo"); ?>" role="button">< ?php echo $fila->nombre;?></a></td>
+                      <td><a class="btn btn-success btn-sm" href="<?php echo site_url("Alumno/presentarevaluacion/$fila->id/$id_grupo"); ?>" role="button"><?php echo $fila->nombre;?></a></td>
                       <td></td>
                       
-                      < ?php
+                      <?php
                       }
                       ?>
-                      
-
                       </tr>
   
-                    < ?php
+                    <?php
                       }else{?>
                       <tr>
                       <td><i class="fa fa-file-text-o fa-2x" aria-hidden="true"></i></td>
-                      <td><button type="button" class="btn btn-secondary btn-sm">< ?php echo $fila->nombre;?></button></td>
+                      <td><button type="button" class="btn btn-secondary btn-sm"><?php echo $fila->nombre;?></button></td>
                       <td></td>
                       </tr>
-                      < ?php
+                      <?php
                     }
                     ?>
-                    
-
-
-                    < ?php
+                    <?php
                     }
                   }
                    ?>    
-                -->               
+             
                   <tr>
                   <td></td>
                   <td></td>
@@ -219,37 +213,10 @@
                   </td>
                   </tr>  
                 
-                  <tr>
-                 <!-- <td>
-                  Materiales
-                  </td> -->
-                  </tr> 
+
                   <tr>
                   <td>
-                  <?php
-                  if(empty(getGrupoRecursos($id_curso,$id_nivel))){
-                    echo "No tiene recursos asignados";
-                  }else{
-                    foreach(getGrupoRecursos($id_curso,$id_nivel) as $fila){ 
-                      //if(!empty($fila->id_grupo)){  
-                        if($fila->tipo_recurso == 1){?>
-                         <a class="btn btn-success btn-sm" href="<?php echo site_url("Alumno/presentarevaluacion/$fila->id_evaluacion/$id_grupo/$id_curso/$id_nivel/$id_ciclo"); ?>" role="button"><?php echo $fila->nombre;?></a> 
-                      <h4>Nombre de la evaluacion es: <?php echo $fila->nombre?></h4> <br>   
-                      <?php }else{?>
-                        <h4>Nombre del recurso es: <?php echo $fila->nombre?></h4> <br>
-                       
-                    <!--<a href="< ?php echo base_url($fila->ruta);?>"><i class="fa < ?php echo $icono;?>" aria-hidden="true"></i> < ?php echo $fila->nombre;?></a>-->  <br/>
-                
-                  <?php
-                  //}
-                   }
-                  }
-                }
-                   ?>
-                
-                
-                
-
+             
                   </td> 
                   </tr>
                   </table>

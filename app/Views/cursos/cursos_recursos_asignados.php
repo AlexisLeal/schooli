@@ -73,7 +73,7 @@
                 <?php
               }else{
                 ?>
-              <a href="<?php echo base_url($fila->nombre)?>"> <?php echo $fila->nombre;?></a>
+              <a href="<?php echo base_url($fila->ruta)?>" target="_blank"> <?php echo $fila->nombre;?></a>
               <?php
               }
               ?>
