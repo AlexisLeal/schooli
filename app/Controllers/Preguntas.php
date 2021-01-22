@@ -153,10 +153,10 @@ class Preguntas extends BaseController{
             $valor    = $REQUEST->getPost('valor');//Valor que le da al usuario a la pregunta
             $hoy      = date("Y-m-d H:i:s");
             $tipoPregunta   = $REQUEST->getPost('tipoPregunta');
-            $usermodel      = new Preguntas_model($db); 
             $Ruta = ObtenerRutaEvaluacion($idEvaluacion);
             $pregunta   = $REQUEST->getPost('pregunta');
             $pregunta = htmlentities($pregunta);
+            $usermodel = new Preguntas_model($db); 
         if(empty($valorpreguntas)){
               $numeropregunta = 1;
         }else{
@@ -235,8 +235,16 @@ class Preguntas extends BaseController{
             'fecha_creacion' =>$hoy,
             'fecha_ultimo_cambio' =>$hoy,
             ];
-            $usermodel->insert($data);
-            $idPregunta = $usermodel->insertID();
+            try {
+                $usermodel->insert($data);
+                $idPregunta = $usermodel->insertID();
+            } catch (\Throwable $th) {
+                $data = ['pregunta-exito'  => 'La pregunta no se pudo agregar'];
+                $this->session->set($data,true);
+                return redirect()->to(site_url("Preguntas/editarEvaluacion/$idEvaluacion"));
+            
+            }
+            
             //$usermodel->query($query);
 
 
@@ -268,9 +276,18 @@ class Preguntas extends BaseController{
                 'fecha_ultimo_cambio'  => $hoy,
                 ];
 
-
-                $usermodel = new Pregunta_opcion_multiple($db);
-                $usermodel->insert($data);
+                try {
+                    $usermodel = new Pregunta_opcion_multiple($db);
+                    $usermodel->insert($data);
+                } catch (\Throwable $th) {
+                $data = ['pregunta-exito'  => 'La pregunta no se pudo agregar'];
+                $this->session->set($data,true);
+                $useModelPregunta = new Preguntas_model($db);
+                $query = "DELETE FROM preguntas WHERE id = $idPregunta";
+                $useModelPregunta->query($query); 
+                return redirect()->to(site_url("Preguntas/editarEvaluacion/$idEvaluacion"));
+                }
+               
             /*
             $sqlOpcionMultiple="insert into pregunta_opcion_multiple(
                 idEvaluacion,
@@ -325,13 +342,16 @@ class Preguntas extends BaseController{
                 '".$hoy."',
                 '".$hoy."')";
 
-                $usermodel = new Pregunta_opcion_audio($db);
                 try{
-
+                    $usermodel = new Pregunta_opcion_audio($db);
                     $usermodel ->query($sqlAudio);
                 }catch(\Exception $e){
-                    
-                    die($e->getMessage());
+                    $data = ['pregunta-exito'  => 'La pregunta no se pudo agregar'];
+                    $this->session->set($data,true);
+                    $useModelPregunta = new Preguntas_model($db);
+                    $query = "DELETE FROM preguntas WHERE id = $idPregunta";
+                    $useModelPregunta->query($query); 
+                    return redirect()->to(site_url("Preguntas/editarEvaluacion/$idEvaluacion"));
                 }
                
         }else{
@@ -376,9 +396,18 @@ class Preguntas extends BaseController{
               '".$video_extension."',
               '".$hoy."',
               '".$hoy."')";
-
-              $usermodel = new Pregunta_opcion_video($db);
-              $usermodel ->query($sqlvideo);
+              try {
+                $usermodel = new Pregunta_opcion_video($db);
+                $usermodel ->query($sqlvideo);
+              } catch (\Throwable $th) {
+                $data = ['pregunta-exito'  => 'La pregunta no se pudo agregar'];
+                $this->session->set($data,true);
+                $useModelPregunta = new Preguntas_model($db);
+                $query = "DELETE FROM preguntas WHERE id = $idPregunta";
+                $useModelPregunta->query($query); 
+                return redirect()->to(site_url("Preguntas/editarEvaluacion/$idEvaluacion"));
+              }
+             
             }else{
           //Si algo sale mal nos marca un error 
           //throw new RuntimeException($file_video->getErrorString().'('.$file_video->getError().')');
