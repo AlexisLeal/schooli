@@ -256,15 +256,36 @@ class Preguntas extends BaseController{
 
             //Opcion Multiple 
             if($tipoPregunta == 2){
+                
                 $opcion1 = $REQUEST->getPost('opcion_1');
+                $opcion1 = htmlentities($opcion1);
+
                 $opcion2 = $REQUEST->getPost('opcion_2');
+                $opcion2 = htmlentities($opcion2);
+
                 $opcion3 = $REQUEST->getPost('opcion_3');
+                $opcion3 = htmlentities($opcion3);
+
                 $opcion4 = $REQUEST->getPost('opcion_4');
+                $opcion4 = htmlentities($opcion4);
+                
                 $respuesta = $REQUEST->getPost('opcion_correcta');
 
+                $data = ['idEvaluacion' => $idEvaluacion,
+                'idPregunta' => $idPregunta,
+                'valor1' => $opcion1,
+                'valor2' => $opcion2,
+                'valor3' => $opcion3,
+                'valor4' => $opcion4,
+                'opcion_correcta'  => $respuesta,
+                'fecha_creacion'  => $hoy,
+                'fecha_ultimo_cambio'  => $hoy,
+                ];
+
+
                 $usermodel = new Pregunta_opcion_multiple($db);
-
-
+                $usermodel->insert($data);
+            /*
             $sqlOpcionMultiple="insert into pregunta_opcion_multiple(
                 idEvaluacion,
                 idPregunta,
@@ -276,8 +297,7 @@ class Preguntas extends BaseController{
                 fecha_creacion,
                 fecha_ultimo_cambio) values(
                 $idEvaluacion,$idPregunta,'".$opcion1."','".$opcion2."','".$opcion3."','".$opcion4."',$respuesta,'".$hoy."','".$hoy."')";
-
-                $usermodel->query($sqlOpcionMultiple);
+                $usermodel->query($sqlOpcionMultiple);*/
         }
 
         //Cuando sea AUDIO 
