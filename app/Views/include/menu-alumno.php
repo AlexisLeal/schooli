@@ -12,7 +12,8 @@
 
 <ul class="list-group">        
   <li class="list-group-item"><a class="" href="<?php echo site_url('Alumno/perfil')?>">Perfil</a></li>
-  <li class="list-group-item"><a class="" href="">Recursos</a></li>
+  <li class="list-group-item"><a class="" href="<?php echo site_url('Alumno/index')?>">Panel</a></li>
+  <li class="list-group-item"><a class="" href="<?php echo site_url('Alumno/calificaciones')?>">Calificaciones</a></li>
   <!--<li class="list-group-item"><a class="" href="">Asistencia</a></li>
   <li class="list-group-item"><a class="" href="">Calificaciones</a></li>
   <li class="list-group-item"><a class="" href="">Tutor</a></li>

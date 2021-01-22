@@ -260,5 +260,12 @@ class Alumno extends BaseController{
         }else{
             return redirect()->to(site_url('Home/salir'));
         }
-    }    
+    }
+
+    public function calificaciones()
+	{
+        if($this->session->get('login')){
+            return view('alumnos/alumno/calificaciones');
+        }
+    }
 }
