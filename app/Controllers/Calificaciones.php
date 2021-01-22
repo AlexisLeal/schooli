@@ -37,7 +37,6 @@ class Calificaciones extends BaseController{
                     $calificaciones = ObtenerCalificacionesPreviasdeEvaluaciones($FilaMiembro->id,$IdGrupo,$IdCurso,$IdNivel,$IdCiclo,$ValordeCadaEjercio,$ValordeCadaExamen);
                     $calificacionesAsistencia = ObtenerCalificaionesPreviasAsistencia($FilaMiembro->id,$IdGrupo, $week_start,$week_end,$valorAsistenciaDiaria);
 
-
                     $CalficacionFinalKardex = $calificaciones['calificacionesEjercicios'] + $calificaciones['calificaionesExamenes'] + $calificacionesAsistencia;
 
                     $data = [ 'id_usuario' => $FilaMiembro->id,
