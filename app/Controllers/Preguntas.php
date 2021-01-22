@@ -95,6 +95,7 @@ class Preguntas extends BaseController{
     {
         if($this->session->get('login') && $this->session->get('roll') == 4){
             if(isset($_POST['submitAP'])){
+
                 $REQUEST = \Config\Services::request();
                 $idEvaluacion = $REQUEST->getPost('idEvaluacion');
                 $idPregunta = $REQUEST->getPost('idPregunta');
