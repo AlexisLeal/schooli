@@ -28,78 +28,17 @@ class Calificaciones extends BaseController{
 
                 $ValordeCadaEjercio = $ValoresPonderacion->valor_ejercicios/$ValoresPonderacion->num_ejercicios;
                 $ValordeCadaExamen = $ValoresPonderacion->valor_examenes/$ValoresPonderacion->num_examenes;
-            
-                $UseModelKarex = new Kardex_model($db);
+                $valorAsistenciaDiaria = $ValoresPonderacion->valor_asistencia/$ValoresPonderacion->total_dias_laborales;
 
                 foreach(CalificarObtenerMiembrosdeGrupo($IdGrupo) as $FilaMiembro){
-                    $CalificacionFinalEvaluaciones = 0;
-                    $CalificacionFinalcalAsistencia = 0; 
-                    $numeroAsistencia = 0;
-                    $numeroFalta = 0;
-                    $numeroRetardo = 0;
-                    $numeroFaltaJustificada = 0;
+                    $calificaciones = 0;
+                    $calificacionesAsistencia = 0; 
                     $CalficacionFinalKardex = 0;
-                    //Empieza a obtener la calificacion de las evaluaciones por alumno
-                    foreach(CalificarGetEvaluacionesContestadas($FilaMiembro->id,$IdGrupo,$IdCurso,$IdNivel,$IdCiclo) as $FilaEvaluacion){
-                        $FilaTipoyCategoria = CalificarGetTipoyCategoriaEvaluacion($FilaEvaluacion->id_evaluacion);
+                    $calificaciones = ObtenerCalificacionesPreviasdeEvaluaciones($FilaMiembro->id,$IdGrupo,$IdCurso,$IdNivel,$IdCiclo,$ValordeCadaEjercio,$ValordeCadaExamen);
+                    $calificacionesAsistencia = ObtenerCalificaionesPreviasAsistencia($FilaMiembro->id,$IdGrupo, $week_start,$week_end,$valorAsistenciaDiaria);
 
-                            if($FilaTipoyCategoria->tipo_evaluacion == 1){
-                                if(($FilaTipoyCategoria->idCategoriaEvaluacion) == 1){
-                                    if($FilaEvaluacion->calificacion == 100){
-                                        $CalificacionFinalEvaluaciones += $ValordeCadaEjercio;
-                                    }else{
-                                        $CalificacionFinalEvaluaciones += porcentaje($ValordeCadaEjercio, $FilaEvaluacion->calificacion );
-                                    }
-        
-                                }elseif(($FilaTipoyCategoria->idCategoriaEvaluacion) == 2){
-                                    $CalificacionFinalEvaluaciones += $FilaEvaluacion->calificacion * ($ValordeCadaEjercio * 0.50);
-                                }
 
-                            }elseif($FilaTipoyCategoria->tipo_evaluacion == 2){
-                                if(($FilaTipoyCategoria->idCategoriaEvaluacion) == 1){
-                                    if($FilaEvaluacion->calificacion == 100){
-                                        $CalificacionFinalEvaluaciones += $ValordeCadaExamen;
-                                    }else{
-                                        $CalificacionFinalEvaluaciones += porcentaje($ValordeCadaExamen, $FilaEvaluacion->calificacion );
-                                    }
-                                }elseif(($FilaTipoyCategoria->idCategoriaEvaluacion) == 2){
-                                    $CalificacionFinalEvaluaciones += $FilaEvaluacion->calificacion *  ($ValordeCadaExamen * 0.50);
-                                    
-                                }
-
-                            }
-                    }
-                    //Termina de calificar las evaluaciones y empieza la asistencia
-                    foreach(getAsistenciaGrupo($FilaMiembro->id,$IdGrupo) as $FilaAsitencia){                        
-                        for($i=$week_start; $i<=$week_end; $i+=86400){
-                          if(date("Y-m-d", $i)==$FilaAsitencia->fecha_asistencia){
-            
-                            if($FilaAsitencia->valor_asistencia==1){
-                              $numeroAsistencia++;
-                            }
-                            if($FilaAsitencia->valor_asistencia==2){
-                              $numeroFalta++;
-                            }
-                            if($FilaAsitencia->valor_asistencia==3){
-                              $numeroRetardo++;
-                            }
-                            if($FilaAsitencia->valor_asistencia==4){
-                              $numeroFaltaJustificada++;
-                            }     
-
-                          }
-                        }
-                    }
-                    
-                    $valAsistDiaria  = $ValoresPonderacion->valor_asistencia/$ValoresPonderacion->total_dias_laborales;
-                    $valorRetardo    = porcentaje($valAsistDiaria, 50 );
-                    $sumValorRetardo  = $valorRetardo*$numeroRetardo;
-                    $valorFaltaJustificada   = porcentaje($valAsistDiaria, 50 );
-                    $sumCalorFaltasJustificadas = $valorFaltaJustificada*$numeroFaltaJustificada;
-                    $asistencia = $valAsistDiaria*$numeroAsistencia;
-                    $CalificacionFinalcalAsistencia = $asistencia+$sumValorRetardo+$sumCalorFaltasJustificadas;
-
-                    $CalficacionFinalKardex = $CalificacionFinalcalAsistencia + $CalificacionFinalEvaluaciones;
+                    $CalficacionFinalKardex = $calificaciones['calificacionesEjercicios'] + $calificaciones['calificaionesExamenes'] + $calificacionesAsistencia;
 
                     $data = [ 'id_usuario' => $FilaMiembro->id,
                     'id_nivel' => $IdNivel, 
@@ -109,6 +48,7 @@ class Calificaciones extends BaseController{
                     ];
 
                     try {
+                        $UseModelKarex = new Kardex_model($db);
                         $UseModelKarex->insert($data);
                     } catch (\Throwable $th) {
                         
