@@ -65,10 +65,27 @@
 
               <div class="card">
                 <div class="card-body">
+                <table width="100%">
+                  <tr>
+                  <td>Asistencia</td><td>Examenes</td><td>Ejercicios</td><td>Calificación</td>
+                  </tr>
+                <?php
 
-
-Calificaciones
-              
+                 $calificacionesPreliminaresEvaluaciones = ObtenerCalificacionesPreviasdeEvaluaciones($_SESSION['id'],$idGrupo,$idCurso,$idNivel,$idCiclo,$ValordeCadaEjercio,$ValordeCadaExamen);
+                 $calificacionesPreliminaresAsitencia = ObtenerCalificaionesPreviasAsistencia($_SESSION['id'],$idGrupo,$week_start,$week_end,$valorAsistDiaria);
+                 
+                 $calificacionPreliminarFinal =  $calificacionesPreliminaresEvaluaciones['calificaionesExamenes'] + $calificacionesPreliminaresEvaluaciones['calificacionesEjercicios'] + $calificacionesPreliminaresAsitencia;
+                  
+                    
+                    
+                    ?> 
+                    <tr>
+                    <td><?php echo $calificacionesPreliminaresAsitencia;?></td>
+                    <td><?php echo $calificacionesPreliminaresEvaluaciones['calificaionesExamenes']; ?></td>
+                    <td><?php echo $calificacionesPreliminaresEvaluaciones['calificacionesEjercicios']?></td>
+                    <td><?php echo $calificacionPreliminarFinal; ?></td>
+                    <tr>
+                </table>              
                 </div>
               </div>
           </div> <!-- Termin contenido div col-md-9-->

@@ -5,6 +5,7 @@ use  App\Models\Preguntas_model;
 use  App\Models\Pregunta_opcion_multiple;
 use  App\Models\Control_Respuestas_model;
 use  App\Models\Control_grupos_calificaciones_evaluaciones_model;
+helper('Calificar');
 
 
 class Alumno extends BaseController{
