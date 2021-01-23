@@ -81,6 +81,11 @@ $("#activarCargarAudioPregunta" ).click(function() {
   case "5":
   document.getElementById("agregarCampos").innerHTML = "";
   break;
+
+  case "6":
+    document.getElementById("agregarCampos").innerHTML = "";
+    break;
+
   }
   
   });

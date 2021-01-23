@@ -152,13 +152,18 @@ class Preguntas extends BaseController{
             $idEvaluacion   = $REQUEST->getPost('idEvaluacion');
             $valorpreguntas = $REQUEST->getPost('valorpreguntas');//Es el valor total de todas las preguntas
             $valor    = $REQUEST->getPost('valor');//Valor que le da al usuario a la pregunta
+            $totalPreguntas    = $REQUEST->getPost('totalPreguntas');
+            $totalPreguntas    = (empty($totalPreguntas) ? 0 : $totalPreguntas);
+            
+
             $hoy      = date("Y-m-d H:i:s");
             $tipoPregunta   = $REQUEST->getPost('tipoPregunta');
             $Ruta = ObtenerRutaEvaluacion($idEvaluacion);
             $pregunta   = $REQUEST->getPost('pregunta');
             $pregunta = htmlentities($pregunta);
             $usermodel = new Preguntas_model($db); 
-        if(empty($valorpreguntas)){
+
+        if($totalPreguntas==0){
               $numeropregunta = 1;
         }else{
           //Vamos a obtener el numero maximo de preguntas

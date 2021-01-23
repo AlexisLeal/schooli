@@ -118,7 +118,7 @@
             <input type="hidden" class="form-control" name="idEvaluacion" id="idEvaluacion" value="<?php echo $idEvaluacion; ?>">
             <input type="hidden" class="form-control" name="clave" id="clave" value="<?php echo $clave; ?>">
             <input type="hidden" class="form-control" name="valorpreguntas" id="valorpreguntas" value="<?php echo empty($valorpreguntas) ? 0 : $valorpreguntas; ?>">
-
+            <input type="hidden" class="form-control" name="totalPreguntas" id="totalPreguntas" value="<?php echo $totalpreguntas; ?>">
 
             <div class="form-group">
                   <label for="lblPregunta">Pregunta</label>

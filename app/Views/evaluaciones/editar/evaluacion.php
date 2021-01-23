@@ -314,27 +314,9 @@
                         </div>
                     <?php
                         break;
-                        case 6:
+  
                         ?>
-                        <div class="row">
-                          <div class="col-md-2 text-center">
 
-                          </div>
-                          <div class="col-md-8">
-                            <div class="form-check">
-
-<img src="<?php echo base_url($fila->ruta_imagen); ?>" class="img-fluid" alt="INBI"><br />
-
-                            </div>
-                            <div class="form-check">
-
-                            </div>
-
-                          </div>
-                          <div class="col-md-2 text-center">
-
-                          </div>
-                        </div>
 
                       <?php
                     }
