@@ -229,7 +229,7 @@ class Alumno extends BaseController{
             $data['idCiclo'] = $espicifacionesdeGrupo->id_ciclo;
 
             $valoresPonderacion = CatalagoObtenerPonderaciondeCurso($espicifacionesdeGrupo->id_curso);
-            $info_ciclo = getCicloEspecifico($espicifacionesdeGrupo->id_curso);
+            $info_ciclo = getCicloEspecifico($espicifacionesdeGrupo->id_ciclo);
             $fechaInicio = $info_ciclo->fecha_inicio;
             $fechaFin = $info_ciclo->fecha_fin;
 
