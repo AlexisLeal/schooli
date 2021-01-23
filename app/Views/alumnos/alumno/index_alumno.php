@@ -54,18 +54,9 @@
           </div>
 
 
-
           <div class="col-md-9">
           <?php include(APPPATH.'/Views/include/notificacion.php');?>
 
-            <?php if($session->has('EvaluacionContestadaOk')){;?>
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-               <?php echo $session->get('EvaluacionContestadaOk')?>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-            </div> 
-            <?php } $session->remove('EvaluacionContestadaOk');?>
 
               
 
@@ -85,19 +76,8 @@
                 <div class="card-body">
 
 
-                
-                <?php
-                if($id_grupo == null){
-                  echo "No has sido asignado a un grupo";
-                }else{ ?>
-                  Nombre del grupo:<?php echo $nombre_grupo;?> <br/>
-                  Codigo de acceso: <?php echo $codigo_acceso;?> <br/>
-                  Unidad Negocio: <?php echo $unidad_negocio;?> <br/>
-                  Plantel: <?php echo $nombre_plantel;?> <br/>
-                  Curso: <?php echo $nombre_curso;?> <br/>
-                
-                <?php }?>
-
+Validar si tiene grupos asignados
+Si los tiene, recorrrer un for y en enlace redirigir a controllador con funcion detallesgrupo
               </div>
             </div>
             <br/>
@@ -108,126 +88,14 @@
                   <table width="90%" cellspacing="8" cellpadding="4">
                   <tr>
                   <td width="40%">
-                <?php if(isset($nombre_maestro)){?>
-                  Nombre del Teacher <?php echo $nombre_maestro ?></a>
-                <?php }else{
-                  echo "No tiene Teacher asignado.";
-                }?>
+Obtener los maestros asignados del grupo
                   </td>
                   </tr>
                   </table>
                   </div>
                 </div>
 
-            <br/>
-            <?php if($id_grupo != null){ ?>
-            <div class="card">
-                  <div class="card-body">
-                  <i class="fa fa-cubes" aria-hidden="true"></i> <span class="font-weight-bold">Recursos </span><br/>
 
-
-
-                  <table width="90%" cellspacing="8" cellpadding="4">
-                  <tr>
-                  <td>
-                   <?php 
-                    $horario = AsignacionGetGrupoHorario($id_grupo);
-                    
-                   $hi              = $horario->hora_inicio;
-                   $hf              = $horario->hora_fin;
-                   $horaActual      = date("H:i");
-                   $day             = date("l");
-                   $hoy             = date("Y-m-d");
-                   $goahead=0;
-                   $frecuenciaGrupo = AsignacionGetGrupoFrecuencia($id_grupo);
-                   
-                   if($day == "Sunday" && $frecuenciaGrupo->domingo==1){ $goahead=1;}
-                   if($day == "Monday" && $frecuenciaGrupo->lunes==1){ $goahead=1;}
-                   if($day == "Tuesday" && $frecuenciaGrupo->martes==1){ $goahead=1; }
-                   if($day == "Wednesday" && $frecuenciaGrupo->miercoles==1){ $goahead=1; }
-                   if($day == "Thursday" && $frecuenciaGrupo->jueves==1){ $goahead=1; }
-                   if($day == "Friday" && $frecuenciaGrupo->viernes==1){$goahead=1;}
-                   if($day == "Saturday" && $frecuenciaGrupo->sabado==1){$goahead=1;}
-                   $id_ciclo_grupo=getCicloGrupoEspecifico($id_grupo);
-                   $id_ciclo = $id_ciclo_grupo->id_ciclo;
-                   $infoCiclo = getCicloEspecifico($id_ciclo);
-
-                   $fechaInicioCiclo = $infoCiclo->fecha_inicio;
-                   $fechaFinCiclo = $infoCiclo->fecha_fin;
-                  
-                   /*
-                  echo "hora inicio de la base de datos".$hi."<br/>";
-                  echo "hora final de la base de datos".$hf."<br/>";
-                  echo "hora actual del servidor".$horaActual."<br/>";
-                  echo "fecha inicio del ciclo".$fechaInicioCiclo."<br/>";
-                  echo "fecha fin del ciclo".$fechaFinCiclo."<br/>";
-                  */
-
-                   $evaluacionGrupo =  getGruposEvaluacion($id_grupo);
-                   ?>
-                  <table width="80%" le cellspacing="2" cellpadding="3">
-                  <tr><td></td><td></td><td></td></tr>
-
-                   <?php
-                   if(empty($evaluacionGrupo)){
-                    echo "No tiene evaluaciones asignadas";
-                   }else{
-                    foreach($evaluacionGrupo as $fila){
-                      $num_preg = 0;
-                      $num_preg = getTotalPreguntas($fila->id);
-                      if($hoy >= $fechaInicioCiclo && $hoy <= $fechaFinCiclo && $goahead==1 && $horaActual>=$hi && $horaActual<=$hf){?>
-                      <tr>
-                      <td><i class="fa fa-file-text-o fa-2x" aria-hidden="true"></i></td>
-                      
-
-                      <?php
-                      if($num_preg==0){
-                        ?>
-                        <td><button type="button" class="btn btn-success btn-sm"><?php echo $fila->nombre;?></button></td>
-                        <td><span class="evalacionesSinPreguntas">Esta evaluación no tiene preguntas asignadas.</span></td>
-                         
-                        <?php
-                      }else{
-                      ?>
-                      <td><a class="btn btn-success btn-sm" href="<?php echo site_url("Alumno/presentarevaluacion/$fila->id/$id_grupo"); ?>" role="button"><?php echo $fila->nombre;?></a></td>
-                      <td></td>
-                      
-                      <?php
-                      }
-                      ?>
-                      </tr>
-  
-                    <?php
-                      }else{?>
-                      <tr>
-                      <td><i class="fa fa-file-text-o fa-2x" aria-hidden="true"></i></td>
-                      <td><button type="button" class="btn btn-secondary btn-sm"><?php echo $fila->nombre;?></button></td>
-                      <td></td>
-                      </tr>
-                      <?php
-                      }
-                      ?>
-                    <?php
-                    }
-                  }
-                   ?>    
-             
-
-                  </table>
-                  <br/><br/>
-                  </td>
-                  </tr>  
-                
-
-                  <tr>
-                  <td>
-             
-                  </td> 
-                  </tr>
-                  </table>
-                  </div>
-                </div>
-            <?php }?>
 
             </div>
           </div>

@@ -11,53 +11,8 @@ class Alumno extends BaseController{
 
     public function index()
 	{
-        if($this->session->get('login')){
-            $db = \Config\Database::connect();
-
-            $id_usuario= $this->session->get('id');
-            $usermodel = $db->table('usuarios U');
-            $usermodel->select('AL.matricula,G_AL.id_grupo,G_TH.id_teacher');
-            $usermodel->join('alumnos AL',"U.id = AL.id_usuario and U.id = $id_usuario");
-            $usermodel->join('grupo_alumnos G_AL','G_AL.id_alumno = U.id and G_AL.deleted = 0','left');
-            $usermodel->join('grupo_teachers G_TH','G_TH.id_grupo = G_AL.id_grupo and G_TH.deleted = 0','left');
-            $resultado = $usermodel->get();   
-            $row = $resultado->getRow();
-
-            $data['matricula'] = $row->matricula;
-
-            if($row->id_grupo != null){
-                $usermodel_grupo = new Grupos_model();
-                $usermodel_grupo->select('nombre,codigo_acceso,id_unidad_negocio,id_plantel,id_curso,id_nivel,id_ciclo');
-                $usermodel_grupo->where('id',$row->id_grupo);
-                $usermodel_grupo->where('deleted',0);
-                $query = $usermodel_grupo->get();
-                $row_grupo = $query->getRow();
-
-                $data['id_grupo'] = $row->id_grupo;
-                $data['nombre_grupo'] = $row_grupo->nombre;	
-                $data['codigo_acceso'] = $row_grupo->codigo_acceso;
-                $data['id_unidad_negocio']= $row_grupo->id_unidad_negocio;	
-                $data['id_plantel']= $row_grupo->id_plantel;	
-                $data['id_ciclo']= $row_grupo->id_ciclo;	
-                $data['id_curso']= $row_grupo->id_curso;	
-                $data['id_nivel']= $row_grupo->id_nivel;	
-                $data['unidad_negocio'] = getUnidadNegocioEspecifico($row_grupo->id_unidad_negocio);	
-                $data['nombre_plantel'] = getPlanteEspecifico($row_grupo->id_plantel);
-                $data['nombre_curso'] = CatalagoGetNombreCurso($row_grupo->id_curso);
-
-                if($row->id_teacher != null){
-                    $maestro = getMaestroEspecifico($row->id_teacher);
-                    $data['nombre_maestro'] = $maestro->nombre;
-                }
-
-                return view('alumnos/alumno/index_alumno',$data);
-
-            }else{
-                $data['id_grupo'] = $row->id_grupo;
-                $data['page_title'] = "Alumnos";	
-
-                return view('alumnos/alumno/index_alumno',$data);
-            }  
+        if($this->session->get('login') && $this->session->get('roll') == 1){
+            return view('alumnos/alumno/index_alumno');
         }else{
             return redirect()->to(site_url('Home/salir'));
         }
@@ -267,5 +222,55 @@ class Alumno extends BaseController{
         if($this->session->get('login')){
             return view('alumnos/alumno/calificaciones');
         }
+    }
+
+
+    function detallesgrupo(){
+        $db = \Config\Database::connect();
+
+        $id_usuario= $this->session->get('id');
+        $usermodel = $db->table('usuarios U');
+        $usermodel->select('AL.matricula,G_AL.id_grupo,G_TH.id_teacher');
+        $usermodel->join('alumnos AL',"U.id = AL.id_usuario and U.id = $id_usuario");
+        $usermodel->join('grupo_alumnos G_AL','G_AL.id_alumno = U.id and G_AL.deleted = 0','left');
+        $usermodel->join('grupo_teachers G_TH','G_TH.id_grupo = G_AL.id_grupo and G_TH.deleted = 0','left');
+        $resultado = $usermodel->get();   
+        $row = $resultado->getRow();
+
+        $data['matricula'] = $row->matricula;
+
+        if($row->id_grupo != null){
+            $usermodel_grupo = new Grupos_model();
+            $usermodel_grupo->select('nombre,codigo_acceso,id_unidad_negocio,id_plantel,id_curso,id_nivel,id_ciclo');
+            $usermodel_grupo->where('id',$row->id_grupo);
+            $usermodel_grupo->where('deleted',0);
+            $query = $usermodel_grupo->get();
+            $row_grupo = $query->getRow();
+
+            $data['id_grupo'] = $row->id_grupo;
+            $data['nombre_grupo'] = $row_grupo->nombre;	
+            $data['codigo_acceso'] = $row_grupo->codigo_acceso;
+            $data['id_unidad_negocio']= $row_grupo->id_unidad_negocio;	
+            $data['id_plantel']= $row_grupo->id_plantel;	
+            $data['id_ciclo']= $row_grupo->id_ciclo;	
+            $data['id_curso']= $row_grupo->id_curso;	
+            $data['id_nivel']= $row_grupo->id_nivel;	
+            $data['unidad_negocio'] = getUnidadNegocioEspecifico($row_grupo->id_unidad_negocio);	
+            $data['nombre_plantel'] = getPlanteEspecifico($row_grupo->id_plantel);
+            $data['nombre_curso'] = CatalagoGetNombreCurso($row_grupo->id_curso);
+
+            if($row->id_teacher != null){
+                $maestro = getMaestroEspecifico($row->id_teacher);
+                $data['nombre_maestro'] = $maestro->nombre;
+            }
+
+            return view('alumnos/alumno/index_alumno',$data);
+
+        }else{
+            $data['id_grupo'] = $row->id_grupo;
+            $data['page_title'] = "Alumnos";	
+
+            return view('alumnos/alumno/index_alumno',$data);
+        }  
     }
 }
