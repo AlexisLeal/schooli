@@ -11,7 +11,7 @@ class Alumno extends BaseController{
 
     public function index()
 	{
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 1){
             $db = \Config\Database::connect();
 
             $id_usuario= $this->session->get('id');
@@ -63,10 +63,8 @@ class Alumno extends BaseController{
         }
 	}
     
-    public function presentarevaluacion($id_evaluacion,$idGrupo,$IdCurso,$IdNivel,$Idciclo)
-    {
-        if($this->session->get('login')){
-
+    public function presentarevaluacion($id_evaluacion,$idGrupo,$IdCurso,$IdNivel,$Idciclo){
+        if($this->session->get('login') && $this->session->get('roll') == 1){
             $usermodel = new Evaluaciones_model($db);
             $usermodel->select('nombre,clave,tipo_evaluacion');
             $usermodel->where('id',$id_evaluacion);
@@ -96,7 +94,7 @@ class Alumno extends BaseController{
 
     public function perfil()
     {
-        if($this->session->get('login')){
+        if($this->session->get('login')&& $this->session->get('roll') == 1){
             $id_usuario = $this->session->get('id');               
             $db = \Config\Database::connect();
             $usermodel = $db->table('usuarios U');
@@ -144,7 +142,7 @@ class Alumno extends BaseController{
 
     public function CalificarEvaluacion()
     {
-        if($this->session->get('login')){
+        if($this->session->get('login')&& $this->session->get('roll') == 1){
             if(isset($_POST['SubmitRespuestas'])){
                 $REQUEST = \Config\Services::request();
 
@@ -262,9 +260,21 @@ class Alumno extends BaseController{
         }
     }
 
-    public function calificaciones()
+    public function calificaciones($idGrupo)
 	{
-        if($this->session->get('login')){
+        if($this->session->get('login') && $this->session->get('roll') == 1){
+            $data['idGrupo'] = '';
+            $data['idNivel'] = '';
+            $data['idCurso'] = '';
+            $data['idCiclo'] = '';
+            $data[''] = '';
+            $data[] = '';
+            $data[] = '';
+            $data[] = '';
+            $data[] = '';
+            $data[] = '';
+            $data[] = '';
+
             return view('alumnos/alumno/calificaciones');
         }
     }
