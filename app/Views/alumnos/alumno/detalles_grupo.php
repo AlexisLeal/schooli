@@ -145,7 +145,7 @@
                   
 
 
-                   $evaluacionGrupo =  getGruposEvaluacion($id_grupo);
+                   $evaluacionGrupo =  getRecursosPorCurso($id_curso);
                    ?>
                   <table width="80%" le cellspacing="2" cellpadding="3">
                   <tr><td></td><td></td><td></td></tr>

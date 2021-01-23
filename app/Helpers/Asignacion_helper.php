@@ -264,6 +264,7 @@ function AsignacionObtenerGruposconCursosDisponibles($idPlantel,$IdUsuario){
 
 function getGruposAsignadosPorUsuario($id_usuario)
 {
+    
     $db = \Config\Database::connect();
     $usermodel = $db->table('grupo_alumnos GA');
     $usermodel->select('GA.id_grupo, GA.id_curso,G.nombre');
