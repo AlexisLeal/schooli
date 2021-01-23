@@ -57,17 +57,7 @@
 
           <div class="col-md-9">
           <?php include(APPPATH.'/Views/include/notificacion.php');?>
-
-            <?php if($session->has('EvaluacionContestadaOk')){;?>
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-               <?php echo $session->get('EvaluacionContestadaOk')?>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-            </div> 
-            <?php } $session->remove('EvaluacionContestadaOk');?>
-
-              
+             
 
           <div class="espacioUno"></div>
           <div class="text-right">
@@ -81,45 +71,43 @@
                 <h4>Grupo asignado.</h4>
                 <hr class="linea"/>
                 <div style="padding-left:30px">
-                <div class="card">
-                <div class="card-body">
+                    <div class="card">
+                      <div class="card-body">
+                        <?php
+                        if($id_grupo == null){
+                          echo "No has sido asignado a un grupo";
+                        }else{ ?>
+                          Nombre del grupo:<?php echo $nombre_grupo;?> <br/>
+                          Codigo de acceso: <?php echo $codigo_acceso;?> <br/>
+                          Unidad Negocio: <?php echo $unidad_negocio;?> <br/>
+                          Plantel: <?php echo $nombre_plantel;?> <br/>
+                          Curso: <?php echo $nombre_curso;?> <br/>
+                        <?php }?>
+                      </div>
+                    </div>
+                   <br/>
 
 
-                
-                <?php
-                if($id_grupo == null){
-                  echo "No has sido asignado a un grupo";
-                }else{ ?>
-                  Nombre del grupo:<?php echo $nombre_grupo;?> <br/>
-                  Codigo de acceso: <?php echo $codigo_acceso;?> <br/>
-                  Unidad Negocio: <?php echo $unidad_negocio;?> <br/>
-                  Plantel: <?php echo $nombre_plantel;?> <br/>
-                  Curso: <?php echo $nombre_curso;?> <br/>
-                
-                <?php }?>
+                    <div class="card">
+                      <div class="card-body">
+                      <i class="fa fa-university" aria-hidden="true"> </i> <span class="font-weight-bold">Teachers</span>
+                        <table width="90%" cellspacing="8" cellpadding="4">
+                        <tr>
+                        <td width="40%">
+                        <?php if(isset($nombre_maestro)){?>
+                        Nombre del Teacher <?php echo $nombre_maestro ?></a>
+                        <?php }else{
+                        echo "No tiene Teacher asignado.";
+                        }?>
+                        </td>
+                        </tr>
+                        </table>
+                      </div>
+                    </div>
+                    <br/>
 
-              </div>
-            </div>
-            <br/>
 
-            <div class="card">
-                  <div class="card-body">
-                  <i class="fa fa-university" aria-hidden="true"> </i> <span class="font-weight-bold">Teachers</span>
-                  <table width="90%" cellspacing="8" cellpadding="4">
-                  <tr>
-                  <td width="40%">
-                <?php if(isset($nombre_maestro)){?>
-                  Nombre del Teacher <?php echo $nombre_maestro ?></a>
-                <?php }else{
-                  echo "No tiene Teacher asignado.";
-                }?>
-                  </td>
-                  </tr>
-                  </table>
-                  </div>
-                </div>
 
-            <br/>
             <?php if($id_grupo != null){ ?>
             <div class="card">
                   <div class="card-body">
@@ -155,13 +143,7 @@
                    $fechaInicioCiclo = $infoCiclo->fecha_inicio;
                    $fechaFinCiclo = $infoCiclo->fecha_fin;
                   
-                   /*
-                  echo "hora inicio de la base de datos".$hi."<br/>";
-                  echo "hora final de la base de datos".$hf."<br/>";
-                  echo "hora actual del servidor".$horaActual."<br/>";
-                  echo "fecha inicio del ciclo".$fechaInicioCiclo."<br/>";
-                  echo "fecha fin del ciclo".$fechaFinCiclo."<br/>";
-                  */
+
 
                    $evaluacionGrupo =  getGruposEvaluacion($id_grupo);
                    ?>
@@ -229,17 +211,34 @@
                 </div>
             <?php }?>
 
+
+            <br/>
+
+            <div class="card">
+              <div class="card-body">
+                <li class="list-group-item"><a class="" href="<?php echo site_url("Alumno/calificaciones/$id_grupo")?>">Calificaciones</a></li>
+              </div>
+            </div>
+
+
+
             </div>
           </div>
 
+
+
+
+
           </div>
           </div>
+
+
 
 
         </div>  
       </div>
     </div>
-
+    
 
       <div class="espacioDos"></div>
       <div class="espacioDos"></div>

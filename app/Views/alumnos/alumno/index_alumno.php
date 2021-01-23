@@ -74,28 +74,21 @@
                 <div style="padding-left:30px">
                 <div class="card">
                 <div class="card-body">
-
-
-Validar si tiene grupos asignados
-Si los tiene, recorrrer un for y en enlace redirigir a controllador con funcion detallesgrupo
+                <?php
+                $grupos = getGruposAsignadosPorUsuario($id_usuario);
+                if(empty($grupos)){
+                  echo "No tiene grupo asignado";
+                 }else{
+                  foreach($grupos as $fila){
+                  ?>
+                  <a href="<?php echo site_url("Alumno/detallesgrupo/$fila->id_grupo"); ?>"><?php echo $fila->nombre;?></a> 
+                  <?php
+                 }
+                }
+                ?>
               </div>
             </div>
             <br/>
-
-            <div class="card">
-                  <div class="card-body">
-                  <i class="fa fa-university" aria-hidden="true"> </i> <span class="font-weight-bold">Teachers</span>
-                  <table width="90%" cellspacing="8" cellpadding="4">
-                  <tr>
-                  <td width="40%">
-Obtener los maestros asignados del grupo
-                  </td>
-                  </tr>
-                  </table>
-                  </div>
-                </div>
-
-
 
             </div>
           </div>
