@@ -95,5 +95,15 @@ function GruposGetIddeCursoPorGrupo($idGrupo)
     $id_curso = $row->id_curso;
     return($id_curso);
 }
+function GruposObtenerNivelCursoCiclodeGrupo($idGrupo)
+{
+    $usermode = new Grupos_model($db);
+    $usermode->select('id,id_ciclo,id_curso,id_nivel');
+    $usermode->where('deleted',0);
+    $usermode->where('id',$idGrupo);
+    $resultado = $usermode->get();
+    $row = $resultado->getRow();
+    return($row);
+}
 
 ?>

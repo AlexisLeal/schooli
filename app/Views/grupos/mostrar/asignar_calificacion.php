@@ -123,7 +123,7 @@
                   
                     
                     
-                    ?>
+                    ?> 
                     <tr>
                     <td><?php echo $fila->nombre." ".$fila->apellido_paterno." ".$fila->apellido_materno;?></td>
                     <td><?php echo $calificacionesPreliminaresAsitencia;?></td>

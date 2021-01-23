@@ -218,19 +218,25 @@ class Alumno extends BaseController{
     public function calificaciones($idGrupo)
 	{
         if($this->session->get('login') && $this->session->get('roll') == 1){
-            $data['idGrupo'] = '';
-            $data['idNivel'] = '';
-            $data['idCurso'] = '';
-            $data['idCiclo'] = '';
-            $data[''] = '';
-            $data[] = '';
-            $data[] = '';
-            $data[] = '';
-            $data[] = '';
-            $data[] = '';
-            $data[] = '';
+            
+            $espicifacionesdeGrupo = GruposObtenerNivelCursoCiclodeGrupo($idGrupo);
+            $data['idGrupo'] = $idGrupo;
+            $data['idNivel'] = $espicifacionesdeGrupo->id_nivel;
+            $data['idCurso'] = $espicifacionesdeGrupo->id_curso;
+            $data['idCiclo'] = $espicifacionesdeGrupo->id_ciclo;
 
-            return view('alumnos/alumno/calificaciones');
+            $valoresPonderacion = CatalagoObtenerPonderaciondeCurso($espicifacionesdeGrupo->id_curso);
+            $info_ciclo = getCicloEspecifico($espicifacionesdeGrupo->id_curso);
+            $fechaInicio = $info_ciclo->fecha_inicio;
+            $fechaFin = $info_ciclo->fecha_fin;
+
+            $data['week_start']  = strtotime(date($fechaInicio));
+            $data['week_end']  = strtotime(date($fechaFin));
+            $data['ValordeCadaEjercio']  = $valoresPonderacion->valor_ejercicios/$valoresPonderacion->num_ejercicios;
+            $data['ValordeCadaExamen']  = $valoresPonderacion->valor_examenes/$valoresPonderacion->num_examenes;
+            $data['valorAsistDiaria']  = $valoresPonderacion->valor_asistencia/$valoresPonderacion->total_dias_laborales;
+
+            return view('alumnos/alumno/calificaciones',$data);
         }
     }
 

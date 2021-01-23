@@ -31,7 +31,7 @@ class Asignacion extends BaseController{
             $data['id_curso']  = $id_curso;
             $data['id_ciclo']  = $id_ciclo;
             $data['id_nivel']  = $id_nivel;
-
+            
             $valoresPonderacion = CatalagoObtenerPonderaciondeCurso($id_curso);
             $info_ciclo = getCicloEspecifico($id_ciclo);
             $fechaInicio = $info_ciclo->fecha_inicio;
