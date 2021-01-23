@@ -12,7 +12,9 @@ class Alumno extends BaseController{
     public function index()
 	{
         if($this->session->get('login') && $this->session->get('roll') == 1){
-            return view('alumnos/alumno/index_alumno');
+            $id_usuario= $this->session->get('id');
+            $data['id_usuario'] = $id_usuario;
+            return view('alumnos/alumno/index_alumno',$data);
         }else{
             return redirect()->to(site_url('Home/salir'));
         }
@@ -274,13 +276,13 @@ class Alumno extends BaseController{
                 $data['nombre_maestro'] = $maestro->nombre;
             }
 
-            return view('alumnos/alumno/index_alumno',$data);
+            return view('alumnos/alumno/detalles_grupo',$data);
 
         }else{
             $data['id_grupo'] = $row->id_grupo;
             $data['page_title'] = "Alumnos";	
 
-            return view('alumnos/alumno/index_alumno',$data);
+            return view('alumnos/alumno/detalles_grupo',$data);
         }  
     }
 }
