@@ -107,23 +107,31 @@ class Grupos extends BaseController{
                 ];
 
                 $usermodel = new Grupos_model();
-                $usermodel->insert($data);
+                try{
+                    $usermodel->insert($data);
+                    $idgrupo = $usermodel->insertID();
 
-                $idgrupo = $usermodel->insertID();
-
-               
-                try {
-                    GruposCrearTablaControlCursoCiclo($idgrupo,$codigo,$REQUEST->getPost('nivel'));
-                } catch (\Throwable $th) {
-
-                $data = ['Grupo'  => 'El Grupo no se agrego correctamente'];
-                $this->session->set($data,true);
-
-                return redirect()->to(site_url('Grupos/agregargrupo'));
+                }catch(\Exception $e){
+                    $data = ['Grupo'  => 'El Grupo no se agrego correctamente'];
+                    $this->session->set($data,true);
+                    return redirect()->to(site_url('Grupos/agregargrupo'));
                 }
+              
+                try {
+                    $nombredeTabla = GruposCrearTablaControlCursoCiclo($idgrupo,$codigo,$REQUEST->getPost('nivel'));
+                } catch (\Exception $th) {
+                    $query = "DELETE FROM grupos WHERE id = $idgrupo";
+                    $usermodel->query($query);
+                    $data = ['Grupo'  => 'El Grupo no se agrego correctamente'];
+                    $this->session->set($data,true);
+                    return redirect()->to(site_url('Grupos/agregargrupo'));
+                }
+                try{
+                    GruposInsertaDatosTablaControlCursoCiclo($nombredeTabla,$idgrupo,$REQUEST->getPost('curso'),
+                    $REQUEST->getPost('ciclo'),$REQUEST->getPost('nivel'));
+                }catch(\Exception $e){
 
-
-
+                }
 
 
                 if(!empty($REQUEST->getPost('maestro'))){

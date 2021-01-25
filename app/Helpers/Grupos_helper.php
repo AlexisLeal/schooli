@@ -119,9 +119,21 @@ function GruposCrearTablaControlCursoCiclo($idGrupo,$claveGrupo,$IdNivel){
         sesion INT NOT NULL,
         fecha DATE NOT NULL,
         dia INT NOT NULL,
-        PRIMARY KEY (id))";
-        
+        PRIMARY KEY (id))";   
         $db->query($query);
+        return $nombre;
+    }
+
+function GruposInsertaDatosTablaControlCursoCiclo($nombreTabla,$idGrupo,$idCurso,$idCiclo,$idNivel)
+    {
+        //FUNCION CRITICA 
+        $numerodeSesiones  = ObtenerSesionesparaCurso($idCurso);
+        $db = \Config\Database::connect();
+        for($sesion = 1;$sesion<=$numerodeSesiones;$sesion++){
+            $query = "INSERT INTO $nombreTabla (idgrupo,idcurso,idciclo,idnivel,numerosemana,sesion,fecha,dia) 
+            VALUES ($idGrupo,$idCurso,$idCiclo,$idNivel,'NUMEROSEMANA',$sesion,'FECHA','DIA')";
+            $db->query($query);
+        }
     }
 
    
