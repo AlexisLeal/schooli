@@ -111,6 +111,21 @@ class Grupos extends BaseController{
 
                 $idgrupo = $usermodel->insertID();
 
+                GruposCrearTablaControlCursoCiclo($idgrupo,$codigo,$REQUEST->getPost('nivel'));
+                try {
+                   
+                } catch (\Throwable $th) {
+
+                $data = ['Grupo'  => 'El Grupo no se agrego correctamente'];
+                $this->session->set($data,true);
+
+                return redirect()->to(site_url('Grupos/agregargrupo'));
+                }
+
+
+
+
+
                 if(!empty($REQUEST->getPost('maestro'))){
                     $usermodelTeacher = new Grupos_teachers_model();
                     if(!empty($REQUEST->getPost('maestro2'))){

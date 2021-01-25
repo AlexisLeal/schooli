@@ -105,5 +105,23 @@ function GruposObtenerNivelCursoCiclodeGrupo($idGrupo)
     $row = $resultado->getRow();
     return($row);
 }
+function GruposCrearTablaControlCursoCiclo($idGrupo,$claveGrupo,$IdNivel){
+    $db = \Config\Database::connect();
+    $query =  "CREATE TABLE grupo_$idGrupo._.cursociclo._.$claveGrupo._.$IdNivel(
+        id INT NOT NULL AUTO_INCREMENT,
+        idgrupo INT NOT NULL,
+        idcurso INT NOT NULL,
+        idciclo INT NOT NULL,
+        idnivel INT NOT NULL,
+        numerosemana INT NOT NULL,
+        sesion INT NOT NULL,
+        fecha DATE NOT NULL,
+        dia INT NOT NULL,
+        PRIMARY KEY (id))";
+        
+        $db->query($query);
+    }
+
+   
 
 ?>
