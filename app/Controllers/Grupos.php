@@ -111,9 +111,9 @@ class Grupos extends BaseController{
 
                 $idgrupo = $usermodel->insertID();
 
-                GruposCrearTablaControlCursoCiclo($idgrupo,$codigo,$REQUEST->getPost('nivel'));
+               
                 try {
-                   
+                    GruposCrearTablaControlCursoCiclo($idgrupo,$codigo,$REQUEST->getPost('nivel'));
                 } catch (\Throwable $th) {
 
                 $data = ['Grupo'  => 'El Grupo no se agrego correctamente'];

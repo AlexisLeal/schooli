@@ -107,7 +107,9 @@ function GruposObtenerNivelCursoCiclodeGrupo($idGrupo)
 }
 function GruposCrearTablaControlCursoCiclo($idGrupo,$claveGrupo,$IdNivel){
     $db = \Config\Database::connect();
-    $query =  "CREATE TABLE grupo_$idGrupo._.cursociclo._.$claveGrupo._.$IdNivel(
+    $claveGrupo = str_replace('-','_',$claveGrupo);
+    $nombre= "grupo_{$idGrupo}_cursociclo_clave_{$claveGrupo}_nivel_{$IdNivel}";
+    $query =  "CREATE TABLE $nombre ( 
         id INT NOT NULL AUTO_INCREMENT,
         idgrupo INT NOT NULL,
         idcurso INT NOT NULL,
