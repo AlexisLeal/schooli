@@ -2,6 +2,7 @@
 use  App\Models\Grupos_model;
 use  App\Models\Cursos_model;
 use  App\Models\Recursos_model;
+use  App\Models\Frecuencia_model;
 
 
 function getAllGrupos()
@@ -130,11 +131,13 @@ function GruposInsertaDatosTablaControlCursoCiclo($nombreTabla,$idGrupo,$idCurso
         $numerodeSesiones  = ObtenerSesionesparaCurso($idCurso);
         $db = \Config\Database::connect();
         $date=0;
+        $semanaCompleta = ObtenerDiasdeFrencueciaEspecifica(ObtenerIdFrecuenciaPorCurso($idCurso));
+        $diasdeFrecuancia = InsertarDiasenArreglodeFrecuencia($semanaCompleta);
         //Ponemos un arrgelo de fecha y dia 
         //Debemos poner el numero de sesiones por semana 
         //En este caso seria tres sesiones por semana
 
-        $numeroSesionesporSemanas = 3;
+        $numeroSesionesporSemanas = count($diasdeFrecuancia);
         $semana = 1; 
             for($sesion = 1;$sesion<=$numerodeSesiones;$sesion++){
                 if($sesion % $numeroSesionesporSemanas == 0){
@@ -154,6 +157,61 @@ function GruposInsertaDatosTablaControlCursoCiclo($nombreTabla,$idGrupo,$idCurso
 
        
     }
+
+    function ObtenerIdFrecuenciaPorCurso($id_curso)
+{
+    $usermode = new Cursos_model($db);
+    $usermode->select('id_frecuencia');
+    $usermode->where('deleted',0);
+    $usermode->where('id',$id_curso);
+    $resultado = $usermode->get();
+    $row = $resultado->getRow();
+    return($row->id_frecuencia);
+
+}
+
+function ObtenerDiasdeFrencueciaEspecifica($id_frencuencia)
+{
+    $usermode = new Frecuencia_model($db);
+    $usermode->select('lunes,martes,miercoles,jueves,viernes,sabado,domingo');
+    $usermode->where('deleted',0);
+    $usermode->where('id',$id_frencuencia);
+    $resultado = $usermode->get();
+    $row = $resultado->getRow();
+    return($row);
+
+}
+
+function InsertarDiasenArreglodeFrecuencia($diasFrecuencia){
+    $diasHablitadosFrecuencia = array();
+
+    switch (1){ 
+        case $diasFrecuencia->lunes:
+            $diasHablitadosFrecuencia[] = 'Lu';
+            break;
+        case $diasFrecuencia->martes:
+            $diasHablitadosFrecuencia[] = 'Ma';
+            break;
+        case $diasFrecuencia->miercoles:
+            $diasHablitadosFrecuencia[] = 'Mi';
+            break;
+        case $diasFrecuencia->jueves:
+            $diasHablitadosFrecuencia[] = 'Ju';
+            break;
+        case $diasFrecuencia->viernes:
+            $diasHablitadosFrecuencia[] = 'Vi';
+            break;
+        case $diasFrecuencia->sabado:
+            $diasHablitadosFrecuencia[] = 'Sa';
+            break;
+        case $diasFrecuencia->domingo:
+            $diasHablitadosFrecuencia[] = 'Do';
+            break;
+
+    }
+    return $diasHablitadosFrecuencia;
+
+}
 
    
 
