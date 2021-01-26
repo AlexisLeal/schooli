@@ -129,18 +129,25 @@ function GruposCrearTablaControlCursoCiclo($idGrupo,$claveGrupo,$IdNivel){
 function GruposInsertaDatosTablaControlCursoCiclo($nombreTabla,$idGrupo,$idCurso,$idCiclo,$idNivel)
     {
         //FUNCION CRITICA 
+        $infoCiclo = getCicloEspecifico($idCiclo);
+        $fechaInicioCiclo = $infoCiclo->fecha_inicio;
+        $fechaFinCiclo    = $infoCiclo->fecha_fin;
+
         $numerodeSesiones  = ObtenerSesionesparaCurso($idCurso);
         $db = \Config\Database::connect();
         $date=0;
         $aux = 0;
         $semanaCompleta = ObtenerDiasdeFrencueciaEspecifica(ObtenerIdFrecuenciaPorCurso($idCurso));
-        $diasdeFrecuancia = InsertarDiasenArreglodeFrecuencia($semanaCompleta);
+        $diasdeFrecuencia = InsertarDiasenArreglodeFrecuencia($semanaCompleta);
         //Ponemos un arrgelo de fecha y dia 
         //Debemos poner el numero de sesiones por semana 
         //En este caso seria tres sesiones por semana
 
-        $numeroSesionesporSemanas = count($diasdeFrecuancia);
+        $numeroSesionesporSemanas = count($diasdeFrecuencia);
         $semanaincremental = 1; 
+
+
+
             for($sesion = 1;$sesion<=$numerodeSesiones;$sesion++){
                 if($sesion % $numeroSesionesporSemanas == 0){
                     $semanaincremental++;
@@ -148,6 +155,22 @@ function GruposInsertaDatosTablaControlCursoCiclo($nombreTabla,$idGrupo,$idCurso
                 if(($aux+1) % $numeroSesionesporSemanas == 0){
                     $aux = 0;
                 }
+
+                $week_start = strtotime(date("$fechaInicioCiclo"));
+                $week_end   = strtotime(date("$fechaFinCiclo"));
+              
+                /** Inicia funcion GF */
+                for($i=$week_start; $i<=$week_end; $i+=86400){
+                  $fecha  = date("Y-m-d", $i);
+                  $dia    = substr($fecha,8,2);
+                  $mes    = substr($fecha,5,2);
+                  $ano    = substr($fecha,0,4); 
+                  $day    = date('l', strtotime($fecha));
+                  $semana = date('W',  mktime(0,0,0,$mes,$dia,$ano));
+                  $datos[]="$fecha,$semana,$day"; // arreglo normal que tiene todos los dias del ciclo con su num de semana y nombre de dia de la semana
+                }
+                /** Termina
+                 *  funcion GF */
                 $diasdeFrecuanciaBD = $diasdeFrecuancia[$aux];
                 $query = "INSERT INTO $nombreTabla (idgrupo,idcurso,idciclo,idnivel,numerosemanaincremental,numerosemanaanual,sesion,fecha,dia) 
                 VALUES ($idGrupo,$idCurso,$idCiclo,$idNivel,'$semanaincremental',numerosemanaanual,$sesion,'FECHA',$diasdeFrecuanciaBD";
@@ -161,6 +184,8 @@ function GruposInsertaDatosTablaControlCursoCiclo($nombreTabla,$idGrupo,$idCurso
                 $Dia[$date]
                 */
             }
+
+
 
        
     }
