@@ -129,11 +129,30 @@ function GruposInsertaDatosTablaControlCursoCiclo($nombreTabla,$idGrupo,$idCurso
         //FUNCION CRITICA 
         $numerodeSesiones  = ObtenerSesionesparaCurso($idCurso);
         $db = \Config\Database::connect();
-        for($sesion = 1;$sesion<=$numerodeSesiones;$sesion++){
-            $query = "INSERT INTO $nombreTabla (idgrupo,idcurso,idciclo,idnivel,numerosemana,sesion,fecha,dia) 
-            VALUES ($idGrupo,$idCurso,$idCiclo,$idNivel,'NUMEROSEMANA',$sesion,'FECHA','DIA')";
-            $db->query($query);
-        }
+        $date=0;
+        //Ponemos un arrgelo de fecha y dia 
+        //Debemos poner el numero de sesiones por semana 
+        //En este caso seria tres sesiones por semana
+
+        $numeroSesionesporSemanas = 3;
+        $semana = 1; 
+            for($sesion = 1;$sesion<=$numerodeSesiones;$sesion++){
+                if($sesion % $numeroSesionesporSemanas == 0){
+                    $semana++;
+                }
+                $query = "INSERT INTO $nombreTabla (idgrupo,idcurso,idciclo,idnivel,numerosemana,sesion,fecha,dia) 
+                VALUES ($idGrupo,$idCurso,$idCiclo,$idNivel,'$semana',$sesion,'FECHA','DIA')";
+                $db->query($query);
+                $date++;
+                /*
+                El la variable date estara recoriendo el arrego de fecha y dia 
+                ejemplo 
+                FECHA[$date] el date dira la posicion 
+                $Dia[$date]
+                */
+            }
+
+       
     }
 
    

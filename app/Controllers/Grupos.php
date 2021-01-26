@@ -194,12 +194,6 @@ class Grupos extends BaseController{
         }
     }
 
-
-
-
-
-
-
     public function eliminar()
     {
         if($this->session->get('login') && $this->session->get('roll') == 4){
