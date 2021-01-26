@@ -116,7 +116,8 @@ function GruposCrearTablaControlCursoCiclo($idGrupo,$claveGrupo,$IdNivel){
         idcurso INT NOT NULL,
         idciclo INT NOT NULL,
         idnivel INT NOT NULL,
-        numerosemana INT NOT NULL,
+        numerosemanaincremental INT NOT NULL,
+        numerosemanaanual INT NOT NULL,
         sesion INT NOT NULL,
         fecha DATE NOT NULL,
         dia INT NOT NULL,
@@ -131,6 +132,7 @@ function GruposInsertaDatosTablaControlCursoCiclo($nombreTabla,$idGrupo,$idCurso
         $numerodeSesiones  = ObtenerSesionesparaCurso($idCurso);
         $db = \Config\Database::connect();
         $date=0;
+        $aux = 0;
         $semanaCompleta = ObtenerDiasdeFrencueciaEspecifica(ObtenerIdFrecuenciaPorCurso($idCurso));
         $diasdeFrecuancia = InsertarDiasenArreglodeFrecuencia($semanaCompleta);
         //Ponemos un arrgelo de fecha y dia 
@@ -138,15 +140,20 @@ function GruposInsertaDatosTablaControlCursoCiclo($nombreTabla,$idGrupo,$idCurso
         //En este caso seria tres sesiones por semana
 
         $numeroSesionesporSemanas = count($diasdeFrecuancia);
-        $semana = 1; 
+        $semanaincremental = 1; 
             for($sesion = 1;$sesion<=$numerodeSesiones;$sesion++){
                 if($sesion % $numeroSesionesporSemanas == 0){
-                    $semana++;
+                    $semanaincremental++;
                 }
-                $query = "INSERT INTO $nombreTabla (idgrupo,idcurso,idciclo,idnivel,numerosemana,sesion,fecha,dia) 
-                VALUES ($idGrupo,$idCurso,$idCiclo,$idNivel,'$semana',$sesion,'FECHA','DIA')";
+                if(($aux+1) % $numeroSesionesporSemanas == 0){
+                    $aux = 0;
+                }
+                $diasdeFrecuanciaBD = $diasdeFrecuancia[$aux];
+                $query = "INSERT INTO $nombreTabla (idgrupo,idcurso,idciclo,idnivel,numerosemanaincremental,numerosemanaanual,sesion,fecha,dia) 
+                VALUES ($idGrupo,$idCurso,$idCiclo,$idNivel,'$semanaincremental',numerosemanaanual,$sesion,'FECHA',$diasdeFrecuanciaBD";
                 $db->query($query);
                 $date++;
+                $aux++;
                 /*
                 El la variable date estara recoriendo el arrego de fecha y dia 
                 ejemplo 
