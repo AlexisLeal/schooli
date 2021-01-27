@@ -159,7 +159,7 @@ function GruposInsertaDatosTablaControlCursoCiclo($nombreTabla,$idGrupo,$idCurso
                     exit();
                 */
                 }
-                if(($aux+1) % $numeroSesionesporSemanas == 0){
+                if($aux % $numeroSesionesporSemanas == 0){
                     $aux = 0;
                 }
 
