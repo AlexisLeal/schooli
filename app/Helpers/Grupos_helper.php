@@ -106,51 +106,24 @@ function GruposObtenerNivelCursoCiclodeGrupo($idGrupo)
     $row = $resultado->getRow();
     return($row);
 }
-function GruposCrearTablaControlCursoCiclo($idGrupo,$claveGrupo,$IdNivel){
-    $db = \Config\Database::connect();
-    $claveGrupo = str_replace('-','_',$claveGrupo);
-    $nombre= "grupo_{$idGrupo}_cursociclo_clave_{$claveGrupo}_nivel_{$IdNivel}";
-    $query =  "CREATE TABLE $nombre ( 
-        id INT NOT NULL AUTO_INCREMENT,
-        idgrupo INT NOT NULL,
-        idcurso INT NOT NULL,
-        idciclo INT NOT NULL,
-        idnivel INT NOT NULL,
-        numerosemanaincremental INT NOT NULL,
-        numerosemanaanual INT NOT NULL,
-        sesion INT NOT NULL,
-        fecha DATE NOT NULL,
-        dia INT NOT NULL,
-        PRIMARY KEY (id))";   
-        $db->query($query);
-        return $nombre;
-    }
 
-function GruposInsertaDatosTablaControlCursoCiclo($nombreTabla,$idGrupo,$idCurso,$idCiclo,$idNivel)
+
+function GruposInsertaDatosTablaControlCursoCiclo($nombre,$idGrupo,$id_curso,$id_ciclo,$idNivel)
     {
         //FUNCION CRITICA 
-        $infoCiclo = getCicloEspecifico($idCiclo);
+        $infoCiclo = getCicloEspecifico($id_ciclo);
         $fechaInicioCiclo = $infoCiclo->fecha_inicio;
         $fechaFinCiclo    = $infoCiclo->fecha_fin;
 
-        $numerodeSesiones  = ObtenerSesionesparaCurso($idCurso);
+        $numerodeSesiones  = ObtenerSesionesparaCurso($id_curso);
         $db = \Config\Database::connect();
         $date=0;
         $aux = 0;
-        $semanaCompleta = ObtenerDiasdeFrencueciaEspecifica(ObtenerIdFrecuenciaPorCurso($idCurso));
+        $semanaCompleta = ObtenerDiasdeFrencueciaEspecifica(ObtenerIdFrecuenciaPorCurso($id_curso));
         $diasdeFrecuencia = InsertarDiasenArreglodeFrecuencia($semanaCompleta);
-        //Ponemos un arrgelo de fecha y dia 
-        //Debemos poner el numero de sesiones por semana 
-        //En este caso seria tres sesiones por semana
-
+        $diasdeFrecuencia = 1;
         $numeroSesionesporSemanas = count($diasdeFrecuencia);
         $semanaincremental = 1; 
-
-            ##
-            # primer ciclo es de 12
-            # segundo ciclo es de aprox 30 dias
-            # tercer ciclo seria de la frecuencia, ejemplo 3 o 5 dias
-            ## 
 
             for($sesion = 1;$sesion<=$numerodeSesiones;$sesion++){
                 if($sesion % $numeroSesionesporSemanas == 0){
@@ -171,13 +144,9 @@ function GruposInsertaDatosTablaControlCursoCiclo($nombreTabla,$idGrupo,$idCurso
                   $ano    = substr($fecha,0,4); 
                   $day    = date('l', strtotime($fecha));
                   $semana = date('W',  mktime(0,0,0,$mes,$dia,$ano));
-                  $datos[]="$fecha,$semana,$day"; // arreglo normal que tiene todos los dias del ciclo con su num de semana y nombre de dia de la semana
+                  $datos[]="$fecha,$semana,$day"; 
                 }
-                /** Termina
-                 *  funcion GF */
-                // Recorrer arreglo de datos
-                    // Dentro de arreglo de datos, recorrer arreglo de frecuencia de dias que tiene 1
-                        //  Insertar el registro en la tabla
+
                         foreach($datos as $registros){
                            
                             //obtener cada campo
@@ -188,15 +157,13 @@ function GruposInsertaDatosTablaControlCursoCiclo($nombreTabla,$idGrupo,$idCurso
                                 //recorrer dias frecuanci y cuando el dia sea igual a $nombreDiaSemana, hacer el insert
                                 
                                 $diasdeFrecuanciaBD = $diasdeFrecuancia[$aux];
-                                $query = "INSERT INTO $nombreTabla (idgrupo,idcurso,idciclo,idnivel,numerosemanaincremental,numerosemanaanual,sesion,fecha,dia) 
-                                VALUES ($idGrupo,$idCurso,$idCiclo,$idNivel,'$semanaincremental',$numSemana,$sesion,'$fechaCiclo',$diasdeFrecuanciaBD";
+                                $query = "INSERT INTO $nombre (idgrupo,idcurso,idciclo,idnivel,numerosemanaincremental,numerosemanaanual,sesion,fecha,dia) 
+                                VALUES ($idGrupo,$id_curso,$id_ciclo,$idNivel,$semanaincremental,$numSemana,$sesion,'".$fechaCiclo."',$diasdeFrecuanciaBD";
                                 $db->query($query);
                                 $date++;
                                 $aux++;                               
 
                         }
-
-
                 /*
                 El la variable date estara recoriendo el arrego de fecha y dia 
                 ejemplo 
@@ -204,11 +171,37 @@ function GruposInsertaDatosTablaControlCursoCiclo($nombreTabla,$idGrupo,$idCurso
                 $Dia[$date]
                 */
             }
-
-
-
        
     }
+
+
+    function GruposCrearTablaControlCursoCiclo($idGrupo,$claveGrupo,$IdNivel){
+        $db = \Config\Database::connect();
+        $claveGrupo = str_replace('-','_',$claveGrupo);
+        $datosGrupo=GruposObtenerNivelCursoCiclodeGrupo($idGrupo);
+        $id_curso=$datosGrupo->id_curso;// obtener id de curso
+        $id_ciclo=$datosGrupo->id_ciclo;// obtener id de ciclo
+    
+        $nombre= "grupo_{$idGrupo}_cursociclo_clave_{$claveGrupo}_nivel_{$IdNivel}";
+        $query =  "CREATE TABLE $nombre ( 
+            id INT NOT NULL AUTO_INCREMENT,
+            idgrupo INT NOT NULL,
+            idcurso INT NOT NULL,
+            idciclo INT NOT NULL,
+            idnivel INT NOT NULL,
+            numerosemanaincremental INT NOT NULL,
+            numerosemanaanual INT NOT NULL,
+            sesion INT NOT NULL,
+            fecha DATE NOT NULL,
+            dia INT NOT NULL,
+            PRIMARY KEY (id))";   
+            $db->query($query);
+            
+            GruposInsertaDatosTablaControlCursoCiclo($nombre,$idGrupo,$id_curso,$id_ciclo,$idNivel);
+    
+            //return $nombre;
+        }
+
 
     function ObtenerIdFrecuenciaPorCurso($id_curso)
 {
