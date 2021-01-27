@@ -120,7 +120,7 @@ function GruposCrearTablaControlCursoCiclo($idGrupo,$claveGrupo,$IdNivel){
         numerosemanaanual INT,
         sesion INT NOT NULL,
         fecha DATE NOT NULL,
-        dia INT NOT NULL,
+        dia VARCHAR(10) NOT NULL,
         PRIMARY KEY (id))";   
         $db->query($query);
         return $nombre;
@@ -156,7 +156,7 @@ function GruposInsertaDatosTablaControlCursoCiclo($nombreTabla,$idGrupo,$idCurso
                 $diasdeFrecuanciaBD = $diasdeFrecuencia[$aux];
                 $fechaSesionesBD = $fechaSesiones[$date];
                 $query = "INSERT INTO $nombreTabla (idgrupo,idcurso,idciclo,idnivel,numerosemanaincremental,numerosemanaanual,sesion,fecha,dia) 
-                VALUES ($idGrupo,$idCurso,$idCiclo,$idNivel,$semanaincremental,2,$sesion,$fechaSesionesBD,$diasdeFrecuanciaBD";
+                VALUES ($idGrupo,$idCurso,$idCiclo,$idNivel,$semanaincremental,2,$sesion,'".$fechaSesionesBD."','".$diasdeFrecuanciaBD."')";
                 $db->query($query);
                 $date++;
                 $aux++;
