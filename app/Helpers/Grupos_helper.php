@@ -146,7 +146,11 @@ function GruposInsertaDatosTablaControlCursoCiclo($nombreTabla,$idGrupo,$idCurso
         $numeroSesionesporSemanas = count($diasdeFrecuencia);
         $semanaincremental = 1; 
 
-
+            ##
+            # primer ciclo es de 12
+            # segundo ciclo es de aprox 30 dias
+            # tercer ciclo seria de la frecuencia, ejemplo 3 o 5 dias
+            ## 
 
             for($sesion = 1;$sesion<=$numerodeSesiones;$sesion++){
                 if($sesion % $numeroSesionesporSemanas == 0){
@@ -181,20 +185,14 @@ function GruposInsertaDatosTablaControlCursoCiclo($nombreTabla,$idGrupo,$idCurso
                             $numSemana       = $registros[1];//es el numero de semana anual
                             $nombreDiaSemana = $registros[2];//es el nombre del día de la semana
 
-                            foreach($diasdeFrecuencia as $diasActivados){
                                 //recorrer dias frecuanci y cuando el dia sea igual a $nombreDiaSemana, hacer el insert
-
+                                
                                 $diasdeFrecuanciaBD = $diasdeFrecuancia[$aux];
                                 $query = "INSERT INTO $nombreTabla (idgrupo,idcurso,idciclo,idnivel,numerosemanaincremental,numerosemanaanual,sesion,fecha,dia) 
-                                VALUES ($idGrupo,$idCurso,$idCiclo,$idNivel,'$semanaincremental',numerosemanaanual,$sesion,'FECHA',$diasdeFrecuanciaBD";
+                                VALUES ($idGrupo,$idCurso,$idCiclo,$idNivel,'$semanaincremental',$numSemana,$sesion,'$fechaCiclo',$diasdeFrecuanciaBD";
                                 $db->query($query);
                                 $date++;
-                                $aux++;
-                                
-                            } // arreglo con los dias de la frecuencia, regresa Lu,Ma,Mi,Ju,Vi,Sa,Do
-
-                                 
-
+                                $aux++;                               
 
                         }
 
