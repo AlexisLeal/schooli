@@ -199,32 +199,33 @@ function ObtenerDiasdeFrencueciaEspecifica($id_frencuencia)
 }
 
 function InsertarDiasenArreglodeFrecuencia($diasFrecuencia){
-    $diasHablitadosFrecuencia = array();
+    
+    if($diasFrecuencia->lunes == 1){
+        $diasHablitadosFrecuencia[] = 'Monday';
+        
+    }
+    if($diasFrecuencia->martes == 1){
+        $diasHablitadosFrecuencia[] = 'Tuesday';
 
-    switch (1){ 
-        case $diasFrecuencia->lunes:
-            $diasHablitadosFrecuencia[] = 'Monday';
-            
-        case $diasFrecuencia->martes:
-            $diasHablitadosFrecuencia[] = 'Tuesday';
-            
-        case $diasFrecuencia->miercoles:
-            $diasHablitadosFrecuencia[] = 'Wednesday';
-            
-        case $diasFrecuencia->jueves:
-            $diasHablitadosFrecuencia[] = 'Thursday';
-            
-        case $diasFrecuencia->viernes:
-            $diasHablitadosFrecuencia[] = 'Friday';
-            
-        case $diasFrecuencia->sabado:
-            $diasHablitadosFrecuencia[] = 'Saturday';
-            
-        case $diasFrecuencia->domingo:
-            $diasHablitadosFrecuencia[] = 'Sunday';
-        default:
-        $diasHablitadosFrecuencia[] = 'erro';
+    }
+    if($diasFrecuencia->miercoles == 1){
+        $diasHablitadosFrecuencia[] = 'Wednesday';
 
+    }
+    if($diasFrecuencia->jueves == 1){
+        $diasHablitadosFrecuencia[] = 'Thursday';
+
+    }
+    if($diasFrecuencia->viernes == 1){
+        $diasHablitadosFrecuencia[] = 'Friday';
+
+    }
+    if($diasFrecuencia->sabado == 1){
+        $diasHablitadosFrecuencia[] = 'Saturday';
+
+    }
+    if($diasFrecuencia->domingo == 1){
+        $diasHablitadosFrecuencia[] = 'Sunday';
 
     }
     return $diasHablitadosFrecuencia;
