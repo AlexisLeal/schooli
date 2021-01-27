@@ -126,16 +126,10 @@ class Grupos extends BaseController{
                     $this->session->set($data,true);
                     return redirect()->to(site_url('Grupos/agregargrupo'));
                 }
-                GruposInsertaDatosTablaControlCursoCiclo($nombredeTabla,$idgrupo,$REQUEST->getPost('curso'),
-                $REQUEST->getPost('ciclo'),$REQUEST->getPost('nivel'));
                 try{
-                   
+                    GruposInsertaDatosTablaControlCursoCiclo($nombredeTabla,$idgrupo,$REQUEST->getPost('curso'),
+                    $REQUEST->getPost('ciclo'),$REQUEST->getPost('nivel'));
                 }catch(\Exception $e){
-                    $query = "DELETE FROM grupos WHERE id = $idgrupo";
-                    $usermodel->query($query);
-                    $data = ['Grupo'  => 'El Grupo no se agrego correctamente'];
-                    $this->session->set($data,true);
-                    return redirect()->to(site_url('Grupos/agregargrupo'));
 
                 }
 
