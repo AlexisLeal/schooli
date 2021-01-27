@@ -165,13 +165,13 @@ function GruposInsertaDatosTablaControlCursoCiclo($nombreTabla,$idGrupo,$idCurso
 
                 $diasdeFrecuanciaBD = $diasdeFrecuencia[$aux];
                 $fechaSesionesBD = $fechaSesiones[$date];
+                $semanaAnual = ObtenerSemanaAnual($fechaSesionesBD);
                 
                 $query = "INSERT INTO $nombreTabla (idgrupo,idcurso,idciclo,idnivel,numerosemanaincremental,numerosemanaanual,sesion,fecha,dia) 
-                VALUES ($idGrupo,$idCurso,$idCiclo,$idNivel,$semanaincremental,2,$sesion,'".$fechaSesionesBD."','".$diasdeFrecuanciaBD."')";
+                VALUES ($idGrupo,$idCurso,$idCiclo,$idNivel,$semanaincremental,$sesion,'".$semanaAnual."' ,'".$fechaSesionesBD."','".$diasdeFrecuanciaBD."')";
                 $db->query($query);
                 $date++;
                 $aux++;
-                $contador++;
                 /*
                 El la variable date estara recoriendo el arrego de fecha y dia 
                 ejemplo 
@@ -250,62 +250,34 @@ function ObetenerRangodeFechas($idCiclo){ //Funciona
 
     $week_start = strtotime(date("$fechaInicioCiclo"));
     $week_end   = strtotime(date("$fechaFinCiclo"));
-  
-    /** Inicia funcion GF */
+
     for($i=$week_start; $i<=$week_end; $i+=86400){
       $fecha  = date("Y-m-d", $i);
-      $dia    = substr($fecha,8,2);
-      $mes    = substr($fecha,5,2);
-      $ano    = substr($fecha,0,4); 
       $day    = date('l', strtotime($fecha));
-      $semana = date('W',  mktime(0,0,0,$mes,$dia,$ano));
       $fechaCompleta[$fecha] = $day;
-
-
-      //$datos[]="$fecha,$semana,$day"; // arreglo normal que tiene todos los dias del ciclo con su num de semana y nombre de dia de la semana
-
-       /* $fechas[] = $fecha;
-        $semanas[] = $semana;
-        $dias[] = $day;
-        */
     }
-   
-    /*
-    $fechaCompleta[0][] = $fechas;
-    $fechaCompleta[1][] = $semanas;
-    $fechaCompleta[2][] = $dias;
-    */
     return $fechaCompleta;
 
 }
 
 function ObtenerFechasparaSesiones($rangosFechas,$diasSesiones){ //Funciona
-      /** Termina
-                 *  funcion GF */
-                // Recorrer arreglo de datos
-                    // Dentro de arreglo de datos, recorrer arreglo de frecuencia de dias que tiene 1
-                        //  Insertar el registro en la tabla
     foreach($rangosFechas as $key => $value){
         foreach($diasSesiones as $dias){
             if($dias == $value){
                     $fechasSesiones[] = $key;
-                    //$semanaAnual[] = $$registros[1];
             }
-        }
-                         /*   echo "Hola";
-                            //obtener cada campo
-                            $fechaCiclo      = $registros[0];//es la fecha
-                            $numSemana       = $registros[1];//es el numero de semana anual
-                            $nombreDiaSemana = $registros[2];//es el nombre del día de la semana
-
-                            //$diasdeFrecuencia arreglo con los dias de la frecuencia, regresa Lu,Ma,Mi,Ju,Vi,Sa,Do
-
-                                 //recorrer dias frecuanci y cuando el dia sea igual a $nombreDiaSemana, hacer el insert
-                        */
+        }               
     } 
-
-   
     return $fechasSesiones;
+}
+
+function ObtenerSemanaAnual($fecha){
+    $dia    = substr($fecha,8,2);
+    $mes    = substr($fecha,5,2);
+    $anio    = substr($fecha,0,4); 
+
+    return $semanaanual = date('W',  mktime(0,0,0,$mes,$dia,$anio));
+
 }
 
    
