@@ -167,6 +167,15 @@ function GruposInsertaDatosTablaControlCursoCiclo($nombreTabla,$idGrupo,$idCurso
                 $fechaSesionesBD = $fechaSesiones[$date];
                 $semanaAnual = ObtenerSemanaAnual($fechaSesionesBD);
                 
+                
+                $dia    = substr($fechaSesionesBD,8,2);
+                $mes    = substr($fechaSesionesBD,5,2);
+                $ano    = substr($fechaSesionesBD,0,4); 
+
+                $semanaAnual = date('W',  mktime(0,0,0,$mes,$dia,$ano));
+
+
+
                 $query = "INSERT INTO $nombreTabla (idgrupo,idcurso,idciclo,idnivel,numerosemanaincremental,numerosemanaanual,sesion,fecha,dia) 
                 VALUES ($idGrupo,$idCurso,$idCiclo,$idNivel,$semanaincremental,$sesion,'".$semanaAnual."' ,'".$fechaSesionesBD."','".$diasdeFrecuanciaBD."')";
                 $db->query($query);
@@ -276,7 +285,7 @@ function ObtenerSemanaAnual($fecha){
     $mes    = substr($fecha,5,2);
     $anio    = substr($fecha,0,4); 
 
-    return $semanaanual = date('W',  mktime(0,0,0,$mes,$dia,$anio));
+    return date('W',  mktime(0,0,0,$mes,$dia,$anio));
 
 }
 
