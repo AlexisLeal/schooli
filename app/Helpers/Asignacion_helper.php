@@ -246,7 +246,7 @@ function getRecursosPorCursoNivelSession($IdCurso,$idnivel,$sesion)
     $usermodel->where('id_leccion',$sesion);
     $usermodel->where('deleted',0);	
     $resultado = $usermodel->get();
-    $rowArray = $resultado->getResult();
+    $rowArray = $resultado->getResult(); 
     return($rowArray);
 }
 

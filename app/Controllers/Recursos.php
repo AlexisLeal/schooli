@@ -230,9 +230,15 @@ class Recursos extends BaseController
                     $this->session->set($data, true);
                     return redirect()->to(site_url("Recursos/recursos"));
                 }
+               
                 return redirect()->to(site_url("Evaluaciones/panel_evaluaciones/$id_evaluacion"));
                 
             }
+                $data = [
+                'mensaje-recurso'  => 'El recurso se agrego correctamente correctamente',
+                'tipo-mensaje' => 'alert-success'
+                ];
+                $this->session->set($data, true);
                 return redirect()->to(site_url("Recursos/formrecursos"));
             }else{
                 return redirect()->to(site_url('Home/salir'));
