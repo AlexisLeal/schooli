@@ -119,18 +119,13 @@
                   <tr>
                   <td>
                    <?php 
-                   // Obtener el horario que tiene asignado este grupo
-                   $horario = AsignacionGetGrupoHorario($id_grupo);
+                    $horario = AsignacionGetGrupoHorario($id_grupo);
                     
                    $hi              = $horario->hora_inicio;
                    $hf              = $horario->hora_fin;
-                   
-                   // Obtener fecha del servidor
                    $horaActual      = date("H:i");
                    $day             = date("l");
                    $hoy             = date("Y-m-d");
-
-
                    $goahead=0;
                    $frecuenciaGrupo = AsignacionGetGrupoFrecuencia($id_grupo);
                    
@@ -141,7 +136,6 @@
                    if($day == "Thursday" && $frecuenciaGrupo->jueves==1){ $goahead=1; }
                    if($day == "Friday" && $frecuenciaGrupo->viernes==1){$goahead=1;}
                    if($day == "Saturday" && $frecuenciaGrupo->sabado==1){$goahead=1;}
-                   
                    $id_ciclo_grupo=getCicloGrupoEspecifico($id_grupo);
                    $id_ciclo = $id_ciclo_grupo->id_ciclo;
                    $infoCiclo = getCicloEspecifico($id_ciclo);
