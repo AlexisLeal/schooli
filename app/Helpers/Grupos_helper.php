@@ -130,7 +130,6 @@ function GruposInsertaDatosTablaControlCursoCiclo($nombreTabla,$idGrupo,$idCurso
     {
         $db = \Config\Database::connect();
         $date = 0;
-        $aux = 0;
         $numerodeSesiones  = ObtenerSesionesparaCurso($idCurso);
         $semanaCompleta = ObtenerDiasdeFrencueciaEspecifica(ObtenerIdFrecuenciaPorCurso($idCurso));
         $diasdeFrecuencia = InsertarDiasenArreglodeFrecuencia($semanaCompleta);
@@ -145,19 +144,15 @@ function GruposInsertaDatosTablaControlCursoCiclo($nombreTabla,$idGrupo,$idCurso
                 if( ($sesion-1) % $numeroSesionesporSemanas == 0 && $sesion != 1){
                     $semanaincremental++;
                 }
-                if($aux % $numeroSesionesporSemanas == 0){
-                    $aux = 0;
-                }
-
-                $diasdeFrecuanciaBD = $diasdeFrecuencia[$aux];
+               
                 $fechaSesionesBD = $fechaSesiones[$date];
                 $semanaAnual = ObtenerSemanaAnual($fechaSesionesBD);
+                $diasdeFrecuanciaBD = ObtenerDia($fechaSesionesBD);
                 
                 $query = "INSERT INTO $nombreTabla (idgrupo,idcurso,idciclo,idnivel,numerosemanaincremental,numerosemanaanual,sesion,fecha,dia) 
                 VALUES ($idGrupo,$idCurso,$idCiclo,$idNivel,$semanaincremental,'".$semanaAnual."',$sesion ,'".$fechaSesionesBD."','".$diasdeFrecuanciaBD."')";
                 $db->query($query);
                 $date++;
-                $aux++;
             }
 
             
@@ -257,6 +252,10 @@ function ObtenerSemanaAnual($fecha){
     $anio    = substr($fecha,0,4); 
 
     return date('W',  mktime(0,0,0,$mes,$dia,$anio));
+
+}
+function ObtenerDia($fecha){
+    return date('l', strtotime($fecha));
 
 }
 
