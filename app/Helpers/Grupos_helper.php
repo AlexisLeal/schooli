@@ -128,18 +128,12 @@ function GruposCrearTablaControlCursoCiclo($idGrupo,$claveGrupo,$IdNivel){
 
 function GruposInsertaDatosTablaControlCursoCiclo($nombreTabla,$idGrupo,$idCurso,$idCiclo,$idNivel)
     {
-        //FUNCION CRITICA 
-       
-        $numerodeSesiones  = ObtenerSesionesparaCurso($idCurso);
         $db = \Config\Database::connect();
-        $date=0;
+        $date = 0;
         $aux = 0;
+        $numerodeSesiones  = ObtenerSesionesparaCurso($idCurso);
         $semanaCompleta = ObtenerDiasdeFrencueciaEspecifica(ObtenerIdFrecuenciaPorCurso($idCurso));
         $diasdeFrecuencia = InsertarDiasenArreglodeFrecuencia($semanaCompleta);
-        //Ponemos un arrgelo de fecha y dia 
-        //Debemos poner el numero de sesiones por semana 
-        //En este caso seria tres sesiones por semana
-
         $numeroSesionesporSemanas = count($diasdeFrecuencia);
        
     
@@ -147,17 +141,9 @@ function GruposInsertaDatosTablaControlCursoCiclo($nombreTabla,$idGrupo,$idCurso
         $rangoFechas = ObetenerRangodeFechas($idCiclo); 
         $fechaSesiones = ObtenerFechasparaSesiones($rangoFechas,$diasdeFrecuencia);
 
-        $contador = 1;
             for($sesion = 1;$sesion<=$numerodeSesiones;$sesion++){
                 if( ($sesion-1) % $numeroSesionesporSemanas == 0 && $sesion != 1){
                     $semanaincremental++;
-                    /*
-                    
-                    echo $contador;
-                    echo $sesion;
-                    var_dump($semanaincremental);
-                    exit();
-                */
                 }
                 if($aux % $numeroSesionesporSemanas == 0){
                     $aux = 0;
@@ -167,34 +153,19 @@ function GruposInsertaDatosTablaControlCursoCiclo($nombreTabla,$idGrupo,$idCurso
                 $fechaSesionesBD = $fechaSesiones[$date];
                 $semanaAnual = ObtenerSemanaAnual($fechaSesionesBD);
                 
-                
-                $dia    = substr($fechaSesionesBD,8,2);
-                $mes    = substr($fechaSesionesBD,5,2);
-                $ano    = substr($fechaSesionesBD,0,4); 
-
-                $semanaAnual = date('W',  mktime(0,0,0,$mes,$dia,$ano));
-
-
-
                 $query = "INSERT INTO $nombreTabla (idgrupo,idcurso,idciclo,idnivel,numerosemanaincremental,numerosemanaanual,sesion,fecha,dia) 
-                VALUES ($idGrupo,$idCurso,$idCiclo,$idNivel,$semanaincremental,$sesion,'".$semanaAnual."' ,'".$fechaSesionesBD."','".$diasdeFrecuanciaBD."')";
+                VALUES ($idGrupo,$idCurso,$idCiclo,$idNivel,$semanaincremental,'".$semanaAnual."',$sesion ,'".$fechaSesionesBD."','".$diasdeFrecuanciaBD."')";
                 $db->query($query);
                 $date++;
                 $aux++;
-                /*
-                El la variable date estara recoriendo el arrego de fecha y dia 
-                ejemplo 
-                FECHA[$date] el date dira la posicion 
-                $Dia[$date]
-                */
             }
 
-
+            
 
        
     }
 
-    function ObtenerIdFrecuenciaPorCurso($id_curso) //Funciona
+    function ObtenerIdFrecuenciaPorCurso($id_curso)
 {
     $usermode = new Cursos_model($db);
     $usermode->select('id_frecuencia');
@@ -206,7 +177,7 @@ function GruposInsertaDatosTablaControlCursoCiclo($nombreTabla,$idGrupo,$idCurso
 
 }
 
-function ObtenerDiasdeFrencueciaEspecifica($id_frencuencia) //Funciona
+function ObtenerDiasdeFrencueciaEspecifica($id_frencuencia)
 {
     $usermode = new Frecuencia_model($db);
     $usermode->select('lunes,martes,miercoles,jueves,viernes,sabado,domingo');
@@ -218,7 +189,7 @@ function ObtenerDiasdeFrencueciaEspecifica($id_frencuencia) //Funciona
 
 }
 
-function InsertarDiasenArreglodeFrecuencia($diasFrecuencia){ //Funciona
+function InsertarDiasenArreglodeFrecuencia($diasFrecuencia){
 
     if($diasFrecuencia->lunes == 1){
         $diasHablitadosFrecuencia[] = 'Monday';
@@ -252,7 +223,7 @@ function InsertarDiasenArreglodeFrecuencia($diasFrecuencia){ //Funciona
 
 }
 
-function ObetenerRangodeFechas($idCiclo){ //Funciona
+function ObetenerRangodeFechas($idCiclo){ 
     $infoCiclo = getCicloEspecifico($idCiclo);
     $fechaInicioCiclo = $infoCiclo->fecha_inicio;
     $fechaFinCiclo    = $infoCiclo->fecha_fin;
@@ -269,7 +240,7 @@ function ObetenerRangodeFechas($idCiclo){ //Funciona
 
 }
 
-function ObtenerFechasparaSesiones($rangosFechas,$diasSesiones){ //Funciona
+function ObtenerFechasparaSesiones($rangosFechas,$diasSesiones){
     foreach($rangosFechas as $key => $value){
         foreach($diasSesiones as $dias){
             if($dias == $value){
