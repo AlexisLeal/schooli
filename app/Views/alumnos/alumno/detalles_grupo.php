@@ -148,10 +148,18 @@
 
                    $fechaInicioCiclo = $infoCiclo->fecha_inicio;
                    $fechaFinCiclo = $infoCiclo->fecha_fin;
+                   $fechaHoy = date("Y-m-d");
+                   if($fechaHoy >= $fechaInicioCiclo && $fechaHoy <= $fechaFinCiclo){
+
+                   
+                  
+                   $liberar = ObtenerTablaCursoCiclo($id_grupo,$codigo_acceso,$id_nivel,$fechaHoy);
+
+                   //Poner validacion de los rangos con el ciclo 
                   
 
 
-                   $evaluacionGrupo =  getRecursosPorCurso($id_curso);
+                   $evaluacionGrupo =  getRecursosPorCursoNivelSession($id_curso,$id_nivel,$liberar->sesion); 
                    ?>
                   <table width="80%" le cellspacing="2" cellpadding="3">
                   <tr><td></td><td></td><td></td></tr>
@@ -198,6 +206,7 @@
                     <?php
                     }
                   }
+                }
                    ?>    
              
 

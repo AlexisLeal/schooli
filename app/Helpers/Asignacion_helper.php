@@ -1,8 +1,7 @@
 <?php 
 use  App\Models\Recursos_model;
 use  App\Models\Asistencias;
-use  App\Models\Grupos_model;
-use  App\Models\Grupos_alumnos_model;
+
 function getGrupoMaestros($id_grupo)
 {
     $db = \Config\Database::connect();
@@ -238,6 +237,18 @@ function getRecursosPorCurso($IdCurso)
     $rowArray = $resultado->getResult();
     return($rowArray);
 }
+function getRecursosPorCursoNivelSession($IdCurso,$idnivel,$sesion)
+{
+    $usermodel = new Recursos_model($db);
+    $usermodel->select('id,nombre,extencion,tipo_archivo,tipo_recurso,id_evaluacion,ruta');
+    $usermodel->where('id_curso',$IdCurso);
+    $usermodel->where('id_nivel',$idnivel);
+    $usermodel->where('id_leccion',$sesion);
+    $usermodel->where('deleted',0);	
+    $resultado = $usermodel->get();
+    $rowArray = $resultado->getResult();
+    return($rowArray);
+}
 
 function getAsistenciaGrupo($IdUsuario,$IdGrupo)
 {
@@ -274,5 +285,20 @@ function getGruposAsignadosPorUsuario($id_usuario)
     $query = $usermodel->get();
     $resultado = $query->getResult();
     return($resultado);
+}
+function ObtenerTablaCursoCiclo($idGrupo,$claveGrupo,$idNivel,$fecha)
+{
+    $db = \Config\Database::connect();
+    $claveGrupo = str_replace('-','_',$claveGrupo);
+    $nombre= "grupo_{$idGrupo}_cursociclo_clave_{$claveGrupo}_nivel_{$idNivel}";
+    $usermodel = $db->table($nombre);
+    $usermodel->select('numerosemanaincremental,numerosemanaanual,sesion,fecha,dia');
+    $usermodel->where('idgrupo', $idGrupo);
+    $usermodel->where('idnivel',$idNivel);
+    $usermodel->where('fecha',$fecha);
+    $query = $usermodel->get();
+    $resultado = $query->getRow();
+    return($resultado);
+    
 }
 ?> 
