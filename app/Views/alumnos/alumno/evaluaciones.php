@@ -99,7 +99,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-6">
-            <p class="mt-5 mb-3 text-muted text-center"> © <span class="brain-foot">Brain</span> <?php echo date("Y");?></p>
+            <p class="mt-5 mb-3 text-muted text-center"> © <span class="brain-foot">LMS INBI</span> <?php echo date("Y");?></p>
           </div>
           <div class="col-md-3">
           <ul class="footer">

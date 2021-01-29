@@ -53,7 +53,7 @@
             </div>
 
             <button class="btn btn-md btn-block btn-login" name="login" type="submit">Entrar</button>
-            <p class="mt-5 mb-3 text-muted text-center"> © Brain <?php echo date("Y");?></p>
+            <p class="mt-5 mb-3 text-muted text-center"> © LMS INBI <?php echo date("Y");?></p>
           </form>
         </div>
       </div>
