@@ -67,11 +67,7 @@
 
         <div class="card">
           <div class="card-body">
-            <?php
-            //idCurso
-            //idNivel
-            //sesion
-            ?>
+
             
             <form action="<?php echo site_url('Recursos/ActualizarRecurso'); ?>" method="post">
             <table width="70%" cellspacing="6" cellpadding="6">

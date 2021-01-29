@@ -88,54 +88,17 @@
                   $a[$fila->id]=$fila->valor;
                 }
 
-                /*** Obtener los dias que dura el  ciclo fecha de inicio, fecha final y fecha inicio exclusion y fecha final exclusion (Parametro id_ciclo*/
+                
                 $info_ciclo = getCicloEspecifico($id_ciclo);
-                //echo "Nombre del ciclo:".$info_ciclo->nombre."<br/>";
-                /*
-                echo "fecha inicio del ciclo:".$info_ciclo->fecha_inicio."<br/>";
-                echo "fecha final del ciclo:".$info_ciclo->fecha_fin."<br/>";
-                echo "fecha inicio exclusion del ciclo:".$info_ciclo->fecha_inicio_excluir."<br/>";
-                echo "fecha final exclusion del ciclo:".$info_ciclo->fecha_fin_excluir."<br/>";*/
 
-                /** Obtener datos de la frecuencia,el id de la frecuenci esta en la tabla del curso Ok*/
                 $curso_especifico = getCursoEspecifico($id_curso);
                 $id_frecuencia = $curso_especifico->id_frecuencia;
-                /*echo "id de la frecuencia es".$id_frecuencia."<br/>";*/
 
-                /*** Obtenemos los datos de la frecuencia */
                 $infoFrecuencia = getFrencueciaEspecifica($id_frecuencia);
-                /*
-                echo "id de frecuenciaaaaaaa:".$infoFrecuencia->id."<br/>";
-                echo "nombre:".$infoFrecuencia->nombre."<br/>";
-                echo "id modalidad:".$infoFrecuencia->id_modalidad."<br/>";
-                echo "lunes:".$infoFrecuencia->lunes."<br/>";
-                echo "martes:".$infoFrecuencia->martes."<br/>";
-                echo "miercoles:".$infoFrecuencia->miercoles."<br/>";
-                echo "jueves:".$infoFrecuencia->jueves."<br/>";
-                echo "viernes:".$infoFrecuencia->viernes."<br/>";
-                echo "sabado:".$infoFrecuencia->sabado."<br/>";
-                echo "domingo :".$infoFrecuencia->domingo."<br/>";
-                echo "estatus:".$infoFrecuencia->estatus."<br/>";*/
 
-                /*** Obtenemos valores de la ponderación */
                 $valoresPonderacion = CatalagoObtenerPonderaciondeCurso($id_curso);
                 ?>
-                <!--
-                <table>
-                <tr>
-                  <td>Ponderacion</td><td></td><td></td><td></td><td></td><td></td>
-                </tr>
-                <tr>
-                  <td>Total de dias laborales:</td><td>< ?php echo $valoresPonderacion->total_dias_laborales;?></td>
-                  <td>Número de exámenes:</td><td>< ?php echo $valoresPonderacion->num_examenes;?></td>
-                  <td>Número de ejercicios:</td><td>< ?php echo $valoresPonderacion->num_ejercicios;?></td>
-                </tr>
-                <tr>
-                  <td>Valor de asistencia:</td><td>< ?php echo $valoresPonderacion->valor_asistencia;?></td>
-                  <td>Valor de ejercicios:</td><td>< ?php echo $valoresPonderacion->valor_ejercicios;?></td>
-                  <td>Valor de examenes:</td><td>< ?php echo $valoresPonderacion->valor_examenes;?></td>
-                </tr>
-                </table>-->
+
               <br/>
               <br/>
 
@@ -216,11 +179,6 @@
                 }
                 ?>
 
-                <!-- Para obtener la asitencia se debe obtener dias totales del curso entre el valor total, 
-                // y ese resultado multipllicarlo por lo dias que asisitio -->
-                
-                <!-- Para obtener los examenes se debe obtener el valor total de los examanes entre la cantidad de examenes, y ese resultado se multiplica por la cantidad de la calificacion del examen -->
-                <!-- Para obtener los ejercicios se debe obtener el valor total de los ejercicio entre la cantidad de ejercicios, y ese resultado se multiplica por la cantidad de la calificacion del ejercicio -->
 
                 </div>
               </div>

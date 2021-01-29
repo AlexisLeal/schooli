@@ -182,7 +182,6 @@
                           <input type="hidden" name="idEvaluacion" id="idEvaluacion" value="<?php echo $idEvaluacion; ?>">
                           <input type="hidden" name="idtipoPregunta" id="idtipoPregunta" value="<?php echo $fila->idTipoPregunta; ?>">
                           <input type="hidden" name="idPregunta" id="idPregunta" value="<?php echo $fila->id; ?>">
-                          <!-- <input type="hidden" name="num_pregunta" id="num_pregunta" value="< ?php echo $fila->num_pregunta;?>"> -->
                           <button type="submit" name="submitAP" id="submitAP"><i class="fa fa-trash-o" aria-hidden="true"></i></i></span></button>
                         </form>
 
@@ -191,7 +190,7 @@
 
 
                     <?php
-                    //$idPregunta = $fila->num_pregunta;
+                    
                     $idPregunta = $fila->id;
                     switch ($fila->idTipoPregunta) {
                       case 1: // Pregunta abierta

@@ -82,31 +82,7 @@
             <br/>
             <form action="<?php echo site_url('Calificaciones/ObtenerCalificacionesparaKardex');?>" method="post">
 
-                <?php
-               
-               /*
-                $curso_especifico   = getCursoEspecifico($id_curso);
-                $id_frecuencia      = $curso_especifico->id_frecuencia;
-                $infoFrecuencia     = getFrencueciaEspecifica($id_frecuencia);
-                
-                $valoresPonderacion = CatalagoObtenerPonderaciondeCurso($id_curso);
-                $info_ciclo         = getCicloEspecifico($id_ciclo);
-                $fechaInicio        = $info_ciclo->fecha_inicio;
-                $fechaFin           = $info_ciclo->fecha_fin;
 
-                $week_start         = strtotime(date($fechaInicio));
-                $week_end           = strtotime(date($fechaFin));
-                $ValordeCadaEjercio = $valoresPonderacion->valor_ejercicios/$valoresPonderacion->num_ejercicios;
-                $ValordeCadaExamen = $valoresPonderacion->valor_examenes/$valoresPonderacion->num_examenes;
-                $valorAsistDiaria  = $valoresPonderacion->valor_asistencia/$valoresPonderacion->total_dias_laborales;
-                */
-
-              /*  
-                if(!empty($info_ciclo->fecha_inicio_excluir)){
-                  $info_ciclo->fecha_inicio_excluir;
-                  $info_ciclo->fecha_fin_excluir;
-                }*/
-                ?>
               <div class="card">
                 <div class="card-body">
                 <table width="100%">

@@ -105,26 +105,7 @@
                       <i class="fa fa-pencil-square-o fa-1x" aria-hidden="true"></i>
                     </a>
                   </td>
-                  <!--<td class="text-center">
-                  < ?php
-                  $resultadoValorAsistencia = getValorAsistenciaFrecuencia($fila->id);
-                  if(empty($resultadoValorAsistencia)){
-                    
-                    ?>
-                    <a href="< ?php echo site_url("/Frecuencia/asignarValorAsistenciaFrecuencia/$fila->id") ?>">
-                      <i class="fa fa-plus-square-o" aria-hidden="true"></i>
-                    </a>
-                  < ?php
-                  }else{
-                   ?>
-                    <a href="< ?php echo site_url("/Frecuencia/vervaloresasistencia/$fila->id") ?>">
-                      Valores asignados
-                    </a>
-                    < ?php
-                  }
-                  ?>
-
-                  </td>-->
+  
               </tr>
             <?php
                 }

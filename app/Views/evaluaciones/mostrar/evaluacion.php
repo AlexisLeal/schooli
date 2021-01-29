@@ -177,15 +177,7 @@
                       font-weight: bold;
                     }
                   </style>
-                  <!--
-                <table width="100%">
-                  <tr>
-                  <td width="20%">< ?php echo empty($pregunta_multiple->valor1) ? 0 : "<span class='pers'>".$pregunta_multiple->valor1."</span>"?> <input class="form-check-input" type="radio" name="opcionmultiple" id="" value="1"></td>
-                  <td width="20%">< php echo empty($pregunta_multiple->valor2) ? 0 : $pregunta_multiple->valor2;?> <input class="form-check-input" type="radio" name="opcionmultiple" id="" value="2"></td>
-                  <td width="20%">< ?php echo empty($pregunta_multiple->valor3) ? 0 : $pregunta_multiple->valor3;?> <input class="form-check-input" type="radio" name="opcionmultiple" id="" value="3"></td>
-                  <td width="20%">< ?php echo empty($pregunta_multiple->valor4) ? 0 : $pregunta_multiple->valor4;?> <input class="form-check-input" type="radio" name="opcionmultiple" id="" value="4"></td>
-                </tr>
-              </table>-->
+
               
                   <br />
                   <table width="100%">
@@ -293,7 +285,7 @@
             </div>
 
             <div class="col-md-8 text-center">
-              <!--<button class="btn btn-primary" type="submit" name="" id="">Guardar</button>-->
+            
             </div>
 
             <div class="col-md-2 text-center">
@@ -306,10 +298,7 @@
       </div> <!-- Termina el Div del contenido de enmedio-->
 
 
-      <!--
-          <div class="col-md-3">
-           Con tenido de lado derecho. Con tenido de lado derecho.Con tenido de lado derecho.Con tenido de lado derecho.Con tenido de lado derecho.Con tenido de lado derecho.Con tenido de lado derecho.Con tenido de lado derecho.Con tenido de lado derecho.
-          </div>-->
+
     </div>
   </div>
 </div>

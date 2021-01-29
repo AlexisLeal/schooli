@@ -96,9 +96,7 @@
           <a href="<?php echo site_url('/Evaluaciones/index'); ?>">Tipos de Evaluaciones </a><br />
           <a href="<?php echo site_url('/Evaluaciones/tipo_evaluacion/1'); ?>">Niveles.</a><br />
           <a href="#">Lecciones.</a><br />
-          <!-- validar si hay una variable get de niveles, y colocar, de lo conttarrio
-            desabilitar el nelace a Lecciones -->
-
+  
 
           Crear una evaluación.
           <form action="<?php echo site_url('Evaluaciones/insertar_evaluacion'); ?>" method="post">
@@ -138,7 +136,7 @@
               <select class="form-control form-control-sm" name="tipoEvaluacion" id="tipoEvaluacion" required="">
                 <option value="">Seleccione una opción</option>
                 <?php
-                // Esta funcion se encuentra en la carpeta helpers en el archivo llamado operaciones
+                
                 foreach (getTipoEvaluacion() as $fila) {
                 ?>
                   <option value="<?php echo $fila->id; ?>"> <?php echo $fila->nombre; ?> </option>
@@ -155,7 +153,7 @@
               <select class="form-control form-control-sm" name="categoriaEvaluacion" id="categoriaEvaluacion" required="">
                 <option value="">Seleccione una opción</option>
                 <?php
-                // Esta funcion se encuentra en la carpeta helpers en el archivo llamado operaciones
+                
                 foreach (getCategoriaEvaluacion() as $fila) {
                 ?>
                   <option value="<?php echo $fila->id; ?>"> <?php echo $fila->nombre; ?> </option>

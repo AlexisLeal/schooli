@@ -92,12 +92,7 @@
           <div class="card-body">
 
             <hr class="linea" />
-              <style>
-              .nombreGrupo {
-              color: #283747;
-              font-weight:bold;
-              }
-              </style>
+
             <?php foreach (getAllGrupos() as $fila) { ?>
               <div class="niveles" style="width:230px;height:100px;background-image:url('<?php echo base_url($fila->url_imagen) ?>');float:left;margin-left:10px;margin-right:10px;margin-bottom:50px;padding-top:5px;padding-bottom:5px;padding-left:10px;">  
               

@@ -125,13 +125,7 @@
                 <div class="col">
 
 
-              <div class="espacioUno"></div>
-
-              <div class="espacioUno"></div>
-
-              <div class="espacioUno"></div>
-
-              <div class="espacioUno"></div>
+                <div class="espacioAmplio"></div>
 
 
 

@@ -134,17 +134,7 @@
 
 
 
-            <div class="espacioUno"></div>
-
-            <div class="espacioUno"></div>
-
-            <div class="espacioUno"></div>
-
-            <div class="espacioUno"></div>
-
-
-
-            <div class="espacioUno"></div>
+            <div class="espacioAmplio"></div>
             </form>
 
           </div>

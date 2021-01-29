@@ -96,7 +96,7 @@
               $nombreEvaluaciones = getTipoEvaluacionEspecifico($fila->tipo_evaluacion);
               $valor = getValorTotalPreguntas($fila->id);
               $usuarioCreo = getUsuarioCreo($fila->usuario_creo);
-              //MUY IMPORTANTE ESTE FUNCION 
+              
                 ?>
                 <tr>
                 <td><?php echo $fila->id;?></td>
@@ -112,22 +112,15 @@
                 ?></td>
                 <td><?php echo getTotalPreguntas($fila->id);?></td>
                 <td><?php echo getValorTotalPreguntas($fila->id);?></td>
-              <!--  <td>< ?php if($fila->estado == 1){
-                  echo "Activo";
-                  $estado = "Activo";
-                }else{
-                  echo "Inactivo";
-                  $estado = "Inactivo";
-                } ?></td>
-              -->
+
                 <td class="text-center">
-                <!--CAMBIAR A LINK-->
+                
                 <a href="<?php echo site_url("Preguntas/verEvaluacion/$fila->id") ?>">
                 <i class="fa fa-file-text-o fa-1x" aria-hidden="true"></i>
                 </a>
                 </td>
                 
-                <!--CAMBIAR A LINK -->
+                
                 <td class="text-center">
                 <a href="<?php echo site_url("Preguntas/editarEvaluacion/$fila->id") ?>">
                 <i class="fa fa-pencil-square-o fa-1x" aria-hidden="true"></i>

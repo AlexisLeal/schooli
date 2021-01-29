@@ -198,29 +198,7 @@
             </div>
           </div>
 
-          <div style="padding-left:30px">
-            <!--
-              < ?php foreach(getMateriales($id_grupo) as $fila){?>
-                  nombre: < ?php echo $fila->nombre; ?> <br>
-              < ?php 
-              }
-              ?>
-              <br>
-              < ?php foreach(getMiembros($id_grupo) as $fila){?>
-                nombre del alummno < ?php echo $fila->nombre?> <br>
-                < ?php }?>
-              
-                < ?php foreach(getMiembrosDisponibles($id_unidad_negocio,$id_plantel) as $fila){ ?>
-                Nombre de alumnos disponibles < ?php echo $fila->nombre ?> <br>
-                < ?php } ?>
-                <br>
 
-                < ?php foreach(getMiembrosOtrosGrupos($id_grupo,$id_unidad_negocio,$id_plantel) as $fila){ ?>
-                Nombre de alumnos de otro grupos < ?php echo $fila->nombre ?> No.Grupo < ?php echo $fila->id_grupo?> <br>
-                < ?php } ?>
-                ?>
-                -->
-          </div>
 
         </div>
       </div>

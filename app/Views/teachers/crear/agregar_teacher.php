@@ -240,19 +240,7 @@
      
  
 <script>
-  /*
-$('#unidad_negocio').change(function () {
-  var id_unidad = $(this).val();
-    $.ajax({
-      type: "POST",
-      url: "< ?php echo site_url('Alumnos/plantelesUnidadNegocio');?>",
-      data: "id_unidad_negocio=" + id_unidad,
-      success : function(text){
-        document.getElementById("plantel").innerHTML = "";
-          $('#plantel').append(text);
-      }
-    });
-  });*/
+
     
   function ComprobarNumeroTelefonico(){
     var  mensaje = '';

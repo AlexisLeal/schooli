@@ -1,9 +1,5 @@
 <?php include(APPPATH.'/Views/include/header.php');?>
-<style>
-.evalacionesSinPreguntas{
-  font-size:70%;
-}
-</style>
+
 <div class="espacioDos"></div>
 <header id="barra-superior">
 

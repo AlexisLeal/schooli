@@ -85,16 +85,7 @@
               <div class="espacioUno"></div>
 
             
-            <style>
-            #contenidoTipoRecurso {
-              display:none;
-              padding:20px 5px 20px 20px;
-            }
-            #contenidoTipoRecursoFormulario {
-              display:none;
-              padding:20px 5px 20px 20px;
-            }
-            </style>
+
               <div class="form-group">
                 <div id="cargar_recurso_archivo">
                   

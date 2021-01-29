@@ -1,15 +1,6 @@
 <?php include(APPPATH.'/Views/include/header.php');?>
 <meta name="google" content="notranslate">
-<style>
-#contestarEvaluacion {
-    display:none;
-}
 
-.pers {
-    margin-left:20px;
-}
-
-</style>
 <div class="espacioDos"></div>
 <header id="barra-superior">
 
