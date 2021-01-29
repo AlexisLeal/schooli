@@ -17,6 +17,7 @@
       </div>
     </div>
     <div class="col-md-6">
+    
       <div class="text-left">
         <form>
         <input type="text" type="search" placeholder="Search" class="form-control buscador">
@@ -168,7 +169,7 @@
                    }else{
                     foreach($evaluacionGrupo as $fila){
                       if($hoy >= $fechaInicioCiclo && $hoy <= $fechaFinCiclo && $goahead==1 && $horaActual>=$hi && $horaActual<=$hf){?>
-                      <tr>
+                      
                       
                       
 
@@ -176,28 +177,30 @@
                     if($fila->tipo_recurso == 1){
                       if(getTotalPreguntas($fila->id_evaluacion)==0){
                         ?>
+                        <tr>
                         <td><i class="fa fa-file-text-o fa-2x" aria-hidden="true"></td>
                         <td><button type="button" class="btn btn-success btn-sm"><?php echo $fila->nombre;?></button></td>
                         <td><span class="evalacionesSinPreguntas">Esta evaluación no tiene preguntas asignadas.</span></td>
-                         
+                         </tr>
                         <?php
                       }else{
                       ?>
+                      <tr>
                       <td><i class="fa fa-file-text-o fa-2x" aria-hidden="true"></td>
                       <td><a class="btn btn-success btn-sm" href="<?php echo site_url("Alumno/presentarevaluacion/$fila->id_evaluacion/$id_grupo/$id_curso/$id_nivel/$id_ciclo"); ?>" role="button"><?php echo $fila->nombre;?></a></td>
                       <td></td>
-                      
+                      </tr>
                       <?php
                       }
                       ?>
-                      </tr>
+                      
   
                     <?php
                      }else{
                        ?>
                       <tr>
-                      <td><i class="fa fa-file-text-o fa-2x" aria-hidden="true"></i></td>
-                      <td><a class="btn btn-success btn-sm" href="<?php echo $fila->ruta; ?>" role="button">
+                      <td><i class="fa fa-file-text-o fa-2x" aria-hidden="true"></td>
+                      <td><a href="<?php echo base_url($fila->ruta); ?>">
                       <?php echo $fila->nombre;?></a></td>
                       <td></td>
                       </tr>
