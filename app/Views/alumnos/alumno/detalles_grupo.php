@@ -115,9 +115,7 @@
 
 
 
-                  <table width="90%" cellspacing="8" cellpadding="4">
-                  <tr>
-                  <td>
+
                    <?php 
                    // Obtener el horario que tiene asignado este grupo
                    $horario = AsignacionGetGrupoHorario($id_grupo);
@@ -171,20 +169,22 @@
                     foreach($evaluacionGrupo as $fila){
                       if($hoy >= $fechaInicioCiclo && $hoy <= $fechaFinCiclo && $goahead==1 && $horaActual>=$hi && $horaActual<=$hf){?>
                       <tr>
-                      <td><i class="fa fa-file-text-o fa-2x" aria-hidden="true"></i></td>
+                      
                       
 
                     <?php
                     if($fila->tipo_recurso == 1){
                       if(getTotalPreguntas($fila->id_evaluacion)==0){
                         ?>
+                        <td><i class="fa fa-file-text-o fa-2x" aria-hidden="true"></td>
                         <td><button type="button" class="btn btn-success btn-sm"><?php echo $fila->nombre;?></button></td>
                         <td><span class="evalacionesSinPreguntas">Esta evaluación no tiene preguntas asignadas.</span></td>
                          
                         <?php
                       }else{
                       ?>
-                      <td><a class="btn btn-success btn-sm" href="<?php echo site_url("Alumno/presentarevaluacion/$fila->id_evaluacion/$id_grupo"); ?>" role="button"><?php echo $fila->nombre;?></a></td>
+                      <td><i class="fa fa-file-text-o fa-2x" aria-hidden="true"></td>
+                      <td><a class="btn btn-success btn-sm" href="<?php echo site_url("Alumno/presentarevaluacion/$fila->id_evaluacion/$id_grupo/$id_curso/$id_nivel/$id_ciclo"); ?>" role="button"><?php echo $fila->nombre;?></a></td>
                       <td></td>
                       
                       <?php
@@ -193,13 +193,20 @@
                       </tr>
   
                     <?php
-                     }
-                      }else{?>
+                     }else{
+                       ?>
                       <tr>
                       <td><i class="fa fa-file-text-o fa-2x" aria-hidden="true"></i></td>
-                      <td><button type="button" class="btn btn-secondary btn-sm"><?php echo $fila->nombre;?></button></td>
+                      <td><a class="btn btn-success btn-sm" href="<?php echo $fila->ruta; ?>" role="button"><?php echo $fila->nombre;?></a></td>
                       <td></td>
                       </tr>
+                       <?php
+                     }
+                      }else{?>
+
+
+
+
                       <?php
                       }
                       ?>
@@ -212,16 +219,7 @@
 
                   </table>
                   <br/><br/>
-                  </td>
-                  </tr>  
-                
 
-                  <tr>
-                  <td>
-             
-                  </td> 
-                  </tr>
-                  </table>
                   </div>
                 </div>
             <?php }?>
