@@ -120,7 +120,7 @@
 
     <div class="espacioAmplio"></div>
 
-<?php include("include/antes-footer.php");?>
+    <?php include(APPPATH . 'Views/include/antes-footer.php'); ?>
 
 <div class="espacioAmplio"></div>
 
