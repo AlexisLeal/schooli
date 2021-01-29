@@ -197,7 +197,8 @@
                        ?>
                       <tr>
                       <td><i class="fa fa-file-text-o fa-2x" aria-hidden="true"></i></td>
-                      <td><a class="btn btn-success btn-sm" href="<?php echo $fila->ruta; ?>" role="button"><?php echo $fila->nombre;?></a></td>
+                      <td><a class="btn btn-success btn-sm" href="<?php echo $fila->ruta; ?>" role="button">
+                      <?php echo $fila->nombre;?></a></td>
                       <td></td>
                       </tr>
                        <?php
