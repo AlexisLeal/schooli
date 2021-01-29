@@ -76,8 +76,8 @@ $collIntegraciones="collapse";
            <li class="list-group-item"><a class="<?php if($enlaceActivoCatalogo=='Salones'){echo 'mi-active';}?>" href="<?php echo site_url('Salones/index')?>">Salones</a></li>
            <li class="list-group-item"><a class="<?php if($enlaceActivoCatalogo=='Frecuencia'){echo 'mi-active';}?>" href="<?php echo site_url('Frecuencia/index')?>">Frecuencias</a></li>
            <li class="list-group-item"><a class="<?php if($enlaceActivoCatalogo=='Notificaciones'){echo 'mi-active';}?>" href="<?php echo site_url('Notificaciones/index')?>">Notificaciones</a></li>
-           <li class="list-group-item"><a class="<?php if($enlaceActivoModulo=='Alumnos'){echo 'mi-active';}?>" href="<?php echo site_url('Alumnos/index')?>">Alumnos</a></li>
-           <li class="list-group-item"><a class="<?php if($enlaceActivoModulo=='Teachers'){echo 'mi-active';}?>" href="<?php echo site_url('Teachers/index')?>">Teachers</a></li>
+           <li class="list-group-item"><a class="<?php if($enlaceActivoCatalogo=='Alumnos'){echo 'mi-active';}?>" href="<?php echo site_url('Alumnos/index')?>">Alumnos</a></li>
+           <li class="list-group-item"><a class="<?php if($enlaceActivoCatalogo=='Teachers'){echo 'mi-active';}?>" href="<?php echo site_url('Teachers/index')?>">Teachers</a></li>
            <li class="list-group-item"><a class="<?php if($enlaceActivoCatalogo=='Cursos'){echo 'mi-active';}?>" href="<?php echo site_url('Cursos/index')?>">Cursos</a></li>
             <!--
              <li class="list-group-item"><a href="#">Sucursales</a></li>
