@@ -4,7 +4,7 @@ $curURL = current_url();
 $Catalogos = ["Ciclos"=>1,"Horarios"=>2,"Niveles"=>3,"Salones"=>4,"Cursos"=>5,"Frecuencia"=>6,
 "Sucursales"=>7,"Facultades"=>8,"Carreras"=>9,"Usuarios"=>10,"Roles"=>11,"Integraciones"=>12,"Medios"=>13,
 "Canales"=>14,"Origenes"=>15,"Notificaciones"=>16,"Avisos Pop-Up"=>17,"Black List"=>18,"Calendario Anual"=>19,
-"Turnos"=>20,"Accesos"=>21,"Materiales"=>22,"Tipo Materiales"=>23,"Categoría Materiales"=>24,"Clases Demo"=>25];
+"Turnos"=>20,"Accesos"=>21,"Materiales"=>22,"Tipo Materiales"=>23,"Categoría Materiales"=>24,"Clases Demo"=>25,"Alumnos"=>26,"Teachers"=>26];
 
   foreach($Catalogos as $a=>$b){
     if(strpos($curURL, trim($a))){
@@ -19,7 +19,7 @@ $Catalogos = ["Ciclos"=>1,"Horarios"=>2,"Niveles"=>3,"Salones"=>4,"Cursos"=>5,"F
 
 
   
-  $Modulos = ["Recursos"=>1,"Evaluaciones"=>2,"Alumnos"=>3,"Grupos"=>4,"Prospectos"=>5,"Teachers"=>6,"Tutores"=>7,"ClasesDemo"=>8,"Preguntas"=>9];
+  $Modulos = ["Recursos"=>1,"Evaluaciones"=>2,"Grupos"=>4,"Prospectos"=>5,"Tutores"=>7,"ClasesDemo"=>8,"Preguntas"=>9];
   foreach($Modulos as $a=>$b){
     if(strpos($curURL, trim($a))){
       $collModulos  = "collapse show";
