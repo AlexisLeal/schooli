@@ -124,6 +124,32 @@
   </div>
 </div>
 
+test
+<table class="table">
+  <thead>
+    <tr>
+    <th>
+      <p class="font-weight-bold text-left">ID</p>
+    </th>
+    <th>
+      <p class="font-weight-bold text-left">Nombre:</p>
+    </th>
+    <th>
+      <p class="font-weight-bold text-center">Tipo de recurso:</p>
+    </th>
+    <th>
+      <p class="font-weight-bold text-center">Categoría.</p>
+    </th>
+    <th>
+      <p class="font-weight-bold text-center">Editar.</p>
+    </th>
+    </tr>
+  </thead>
+  <tbody>
+
+  </tbody>
+test
+
 
 <div class="espacioAmplio"></div>
 
