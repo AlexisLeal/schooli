@@ -116,8 +116,8 @@ class Recursos extends BaseController
                 }
 
                 if ($recurso_archivo->isValid() && !$recurso_archivo->hasMoved()) {
-                    $nombreCurso = CatalagoGetNombreCurso($REQUEST->getPost('curso'));
-                    $nombreNivel = getnivelEspecifico($REQUEST->getPost('nivel'));
+                    $nombreCurso = str_replace(' ','',CatalagoGetNombreCurso($REQUEST->getPost('curso'))); 
+                    $nombreNivel = str_replace(' ','',getnivelEspecifico($REQUEST->getPost('nivel')));
                     $nombreSesion = 'Sesion'.''.$REQUEST->getPost('sesion');
                     if (!is_dir("recursos/$nombreCurso/$nombreNivel/$nombreSesion")) {
                         try {
@@ -132,7 +132,7 @@ class Recursos extends BaseController
                             
                         }  
                     }
-                    $nombre_recurso = $recurso_archivo->getClientName();
+                    $nombre_recurso = str_replace(' ','',$recurso_archivo->getClientName());
                     $ruta_recurso_basedatos = "recursos/$nombreCurso/$nombreNivel/$nombreSesion/$nombre_recurso";
                     $ruta_mover_recurso = "recursos/$nombreCurso/$nombreNivel/$nombreSesion";
                     try {
@@ -151,7 +151,7 @@ class Recursos extends BaseController
                 }
             }elseif($REQUEST->getPost('tipoRecurso')==1){
 
-                $nombre_recurso = $REQUEST->getPost('nombreEvaluacion');
+                $nombre_recurso = str_replace(' ','',$REQUEST->getPost('nombreEvaluacion'));
                 $recurso_extension = null;
                 $tipo_archivo = null;
                 $ruta_recurso_basedatos = null;
@@ -199,8 +199,8 @@ class Recursos extends BaseController
                     return redirect()->to(site_url("Recursos/recursos"));
 
                 }
-                $nombreCurso = CatalagoGetNombreCurso($REQUEST->getPost('curso'));
-                $nombreNivel = getnivelEspecifico($REQUEST->getPost('nivel'));
+                $nombreCurso = str_replace(' ','',CatalagoGetNombreCurso($REQUEST->getPost('curso')));
+                $nombreNivel = str_replace(' ','',getnivelEspecifico($REQUEST->getPost('nivel')));
                 $nombreSesion = 'Sesion'.''.$REQUEST->getPost('sesion');
                 try{
                     InsertaRutaEvaluacion($id_evaluacion,$nombreCurso,$nombreNivel,$nombreSesion);
