@@ -154,4 +154,29 @@ function ObtenerCalificaionesPreviasAsistencia($idUsuario,$idGrupo,$fechaInicio,
   
 }
 
+function EvaluacionContestado($idUsuario,$idGrupo,$idCurso,$idNivel,$seion,$idCiclo,$IdEvaluacion){
+
+    $useModel = new Control_grupos_calificaciones_evaluaciones_model($db);
+    $useModel->select('id');
+    $useModel->where('id_alumno',$idUsuario);
+    $useModel->where('id_grupo',$idGrupo);
+    $useModel->where('id_curso',$idCurso);
+    $useModel->where('id_nivel',$idNivel);
+    $useModel->where('session',$seion);
+    $useModel->where('id_ciclo',$idCiclo);
+    $useModel->where('id_evaluacion',$IdEvaluacion);
+    $useModel->where('deleted',0);
+    $query = $useModel->get();
+    return $query->getRow();
+}
+
+function ComprobacionEvaluacionContestado($evaluacionContesda)
+{
+   if(!empty($evaluacionContesda)){
+       return true;
+   }else{
+       return false;
+   }
+}
+
 ?>
