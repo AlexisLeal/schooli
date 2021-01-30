@@ -151,8 +151,7 @@
                    $liberar = ObtenerTablaCursoCiclo($id_grupo,$codigo_acceso,$id_nivel,$fechaHoy);
 
                    //Poner validacion de los rangos con el ciclo 
-                  
-
+                   if(!empty($liberar)){
 
                    $evaluacionGrupo =  getRecursosPorCursoNivelSession($id_curso,$id_nivel,$liberar->sesion); 
                    ?>
@@ -183,7 +182,7 @@
                       ?>
                       <tr>
                       <td><i class="fa fa-file-text-o fa-2x" aria-hidden="true"></td>
-                      <td><a class="btn btn-success btn-sm" href="<?php echo site_url("Alumno/presentarevaluacion/$fila->id_evaluacion/$id_grupo/$id_curso/$id_nivel/$id_ciclo"); ?>" role="button"><?php echo $fila->nombre;?></a></td>
+                      <td><a class="btn btn-success btn-sm" href="<?php echo site_url("Alumno/presentarevaluacion/$fila->id_evaluacion/$id_grupo/$id_curso/$id_nivel/$id_ciclo/$liberar->sesion"); ?>" role="button"><?php echo $fila->nombre;?></a></td>
                       <td></td>
                       </tr>
                       <?php
@@ -212,6 +211,7 @@
                       ?>
                     <?php
                     }
+                  }//cierra llave para comprobar si tiene que liberar hoy 
                   }
                 }
                    ?>    

@@ -48,7 +48,18 @@ class Comprobacion extends BaseController{
 
             if($this->session->get('login')){
                 switch($this->session->get('tipo_usuario')){
-                    case 1: return redirect()->to(site_url('Alumno/index'));;break;
+                    case 1: 
+                        $gruposdeAlumno = ObtenerGruposdeAlumnosparaSesiones($this->session->get('id'));
+                        if(!empty($gruposdeAlumno)){
+                            foreach($gruposdeAlumno as $fila){
+                                $sesionArrayGrupos[] = $fila->id_grupo;
+                            }
+                            $data = ['sesionArrayGrupos'  => $sesionArrayGrupos];
+                            $this->session->set($data,true);
+                            return redirect()->to(site_url('Alumno/index'));;break;
+                        }
+                        
+                        return redirect()->to(site_url('Alumno/index'));;break;
                     case 2: return redirect()->to(site_url('Tutores/index'));;break;
                     case 3: return redirect()->to(site_url('Teacher/index'));;break;
                     case 4: return redirect()->to(site_url('Panel/index'));;break;

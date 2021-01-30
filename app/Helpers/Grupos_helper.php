@@ -3,6 +3,7 @@ use  App\Models\Grupos_model;
 use  App\Models\Cursos_model;
 use  App\Models\Recursos_model;
 use  App\Models\Frecuencia_model;
+use  App\Models\Grupos_alumnos_model;
 
 
 function getAllGrupos()
@@ -257,6 +258,26 @@ function ObtenerSemanaAnual($fecha){
 function ObtenerDia($fecha){
     return date('l', strtotime($fecha));
 
+}
+
+function ObtenerGruposdeAlumnosparaSesiones($idUsuario)
+{
+    $useModel = new Grupos_alumnos_model($db);
+    $useModel->select('id_grupo');
+    $useModel->where('id_alumno',$idUsuario);
+    $useModel->where('deleted',0);
+	$query = $useModel->get();
+	return $query->getResult();
+}
+
+function ComprobacionGrupoAlumno($sesionArrayGrupos,$idGrupo)
+{
+   foreach($sesionArrayGrupos as $fila){
+       if($fila == $idGrupo){
+           return true;
+       }
+   }
+   return false;
 }
 
    

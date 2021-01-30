@@ -21,8 +21,10 @@ class Alumno extends BaseController{
         }
 	}
     
-    public function presentarevaluacion($id_evaluacion,$idGrupo,$IdCurso,$IdNivel,$Idciclo){
+    public function presentarevaluacion($id_evaluacion,$idGrupo,$IdCurso,$IdNivel,$Idciclo,$sesion){
+        //Posiblemente deberemos de quitar las demas varibales y solo dejar idgrupo 
         if($this->session->get('login') && $this->session->get('roll') == 1){
+            if(ComprobacionGrupoAlumno($this->session->get('sesionArrayGrupos'),$idGrupo)){
             $usermodel = new Evaluaciones_model($db);
             $usermodel->select('nombre,clave,tipo_evaluacion');
             $usermodel->where('id',$id_evaluacion);
@@ -34,6 +36,7 @@ class Alumno extends BaseController{
             $data['IdCurso'] = $IdCurso;
             $data['IdNivel'] = $IdNivel;
             $data['Idciclo'] = $Idciclo;
+            $data['sesion'] = $sesion;
             $data['nombre'] = $row->nombre;
             $data['clave'] = $row->clave;
             $data['idtipoevaluacion'] = $row->tipo_evaluacion;
@@ -45,6 +48,9 @@ class Alumno extends BaseController{
             $data['page_title'] = "Preguntas";
 
             return view('alumnos/alumno/presentarevaluacion',$data);
+            }else{
+                return redirect()->to(site_url('Alumno/index'));
+            }
         }else{
             return redirect()->to(site_url('Home/salir'));
         }
@@ -195,6 +201,7 @@ class Alumno extends BaseController{
                     'id_evaluacion' =>$idEvaluacion,
                     'id_curso' =>$REQUEST->getPost('IdCurso'),
                     'id_nivel' =>$REQUEST->getPost('IdNivel'),
+                    'session' =>$REQUEST->getPost('sesion'),
                     'id_ciclo' =>$REQUEST->getPost('Idciclo'),
                     'calificacion'=>$puntos,
                     'calificaciontotal'=>$valortotalevaluacion,
@@ -221,7 +228,7 @@ class Alumno extends BaseController{
     public function calificaciones($idGrupo)
 	{
         if($this->session->get('login') && $this->session->get('roll') == 1){
-            
+            if(ComprobacionGrupoAlumno($this->session->get('sesionArrayGrupos'),$idGrupo)){
             $espicifacionesdeGrupo = GruposObtenerNivelCursoCiclodeGrupo($idGrupo);
             $data['idGrupo'] = $idGrupo;
             $data['idNivel'] = $espicifacionesdeGrupo->id_nivel;
@@ -240,11 +247,15 @@ class Alumno extends BaseController{
             $data['valorAsistDiaria']  = $valoresPonderacion->valor_asistencia/$valoresPonderacion->total_dias_laborales;
 
             return view('alumnos/alumno/calificaciones',$data);
+            }else{
+                return redirect()->to(site_url('Alumno/index'));
+
+            }
         }
     }
 
 
-    function detallesgrupo(){
+    public function detallesgrupo(){
         $db = \Config\Database::connect();
 
         $id_usuario= $this->session->get('id');
